@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+#
+# Revenue Engine Master CLI (B2B Surplus Feeds & Domain Arbitrage)
+#
+
+BASE_DIR="/Users/davidmahler/revenue-engine"
+PYTHON="$BASE_DIR/.venv/bin/python3"
+
+case "$1" in
+    surplus|feed)
+        echo "🚀 Running B2B Surplus Lead Feed Generator..."
+        $PYTHON "$BASE_DIR/portal/feed_generator.py"
+        ;;
+    domains|drops)
+        echo "🌐 Running Expired Domain Arbitrage Scanner..."
+        $PYTHON "$BASE_DIR/domain_arbitrage/run_domain_pipeline.py"
+        ;;
+    all)
+        $0 surplus
+        echo ""
+        $0 domains
+        ;;
+    status)
+        echo "=================================================================="
+        echo " 📊 REVENUE ENGINE STATUS (ZERO-HUMAN B2B ARBITRAGE)"
+        echo "=================================================================="
+        echo "📁 Active Data Feeds in $BASE_DIR/exports:"
+        ls -lh "$BASE_DIR/exports"/*.csv 2>/dev/null || echo "  No surplus feeds exported yet."
+        echo ""
+        echo "📁 Domain Opportunities in $BASE_DIR/domain_arbitrage/listings:"
+        ls -lh "$BASE_DIR/domain_arbitrage/listings"/*.csv 2>/dev/null || echo "  No domain listings generated yet."
+        echo "=================================================================="
+        ;;
+    *)
+        echo "Revenue Engine CLI"
+        echo ""
+        echo "Usage: enginectl {surplus|domains|all|status}"
+        echo ""
+        echo "  surplus     Generate B2B Public Surplus Lead Feeds (CSV/Excel/JSON)"
+        echo "  domains     Scan & score high-resale dropping domains"
+        echo "  all         Run both automated pipelines"
+        echo "  status      View current exported deliverables and opportunities"
+        ;;
+esac

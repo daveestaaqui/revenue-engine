@@ -1,0 +1,74 @@
+[
+  {
+    "state": "FL",
+    "county": "Orange",
+    "portal_name": "Orange County Comptroller",
+    "source_url": "https://www.orangecountycomptroller.com/Records-Search/Tax-Deeds",
+    "format": "CSV/PDF",
+    "avg_monthly_surplus": 1850000,
+    "statute": "FL Statute § 197.582"
+  },
+  {
+    "state": "FL",
+    "county": "Hillsborough",
+    "portal_name": "Hillsborough County Clerk",
+    "source_url": "https://www.hillsclerk.com/Court-Services/Tax-Deeds",
+    "format": "CSV",
+    "avg_monthly_surplus": 1420000,
+    "statute": "FL Statute § 197.582"
+  },
+  {
+    "state": "FL",
+    "county": "Palm Beach",
+    "portal_name": "Palm Beach Clerk & Comptroller",
+    "source_url": "https://mypalmbeachclerk.com/departments/courts/tax-deeds",
+    "format": "PDF",
+    "avg_monthly_surplus": 2100000,
+    "statute": "FL Statute § 197.582"
+  },
+  {
+    "state": "FL",
+    "county": "Miami-Dade",
+    "portal_name": "Miami-Dade County Clerk of Courts",
+    "source_url": "https://www.miamidadeclerk.gov/clerk/tax-deeds.page",
+    "format": "PDF/Table",
+    "avg_monthly_surplus": 3400000,
+    "statute": "FL Statute § 197.582"
+  },
+  {
+    "state": "FL",
+    "county": "Duval",
+    "portal_name": "Duval County Clerk of Courts",
+    "source_url": "https://www.duvalclerk.com/departments/tax-deeds",
+    "format": "PDF",
+    "avg_monthly_surplus": 980000,
+    "statute": "FL Statute § 197.582"
+  },
+  {
+    "state": "TX",
+    "county": "Harris (Houston)",
+    "portal_name": "Harris County Tax Assessor",
+    "source_url": "https://www.hctax.net/Property/TaxSales",
+    "format": "CSV/PDF",
+    "avg_monthly_surplus": 2800000,
+    "statute": "TX Tax Code § 34.04"
+  },
+  {
+    "state": "TX",
+    "county": "Dallas",
+    "portal_name": "Dallas County District Clerk",
+    "source_url": "https://www.dallascounty.org/government/district-clerk/tax-foreclosures.php",
+    "format": "PDF",
+    "avg_monthly_surplus": 1650000,
+    "statute": "TX Tax Code § 34.04"
+  },
+  {
+    "state": "GA",
+    "county": "Fulton (Atlanta)",
+    "portal_name": "Fulton County Sheriff",
+    "source_url": "https://www.fultoncountysheriff.com/excess-funds.html",
+    "format": "Web/PDF",
+    "avg_monthly_surplus": 1200000,
+    "statute": "O.C.G.A. § 48-5-450"
+  }
+]

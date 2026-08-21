@@ -1,0 +1,13 @@
+domain,name,tld,length,score,keywords_matched,tier,wholesale_cost_usd,suggested_buy_it_now_usd,estimated_net_profit_usd
+aipayment.com,aipayment,com,9,80,"['ai', 'pay']","Tier 1: High Liquidity ($799 - $1,299)",10.5,899.0,708.7
+dataloan.com,dataloan,com,8,80,"['data', 'loan']","Tier 1: High Liquidity ($799 - $1,299)",10.5,899.0,708.7
+applabs.com,applabs,com,7,73,"['labs', 'app']","Tier 1: High Liquidity ($799 - $1,299)",10.5,899.0,708.7
+vaultflow.com,vaultflow,com,9,68,"['flow', 'vault']","Tier 1: High Liquidity ($799 - $1,299)",10.5,899.0,708.7
+estateflow.com,estateflow,com,10,65,"['flow', 'estate']","Tier 1: High Liquidity ($799 - $1,299)",10.5,899.0,708.7
+equitydirect.com,equitydirect,com,12,59,"['equity', 'direct']",Tier 2: Medium Liquidity ($399 - $699),10.5,499.0,388.7
+primeinvest.com,primeinvest,com,11,57,"['invest', 'prime']",Tier 2: Medium Liquidity ($399 - $699),10.5,499.0,388.7
+wealthdirect.com,wealthdirect,com,12,55,"['wealth', 'direct']",Tier 2: Medium Liquidity ($399 - $699),10.5,499.0,388.7
+techfund.org,techfund,org,8,50,"['tech', 'fund']",Tier 2: Medium Liquidity ($399 - $699),10.5,499.0,388.7
+smartcapital.io,smartcapital,io,12,49,"['smart', 'capital']",Tier 2: Medium Liquidity ($399 - $699),10.5,499.0,388.7
+healthstack.io,healthstack,io,11,42,"['stack', 'health']",Tier 3: Standard Resale ($199 - $399),10.5,299.0,228.7
+cloudrealty.org,cloudrealty,org,11,33,"['cloud', 'realty']",Tier 3: Standard Resale ($199 - $399),10.5,299.0,228.7

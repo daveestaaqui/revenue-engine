@@ -1,0 +1,52 @@
+[
+  {
+    "state": "FL",
+    "county": "Orange",
+    "portal_name": "Orange County Comptroller Tax Deed Surplus",
+    "statute": "FL Statute 197.582",
+    "claim_window": "120 days from notice before escheatment",
+    "typical_fee_rate": 0.20,
+    "source_type": "PDF/Table",
+    "sample_url": "https://www.orangecountycomptroller.com/Records-Search/Tax-Deeds"
+  },
+  {
+    "state": "FL",
+    "county": "Hillsborough",
+    "portal_name": "Hillsborough County Clerk Tax Deed Surplus",
+    "statute": "FL Statute 197.582",
+    "claim_window": "120 days",
+    "typical_fee_rate": 0.20,
+    "source_type": "CSV/PDF",
+    "sample_url": "https://www.hillsclerk.com/Court-Services/Tax-Deeds"
+  },
+  {
+    "state": "FL",
+    "county": "Palm Beach",
+    "portal_name": "Palm Beach County Clerk Tax Deed Sales",
+    "statute": "FL Statute 197.582",
+    "claim_window": "120 days",
+    "typical_fee_rate": 0.20,
+    "source_type": "PDF",
+    "sample_url": "https://mypalmbeachclerk.com/departments/courts/tax-deeds"
+  },
+  {
+    "state": "TX",
+    "county": "Harris",
+    "portal_name": "Harris County Tax Assessor Excess Proceeds",
+    "statute": "TX Tax Code Section 34.04",
+    "claim_window": "2 years",
+    "typical_fee_rate": 0.25,
+    "source_type": "PDF/Table",
+    "sample_url": "https://www.hctax.net/Property/TaxSales"
+  },
+  {
+    "state": "GA",
+    "county": "Fulton",
+    "portal_name": "Fulton County Sheriff Excess Funds",
+    "statute": "O.C.G.A. § 48-5-450",
+    "claim_window": "5 years",
+    "typical_fee_rate": 0.20,
+    "source_type": "PDF/Web",
+    "sample_url": "https://www.fultoncountysheriff.com/excess-funds.html"
+  }
+]

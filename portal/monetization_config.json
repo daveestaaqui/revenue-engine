@@ -1,0 +1,33 @@
+{
+  "tier_1_florida": {
+    "title": "Florida Tax Deed Surplus Daily Data Feed",
+    "price_monthly": 299,
+    "features": [
+      "Daily CSV/Excel updates (Orange, Hillsborough, Palm Beach, Miami-Dade, Duval)",
+      "Pre-filtered: 100% Institutional liens (banks/HOAs) removed",
+      "Individual owners & Estates ranked by equity size ($10k - $150k+ balances)",
+      "Estimated statutory fee calculations (FL Statute \u00a7 197.582)"
+    ],
+    "target_audience": "Florida asset recovery attorneys, title companies, real estate wholesalers"
+  },
+  "tier_2_texas": {
+    "title": "Texas Excess Proceeds Daily Data Feed",
+    "price_monthly": 299,
+    "features": [
+      "Daily CSV/Excel updates (Harris/Houston, Dallas, Travis)",
+      "Texas Tax Code \u00a7 34.04 statutory equity calculations",
+      "Full property situs & case docket reference IDs"
+    ],
+    "target_audience": "Texas tax deed investors & surplus attorneys"
+  },
+  "tier_3_master": {
+    "title": "National All-States Master Surplus Feed (API + CSV)",
+    "price_monthly": 499,
+    "features": [
+      "All Florida + Texas + Georgia county feeds combined",
+      "Direct JSON REST API access + automated daily Excel delivery",
+      "Priority Tier 1 ($25k+ balance) instant deal alerts"
+    ],
+    "target_audience": "High-volume national recovery agencies and equity funds"
+  }
+}
