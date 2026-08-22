@@ -230,6 +230,15 @@ def render_article_page(article):
             }}
         }}
     </script>
+    <style>
+        h1, h2, h3, h4, h5 {{
+            text-wrap: balance;
+            letter-spacing: -0.015em;
+        }}
+        p, li {{
+            text-wrap: pretty;
+        }}
+    </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-slate-700">
 
@@ -431,6 +440,15 @@ def render_blog_index():
             }}
         }}
     </script>
+    <style>
+        h1, h2, h3, h4, h5 {{
+            text-wrap: balance;
+            letter-spacing: -0.015em;
+        }}
+        p, li {{
+            text-wrap: pretty;
+        }}
+    </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-slate-700">
 
