@@ -246,7 +246,7 @@ def render_article_page(article):
     <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 py-3 flex items-center justify-between">
             <a href="/" class="flex items-center gap-3 group">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
                 <div class="flex items-baseline gap-1.5 leading-none">
                     <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
@@ -293,30 +293,31 @@ def render_article_page(article):
         <div class="max-w-4xl mx-auto flex flex-col items-center">
             <!-- Centered Brand Lockup -->
             <a href="/" class="flex items-center gap-3 mb-6 group">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
                 <div class="flex items-baseline gap-1.5 leading-none">
-                    <span class="font-heading font-black text-2xl text-brand-green">SURPLUS</span>
-                    <span class="font-heading font-black text-2xl text-brand-navy">DOCKET</span>
+                    <span class="font-heading font-black text-lg sm:text-2xl text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-lg sm:text-2xl text-brand-navy">DOCKET</span>
                 </div>
             </a>
             
             <!-- Simple, Clean Centered Navigation Bar -->
-            <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 text-xs font-semibold text-slate-600 mb-8 max-w-3xl">
-                <a href="/" class="hover:text-brand-green transition-colors">Main Hub</a>
+                        <!-- Condensed & Responsive Footer Navigation -->
+            <nav class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 text-[11px] sm:text-xs font-semibold text-slate-600 mb-6 max-w-2xl px-2">
+                <a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">FL Feed</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">Florida Feed</a>
+                <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors">TX Feed</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors">Texas Feed</a>
+                <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors">GA Feed</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors">Georgia Feed</a>
+                <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Toolkit</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Practitioner Toolkit</a>
+                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">API</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">REST API</a>
+                <a href="/blog/" class="hover:text-brand-green transition-colors">Articles</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/blog/" class="hover:text-brand-green transition-colors">All Articles</a>
+                <a href="/#pricing" class="hover:text-brand-green transition-colors">Pricing</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green transition-colors font-semibold">Stripe Customer Portal</a>
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green transition-colors font-bold text-brand-navy">Customer Portal</a>
             </nav>
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-xs text-slate-500 w-full pt-6 border-t border-slate-200">
@@ -417,7 +418,7 @@ def render_blog_index():
     <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 py-3 flex items-center justify-between">
             <a href="/" class="flex items-center gap-3 group">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
                 <div class="flex items-baseline gap-1.5 leading-none">
                     <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
@@ -457,30 +458,31 @@ def render_blog_index():
         <div class="max-w-4xl mx-auto flex flex-col items-center">
             <!-- Centered Brand Lockup -->
             <a href="/" class="flex items-center gap-3 mb-6 group">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
                 <div class="flex items-baseline gap-1.5 leading-none">
-                    <span class="font-heading font-black text-2xl text-brand-green">SURPLUS</span>
-                    <span class="font-heading font-black text-2xl text-brand-navy">DOCKET</span>
+                    <span class="font-heading font-black text-lg sm:text-2xl text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-lg sm:text-2xl text-brand-navy">DOCKET</span>
                 </div>
             </a>
             
             <!-- Simple, Clean Centered Navigation Bar -->
-            <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 text-xs font-semibold text-slate-600 mb-8 max-w-3xl">
-                <a href="/" class="hover:text-brand-green transition-colors">Main Hub</a>
+                        <!-- Condensed & Responsive Footer Navigation -->
+            <nav class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 text-[11px] sm:text-xs font-semibold text-slate-600 mb-6 max-w-2xl px-2">
+                <a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">FL Feed</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">Florida Feed</a>
+                <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors">TX Feed</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors">Texas Feed</a>
+                <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors">GA Feed</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors">Georgia Feed</a>
+                <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Toolkit</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Practitioner Toolkit</a>
+                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">API</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">REST API</a>
+                <a href="/blog/" class="hover:text-brand-green transition-colors">Articles</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/blog/" class="hover:text-brand-green transition-colors font-bold text-brand-green">All Articles</a>
+                <a href="/#pricing" class="hover:text-brand-green transition-colors">Pricing</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green transition-colors font-semibold">Stripe Customer Portal</a>
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green transition-colors font-bold text-brand-navy">Customer Portal</a>
             </nav>
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-xs text-slate-500 w-full pt-6 border-t border-slate-200">
