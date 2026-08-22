@@ -237,7 +237,7 @@ def render_article_page(article):
     <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 py-3 flex items-center justify-between">
             <a href="/" class="flex items-center gap-3.5 group">
-                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(22,45,74,0.12)] transition-transform group-hover:scale-105">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105">
                 <div class="flex flex-col">
                     <div class="flex items-baseline gap-1.5 leading-none">
                         <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
@@ -289,7 +289,7 @@ def render_article_page(article):
         <div class="max-w-4xl mx-auto flex flex-col items-center">
             <!-- Centered Brand Lockup -->
             <a href="/" class="flex items-center gap-3.5 mb-2 group">
-                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-10 h-10 object-contain filter drop-shadow-[0_2px_8px_rgba(22,45,74,0.12)] transition-transform group-hover:scale-105">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105">
                 <div class="flex items-baseline gap-1.5 leading-none">
                     <span class="font-heading font-black text-2xl text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-2xl text-brand-navy">DOCKET</span>
@@ -437,8 +437,8 @@ def render_blog_index():
     <!-- Header -->
     <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 py-3 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-3.5 group">
-                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(22,45,74,0.12)] transition-transform group-hover:scale-105">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105">
                 <div class="flex flex-col">
                     <div class="flex items-baseline gap-1.5 leading-none">
                         <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
@@ -482,8 +482,8 @@ def render_blog_index():
     <footer class="bg-white border-t border-slate-200 py-12 text-center px-4">
         <div class="max-w-4xl mx-auto flex flex-col items-center">
             <!-- Centered Brand Lockup -->
-            <a href="/" class="flex items-center gap-3.5 mb-2 group">
-                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-10 h-10 object-contain filter drop-shadow-[0_2px_8px_rgba(22,45,74,0.12)] transition-transform group-hover:scale-105">
+            <a href="/" class="flex items-center gap-2.5 mb-2 group">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105">
                 <div class="flex items-baseline gap-1.5 leading-none">
                     <span class="font-heading font-black text-2xl text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-2xl text-brand-navy">DOCKET</span>
