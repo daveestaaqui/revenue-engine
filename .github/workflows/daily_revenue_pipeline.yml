@@ -27,7 +27,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas openpyxl requests pypdf beautifulsoup4
+          pip install -r requirements.txt
 
       - name: 1. Generate B2B Surplus Data Feeds (FL & TX)
         run: |
