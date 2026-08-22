@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-22T10:37:29.262544",
-  "total_records": 17,
-  "total_surplus_volume_usd": 1173500.0,
-  "total_finder_fees_available_usd": 254360.0,
-  "data": [
+  "status": "success",
+  "jurisdiction": "FL",
+  "statute": "Fla. Stat. \u00a7 197.582",
+  "total_records": 12,
+  "records": [
     {
       "State": "FL",
       "County": "Palm Beach",
@@ -18,22 +18,6 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-06-28",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
-    },
-    {
-      "State": "TX",
-      "County": "Harris",
-      "Case_or_TaxDeed_No": "2024-TX-04812",
-      "Owner_Name": "WILLIAM & MARY HOLLOWAY",
-      "Entity_Type": "Individual / Estate",
-      "Is_Individual": true,
-      "Property_Address": "5402 BRAESVALLEY DR HOUSTON TX 77096",
-      "Surplus_Balance_USD": 128500.0,
-      "Statutory_Fee_Rate": "25%",
-      "Est_Finder_Fee_USD": 32125.0,
-      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
-      "Sale_Date": "2024-07-09",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
       "Enriched_Timestamp": "2026-08-22 10:37:29"
     },
     {
@@ -66,38 +50,6 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-25",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
-    },
-    {
-      "State": "TX",
-      "County": "Harris",
-      "Case_or_TaxDeed_No": "2024-TX-04950",
-      "Owner_Name": "ESTATE OF CHARLES BEAUMONT",
-      "Entity_Type": "Estate / Deceased",
-      "Is_Individual": true,
-      "Property_Address": "1802 HEIGHTS BLVD HOUSTON TX 77008",
-      "Surplus_Balance_USD": 86200.0,
-      "Statutory_Fee_Rate": "25%",
-      "Est_Finder_Fee_USD": 21550.0,
-      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
-      "Sale_Date": "2024-07-16",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
-    },
-    {
-      "State": "TX",
-      "County": "Dallas",
-      "Case_or_TaxDeed_No": "2024-TX-02044",
-      "Owner_Name": "ESTATE OF MARGARET THORNTON",
-      "Entity_Type": "Estate / Deceased",
-      "Is_Individual": true,
-      "Property_Address": "6412 ABRAMS RD DALLAS TX 75231",
-      "Surplus_Balance_USD": 77800.0,
-      "Statutory_Fee_Rate": "25%",
-      "Est_Finder_Fee_USD": 19450.0,
-      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
-      "Sale_Date": "2024-08-13",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
       "Enriched_Timestamp": "2026-08-22 10:37:29"
     },
     {
@@ -149,22 +101,6 @@
       "Enriched_Timestamp": "2026-08-22 10:37:29"
     },
     {
-      "State": "TX",
-      "County": "Dallas",
-      "Case_or_TaxDeed_No": "2024-TX-01928",
-      "Owner_Name": "GEORGE & DOROTHY WASHINGTON",
-      "Entity_Type": "Individual / Estate",
-      "Is_Individual": true,
-      "Property_Address": "3819 COLONIAL AVE DALLAS TX 75215",
-      "Surplus_Balance_USD": 59400.0,
-      "Statutory_Fee_Rate": "25%",
-      "Est_Finder_Fee_USD": 14850.0,
-      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
-      "Sale_Date": "2024-07-23",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
-    },
-    {
       "State": "FL",
       "County": "Hillsborough",
       "Case_or_TaxDeed_No": "2024-TD-009041",
@@ -210,22 +146,6 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-12",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
-    },
-    {
-      "State": "TX",
-      "County": "Harris",
-      "Case_or_TaxDeed_No": "2024-TX-05110",
-      "Owner_Name": "RAFAEL GUERRERO",
-      "Entity_Type": "Individual / Estate",
-      "Is_Individual": true,
-      "Property_Address": "7120 NAVIGATION BLVD HOUSTON TX 77011",
-      "Surplus_Balance_USD": 41300.0,
-      "Statutory_Fee_Rate": "25%",
-      "Est_Finder_Fee_USD": 10325.0,
-      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
-      "Sale_Date": "2024-08-06",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
       "Enriched_Timestamp": "2026-08-22 10:37:29"
     },
     {

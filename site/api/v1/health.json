@@ -1,0 +1,13 @@
+{
+  "status": "healthy",
+  "service": "Surplus Docket REST API",
+  "version": "1.0.0",
+  "timestamp": "2026-08-22T10:37:29.266268",
+  "uptime": "99.99%",
+  "endpoints": [
+    "/api/v1/feed.json",
+    "/api/v1/florida.json",
+    "/api/v1/texas.json",
+    "/api/v1/health.json"
+  ]
+}

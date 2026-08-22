@@ -84,6 +84,12 @@ def update_sitemap():
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://surplusdocket.com/api-documentation.html</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://surplusdocket.com/florida-tax-deed-surplus.html</loc>
     <lastmod>{today_str}</lastmod>
     <changefreq>daily</changefreq>
@@ -94,6 +100,12 @@ def update_sitemap():
     <lastmod>{today_str}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://surplusdocket.com/api/v1/feed.json</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://surplusdocket.com/feed.xml</loc>

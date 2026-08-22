@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API Documentation | Surplus Docket Public Records API</title>
+    <meta name="description" content="Programmatic REST JSON API documentation for querying daily Florida and Texas tax deed surplus and excess proceeds court dockets.">
+    <link rel="canonical" href="https://surplusdocket.com/api-documentation.html">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#00875a',
+                            greenDark: '#006644',
+                            greenLight: '#059669',
+                            greenSoft: '#e3fcef',
+                            navy: '#162d4a',
+                            navyDark: '#0f2035',
+                            canvas: '#F5F7FA',
+                            card: '#FFFFFF',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-slate-700 selection:bg-brand-green selection:text-white">
+
+    <!-- Header -->
+    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 py-3 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3.5 group">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-10 h-10 object-contain">
+                <div class="flex flex-col">
+                    <div class="flex items-baseline gap-1.5 leading-none">
+                        <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
+                        <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase tracking-widest text-slate-500 mt-1">REST API Reference v1.0</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="/" class="text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">Main Hub</a>
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-5 py-2.5 rounded-lg shadow-sm hover:shadow-md transition-all">
+                    Subscribe ($449/mo)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-16 w-full">
+        <!-- Title -->
+        <div class="mb-12">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+                Production REST API Live
+            </div>
+            <h1 class="text-3xl md:text-5xl font-heading font-black text-brand-navy mb-4">
+                Programmatic Public Records API
+            </h1>
+            <p class="text-slate-600 text-base md:text-lg leading-relaxed max-w-3xl">
+                The Surplus Docket REST API delivers structured, daily-refreshed tax deed surplus and excess proceeds datasets directly to law firm CRMs, legal research software, and custom automated pipelines.
+            </p>
+        </div>
+
+        <!-- Base URL -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 mb-10 shadow-sm">
+            <h2 class="font-heading font-bold text-base text-brand-navy mb-2">Base Endpoint URL</h2>
+            <div class="bg-slate-900 text-emerald-400 font-mono text-sm p-4 rounded-lg flex items-center justify-between overflow-x-auto">
+                <code>https://surplusdocket.com/api/v1</code>
+                <span class="text-xs text-slate-400 uppercase font-sans font-semibold">HTTPS / JSON</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-2">
+                All requests use standard HTTPS GET requests and return structured UTF-8 JSON. Cross-Origin Resource Sharing (CORS) is enabled on all endpoints.
+            </p>
+        </div>
+
+        <!-- Endpoints List -->
+        <div class="space-y-10">
+            <!-- Endpoint 1 -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
+                    <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/feed.json</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">
+                    Returns the master consolidated multi-state public records dataset across all monitored Florida and Texas jurisdictions.
+                </p>
+                <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
+<pre><code>curl -s "https://surplusdocket.com/api/v1/feed.json"</code></pre>
+                </div>
+            </div>
+
+            <!-- Endpoint 2 -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
+                    <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/florida.json</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">
+                    Returns filtered Florida clerk of court tax deed surplus records governed by Fla. Stat. § 197.582.
+                </p>
+                <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
+<pre><code>curl -s "https://surplusdocket.com/api/v1/florida.json"</code></pre>
+                </div>
+            </div>
+
+            <!-- Endpoint 3 -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
+                    <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/texas.json</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">
+                    Returns filtered Texas district court registry excess proceeds records governed by Tex. Tax Code § 34.04.
+                </p>
+                <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
+<pre><code>curl -s "https://surplusdocket.com/api/v1/texas.json"</code></pre>
+                </div>
+            </div>
+
+            <!-- Endpoint 4 -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
+                    <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/health.json</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">
+                    Health check endpoint returning API version, system uptime, and endpoint manifest.
+                </p>
+                <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
+<pre><code>curl -s "https://surplusdocket.com/api/v1/health.json"</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Integration Examples -->
+        <div class="mt-14">
+            <h2 class="text-2xl font-heading font-black text-brand-navy mb-6">Integration Snippets</h2>
+            
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="bg-slate-100 px-6 py-3 border-b border-slate-200">
+                    <span class="font-mono font-bold text-xs text-slate-700">Python (Pandas / Requests)</span>
+                </div>
+                <div class="bg-slate-900 text-slate-200 font-mono text-xs p-6 overflow-x-auto leading-relaxed">
+<pre><code>import requests
+import pandas as pd
+
+# Fetch Master Feed
+url = "https://surplusdocket.com/api/v1/feed.json"
+response = requests.get(url)
+data = response.json()
+
+# Convert records to DataFrame
+df = pd.DataFrame(data["records"])
+print(f"Total claims indexed: {len(df)}")
+print(df[["State", "County", "Case_or_TaxDeed_No", "Surplus_Balance_USD"]].head())</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-navy text-white py-8 text-center text-xs text-slate-400">
+        <p>&copy; 2026 Surplus Docket. All rights reserved. Programmatic Public Records API.</p>
+    </footer>
+
+</body>
+</html>

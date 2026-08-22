@@ -1,9 +1,20 @@
 {
-  "generated_at": "2026-08-22T10:37:29.262544",
-  "total_records": 17,
-  "total_surplus_volume_usd": 1173500.0,
-  "total_finder_fees_available_usd": 254360.0,
-  "data": [
+  "status": "success",
+  "api_version": "v1.0",
+  "generated_at": "2026-08-22T10:37:29.265220",
+  "meta": {
+    "total_records": 17,
+    "total_surplus_volume_usd": 1173500.0,
+    "jurisdictions_monitored": [
+      "FL",
+      "TX"
+    ],
+    "statutes": [
+      "Fla. Stat. \u00a7 197.582",
+      "Tex. Tax Code \u00a7 34.04"
+    ]
+  },
+  "records": [
     {
       "State": "FL",
       "County": "Palm Beach",
