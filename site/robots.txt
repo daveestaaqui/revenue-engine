@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Canonical Sitemap
+Sitemap: https://surplusdocket.com/sitemap.xml
+Sitemap: https://surplusdocket.com/feed.xml

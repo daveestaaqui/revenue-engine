@@ -8,7 +8,62 @@
     <meta property="og:title" content="Surplus Docket | Public Records Surplus Intelligence">
     <meta property="og:description" content="Automated daily indexing of court dockets and county clerk tax surplus records for legal recovery professionals.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://surplusdocket.com/">
+    <link rel="canonical" href="https://surplusdocket.com/">
+    <meta name="keywords" content="tax deed surplus data feed, Florida excess proceeds leads, Texas tax overages list, clerk of court surplus funds list, tax deed recovery intelligence, asset recovery legal database">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path d='M24 4L40 10V22C40 32.5 33.2 41.8 24 44C14.8 41.8 8 32.5 8 22V10L24 4Z' fill='%230f172a' stroke='%23f59e0b' stroke-width='3'/><path d='M24 13V33M16 18H32M19 33H29' stroke='%23f59e0b' stroke-width='3' stroke-linecap='round'/></svg>">
+    
+    <!-- JSON-LD Structured Data for Google Search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://surplusdocket.com/#organization",
+          "name": "Surplus Docket",
+          "url": "https://surplusdocket.com",
+          "logo": "https://surplusdocket.com/icon.svg",
+          "description": "Institutional public records data indexing tax deed surplus and excess proceeds filings."
+        },
+        {
+          "@type": "Dataset",
+          "name": "Daily Tax Deed Surplus & Excess Proceeds Public Records Feed",
+          "description": "Daily normalized court docket and clerk of court tax sale surplus balance records across Florida and Texas counties.",
+          "license": "https://surplusdocket.com/#compliance",
+          "creator": {
+            "@id": "https://surplusdocket.com/#organization"
+          },
+          "distribution": [
+            {"@type": "DataDownload", "encodingFormat": "text/csv"},
+            {"@type": "DataDownload", "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
+            {"@type": "DataDownload", "encodingFormat": "application/json"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How are tax deed surplus funds calculated under Florida Statute § 197.582?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Under Fla. Stat. § 197.582, when a tax deed auction sale produces proceeds in excess of delinquent taxes, interest, and statutory fees, the surplus is retained by the Clerk of Court. Florida law provides a statutory claim window for lienholders and record owners, and establishes a statutory fee cap of 20% on third-party surplus recovery compensation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do Texas excess proceeds claims work under Tex. Tax Code § 34.04?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Under Texas Tax Code § 34.04, remaining funds from a tax foreclosure sale are transferred into the court registry. Claimants have two (2) years from the sale date to file a formal petition in the district court where the tax judgment was rendered."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
     
     <!-- Google Fonts: Inter & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -404,6 +459,37 @@
                             Subscribe Now — $449/mo
                         </a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6.5 FAQ Section for Long-Tail SEO -->
+        <section id="faq" class="py-20 bg-navy-900/30 border-t border-navy-700/60 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-heading font-bold text-white mb-3">Frequently Asked Questions</h2>
+                <p class="text-slate-300 text-sm max-w-xl mx-auto">Legal and technical details on our public records surplus data aggregation.</p>
+            </div>
+
+            <div class="space-y-6 text-left">
+                <div class="bg-navy-850 border border-navy-700/80 rounded-xl p-6">
+                    <h3 class="font-heading font-bold text-base text-white mb-2">How are Florida tax deed surplus funds calculated under Fla. Stat. § 197.582?</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Under <a href="/florida-tax-deed-surplus.html" class="text-gold-400 underline hover:text-gold-300">Florida Statute § 197.582</a>, when a tax deed auction bid exceeds the opening statutory bid, the excess balance is retained by the Clerk of the Circuit Court. Florida law establishes an administrative claim procedure for governmental lienholders, junior mortgagees, and titleholders, alongside a 20% statutory compensation cap for third-party representation.
+                    </p>
+                </div>
+
+                <div class="bg-navy-850 border border-navy-700/80 rounded-xl p-6">
+                    <h3 class="font-heading font-bold text-base text-white mb-2">How do Texas excess proceeds claims work under Tex. Tax Code § 34.04?</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Under <a href="/texas-tax-sale-excess-proceeds.html" class="text-gold-400 underline hover:text-gold-300">Texas Tax Code § 34.04</a>, remaining proceeds from a tax foreclosure sale are remitted into the district court registry. Claimants must file a formal petition in the district court within two (2) years of the sale date before unclaimed funds transfer to the county treasury.
+                    </p>
+                </div>
+
+                <div class="bg-navy-850 border border-navy-700/80 rounded-xl p-6">
+                    <h3 class="font-heading font-bold text-base text-white mb-2">How does the daily data delivery work?</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Subscribers receive standardized CSV, XLSX, and JSON files every business morning at 7:00 AM EST. Files include county names, official docket IDs, property situs addresses, surplus balances, auction dates, and statutory reference caps ready for CRM import.
+                    </p>
                 </div>
             </div>
         </section>

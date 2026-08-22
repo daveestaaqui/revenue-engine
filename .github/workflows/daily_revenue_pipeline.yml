@@ -39,12 +39,16 @@ jobs:
         run: |
           python domain_arbitrage/run_domain_pipeline.py
 
-      - name: 3. Commit & Push Updated Data Feeds to Repo (Subscribers Auto-Update)
+      - name: 3. Run Automated SEO & RSS Syndication Engine
+        run: |
+          python marketing/seo_generator.py
+
+      - name: 4. Commit & Push Updated Feeds & SEO Sitemaps
         run: |
           git config --global user.name "Revenue Engine Bot"
           git config --global user.email "bot@revenue-engine.internal"
-          git add exports/*.csv exports/*.xlsx exports/*.json domain_arbitrage/listings/*.csv
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds & domain arbitrage update [skip ci]" && git push)
+          git add exports/*.csv exports/*.xlsx exports/*.json domain_arbitrage/listings/*.csv site/feed.xml site/sitemap.xml marketing/syndicate/*.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, RSS & SEO update [skip ci]" && git push)
 
       - name: 4. Upload Delivery Artifacts
         uses: actions/upload-artifact@v4
