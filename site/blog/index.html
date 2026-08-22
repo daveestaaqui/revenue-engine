@@ -133,16 +133,43 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-10 text-center text-xs text-slate-500">
+    <footer class="bg-white border-t border-slate-200 py-12 text-center px-4">
         <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <!-- Centered Brand Lockup -->
             <a href="/" class="flex items-center gap-3.5 mb-2 group">
-                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-9 h-9 object-contain">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-10 h-10 object-contain filter drop-shadow-[0_2px_8px_rgba(22,45,74,0.12)] transition-transform group-hover:scale-105">
                 <div class="flex items-baseline gap-1.5 leading-none">
-                    <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
-                    <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
+                    <span class="font-heading font-black text-2xl text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-2xl text-brand-navy">DOCKET</span>
                 </div>
             </a>
-            <p class="mt-2">&copy; 2026 Surplus Docket. All rights reserved. • <button onclick="openBillingModal()" class="text-slate-700 hover:text-brand-green font-semibold underline">Stripe Customer Billing Portal</button></p>
+            
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-6">Legal Intelligence & Statutory Research</p>
+            
+            <!-- Simple, Clean Centered Navigation Bar -->
+            <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 text-xs font-semibold text-slate-600 mb-8 max-w-2xl">
+                <a href="/" class="hover:text-brand-green transition-colors">Main Hub</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">Florida Feed</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors">Texas Feed</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors">Georgia Feed</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Practitioner Toolkit</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">REST API</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/blog/" class="hover:text-brand-green transition-colors font-bold text-brand-green">All Articles</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <button onclick="openBillingModal()" class="hover:text-brand-green transition-colors font-semibold">Billing Portal</button>
+            </nav>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-xs text-slate-500 w-full pt-6 border-t border-slate-200">
+                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
+                <span class="hidden sm:inline">•</span>
+                <p>Public Records Data Feeds • <button onclick="openBillingModal()" class="text-slate-700 hover:text-brand-green font-semibold underline">Stripe Customer Portal</button></p>
+            </div>
         </div>
     </footer>
 
