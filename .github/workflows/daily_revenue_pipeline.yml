@@ -39,11 +39,15 @@ jobs:
         run: |
           python domain_arbitrage/run_domain_pipeline.py
 
-      - name: 3. Run Autonomous Legal Blog & Content Engine
+      - name: 3. Generate Programmatic County SEO Landing Pages
+        run: |
+          python marketing/county_generator.py
+
+      - name: 4. Run Autonomous Legal Blog & Content Engine
         run: |
           python marketing/blog_generator.py
 
-      - name: 4. Run Automated SEO & RSS Syndication Engine
+      - name: 5. Run Automated SEO & RSS Syndication Engine
         run: |
           python marketing/seo_generator.py
 

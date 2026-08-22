@@ -3,16 +3,18 @@
 Surplus Docket - Automated Marketing, RSS & SEO Engine
 ======================================================
 1. Dynamically generates site/feed.xml (RSS 2.0 feed of indexed public dockets)
-2. Updates site/sitemap.xml with live ISO timestamps
-3. Generates educational legal syndicate summaries with backlink anchors
+2. Updates site/sitemap.xml with live ISO timestamps and all county landing pages
+3. Submits instant indexation requests via IndexNow Protocol (Bing, Yandex, Seznam)
+4. Generates educational legal syndicate summaries with backlink anchors
 """
 
 import os
 import csv
 import sys
+import json
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
-import xml.etree.ElementTree as ET
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SITE_DIR = BASE_DIR / "site"
@@ -20,9 +22,30 @@ EXPORTS_DIR = BASE_DIR / "exports"
 MARKETING_DIR = BASE_DIR / "marketing"
 SYNDICATE_DIR = MARKETING_DIR / "syndicate"
 
+INDEXNOW_KEY = "0a4d3f3acd10f37db48e4681df146902"
+
+ALL_SITE_URLS = [
+    "https://surplusdocket.com/",
+    "https://surplusdocket.com/palm-beach-tax-deed-surplus.html",
+    "https://surplusdocket.com/harris-county-excess-proceeds.html",
+    "https://surplusdocket.com/miami-dade-tax-deed-surplus.html",
+    "https://surplusdocket.com/orange-county-tax-deed-surplus.html",
+    "https://surplusdocket.com/hillsborough-tax-deed-surplus.html",
+    "https://surplusdocket.com/dallas-county-excess-proceeds.html",
+    "https://surplusdocket.com/fulton-county-excess-funds.html",
+    "https://surplusdocket.com/dekalb-county-excess-funds.html",
+    "https://surplusdocket.com/florida-tax-deed-surplus.html",
+    "https://surplusdocket.com/texas-tax-sale-excess-proceeds.html",
+    "https://surplusdocket.com/georgia-tax-sale-excess-funds.html",
+    "https://surplusdocket.com/practitioner-toolkit.html",
+    "https://surplusdocket.com/api-documentation.html",
+    "https://surplusdocket.com/blog/",
+    "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
+    "https://surplusdocket.com/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html",
+    "https://surplusdocket.com/blog/posts/institutional-lien-filtering-asset-recovery.html",
+]
 
 def generate_rss_feed():
-    """Generates a valid RSS 2.0 XML feed of recent public court records for syndication."""
     feed_path = SITE_DIR / "feed.xml"
     master_csv = EXPORTS_DIR / "Master_Surplus_Lead_Feed.csv"
 
@@ -38,7 +61,6 @@ def generate_rss_feed():
                 state = row.get("State", "US")
                 county = row.get("County", "")
                 docket = row.get("Case_or_TaxDeed_No", "")
-                balance = row.get("Surplus_Balance_USD", "0")
                 statute = row.get("Governing_Statute", "State Law")
 
                 items_xml += f"""
@@ -55,7 +77,7 @@ def generate_rss_feed():
   <channel>
     <title>Surplus Docket - Daily Tax Deed Surplus &amp; Excess Proceeds Index</title>
     <link>https://surplusdocket.com/</link>
-    <description>Daily public records intelligence tracking tax deed surplus and excess proceeds court dockets across Florida and Texas jurisdictions.</description>
+    <description>Daily public records intelligence tracking tax deed surplus and excess proceeds court dockets across Florida, Texas, and Georgia jurisdictions.</description>
     <language>en-us</language>
     <lastBuildDate>{now_rfc822}</lastBuildDate>
     <atom:link href="https://surplusdocket.com/feed.xml" rel="self" type="application/rss+xml" />
@@ -66,97 +88,56 @@ def generate_rss_feed():
     feed_path.write_text(rss_content.strip(), encoding="utf-8")
     print(f"  [✓] Generated RSS Syndication Feed: {feed_path.name}")
 
-
 def update_sitemap():
-    """Refreshes sitemap.xml with today's date."""
     sitemap_path = SITE_DIR / "sitemap.xml"
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    url_entries = ""
+    for u in ALL_SITE_URLS:
+        priority = "1.0" if u == "https://surplusdocket.com/" else ("0.9" if "county" in u or "surplus" in u or "proceeds" in u or "funds" in u or "toolkit" in u or "api" in u else "0.8")
+        freq = "daily" if "feed" in u or u == "https://surplusdocket.com/" or "blog/" in u else "weekly"
+        url_entries += f"""  <url>
+    <loc>{u}</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>{freq}</changefreq>
+    <priority>{priority}</priority>
+  </url>
+"""
 
     sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <url>
-    <loc>https://surplusdocket.com/</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/practitioner-toolkit.html</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/api-documentation.html</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/florida-tax-deed-surplus.html</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/texas-tax-sale-excess-proceeds.html</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/georgia-tax-sale-excess-funds.html</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/blog/</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/blog/posts/institutional-lien-filtering-asset-recovery.html</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/api/v1/feed.json</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://surplusdocket.com/feed.xml</loc>
-    <lastmod>{today_str}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>"""
+{url_entries}</urlset>"""
 
     sitemap_path.write_text(sitemap_xml.strip(), encoding="utf-8")
-    print(f"  [✓] Updated Sitemap with ISO date: {sitemap_path.name}")
+    print(f"  [✓] Updated Sitemap with {len(ALL_SITE_URLS)} canonical URLs: {sitemap_path.name}")
 
+def submit_indexnow():
+    """Submits all site URLs to IndexNow for instant crawling across Bing and AI search engines."""
+    payload = {
+        "host": "surplusdocket.com",
+        "key": INDEXNOW_KEY,
+        "keyLocation": f"https://surplusdocket.com/{INDEXNOW_KEY}.txt",
+        "urlList": ALL_SITE_URLS
+    }
+    
+    try:
+        req = urllib.request.Request(
+            "https://api.indexnow.org/indexnow",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={"Content-Type": "application/json; charset=utf-8", "User-Agent": "SurplusDocket-IndexNow/1.0"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as res:
+            if res.status in (200, 202):
+                print(f"  [✓] IndexNow Instant Ping: Successfully submitted {len(ALL_SITE_URLS)} URLs (HTTP {res.status})")
+            else:
+                print(f"  [•] IndexNow Response Status: {res.status}")
+    except Exception as e:
+        print(f"  [•] IndexNow offline notice (will sync on live CI push): {e}")
 
 def generate_syndicate_posts():
-    """Creates copy-paste legal/industry forum snippets with canonical link anchors."""
     SYNDICATE_DIR.mkdir(parents=True, exist_ok=True)
     digest_path = SYNDICATE_DIR / "daily_legal_digest.md"
 
@@ -179,30 +160,17 @@ Reference & Daily Data Feeds: [Surplus Docket Texas Hub](https://surplusdocket.c
 
 ---
 
+### 3. Georgia Excess Funds Update (O.C.G.A. § 48-4-5)
+Georgia tax sales allow 5-year claim windows for excess proceeds distributed by county tax commissioners across Fulton, DeKalb, Gwinnett, and Cobb counties.
+
+Reference & Daily Data Feeds: [Surplus Docket Georgia Hub](https://surplusdocket.com/georgia-tax-sale-excess-funds.html)
+
+---
+
 **Data Source & Public Records Archive:** [Surplus Docket](https://surplusdocket.com/)
 """
     digest_path.write_text(content.strip(), encoding="utf-8")
     print(f"  [✓] Generated Legal Syndicate Digest: {digest_path.name}")
-
-
-def ping_search_engines():
-    """Notifies Google and Bing search indexers of newly published sitemaps and legal content."""
-    import urllib.request
-
-    sitemap_url = "https://surplusdocket.com/sitemap.xml"
-    endpoints = [
-        ("Google", f"https://www.google.com/ping?sitemap={sitemap_url}"),
-        ("Bing", f"https://www.bing.com/ping?sitemap={sitemap_url}"),
-    ]
-    for engine, url in endpoints:
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": "SurplusDocket-SEO-Bot/1.0"})
-            with urllib.request.urlopen(req, timeout=8) as res:
-                print(f"  [✓] Pinged {engine} Indexer (Status: {res.status})")
-        except Exception as e:
-            # Pings can be rate-limited or return 404 in local dry-runs, handle silently
-            print(f"  [•] {engine} index ping notice: {e}")
-
 
 def main():
     print("=" * 60)
@@ -211,9 +179,8 @@ def main():
     generate_rss_feed()
     update_sitemap()
     generate_syndicate_posts()
-    ping_search_engines()
+    submit_indexnow()
     print("=" * 60)
-
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,415 @@
+#!/usr/bin/env python3
+"""
+Autonomous County Programmatic SEO Generator
+Generates laser-focused, hyper-targeted County Landing Pages for top tax deed & excess proceeds jurisdictions.
+"""
+
+import os
+import json
+from pathlib import Path
+from datetime import datetime
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+SITE_DIR = BASE_DIR / 'site'
+
+COUNTIES = [
+    {
+        'slug': 'palm-beach-tax-deed-surplus.html',
+        'county': 'Palm Beach County',
+        'state': 'FL',
+        'state_full': 'Florida',
+        'city': 'West Palm Beach',
+        'statute': 'Fla. Stat. § 197.582',
+        'deadline': '120 Days from Clerk Notice',
+        'fee_cap': '20% statutory limit for non-attorney filers',
+        'clerk_name': 'Palm Beach County Clerk & Comptroller (Joseph Abruzzo)',
+        'clerk_url': 'https://www.mypalmbeachclerk.com/',
+        'sample_case': '2024-TD-004501',
+        'sample_balance': ',000.00',
+        'sample_fee': ',000.00',
+        'sample_owner': 'A. & G. V████████',
+        'sample_address': '720 S Ocean Blvd, Palm Beach FL',
+        'description': 'Daily automated Palm Beach County tax deed surplus lead feeds. Pre-filtered individual surplus claims and court registry intelligence for Florida recovery practitioners.'
+    },
+    {
+        'slug': 'harris-county-excess-proceeds.html',
+        'county': 'Harris County',
+        'state': 'TX',
+        'state_full': 'Texas',
+        'city': 'Houston',
+        'statute': 'Tex. Tax Code § 34.04',
+        'deadline': '2 Years from Date of Tax Sale',
+        'fee_cap': '25% statutory cap on recovery contingency',
+        'clerk_name': 'Harris County District Clerk (Court Registry Division)',
+        'clerk_url': 'https://www.cclerk.hctx.net/',
+        'sample_case': '2024-TX-04812',
+        'sample_balance': ',500.00',
+        'sample_fee': ',125.00',
+        'sample_owner': 'W. & M. H██████',
+        'sample_address': '5402 Braesvalley Dr, Houston TX',
+        'description': 'Daily automated Harris County / Houston excess proceeds feeds. Scrubbed court registry tax sale excess proceeds data for Texas recovery attorneys.'
+    },
+    {
+        'slug': 'miami-dade-tax-deed-surplus.html',
+        'county': 'Miami-Dade County',
+        'state': 'FL',
+        'state_full': 'Florida',
+        'city': 'Miami',
+        'statute': 'Fla. Stat. § 197.582',
+        'deadline': '120 Days from Clerk Notice',
+        'fee_cap': '20% statutory limit under Florida law',
+        'clerk_name': 'Miami-Dade County Clerk of Courts (Tax Deed Unit)',
+        'clerk_url': 'https://www.miamidadeclerk.gov/',
+        'sample_case': '2024-TD-004812',
+        'sample_balance': ',000.00',
+        'sample_fee': ',400.00',
+        'sample_owner': 'L. & M. H████████',
+        'sample_address': '340 SW 8th St, Miami FL',
+        'description': 'Daily automated Miami-Dade County tax deed surplus data feeds. Filtered individual surplus equity with verified docket IDs for asset recovery lawyers.'
+    },
+    {
+        'slug': 'orange-county-tax-deed-surplus.html',
+        'county': 'Orange County',
+        'state': 'FL',
+        'state_full': 'Florida',
+        'city': 'Orlando',
+        'statute': 'Fla. Stat. § 197.582',
+        'deadline': '120 Days from Clerk Notice',
+        'fee_cap': '20% statutory recovery limit',
+        'clerk_name': 'Orange County Comptroller (Tax Deed Administration)',
+        'clerk_url': 'https://www.myorangeclerk.com/',
+        'sample_case': '2024-TD-001955',
+        'sample_balance': ',300.00',
+        'sample_fee': ',860.00',
+        'sample_owner': 'J. & L. C████',
+        'sample_address': '8431 Bay Breeze Way, Orlando FL',
+        'description': 'Daily Orange County / Orlando tax deed surplus leads. Case-verified dockets, statutory equity calculations, and filtered individual owner records.'
+    },
+    {
+        'slug': 'hillsborough-tax-deed-surplus.html',
+        'county': 'Hillsborough County',
+        'state': 'FL',
+        'state_full': 'Florida',
+        'city': 'Tampa',
+        'statute': 'Fla. Stat. § 197.582',
+        'deadline': '120 Days from Clerk Notice',
+        'fee_cap': '20% statutory limit under Florida law',
+        'clerk_name': 'Hillsborough County Clerk of Court & Comptroller',
+        'clerk_url': 'https://www.hillsclerk.com/',
+        'sample_case': '2024-TD-008912',
+        'sample_balance': ',400.00',
+        'sample_fee': ',480.00',
+        'sample_owner': 'R. & C. S██████',
+        'sample_address': '4502 W San Rafael St, Tampa FL',
+        'description': 'Daily automated Hillsborough County / Tampa tax deed surplus feeds. Instant CSV/Excel delivery of verified overage leads for asset recovery practitioners.'
+    },
+    {
+        'slug': 'dallas-county-excess-proceeds.html',
+        'county': 'Dallas County',
+        'state': 'TX',
+        'state_full': 'Texas',
+        'city': 'Dallas',
+        'statute': 'Tex. Tax Code § 34.04',
+        'deadline': '2 Years from Date of Tax Sale',
+        'fee_cap': '25% statutory cap on recovery fee',
+        'clerk_name': 'Dallas County District Clerk (Civil Court Registry)',
+        'clerk_url': 'https://www.dallascounty.org/',
+        'sample_case': '2024-TX-02044',
+        'sample_balance': ',800.00',
+        'sample_fee': ',450.00',
+        'sample_owner': 'Est. of M. T████████',
+        'sample_address': '6412 Abrams Rd, Dallas TX',
+        'description': 'Daily Dallas County tax sale excess proceeds records. Filtered court registry deposits, verified docket numbers, and statutory claim data.'
+    },
+    {
+        'slug': 'fulton-county-excess-funds.html',
+        'county': 'Fulton County',
+        'state': 'GA',
+        'state_full': 'Georgia',
+        'city': 'Atlanta',
+        'statute': 'O.C.G.A. § 48-4-5',
+        'deadline': '5 Years from Date of Tax Sale',
+        'fee_cap': 'Statutory claim priority & non-contingent fee models',
+        'clerk_name': 'Fulton County Tax Commissioner (Excess Funds Division)',
+        'clerk_url': 'https://www.fultonclerk.org/',
+        'sample_case': '2024-GA-003810',
+        'sample_balance': ',000.00',
+        'sample_fee': ',800.00',
+        'sample_owner': 'M. & E. J███████',
+        'sample_address': '1420 Peachtree St NE, Atlanta GA',
+        'description': 'Daily Fulton County / Atlanta tax sale excess funds leads. Pre-filtered sheriff tax sale surplus intelligence for Georgia recovery attorneys.'
+    },
+    {
+        'slug': 'dekalb-county-excess-funds.html',
+        'county': 'DeKalb County',
+        'state': 'GA',
+        'state_full': 'Georgia',
+        'city': 'Decatur',
+        'statute': 'O.C.G.A. § 48-4-5',
+        'deadline': '5 Years from Date of Tax Sale',
+        'fee_cap': 'Statutory claim distribution rules',
+        'clerk_name': 'DeKalb County Tax Commissioner (Delinquent Tax Division)',
+        'clerk_url': 'https://www.dekalbcountytax.org/',
+        'sample_case': '2024-GA-002490',
+        'sample_balance': ',400.00',
+        'sample_fee': ',480.00',
+        'sample_owner': 'T. & M. B██████',
+        'sample_address': '2340 Lavista Rd, Decatur GA',
+        'description': 'Daily DeKalb County excess funds data feeds. Clean, case-verified tax auction overages delivered in CSV/Excel every morning at 7:00 AM EST.'
+    }
+]
+
+def generate_county_page(c):
+    return f"""<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{c['county']} Tax Deed Surplus & Excess Funds Leads | Surplus Docket</title>
+    <meta name="description" content="{c['description']}">
+    <link rel="canonical" href="https://surplusdocket.com/{c['slug']}">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Open Graph / SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{c['county']} Tax Deed Surplus Leads | Surplus Docket">
+    <meta property="og:description" content="{c['description']}">
+    <meta property="og:url" content="https://surplusdocket.com/{c['slug']}">
+    <meta property="og:image" content="https://surplusdocket.com/assets/og_image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://surplusdocket.com/assets/og_image.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "{c['county']} Tax Deed Surplus & Excess Proceeds Feed",
+      "description": "{c['description']}",
+      "spatialCoverage": "{c['county']}, {c['state_full']}",
+      "license": "https://surplusdocket.com/terms.html",
+      "creator": {{
+        "@type": "Organization",
+        "name": "Surplus Docket",
+        "url": "https://surplusdocket.com"
+      }}
+    }}
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {{
+            theme: {{
+                extend: {{
+                    fontFamily: {{
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['Cinzel', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }},
+                    colors: {{
+                        brand: {{
+                            green: '#4c6d48',
+                            greenDark: '#365134',
+                            greenSoft: '#edf3ec',
+                            navy: '#1b365d',
+                            navyDark: '#102238',
+                            canvas: '#f8f8f4',
+                            slateText: '#334155',
+                        }}
+                    }}
+                }}
+            }}
+        }}
+    </script>
+    <style>
+        h1, h2, h3 {{ text-wrap: balance; }}
+        p {{ text-wrap: pretty; }}
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText">
+
+    <!-- Top Header -->
+    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+            <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                <div class="flex items-baseline gap-1 sm:gap-1.5 leading-none shrink-0">
+                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+                <a href="/" class="hidden sm:inline-flex text-xs font-semibold text-slate-600 hover:text-brand-green transition-colors px-2 py-1">Main Hub</a>
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">Billing Portal</a>
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-all shadow-md shrink-0">
+                    Subscribe
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main County Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 flex-grow">
+        <!-- Breadcrumb -->
+        <nav class="text-xs text-slate-400 mb-6 flex items-center gap-2">
+            <a href="/" class="hover:text-brand-green">Home</a>
+            <span>&gt;</span>
+            <a href="/#{c['state'].lower()}" class="hover:text-brand-green">{c['state_full']}</a>
+            <span>&gt;</span>
+            <span class="text-brand-navy font-semibold">{c['county']}</span>
+        </nav>
+
+        <!-- County Title Badge & Hero -->
+        <div class="mb-8">
+            <span class="text-xs font-mono font-bold text-brand-green uppercase tracking-widest bg-brand-greenSoft px-3 py-1 rounded-full border border-brand-green/30">
+                {c['statute']} • {c['county']}
+            </span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-brand-navy mt-4 mb-3 tracking-tight">
+                {c['county']} Tax Deed Surplus & Excess Proceeds Feed
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
+                Automated daily intelligence for {c['county']} ({c['city']}, {c['state']}). Our pipeline ingests official filings from the {c['clerk_name']}, filters out institutional entities, and delivers verified individual owner surplus claims every morning at 7:00 AM EST.
+            </p>
+        </div>
+
+        <!-- Statutory Metrics Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                <span class="text-[11px] font-mono text-slate-500 uppercase tracking-wider block mb-1">Governing Statute</span>
+                <span class="font-heading font-bold text-sm text-brand-navy">{c['statute']}</span>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                <span class="text-[11px] font-mono text-slate-500 uppercase tracking-wider block mb-1">Claim Window</span>
+                <span class="font-heading font-bold text-sm text-brand-green">{c['deadline']}</span>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                <span class="text-[11px] font-mono text-slate-500 uppercase tracking-wider block mb-1">Statutory Benchmark</span>
+                <span class="font-heading font-bold text-sm text-slate-700">{c['fee_cap']}</span>
+            </div>
+        </div>
+
+        <!-- Sample Case Record Card -->
+        <div class="bg-white border-2 border-brand-green rounded-3xl p-6 sm:p-8 shadow-xl mb-10">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-4 border-b border-slate-100">
+                <div>
+                    <span class="text-xs font-mono font-bold text-brand-green bg-brand-greenSoft px-2.5 py-1 rounded">VERIFIED DOCKET ENTRY</span>
+                    <h3 class="font-heading font-bold text-lg text-brand-navy mt-1">Case #{c['sample_case']}</h3>
+                </div>
+                <div class="text-right">
+                    <span class="text-[11px] text-slate-400 block uppercase">Surplus Balance</span>
+                    <span class="font-mono font-black text-xl text-brand-green">{c['sample_balance']}</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mb-6">
+                <div>
+                    <span class="text-slate-400 block mb-0.5">Record Owner</span>
+                    <span class="font-semibold text-slate-800">{c['sample_owner']} (Individual / Estate)</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block mb-0.5">Property Situs</span>
+                    <span class="font-semibold text-slate-800">{c['sample_address']}</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block mb-0.5">Est. Statutory Finder Fee</span>
+                    <span class="font-semibold text-brand-green font-mono">{c['sample_fee']}</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block mb-0.5">Official Verification</span>
+                    <a href="{c['clerk_url']}" target="_blank" rel="noopener noreferrer" class="text-brand-navy hover:text-brand-green underline font-semibold">
+                        {c['clerk_name']} Portal &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-sm rounded-xl shadow-md transition-all">
+                Unlock Full {c['county']} Daily Lead Feed — /mo
+            </a>
+        </div>
+
+        <!-- County Procedural Notes -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 mb-10 shadow-sm space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <h3 class="font-heading font-bold text-base text-brand-navy">{c['county']} Recovery Procedure & Verification</h3>
+            <p>
+                When a tax deed auction or sheriff's tax sale closes above the upset bid in {c['county']}, the clerk deposits excess funds into the statutory court registry. Under {c['statute']}, junior lienholders have initial notice priority, after which remaining funds belong to the record titleholder or heirs.
+            </p>
+            <p>
+                Surplus Docket's automated crawler monitors {c['county']} filings daily, scrubs institutional mortgage and HOA claims, and formats actionable CSV and Excel feeds ready for immediate practitioner due diligence.
+            </p>
+        </div>
+
+        <!-- Cross-Jurisdiction Matrix Links -->
+        <div class="bg-brand-canvas border border-slate-300 rounded-2xl p-6 text-center text-xs text-slate-600">
+            <p class="font-bold text-brand-navy mb-2">Explore Monitored Jurisdictions</p>
+            <div class="flex flex-wrap items-center justify-center gap-2 font-semibold">
+                <a href="/palm-beach-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Palm Beach</a>
+                <a href="/harris-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Harris</a>
+                <a href="/miami-dade-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Miami-Dade</a>
+                <a href="/orange-county-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Orange</a>
+                <a href="/hillsborough-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Hillsborough</a>
+                <a href="/dallas-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Dallas</a>
+                <a href="/fulton-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Fulton</a>
+                <a href="/dekalb-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">DeKalb</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-12 text-center px-4">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <a href="/" class="flex items-center gap-3 mb-6 group">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                <div class="flex items-baseline gap-1 sm:gap-1.5 leading-none shrink-0">
+                    <span class="font-heading font-black text-lg sm:text-2xl text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-lg sm:text-2xl text-brand-navy">DOCKET</span>
+                </div>
+            </a>
+            
+            <!-- Condensed & Responsive Footer Navigation -->
+            <nav class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 text-[11px] sm:text-xs font-semibold text-slate-600 mb-6 max-w-2xl px-2">
+                <a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">FL Feed</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors">TX Feed</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors">GA Feed</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Toolkit</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">API</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/blog/" class="hover:text-brand-green transition-colors">Articles</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/#pricing" class="hover:text-brand-green transition-colors">Pricing</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green transition-colors font-bold text-brand-navy">Customer Portal</a>
+            </nav>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-xs text-slate-500 w-full pt-6 border-t border-slate-200">
+                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
+                <span class="hidden sm:inline">•</span>
+                <p>Public Records Data Feeds • Court Registry Intelligence</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>"""
+
+def run():
+    print("============================================================")
+    print(" 🏛️ GENERATING PROGRAMMATIC COUNTY SEO HUBS")
+    print("============================================================")
+    for c in COUNTIES:
+        out_path = SITE_DIR / c['slug']
+        out_path.write_text(generate_county_page(c), encoding='utf-8')
+        print(f"  [✓] Generated County Hub: {c['slug']}")
+    print("============================================================")
+
+if __name__ == '__main__':
+    run()

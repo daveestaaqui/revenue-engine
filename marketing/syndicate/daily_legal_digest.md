@@ -16,4 +16,11 @@ Reference & Daily Data Feeds: [Surplus Docket Texas Hub](https://surplusdocket.c
 
 ---
 
+### 3. Georgia Excess Funds Update (O.C.G.A. § 48-4-5)
+Georgia tax sales allow 5-year claim windows for excess proceeds distributed by county tax commissioners across Fulton, DeKalb, Gwinnett, and Cobb counties.
+
+Reference & Daily Data Feeds: [Surplus Docket Georgia Hub](https://surplusdocket.com/georgia-tax-sale-excess-funds.html)
+
+---
+
 **Data Source & Public Records Archive:** [Surplus Docket](https://surplusdocket.com/)
