@@ -814,9 +814,23 @@
         <!-- 6. Pricing Section -->
         <section id="pricing" class="py-16 sm:py-20 bg-white border-t border-slate-200">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12 sm:mb-14 max-w-md mx-auto">
+                <div class="text-center mb-8 max-w-md mx-auto">
                     <h2 class="text-3xl sm:text-4xl font-heading font-black text-brand-navy mb-2.5">Transparent Flat Pricing</h2>
-                    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">Flat monthly pricing with complete data licensing for your firm's internal operations.</p>
+                    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">Flat monthly or discounted annual pricing with full data licensing for your firm's operations.</p>
+                </div>
+
+                <!-- Interactive Monthly vs Annual Toggle -->
+                <div class="flex items-center justify-center gap-3 mb-10">
+                    <button type="button" id="toggle-btn-monthly" onclick="setBillingCycle('monthly')" class="text-xs sm:text-sm font-bold text-brand-navy transition-colors focus:outline-none">
+                        Monthly Billing
+                    </button>
+                    <button id="billing-toggle-btn" type="button" role="switch" aria-checked="false" onclick="toggleBillingCycle()" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-slate-300 transition-colors duration-200 ease-in-out focus:outline-none">
+                        <span id="billing-toggle-knob" class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+                    </button>
+                    <button type="button" id="toggle-btn-annual" onclick="setBillingCycle('annual')" class="text-xs sm:text-sm font-semibold text-slate-500 transition-colors focus:outline-none flex items-center gap-1.5">
+                        <span>Annual Billing</span>
+                        <span class="bg-brand-greenSoft text-brand-green text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider border border-brand-green/30">Save 20% (2 Mo Free)</span>
+                    </button>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
@@ -824,10 +838,12 @@
                     <div class="bg-brand-canvas border border-slate-300 rounded-2xl p-6 sm:p-8 flex flex-col shadow-md">
                         <div class="text-xs uppercase font-bold tracking-widest text-brand-green mb-2">Multi-State Core</div>
                         <h3 class="text-2xl font-heading font-bold text-brand-navy mb-2">Florida, Texas & Georgia Feed</h3>
-                        <div class="flex items-baseline gap-2 mb-6">
-                            <span class="text-4xl font-heading font-black text-brand-navy">$249</span>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span id="card1-price" class="text-4xl font-heading font-black text-brand-navy transition-all">$249</span>
                             <span class="text-slate-500 text-sm">/ month</span>
                         </div>
+                        <div id="card1-subtext" class="text-[11px] font-semibold text-slate-500 mb-6">Billed month-to-month • Cancel anytime</div>
+                        
                         <ul class="space-y-3.5 mb-8 flex-grow text-xs sm:text-sm text-slate-700">
                             <li class="flex gap-3 font-semibold text-brand-navy">
                                 <svg class="h-5 w-5 text-brand-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -855,7 +871,7 @@
                             </li>
                         </ul>
                         <!-- LIVE STRIPE LINK -->
-                        <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3.5 px-6 border-2 border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white font-heading font-bold transition-all rounded-lg shadow-sm">
+                        <a id="card1-cta" href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3.5 px-6 border-2 border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white font-heading font-bold transition-all rounded-lg shadow-sm">
                             Subscribe Now — $249/mo
                         </a>
                     </div>
@@ -867,10 +883,12 @@
                         </div>
                         <div class="text-xs uppercase font-bold tracking-widest text-emerald-300 mb-2">Enterprise Feed</div>
                         <h3 class="text-2xl font-heading font-bold text-white mb-2">National Feed + API</h3>
-                        <div class="flex items-baseline gap-2 mb-6">
-                            <span class="text-4xl font-heading font-black text-white">$449</span>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span id="card2-price" class="text-4xl font-heading font-black text-white transition-all">$449</span>
                             <span class="text-slate-300 text-sm">/ month</span>
                         </div>
+                        <div id="card2-subtext" class="text-[11px] font-semibold text-slate-300 mb-6">Billed month-to-month • Cancel anytime</div>
+                        
                         <ul class="space-y-3.5 mb-8 flex-grow text-xs sm:text-sm text-slate-200">
                             <li class="flex gap-3 font-semibold text-emerald-300">
                                 <svg class="h-5 w-5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -898,13 +916,77 @@
                             </li>
                         </ul>
                         <!-- STRIPE LINK 2 PLACEHOLDER -->
-                        <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3.5 px-6 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold transition-all rounded-lg shadow-lg">
+                        <a id="card2-cta" href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3.5 px-6 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold transition-all rounded-lg shadow-lg">
                             Subscribe Now — $449/mo
                         </a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <script>
+            let currentBillingCycle = 'monthly';
+
+            function toggleBillingCycle() {
+                setBillingCycle(currentBillingCycle === 'monthly' ? 'annual' : 'monthly');
+            }
+
+            function setBillingCycle(cycle) {
+                currentBillingCycle = cycle;
+                const toggleBtn = document.getElementById('billing-toggle-btn');
+                const toggleKnob = document.getElementById('billing-toggle-knob');
+                const monthlyBtn = document.getElementById('toggle-btn-monthly');
+                const annualBtn = document.getElementById('toggle-btn-annual');
+
+                const card1Price = document.getElementById('card1-price');
+                const card1Sub = document.getElementById('card1-subtext');
+                const card1Cta = document.getElementById('card1-cta');
+
+                const card2Price = document.getElementById('card2-price');
+                const card2Sub = document.getElementById('card2-subtext');
+                const card2Cta = document.getElementById('card2-cta');
+
+                if (cycle === 'annual') {
+                    toggleBtn.classList.remove('bg-slate-300');
+                    toggleBtn.classList.add('bg-brand-green');
+                    toggleKnob.classList.remove('translate-x-0');
+                    toggleKnob.classList.add('translate-x-5');
+                    
+                    monthlyBtn.classList.remove('font-bold', 'text-brand-navy');
+                    monthlyBtn.classList.add('font-semibold', 'text-slate-500');
+
+                    annualBtn.classList.remove('font-semibold', 'text-slate-500');
+                    annualBtn.classList.add('font-bold', 'text-brand-navy');
+
+                    card1Price.textContent = '$199';
+                    card1Sub.textContent = 'Billed annually at $2,388/yr (Save $600 • 2 Mo Free)';
+                    card1Cta.textContent = 'Subscribe Annual — $199/mo ($2,388/yr)';
+
+                    card2Price.textContent = '$349';
+                    card2Sub.textContent = 'Billed annually at $4,188/yr (Save $1,200 • 22% Off)';
+                    card2Cta.textContent = 'Subscribe Annual — $349/mo ($4,188/yr)';
+                } else {
+                    toggleBtn.classList.remove('bg-brand-green');
+                    toggleBtn.classList.add('bg-slate-300');
+                    toggleKnob.classList.remove('translate-x-5');
+                    toggleKnob.classList.add('translate-x-0');
+
+                    monthlyBtn.classList.remove('font-semibold', 'text-slate-500');
+                    monthlyBtn.classList.add('font-bold', 'text-brand-navy');
+
+                    annualBtn.classList.remove('font-bold', 'text-brand-navy');
+                    annualBtn.classList.add('font-semibold', 'text-slate-500');
+
+                    card1Price.textContent = '$249';
+                    card1Sub.textContent = 'Billed month-to-month • Cancel anytime';
+                    card1Cta.textContent = 'Subscribe Now — $249/mo';
+
+                    card2Price.textContent = '$449';
+                    card2Sub.textContent = 'Billed month-to-month • Cancel anytime';
+                    card2Cta.textContent = 'Subscribe Now — $449/mo';
+                }
+            }
+        </script>
 
         <!-- 6.5 FAQ Section for Long-Tail SEO -->
         <section id="faq" class="py-16 sm:py-20 bg-brand-canvas border-t border-slate-200 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
