@@ -6,14 +6,18 @@ and calculates total deal equity volume.
 """
 
 import os
+import sys
 import json
 import pandas as pd
 from datetime import datetime
 from pathlib import Path
 
+# Add root repository directory to sys.path
+BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+
 from enrichment.processor import process_county_dataset
 
-BASE_DIR = Path("/Users/davidmahler/revenue-engine")
 DATA_DIR = BASE_DIR / "data"
 EXPORTS_DIR = BASE_DIR / "exports"
 EXPORTS_DIR.mkdir(parents=True, exist_ok=True)

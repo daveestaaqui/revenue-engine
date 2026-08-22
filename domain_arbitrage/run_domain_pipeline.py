@@ -9,9 +9,12 @@ import sys
 import pandas as pd
 from pathlib import Path
 
+# Add domain_arbitrage directory to sys.path
+BASE_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(BASE_DIR))
+
 from scanners.valuation_model import score_domain
 
-BASE_DIR = Path("/Users/davidmahler/revenue-engine/domain_arbitrage")
 DATA_DIR = BASE_DIR / "data"
 LISTINGS_DIR = BASE_DIR / "listings"
 LISTINGS_DIR.mkdir(parents=True, exist_ok=True)
@@ -58,10 +61,6 @@ def run_pipeline(input_file=None):
 
     print(f"\n💰 Total Potential Net Resale Profit in Batch: ${total_estimated_profit:,.2f}")
     print(f"📁 Listing file generated at: {output_csv}")
-    print("\n💡 Zero-Touch Execution Flow:")
-    print("   1. Register top picks at wholesale ($10.50) via Namecheap/Cloudflare API.")
-    print("   2. Upload High_Value_Drop_Opportunities.csv to GoDaddy Afternic.")
-    print("   3. When a buyer checks out on GoDaddy, Afternic auto-transfers the domain and deposits cash to your bank.")
 
 if __name__ == "__main__":
     run_pipeline()
