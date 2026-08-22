@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Surplus Intel - Automated Cold Email Outreach System
+Surplus Feed - Automated Cold Email Outreach System
 =====================================================
 Reads target attorney profiles from CSV, populates personalized email templates,
 and outputs individual plain-text email files (dry-run mode by default).
@@ -34,9 +34,9 @@ STATE_NAMES = {
 
 # Stripe checkout links by state / tier
 STRIPE_LINKS = {
-    "FL": "https://buy.stripe.com/surplus-intel-florida-feed",
-    "TX": "https://buy.stripe.com/surplus-intel-texas-feed",
-    "DEFAULT": "https://buy.stripe.com/surplus-intel-master-feed",
+    "FL": "https://buy.stripe.com/surplus-feed-florida-feed",
+    "TX": "https://buy.stripe.com/surplus-feed-texas-feed",
+    "DEFAULT": "https://buy.stripe.com/surplus-feed-master-feed",
 }
 
 
@@ -63,7 +63,7 @@ def load_template(templates_path: Path, template_number: int = 1) -> tuple[str, 
     if not match:
         raise ValueError(f"Could not find Template {template_number} in {templates_path}")
 
-    subject = match.group("subject").strip() if match.group("subject") else "Surplus Intel Data Feed"
+    subject = match.group("subject").strip() if match.group("subject") else "Surplus Feed Data Feed"
     body = match.group("body").strip()
 
     return subject, body
@@ -274,7 +274,7 @@ def run_outreach(dry_run: bool = True, template_idx: int = 1, limit: int = None)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Surplus Intel Outreach Automation")
+    parser = argparse.ArgumentParser(description="Surplus Feed Outreach Automation")
     parser.add_argument(
         "--send", "--live",
         action="store_true",

@@ -3,12 +3,12 @@ Recipient Name: Rebecca Thornton
 Firm: Thornton & Associates, P.C.
 State: TX (Texas)
 Subject: Verified Texas surplus leads for Thornton & Associates, P.C. (e.g. Case 2024-TD-004501)
-Date: 2026-08-22 08:16:42
+Date: 2026-08-22 08:22:42
 ======================================================================
 
 Hi Rebecca Thornton,
 
-I run Surplus Intel. We deliver daily, scrubbed county tax deed surplus and excess proceeds leads directly to asset recovery attorneys in Texas.
+I run Surplus Feed. We deliver daily, scrubbed county tax deed surplus and excess proceeds leads directly to asset recovery attorneys in Texas.
 
 Instead of manually checking county portals, our feed isolates high-equity individual owner claims and removes junior/institutional liens. Recent verified cases from our feed include:
 
@@ -19,9 +19,9 @@ Instead of manually checking county portals, our feed isolates high-equity indiv
 Every record is 100% verifiable against official court dockets and county tax records.
 
 We offer daily CSV/Excel delivery with zero long-term commitment (cancel anytime). You can review our feed tiers and get started here:
-https://buy.stripe.com/surplus-intel-texas-feed
+https://buy.stripe.com/surplus-feed-texas-feed
 
 Best regards,
 
-Surplus Intel Team
-data@surplusintel.com
+Surplus Feed Team
+data@surplusfeed.com
