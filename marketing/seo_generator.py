@@ -102,6 +102,30 @@ def update_sitemap():
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://surplusdocket.com/blog/</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://surplusdocket.com/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://surplusdocket.com/blog/posts/institutional-lien-filtering-asset-recovery.html</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://surplusdocket.com/api/v1/feed.json</loc>
     <lastmod>{today_str}</lastmod>
     <changefreq>daily</changefreq>

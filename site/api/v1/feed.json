@@ -1,7 +1,7 @@
 {
   "status": "success",
   "api_version": "v1.0",
-  "generated_at": "2026-08-22T10:37:29.265220",
+  "generated_at": "2026-08-22T10:40:20.933753",
   "meta": {
     "total_records": 17,
     "total_surplus_volume_usd": 1173500.0,
@@ -29,7 +29,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-06-28",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "TX",
@@ -45,7 +45,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-09",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -61,7 +61,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-05",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -77,7 +77,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-25",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "TX",
@@ -93,7 +93,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-16",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "TX",
@@ -109,7 +109,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-13",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -125,7 +125,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-08",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -141,7 +141,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-14",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -157,7 +157,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-03",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "TX",
@@ -173,7 +173,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-23",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -189,7 +189,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-02",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -205,7 +205,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-06-12",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -221,7 +221,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-12",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "TX",
@@ -237,7 +237,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-06",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -253,7 +253,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-10",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -269,7 +269,7 @@
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-17",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     },
     {
       "State": "FL",
@@ -285,7 +285,7 @@
       "Opportunity_Tier": "Tier 2: Medium Value ($10k-$25k)",
       "Sale_Date": "2024-08-01",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:37:29"
+      "Enriched_Timestamp": "2026-08-22 10:40:20"
     }
   ]
 }
