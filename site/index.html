@@ -113,163 +113,290 @@
 
     <!-- Header / Nav -->
     <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 py-3 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-3.5 group">
-                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket Logo" class="w-12 h-12 object-contain filter drop-shadow-[0_2px_8px_rgba(22,45,74,0.15)] transition-transform group-hover:scale-105">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo Lockup -->
+            <a href="/" class="flex items-center gap-3 group shrink-0">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket Logo" class="w-10 h-10 sm:w-11 sm:h-11 object-contain filter drop-shadow-[0_2px_8px_rgba(22,45,74,0.15)] transition-transform group-hover:scale-105">
                 <div class="flex flex-col justify-center">
                     <div class="flex items-baseline gap-1.5 leading-none">
-                        <span class="font-heading font-black text-2xl tracking-tight text-brand-green">SURPLUS</span>
-                        <span class="font-heading font-black text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                        <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                        <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
                     </div>
-                    <span class="text-[9.5px] font-extrabold uppercase tracking-widest text-slate-500 mt-1">Automated Public Records Intelligence</span>
+                    <span class="hidden sm:block text-[9px] font-extrabold uppercase tracking-widest text-slate-500 mt-1">Automated Public Records Intelligence</span>
                 </div>
             </a>
-            <nav class="hidden md:flex gap-6 text-sm font-semibold text-slate-600">
-                <a href="#overview" class="hover:text-brand-green transition-colors">Overview</a>
-                <a href="#data" class="hover:text-brand-green transition-colors">Sample Docket</a>
-                <a href="#coverage" class="hover:text-brand-green transition-colors">Jurisdictions</a>
-                <a href="/blog/" class="hover:text-brand-green transition-colors">Insights</a>
-                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">API Docs</a>
-                <a href="#faq" class="hover:text-brand-green transition-colors">FAQ</a>
-                <a href="#compliance" class="hover:text-brand-green transition-colors">Compliance</a>
+
+            <!-- Desktop Navigation Menus (Condensed & Uncluttered) -->
+            <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-600">
+                <!-- Jurisdictions Dropdown -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">
+                        <span>Jurisdictions</span>
+                        <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-green group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute left-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 transform group-hover:translate-y-0 translate-y-1 z-50">
+                        <div class="bg-white rounded-xl border border-slate-200 shadow-xl p-2.5 space-y-1">
+                            <a href="/florida-tax-deed-surplus.html" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="font-heading font-bold text-xs text-brand-navy">Florida Feed</span>
+                                <span class="text-[11px] text-slate-500">Fla. Stat. § 197.582 (120-Day Claims)</span>
+                            </a>
+                            <a href="/texas-tax-sale-excess-proceeds.html" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="font-heading font-bold text-xs text-brand-navy">Texas Feed</span>
+                                <span class="text-[11px] text-slate-500">Tex. Tax Code § 34.04 (Court Registries)</span>
+                            </a>
+                            <a href="/georgia-tax-sale-excess-funds.html" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="font-heading font-bold text-xs text-brand-navy">Georgia Feed</span>
+                                <span class="text-[11px] text-slate-500">O.C.G.A. § 48-4-5 (Southeast Expansion)</span>
+                            </a>
+                            <div class="border-t border-slate-100 my-1"></div>
+                            <a href="#coverage" class="flex items-center justify-between px-3 py-2 text-xs font-bold text-brand-green hover:bg-brand-greenSoft rounded-lg transition-colors">
+                                <span>View Coverage Matrix</span>
+                                <span>&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Docket Link -->
+                <a href="#data" class="px-3.5 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Sample Docket</a>
+
+                <!-- Resources Dropdown -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">
+                        <span>Resources</span>
+                        <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-green group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute left-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 transform group-hover:translate-y-0 translate-y-1 z-50">
+                        <div class="bg-white rounded-xl border border-slate-200 shadow-xl p-2.5 space-y-1">
+                            <a href="/blog/" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="font-heading font-bold text-xs text-brand-navy">Legal Insights & Articles</span>
+                                <span class="text-[11px] text-slate-500">Public record statutory research</span>
+                            </a>
+                            <a href="/api-documentation.html" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="font-heading font-bold text-xs text-brand-navy">REST API Reference v1.0</span>
+                                <span class="text-[11px] text-slate-500">Python, Node.js & JSON endpoints</span>
+                            </a>
+                            <a href="#calculator" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="font-heading font-bold text-xs text-brand-navy">Deadline & Fee Calculator</span>
+                                <span class="text-[11px] text-slate-500">Model statutory benchmark caps</span>
+                            </a>
+                            <a href="#compliance" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="font-heading font-bold text-xs text-brand-navy">Statutory Disclaimers</span>
+                                <span class="text-[11px] text-slate-500">Public data governance</span>
+                            </a>
+                            <a href="#faq" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="font-heading font-bold text-xs text-brand-navy">Frequently Asked Questions</span>
+                                <span class="text-[11px] text-slate-500">Data pipeline & format FAQ</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Link -->
+                <a href="#pricing" class="px-3.5 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Pricing</a>
             </nav>
-            <div class="flex items-center gap-3">
-                <button onclick="openBillingModal()" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 hover:border-slate-400 bg-white px-3.5 py-2.5 rounded-lg transition-all shadow-sm">
+
+            <!-- Actions (Desktop + Mobile Hamburger Trigger) -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                <button onclick="openBillingModal()" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 hover:border-slate-400 bg-white px-3.5 py-2 rounded-lg transition-all shadow-sm">
                     Billing Portal
                 </button>
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg">
-                    Subscribe Now
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 sm:px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg shrink-0">
+                    Subscribe
                 </a>
+                <!-- Mobile Hamburger Button -->
+                <button onclick="toggleMobileMenu()" id="mobile-menu-btn" class="lg:hidden p-2 text-slate-600 hover:text-brand-navy hover:bg-slate-100 rounded-lg transition-colors" aria-label="Toggle Navigation Menu">
+                    <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Slide-Down Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-4 pb-6 shadow-xl space-y-4 animate-in slide-in-from-top-2 duration-200 max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div>
+                <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 block px-2 mb-1.5">Jurisdiction Feeds</span>
+                <div class="grid grid-cols-1 gap-1">
+                    <a href="/florida-tax-deed-surplus.html" onclick="toggleMobileMenu()" class="flex items-center justify-between px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-green rounded-lg">
+                        <span>Florida Tax Deed Surplus</span>
+                        <span class="text-xs text-slate-400">FL § 197.582</span>
+                    </a>
+                    <a href="/texas-tax-sale-excess-proceeds.html" onclick="toggleMobileMenu()" class="flex items-center justify-between px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-green rounded-lg">
+                        <span>Texas Excess Proceeds</span>
+                        <span class="text-xs text-slate-400">TX § 34.04</span>
+                    </a>
+                    <a href="/georgia-tax-sale-excess-funds.html" onclick="toggleMobileMenu()" class="flex items-center justify-between px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-green rounded-lg">
+                        <span>Georgia Excess Funds</span>
+                        <span class="text-xs text-slate-400">GA § 48-4-5</span>
+                    </a>
+                    <a href="#coverage" onclick="toggleMobileMenu()" class="px-3 py-1.5 text-xs font-bold text-brand-green hover:underline">
+                        View Complete Monitored Counties &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-3">
+                <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 block px-2 mb-1.5">Intelligence & Tools</span>
+                <div class="grid grid-cols-1 gap-1">
+                    <a href="#data" onclick="toggleMobileMenu()" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-green rounded-lg">
+                        Sample Public Docket Schema
+                    </a>
+                    <a href="#calculator" onclick="toggleMobileMenu()" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-green rounded-lg">
+                        Statutory Deadline & Fee Calculator
+                    </a>
+                    <a href="/api-documentation.html" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-green rounded-lg">
+                        Programmatic REST API v1.0 Docs
+                    </a>
+                    <a href="/blog/" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-green rounded-lg">
+                        Legal Research Guides & Insights
+                    </a>
+                    <a href="#pricing" onclick="toggleMobileMenu()" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-green rounded-lg">
+                        Subscription Plans & Pricing
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-3 space-y-2">
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="block w-full py-3 text-center text-sm font-heading font-bold text-white bg-brand-green hover:bg-brand-greenDark rounded-xl shadow-md">
+                    Subscribe to Daily Feed ($249/mo)
+                </a>
+                <button onclick="toggleMobileMenu(); openBillingModal();" class="block w-full py-2.5 text-center text-xs font-heading font-bold text-slate-700 hover:bg-slate-50 border border-slate-300 rounded-xl">
+                    Subscriber Billing Portal
+                </button>
             </div>
         </div>
     </header>
 
     <main class="flex-grow">
         <!-- 1. Hero Section -->
-        <section id="overview" class="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
+        <section id="overview" class="pt-12 sm:pt-20 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
                 <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
                 Automated Clerk of Court Records Aggregation
             </div>
             
-            <h1 class="text-4xl md:text-6xl font-heading font-black tracking-tight text-brand-navy mb-6 leading-tight">
-                Daily Tax Deed Surplus <br class="hidden md:block" />
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight text-brand-navy mb-4 sm:mb-6 leading-tight">
+                Daily Tax Deed Surplus <br class="hidden sm:block" />
                 <span class="text-brand-green">Public Records Data Feeds</span>
             </h1>
             
-            <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+            <p class="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-normal px-2">
                 Standardized, structured excess proceeds and tax deed overage dockets aggregated daily from county clerk filings. Built specifically for asset recovery law firms and title research professionals.
             </p>
             
-            <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 max-w-2xl mx-auto">
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 text-base font-heading font-bold rounded-lg text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-lg hover:shadow-xl">
+            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 max-w-xl mx-auto px-2">
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 sm:py-4 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-lg hover:shadow-xl">
                     Florida & Texas Feed — $249/mo
                 </a>
-                <a href="#pricing" class="inline-flex items-center justify-center px-8 py-4 text-base font-heading font-bold rounded-lg text-brand-navy bg-white hover:bg-slate-50 transition-colors border border-slate-300 shadow-sm">
+                <a href="#pricing" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 sm:py-4 text-sm sm:text-base font-heading font-bold rounded-xl text-brand-navy bg-white hover:bg-slate-50 transition-colors border border-slate-300 shadow-sm">
                     View Enterprise & API Tiers
                 </a>
             </div>
 
-            <p class="text-xs text-slate-500 mt-5">
+            <p class="text-[11px] sm:text-xs text-slate-500 mt-4 sm:mt-5 px-4">
                 Month-to-month subscription • Self-service Stripe billing portal • Cancel anytime with 1 click
             </p>
         </section>
 
         <!-- 2. Data Pipeline Specifications Bar -->
-        <section class="border-y border-slate-200 bg-white py-8 shadow-sm">
+        <section class="border-y border-slate-200 bg-white py-6 sm:py-8 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-slate-200">
-                    <div class="px-3">
-                        <div class="text-2xl md:text-3xl font-heading font-black text-brand-green mb-1">7:00 AM EST</div>
-                        <div class="text-xs font-bold text-slate-600 uppercase tracking-wider">Daily Scheduled Delivery</div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
+                    <div class="p-3 bg-slate-50 sm:bg-transparent rounded-xl border sm:border-0 border-slate-200">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-heading font-black text-brand-green mb-0.5 sm:mb-1">7:00 AM EST</div>
+                        <div class="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">Daily Scheduled Delivery</div>
                     </div>
-                    <div class="px-3">
-                        <div class="text-2xl md:text-3xl font-heading font-black text-brand-navy mb-1">FL & TX</div>
-                        <div class="text-xs font-bold text-slate-600 uppercase tracking-wider">Monitored Jurisdictions</div>
+                    <div class="p-3 bg-slate-50 sm:bg-transparent rounded-xl border sm:border-0 border-slate-200">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-0.5 sm:mb-1">FL, TX & GA</div>
+                        <div class="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">Monitored Jurisdictions</div>
                     </div>
-                    <div class="px-3">
-                        <div class="text-2xl md:text-3xl font-heading font-black text-brand-green mb-1">CSV & XLSX</div>
-                        <div class="text-xs font-bold text-slate-600 uppercase tracking-wider">Multi-Format Delivery</div>
+                    <div class="p-3 bg-slate-50 sm:bg-transparent rounded-xl border sm:border-0 border-slate-200">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-heading font-black text-brand-green mb-0.5 sm:mb-1">CSV, XLSX & JSON</div>
+                        <div class="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">Multi-Format Delivery</div>
                     </div>
-                    <div class="px-3">
-                        <div class="text-2xl md:text-3xl font-heading font-black text-brand-navy mb-1">100% Public</div>
-                        <div class="text-xs font-bold text-slate-600 uppercase tracking-wider">Clerk & Court Records</div>
+                    <div class="p-3 bg-slate-50 sm:bg-transparent rounded-xl border sm:border-0 border-slate-200">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-0.5 sm:mb-1">100% Public</div>
+                        <div class="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">Clerk & Court Records</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 3. Sample Data Preview Table -->
-        <section id="data" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-heading font-black text-brand-navy mb-4">Sample Data Schema & Field Structure</h2>
-                <p class="text-slate-600 max-w-2xl mx-auto text-sm md:text-base">
+        <section id="data" class="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-8 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-3">Sample Data Schema & Field Structure</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-xs sm:text-sm md:text-base">
                     Illustrative schema showing data columns provided in daily subscriber exports. Sourced from official county clerk of court records with sensitive owner details partially redacted for preview.
                 </p>
             </div>
             
+            <div class="block md:hidden text-center text-[11px] text-slate-500 font-semibold mb-3 bg-slate-100 py-1.5 px-3 rounded-lg border border-slate-200">
+                <span>👉 Swipe table horizontally to view full docket & statutory caps &rarr;</span>
+            </div>
+
             <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-lg">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs md:text-sm">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm min-w-[620px]">
                         <thead>
                             <tr class="bg-brand-navy text-white font-semibold">
-                                <th class="py-4 px-5">State</th>
-                                <th class="py-4 px-5">Jurisdiction</th>
-                                <th class="py-4 px-5">Official Docket #</th>
-                                <th class="py-4 px-5">Indexed Record</th>
-                                <th class="py-4 px-5 text-right">Surplus Balance</th>
-                                <th class="py-4 px-5 text-right text-emerald-300">Statutory Cap Ref.*</th>
+                                <th class="py-3.5 px-4 sm:px-5">State</th>
+                                <th class="py-3.5 px-4 sm:px-5">Jurisdiction</th>
+                                <th class="py-3.5 px-4 sm:px-5">Official Docket #</th>
+                                <th class="py-3.5 px-4 sm:px-5">Indexed Record</th>
+                                <th class="py-3.5 px-4 sm:px-5 text-right">Surplus Balance</th>
+                                <th class="py-3.5 px-4 sm:px-5 text-right text-emerald-300">Statutory Cap Ref.*</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-200 font-mono text-slate-700">
                             <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="py-3.5 px-5 font-sans font-bold text-brand-navy">FL</td>
-                                <td class="py-3.5 px-5 font-sans">Palm Beach</td>
-                                <td class="py-3.5 px-5 text-brand-green font-bold">2024-TD-004501</td>
-                                <td class="py-3.5 px-5 font-sans">A. & G. V████████</td>
-                                <td class="py-3.5 px-5 text-right text-brand-navy font-bold">$145,000.00</td>
-                                <td class="py-3.5 px-5 text-right text-brand-green font-bold">$29,000.00 (20%)</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">Palm Beach</td>
+                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004501</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">A. & G. V████████</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$145,000.00</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$29,000.00 (20%)</td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="py-3.5 px-5 font-sans font-bold text-brand-navy">TX</td>
-                                <td class="py-3.5 px-5 font-sans">Harris</td>
-                                <td class="py-3.5 px-5 text-brand-green font-bold">2024-TX-04812</td>
-                                <td class="py-3.5 px-5 font-sans">W. & M. H██████</td>
-                                <td class="py-3.5 px-5 text-right text-brand-navy font-bold">$128,500.00</td>
-                                <td class="py-3.5 px-5 text-right text-brand-green font-bold">$32,125.00 (25%)</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">Harris</td>
+                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04812</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">W. & M. H██████</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$128,500.00</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$32,125.00 (25%)</td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="py-3.5 px-5 font-sans font-bold text-brand-navy">FL</td>
-                                <td class="py-3.5 px-5 font-sans">Miami-Dade</td>
-                                <td class="py-3.5 px-5 text-brand-green font-bold">2024-TD-004812</td>
-                                <td class="py-3.5 px-5 font-sans">L. & M. H████████</td>
-                                <td class="py-3.5 px-5 text-right text-brand-navy font-bold">$112,000.00</td>
-                                <td class="py-3.5 px-5 text-right text-brand-green font-bold">$22,400.00 (20%)</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">Miami-Dade</td>
+                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004812</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">L. & M. H████████</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$112,000.00</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$22,400.00 (20%)</td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="py-3.5 px-5 font-sans font-bold text-brand-navy">FL</td>
-                                <td class="py-3.5 px-5 font-sans">Hillsborough</td>
-                                <td class="py-3.5 px-5 text-brand-green font-bold">2024-TD-008912</td>
-                                <td class="py-3.5 px-5 font-sans">R. & C. S██████</td>
-                                <td class="py-3.5 px-5 text-right text-brand-navy font-bold">$92,400.00</td>
-                                <td class="py-3.5 px-5 text-right text-brand-green font-bold">$18,480.00 (20%)</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">Hillsborough</td>
+                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-008912</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">R. & C. S██████</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$92,400.00</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$18,480.00 (20%)</td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="py-3.5 px-5 font-sans font-bold text-brand-navy">TX</td>
-                                <td class="py-3.5 px-5 font-sans">Harris</td>
-                                <td class="py-3.5 px-5 text-brand-green font-bold">2024-TX-04950</td>
-                                <td class="py-3.5 px-5 font-sans">Est. of C. B██████</td>
-                                <td class="py-3.5 px-5 text-right text-brand-navy font-bold">$86,200.00</td>
-                                <td class="py-3.5 px-5 text-right text-brand-green font-bold">$21,550.00 (25%)</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">Harris</td>
+                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04950</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">Est. of C. B██████</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$86,200.00</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$21,550.00 (25%)</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             
-            <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span class="text-xs text-slate-500">* Sourced from public county overage schedules. Full names, parcel IDs, and sale dates included in subscriber feeds.</span>
-                <a href="/assets/sample_surplus_docket.csv" download class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 hover:border-brand-green text-xs font-heading font-bold text-brand-navy rounded-lg shadow-sm hover:shadow transition-all">
+            <div class="mt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span class="text-[11px] sm:text-xs text-slate-500 text-center sm:text-left">* Sourced from public county overage schedules. Full names, parcel IDs, and sale dates included in subscriber feeds.</span>
+                <a href="/assets/sample_surplus_docket.csv" download class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-300 hover:border-brand-green text-xs font-heading font-bold text-brand-navy rounded-lg shadow-sm hover:shadow transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
@@ -679,6 +806,20 @@
     </div>
 
     <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger-icon');
+            const close = document.getElementById('close-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                hamburger.classList.add('hidden');
+                close.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+                hamburger.classList.remove('hidden');
+                close.classList.add('hidden');
+            }
+        }
         function openBillingModal() {
             document.getElementById('billing-modal').classList.remove('hidden');
         }
