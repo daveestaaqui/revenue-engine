@@ -179,6 +179,25 @@ Reference & Daily Data Feeds: [Surplus Docket Texas Hub](https://surplusdocket.c
     print(f"  [✓] Generated Legal Syndicate Digest: {digest_path.name}")
 
 
+def ping_search_engines():
+    """Notifies Google and Bing search indexers of newly published sitemaps and legal content."""
+    import urllib.request
+
+    sitemap_url = "https://surplusdocket.com/sitemap.xml"
+    endpoints = [
+        ("Google", f"https://www.google.com/ping?sitemap={sitemap_url}"),
+        ("Bing", f"https://www.bing.com/ping?sitemap={sitemap_url}"),
+    ]
+    for engine, url in endpoints:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "SurplusDocket-SEO-Bot/1.0"})
+            with urllib.request.urlopen(req, timeout=8) as res:
+                print(f"  [✓] Pinged {engine} Indexer (Status: {res.status})")
+        except Exception as e:
+            # Pings can be rate-limited or return 404 in local dry-runs, handle silently
+            print(f"  [•] {engine} index ping notice: {e}")
+
+
 def main():
     print("=" * 60)
     print(" 🛰️ SURPLUS DOCKET — AUTOMATED SEO & MARKETING ENGINE")
@@ -186,6 +205,7 @@ def main():
     generate_rss_feed()
     update_sitemap()
     generate_syndicate_posts()
+    ping_search_engines()
     print("=" * 60)
 
 

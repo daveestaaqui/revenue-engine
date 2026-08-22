@@ -52,7 +52,7 @@ jobs:
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
           git add exports/ site/api/ site/blog/ site/feed.xml site/sitemap.xml domain_arbitrage/listings/ marketing/syndicate/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, blog & SEO refresh [skip ci]" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, blog & SEO refresh" && git push)
 
       - name: 6. Upload Delivery Artifacts
         uses: actions/upload-artifact@v4

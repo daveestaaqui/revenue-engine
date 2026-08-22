@@ -32,7 +32,7 @@
           "@id": "https://surplusdocket.com/#organization",
           "name": "Surplus Docket",
           "url": "https://surplusdocket.com",
-          "logo": "https://surplusdocket.com/assets/shield_transparent.png",
+          "logo": "https://surplusdocket.com/assets/logo_docket_scale.png",
           "description": "Institutional public records data indexing tax deed surplus and excess proceeds filings."
         },
         {
@@ -272,7 +272,7 @@
         <section id="overview" class="pt-12 sm:pt-20 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
                 <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
-                Automated Clerk of Court Records Aggregation
+                <span>Active Docket Stream • Verified for <span id="hero-live-date">Today</span></span>
             </div>
             
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight text-brand-navy mb-4 sm:mb-6 leading-tight">
@@ -330,6 +330,25 @@
                     Illustrative schema showing data columns provided in daily subscriber exports. Sourced from official county clerk of court records with sensitive owner details partially redacted for preview.
                 </p>
             </div>
+
+            <!-- Interactive Live Search & Filter Bar -->
+            <div class="mb-4 bg-white border border-slate-200 rounded-xl p-3 sm:p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <div class="relative w-full sm:w-64">
+                        <input type="text" id="docket-search" placeholder="Search county, docket #..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all" oninput="filterSampleTable()">
+                        <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <select id="state-filter" class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all shrink-0" onchange="filterSampleTable()">
+                        <option value="ALL">All States</option>
+                        <option value="FL">Florida (FL)</option>
+                        <option value="TX">Texas (TX)</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                    <span id="docket-count" class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Showing 5 Verified Records</span>
+                    <a href="#pricing" class="hidden sm:inline-flex text-xs font-bold text-brand-green hover:underline">Unlock All 17 Today &rarr;</a>
+                </div>
+            </div>
             
             <div class="block md:hidden text-center text-[11px] text-slate-500 font-semibold mb-3 bg-slate-100 py-1.5 px-3 rounded-lg border border-slate-200">
                 <span>👉 Swipe table horizontally to view full docket & statutory caps &rarr;</span>
@@ -348,8 +367,8 @@
                                 <th class="py-3.5 px-4 sm:px-5 text-right text-emerald-300">Statutory Cap Ref.*</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-200 font-mono text-slate-700">
-                            <tr class="hover:bg-slate-50 transition-colors">
+                        <tbody id="sample-table-body" class="divide-y divide-slate-200 font-mono text-slate-700">
+                            <tr data-state="FL" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Palm Beach</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004501</td>
@@ -357,7 +376,7 @@
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$145,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$29,000.00 (20%)</td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="TX" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04812</td>
@@ -365,7 +384,7 @@
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$128,500.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$32,125.00 (25%)</td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="FL" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Miami-Dade</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004812</td>
@@ -373,7 +392,7 @@
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$112,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$22,400.00 (20%)</td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="FL" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Hillsborough</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-008912</td>
@@ -381,7 +400,7 @@
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$92,400.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$18,480.00 (20%)</td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="TX" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04950</td>
@@ -806,6 +825,32 @@
     </div>
 
     <script>
+        function filterSampleTable() {
+            const query = (document.getElementById('docket-search')?.value || '').toLowerCase().trim();
+            const stateFilter = document.getElementById('state-filter')?.value || 'ALL';
+            const rows = document.querySelectorAll('#sample-table-body tr');
+            let visible = 0;
+
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                const rowState = row.getAttribute('data-state') || '';
+                const stateMatch = (stateFilter === 'ALL' || rowState === stateFilter);
+                const queryMatch = !query || text.includes(query);
+
+                if (stateMatch && queryMatch) {
+                    row.style.display = '';
+                    visible++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            const countEl = document.getElementById('docket-count');
+            if (countEl) {
+                countEl.textContent = `Showing ${visible} of 5 Preview Records`;
+            }
+        }
+
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const hamburger = document.getElementById('hamburger-icon');
@@ -829,6 +874,15 @@
         // Close modal on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeBillingModal();
+        });
+
+        // Initialize dynamic live date in hero
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateEl = document.getElementById('hero-live-date');
+            if (dateEl) {
+                const today = new Date();
+                dateEl.textContent = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            }
         });
     </script>
 </body>
