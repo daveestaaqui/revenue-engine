@@ -91,9 +91,7 @@
             </a>
             <div class="flex items-center gap-2.5 sm:gap-4">
                 <a href="/blog/" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">All Articles</a>
-                <button onclick="openBillingModal()" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
-                    Billing Portal
-                </button>
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">Billing Portal</a>
                 <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 sm:px-5 py-2.5 rounded-lg shadow-sm transition-all">
                     Subscribe
                 </a>
@@ -197,7 +195,7 @@
                 <span class="text-slate-300 hidden sm:inline">•</span>
                 <a href="/blog/" class="hover:text-brand-green transition-colors">All Articles</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
-                <button onclick="openBillingModal()" class="hover:text-brand-green transition-colors font-semibold">Stripe Customer Portal</button>
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green transition-colors font-semibold">Stripe Customer Portal</a>
             </nav>
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-xs text-slate-500 w-full pt-6 border-t border-slate-200">
@@ -208,44 +206,12 @@
         </div>
     </footer>
 
-    <!-- Billing Portal Modal -->
-    <div id="billing-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl border border-slate-200 relative">
-            <button onclick="closeBillingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-10 h-10 rounded-xl bg-brand-greenSoft border border-brand-green/20 flex items-center justify-center text-brand-green shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                </div>
-                <div>
-                    <h3 class="text-lg font-heading font-bold text-brand-navy">Subscriber Billing Portal</h3>
-                    <p class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Self-Service Stripe Account</p>
-                </div>
-            </div>
-            <div class="space-y-3 text-xs text-slate-600 mb-6 leading-relaxed">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <p class="font-bold text-brand-navy text-[11px] uppercase tracking-wider mb-1">Active Subscribers:</p>
-                    <p class="text-slate-600">
-                        To update payment cards, download tax invoices, or manage/cancel your subscription, click the <strong>"Manage Subscription"</strong> link included in any of your monthly Stripe automated receipt emails.
-                    </p>
-                </div>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-3">
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-3 px-4 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-lg shadow-md transition-all">
-                    Subscribe ($249/mo)
-                </a>
-                <button onclick="closeBillingModal()" class="py-3 px-5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-heading font-semibold text-xs rounded-lg transition-colors">
-                    Close
-                </button>
-            </div>
-        </div>
-    </div>
+    
 
     <script>
-        function openBillingModal() { document.getElementById('billing-modal').classList.remove('hidden'); }
-        function closeBillingModal() { document.getElementById('billing-modal').classList.add('hidden'); }
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBillingModal(); });
+        
+        
+        
     </script>
 </body>
 </html>

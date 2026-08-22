@@ -72,9 +72,7 @@
             </a>
             <div class="flex items-center gap-4">
                 <a href="/" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">Main Hub</a>
-                <button onclick="openBillingModal()" class="text-xs sm:text-sm font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
-                    Billing Portal
-                </button>
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">Billing Portal</a>
             </div>
         </div>
     </header>
@@ -144,9 +142,7 @@
         <div class="bg-white border border-slate-300 rounded-2xl p-6 text-center text-xs text-slate-600 shadow-sm">
             <p class="font-bold text-brand-navy mb-1">Manage Your Subscription & Billing Details</p>
             <p class="text-slate-500 mb-3">Need to update payment methods, download official invoices, or add secondary team recipient emails?</p>
-            <button onclick="openBillingModal()" class="px-4 py-2 bg-brand-navy text-white font-heading font-bold text-xs rounded-lg hover:bg-brand-navyDark transition-colors">
-                Launch Subscriber Portal
-            </button>
+            <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-brand-navy text-white font-heading font-bold text-xs rounded-lg hover:bg-brand-navyDark transition-colors">Launch Subscriber Portal</a>
         </div>
     </main>
 
@@ -186,9 +182,9 @@
 
     <!-- Verification Display & Modal Script -->
     <script>
-        function openBillingModal() { document.getElementById('billing-modal').classList.remove('hidden'); }
-        function closeBillingModal() { document.getElementById('billing-modal').classList.add('hidden'); }
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBillingModal(); });
+        
+        
+        
 
         (function() {
             var params = new URLSearchParams(window.location.search);
