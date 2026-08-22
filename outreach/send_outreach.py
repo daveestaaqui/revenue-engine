@@ -34,9 +34,9 @@ STATE_NAMES = {
 
 # Stripe checkout links by state / tier
 STRIPE_LINKS = {
-    "FL": "https://buy.stripe.com/surplus-docket-florida-feed",
-    "TX": "https://buy.stripe.com/surplus-docket-texas-feed",
-    "DEFAULT": "https://buy.stripe.com/surplus-docket-master-feed",
+    "FL": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
+    "TX": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
+    "DEFAULT": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
 }
 
 
