@@ -71,7 +71,7 @@ ARTICLES = [
                 Receive fresh, case-verified tax deed surplus dockets across Orange, Palm Beach, Miami-Dade, and Hillsborough counties every business morning at 7:00 AM EST.
             </p>
             <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
-                Subscribe to Daily Florida & Texas Feed — $249/mo
+                Subscribe to Multi-State Feed (FL, TX, GA) — $249/mo
             </a>
         </div>
         """
@@ -110,7 +110,7 @@ ARTICLES = [
                 Never miss newly deposited excess funds in Harris County (Houston), Dallas County, and major Texas district courts.
             </p>
             <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
-                Subscribe to Daily Florida & Texas Feed — $249/mo
+                Subscribe to Multi-State Feed (FL, TX, GA) — $249/mo
             </a>
         </div>
         """
@@ -149,7 +149,7 @@ ARTICLES = [
                 Receive standardized CSV and Excel feeds ready for instant import into your firm's CRM.
             </p>
             <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
-                Subscribe to Daily Florida & Texas Feed — $249/mo
+                Subscribe to Multi-State Feed (FL, TX, GA) — $249/mo
             </a>
         </div>
         """
