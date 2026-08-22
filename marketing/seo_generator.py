@@ -84,6 +84,12 @@ def update_sitemap():
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://surplusdocket.com/practitioner-toolkit.html</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://surplusdocket.com/api-documentation.html</loc>
     <lastmod>{today_str}</lastmod>
     <changefreq>weekly</changefreq>

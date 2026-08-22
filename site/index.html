@@ -168,6 +168,13 @@
                     </button>
                     <div class="absolute left-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 transform group-hover:translate-y-0 translate-y-1 z-50">
                         <div class="bg-white rounded-xl border border-slate-200 shadow-xl p-2.5 space-y-1">
+                            <a href="/practitioner-toolkit.html" class="flex flex-col px-3 py-2 rounded-lg bg-brand-greenSoft/40 hover:bg-brand-greenSoft border border-brand-green/20 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-heading font-bold text-xs text-brand-greenDark">Practitioner Toolkit</span>
+                                    <span class="text-[9px] bg-brand-green text-white font-extrabold px-1.5 py-0.5 rounded">FREE BONUS</span>
+                                </div>
+                                <span class="text-[11px] text-slate-600 mt-0.5">Court motions, petitions & retainer contracts</span>
+                            </a>
                             <a href="/blog/" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
                                 <span class="font-heading font-bold text-xs text-brand-navy">Legal Insights & Articles</span>
                                 <span class="text-[11px] text-slate-500">Public record statutory research</span>
@@ -238,6 +245,10 @@
             <div class="border-t border-slate-100 pt-3">
                 <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 block px-2 mb-1.5">Intelligence & Tools</span>
                 <div class="grid grid-cols-1 gap-1">
+                    <a href="/practitioner-toolkit.html" onclick="toggleMobileMenu()" class="flex items-center justify-between px-3 py-2 text-sm font-bold text-brand-green bg-brand-greenSoft/40 rounded-lg">
+                        <span>Practitioner Toolkit & Templates</span>
+                        <span class="text-[10px] uppercase tracking-wider bg-brand-green text-white px-1.5 py-0.5 rounded font-bold">Free Bonus</span>
+                    </a>
                     <a href="#data" onclick="toggleMobileMenu()" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-green rounded-lg">
                         Sample Public Docket Schema
                     </a>
@@ -416,23 +427,59 @@
             <div class="mt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <span class="text-[11px] sm:text-xs text-slate-500 text-center sm:text-left">* Sourced from public county overage schedules. Full names, parcel IDs, and sale dates included in subscriber feeds.</span>
                 <a href="/assets/sample_surplus_docket.csv" download class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-300 hover:border-brand-green text-xs font-heading font-bold text-brand-navy rounded-lg shadow-sm hover:shadow transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                    </svg>
-                    Download Sample CSV (No Email Required)
-                </a>
+        <!-- Practitioner Toolkit & Starter Pack Bonus Feature -->
+        <section class="py-12 bg-gradient-to-br from-brand-navy to-slate-900 text-white border-y border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8 bg-brand-navyDark/70 p-6 sm:p-10 rounded-2xl border border-brand-green/30 shadow-2xl relative overflow-hidden">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-green/20 border border-brand-green/40 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-4">
+                            <span>⭐ Included Free with All Subscriptions ($1,500+ Value)</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-heading font-black text-white mb-3">
+                            Turnkey Asset Recovery Practitioner Toolkit
+                        </h2>
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+                            Stop spending thousands drafting court filings from scratch. Subscribers receive immediate access to our court-ready legal templates, client contingency contracts with statutory fee cap compliance clauses, and heirship due diligence checklists.
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg">
+                                <span class="text-emerald-400 font-bold text-xs block">FL Motion</span>
+                                <span class="text-[10px] text-slate-400">Fla. Stat. § 197.582</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg">
+                                <span class="text-emerald-400 font-bold text-xs block">TX Petition</span>
+                                <span class="text-[10px] text-slate-400">Tex. Tax Code § 34.04</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg">
+                                <span class="text-emerald-400 font-bold text-xs block">Retainer Form</span>
+                                <span class="text-[10px] text-slate-400">Statutory Fee Caps</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg">
+                                <span class="text-emerald-400 font-bold text-xs block">Heir Checklist</span>
+                                <span class="text-[10px] text-slate-400">Due Diligence Audit</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 w-full lg:w-auto text-center">
+                        <a href="/practitioner-toolkit.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-sm rounded-xl shadow-lg transition-all hover:scale-105">
+                            <span>Open Practitioner Toolkit</span>
+                            <span>&rarr;</span>
+                        </a>
+                        <span class="block text-[11px] text-slate-400 mt-2">Included for all active subscribers</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 3.5 Interactive Statutory Claim & Fee Calculator -->
-        <section id="calculator" class="py-16 bg-white border-y border-slate-200">
+        <!-- 3.5 Interactive Statutory Claim & Fee Calculator + Lien Priority Engine -->
+        <section id="calculator" class="py-16 bg-white border-b border-slate-200">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-10">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-3">
                         Legal Due Diligence Tool
                     </div>
-                    <h2 class="text-2xl md:text-3xl font-heading font-black text-brand-navy mb-2">Statutory Claim Deadline & Fee Benchmark Calculator</h2>
-                    <p class="text-xs md:text-sm text-slate-600">Model claim filing deadlines and statutory recovery caps under Florida and Texas state statutes.</p>
+                    <h2 class="text-2xl md:text-3xl font-heading font-black text-brand-navy mb-2">Statutory Claim & Lien Priority Simulator</h2>
+                    <p class="text-xs md:text-sm text-slate-600">Model claim filing deadlines, statutory recovery caps, and distribution waterfalls.</p>
                 </div>
 
                 <div class="bg-brand-canvas border border-slate-200 rounded-2xl p-6 md:p-8 shadow-md">
@@ -455,7 +502,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-200">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-200 mb-6">
                         <div class="bg-white p-4 rounded-xl border border-slate-200">
                             <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Statutory Fee Cap</span>
                             <span id="calc-fee-cap" class="text-xl font-heading font-black text-brand-green">$17,000.00 (20%)</span>
@@ -469,6 +516,30 @@
                             <span id="calc-deadline" class="text-xl font-heading font-black text-brand-navy">Set Sale Date</span>
                         </div>
                     </div>
+
+                    <!-- Lien Priority Hierarchy Simulator -->
+                    <div class="pt-6 border-t border-slate-200">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-3">Recorded Encumbrances & Senior Lien Deductions</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
+                            <label class="flex items-center justify-between p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="font-semibold text-slate-700">1st Mortgage / Deed of Trust</span>
+                                <input type="number" id="lien-mortgage" value="0" placeholder="$0" class="w-28 text-right bg-slate-50 border border-slate-300 rounded px-2 py-1 text-xs font-semibold text-brand-navy" oninput="calculateStatutoryBenchmark()">
+                            </label>
+                            <label class="flex items-center justify-between p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="font-semibold text-slate-700">Municipal / HOA Assessments</span>
+                                <input type="number" id="lien-hoa" value="0" placeholder="$0" class="w-28 text-right bg-slate-50 border border-slate-300 rounded px-2 py-1 text-xs font-semibold text-brand-navy" oninput="calculateStatutoryBenchmark()">
+                            </label>
+                        </div>
+                        <div class="bg-brand-navy text-white p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-emerald-300 tracking-wider">Estimated Net Titleholder / Heir Equity:</span>
+                                <div id="calc-net-equity" class="text-xl font-heading font-black text-white">$85,000.00</div>
+                            </div>
+                            <a href="/practitioner-toolkit.html" class="text-xs font-bold text-emerald-300 hover:text-emerald-200 underline">
+                                View Lien Priority Rules in Toolkit &rarr;
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -478,6 +549,8 @@
                 const state = document.getElementById('calc-state').value;
                 const dateVal = document.getElementById('calc-date').value;
                 const amount = parseFloat(document.getElementById('calc-amount').value) || 0;
+                const mortgage = parseFloat(document.getElementById('lien-mortgage')?.value) || 0;
+                const hoa = parseFloat(document.getElementById('lien-hoa')?.value) || 0;
 
                 let capRate = 0.20;
                 let windowText = "120 Days (from notice)";
@@ -493,9 +566,16 @@
                     daysToAdd = 1825;
                 }
 
-                const fee = amount * capRate;
+                const netEquity = Math.max(0, amount - mortgage - hoa);
+                const fee = netEquity * capRate;
+
                 document.getElementById('calc-fee-cap').textContent = `$${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${(capRate * 100).toFixed(0)}%)`;
                 document.getElementById('calc-window').textContent = windowText;
+
+                const netEquityEl = document.getElementById('calc-net-equity');
+                if (netEquityEl) {
+                    netEquityEl.textContent = `$${netEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                }
 
                 if (dateVal) {
                     const saleDate = new Date(dateVal);
@@ -508,7 +588,8 @@
             // Initialize with today's date
             document.addEventListener('DOMContentLoaded', () => {
                 const today = new Date().toISOString().split('T')[0];
-                document.getElementById('calc-date').value = today;
+                const dateEl = document.getElementById('calc-date');
+                if (dateEl) dateEl.value = today;
                 calculateStatutoryBenchmark();
             });
         </script>
@@ -604,6 +685,112 @@
                     <span>Georgia (Fulton / Atlanta pursuant to O.C.G.A. § 48-4-5) actively expanding. <a href="/georgia-tax-sale-excess-funds.html" class="text-brand-green font-bold hover:underline ml-1">View Georgia Hub &rarr;</a></span>
                     <span class="text-brand-green font-semibold mt-2 sm:mt-0">Custom county requests supported for API subscribers.</span>
                 </div>
+
+                <!-- County Clerk 1-Click Verification Directory -->
+                <div class="mt-10 pt-8 border-t border-slate-200 text-left">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="font-heading font-bold text-base text-brand-navy">Official County Clerk & Court Registry Directory</h3>
+                            <p class="text-xs text-slate-500">Direct 1-click verification portals across active monitored jurisdictions.</p>
+                        </div>
+                        <span class="text-[10px] font-bold text-brand-green bg-brand-greenSoft px-2.5 py-1 rounded-full uppercase tracking-wider">Public Records</span>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                        <a href="https://www.mypalmbeachclerk.com/" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                            <span>Palm Beach Clerk</span>
+                            <span class="text-slate-400">&nearr;</span>
+                        </a>
+                        <a href="https://www.miamidadeclerk.gov/" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                            <span>Miami-Dade Clerk</span>
+                            <span class="text-slate-400">&nearr;</span>
+                        </a>
+                        <a href="https://www.myorangeclerk.com/" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                            <span>Orange County Clerk</span>
+                            <span class="text-slate-400">&nearr;</span>
+                        </a>
+                        <a href="https://www.hillsclerk.com/" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                            <span>Hillsborough Clerk</span>
+                            <span class="text-slate-400">&nearr;</span>
+                        </a>
+                        <a href="https://www.cclerk.hctx.net/" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                            <span>Harris County Clerk</span>
+                            <span class="text-slate-400">&nearr;</span>
+                        </a>
+                        <a href="https://www.dallascounty.org/" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                            <span>Dallas County Clerk</span>
+                            <span class="text-slate-400">&nearr;</span>
+                        </a>
+                        <a href="https://www.fultonclerk.org/" target="_blank" rel="noopener noreferrer" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                            <span>Fulton County Clerk</span>
+                            <span class="text-slate-400">&nearr;</span>
+                        </a>
+                        <a href="#data" class="p-3 bg-brand-greenSoft/60 hover:bg-brand-greenSoft rounded-lg border border-brand-green/30 text-xs font-bold text-brand-greenDark transition-colors flex items-center justify-between">
+                            <span>All Monitored Ports</span>
+                            <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5.5 Subscription ROI & Legal Fee Payoff Calculator -->
+        <section id="roi-calculator" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-3">
+                    Subscription Value Economics
+                </div>
+                <h2 class="text-2xl md:text-3xl font-heading font-black text-brand-navy mb-2">
+                    How Just 1 Claim Covers Years of Your Subscription
+                </h2>
+                <p class="text-xs md:text-sm text-slate-600 max-w-xl mx-auto mb-8">
+                    Surplus recovery operates on exceptional statutory legal margins. See how quickly our daily feeds generate exponential returns for your firm.
+                </p>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md text-left">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div>
+                            <label class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-2">Avg. Surplus Balance</label>
+                            <select id="roi-surplus-avg" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm font-semibold text-brand-navy focus:outline-none focus:border-brand-green" onchange="calculateROI()">
+                                <option value="45000">$45,000 (Conservative)</option>
+                                <option value="85000" selected>$85,000 (Portfolio Average)</option>
+                                <option value="145000">$145,000 (High-Tier Claim)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-2">Claims Recovered / Mo</label>
+                            <input type="range" id="roi-claims-count" min="1" max="5" value="1" step="1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-green mt-3" oninput="calculateROI()">
+                            <div class="flex justify-between text-[11px] font-bold text-slate-500 mt-1">
+                                <span>1 Claim</span>
+                                <span id="roi-slider-val" class="text-brand-green font-bold">1 Claim / mo</span>
+                                <span>5 Claims</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-2">Statutory Fee Rate</label>
+                            <select id="roi-fee-rate" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm font-semibold text-brand-navy focus:outline-none focus:border-brand-green" onchange="calculateROI()">
+                                <option value="0.20" selected>20% (Florida Statutory Cap)</option>
+                                <option value="0.25">25% (Texas Statutory Cap)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-200">
+                        <div class="p-4 bg-brand-greenSoft/40 rounded-xl border border-brand-green/30">
+                            <span class="text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-1">Monthly Gross Legal Fees</span>
+                            <span id="roi-monthly-fees" class="text-2xl font-heading font-black text-brand-green">$17,000.00</span>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <span class="text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-1">Subscription Payoff</span>
+                            <span id="roi-payoff-months" class="text-2xl font-heading font-black text-brand-navy">68 Months</span>
+                            <span class="text-[10px] text-slate-500 block mt-0.5">paid for by 1 single claim</span>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <span class="text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-1">Net Annual Return</span>
+                            <span id="roi-annual-perc" class="text-2xl font-heading font-black text-brand-navy">+6,727%</span>
+                            <span class="text-[10px] text-slate-500 block mt-0.5">based on $249/mo plan</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -625,6 +812,10 @@
                             <span class="text-slate-500 text-sm">/ month</span>
                         </div>
                         <ul class="space-y-4 mb-8 flex-grow text-sm text-slate-700">
+                            <li class="flex gap-3 font-semibold text-brand-navy">
+                                <svg class="h-5 w-5 text-brand-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Practitioner Toolkit ($1,500 Value) Included Free</span>
+                            </li>
                             <li class="flex gap-3">
                                 <svg class="h-5 w-5 text-brand-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                                 Daily CSV & Excel morning delivery (7 AM EST)
@@ -664,6 +855,10 @@
                             <span class="text-slate-300 text-sm">/ month</span>
                         </div>
                         <ul class="space-y-4 mb-8 flex-grow text-sm text-slate-200">
+                            <li class="flex gap-3 font-semibold text-emerald-300">
+                                <svg class="h-5 w-5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Practitioner Toolkit ($1,500 Value) Included Free</span>
+                            </li>
                             <li class="flex gap-3 font-semibold text-white">
                                 <svg class="h-5 w-5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                                 Complete National Coverage (FL, TX, GA + All Expanding States)
@@ -876,13 +1071,46 @@
             if (e.key === 'Escape') closeBillingModal();
         });
 
-        // Initialize dynamic live date in hero
+        function calculateROI() {
+            const avgBalance = parseFloat(document.getElementById('roi-surplus-avg')?.value) || 85000;
+            const claimsCount = parseInt(document.getElementById('roi-claims-count')?.value) || 1;
+            const feeRate = parseFloat(document.getElementById('roi-fee-rate')?.value) || 0.20;
+
+            const sliderValEl = document.getElementById('roi-slider-val');
+            if (sliderValEl) {
+                sliderValEl.textContent = `${claimsCount} Claim${claimsCount > 1 ? 's' : ''} / mo`;
+            }
+
+            const monthlyFees = avgBalance * feeRate * claimsCount;
+            const subCostMonthly = 249;
+            const singleClaimFee = avgBalance * feeRate;
+            const payoffMonths = Math.round(singleClaimFee / subCostMonthly);
+            const annualNetFee = (monthlyFees * 12) - (subCostMonthly * 12);
+            const annualCost = subCostMonthly * 12;
+            const roiPercent = Math.round((annualNetFee / annualCost) * 100);
+
+            const monthlyFeesEl = document.getElementById('roi-monthly-fees');
+            if (monthlyFeesEl) {
+                monthlyFeesEl.textContent = `$${monthlyFees.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            }
+            const payoffMonthsEl = document.getElementById('roi-payoff-months');
+            if (payoffMonthsEl) {
+                payoffMonthsEl.textContent = `${payoffMonths} Months`;
+            }
+            const roiAnnualEl = document.getElementById('roi-annual-perc');
+            if (roiAnnualEl) {
+                roiAnnualEl.textContent = `+${roiPercent.toLocaleString('en-US')}%`;
+            }
+        }
+
+        // Initialize dynamic live date in hero & ROI calculator
         document.addEventListener('DOMContentLoaded', () => {
             const dateEl = document.getElementById('hero-live-date');
             if (dateEl) {
                 const today = new Date();
                 dateEl.textContent = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             }
+            calculateROI();
         });
     </script>
 </body>

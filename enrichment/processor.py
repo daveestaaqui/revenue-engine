@@ -26,6 +26,27 @@ def clean_currency(val):
     except ValueError:
         return 0.0
 
+CLERK_PORTALS = {
+    "Palm Beach": "https://www.mypalmbeachclerk.com/",
+    "Miami-Dade": "https://www.miamidadeclerk.gov/",
+    "Orange": "https://www.myorangeclerk.com/",
+    "Hillsborough": "https://www.hillsclerk.com/",
+    "Harris": "https://www.cclerk.hctx.net/",
+    "Dallas": "https://www.dallascounty.org/",
+    "Fulton": "https://www.fultonclerk.org/",
+}
+
+def infer_property_class(address):
+    addr_upper = address.upper()
+    if any(k in addr_upper for k in ["LOT", "TRACT", "PARCEL", "ACRE", "VACANT", "BLK"]):
+        return "Vacant Land / Acreage"
+    elif any(k in addr_upper for k in ["UNIT", "APT", "CONDO", "#", "SUITE"]):
+        return "Condo / Multi-Family"
+    elif any(k in addr_upper for k in ["COMMERCIAL", "BLVD", "HWY", "INDUSTRIAL", "PLAZA"]):
+        return "Commercial / Mixed Use"
+    else:
+        return "Single Family Residential"
+
 def classify_and_enrich_record(row, county_meta):
     owner_raw = str(row.get("owner_name", row.get("DEFENDANT", row.get("NAME", "UNKNOWN")))).strip()
     surplus_raw = row.get("surplus_amount", row.get("AMOUNT", row.get("Excess_Funds", row.get("Balance", 0))))
@@ -48,6 +69,7 @@ def classify_and_enrich_record(row, county_meta):
         tier = "Tier 3: Standard Value ($2.5k-$10k)"
 
     state = county_meta.get("state", "FL")
+    county_name = county_meta.get("county", "Unknown")
     fee_rate = 0.20 if state in ["FL", "GA"] else 0.25
     estimated_fee = round(surplus_amt * fee_rate, 2)
 
@@ -55,19 +77,26 @@ def classify_and_enrich_record(row, county_meta):
     case_no = str(row.get("case_number", row.get("TAX_DEED_NO", row.get("Parcel", "N/A")))).strip()
     sale_date = str(row.get("sale_date", row.get("DATE", "N/A"))).strip()
 
+    prop_class = infer_property_class(address)
+    clerk_url = CLERK_PORTALS.get(county_name, "https://surplusdocket.com")
+    deadline_rule = "120 Days from Notice (FL Stat. § 197.582)" if state == "FL" else "2 Years from Sale (TX Tax Code § 34.04)"
+
     return {
         "State": state,
-        "County": county_meta.get("county", "Unknown"),
+        "County": county_name,
         "Case_or_TaxDeed_No": case_no,
         "Owner_Name": owner_raw,
         "Entity_Type": "Estate / Deceased" if is_estate else owner_type,
         "Is_Individual": not is_inst,
         "Property_Address": address,
+        "Property_Type": prop_class,
         "Surplus_Balance_USD": surplus_amt,
         "Statutory_Fee_Rate": f"{int(fee_rate*100)}%",
         "Est_Finder_Fee_USD": estimated_fee,
         "Opportunity_Tier": tier,
         "Sale_Date": sale_date,
+        "Statutory_Deadline_Window": deadline_rule,
+        "Clerk_Verification_URL": clerk_url,
         "Governing_Statute": county_meta.get("statute", "Applicable State Law"),
         "Enriched_Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }

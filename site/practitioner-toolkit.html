@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Recovery Practitioner Toolkit & Filing Templates | Surplus Docket</title>
+    <meta name="description" content="Court filing templates, statutory claim motions, heir representation contracts, and due diligence checklists for Florida and Texas surplus recovery practitioners.">
+    <link rel="canonical" href="https://surplusdocket.com/practitioner-toolkit.html">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#00875a',
+                            greenDark: '#006644',
+                            greenSoft: '#e3fcef',
+                            navy: '#162d4a',
+                            navyDark: '#0f2035',
+                            canvas: '#F5F7FA',
+                            card: '#FFFFFF',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-slate-700 selection:bg-brand-green selection:text-white">
+
+    <!-- Header / Nav -->
+    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="/" class="flex items-center gap-3 group shrink-0">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-10 h-10 sm:w-11 sm:h-11 object-contain filter drop-shadow-[0_2px_8px_rgba(22,45,74,0.15)] transition-transform group-hover:scale-105">
+                <div class="flex flex-col justify-center">
+                    <div class="flex items-baseline gap-1.5 leading-none">
+                        <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                        <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                    </div>
+                    <span class="hidden sm:block text-[9px] font-extrabold uppercase tracking-widest text-slate-500 mt-1">Practitioner Toolkit</span>
+                </div>
+            </a>
+
+            <!-- Condensed Navigation -->
+            <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-600">
+                <a href="/" class="px-3.5 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Main Hub</a>
+                <a href="/florida-tax-deed-surplus.html" class="px-3.5 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Florida Hub</a>
+                <a href="/texas-tax-sale-excess-proceeds.html" class="px-3.5 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Texas Hub</a>
+                <a href="/api-documentation.html" class="px-3.5 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">API Docs</a>
+                <a href="/blog/" class="px-3.5 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Legal Insights</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                <button onclick="openBillingModal()" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 hover:border-slate-400 bg-white px-3.5 py-2 rounded-lg transition-all shadow-sm">
+                    Billing Portal
+                </button>
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 sm:px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg shrink-0">
+                    Subscribe ($249/mo)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
+        <!-- Hero Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+                Official Subscriber Resource Library
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-heading font-black text-brand-navy mb-4 tracking-tight leading-tight">
+                Asset Recovery Practitioner Toolkit
+            </h1>
+            <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+                Standardized, court-tested filing templates, statutory claim petitions, client retainer agreements, and due diligence roadmaps for legal practitioners and property researchers.
+            </p>
+        </div>
+
+        <!-- Quick Jump Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
+            <a href="#florida-template" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
+                <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Florida Motion</span>
+                <span class="text-[10px] text-slate-500">Fla. Stat. § 197.582</span>
+            </a>
+            <a href="#texas-template" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
+                <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Texas Petition</span>
+                <span class="text-[10px] text-slate-500">Tex. Tax Code § 34.04</span>
+            </a>
+            <a href="#retainer-template" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
+                <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Retainer Agreement</span>
+                <span class="text-[10px] text-slate-500">Statutory Fee Cap</span>
+            </a>
+            <a href="#heirship-checklist" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
+                <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Heirship Checklist</span>
+                <span class="text-[10px] text-slate-500">Due Diligence Audit</span>
+            </a>
+        </div>
+
+        <!-- Template 1: Florida Motion for Distribution -->
+        <section id="florida-template" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md mb-10">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-6">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-brand-green">Template 01 • Florida Circuit Court</span>
+                    <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Motion for Distribution of Tax Deed Surplus Proceeds</h2>
+                    <p class="text-xs text-slate-500">Governed by Fla. Stat. § 197.582 (120-Day Notice & Lienholder Resolution)</p>
+                </div>
+                <button onclick="copySnippet('fl-motion-text', 'fl-copy-btn')" id="fl-copy-btn" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 hover:bg-brand-greenSoft text-brand-navy hover:text-brand-green text-xs font-bold rounded-lg border border-slate-200 transition-all shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    <span>Copy Template</span>
+                </button>
+            </div>
+
+            <div class="bg-slate-900 text-slate-200 p-5 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed max-h-96">
+<pre id="fl-motion-text">IN THE CIRCUIT COURT OF THE [CIRCUIT NUMBER] JUDICIAL CIRCUIT
+IN AND FOR [COUNTY NAME] COUNTY, FLORIDA
+
+IN RE: TAX DEED FILE NO.: [CASE / TAX DEED NUMBER]
+PARCEL IDENTIFICATION NO.: [PARCEL ID]
+PROPERTY ADDRESS: [SITUS ADDRESS]
+
+________________________________________/
+
+CLAIMANT'S NOTARIZED MOTION FOR DISTRIBUTION OF SURPLUS PROCEEDS
+PURSUANT TO FLORIDA STATUTE § 197.582
+
+COMES NOW the Claimant, [NAME OF CLAIMANT / TITLEHOLDER / HEIR], by and through undersigned counsel, and moves this Honorable Court and the Clerk of the Circuit Court for an Order directing the distribution of tax deed surplus proceeds currently held in the registry, and in support states as follows:
+
+1. On [AUCTION DATE], the Clerk of the Circuit Court conducted a statutory tax deed sale for the subject real property located at [PROPERTY ADDRESS], Parcel ID: [PARCEL ID].
+
+2. Following the satisfaction of all outstanding delinquent taxes, statutory interest, and Clerk administrative costs, a surplus balance in the amount of $[SURPLUS AMOUNT] was deposited into the Clerk's registry.
+
+3. Pursuant to Florida Statute § 197.582(2), the Clerk issued a Notice of Surplus Funds to all recorded governmental lienholders, junior mortgagees, and the titleholder of record.
+
+4. Claimant is the lawful [Record Titleholder / Legitimate Heir / Assignee] of the subject property as of the date of the tax deed auction, as evidenced by the attached recorded deed recorded at Official Records Book [BOOK], Page [PAGE] of the Public Records of [COUNTY NAME] County, Florida (Exhibit "A").
+
+5. [IF APPLICABLE]: More than 120 days have elapsed since the Clerk mailed the statutory Notice of Surplus, and no superior governmental or junior mortgage lien claims have been timely filed, or all junior encumbrances have been duly satisfied.
+
+WHEREFORE, Claimant respectfully requests that the Clerk of the Circuit Court distribute the net surplus proceeds of $[SURPLUS AMOUNT] payable to [CLAIMANT NAME / ATTORNEY TRUST ACCOUNT] pursuant to Fla. Stat. § 197.582.
+
+DATED this _____ day of _______________, 20___.
+
+Respectfully submitted,
+
+__________________________________________
+[ATTORNEY NAME / FIRM NAME]
+Florida Bar No.: [BAR NUMBER]
+[ADDRESS / SUITE]
+[CITY, STATE, ZIP]
+Telephone: [PHONE NUMBER]</pre>
+            </div>
+        </section>
+
+        <!-- Template 2: Texas District Court Petition -->
+        <section id="texas-template" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md mb-10">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-6">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-brand-green">Template 02 • Texas District Court</span>
+                    <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Petition for Release of Excess Proceeds from Registry</h2>
+                    <p class="text-xs text-slate-500">Governed by Tex. Tax Code § 34.04 (2-Year Statutory Limitation Window)</p>
+                </div>
+                <button onclick="copySnippet('tx-petition-text', 'tx-copy-btn')" id="tx-copy-btn" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 hover:bg-brand-greenSoft text-brand-navy hover:text-brand-green text-xs font-bold rounded-lg border border-slate-200 transition-all shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    <span>Copy Template</span>
+                </button>
+            </div>
+
+            <div class="bg-slate-900 text-slate-200 p-5 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed max-h-96">
+<pre id="tx-petition-text">CAUSE NO. [CAUSE NUMBER]
+
+[TAXING ENTITY PLAINTIFF]         §   IN THE DISTRICT COURT OF
+                                   §
+VS.                                §   [COUNTY NAME] COUNTY, TEXAS
+                                   §
+[DEFENDANT / FORMER OWNER]        §   [JUDICIAL DISTRICT] JUDICIAL DISTRICT
+
+CLAIMANT'S PETITION FOR RELEASE OF EXCESS PROCEEDS
+PURSUANT TO TEXAS TAX CODE § 34.04
+
+TO THE HONORABLE JUDGE OF SAID COURT:
+
+COMES NOW [CLAIMANT NAME], Petitioner herein, and files this Petition for Release of Excess Proceeds pursuant to Section 34.04 of the Texas Tax Code, showing the Court the following:
+
+I. PARTIES AND JURISDICTION
+1. Petitioner is an individual residing at [PETITIONER RESIDENCE ADDRESS].
+2. This Court has proper jurisdiction pursuant to Tex. Tax Code § 34.04 because the real property that was the subject of the tax foreclosure sale is located within [COUNTY NAME] County, Texas, and the excess proceeds are retained in this Court's registry.
+
+II. FACTUAL BACKGROUND
+3. On [SHERIFF SALE DATE], pursuant to an Order of Sale issued by this Court, the real property commonly known as [PROPERTY SITUS ADDRESS], Account No. [ACCOUNT NUMBER], was sold at public auction.
+4. After satisfying the underlying tax judgment, penalties, interest, and costs of sale, excess proceeds in the total amount of $[EXCESS AMOUNT] were remitted into the Registry of this Court.
+5. Less than two (2) years have elapsed since the date of the sheriff's sale.
+
+III. STATUTORY ENTITLEMENT
+6. Under Tex. Tax Code § 34.04(c), Petitioner is entitled to receive the excess proceeds as the [Former Record Owner / Lawful Heir / Assignee] of the subject real property. Attached hereto as Exhibit "A" is true and correct proof of title ownership.
+
+PRAYER
+WHEREFORE, PREMISES CONSIDERED, Petitioner prays that citation and notice issue to all necessary taxing entities and parties of record, that this Court set this matter for hearing, and upon final consideration, enter an Order directing the District Clerk to disburse the sum of $[EXCESS AMOUNT] from the registry to Petitioner.
+
+Respectfully submitted,
+
+__________________________________________
+[ATTORNEY NAME / BAR NO.]
+[FIRM NAME & ADDRESS]
+Counsel for Petitioner</pre>
+            </div>
+        </section>
+
+        <!-- Template 3: Client Contingency Representation Agreement -->
+        <section id="retainer-template" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md mb-10">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-6">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-brand-green">Template 03 • Legal Retainer</span>
+                    <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Excess Funds Representation Agreement & Statutory Fee Disclosure</h2>
+                    <p class="text-xs text-slate-500">Includes Statutory Fee Cap Disclosures (20% FL / 25% TX Compliance Clauses)</p>
+                </div>
+                <button onclick="copySnippet('retainer-text', 'ret-copy-btn')" id="ret-copy-btn" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 hover:bg-brand-greenSoft text-brand-navy hover:text-brand-green text-xs font-bold rounded-lg border border-slate-200 transition-all shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    <span>Copy Template</span>
+                </button>
+            </div>
+
+            <div class="bg-slate-900 text-slate-200 p-5 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed max-h-96">
+<pre id="retainer-text">CONTINGENCY LEGAL REPRESENTATION AGREEMENT & STATUTORY FEE DISCLOSURE
+FOR RECOVERY OF TAX SALE SURPLUS / EXCESS PROCEEDS
+
+CLIENT: [CLIENT FULL LEGAL NAME]
+ATTORNEY/FIRM: [LAW FIRM NAME]
+PROPERTY PARCEL: [PARCEL ID / LEGAL DESCRIPTION]
+CASE / DOCKET NO.: [DOCKET NUMBER]
+
+1. SCOPE OF ENGAGEMENT: Client hereby retains Attorney to represent Client in investigating, preparing, filing, and litigating all necessary claims and petitions to recover tax deed surplus / excess proceeds resulting from the public auction of the above-referenced property.
+
+2. CONTINGENCY FEE & EXPENSES:
+   a. NO RECOVERY, NO FEE: Attorney fees are strictly contingent upon the actual recovery and disbursement of funds from the county clerk or court registry. If no funds are recovered, Client owes $0.00 in attorney fees.
+   b. STATUTORY FEE CAP COMPLIANCE:
+      - FLORIDA CLAIMS: Attorney compensation shall not exceed twenty percent (20.0%) of the gross surplus amount recovered, in strict accordance with Fla. Stat. § 197.582.
+      - TEXAS CLAIMS: Attorney compensation shall not exceed twenty-five percent (25.0%) of the gross excess proceeds recovered, pursuant to Tex. Tax Code § 34.04.
+
+3. CLIENT DISCLOSURE & ACKNOWLEDGMENT: Client acknowledges that surplus funds are held by the public clerk/court registry and that Client has the right to file an independent claim directly with the county without legal counsel. Client explicitly elects to engage Attorney to navigate lien priority determinations, heirship verification, and formal court motions.
+
+4. TRUST ACCOUNT DISBURSEMENT: Upon receipt of registry disbursement checks, funds shall be deposited into Attorney's IOLTA/Trust Account and distributed to Client within ten (10) business days alongside a formal settlement statement.
+
+CLIENT SIGNATURE: ____________________________________ DATE: ______________
+ATTORNEY SIGNATURE: __________________________________ DATE: ______________</pre>
+            </div>
+        </section>
+
+        <!-- Template 4: Heirship & Due Diligence Checklist -->
+        <section id="heirship-checklist" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md">
+            <div class="border-b border-slate-200 pb-4 mb-6">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-brand-green">Template 04 • Operational Protocol</span>
+                <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Heirship & Title Chain Due Diligence Checklist</h2>
+                <p class="text-xs text-slate-500">7-Step Verification Workflow for Deceased Owner & Estate Surplus Claims</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-heading font-bold text-brand-navy block mb-1">1. Certified Death Certificate</span>
+                    <p class="text-slate-600">Obtain certified death certificate demonstrating date and location of owner demise prior to or following auction date.</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-heading font-bold text-brand-navy block mb-1">2. Probate Docket Search</span>
+                    <p class="text-slate-600">Check county probate records for Letters of Administration, formal probate administration, or Summary Administration orders.</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-heading font-bold text-brand-navy block mb-1">3. Affidavit of Heirship</span>
+                    <p class="text-slate-600">Execute two (2) disinterested witness Affidavits of Heirship detailing family lineage, marital history, and surviving descendants.</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-heading font-bold text-brand-navy block mb-1">4. Junior Mortgage & Lien Clearance</span>
+                    <p class="text-slate-600">Verify title search to ensure mortgagees or judgment creditors have not filed superior claims within the statutory notice window.</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-heading font-bold text-brand-navy block mb-1">5. Government Entity Notice</span>
+                    <p class="text-slate-600">Ensure notice of petition is provided to municipal tax collectors, county attorney, and the state attorney general if required.</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-heading font-bold text-brand-navy block mb-1">6. Notarized Identification</span>
+                    <p class="text-slate-600">Secure government photo ID and proof of address matching claimant name with title records.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <a href="/" class="flex items-center gap-3.5 mb-2 group">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-9 h-9 object-contain">
+                <div class="flex items-baseline gap-1.5 leading-none">
+                    <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
+                </div>
+            </a>
+            <p class="mt-2">&copy; 2026 Surplus Docket. All rights reserved. • <button onclick="openBillingModal()" class="text-slate-700 hover:text-brand-green font-semibold underline">Stripe Customer Billing Portal</button></p>
+        </div>
+    </footer>
+
+    <!-- Billing Portal Modal -->
+    <div id="billing-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl border border-slate-200 relative">
+            <button onclick="closeBillingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-greenSoft border border-brand-green/20 flex items-center justify-center text-brand-green shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-lg font-heading font-bold text-brand-navy">Subscriber Billing Portal</h3>
+                    <p class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Self-Service Stripe Account</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-xs text-slate-600 mb-6 leading-relaxed">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold text-brand-navy text-[11px] uppercase tracking-wider mb-1">Active Subscribers:</p>
+                    <p class="text-slate-600">
+                        To update payment cards, download tax invoices, or manage/cancel your subscription, click the <strong>"Manage Subscription"</strong> link included in any of your monthly Stripe automated receipt emails.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-3 px-4 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-lg shadow-md transition-all">
+                    Subscribe ($249/mo)
+                </a>
+                <button onclick="closeBillingModal()" class="py-3 px-5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-heading font-semibold text-xs rounded-lg transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openBillingModal() { document.getElementById('billing-modal').classList.remove('hidden'); }
+        function closeBillingModal() { document.getElementById('billing-modal').classList.add('hidden'); }
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBillingModal(); });
+
+        function copySnippet(elementId, buttonId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById(buttonId);
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = `<span class="text-brand-green font-bold">✓ Copied!</span>`;
+                setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

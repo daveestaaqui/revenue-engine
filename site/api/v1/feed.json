@@ -1,7 +1,7 @@
 {
   "status": "success",
   "api_version": "v1.0",
-  "generated_at": "2026-08-22T10:40:20.933753",
+  "generated_at": "2026-08-22T13:28:10.891467",
   "meta": {
     "total_records": 17,
     "total_surplus_volume_usd": 1173500.0,
@@ -23,13 +23,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "720 S OCEAN BLVD PALM BEACH FL 33480",
+      "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 145000.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 29000.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-06-28",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "TX",
@@ -39,13 +42,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "5402 BRAESVALLEY DR HOUSTON TX 77096",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 128500.0,
       "Statutory_Fee_Rate": "25%",
       "Est_Finder_Fee_USD": 32125.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-09",
+      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
+      "Clerk_Verification_URL": "https://www.cclerk.hctx.net/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -55,13 +61,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "340 SW 8TH ST MIAMI FL 33130",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 112000.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 22400.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-05",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -71,13 +80,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "4502 W SAN RAFAEL ST TAMPA FL 33629",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 92400.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 18480.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-25",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "TX",
@@ -87,13 +99,16 @@
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Property_Address": "1802 HEIGHTS BLVD HOUSTON TX 77008",
+      "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 86200.0,
       "Statutory_Fee_Rate": "25%",
       "Est_Finder_Fee_USD": 21550.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-16",
+      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
+      "Clerk_Verification_URL": "https://www.cclerk.hctx.net/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "TX",
@@ -103,13 +118,16 @@
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Property_Address": "6412 ABRAMS RD DALLAS TX 75231",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 77800.0,
       "Statutory_Fee_Rate": "25%",
       "Est_Finder_Fee_USD": 19450.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-13",
+      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
+      "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -119,13 +137,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "8431 BAY BREEZE WAY ORLANDO FL 32836",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 74300.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 14860.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-08",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -135,13 +156,16 @@
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Property_Address": "1410 N FEDERAL HWY LAKE WORTH FL 33460",
+      "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 68900.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 13780.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-14",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -151,13 +175,16 @@
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Property_Address": "3309 ROSEWOOD CT WINTER PARK FL 32792",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 61800.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 12360.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-03",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "TX",
@@ -167,13 +194,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "3819 COLONIAL AVE DALLAS TX 75215",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 59400.0,
       "Statutory_Fee_Rate": "25%",
       "Est_Finder_Fee_USD": 14850.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-23",
+      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
+      "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -183,13 +213,16 @@
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Property_Address": "11804 N 56TH ST TEMPLE TERRACE FL 33617",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 54100.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 10820.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-02",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -199,13 +232,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "1420 PINEWOOD DR ORLANDO FL 32808",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 48250.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 9650.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-06-12",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -215,13 +251,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "1920 CORAL WAY MIAMI FL 33145",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 43500.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 8700.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-12",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "TX",
@@ -231,13 +270,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "7120 NAVIGATION BLVD HOUSTON TX 77011",
+      "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 41300.0,
       "Statutory_Fee_Rate": "25%",
       "Est_Finder_Fee_USD": 10325.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-06",
+      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
+      "Clerk_Verification_URL": "https://www.cclerk.hctx.net/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -247,13 +289,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "2308 S ARMENIA AVE TAMPA FL 33629",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 31750.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 6350.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-10",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -263,13 +308,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "510 LAKE BREEZE DR APOPKA FL 32703",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 29400.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 5880.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-17",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     },
     {
       "State": "FL",
@@ -279,13 +327,16 @@
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Property_Address": "220 W KALEY ST ORLANDO FL 32806",
+      "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 18900.0,
       "Statutory_Fee_Rate": "20%",
       "Est_Finder_Fee_USD": 3780.0,
       "Opportunity_Tier": "Tier 2: Medium Value ($10k-$25k)",
       "Sale_Date": "2024-08-01",
+      "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-22 10:40:20"
+      "Enriched_Timestamp": "2026-08-22 13:28:10"
     }
   ]
 }
