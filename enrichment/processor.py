@@ -34,6 +34,9 @@ CLERK_PORTALS = {
     "Harris": "https://www.cclerk.hctx.net/",
     "Dallas": "https://www.dallascounty.org/",
     "Fulton": "https://www.fultonclerk.org/",
+    "DeKalb": "https://www.dekalbcountytax.org/",
+    "Gwinnett": "https://www.gwinnetttaxcommissioner.com/",
+    "Cobb": "https://www.cobbtax.org/",
 }
 
 def infer_property_class(address):
@@ -79,7 +82,14 @@ def classify_and_enrich_record(row, county_meta):
 
     prop_class = infer_property_class(address)
     clerk_url = CLERK_PORTALS.get(county_name, "https://surplusdocket.com")
-    deadline_rule = "120 Days from Notice (FL Stat. § 197.582)" if state == "FL" else "2 Years from Sale (TX Tax Code § 34.04)"
+    if state == "FL":
+        deadline_rule = "120 Days from Notice (FL Stat. § 197.582)"
+    elif state == "TX":
+        deadline_rule = "2 Years from Sale (TX Tax Code § 34.04)"
+    elif state == "GA":
+        deadline_rule = "5 Years from Sale (O.C.G.A. § 48-4-5)"
+    else:
+        deadline_rule = "Statutory Filing Window"
 
     return {
         "State": state,

@@ -47,6 +47,15 @@ def generate_b2b_exports():
             leads = process_county_dataset([r], county_meta)
             all_leads.extend(leads)
 
+    # 3. Process Georgia Dataset
+    ga_csv = DATA_DIR / "raw_georgia_feed.csv"
+    if ga_csv.exists():
+        ga_raw = pd.read_csv(ga_csv).to_dict(orient="records")
+        for r in ga_raw:
+            county_meta = {"state": "GA", "county": r.get("COUNTY", "Fulton"), "statute": "O.C.G.A. § 48-4-5"}
+            leads = process_county_dataset([r], county_meta)
+            all_leads.extend(leads)
+
     if not all_leads:
         print("[!] No records processed.")
         return
@@ -78,6 +87,7 @@ def generate_b2b_exports():
     # State-specific exports
     df_fl = df_all[df_all["State"] == "FL"]
     df_tx = df_all[df_all["State"] == "TX"]
+    df_ga = df_all[df_all["State"] == "GA"]
 
     df_fl.to_csv(EXPORTS_DIR / "Florida_Surplus_Feed.csv", index=False)
     try:
@@ -91,6 +101,12 @@ def generate_b2b_exports():
     except Exception:
         pass
 
+    df_ga.to_csv(EXPORTS_DIR / "Georgia_Surplus_Feed.csv", index=False)
+    try:
+        df_ga.to_excel(EXPORTS_DIR / "Georgia_Surplus_Feed.xlsx", index=False)
+    except Exception:
+        pass
+
     # Generate Live Web API Endpoints in site/api/v1/
     API_V1_DIR = BASE_DIR / "site" / "api" / "v1"
     API_V1_DIR.mkdir(parents=True, exist_ok=True)
@@ -98,6 +114,7 @@ def generate_b2b_exports():
     api_master_path = API_V1_DIR / "feed.json"
     api_fl_path = API_V1_DIR / "florida.json"
     api_tx_path = API_V1_DIR / "texas.json"
+    api_ga_path = API_V1_DIR / "georgia.json"
     api_health_path = API_V1_DIR / "health.json"
 
     api_payload = {
@@ -107,8 +124,8 @@ def generate_b2b_exports():
         "meta": {
             "total_records": len(all_leads),
             "total_surplus_volume_usd": round(float(df_all["Surplus_Balance_USD"].sum()), 2),
-            "jurisdictions_monitored": ["FL", "TX"],
-            "statutes": ["Fla. Stat. § 197.582", "Tex. Tax Code § 34.04"]
+            "jurisdictions_monitored": ["FL", "TX", "GA"],
+            "statutes": ["Fla. Stat. § 197.582", "Tex. Tax Code § 34.04", "O.C.G.A. § 48-4-5"]
         },
         "records": all_leads
     }
@@ -134,6 +151,15 @@ def generate_b2b_exports():
             "records": df_tx.to_dict(orient="records")
         }, f, indent=2)
 
+    with open(api_ga_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "status": "success",
+            "jurisdiction": "GA",
+            "statute": "O.C.G.A. § 48-4-5",
+            "total_records": len(df_ga),
+            "records": df_ga.to_dict(orient="records")
+        }, f, indent=2)
+
     with open(api_health_path, "w", encoding="utf-8") as f:
         json.dump({
             "status": "healthy",
@@ -145,6 +171,7 @@ def generate_b2b_exports():
                 "/api/v1/feed.json",
                 "/api/v1/florida.json",
                 "/api/v1/texas.json",
+                "/api/v1/georgia.json",
                 "/api/v1/health.json"
             ]
         }, f, indent=2)
