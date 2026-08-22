@@ -248,9 +248,9 @@ def render_article_page(article):
             </a>
             <div class="flex items-center gap-4">
                 <a href="/blog/" class="text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">All Articles</a>
-                <a href="https://billing.stripe.com/p/login/" target="_blank" rel="noopener noreferrer" class="text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
+                <button onclick="openBillingModal()" class="text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
                     Billing Portal
-                </a>
+                </button>
                 <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-5 py-2.5 rounded-lg shadow-sm transition-all">
                     Subscribe ($249/mo)
                 </a>
@@ -285,10 +285,58 @@ def render_article_page(article):
     </main>
 
     <!-- Footer -->
-    <footer class="bg-brand-navy text-white py-8 text-center text-xs text-slate-400">
-        <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="https://billing.stripe.com/p/login/" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-emerald-400 underline">Stripe Customer Billing Portal</a></p>
+    <footer class="bg-white border-t border-slate-200 py-10 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <a href="/" class="flex items-center gap-3.5 mb-2 group">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-9 h-9 object-contain">
+                <div class="flex items-baseline gap-1.5 leading-none">
+                    <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
+                </div>
+            </a>
+            <p class="mt-2">&copy; 2026 Surplus Docket. All rights reserved. • <button onclick="openBillingModal()" class="text-slate-700 hover:text-brand-green font-semibold underline">Stripe Customer Billing Portal</button></p>
+        </div>
     </footer>
 
+    <!-- Billing Portal Modal -->
+    <div id="billing-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl border border-slate-200 relative">
+            <button onclick="closeBillingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-greenSoft border border-brand-green/20 flex items-center justify-center text-brand-green shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-lg font-heading font-bold text-brand-navy">Subscriber Billing Portal</h3>
+                    <p class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Self-Service Stripe Account</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-xs text-slate-600 mb-6 leading-relaxed">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold text-brand-navy text-[11px] uppercase tracking-wider mb-1">Active Subscribers:</p>
+                    <p class="text-slate-600">
+                        To update payment cards, download tax invoices, or manage/cancel your subscription, click the <strong>"Manage Subscription"</strong> link included in any of your monthly Stripe automated receipt emails.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-3 px-4 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-lg shadow-md transition-all">
+                    Subscribe ($249/mo)
+                </a>
+                <button onclick="closeBillingModal()" class="py-3 px-5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-heading font-semibold text-xs rounded-lg transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openBillingModal() {{ document.getElementById('billing-modal').classList.remove('hidden'); }}
+        function closeBillingModal() {{ document.getElementById('billing-modal').classList.add('hidden'); }}
+        document.addEventListener('keydown', (e) => {{ if (e.key === 'Escape') closeBillingModal(); }});
+    </script>
 </body>
 </html>"""
     post_file.write_text(html.strip(), encoding="utf-8")
@@ -375,9 +423,9 @@ def render_blog_index():
             <div class="flex items-center gap-4">
                 <a href="/" class="text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">Main Hub</a>
                 <a href="/api-documentation.html" class="text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">API Docs</a>
-                <a href="https://billing.stripe.com/p/login/" target="_blank" rel="noopener noreferrer" class="text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
+                <button onclick="openBillingModal()" class="text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
                     Billing Portal
-                </a>
+                </button>
                 <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-5 py-2.5 rounded-lg shadow-sm transition-all">
                     Subscribe ($249/mo)
                 </a>
@@ -404,13 +452,58 @@ def render_blog_index():
     </main>
 
     <!-- Footer -->
-    <footer class="bg-brand-navy text-white py-12 text-center px-4">
+    <footer class="bg-white border-t border-slate-200 py-10 text-center text-xs text-slate-500">
         <div class="max-w-4xl mx-auto flex flex-col items-center">
-            <p class="text-slate-300 text-xs font-medium mb-4">&copy; 2026 Surplus Docket. All rights reserved. • <a href="https://billing.stripe.com/p/login/" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-emerald-400 underline">Stripe Customer Billing Portal</a></p>
-            <p class="text-slate-400 text-xs">Data sourced from public county clerk records under Fla. Stat. § 197.582 and Tex. Tax Code § 34.04.</p>
+            <a href="/" class="flex items-center gap-3.5 mb-2 group">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-9 h-9 object-contain">
+                <div class="flex items-baseline gap-1.5 leading-none">
+                    <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
+                </div>
+            </a>
+            <p class="mt-2">&copy; 2026 Surplus Docket. All rights reserved. • <button onclick="openBillingModal()" class="text-slate-700 hover:text-brand-green font-semibold underline">Stripe Customer Billing Portal</button></p>
         </div>
     </footer>
 
+    <!-- Billing Portal Modal -->
+    <div id="billing-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl border border-slate-200 relative">
+            <button onclick="closeBillingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-greenSoft border border-brand-green/20 flex items-center justify-center text-brand-green shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-lg font-heading font-bold text-brand-navy">Subscriber Billing Portal</h3>
+                    <p class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Self-Service Stripe Account</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-xs text-slate-600 mb-6 leading-relaxed">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold text-brand-navy text-[11px] uppercase tracking-wider mb-1">Active Subscribers:</p>
+                    <p class="text-slate-600">
+                        To update payment cards, download tax invoices, or manage/cancel your subscription, click the <strong>"Manage Subscription"</strong> link included in any of your monthly Stripe automated receipt emails.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-3 px-4 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-lg shadow-md transition-all">
+                    Subscribe ($249/mo)
+                </a>
+                <button onclick="closeBillingModal()" class="py-3 px-5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-heading font-semibold text-xs rounded-lg transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openBillingModal() {{ document.getElementById('billing-modal').classList.remove('hidden'); }}
+        function closeBillingModal() {{ document.getElementById('billing-modal').classList.add('hidden'); }}
+        document.addEventListener('keydown', (e) => {{ if (e.key === 'Escape') closeBillingModal(); }});
+    </script>
 </body>
 </html>"""
     index_file.write_text(html.strip(), encoding="utf-8")
