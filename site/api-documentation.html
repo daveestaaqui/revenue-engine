@@ -153,26 +153,49 @@
         </div>
 
         <!-- Code Integration Examples -->
-        <div class="mt-14">
-            <h2 class="text-2xl font-heading font-black text-brand-navy mb-6">Integration Snippets</h2>
+        <div class="mt-14 space-y-8">
+            <div>
+                <h2 class="text-2xl font-heading font-black text-brand-navy mb-2">Integration Snippets & AI-Agent Pipelines</h2>
+                <p class="text-xs sm:text-sm text-slate-600">Standardized JSON schemas ready for automated Python scripts, Zapier webhooks, and autonomous AI agents.</p>
+            </div>
             
+            <!-- Python / AI Agent Pipeline -->
             <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                <div class="bg-slate-100 px-6 py-3 border-b border-slate-200">
-                    <span class="font-mono font-bold text-xs text-slate-700">Python (Pandas / Requests)</span>
+                <div class="bg-slate-100 px-6 py-3 border-b border-slate-200 flex items-center justify-between">
+                    <span class="font-mono font-bold text-xs text-slate-700">Python 3 (Autonomous Ingestion & Agent Hook)</span>
+                    <span class="text-[10px] font-bold text-brand-green bg-brand-greenSoft px-2 py-0.5 rounded">AI Ready</span>
                 </div>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-6 overflow-x-auto leading-relaxed">
 <pre><code>import requests
-import pandas as pd
+import json
 
-# Fetch Master Feed
-url = "https://surplusdocket.com/api/v1/feed.json"
-response = requests.get(url)
-data = response.json()
+# Ingest Daily 7:00 AM Normalized Court Feed
+FEED_URL = "https://surplusdocket.com/api/v1/feed.json"
+response = requests.get(FEED_URL, timeout=10)
+docket_data = response.json()
 
-# Convert records to DataFrame
-df = pd.DataFrame(data["records"])
-print(f"Total claims indexed: {len(df)}")
-print(df[["State", "County", "Case_or_TaxDeed_No", "Surplus_Balance_USD"]].head())</code></pre>
+# Filter High-Value Individual Claims (> $50,000 with institutional noise removed)
+actionable_claims = [
+    c for c in docket_data.get("records", [])
+    if c.get("Estimated_Finder_Fee_USD", 0) >= 10000
+]
+
+print(f"[✓] Successfully ingested {len(actionable_claims)} priority recovery dockets.")
+# Direct payload to downstream AI drafting agent or Clio CRM webhook...</code></pre>
+                </div>
+            </div>
+
+            <!-- cURL & Node.js / Webhook -->
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="bg-slate-100 px-6 py-3 border-b border-slate-200">
+                    <span class="font-mono font-bold text-xs text-slate-700">Node.js (Fetch & Webhook Dispatch)</span>
+                </div>
+                <div class="bg-slate-900 text-slate-200 font-mono text-xs p-6 overflow-x-auto leading-relaxed">
+<pre><code>const res = await fetch('https://surplusdocket.com/api/v1/feed.json');
+const { metadata, records } = await res.json();
+
+console.log(`Ingested ${records.length} records generated at ${metadata.generated_at}`);
+// Automatically sync to Airtable / Zapier / Legal Case Management...</code></pre>
                 </div>
             </div>
         </div>
