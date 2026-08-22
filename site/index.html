@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surplus Intel | Daily Tax Deed Surplus Data Feeds</title>
+    <meta name="description" content="Pre-filtered, case-verified surplus claim data delivered to your inbox every morning. Built for asset recovery professionals.">
+    <meta property="og:title" content="Surplus Intel | Daily Tax Deed Surplus Data Feeds">
+    <meta property="og:description" content="Pre-filtered, case-verified surplus claim data delivered to your inbox every morning. Built for asset recovery professionals.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            900: '#0f172a', // slate-900 for dark navy background
+                            800: '#1e293b', // slate-800 for cards
+                            700: '#334155', // slate-700 for borders
+                        },
+                        accent: {
+                            500: '#10b981', // emerald-500 for money/CTA
+                            600: '#059669', // emerald-600 for hover
+                            900: '#064e3b', // emerald-900 for subtle backgrounds
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Header / Nav -->
+    <header class="w-full border-b border-dark-700 bg-dark-900/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded bg-accent-500 flex items-center justify-center text-dark-900 font-bold text-xl">S</div>
+                <span class="font-bold text-xl tracking-tight text-white">Surplus Intel</span>
+            </div>
+            <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-300">
+                <a href="#features" class="hover:text-white transition-colors">Features</a>
+                <a href="#data" class="hover:text-white transition-colors">Data</a>
+                <a href="#coverage" class="hover:text-white transition-colors">Coverage</a>
+                <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+            </nav>
+            <div>
+                <a href="#pricing" class="text-sm font-semibold bg-white text-dark-900 px-4 py-2 rounded-md hover:bg-slate-200 transition-colors">Subscribe</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- 1. Hero Section -->
+        <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
+                Daily Tax Deed Surplus <br class="hidden md:block" />
+                <span class="text-accent-500">Data Feeds</span>
+            </h1>
+            <p class="mt-4 text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Pre-filtered, case-verified surplus claim data delivered to your inbox every morning. Built for asset recovery professionals.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+                <a href="#pricing" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg text-dark-900 bg-white hover:bg-slate-200 transition-colors shadow-lg">
+                    Get Florida & Texas Feed — $249/mo
+                </a>
+                <a href="#pricing" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg text-white bg-accent-600 hover:bg-accent-500 transition-colors shadow-lg shadow-accent-500/20 border border-accent-500">
+                    Get National Feed + API — $449/mo
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Live Stats Bar -->
+        <section class="border-y border-dark-700 bg-dark-800/50 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-dark-700">
+                    <div class="px-4">
+                        <div class="text-3xl font-bold text-accent-500 mb-1">17</div>
+                        <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Active Claims</div>
+                    </div>
+                    <div class="px-4">
+                        <div class="text-3xl font-bold text-accent-500 mb-1">$1,173,500</div>
+                        <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Recoverable</div>
+                    </div>
+                    <div class="px-4">
+                        <div class="text-3xl font-bold text-accent-500 mb-1">8</div>
+                        <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Counties Monitored</div>
+                    </div>
+                    <div class="px-4">
+                        <div class="text-3xl font-bold text-accent-500 mb-1">$254,360</div>
+                        <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">In Finder Fees</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sample Data Preview Table -->
+        <section id="data" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">Production-Grade Intelligence</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Stop digging through county portals. We deliver structured, actionable claims data ready for outreach.</p>
+            </div>
+            
+            <div class="bg-dark-800 rounded-xl border border-dark-700 overflow-hidden shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-dark-900 border-b border-dark-700 text-sm font-semibold text-slate-300">
+                                <th class="py-4 px-6">State</th>
+                                <th class="py-4 px-6">County</th>
+                                <th class="py-4 px-6">Case #</th>
+                                <th class="py-4 px-6">Owner</th>
+                                <th class="py-4 px-6 text-right">Surplus Balance</th>
+                                <th class="py-4 px-6 text-right text-accent-500">Est. Finder Fee</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-dark-700 font-mono text-slate-300">
+                            <tr class="hover:bg-dark-700/50 transition-colors">
+                                <td class="py-4 px-6">FL</td>
+                                <td class="py-4 px-6">Palm Beach</td>
+                                <td class="py-4 px-6">2024-TD-004501</td>
+                                <td class="py-4 px-6">A. & G. V████████</td>
+                                <td class="py-4 px-6 text-right text-white">$145,000</td>
+                                <td class="py-4 px-6 text-right text-accent-500 font-semibold">$29,000</td>
+                            </tr>
+                            <tr class="hover:bg-dark-700/50 transition-colors">
+                                <td class="py-4 px-6">TX</td>
+                                <td class="py-4 px-6">Harris</td>
+                                <td class="py-4 px-6">2024-TX-04812</td>
+                                <td class="py-4 px-6">W. & M. H██████</td>
+                                <td class="py-4 px-6 text-right text-white">$128,500</td>
+                                <td class="py-4 px-6 text-right text-accent-500 font-semibold">$32,125</td>
+                            </tr>
+                            <tr class="hover:bg-dark-700/50 transition-colors">
+                                <td class="py-4 px-6">FL</td>
+                                <td class="py-4 px-6">Miami-Dade</td>
+                                <td class="py-4 px-6">2024-TD-004812</td>
+                                <td class="py-4 px-6">L. & M. H████████</td>
+                                <td class="py-4 px-6 text-right text-white">$112,000</td>
+                                <td class="py-4 px-6 text-right text-accent-500 font-semibold">$22,400</td>
+                            </tr>
+                            <tr class="hover:bg-dark-700/50 transition-colors">
+                                <td class="py-4 px-6">FL</td>
+                                <td class="py-4 px-6">Hillsborough</td>
+                                <td class="py-4 px-6">2024-TD-008912</td>
+                                <td class="py-4 px-6">R. & C. S██████</td>
+                                <td class="py-4 px-6 text-right text-white">$92,400</td>
+                                <td class="py-4 px-6 text-right text-accent-500 font-semibold">$18,480</td>
+                            </tr>
+                            <tr class="hover:bg-dark-700/50 transition-colors">
+                                <td class="py-4 px-6">TX</td>
+                                <td class="py-4 px-6">Harris</td>
+                                <td class="py-4 px-6">2024-TX-04950</td>
+                                <td class="py-4 px-6">Est. of C. B██████</td>
+                                <td class="py-4 px-6 text-right text-white">$86,200</td>
+                                <td class="py-4 px-6 text-right text-accent-500 font-semibold">$21,550</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="mt-4 text-xs text-slate-500 text-center flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                All case numbers are verifiable on respective county clerk portals. Full names, addresses, and sale dates included in subscriber feeds.
+            </p>
+        </section>
+
+        <!-- 4. What You Get Section -->
+        <section id="features" class="py-20 bg-dark-800/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-white">Built for High-Volume Firms</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-dark-800 p-8 rounded-2xl border border-dark-700 hover:border-accent-500/50 transition-colors">
+                        <div class="w-12 h-12 rounded-lg bg-accent-900/50 flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Daily Delivery</h3>
+                        <p class="text-slate-400 leading-relaxed">
+                            Fresh data delivered straight to your inbox every morning at 7 AM EST. Formatted perfectly in CSV, Excel, and JSON for seamless CRM import.
+                        </p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-dark-800 p-8 rounded-2xl border border-dark-700 hover:border-accent-500/50 transition-colors">
+                        <div class="w-12 h-12 rounded-lg bg-accent-900/50 flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Pre-Filtered</h3>
+                        <p class="text-slate-400 leading-relaxed">
+                            Stop wasting time on dead ends. Institutional liens (banks, HOAs, mortgage servicers) are automatically stripped out. We only surface individual owners and estate heirs.
+                        </p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-dark-800 p-8 rounded-2xl border border-dark-700 hover:border-accent-500/50 transition-colors">
+                        <div class="w-12 h-12 rounded-lg bg-accent-900/50 flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Case-Verified</h3>
+                        <p class="text-slate-400 leading-relaxed">
+                            Every single record includes verifiable case numbers, full property addresses, exact sale dates, and precise statutory fee calculations out of the box.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Coverage Section -->
+        <section id="coverage" class="py-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-8">Active Jurisdictions</h2>
+            <div class="bg-dark-800 border border-dark-700 rounded-xl p-8 shadow-lg">
+                <ul class="space-y-6 text-left">
+                    <li class="flex items-start">
+                        <svg class="h-6 w-6 text-accent-500 mr-3 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <div>
+                            <span class="font-semibold text-white text-lg block mb-1">Florida</span>
+                            <span class="text-slate-400">Orange, Hillsborough, Palm Beach, Miami-Dade counties</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-6 w-6 text-accent-500 mr-3 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <div>
+                            <span class="font-semibold text-white text-lg block mb-1">Texas</span>
+                            <span class="text-slate-400">Harris (Houston), Dallas counties</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-6 w-6 text-slate-500 mr-3 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <span class="font-semibold text-slate-300 text-lg block mb-1">Georgia <span class="ml-2 text-xs font-semibold bg-dark-700 text-slate-300 px-2 py-1 rounded-full uppercase tracking-wide">Coming Soon</span></span>
+                            <span class="text-slate-500">Fulton (Atlanta)</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="mt-8 pt-6 border-t border-dark-700">
+                    <p class="text-sm font-medium text-accent-500">More states & counties added monthly based on subscriber requests.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Pricing Section -->
+        <section id="pricing" class="py-24 bg-dark-800/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Simple, transparent pricing</h2>
+                    <p class="text-lg text-slate-400">Invest in data that pays for itself on the first successful claim.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Basic Plan -->
+                    <div class="bg-dark-800 border border-dark-700 rounded-2xl p-8 flex flex-col shadow-lg">
+                        <h3 class="text-2xl font-bold text-white mb-2">Florida & Texas Feed</h3>
+                        <div class="flex items-baseline gap-2 mb-6">
+                            <span class="text-4xl font-extrabold text-white">$249</span>
+                            <span class="text-slate-400">/month</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-grow">
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Daily CSV/Excel delivery
+                            </li>
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                8 county coverage (FL & TX)
+                            </li>
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Individual claims only (no institutions)
+                            </li>
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Case numbers + addresses + balances
+                            </li>
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Statutory fee calculations (FL § 197.582, TX § 34.04)
+                            </li>
+                        </ul>
+                        <!-- REPLACE WITH YOUR STRIPE PAYMENT LINK -->
+                        <a href="#" id="stripe-link-basic" class="w-full block text-center py-3 px-6 border border-slate-600 rounded-lg text-white font-semibold hover:bg-slate-700 transition-colors">
+                            Subscribe Now
+                        </a>
+                    </div>
+
+                    <!-- Pro Plan -->
+                    <div class="bg-dark-800 border-2 border-accent-500 rounded-2xl p-8 flex flex-col shadow-2xl shadow-accent-500/10 relative transform md:-translate-y-4">
+                        <div class="absolute top-0 right-8 transform -translate-y-1/2 bg-accent-500 text-dark-900 font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wide">
+                            Most Popular
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">National Feed + API</h3>
+                        <div class="flex items-baseline gap-2 mb-6">
+                            <span class="text-4xl font-extrabold text-white">$449</span>
+                            <span class="text-slate-400">/month</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-grow">
+                            <li class="flex gap-3 text-white font-medium">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Everything in FL & TX Feed
+                            </li>
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Georgia + all expanding states
+                            </li>
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                JSON API endpoint access
+                            </li>
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Zapier / Airtable integration ready
+                            </li>
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Priority 6 AM EST delivery
+                            </li>
+                            <li class="flex gap-3 text-slate-300">
+                                <svg class="h-5 w-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Custom filters on request
+                            </li>
+                        </ul>
+                        <!-- REPLACE WITH YOUR STRIPE PAYMENT LINK -->
+                        <a href="#" id="stripe-link-pro" class="w-full block text-center py-3 px-6 bg-accent-600 rounded-lg text-white font-bold hover:bg-accent-500 transition-colors shadow-lg shadow-accent-500/25">
+                            Subscribe Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. Footer -->
+    <footer class="bg-dark-900 border-t border-dark-700 py-12 text-center px-4">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <div class="flex items-center gap-2 mb-6 opacity-80">
+                <div class="w-6 h-6 rounded bg-accent-500 flex items-center justify-center text-dark-900 font-bold text-sm">S</div>
+                <span class="font-bold text-lg tracking-tight text-white">Surplus Intel</span>
+            </div>
+            
+            <p class="text-slate-300 font-medium mb-4">Automated Public Records Intelligence</p>
+            
+            <p class="text-slate-500 text-sm max-w-2xl mb-8 leading-relaxed">
+                Data sourced directly from public county clerk records under FL Statute § 197.582, TX Tax Code § 34.04, and GA Code § 48-4-5. Surplus Intel is a data provider, not a law firm, and does not provide legal advice.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-xs text-slate-500 w-full pt-8 border-t border-dark-800">
+                <p>&copy; 2026 Surplus Intel. All rights reserved.</p>
+                <span class="hidden md:inline">•</span>
+                <p>Contact: <a href="mailto:data@surplusintel.com" class="hover:text-white transition-colors">data@surplusintel.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
