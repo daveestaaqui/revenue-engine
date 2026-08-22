@@ -3,12 +3,12 @@ Recipient Name: Danielle Walsh
 Firm: Walsh & Associates, P.A.
 State: FL (Florida)
 Subject: Verified Florida surplus leads for Walsh & Associates, P.A. (e.g. Case 2024-TD-004501)
-Date: 2026-08-22 08:22:42
+Date: 2026-08-22 08:31:12
 ======================================================================
 
 Hi Danielle Walsh,
 
-I run Surplus Feed. We deliver daily, scrubbed county tax deed surplus and excess proceeds leads directly to asset recovery attorneys in Florida.
+I run Surplus Docket. We deliver daily, scrubbed county tax deed surplus and excess proceeds leads directly to asset recovery attorneys in Florida.
 
 Instead of manually checking county portals, our feed isolates high-equity individual owner claims and removes junior/institutional liens. Recent verified cases from our feed include:
 
@@ -19,9 +19,9 @@ Instead of manually checking county portals, our feed isolates high-equity indiv
 Every record is 100% verifiable against official court dockets and county tax records.
 
 We offer daily CSV/Excel delivery with zero long-term commitment (cancel anytime). You can review our feed tiers and get started here:
-https://buy.stripe.com/surplus-feed-florida-feed
+https://buy.stripe.com/surplus-docket-florida-feed
 
 Best regards,
 
-Surplus Feed Team
-data@surplusfeed.com
+Surplus Docket Team
+data@surplusdocket.com

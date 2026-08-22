@@ -1,4 +1,4 @@
-# Surplus Feed B2B Outreach Email Templates
+# Surplus Docket B2B Outreach Email Templates
 
 This document contains standardized B2B cold email templates for attorney outreach.
 Templates support dynamic merge fields: `{{name}}`, `{{firm}}`, `{{state}}`, `{{stripe_link}}`.
@@ -11,7 +11,7 @@ Templates support dynamic merge fields: `{{name}}`, `{{firm}}`, `{{state}}`, `{{
 
 Hi {{name}},
 
-I run Surplus Feed. We deliver daily, scrubbed county tax deed surplus and excess proceeds leads directly to asset recovery attorneys in {{state}}.
+I run Surplus Docket. We deliver daily, scrubbed county tax deed surplus and excess proceeds leads directly to asset recovery attorneys in {{state}}.
 
 Instead of manually checking county portals, our feed isolates high-equity individual owner claims and removes junior/institutional liens. Recent verified cases from our feed include:
 
@@ -26,8 +26,8 @@ We offer daily CSV/Excel delivery with zero long-term commitment (cancel anytime
 
 Best regards,
 
-Surplus Feed Team
-data@surplusfeed.com
+Surplus Docket Team
+data@surplusdocket.com
 
 ---
 
@@ -52,8 +52,8 @@ Would you like me to send a sample data extract for {{state}}?
 
 Best regards,
 
-Surplus Feed Team
-data@surplusfeed.com
+Surplus Docket Team
+data@surplusdocket.com
 
 ---
 
@@ -76,5 +76,5 @@ If the timing isn't right, no problem at all.
 
 Best regards,
 
-Surplus Feed Team
-data@surplusfeed.com
+Surplus Docket Team
+data@surplusdocket.com
