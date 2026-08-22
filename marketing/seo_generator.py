@@ -102,6 +102,12 @@ def update_sitemap():
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://surplusdocket.com/georgia-tax-sale-excess-funds.html</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://surplusdocket.com/blog/</loc>
     <lastmod>{today_str}</lastmod>
     <changefreq>daily</changefreq>

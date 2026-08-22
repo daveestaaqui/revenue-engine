@@ -9,6 +9,13 @@
     <meta property="og:description" content="Automated daily indexing of court dockets and county clerk tax surplus records for legal recovery professionals.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://surplusdocket.com/">
+    <meta property="og:image" content="https://surplusdocket.com/assets/og_image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Surplus Docket | Institutional Tax Deed Surplus Data Feeds">
+    <meta name="twitter:description" content="Structured daily public records intelligence indexing tax deed surplus and excess proceeds filings across Florida and Texas for recovery attorneys.">
+    <meta name="twitter:image" content="https://surplusdocket.com/assets/og_image.png">
     <link rel="canonical" href="https://surplusdocket.com/">
     <meta name="keywords" content="tax deed surplus data feed, Florida excess proceeds leads, Texas tax overages list, clerk of court surplus funds list, tax deed recovery intelligence, asset recovery legal database">
     
@@ -257,10 +264,105 @@
                 </div>
             </div>
             
-            <div class="mt-4 text-xs text-slate-500 text-center">
-                <span>* Historical public records sample from official county overage schedules. Full names, parcel addresses, and sale dates provided in daily subscriber feeds.</span>
+            <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span class="text-xs text-slate-500">* Sourced from public county overage schedules. Full names, parcel IDs, and sale dates included in subscriber feeds.</span>
+                <a href="/assets/sample_surplus_docket.csv" download class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 hover:border-brand-green text-xs font-heading font-bold text-brand-navy rounded-lg shadow-sm hover:shadow transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download Sample CSV (No Email Required)
+                </a>
             </div>
         </section>
+
+        <!-- 3.5 Interactive Statutory Claim & Fee Calculator -->
+        <section id="calculator" class="py-16 bg-white border-y border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-3">
+                        Legal Due Diligence Tool
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-heading font-black text-brand-navy mb-2">Statutory Claim Deadline & Fee Benchmark Calculator</h2>
+                    <p class="text-xs md:text-sm text-slate-600">Model claim filing deadlines and statutory recovery caps under Florida and Texas state statutes.</p>
+                </div>
+
+                <div class="bg-brand-canvas border border-slate-200 rounded-2xl p-6 md:p-8 shadow-md">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div>
+                            <label class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-2">Jurisdiction / Statute</label>
+                            <select id="calc-state" class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm font-semibold text-brand-navy focus:outline-none focus:border-brand-green" onchange="calculateStatutoryBenchmark()">
+                                <option value="FL">Florida (Fla. Stat. § 197.582)</option>
+                                <option value="TX">Texas (Tex. Tax Code § 34.04)</option>
+                                <option value="GA">Georgia (O.C.G.A. § 48-4-5)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-2">Auction / Sale Date</label>
+                            <input type="date" id="calc-date" class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm font-semibold text-brand-navy focus:outline-none focus:border-brand-green" onchange="calculateStatutoryBenchmark()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-2">Surplus Balance ($ USD)</label>
+                            <input type="number" id="calc-amount" value="85000" step="1000" class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm font-semibold text-brand-navy focus:outline-none focus:border-brand-green" oninput="calculateStatutoryBenchmark()">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-200">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200">
+                            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Statutory Fee Cap</span>
+                            <span id="calc-fee-cap" class="text-xl font-heading font-black text-brand-green">$17,000.00 (20%)</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200">
+                            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Filing Window</span>
+                            <span id="calc-window" class="text-xl font-heading font-black text-brand-navy">120 Days</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200">
+                            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Estimated Deadline</span>
+                            <span id="calc-deadline" class="text-xl font-heading font-black text-brand-navy">Set Sale Date</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            function calculateStatutoryBenchmark() {
+                const state = document.getElementById('calc-state').value;
+                const dateVal = document.getElementById('calc-date').value;
+                const amount = parseFloat(document.getElementById('calc-amount').value) || 0;
+
+                let capRate = 0.20;
+                let windowText = "120 Days (from notice)";
+                let daysToAdd = 120;
+
+                if (state === 'TX') {
+                    capRate = 0.25;
+                    windowText = "2 Years (730 days)";
+                    daysToAdd = 730;
+                } else if (state === 'GA') {
+                    capRate = 0.20;
+                    windowText = "5 Years (Judicial/Lien)";
+                    daysToAdd = 1825;
+                }
+
+                const fee = amount * capRate;
+                document.getElementById('calc-fee-cap').textContent = `$${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${(capRate * 100).toFixed(0)}%)`;
+                document.getElementById('calc-window').textContent = windowText;
+
+                if (dateVal) {
+                    const saleDate = new Date(dateVal);
+                    saleDate.setDate(saleDate.getDate() + daysToAdd);
+                    document.getElementById('calc-deadline').textContent = saleDate.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'});
+                } else {
+                    document.getElementById('calc-deadline').textContent = "Select Date";
+                }
+            }
+            // Initialize with today's date
+            document.addEventListener('DOMContentLoaded', () => {
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('calc-date').value = today;
+                calculateStatutoryBenchmark();
+            });
+        </script>
 
         <!-- 4. What You Get Section -->
         <section id="features" class="py-20 bg-white border-y border-slate-200">
@@ -350,7 +452,7 @@
                 </div>
 
                 <div class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
-                    <span>Georgia (Fulton / Atlanta pursuant to O.C.G.A. § 48-4-5) actively expanding.</span>
+                    <span>Georgia (Fulton / Atlanta pursuant to O.C.G.A. § 48-4-5) actively expanding. <a href="/georgia-tax-sale-excess-funds.html" class="text-brand-green font-bold hover:underline ml-1">View Georgia Hub &rarr;</a></span>
                     <span class="text-brand-green font-semibold mt-2 sm:mt-0">Custom county requests supported for API subscribers.</span>
                 </div>
             </div>
@@ -517,8 +619,9 @@
                 <a href="#coverage" class="hover:text-emerald-400 transition-colors">Coverage</a>
                 <a href="/blog/" class="hover:text-emerald-400 transition-colors">Legal Insights</a>
                 <a href="/api-documentation.html" class="hover:text-emerald-400 transition-colors">REST API Docs</a>
-                <a href="/florida-tax-deed-surplus.html" class="hover:text-emerald-400 transition-colors">Florida Statutory Hub</a>
-                <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-emerald-400 transition-colors">Texas Statutory Hub</a>
+                <a href="/florida-tax-deed-surplus.html" class="hover:text-emerald-400 transition-colors">Florida Hub</a>
+                <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-emerald-400 transition-colors">Texas Hub</a>
+                <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-emerald-400 transition-colors">Georgia Hub</a>
                 <a href="#compliance" class="hover:text-emerald-400 transition-colors">Compliance</a>
                 <a href="#pricing" class="hover:text-emerald-400 transition-colors">Pricing</a>
             </div>
