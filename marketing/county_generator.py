@@ -281,15 +281,15 @@ def generate_county_page(c):
         <!-- Statutory Metrics Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
             <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-                <span class="text-[11px] font-mono text-slate-500 uppercase tracking-wider block mb-1">Governing Statute</span>
+                <span class="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1">Governing Statute</span>
                 <span class="font-heading font-bold text-sm text-brand-navy">{c['statute']}</span>
             </div>
             <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-                <span class="text-[11px] font-mono text-slate-500 uppercase tracking-wider block mb-1">Claim Window</span>
+                <span class="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1">Claim Window</span>
                 <span class="font-heading font-bold text-sm text-brand-green">{c['deadline']}</span>
             </div>
             <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-                <span class="text-[11px] font-mono text-slate-500 uppercase tracking-wider block mb-1">Statutory Benchmark</span>
+                <span class="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1">Statutory Benchmark</span>
                 <span class="font-heading font-bold text-sm text-slate-700">{c['fee_cap']}</span>
             </div>
         </div>
@@ -302,7 +302,7 @@ def generate_county_page(c):
                     <h3 class="font-heading font-bold text-lg text-brand-navy mt-1">Case #{c['sample_case']}</h3>
                 </div>
                 <div class="text-right">
-                    <span class="text-[11px] text-slate-400 block uppercase">Surplus Balance</span>
+                    <span class="text-xs text-slate-400 block uppercase">Surplus Balance</span>
                     <span class="font-mono font-black text-xl text-brand-green">{c['sample_balance']}</span>
                 </div>
             </div>
@@ -372,7 +372,7 @@ def generate_county_page(c):
             </a>
             
             <!-- Condensed & Responsive Footer Navigation -->
-            <nav class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 text-[11px] sm:text-xs font-semibold text-slate-600 mb-6 max-w-2xl px-2">
+            <nav class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 text-xs sm:text-xs font-semibold text-slate-600 mb-6 max-w-2xl px-2">
                 <a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">FL Feed</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
                 <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors">TX Feed</a>
