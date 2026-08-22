@@ -45,8 +45,8 @@
     <!-- Header -->
     <header class="w-full border-b border-navy-700/60 bg-navy-950/90 backdrop-blur-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 py-3 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-3.5">
-                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-12 h-12 object-contain">
+            <a href="/" class="flex items-center gap-3.5 group">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(16,185,129,0.2)] transition-transform group-hover:scale-105">
                 <div class="flex items-baseline gap-1.5 leading-none">
                     <span class="font-heading font-black text-2xl text-emerald-500">SURPLUS</span>
                     <span class="font-heading font-black text-2xl text-white">DOCKET</span>
@@ -64,36 +64,75 @@
         </div>
     </header>
 
-    <main class="flex-grow max-w-4xl mx-auto px-4 py-16">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400 text-xs font-semibold uppercase tracking-wider mb-6">
-            Florida Statutory Intelligence Hub
-        </div>
-        
-        <h1 class="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
-            Florida Tax Deed Surplus <br />
-            <span class="text-gold-400">Public Records & Docket Feeds</span>
-        </h1>
-        
-        <p class="text-base md:text-lg text-slate-300 leading-relaxed mb-8">
-            Under <strong>Florida Statute § 197.582</strong>, when a tax deed auction produces proceeds exceeding the delinquent taxes, interest, and statutory clerk fees, the balance constitutes a surplus fund held by the Clerk of the Circuit Court for the benefit of recorded lienholders and the record property owner at the time of sale.
-        </p>
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow">
+        <!-- Breadcrumb -->
+        <nav class="text-xs text-slate-400 mb-6">
+            <a href="/" class="hover:text-emerald-400">Home</a> &gt; <span class="text-slate-200">Florida Tax Deed Surplus</span>
+        </nav>
 
-        <div class="bg-navy-850 border border-navy-700 rounded-xl p-6 mb-10">
-            <h2 class="text-xl font-heading font-bold text-white mb-4">Key Florida Surplus Framework:</h2>
-            <ul class="space-y-3 text-sm text-slate-300">
-                <li class="flex items-start gap-2">
-                    <span class="text-gold-400 font-bold">1. Statutory Filing Window:</span>
-                    <span>Lienholders and owners have a statutory claim period (typically 120 days from clerk notice under § 197.582(2)) before unclaimed funds remit to the state.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="text-gold-400 font-bold">2. Third-Party Representative Cap:</span>
-                    <span>Fla. Stat. § 197.582 establishes a statutory cap of 20% on third-party surplus recovery compensation fees.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="text-gold-400 font-bold">3. Seniority Order:</span>
-                    <span>Governmental liens take superior priority, followed by recorded mortgagees and judgment creditors, with the net residual estate payable to the former titleholder.</span>
-                </li>
-            </ul>
+        <div class="mb-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4">
+                Florida Statute § 197.582
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white mb-4 leading-tight">
+                Florida Tax Deed Surplus Claims & Overbid Intelligence
+            </h1>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                Comprehensive statutory framework, claim filing timelines, and automated daily data feeds for Florida tax deed excess proceeds.
+            </p>
+        </div>
+
+        <div class="space-y-8 text-xs sm:text-sm text-slate-300">
+            <!-- Statutory Overview -->
+            <div class="bg-navy-900/60 rounded-xl border border-navy-700/60 p-6">
+                <h2 class="text-lg font-heading font-bold text-white mb-3">Statutory Authority: Fla. Stat. § 197.582</h2>
+                <p class="leading-relaxed mb-3">
+                    Under Florida law, when real property is sold at a tax deed auction for an amount exceeding the statutory opening bid (statutory taxes, interest, and clerk costs), the excess funds constitute <strong class="text-emerald-400">surplus proceeds</strong>.
+                </p>
+                <p class="leading-relaxed">
+                    The Clerk of the Circuit Court holds these funds in the court registry and issues a Notice of Surplus to all persons who held an interest in the property as recorded in the property records.
+                </p>
+            </div>
+
+            <!-- Priority Scheme -->
+            <div class="bg-navy-900/60 rounded-xl border border-navy-700/60 p-6">
+                <h2 class="text-lg font-heading font-bold text-white mb-3">Claimant Priority & Statutory Timelines</h2>
+                <p class="leading-relaxed mb-3">
+                    Florida law establishes a strict priority scheme for distributing tax deed surplus proceeds:
+                </p>
+                <ol class="list-decimal list-inside space-y-2 text-slate-300 ml-2">
+                    <li><strong class="text-white">Government Liens:</strong> Municipal liens and special assessments of record.</li>
+                    <li><strong class="text-white">Senior Lienholders:</strong> First mortgage holders, recorded judgments according to recording priority.</li>
+                    <li><strong class="text-white">Junior Lienholders:</strong> Second mortgages, HOA/COA liens, subordinate judgment creditors.</li>
+                    <li><strong class="text-white">Titleholder of Record:</strong> The former owner(s) or their legal heirs as of the date the tax deed was executed.</li>
+                </ol>
+                <div class="mt-4 p-3 bg-navy-950/80 rounded-lg border border-navy-700 text-xs text-slate-400">
+                    <strong class="text-emerald-400">120-Day Window:</strong> Claimants must submit notarized claims within 120 days of the date of the clerk's surplus notice. Feeds update daily at 7:00 AM EST with newly generated notices.
+                </div>
+            </div>
+
+            <!-- Monitored Counties -->
+            <div class="bg-navy-900/60 rounded-xl border border-navy-700/60 p-6">
+                <h2 class="text-lg font-heading font-bold text-white mb-3">Monitored Florida Jurisdictions</h2>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
+                        <strong class="text-white block">Orange County (Orlando)</strong>
+                        <span class="text-slate-400 text-xs">Clerk: Tiffany Moore Russell • Online Tax Deed Auctions</span>
+                    </div>
+                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
+                        <strong class="text-white block">Hillsborough County (Tampa)</strong>
+                        <span class="text-slate-400 text-xs">Clerk: Cindy Stuart • Weekly Public Surplus Ledgers</span>
+                    </div>
+                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
+                        <strong class="text-white block">Palm Beach County (West Palm)</strong>
+                        <span class="text-slate-400 text-xs">Clerk: Joseph Abruzzo • RealAuction Tax Deed Portal</span>
+                    </div>
+                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
+                        <strong class="text-white block">Miami-Dade County (Miami)</strong>
+                        <span class="text-slate-400 text-xs">Clerk: Juan Fernandez-Barquin • Circuit Court Registry</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="text-center py-8">
@@ -111,7 +150,7 @@
     <footer class="bg-navy-900 border-t border-navy-700/60 py-12 text-center text-xs text-slate-400 px-4">
         <div class="max-w-4xl mx-auto flex flex-col items-center">
             <a href="/" class="flex items-center gap-3.5 mb-2 group">
-                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="w-10 h-10 object-contain filter drop-shadow-[0_2px_8px_rgba(22,45,74,0.12)] transition-transform group-hover:scale-105">
+                <img src="/assets/logo_docket_scale.png" alt="Surplus Docket" class="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(16,185,129,0.2)] transition-transform group-hover:scale-105">
                 <div class="flex items-baseline gap-1.5 leading-none">
                     <span class="font-heading font-black text-2xl text-emerald-400">SURPLUS</span>
                     <span class="font-heading font-black text-2xl text-white">DOCKET</span>
