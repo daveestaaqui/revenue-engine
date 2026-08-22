@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page Not Found | Surplus Docket</title>
+    <meta name="description" content="The requested public records page or docket feed could not be found. Return to Surplus Docket home.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['Cinzel', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#4c6d48',
+                            greenDark: '#365134',
+                            greenSoft: '#edf3ec',
+                            navy: '#1b365d',
+                            navyDark: '#102238',
+                            canvas: '#f8f8f4',
+                            slateText: '#334155',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        h1, h2, h3 { text-wrap: balance; }
+        p { text-wrap: pretty; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText">
+
+    <!-- Header -->
+    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group shrink-0">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                <div class="flex items-baseline gap-1.5 leading-none">
+                    <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="/" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">Main Hub</a>
+                <a href="/#pricing" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 py-2 rounded-lg transition-all shadow-sm">
+                    View Feeds
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main 404 Content -->
+    <main class="flex-grow flex items-center justify-center py-20 px-4">
+        <div class="max-w-xl mx-auto text-center bg-white border border-slate-300 rounded-3xl p-8 sm:p-12 shadow-xl">
+            <div class="w-16 h-16 bg-brand-greenSoft text-brand-green rounded-2xl flex items-center justify-center mx-auto mb-6 border border-brand-green/20">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            </div>
+            
+            <span class="text-xs font-mono font-bold text-brand-green uppercase tracking-widest bg-brand-greenSoft px-3 py-1 rounded-full border border-brand-green/30">
+                HTTP 404 • Page Not Found
+            </span>
+            
+            <h1 class="text-3xl sm:text-4xl font-heading font-black text-brand-navy mt-4 mb-3">
+                Docket Not Located
+            </h1>
+            
+            <p class="text-sm sm:text-base text-slate-600 mb-8 leading-relaxed">
+                The public records feed or statutory documentation link you requested has moved or is no longer available.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-left text-xs font-semibold">
+                <a href="/florida-tax-deed-surplus.html" class="p-3.5 bg-brand-canvas rounded-xl border border-slate-200 hover:border-brand-green hover:text-brand-green transition-all flex items-center justify-between">
+                    <span>Florida Tax Deed Feed</span>
+                    <span>→</span>
+                </a>
+                <a href="/texas-tax-sale-excess-proceeds.html" class="p-3.5 bg-brand-canvas rounded-xl border border-slate-200 hover:border-brand-green hover:text-brand-green transition-all flex items-center justify-between">
+                    <span>Texas Excess Proceeds</span>
+                    <span>→</span>
+                </a>
+                <a href="/georgia-tax-sale-excess-funds.html" class="p-3.5 bg-brand-canvas rounded-xl border border-slate-200 hover:border-brand-green hover:text-brand-green transition-all flex items-center justify-between">
+                    <span>Georgia Excess Funds</span>
+                    <span>→</span>
+                </a>
+                <a href="/practitioner-toolkit.html" class="p-3.5 bg-brand-canvas rounded-xl border border-slate-200 hover:border-brand-green hover:text-brand-green transition-all flex items-center justify-between">
+                    <span>Practitioner Toolkit</span>
+                    <span>→</span>
+                </a>
+            </div>
+
+            <a href="/" class="inline-block w-full sm:w-auto px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-md transition-all">
+                Return to Main Docket Hub
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10 text-center px-4 text-xs text-slate-500">
+        <p>&copy; 2026 Surplus Docket. All rights reserved. • Public Records Data Feeds</p>
+    </footer>
+
+</body>
+</html>

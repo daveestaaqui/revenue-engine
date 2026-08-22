@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Surplus Docket — Subscriber Onboarding</title>
+    <meta name="description" content="Thank you for subscribing to Surplus Docket. Access your morning public records feeds, API documentation, and statutory dossiers.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['Cinzel', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#4c6d48',
+                            greenDark: '#365134',
+                            greenSoft: '#edf3ec',
+                            navy: '#1b365d',
+                            navyDark: '#102238',
+                            canvas: '#f8f8f4',
+                            slateText: '#334155',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        h1, h2, h3 { text-wrap: balance; }
+        p { text-wrap: pretty; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText">
+
+    <!-- Header -->
+    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group shrink-0">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                <div class="flex items-baseline gap-1.5 leading-none">
+                    <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="/" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">Main Hub</a>
+                <button onclick="openBillingModal()" class="text-xs sm:text-sm font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
+                    Billing Portal
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Welcome Content -->
+    <main class="flex-grow py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        
+        <!-- Confirmation Hero -->
+        <div class="bg-white border-2 border-brand-green rounded-3xl p-8 sm:p-12 shadow-xl mb-10 text-center relative overflow-hidden">
+            <div class="w-16 h-16 bg-brand-greenSoft text-brand-green rounded-2xl flex items-center justify-center mx-auto mb-5 border border-brand-green/30">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            
+            <span class="text-xs font-mono font-bold text-brand-green uppercase tracking-widest bg-brand-greenSoft px-3.5 py-1 rounded-full border border-brand-green/30">
+                Subscription Active • Public Records Feed Enrolled
+            </span>
+            
+            <h1 class="text-3xl sm:text-4xl font-heading font-black text-brand-navy mt-4 mb-3">
+                Welcome to Surplus Docket
+            </h1>
+            
+            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed mb-6">
+                Your firm has successfully enrolled in our automated court registry and tax deed surplus intelligence pipeline. Here is everything you need to begin immediate recovery operations.
+            </p>
+
+            <div class="inline-flex flex-wrap items-center justify-center gap-4">
+                <a href="/assets/sample_surplus_docket.csv" download class="px-6 py-3 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg shadow-md transition-all flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span>Download Current Docket Starter Feed (.CSV)</span>
+                </a>
+                <a href="/practitioner-toolkit.html" class="px-6 py-3 border border-slate-300 hover:bg-slate-50 text-brand-navy font-heading font-bold text-xs sm:text-sm rounded-lg transition-all">
+                    Access Statutory Toolkit
+                </a>
+            </div>
+        </div>
+
+        <!-- 3 Step Next Steps Grid -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+                <div class="w-8 h-8 rounded-lg bg-brand-green text-white font-mono font-bold text-sm flex items-center justify-center mb-4">1</div>
+                <h3 class="font-heading font-bold text-base text-brand-navy mb-2">Daily 7:00 AM Dispatch</h3>
+                <p class="text-xs text-slate-600 leading-relaxed flex-grow">
+                    Your verified CSV and Excel dockets will arrive every business morning at 7:00 AM EST at the billing email provided on Stripe.
+                </p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+                <div class="w-8 h-8 rounded-lg bg-brand-green text-white font-mono font-bold text-sm flex items-center justify-center mb-4">2</div>
+                <h3 class="font-heading font-bold text-base text-brand-navy mb-2">Statutory Dossiers</h3>
+                <p class="text-xs text-slate-600 leading-relaxed flex-grow">
+                    Utilize our statutory petition templates for Florida § 197.582, Texas § 34.04, and Georgia § 48-4-5 in the Practitioner Toolkit.
+                </p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+                <div class="w-8 h-8 rounded-lg bg-brand-green text-white font-mono font-bold text-sm flex items-center justify-center mb-4">3</div>
+                <h3 class="font-heading font-bold text-base text-brand-navy mb-2">REST API Endpoints</h3>
+                <p class="text-xs text-slate-600 leading-relaxed flex-grow">
+                    For National + API subscribers, query our live REST endpoints programmatically or connect to webhook notifications.
+                </p>
+                <a href="/api-documentation.html" class="text-xs font-bold text-brand-green hover:underline mt-3 inline-block">View API Documentation →</a>
+            </div>
+        </div>
+
+        <!-- Help & Contact Box -->
+        <div class="bg-brand-canvas border border-slate-300 rounded-2xl p-6 text-center text-xs text-slate-600">
+            <p class="font-bold text-brand-navy mb-1">Need to add recipient emails or custom county requests?</p>
+            <p>Contact our ingestion team anytime at <a href="mailto:data@surplusdocket.com" class="text-brand-green font-bold underline">data@surplusdocket.com</a></p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10 text-center px-4 text-xs text-slate-500">
+        <p>&copy; 2026 Surplus Docket. All rights reserved. • Public Records Data Feeds</p>
+    </footer>
+
+    <!-- Billing Portal Modal -->
+    <div id="billing-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl border border-slate-200 relative">
+            <button onclick="closeBillingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-greenSoft border border-brand-green/20 flex items-center justify-center text-brand-green shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-lg font-heading font-bold text-brand-navy">Subscriber Billing Portal</h3>
+                    <p class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Self-Service Stripe Account</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-xs text-slate-600 mb-6 leading-relaxed">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold text-brand-navy text-[11px] uppercase tracking-wider mb-1">Active Subscribers:</p>
+                    <p class="text-slate-600">
+                        To update payment cards, download tax invoices, or manage/cancel your subscription, click the <strong>"Manage Subscription"</strong> link included in any of your monthly Stripe automated receipt emails.
+                    </p>
+                </div>
+            </div>
+            <button onclick="closeBillingModal()" class="w-full py-3 px-5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-heading font-semibold text-xs rounded-lg transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function openBillingModal() { document.getElementById('billing-modal').classList.remove('hidden'); }
+        function closeBillingModal() { document.getElementById('billing-modal').classList.add('hidden'); }
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBillingModal(); });
+    </script>
+
+</body>
+</html>
