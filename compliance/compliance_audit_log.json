@@ -1,0 +1,30 @@
+[
+  {
+    "timestamp": "2026-08-22T23:05:14.801894+00:00",
+    "date": "2026-08-22",
+    "status": "VERIFIED_COMPLIANT",
+    "audited_jurisdictions": [
+      {
+        "state": "FL",
+        "statute": "Fla. Stat. \u00a7 197.582",
+        "claim_window": "120 Days from Notice Date",
+        "fee_cap_percent": 20,
+        "status": "ACTIVE_VALID"
+      },
+      {
+        "state": "TX",
+        "statute": "Tex. Tax Code \u00a7 34.04",
+        "claim_window": "2 Years from Date of Tax Sale",
+        "fee_cap_percent": 25,
+        "status": "ACTIVE_VALID"
+      },
+      {
+        "state": "GA",
+        "statute": "O.C.G.A. \u00a7 48-4-5",
+        "claim_window": "5 Years from Date of Tax Sale",
+        "fee_cap_percent": 20,
+        "status": "ACTIVE_VALID"
+      }
+    ]
+  }
+]

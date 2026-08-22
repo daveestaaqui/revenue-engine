@@ -31,32 +31,36 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 1. Generate B2B Surplus Data Feeds (FL & TX)
+      - name: 1. Run Statutory Compliance & Legal Rule Sentinel
+        run: |
+          python compliance/statute_monitor.py
+
+      - name: 2. Generate B2B Surplus Data Feeds (FL, TX & GA)
         run: |
           python portal/feed_generator.py
 
-      - name: 2. Run Expired Domain Arbitrage Scanner
+      - name: 3. Run Expired Domain Arbitrage Scanner
         run: |
           python domain_arbitrage/run_domain_pipeline.py
 
-      - name: 3. Generate Programmatic County SEO Landing Pages
+      - name: 4. Generate Programmatic County SEO Landing Pages
         run: |
           python marketing/county_generator.py
 
-      - name: 4. Run Autonomous Legal Blog & Content Engine
+      - name: 5. Run Autonomous Legal Blog & Content Engine
         run: |
           python marketing/blog_generator.py
 
-      - name: 5. Run Automated SEO & RSS Syndication Engine
+      - name: 6. Run Automated SEO & RSS Syndication Engine
         run: |
           python marketing/seo_generator.py
 
-      - name: 5. Commit & Push Updated Feeds, Blog Posts, REST API & SEO Sitemaps
+      - name: 7. Commit & Push Updated Feeds, Blog Posts, REST API & Compliance Audits
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          git add exports/ site/api/ site/blog/ site/feed.xml site/sitemap.xml domain_arbitrage/listings/ marketing/syndicate/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, blog & SEO refresh" && git push)
+          git add exports/ site/api/ site/blog/ site/feed.xml site/sitemap.xml domain_arbitrage/listings/ marketing/syndicate/ compliance/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, compliance & SEO refresh" && git push)
 
       - name: 6. Upload Delivery Artifacts
         uses: actions/upload-artifact@v4

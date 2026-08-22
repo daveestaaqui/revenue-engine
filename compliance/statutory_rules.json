@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "last_audited": "2026-08-22",
+  "jurisdictions": {
+    "FL": {
+      "state_name": "Florida",
+      "governing_statute": "Fla. Stat. \u00a7 197.582",
+      "statute_title": "Disbursement of proceeds of sale",
+      "claim_window_days": 120,
+      "claim_window_text": "120 Days from Notice Date",
+      "finder_fee_cap_percent": 20,
+      "finder_fee_rule": "20% statutory limit for non-attorney filers under Fla. Stat. \u00a7 197.582(2)",
+      "priority_order": [
+        "Government Tax Liens & Special Assessments",
+        "Junior Mortgagees & Recorded Judgment Creditors",
+        "Record Titleholder / Heirs of Record"
+      ],
+      "registry_type": "County Clerk & Comptroller Tax Deed Fund",
+      "official_source_url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&Search_String=&URL=0100-0199/0197/Sections/0197.582.html",
+      "status": "ACTIVE_VERIFIED"
+    },
+    "TX": {
+      "state_name": "Texas",
+      "governing_statute": "Tex. Tax Code \u00a7 34.04",
+      "statute_title": "Claims for Excess Proceeds",
+      "claim_window_years": 2,
+      "claim_window_text": "2 Years from Date of Tax Sale",
+      "finder_fee_cap_percent": 25,
+      "finder_fee_rule": "25% statutory cap on recovery contingency agreements under Tex. Tax Code \u00a7 34.04(i)",
+      "priority_order": [
+        "Taxing Unit Liens",
+        "Recorded Junior Lienholders",
+        "Former Property Owner / Estate Heirs"
+      ],
+      "registry_type": "District Court Civil Registry",
+      "official_source_url": "https://statutes.capitol.texas.gov/Docs/TX/htm/TX.34.htm#34.04",
+      "status": "ACTIVE_VERIFIED"
+    },
+    "GA": {
+      "state_name": "Georgia",
+      "governing_statute": "O.C.G.A. \u00a7 48-4-5",
+      "statute_title": "Payment of excess proceeds of tax sales",
+      "claim_window_years": 5,
+      "claim_window_text": "5 Years from Date of Tax Sale",
+      "finder_fee_cap_percent": 20,
+      "finder_fee_rule": "Statutory distribution priority under O.C.G.A. \u00a7 48-4-5",
+      "priority_order": [
+        "Municipal / County Tax Liens",
+        "Junior Security Deed Holders & Judgment Creditors",
+        "Defendant in Fi. Fa. (Record Owner) or Estate Heirs"
+      ],
+      "registry_type": "County Tax Commissioner / Sheriff Registry",
+      "official_source_url": "https://law.justia.com/codes/georgia/title-48/chapter-4/article-1/section-48-4-5/",
+      "status": "ACTIVE_VERIFIED"
+    }
+  }
+}
