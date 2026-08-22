@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Surplus Docket — Subscriber Onboarding</title>
-    <meta name="description" content="Thank you for subscribing to Surplus Docket. Access your morning public records feeds, API documentation, and statutory dossiers.">
-    <meta name="robots" content="noindex, nofollow">
+    <title>Subscriber Onboarding & Feed Activation | Surplus Docket</title>
+    <meta name="description" content="Subscriber onboarding and feed activation portal for Surplus Docket.">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
+    <!-- Security Gate: Immediate Session Verification Guard -->
+    <script>
+        (function() {
+            try {
+                var params = new URLSearchParams(window.location.search);
+                var sessionId = params.get('session_id');
+                // Stripe Checkout Session IDs strictly begin with cs_ and are >= 20 chars
+                if (!sessionId || !sessionId.startsWith('cs_') || sessionId.length < 20) {
+                    window.location.replace('/#pricing');
+                }
+            } catch(e) {
+                window.location.replace('/#pricing');
+            }
+        })();
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +58,7 @@
         p { text-wrap: pretty; }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText">
+<body id="page-body" class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText" style="display:none;">
 
     <!-- Header -->
     <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
@@ -73,9 +89,9 @@
             </div>
             
             <span id="status-badge" class="text-xs font-mono font-bold text-brand-green uppercase tracking-widest bg-brand-greenSoft px-3.5 py-1 rounded-full border border-brand-green/30">
-                Subscription Active • Public Records Feed Enrolled
+                Verified Subscriber • Public Records Feed Enrolled
             </span>
-            <div id="session-info" class="hidden mt-2 text-[11px] font-mono text-slate-500"></div>
+            <div id="session-info" class="mt-2 text-[11px] font-mono text-slate-500"></div>
             
             <h1 class="text-3xl sm:text-4xl font-heading font-black text-brand-navy mt-4 mb-3">
                 Welcome to Surplus Docket
@@ -102,7 +118,7 @@
                 <div class="w-8 h-8 rounded-lg bg-brand-green text-white font-mono font-bold text-sm flex items-center justify-center mb-4">1</div>
                 <h3 class="font-heading font-bold text-base text-brand-navy mb-2">Daily 7:00 AM Dispatch</h3>
                 <p class="text-xs text-slate-600 leading-relaxed flex-grow">
-                    Your verified CSV and Excel dockets will arrive every business morning at 7:00 AM EST at the billing email provided on Stripe.
+                    Your verified CSV and Excel dockets will arrive every business morning at 7:00 AM EST at your billing email on file.
                 </p>
             </div>
 
@@ -124,10 +140,13 @@
             </div>
         </div>
 
-        <!-- Help & Contact Box -->
-        <div class="bg-brand-canvas border border-slate-300 rounded-2xl p-6 text-center text-xs text-slate-600">
-            <p class="font-bold text-brand-navy mb-1">Need to add recipient emails or custom county requests?</p>
-            <p>Contact our ingestion team anytime at <a href="mailto:data@surplusdocket.com" class="text-brand-green font-bold underline">data@surplusdocket.com</a></p>
+        <!-- Self-Service Account Box -->
+        <div class="bg-white border border-slate-300 rounded-2xl p-6 text-center text-xs text-slate-600 shadow-sm">
+            <p class="font-bold text-brand-navy mb-1">Manage Your Subscription & Billing Details</p>
+            <p class="text-slate-500 mb-3">Need to update payment methods, download official invoices, or add secondary team recipient emails?</p>
+            <button onclick="openBillingModal()" class="px-4 py-2 bg-brand-navy text-white font-heading font-bold text-xs rounded-lg hover:bg-brand-navyDark transition-colors">
+                Launch Subscriber Portal
+            </button>
         </div>
     </main>
 
@@ -165,20 +184,27 @@
         </div>
     </div>
 
+    <!-- Verification Display & Modal Script -->
     <script>
         function openBillingModal() { document.getElementById('billing-modal').classList.remove('hidden'); }
         function closeBillingModal() { document.getElementById('billing-modal').classList.add('hidden'); }
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBillingModal(); });
+
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var sessionId = params.get('session_id');
+            if (sessionId && sessionId.startsWith('cs_') && sessionId.length >= 20) {
+                var body = document.getElementById('page-body');
+                if (body) body.style.display = 'flex';
+                var sessionDiv = document.getElementById('session-info');
+                if (sessionDiv) {
+                    sessionDiv.textContent = 'Stripe Checkout Reference: ' + sessionId.substring(0, 24) + '...';
+                }
+            } else {
+                window.location.replace('/#pricing');
+            }
+        })();
     </script>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const sessionId = urlParams.get('session_id');
-        if (sessionId) {
-            const sessionDiv = document.getElementById('session-info');
-            sessionDiv.textContent = 'Checkout Reference: ' + sessionId.substring(0, 24) + '...';
-            sessionDiv.classList.remove('hidden');
-        }
-    </script>
 </body>
 </html>
