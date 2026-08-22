@@ -246,8 +246,11 @@ def render_article_page(article):
                     <span class="text-[9px] font-bold uppercase tracking-widest text-slate-500 mt-1">Legal Intelligence Hub</span>
                 </div>
             </a>
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4">
                 <a href="/blog/" class="text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">All Articles</a>
+                <a href="https://billing.stripe.com/p/login/" target="_blank" rel="noopener noreferrer" class="text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
+                    Billing Portal
+                </a>
                 <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-5 py-2.5 rounded-lg shadow-sm transition-all">
                     Subscribe ($249/mo)
                 </a>
@@ -283,7 +286,7 @@ def render_article_page(article):
 
     <!-- Footer -->
     <footer class="bg-brand-navy text-white py-8 text-center text-xs text-slate-400">
-        <p>&copy; 2026 Surplus Docket. All rights reserved. Automated Public Records Intelligence.</p>
+        <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="https://billing.stripe.com/p/login/" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-emerald-400 underline">Stripe Customer Billing Portal</a></p>
     </footer>
 
 </body>
@@ -369,9 +372,12 @@ def render_blog_index():
                     <span class="text-[9px] font-bold uppercase tracking-widest text-slate-500 mt-1">Legal Intelligence Hub</span>
                 </div>
             </a>
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4">
                 <a href="/" class="text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">Main Hub</a>
                 <a href="/api-documentation.html" class="text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">API Docs</a>
+                <a href="https://billing.stripe.com/p/login/" target="_blank" rel="noopener noreferrer" class="text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
+                    Billing Portal
+                </a>
                 <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-5 py-2.5 rounded-lg shadow-sm transition-all">
                     Subscribe ($249/mo)
                 </a>
@@ -400,7 +406,7 @@ def render_blog_index():
     <!-- Footer -->
     <footer class="bg-brand-navy text-white py-12 text-center px-4">
         <div class="max-w-4xl mx-auto flex flex-col items-center">
-            <p class="text-slate-300 text-xs font-medium mb-4">&copy; 2026 Surplus Docket. All rights reserved.</p>
+            <p class="text-slate-300 text-xs font-medium mb-4">&copy; 2026 Surplus Docket. All rights reserved. • <a href="https://billing.stripe.com/p/login/" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-emerald-400 underline">Stripe Customer Billing Portal</a></p>
             <p class="text-slate-400 text-xs">Data sourced from public county clerk records under Fla. Stat. § 197.582 and Tex. Tax Code § 34.04.</p>
         </div>
     </footer>
