@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /welcome.html
 
 # Canonical Sitemap
 Sitemap: https://surplusdocket.com/sitemap.xml
