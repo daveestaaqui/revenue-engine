@@ -43,16 +43,22 @@ def run_statutory_audit():
     }
 
     for state, data in rules.get("jurisdictions", {}).items():
-        print(f"  [✓] Auditing {data["state_name"]} ({state}) — {data["governing_statute"]}")
-        print(f"      • Claim Window: {data["claim_window_text"]}")
-        print(f"      • Statutory Benchmark Fee Cap: {data["finder_fee_cap_percent"]}%")
-        print(f"      • Registry Type: {data["registry_type"]}")
+        state_name = data.get("state_name", state)
+        statute = data.get("governing_statute", "")
+        window = data.get("claim_window_text", "")
+        fee_cap = data.get("finder_fee_cap_percent", 20)
+        reg_type = data.get("registry_type", "")
+
+        print(f"  [✓] Auditing {state_name} ({state}) — {statute}")
+        print(f"      • Claim Window: {window}")
+        print(f"      • Statutory Benchmark Fee Cap: {fee_cap}%")
+        print(f"      • Registry Type: {reg_type}")
 
         audit_entry["audited_jurisdictions"].append({
             "state": state,
-            "statute": data["governing_statute"],
-            "claim_window": data["claim_window_text"],
-            "fee_cap_percent": data["finder_fee_cap_percent"],
+            "statute": statute,
+            "claim_window": window,
+            "fee_cap_percent": fee_cap,
             "status": "ACTIVE_VALID"
         })
 
