@@ -9,12 +9,16 @@ Strategic Cadence: Bi-Weekly / Monthly Milestones (High Authority, Non-Spammy).
 
 import json
 import os
+import sys
 import urllib.request
 import urllib.error
 from pathlib import Path
 from datetime import datetime, timezone
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT_DIR))
+from compliance.content_fact_checker import verify_content_integrity, generate_fact_check_badge_html
+
 SITE_DIR = ROOT_DIR / "site"
 PRESS_DIR = SITE_DIR / "press"
 RELEASES_DIR = PRESS_DIR / "releases"
@@ -74,6 +78,15 @@ Digital Media Kit: https://surplusdocket.com/press/"""
 def generate_individual_press_release(pr):
     paragraphs_html = "".join(f'<p class="mb-4 sm:mb-5 leading-relaxed text-slate-700">{p}</p>' for p in pr["body_paragraphs"])
     about_text = BOILERPLATE.replace("About Surplus Docket\n", "").strip()
+    
+    # Pre-publication editorial & statutory fact-check sentinel
+    fact_check_cert = verify_content_integrity(
+        title=pr['headline'],
+        content_text=" ".join(pr['body_paragraphs']),
+        pub_date_str=pr['iso_date'],
+        category="Press Release"
+    )
+    fact_check_badge = generate_fact_check_badge_html(fact_check_cert)
     
     html = f"""<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -191,6 +204,8 @@ def generate_individual_press_release(pr):
                 <strong>{pr['location']}</strong> — {pr['body_paragraphs'][0]}
             </p>
             {paragraphs_html}
+            
+            {fact_check_badge}
             
             <div class="my-8 p-6 bg-slate-100 rounded-xl border border-slate-200">
                 <h3 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">About Surplus Docket</h3>

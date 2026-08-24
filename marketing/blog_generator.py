@@ -9,12 +9,16 @@ Surplus Docket - Autonomous Legal Blog & Market Intelligence Engine
 """
 
 import os
+import sys
 import csv
 import json
 from datetime import datetime, timezone
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+from compliance.content_fact_checker import verify_content_integrity, generate_fact_check_badge_html
+
 SITE_DIR = BASE_DIR / "site"
 BLOG_DIR = SITE_DIR / "blog"
 POSTS_DIR = BLOG_DIR / "posts"
@@ -158,8 +162,17 @@ ARTICLES = [
 
 
 def render_article_page(article):
-    """Renders a standalone SEO-optimized article page with JSON-LD Schema."""
+    """Renders a standalone SEO-optimized article page with JSON-LD Schema after passing fact-check audit."""
     post_file = POSTS_DIR / f"{article['slug']}.html"
+    
+    # Pre-publication editorial & statutory fact-check sentinel
+    fact_check_cert = verify_content_integrity(
+        title=article['title'],
+        content_text=article['content_html'],
+        pub_date_str=article['date'],
+        category=article['category']
+    )
+    fact_check_badge = generate_fact_check_badge_html(fact_check_cert)
     
     html = f"""<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -281,6 +294,7 @@ def render_article_page(article):
 
         <article class="bg-white border border-slate-200 rounded-2xl p-8 md:p-12 shadow-sm">
             {article['content_html']}
+            {fact_check_badge}
         </article>
 
         <div class="mt-8 text-center">
