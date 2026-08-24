@@ -229,14 +229,20 @@ def generate_individual_press_release(pr):
     
     # Also write plain text / Markdown wire draft in syndicate
     text_path = SYNDICATE_DIR / f"{pr['slug']}.txt"
+    body_rest = "\n\n".join(pr['body_paragraphs'][1:])
+    headline_upper = pr['headline'].upper()
+    subheadline = pr['subheadline']
+    location = pr['location']
+    first_p = pr['body_paragraphs'][0]
+    
     text_content = f"""FOR IMMEDIATE RELEASE
 
-{pr['headline'].upper()}
-{pr['subheadline']}
+{headline_upper}
+{subheadline}
 
-{pr['location']} — {pr['body_paragraphs'][0]}
+{location} — {first_p}
 
-{"\n\n".join(pr['body_paragraphs'][1:])}
+{body_rest}
 
 ###
 
