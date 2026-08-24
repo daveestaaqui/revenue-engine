@@ -1,0 +1,30 @@
+=== LINKEDIN UPDATE 1: INSTITUTIONAL LIEN PURGING ===
+Why do 70% of tax deed surplus leads fail before filing?
+
+Senior mortgage encumbrances.
+
+When an unscrubbed county clerk list shows a $140,000 tax deed surplus, what it DOESN'T show is the $220,000 recorded first mortgage or junior municipal assessment. Under state priority statutes (such as Fla. Stat. § 197.582 and Tex. Tax Code § 34.04), senior lienholders get paid first.
+
+Paralegals waste dozens of hours contacting heirs and drafting motions on dockets where $0 will ever reach the former owner.
+
+Surplus Docket solves this with a 4-stage automated pipeline:
+✓ Continuous court registry ingestion across FL, TX & GA
+✓ O.R. & Lis Pendens cross-referencing
+✓ Senior mortgage & corporate lien filtering
+✓ Statutory fee benchmark calculation
+
+Inspect our data methodology whitepaper & download a sample feed: https://surplusdocket.com/methodology.html
+
+#LegalTech #AssetRecovery #TaxDeedSurplus #ExcessProceeds #RealEstateLaw
+
+=== LINKEDIN UPDATE 2: DAILY MARKET PULSE (August 24, 2026) ===
+Today's Public Records Intelligence Snapshot:
+💰 Monitored Surplus: $1,672,200.00 across 12 high-volume metro circuits
+💵 Statutory Benchmark Fees: $354,100.00
+🏛️ Top Counties: Palm Beach (FL), Harris (TX), Miami-Dade (FL), Fulton (GA), Dallas (TX)
+
+Every record is pre-filtered for individual titleholders and verified against official court dockets.
+
+Full daily feeds delivered at 7:00 AM EST in CSV, Excel, and REST API: https://surplusdocket.com
+
+#SurplusFunds #ExcessProceeds #PublicRecords #AssetRecovery

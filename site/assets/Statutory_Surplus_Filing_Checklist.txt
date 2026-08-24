@@ -1,0 +1,57 @@
+================================================================================
+ SURPLUS DOCKET — PRACTITIONER STATUTORY FILING CHECKLIST & DEADLINE PROTOCOL
+================================================================================
+ Version: 2026.1 | Applicable Jurisdictions: Florida, Texas, Georgia
+ Document Class: Standard Operating Procedure (SOP) for Asset Recovery Filers
+
+--------------------------------------------------------------------------------
+ 1. PRE-FILING TITLE & ENCUMBRANCE EXAMINATION (STAGE 1)
+--------------------------------------------------------------------------------
+ [ ] 1.1 Verify Final Auction Certificate of Sale & Certificate of Disbursements.
+ [ ] 1.2 Inspect Official Records (O.R.) for recorded Lis Pendens and Deeds.
+ [ ] 1.3 Verify that senior mortgage balance does not exceed the held surplus.
+ [ ] 1.4 Identify all named defendants and lienholders in final tax decree.
+ [ ] 1.5 Confirm the exact surplus balance held in the clerk/court registry.
+
+--------------------------------------------------------------------------------
+ 2. JURISDICTIONAL STATUTORY CLAIM DEADLINES (STAGE 2)
+--------------------------------------------------------------------------------
+ [ ] 2.1 FLORIDA (Fla. Stat. § 197.582):
+     • Deadline: 120 days from the date the clerk mails the Surplus Notice.
+     • Fee Benchmark: 20% cap for non-attorney finders (attorneys exempt).
+     • Venue: County Clerk & Comptroller Tax Deed Department.
+
+ [ ] 2.2 TEXAS (Tex. Tax Code § 34.04):
+     • Deadline: 2 years from the date of the tax foreclosure sale.
+     • Fee Benchmark: 25% statutory cap on contingent compensation.
+     • Venue: District Court Civil Registry (Motion for Excess Proceeds).
+
+ [ ] 2.3 GEORGIA (O.C.G.A. § 48-4-5):
+     • Deadline: 5 years from the date of the sheriff/commissioner tax sale.
+     • Fee Benchmark: Statutory lien priority order; non-contingent models.
+     • Venue: Tax Commissioner / Sheriff Civil Division.
+
+--------------------------------------------------------------------------------
+ 3. CLIENT ENGAGEMENT & AUTHORITY DOCUMENTATION (STAGE 3)
+--------------------------------------------------------------------------------
+ [ ] 3.1 Executed Client Retainer / Fee Agreement with statutory disclosures.
+ [ ] 3.2 Limited Power of Attorney (LPOA) or Representation Authorization.
+ [ ] 3.3 Proof of Identity: Government-issued photo ID of former owner/heir.
+ [ ] 3.4 In Probate / Estate matters: Certified Letters of Administration or
+         Affidavit of Heirship establishing lawful beneficiary standing.
+
+--------------------------------------------------------------------------------
+ 4. DRAFTING & COURT SUBMISSION (STAGE 4)
+--------------------------------------------------------------------------------
+ [ ] 4.1 Prepare Verified Claim / Motion for Distribution of Excess Funds.
+ [ ] 4.2 Attach Exhibit A: Copy of Recorded Deed / Chain of Title.
+ [ ] 4.3 Attach Exhibit B: Executed Representation Agreement & LPOA.
+ [ ] 4.4 Attach Exhibit C: Certificate of Sale & Official Tax Deed Notice.
+ [ ] 4.5 Serve copies upon all interested parties / county attorney if required.
+ [ ] 4.6 File Motion electronically via Court E-Filing Portal (or hand-deliver).
+ [ ] 4.7 Calendar hearing date or submit Proposed Order for judicial review.
+
+--------------------------------------------------------------------------------
+ Published by Surplus Docket — Autonomous Public Records Intelligence
+ Website: https://surplusdocket.com | Newsroom: https://surplusdocket.com/press/
+================================================================================

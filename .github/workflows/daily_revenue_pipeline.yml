@@ -59,18 +59,22 @@ jobs:
         run: |
           python marketing/seo_generator.py
 
-      - name: 8. Update Dynamic Repository Showcase
+      - name: 8. Run Social & Legal Syndication Engine
+        run: |
+          python marketing/social_syndicator.py
+
+      - name: 9. Update Dynamic Repository Showcase
         run: |
           python marketing/readme_updater.py
 
-      - name: 9. Commit & Push Updated Feeds, Blog Posts, REST API & Compliance Audits
+      - name: 10. Commit & Push Updated Feeds, Blog Posts, REST API, Compliance & Syndications
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
           git add README.md exports/ site/ domain_arbitrage/listings/ marketing/syndicate/ compliance/
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, compliance, PRs & SEO refresh" && git pull --rebase origin main && git push)
 
-      - name: 8. Upload Delivery Artifacts
+      - name: 11. Upload Delivery Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: daily-revenue-deliverables

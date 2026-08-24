@@ -1,0 +1,10 @@
+=== TWITTER / X THREAD: STATUTORY TAX DEED WATERFALLS ===
+1/5 Why most tax deed surplus "lists" are worthless for attorneys and recovery pros: The Dead Bank Lead problem. 🧵
+
+2/5 County clerks hold surplus funds when an auction bid exceeds the opening statutory bid. But over 70% of raw listings have active senior mortgages (Wells Fargo, Fannie Mae, etc.) that take 100% priority.
+
+3/5 If you don't scrub encumbrances, your team wastes weeks skip-tracing heirs on files with zero recoverable funds.
+
+4/5 Surplus Docket automates continuous court docket ingestion and purges corporate lienholders so you only see high-equity individual claims: https://surplusdocket.com
+
+5/5 Read our complete Data Provenance & Lien Scrubbing Methodology Whitepaper: https://surplusdocket.com/methodology.html
