@@ -38,6 +38,7 @@ ALL_SITE_URLS = [
     "https://surplusdocket.com/texas-tax-sale-excess-proceeds.html",
     "https://surplusdocket.com/georgia-tax-sale-excess-funds.html",
     "https://surplusdocket.com/practitioner-toolkit.html",
+    "https://surplusdocket.com/comparison.html",
     "https://surplusdocket.com/api-documentation.html",
     "https://surplusdocket.com/blog/",
     "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",

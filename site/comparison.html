@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitor Comparison &amp; Data Provider Audit | Surplus Docket</title>
+    <meta name="description" content="Compare Surplus Docket against legacy surplus lead lists, manual clerk scraping, and expensive coaching programs. See why institutional lien pre-filtering wins.">
+    <link rel="canonical" href="https://surplusdocket.com/comparison.html">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Surplus Docket">
+    <meta property="og:title" content="Data Provider Comparison Matrix | Surplus Docket">
+    <meta property="og:description" content="See why asset recovery law firms switch from dirty PDF scrapers to Surplus Docket's institutional daily feeds.">
+    <meta property="og:url" content="https://surplusdocket.com/comparison.html">
+    <meta property="og:image" content="https://surplusdocket.com/assets/logo_surplus_docket.png">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',
+                            navyLight: '#1e293b',
+                            green: '#059669',
+                            greenDark: '#047857',
+                            greenSoft: '#d1fae5',
+                            canvas: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        heading: ['Cabinet Grotesk', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Menlo', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-canvas text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
+            <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                <div class="flex items-baseline gap-1 sm:gap-1.5 leading-none shrink-0">
+                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-3 sm:gap-5 text-xs sm:text-sm font-semibold text-slate-600">
+                <a href="/" class="hover:text-brand-green transition-colors">Home</a>
+                <a href="/blog/" class="hover:text-brand-green transition-colors hidden sm:inline">Articles</a>
+                <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors hidden sm:inline">Toolkit</a>
+                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors hidden sm:inline">API</a>
+                <a href="/#pricing" class="px-3.5 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg transition-all shadow-sm">Get Feeds</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12 sm:py-16 px-4 sm:px-6 max-w-5xl mx-auto flex-grow">
+        <!-- Hero Section -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-3">
+                Market Intelligence &amp; Architectural Comparison
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-brand-navy mb-4 tracking-tight leading-tight">
+                How Surplus Docket Beats Legacy Lead Lists
+            </h1>
+            <p class="text-xs sm:text-base text-slate-600 leading-relaxed">
+                Why recovery attorneys and institutional practitioners are abandoning dirty PDF dumps, $2,000 guru coaching courses, and opaque broker pricing in favor of daily automated court intelligence.
+            </p>
+        </div>
+
+        <!-- 1. The 4 Fatal Flaws of Legacy Competitors -->
+        <div class="grid md:grid-cols-2 gap-6 mb-16">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl border border-red-200 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">The Legacy Trap</div>
+                <h3 class="text-lg font-heading font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold shrink-0">&times;</span>
+                    The "Dead Bank Lead" Crisis
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                    Traditional list sellers simply scrape raw county clerk PDFs. Over <strong>70% of those records</strong> have senior mortgage liens (Wells Fargo, Fannie Mae) or municipal tax judgments that wipe out the surplus before individual heirs can claim a dime.
+                </p>
+                <p class="text-xs font-bold text-red-600">Cost: 15+ hours per week wasted skip-tracing and calling dead leads.</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-2xl border border-emerald-200 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-brand-green text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">The Surplus Docket Advantage</div>
+                <h3 class="text-lg font-heading font-bold text-brand-navy mb-2 flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-full bg-brand-greenSoft text-brand-green flex items-center justify-center text-xs font-bold shrink-0">&check;</span>
+                    Institutional Lien Pre-Filtering
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                    Our autonomous pipeline cross-references court encumbrance dockets to <strong>programmatically purge senior bank foreclosures and corporate claims</strong>, presenting only individual owners and estate heirs with recoverable equity.
+                </p>
+                <p class="text-xs font-bold text-brand-green">Result: 100% of outreach goes toward viable, recoverable surplus claims.</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-2xl border border-red-200 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">The Legacy Trap</div>
+                <h3 class="text-lg font-heading font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold shrink-0">&times;</span>
+                    $2,000+ Guru Courses &amp; Gated Demos
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                    Competitors disguise lead sales inside expensive coaching programs or force practitioners through high-pressure sales calls with opaque per-lead credit pricing ($20–$50 per lead).
+                </p>
+                <p class="text-xs font-bold text-red-600">Cost: Thousands in upfront capital before verifying single-record quality.</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-2xl border border-emerald-200 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-brand-green text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">The Surplus Docket Advantage</div>
+                <h3 class="text-lg font-heading font-bold text-brand-navy mb-2 flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-full bg-brand-greenSoft text-brand-green flex items-center justify-center text-xs font-bold shrink-0">&check;</span>
+                    Flat B2B SaaS + 14-Day Guarantee
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                    Zero sales calls. Zero coaching upsells. Flat transparent subscriptions starting at $199/mo with self-service Stripe billing, 1-click cancellation, and a 14-day money-back guarantee.
+                </p>
+                <p class="text-xs font-bold text-brand-green">Result: Transparent predictable unit economics for professional practices.</p>
+            </div>
+        </div>
+
+        <!-- 2. Master Feature Comparison Table -->
+        <div class="mb-16">
+            <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-6 text-center">
+                Side-by-Side Architectural Breakdown
+            </h2>
+
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-slate-900 text-white border-b border-slate-800">
+                                <th class="py-4 px-4 sm:px-6 font-heading font-bold">Feature / Capability</th>
+                                <th class="py-4 px-4 sm:px-6 font-heading font-bold text-brand-green bg-slate-800/80">Surplus Docket™</th>
+                                <th class="py-4 px-4 sm:px-6 font-heading font-bold text-slate-400">Legacy Lead Lists</th>
+                                <th class="py-4 px-4 sm:px-6 font-heading font-bold text-slate-400">Manual Scraping</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-3.5 px-4 sm:px-6 font-semibold text-brand-navy">Delivery Timing</td>
+                                <td class="py-3.5 px-4 sm:px-6 font-bold text-brand-green bg-emerald-50/40">Daily at 7:00 AM EST</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-slate-500">Monthly / Sporadic Drops</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-slate-500">Manual (Hours daily)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-3.5 px-4 sm:px-6 font-semibold text-brand-navy">Institutional Lien Scrubbing</td>
+                                <td class="py-3.5 px-4 sm:px-6 font-bold text-brand-green bg-emerald-50/40">Automated (Banks Removed)</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-red-500 font-semibold">&times; Unscrubbed</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-red-500 font-semibold">&times; Manual Title Search</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-3.5 px-4 sm:px-6 font-semibold text-brand-navy">Statutory Benchmark Calculations</td>
+                                <td class="py-3.5 px-4 sm:px-6 font-bold text-brand-green bg-emerald-50/40">Automated (FL § 197 / TX § 34)</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-slate-500">&times; Raw Balances Only</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-slate-500">&times; Manual Math</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-3.5 px-4 sm:px-6 font-semibold text-brand-navy">Programmatic REST JSON API</td>
+                                <td class="py-3.5 px-4 sm:px-6 font-bold text-brand-green bg-emerald-50/40">&check; Live (/api/v1/feed.json)</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-red-500 font-semibold">&times; No API Available</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-red-500 font-semibold">&times; None</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-3.5 px-4 sm:px-6 font-semibold text-brand-navy">Court Filing &amp; Petition Templates</td>
+                                <td class="py-3.5 px-4 sm:px-6 font-bold text-brand-green bg-emerald-50/40">&check; Free Practitioner Toolkit</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-slate-500">Paid Upsell ($500+)</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-slate-500">Draft from scratch</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-3.5 px-4 sm:px-6 font-semibold text-brand-navy">Self-Service Billing Portal</td>
+                                <td class="py-3.5 px-4 sm:px-6 font-bold text-brand-green bg-emerald-50/40">&check; 1-Click Stripe Portal</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-red-500 font-semibold">&times; Call sales to cancel</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-slate-500">N/A</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-3.5 px-4 sm:px-6 font-semibold text-brand-navy">Money-Back Guarantee</td>
+                                <td class="py-3.5 px-4 sm:px-6 font-bold text-brand-green bg-emerald-50/40">&check; 14-Day Risk Free (Annual)</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-red-500 font-semibold">&times; No Refunds</td>
+                                <td class="py-3.5 px-4 sm:px-6 text-slate-500">N/A</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Final Conversion CTA Card -->
+        <div class="bg-brand-navy text-white rounded-2xl p-8 sm:p-12 text-center shadow-xl border border-slate-700">
+            <h2 class="text-2xl sm:text-3xl font-heading font-black text-white mb-3">
+                Experience Clean, Case-Verified Intelligence Today
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto mb-8 leading-relaxed">
+                Join asset recovery law firms, title searchers, and institutional practitioners who have switched to automated morning court docket delivery.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="/#pricing" class="w-full sm:w-auto px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-sm rounded-xl transition-all shadow-lg hover:shadow-xl">
+                    Subscribe Now (from $199/mo) &rarr;
+                </a>
+                <a href="/practitioner-toolkit.html" class="w-full sm:w-auto px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 font-heading font-bold text-sm rounded-xl transition-all">
+                    Explore Free Toolkit &rarr;
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col items-center">
+            <nav class="flex flex-wrap items-center justify-center gap-4 font-semibold text-slate-600 mb-4">
+                <a href="/" class="hover:text-brand-green">Home</a>
+                <a href="/comparison.html" class="hover:text-brand-green">Comparison</a>
+                <a href="/press/" class="hover:text-brand-green">Press</a>
+                <a href="/blog/" class="hover:text-brand-green">Articles</a>
+                <a href="/api-documentation.html" class="hover:text-brand-green">API Docs</a>
+                <a href="/terms.html" class="hover:text-brand-green">Terms</a>
+                <a href="/refund-policy.html" class="hover:text-brand-green">Refunds</a>
+            </nav>
+            <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
