@@ -1,0 +1,6 @@
+State,County,Case_or_TaxDeed_No,Parcel_ID,Auction_Confirmed_Date,Owner_Name_Redacted,Property_Address,Surplus_Balance_USD,Statutory_Finder_Cap_Percent,Estimated_Statutory_Fee_USD,Statutory_Governing_Code,Lien_Scrub_Status
+FL,Palm Beach,2024-TD-004501,00-42-43-27-05-002-0140,2026-08-18,A. & G. V████████,742 Ocean Blvd West Palm Beach FL,145000.00,20%,29000.00,Fla. Stat. § 197.582,VERIFIED_INSTITUTIONAL_LIENS_REMOVED
+GA,Fulton,2024-GA-003810,14-0082-0004-051-2,2026-08-15,M. & E. J███████,1420 Peachtree St NE Atlanta GA,134000.00,20%,26800.00,O.C.G.A. § 48-4-5,VERIFIED_INSTITUTIONAL_LIENS_REMOVED
+TX,Harris,2024-TX-04812,041-025-000-0012,2026-08-12,W. & M. H██████,5810 Westheimer Rd Houston TX,128500.00,25%,32125.00,Tex. Tax Code § 34.04,VERIFIED_INSTITUTIONAL_LIENS_REMOVED
+GA,Cobb,2024-GA-001550,16-0294-0-018-0,2026-08-10,Est. of R. V██████,892 Powers Ferry Rd Marietta GA,118000.00,20%,23600.00,O.C.G.A. § 48-4-5,VERIFIED_INSTITUTIONAL_LIENS_REMOVED
+FL,Miami-Dade,2024-TD-004812,30-4015-008-1120,2026-08-05,L. & M. H████████,1200 Brickell Ave Miami FL,112000.00,20%,22400.00,Fla. Stat. § 197.582,VERIFIED_INSTITUTIONAL_LIENS_REMOVED

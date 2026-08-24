@@ -311,6 +311,10 @@ def render_article_page(article):
                 <span class="text-slate-300 hidden sm:inline">•</span>
                 <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Toolkit</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/comparison.html" class="hover:text-brand-green transition-colors">Comparison</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/methodology.html" class="hover:text-brand-green transition-colors">Methodology</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
                 <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">API</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
                 <a href="/blog/" class="hover:text-brand-green transition-colors">Articles</a>
@@ -479,6 +483,10 @@ def render_blog_index():
                 <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors">GA Feed</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
                 <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Toolkit</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/comparison.html" class="hover:text-brand-green transition-colors">Comparison</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/methodology.html" class="hover:text-brand-green transition-colors">Methodology</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
                 <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">API</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>

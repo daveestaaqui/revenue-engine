@@ -185,6 +185,10 @@
                                 <span class="font-heading font-bold text-xs text-brand-navy">Provider Comparison</span>
                                 <span class="text-xs text-slate-500">Why institutional lien scrubbing wins</span>
                             </a>
+                            <a href="/methodology.html" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="font-heading font-bold text-xs text-brand-navy">Data Methodology</span>
+                                <span class="text-xs text-slate-500">4-stage public records cleansing pipeline</span>
+                            </a>
                             <a href="/blog/" class="flex flex-col px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
                                 <span class="font-heading font-bold text-xs text-brand-navy">Legal Insights & Articles</span>
                                 <span class="text-xs text-slate-500">Public record statutory research</span>
@@ -358,18 +362,26 @@
                         <option value="GA">Georgia (GA)</option>
                     </select>
                 </div>
-                <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
-                    <span id="docket-count" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Showing 7 Verified Records</span>
-                    <a href="#pricing" class="hidden sm:inline-flex text-xs font-bold text-brand-green hover:underline">Unlock All 22 Today &rarr;</a>
+                <div class="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                    <a href="/assets/sample_surplus_docket_feed.csv" download class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-brand-navy border border-slate-300 rounded-lg text-xs font-bold transition-all shadow-sm">
+                        <svg class="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Download Sample CSV (.csv)
+                    </a>
+                    <a href="/methodology.html" class="inline-flex items-center gap-1 text-xs font-bold text-slate-600 hover:text-brand-green">
+                        Methodology Whitepaper &rarr;
+                    </a>
                 </div>
             </div>
 
             <!-- Docket Prefix vs Auction Date Verification Badge -->
-            <div class="mb-4 p-3 bg-emerald-50/80 border border-emerald-200 rounded-xl text-xs text-slate-700 flex items-start sm:items-center gap-2.5 shadow-sm">
-                <span class="text-brand-green font-bold text-sm shrink-0">ℹ️</span>
-                <p class="leading-relaxed">
-                    <strong class="text-brand-navy">Auction Confirmation Timing:</strong> Docket prefixes (e.g. <code class="bg-white px-1.5 py-0.5 rounded border border-emerald-200 font-mono font-bold text-brand-green">2024-TD</code>) represent initial court foreclosure filings. Surplus funds are generated and deposited upon final <strong class="text-brand-navy">2026 auction sale confirmation</strong> as listed below.
-                </p>
+            <div class="mb-4 p-3.5 bg-emerald-50/90 border border-emerald-200 rounded-xl text-xs text-slate-700 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+                <div class="flex items-start sm:items-center gap-2.5">
+                    <span class="text-brand-green font-bold text-sm shrink-0">ℹ️</span>
+                    <p class="leading-relaxed">
+                        <strong class="text-brand-navy">Auction Confirmation Timing:</strong> Docket prefixes (e.g. <code class="bg-white px-1.5 py-0.5 rounded border border-emerald-200 font-mono font-bold text-brand-green">2024-TD</code>) represent initial court foreclosure filings. Surplus funds are deposited upon final <strong class="text-brand-navy">2026 auction sale confirmation</strong>.
+                    </p>
+                </div>
+                <span class="text-[11px] font-mono text-emerald-800 bg-white/80 px-2.5 py-1 rounded border border-emerald-200 shrink-0 font-bold">100% Public Court Records</span>
             </div>
             
             <div class="block md:hidden text-center text-xs text-slate-500 font-semibold mb-3 bg-slate-100 py-1.5 px-3 rounded-lg border border-slate-200">
@@ -378,7 +390,7 @@
 
             <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-lg">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs md:text-sm min-w-[700px]">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm min-w-[750px]">
                         <thead>
                             <tr class="bg-brand-navy text-white font-semibold">
                                 <th class="py-3.5 px-4 sm:px-5">State</th>
@@ -388,71 +400,79 @@
                                 <th class="py-3.5 px-4 sm:px-5">Indexed Record</th>
                                 <th class="py-3.5 px-4 sm:px-5 text-right">Surplus Balance</th>
                                 <th class="py-3.5 px-4 sm:px-5 text-right text-emerald-300">Statutory Cap Ref.*</th>
+                                <th class="py-3.5 px-3 text-center">Clerk Portal</th>
                             </tr>
                         </thead>
                         <tbody id="sample-table-body" class="divide-y divide-slate-200 font-mono text-slate-700">
                             <tr data-state="FL" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">Palm Beach</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Palm Beach</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004501</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 18, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">A. & G. V████████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$145,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$29,000.00 (20%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.mypalmbeachclerk.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
                             <tr data-state="GA" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">GA</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">Fulton</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Fulton</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-GA-003810</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 15, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">M. & E. J███████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$134,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$26,800.00 (20%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.fcsoga.org/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
                             <tr data-state="TX" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">Harris</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04812</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 12, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">W. & M. H██████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$128,500.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$32,125.00 (25%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.hcdistrictclerk.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
                             <tr data-state="GA" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">GA</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">Cobb</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Cobb</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-GA-001550</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 10, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Est. of R. V██████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$118,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$23,600.00 (20%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.cobbsheriff.org/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
                             <tr data-state="FL" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">Miami-Dade</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Miami-Dade</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004812</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 05, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">L. & M. H████████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$112,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$22,400.00 (20%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.miamidadeclerk.gov/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
                             <tr data-state="FL" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">Hillsborough</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Hillsborough</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-008912</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Jul 29, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">R. & C. S██████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$92,400.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$18,480.00 (20%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.hillsclerk.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
                             <tr data-state="TX" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">Harris</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04950</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Jul 22, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Est. of C. B██████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$86,200.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$21,550.00 (25%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.hcdistrictclerk.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -460,12 +480,12 @@
             </div>
             
             <div class="mt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span class="text-xs sm:text-xs text-slate-500 text-center sm:text-left">* Sourced from public county overage schedules. Full names, parcel IDs, and sale dates included in subscriber feeds.</span>
-                <a href="/assets/sample_surplus_docket.csv" download class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-300 hover:border-brand-green text-xs font-heading font-bold text-brand-navy rounded-lg shadow-sm hover:shadow transition-all">
+                <span class="text-xs sm:text-xs text-slate-500 text-center sm:text-left">* Sourced directly from official court registries. Full unredacted names, property addresses, and parcel IDs included in daily subscriber feeds.</span>
+                <a href="/assets/sample_surplus_docket_feed.csv" download class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-300 hover:border-brand-green text-xs font-heading font-bold text-brand-navy rounded-lg shadow-sm hover:shadow transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
-                    Download Sample CSV (No Email Required)
+                    Download Sample CSV (5 Records)
                 </a>
             </div>
         </section>
@@ -1292,6 +1312,8 @@
                 <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Toolkit</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
                 <a href="/comparison.html" class="hover:text-brand-green transition-colors">Comparison</a>
+                <span class="text-slate-300 hidden sm:inline">•</span>
+                <a href="/methodology.html" class="hover:text-brand-green transition-colors">Methodology</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
                 <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">API</a>
                 <span class="text-slate-300 hidden sm:inline">•</span>
