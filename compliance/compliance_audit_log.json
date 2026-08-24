@@ -1,6 +1,10 @@
 [
   {
+<<<<<<< HEAD
     "timestamp": "2026-08-24T15:33:22.944097+00:00",
+=======
+    "timestamp": "2026-08-24T16:28:00.599124+00:00",
+>>>>>>> 475d2db (chore(audit): sync regenerated feeds, API endpoints, and outreach artifacts)
     "date": "2026-08-24",
     "status": "VERIFIED_COMPLIANT",
     "audited_jurisdictions": [
