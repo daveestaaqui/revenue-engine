@@ -151,16 +151,19 @@ def generate_individual_press_release(pr):
 <body class="bg-brand-canvas text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- Header Navigation -->
-    <header class="bg-brand-navy border-b border-slate-800 text-white sticky top-0 z-40">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2.5">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 w-auto">
-                <span class="font-heading font-black text-xl tracking-tight text-white">SURPLUS<span class="text-brand-green">DOCKET</span></span>
+    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
+            <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                <div class="flex items-baseline gap-1 sm:gap-1.5 leading-none shrink-0">
+                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                </div>
             </a>
-            <div class="flex items-center gap-4 text-xs font-bold">
-                <a href="/press/" class="text-emerald-300 hover:text-white">&larr; Newsroom</a>
-                <a href="/" class="text-slate-300 hover:text-white">Home</a>
-                <a href="/#pricing" class="px-3.5 py-1.5 bg-brand-green hover:bg-brand-greenDark text-white rounded-lg transition-colors">Get Data Feeds</a>
+            <div class="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-slate-600">
+                <a href="/press/" class="text-brand-green hover:text-brand-greenDark font-bold flex items-center gap-1">&larr; Newsroom</a>
+                <a href="/" class="hover:text-brand-green transition-colors">Home</a>
+                <a href="/#pricing" class="px-3.5 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg transition-all shadow-sm">Get Feeds</a>
             </div>
         </div>
     </header>
@@ -315,17 +318,21 @@ def generate_press_newsroom():
 <body class="bg-brand-canvas text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- Header Navigation -->
-    <header class="bg-brand-navy border-b border-slate-800 text-white sticky top-0 z-40">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2.5">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 w-auto">
-                <span class="font-heading font-black text-xl tracking-tight text-white">SURPLUS<span class="text-brand-green">DOCKET</span></span>
+    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
+            <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                <div class="flex items-baseline gap-1 sm:gap-1.5 leading-none shrink-0">
+                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                </div>
             </a>
-            <div class="flex items-center gap-4 text-xs font-bold">
-                <a href="/" class="text-slate-300 hover:text-white">Home</a>
-                <a href="/blog/" class="text-slate-300 hover:text-white">Articles</a>
-                <a href="/api-documentation.html" class="text-slate-300 hover:text-white">API</a>
-                <a href="/#pricing" class="px-3.5 py-1.5 bg-brand-green hover:bg-brand-greenDark text-white rounded-lg transition-colors">Get Feeds</a>
+            <div class="flex items-center gap-3 sm:gap-5 text-xs sm:text-sm font-semibold text-slate-600">
+                <a href="/" class="hover:text-brand-green transition-colors">Home</a>
+                <a href="/press/" class="text-brand-navy font-bold hover:text-brand-green transition-colors">Newsroom</a>
+                <a href="/blog/" class="hover:text-brand-green transition-colors hidden sm:inline">Articles</a>
+                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors hidden sm:inline">API</a>
+                <a href="/#pricing" class="px-3.5 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg transition-all shadow-sm">Get Feeds</a>
             </div>
         </div>
     </header>
