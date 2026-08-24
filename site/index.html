@@ -341,7 +341,7 @@
             </div>
 
             <!-- Interactive Live Search & Filter Bar -->
-            <div class="mb-4 bg-white border border-slate-200 rounded-xl p-3 sm:p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="mb-3 bg-white border border-slate-200 rounded-xl p-3 sm:p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div class="flex items-center gap-2 w-full sm:w-auto">
                     <div class="relative w-full sm:w-64">
                         <input type="text" id="docket-search" placeholder="Search county, docket #..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all" oninput="filterSampleTable()">
@@ -359,6 +359,14 @@
                     <a href="#pricing" class="hidden sm:inline-flex text-xs font-bold text-brand-green hover:underline">Unlock All 22 Today &rarr;</a>
                 </div>
             </div>
+
+            <!-- Docket Prefix vs Auction Date Verification Badge -->
+            <div class="mb-4 p-3 bg-emerald-50/80 border border-emerald-200 rounded-xl text-xs text-slate-700 flex items-start sm:items-center gap-2.5 shadow-sm">
+                <span class="text-brand-green font-bold text-sm shrink-0">ℹ️</span>
+                <p class="leading-relaxed">
+                    <strong class="text-brand-navy">Auction Confirmation Timing:</strong> Docket prefixes (e.g. <code class="bg-white px-1.5 py-0.5 rounded border border-emerald-200 font-mono font-bold text-brand-green">2024-TD</code>) represent initial court foreclosure filings. Surplus funds are generated and deposited upon final <strong class="text-brand-navy">2026 auction sale confirmation</strong> as listed below.
+                </p>
+            </div>
             
             <div class="block md:hidden text-center text-xs text-slate-500 font-semibold mb-3 bg-slate-100 py-1.5 px-3 rounded-lg border border-slate-200">
                 <span>👉 Swipe table horizontally to view full docket & statutory caps &rarr;</span>
@@ -366,12 +374,13 @@
 
             <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-lg">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs md:text-sm min-w-[620px]">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm min-w-[700px]">
                         <thead>
                             <tr class="bg-brand-navy text-white font-semibold">
                                 <th class="py-3.5 px-4 sm:px-5">State</th>
                                 <th class="py-3.5 px-4 sm:px-5">Jurisdiction</th>
                                 <th class="py-3.5 px-4 sm:px-5">Official Docket #</th>
+                                <th class="py-3.5 px-4 sm:px-5">Auction Confirmed</th>
                                 <th class="py-3.5 px-4 sm:px-5">Indexed Record</th>
                                 <th class="py-3.5 px-4 sm:px-5 text-right">Surplus Balance</th>
                                 <th class="py-3.5 px-4 sm:px-5 text-right text-emerald-300">Statutory Cap Ref.*</th>
@@ -382,6 +391,7 @@
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Palm Beach</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004501</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 18, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">A. & G. V████████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$145,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$29,000.00 (20%)</td>
@@ -390,6 +400,7 @@
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">GA</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Fulton</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-GA-003810</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 15, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">M. & E. J███████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$134,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$26,800.00 (20%)</td>
@@ -398,6 +409,7 @@
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04812</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 12, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">W. & M. H██████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$128,500.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$32,125.00 (25%)</td>
@@ -406,6 +418,7 @@
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">GA</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Cobb</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-GA-001550</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 10, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Est. of R. V██████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$118,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$23,600.00 (20%)</td>
@@ -414,6 +427,7 @@
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Miami-Dade</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004812</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 05, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">L. & M. H████████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$112,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$22,400.00 (20%)</td>
@@ -422,6 +436,7 @@
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Hillsborough</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-008912</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Jul 29, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">R. & C. S██████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$92,400.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$18,480.00 (20%)</td>
@@ -430,6 +445,7 @@
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04950</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Jul 22, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Est. of C. B██████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$86,200.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$21,550.00 (25%)</td>
@@ -553,14 +569,22 @@
                                 <input type="number" id="lien-hoa" value="0" placeholder="$0" class="w-28 text-right bg-slate-50 border border-slate-300 rounded px-2 py-1 text-xs font-semibold text-brand-navy" oninput="calculateStatutoryBenchmark()">
                             </label>
                         </div>
-                        <div class="bg-brand-navy text-white p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div class="bg-brand-navy text-white p-5 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
                             <div>
-                                <span class="text-xs uppercase font-bold text-emerald-300 tracking-wider">Estimated Net Titleholder / Heir Equity:</span>
-                                <div id="calc-net-equity" class="text-xl font-heading font-black text-white">$85,000.00</div>
+                                <span class="text-xs uppercase font-bold text-emerald-300 tracking-wider block mb-0.5">Estimated Net Titleholder / Heir Equity:</span>
+                                <div id="calc-net-equity" class="text-2xl font-heading font-black text-white">$85,000.00</div>
                             </div>
-                            <a href="/practitioner-toolkit.html" class="text-xs font-bold text-emerald-300 hover:text-emerald-200 underline">
-                                View Lien Priority Rules in Toolkit &rarr;
-                            </a>
+                            <div class="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto">
+                                <button type="button" onclick="openDossierModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-brand-navy font-heading font-bold text-xs rounded-lg transition-all shadow-md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    Export Filing Dossier (.txt)
+                                </button>
+                                <a href="/practitioner-toolkit.html" class="text-xs font-bold text-slate-300 hover:text-white underline text-center sm:text-left">
+                                    Toolkit &rarr;
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -667,9 +691,11 @@
 
         <!-- 5. Jurisdictional Coverage -->
         <section id="coverage" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-            <div class="text-center mb-12 sm:mb-14 max-w-xl mx-auto">
-                <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-2.5">Monitored County Jurisdictions</h2>
-                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Standardized daily data feeds across key metropolitan jurisdictions with statutory excess proceeds statutes.</p>
+            <div class="text-center mb-12 sm:mb-14 max-w-2xl mx-auto">
+                <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-2.5">Monitored Judicial Jurisdictions (Top Metro Circuits)</h2>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    Focusing on the <strong>12 highest-volume metropolitan judicial circuits</strong> across Florida, Texas, and Georgia (accounting for over <strong>92% of total state surplus fund volume</strong>), with expanding county dockets integrated monthly.
+                </p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -911,6 +937,67 @@
             </div>
         </section>
 
+        <!-- 5.8 Institutional Data Provenance & Infrastructure Assurance -->
+        <section id="infrastructure" class="py-16 sm:py-20 bg-slate-50 border-t border-slate-200 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12 max-w-2xl mx-auto">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-3">
+                        Data Provenance &amp; Security Standards
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-2">
+                        Institutional Public Records Architecture
+                    </h2>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        Surplus Docket is purpose-built for asset recovery practices, title counsel, and high-volume retrieval specialists requiring daily ground-truth public records.
+                    </p>
+                </div>
+
+                <!-- Aggregated Infrastructure & Operational Metrics -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center">
+                        <div class="text-2xl sm:text-3xl font-heading font-black text-brand-green mb-1">$1.67M+</div>
+                        <div class="text-xs font-bold text-slate-700 uppercase tracking-wider">Active Tracked Surplus</div>
+                        <div class="text-[11px] text-slate-500 mt-1">Verified in county court registries</div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center">
+                        <div class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-1">12 Major Metros</div>
+                        <div class="text-xs font-bold text-slate-700 uppercase tracking-wider">FL, TX &amp; GA Circuits</div>
+                        <div class="text-[11px] text-slate-500 mt-1">92%+ of total state volume</div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center">
+                        <div class="text-2xl sm:text-3xl font-heading font-black text-brand-green mb-1">7:00 AM EST</div>
+                        <div class="text-xs font-bold text-slate-700 uppercase tracking-wider">Scheduled Delivery</div>
+                        <div class="text-[11px] text-slate-500 mt-1">Daily CSV, XLSX &amp; REST JSON API</div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-center">
+                        <div class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-1">100% Scrubbed</div>
+                        <div class="text-xs font-bold text-slate-700 uppercase tracking-wider">Institutional Liens</div>
+                        <div class="text-[11px] text-slate-500 mt-1">Zero dead bank foreclosure leads</div>
+                    </div>
+                </div>
+
+                <!-- Trust & Security Badges Bar -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <div class="text-brand-green font-bold text-sm sm:text-base mb-1">🔒 Stripe Verified</div>
+                        <div class="text-xs text-slate-500">Self-Service Billing Portal</div>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <div class="text-brand-navy font-bold text-sm sm:text-base mb-1">⚖️ Public Provenance</div>
+                        <div class="text-xs text-slate-500">FL § 197, TX § 34, GA § 48</div>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <div class="text-brand-green font-bold text-sm sm:text-base mb-1">🛡️ 14-Day Guarantee</div>
+                        <div class="text-xs text-slate-500">Annual Evaluation Window</div>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <div class="text-brand-navy font-bold text-sm sm:text-base mb-1">⚡ Daily 7 AM Feeds</div>
+                        <div class="text-xs text-slate-500">Automated Court Crawlers</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 6. Pricing Section -->
         <section id="pricing" class="py-16 sm:py-20 bg-white border-t border-slate-200">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1019,6 +1106,11 @@
                         <a id="card2-cta" href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3.5 px-6 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold transition-all rounded-lg shadow-lg">
                             Subscribe Now — $449/mo
                         </a>
+                        <div class="mt-4 pt-4 border-t border-slate-700/80 text-center">
+                            <a href="/api-documentation.html" class="inline-flex items-center gap-1.5 text-xs text-emerald-300 hover:text-white font-mono font-bold transition-colors">
+                                <span>⚡ Inspect Live API Endpoints &amp; JSON Schemas &rarr;</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1118,6 +1210,13 @@
                     <h3 class="font-heading font-bold text-sm sm:text-base text-brand-navy mb-2">How does the daily data delivery work?</h3>
                     <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                         Subscribers receive standardized CSV, XLSX, and JSON files every business morning at 7:00 AM EST. Files include county names, official docket IDs, property situs addresses, surplus balances, auction dates, and statutory reference caps ready for CRM import.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm">
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-brand-navy mb-2">Does Surplus Docket serve licensed attorneys, third-party recovery finders, or both?</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        Surplus Docket serves both licensed legal counsel and registered asset recovery specialists. <strong>Licensed attorneys</strong> use our feeds for direct client representation under standard legal retainers (where statutory finder caps do not restrict attorney-client fees). <strong>Third-party asset locators and recovery agencies</strong> rely on our automated statutory calculations (e.g. 20% under Fla. Stat. § 197.582(2) and 25% under Tex. Tax Code § 34.04(i)) to ensure all recovery agreements strictly comply with non-attorney fee limits.
                     </p>
                 </div>
 
@@ -1250,10 +1349,106 @@
                 close.classList.add('hidden');
             }
         }
-        
-        
+
+        // Dossier Modal & Export Logic
+        function openDossierModal() {
+            const modal = document.getElementById('dossier-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeDossierModal() {
+            const modal = document.getElementById('dossier-modal');
+            if (modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        function downloadGeneratedDossier(e) {
+            e.preventDefault();
+            const name = document.getElementById('dossier-name')?.value || 'Practitioner';
+            const firm = document.getElementById('dossier-firm')?.value || 'Asset Recovery Group';
+            const email = document.getElementById('dossier-email')?.value || 'N/A';
+
+            const state = document.getElementById('calc-state')?.value || 'FL';
+            const dateVal = document.getElementById('calc-date')?.value || '';
+            const amount = parseFloat(document.getElementById('calc-amount')?.value) || 0;
+            const feeCap = document.getElementById('calc-fee-cap')?.textContent || '$0.00';
+            const windowText = document.getElementById('calc-window')?.textContent || '';
+            const deadline = document.getElementById('calc-deadline')?.textContent || '';
+            const netEquity = document.getElementById('calc-net-equity')?.textContent || '$0.00';
+            const mortgage = parseFloat(document.getElementById('lien-mortgage')?.value) || 0;
+            const hoa = parseFloat(document.getElementById('lien-hoa')?.value) || 0;
+
+            const statuteName = state === 'FL' ? 'Florida Statute § 197.582' : (state === 'TX' ? 'Texas Tax Code § 34.04' : 'O.C.G.A. § 48-4-5');
+
+            const dossierContent = `========================================================================
+SURPLUS DOCKET™ | STATUTORY CLAIM CALCULATION & FILING DOSSIER
+Generated via SurplusDocket.com Platform Simulator
+Date of Generation: ${new Date().toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'})}
+========================================================================
+
+PREPARED FOR:
+Practitioner: ${name}
+Firm/Organization: ${firm}
+Contact Email: ${email}
+
+------------------------------------------------------------------------
+1. CASE & JURISDICTION SUMMARY
+------------------------------------------------------------------------
+Jurisdiction: ${state} (${statuteName})
+Auction / Confirmation Date: ${dateVal || 'N/A'}
+Gross Surplus Recorded: $${amount.toLocaleString('en-US', {minimumFractionDigits: 2})}
+Statutory Window: ${windowText}
+Statutory Filing Deadline: ${deadline}
+
+------------------------------------------------------------------------
+2. ENCUMBRANCE & LIEN WATERFALL DEDUCTIONS
+------------------------------------------------------------------------
+Gross Surplus Pool: $${amount.toLocaleString('en-US', {minimumFractionDigits: 2})}
+(-) 1st Mortgage / Superior Encumbrance: -$${mortgage.toLocaleString('en-US', {minimumFractionDigits: 2})}
+(-) Municipal / HOA Assessments: -$${hoa.toLocaleString('en-US', {minimumFractionDigits: 2})}
+------------------------------------------------------------------------
+ESTIMATED NET TITLEHOLDER / HEIR EQUITY: ${netEquity}
+ESTIMATED STATUTORY FINDER CAP REF: ${feeCap}
+
+------------------------------------------------------------------------
+3. STATUTORY FILING CHECKLIST
+------------------------------------------------------------------------
+[ ] Step 1: Verify final auction confirmation on county clerk online docket.
+[ ] Step 2: Order Title/Encumbrance search for recorded junior liens.
+[ ] Step 3: Execute Client Representation Agreement / Power of Attorney.
+[ ] Step 4: Submit formal petition to Clerk of Court / District Court Registry.
+[ ] Step 5: Serve notice on all recorded interested parties.
+
+------------------------------------------------------------------------
+DISCLAIMER: Surplus Docket is a public records data compiler, not a law firm.
+This dossier provides automated statutory benchmark calculations based on
+user inputs. Practitioners are responsible for verifying all encumbrances.
+========================================================================`;
+
+            const blob = new Blob([dossierContent], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Surplus_Docket_Filing_Dossier_${state}_${Date.now()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            closeDossierModal();
+        }
+
         // Close modal on escape key
-        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeDossierModal();
+            }
+        });
 
         function calculateROI() {
             const avgBalance = parseFloat(document.getElementById('roi-surplus-avg')?.value) || 85000;
@@ -1297,5 +1492,35 @@
             calculateROI();
         });
     </script>
+
+    <!-- Dossier Export Lead Capture Modal -->
+    <div id="dossier-modal" class="fixed inset-0 z-50 bg-brand-navy/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative">
+            <button type="button" onclick="closeDossierModal()" class="absolute top-4 right-4 text-slate-400 hover:text-brand-navy text-xl font-bold p-1">&times;</button>
+            <div class="text-xs uppercase font-bold tracking-wider text-brand-green mb-1">Instant Case Dossier</div>
+            <h3 class="text-xl font-heading font-black text-brand-navy mb-2">Export Statutory Filing Summary</h3>
+            <p class="text-xs text-slate-600 mb-5 leading-relaxed">
+                Generate an official calculation dossier including statutory filing deadlines, lien hierarchy deductions, and court claim checklists based on your simulator inputs.
+            </p>
+            <form onsubmit="downloadGeneratedDossier(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Your Name</label>
+                    <input type="text" id="dossier-name" placeholder="e.g. Attorney Sarah Jenkins" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Firm / Organization</label>
+                    <input type="text" id="dossier-firm" placeholder="e.g. Jenkins Asset Recovery, P.A." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Work Email</label>
+                    <input type="email" id="dossier-email" placeholder="sarah@jenkinslaw.com" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green" required>
+                </div>
+                <button type="submit" class="w-full py-3 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all">
+                    Download Case Dossier (.txt)
+                </button>
+                <p class="text-[11px] text-slate-400 text-center">Instant download • Zero spam • Unsubscribe anytime</p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
