@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 """
-Surplus Docket — Press Release & Media Newsroom Engine
-Generates AP-style wire press releases, dedicated /press/ newsroom hub,
-and structured NewsArticle JSON-LD for rapid Google News and media syndication.
+Surplus Docket — Autonomous Press Release & Media Syndication Engine
+Maintains the official /press/ Newsroom, generates Google News-ready RSS/Atom feeds,
+and automatically dispatches webhook notifications for zero-touch media broadcast.
+
+Strategic Cadence: Bi-Weekly / Monthly Milestones (High Authority, Non-Spammy).
 """
 
 import json
+import os
+import urllib.request
+import urllib.error
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 SITE_DIR = ROOT_DIR / "site"
@@ -24,6 +29,7 @@ PRESS_RELEASES = [
         "slug": "surplus-docket-launches-autonomous-legal-intelligence-platform",
         "date": "August 24, 2026",
         "iso_date": "2026-08-24T07:00:00-04:00",
+        "rfc822_date": "Mon, 24 Aug 2026 07:00:00 -0400",
         "headline": "Surplus Docket Launches Autonomous Public Records Intelligence Platform for Asset Recovery Counsel Across Florida, Texas, and Georgia",
         "subheadline": "New legal-tech data pipeline eliminates dead bank leads with automated institutional lien pre-filtering and daily 7:00 AM court registry feeds.",
         "location": "WEST PALM BEACH, Fla. & HOUSTON, Tex.",
@@ -41,6 +47,7 @@ PRESS_RELEASES = [
         "slug": "surplus-docket-unveils-rest-api-for-law-practice-management",
         "date": "August 17, 2026",
         "iso_date": "2026-08-17T07:00:00-04:00",
+        "rfc822_date": "Mon, 17 Aug 2026 07:00:00 -0400",
         "headline": "Surplus Docket Unveils Programmatic REST JSON API for Law Firm Practice Management and AI Intake Automation",
         "subheadline": "Enterprise API tier enables direct ingestion into Clio, MyCase, Airtable, and custom legal-tech pipelines with priority 6:00 AM dispatch.",
         "location": "ATLANTA, Ga.",
@@ -234,7 +241,6 @@ def generate_individual_press_release(pr):
 {MEDIA_CONTACT}
 """
     text_path.write_text(text_content, encoding="utf-8")
-    print(f"  ✓ Generated Wire Text: {text_path.name}")
 
 def generate_press_newsroom():
     cards_html = ""
@@ -268,6 +274,7 @@ def generate_press_newsroom():
     <title>Press &amp; Media Newsroom | Surplus Docket</title>
     <meta name="description" content="Official press releases, announcements, and media resources for Surplus Docket, the autonomous public records intelligence platform.">
     <link rel="canonical" href="https://surplusdocket.com/press/">
+    <link rel="alternate" type="application/rss+xml" title="Surplus Docket Press Feed" href="https://surplusdocket.com/press/feed.xml">
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <meta name="robots" content="index, follow">
     
@@ -332,9 +339,15 @@ def generate_press_newsroom():
             <h1 class="text-3xl sm:text-4xl font-heading font-black text-brand-navy mb-3">
                 Official Press Releases &amp; Media Hub
             </h1>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Official corporate announcements, product launches, legal-tech datasets, and media resources from Surplus Docket.
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                Official corporate announcements, product releases, legal-tech datasets, and media resources from Surplus Docket.
             </p>
+            <div class="flex items-center justify-center gap-3 text-xs">
+                <a href="/press/feed.xml" class="inline-flex items-center gap-1.5 font-bold text-amber-600 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full hover:bg-amber-100 transition-colors">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
+                    Press RSS Feed
+                </a>
+            </div>
         </div>
 
         <!-- Press Releases List -->
@@ -388,12 +401,69 @@ def generate_press_newsroom():
     newsroom_path.write_text(html, encoding="utf-8")
     print(f"✓ Generated Press Newsroom: {newsroom_path}")
 
+def generate_press_rss():
+    feed_path = PRESS_DIR / "feed.xml"
+    now_rfc822 = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
+    
+    items_xml = ""
+    for pr in PRESS_RELEASES:
+        items_xml += f"""    <item>
+      <title><![CDATA[{pr['headline']}]]></title>
+      <link>https://surplusdocket.com/press/releases/{pr['slug']}.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/press/releases/{pr['slug']}.html</guid>
+      <pubDate>{pr['rfc822_date']}</pubDate>
+      <description><![CDATA[{pr['summary']}]]></description>
+      <author>press@surplusdocket.com (Surplus Docket Newsroom)</author>
+      <category>Legal Technology / Public Records</category>
+    </item>
+"""
+
+    rss_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Surplus Docket™ Press Releases &amp; Newsroom</title>
+    <link>https://surplusdocket.com/press/</link>
+    <description>Official press releases and legal intelligence announcements from Surplus Docket.</description>
+    <language>en-us</language>
+    <lastBuildDate>{now_rfc822}</lastBuildDate>
+    <atom:link href="https://surplusdocket.com/press/feed.xml" rel="self" type="application/rss+xml"/>
+{items_xml}  </channel>
+</rss>
+"""
+    feed_path.write_text(rss_xml.strip() + "\n", encoding="utf-8")
+    print(f"✓ Generated Press RSS Feed: {feed_path}")
+
+def dispatch_webhook():
+    webhook_url = os.getenv("PR_WEBHOOK_URL")
+    if not webhook_url:
+        print("• Notice: PR_WEBHOOK_URL not configured. Skipping external webhook broadcast.")
+        return
+        
+    latest_pr = PRESS_RELEASES[0]
+    payload = {
+        "content": f"📢 **New Press Release on Surplus Docket Newsroom**\n\n**{latest_pr['headline']}**\n{latest_pr['summary']}\n\n🔗 Read Full Release: https://surplusdocket.com/press/releases/{latest_pr['slug']}.html",
+        "username": "Surplus Docket Wire Bot"
+    }
+    
+    try:
+        req = urllib.request.Request(
+            webhook_url,
+            data=json.dumps(payload).encode("utf-8"),
+            headers={"Content-Type": "application/json", "User-Agent": "SurplusDocket-PR-Bot/1.0"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            print(f"✓ Webhook broadcast dispatched (HTTP {resp.status})")
+    except Exception as e:
+        print(f"⚠️ Webhook dispatch note: {e}")
+
 def run():
     print("🚀 Running Surplus Docket Press Release & Newsroom Engine...")
     for pr in PRESS_RELEASES:
         generate_individual_press_release(pr)
     generate_press_newsroom()
-    print("🎉 Press Releases and Media Newsroom generated successfully!")
+    generate_press_rss()
+    dispatch_webhook()
+    print("🎉 Press Releases, Newsroom, and RSS Syndication complete!")
 
 if __name__ == "__main__":
     run()
