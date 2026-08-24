@@ -45,6 +45,9 @@ ALL_SITE_URLS = [
     "https://surplusdocket.com/blog/posts/institutional-lien-filtering-asset-recovery.html",
     "https://surplusdocket.com/terms.html",
     "https://surplusdocket.com/refund-policy.html",
+    "https://surplusdocket.com/press/",
+    "https://surplusdocket.com/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html",
+    "https://surplusdocket.com/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html",
 ]
 
 def generate_rss_feed():
