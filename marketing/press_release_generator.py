@@ -73,6 +73,7 @@ Digital Media Kit: https://surplusdocket.com/press/"""
 
 def generate_individual_press_release(pr):
     paragraphs_html = "".join(f'<p class="mb-4 sm:mb-5 leading-relaxed text-slate-700">{p}</p>' for p in pr["body_paragraphs"])
+    about_text = BOILERPLATE.replace("About Surplus Docket\n", "").strip()
     
     html = f"""<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -194,7 +195,7 @@ def generate_individual_press_release(pr):
             <div class="my-8 p-6 bg-slate-100 rounded-xl border border-slate-200">
                 <h3 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">About Surplus Docket</h3>
                 <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                    {BOILERPLATE.split('About Surplus Docket\n')[1]}
+                    {about_text}
                 </p>
                 <div class="pt-4 border-t border-slate-200 text-xs text-slate-600">
                     <p class="font-bold text-brand-navy mb-1">Media Contact:</p>
