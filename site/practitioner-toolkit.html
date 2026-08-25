@@ -169,7 +169,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">1. Select Jurisdiction & Statute</label>
-                    <select id="gen-state" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all" onchange="onStateChange()">
+                    <select id="gen-state" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all truncate" onchange="onStateChange()">
                         <option value="FL">Florida — Fla. Stat. § 197.582 (120-Day Notice)</option>
                         <option value="TX">Texas — Tex. Tax Code § 34.04 (2-Year Registry)</option>
                         <option value="GA">Georgia — O.C.G.A. § 48-4-5 (5-Year Window)</option>
@@ -180,7 +180,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">2. Pre-Load Verified Live Docket</label>
-                    <select id="gen-docket-preset" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-green focus:outline-none focus:border-brand-green focus:bg-white transition-all" onchange="loadDocketPreset()">
+                    <select id="gen-docket-preset" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-green focus:outline-none focus:border-brand-green focus:bg-white transition-all truncate" onchange="loadDocketPreset()">
                         <option value="">-- Choose High-Yield Sample Case --</option>
                         <option value="FL_PB">Palm Beach FL: 2024-TD-004501 ($145,000.00)</option>
                         <option value="TX_HC">Harris County TX: 2024-TX-04812 ($128,500.00)</option>
@@ -192,7 +192,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">3. Claimant Capacity</label>
-                    <select id="gen-capacity" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all" onchange="renderLivePetition()">
+                    <select id="gen-capacity" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all truncate" onchange="renderLivePetition()">
                         <option value="Former Record Titleholder">Former Record Titleholder (Direct Owner)</option>
                         <option value="Estate Heir & Lawful Beneficiary">Estate Heir & Lawful Beneficiary (Probate Estate)</option>
                         <option value="Judgment Creditor / Junior Lienholder">Judgment Creditor / Junior Lienholder</option>
