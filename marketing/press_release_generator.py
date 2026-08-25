@@ -167,11 +167,11 @@ def generate_individual_press_release(pr):
     <!-- Header Navigation -->
     <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
-            <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0">
+            <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
                 <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
-                <div class="flex items-baseline gap-1 sm:gap-1.5 leading-none shrink-0">
-                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
-                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none shrink-0">
+                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
                 </div>
             </a>
             <div class="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-slate-600">
@@ -237,9 +237,9 @@ def generate_individual_press_release(pr):
                 <div class="lg:col-span-2 space-y-4">
                     <a href="/" class="flex items-center gap-3 group shrink-0">
                         <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                        <div class="flex items-baseline gap-1.5 leading-none">
-                            <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
-                            <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
                         </div>
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
@@ -413,11 +413,11 @@ def generate_press_newsroom():
     <!-- Header Navigation -->
     <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
-            <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0">
+            <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
                 <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
-                <div class="flex items-baseline gap-1 sm:gap-1.5 leading-none shrink-0">
-                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
-                    <span class="font-heading font-black text-lg sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none shrink-0">
+                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
                 </div>
             </a>
             <div class="flex items-center gap-3 sm:gap-5 text-xs sm:text-sm font-semibold text-slate-600">
@@ -488,9 +488,9 @@ def generate_press_newsroom():
                 <div class="lg:col-span-2 space-y-4">
                     <a href="/" class="flex items-center gap-3 group shrink-0">
                         <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                        <div class="flex items-baseline gap-1.5 leading-none">
-                            <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
-                            <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
                         </div>
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
