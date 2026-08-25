@@ -52,6 +52,50 @@
       "registry_type": "County Tax Commissioner / Sheriff Registry",
       "official_source_url": "https://law.justia.com/codes/georgia/title-48/chapter-4/article-1/section-48-4-5/",
       "status": "ACTIVE_VERIFIED"
+    },
+    "NC": {
+      "state_name": "North Carolina",
+      "governing_statute": "N.C.G.S. \u00a7 105-374",
+      "statute_title": "Payment of taxes, costs, and surplus on foreclosure sales",
+      "upset_bid_window_days": 10,
+      "claim_window_text": "10-Day Mandatory Upset Bid Confirmation Window",
+      "priority_order": [
+        "County & Municipal Tax Liens",
+        "Recorded Deeds of Trust & Senior Liens",
+        "Former Titleholder / Legitimate Heirs"
+      ],
+      "registry_type": "Clerk of Superior Court Judicial Registry",
+      "official_source_url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-374.html",
+      "status": "EXPANSION_VERIFIED"
+    },
+    "TN": {
+      "state_name": "Tennessee",
+      "governing_statute": "T.C.A. \u00a7 67-5-2501",
+      "statute_title": "Tax sales \u2014 Excess proceeds distribution",
+      "claim_window_text": "Chancery Court Motion Procedure",
+      "priority_order": [
+        "Delinquent Taxing Entity Assessments",
+        "Recorded Mortgagees & Junior Lienholders",
+        "Record Property Owner / Estate Heirs"
+      ],
+      "registry_type": "Chancery Court Clerk & Master Registry",
+      "official_source_url": "https://law.justia.com/codes/tennessee/title-67/chapter-5/part-25/section-67-5-2501/",
+      "status": "EXPANSION_VERIFIED"
+    },
+    "CA": {
+      "state_name": "California",
+      "governing_statute": "Cal. Rev. & Tax Code \u00a7 4675",
+      "statute_title": "Claims for excess proceeds from tax-defaulted sale",
+      "claim_window_years": 1,
+      "claim_window_text": "Exactly 1 Year from Date of Deed Recording",
+      "priority_order": [
+        "State / County / Municipal Assessments",
+        "Recorded Lienholders of Record (in order of priority)",
+        "Titleholders of Record / Lawful Heirs"
+      ],
+      "registry_type": "County Treasurer-Tax Collector Trust Fund",
+      "official_source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=4675.",
+      "status": "EXPANSION_VERIFIED"
     }
   }
 }

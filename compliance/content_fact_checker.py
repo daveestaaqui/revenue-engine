@@ -52,6 +52,20 @@ STATUTORY_TRUTH_TABLE = {
         "window_years": 5,
         "fee_cap_percent": 20,
         "governing_body": "County Tax Commissioner / Sheriff Registry"
+    },
+    "NC": {
+        "statute": "N.C.G.S. § 105-374",
+        "upset_bid_days": 10,
+        "governing_body": "Clerk of Superior Court Judicial Registry"
+    },
+    "TN": {
+        "statute": "T.C.A. § 67-5-2501",
+        "governing_body": "Chancery Court Clerk & Master Registry"
+    },
+    "CA": {
+        "statute": "Cal. Rev. & Tax Code § 4675",
+        "window_years": 1,
+        "governing_body": "County Treasurer-Tax Collector Trust Fund"
     }
 }
 
