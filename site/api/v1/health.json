@@ -2,7 +2,7 @@
   "status": "healthy",
   "service": "Surplus Docket REST API",
   "version": "1.0.0",
-  "timestamp": "2026-08-25T08:42:46.785452",
+  "timestamp": "2026-08-25T10:41:32.231928",
   "uptime": "99.99%",
   "endpoints": [
     "/api/v1/feed.json",

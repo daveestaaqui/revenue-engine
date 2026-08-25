@@ -231,7 +231,17 @@ COUNTIES = [
     }
 ]
 
+STATE_HUBS = {
+    'FL': '/florida-tax-deed-surplus.html',
+    'TX': '/texas-tax-sale-excess-proceeds.html',
+    'GA': '/georgia-tax-sale-excess-funds.html',
+    'NC': '/north-carolina-tax-foreclosure-surplus.html',
+    'TN': '/tennessee-tax-sale-excess-proceeds.html',
+    'CA': '/california-tax-defaulted-excess-proceeds.html',
+}
+
 def generate_county_page(c):
+    state_hub_url = STATE_HUBS.get(c['state'], '/')
     return f"""<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -332,7 +342,7 @@ def generate_county_page(c):
         <nav class="text-xs text-slate-400 mb-6 flex items-center gap-2">
             <a href="/" class="hover:text-brand-green">Home</a>
             <span>&gt;</span>
-            <a href="/#{c['state'].lower()}" class="hover:text-brand-green">{c['state_full']}</a>
+            <a href="{state_hub_url}" class="hover:text-brand-green">{c['state_full']}</a>
             <span>&gt;</span>
             <span class="text-brand-navy font-semibold">{c['county']}</span>
         </nav>
