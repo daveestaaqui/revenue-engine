@@ -220,13 +220,8 @@
     </header>
 
     <main class="flex-grow">
-        <!-- 1. Hero Section -->
-        <section id="overview" class="pt-10 sm:pt-16 pb-10 sm:pb-14 px-4 sm:px-6 max-w-5xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-5 shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
-                <span>Active Docket Stream • Updated <span id="hero-live-date">Today</span></span>
-            </div>
-            
+        <!-- 1. Hero Section (Clean & Minimalist) -->
+        <section id="overview" class="pt-12 sm:pt-20 pb-12 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto text-center">
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight text-brand-navy mb-4 leading-[1.15] max-w-4xl mx-auto">
                 Daily Tax Deed Surplus &amp; <br class="hidden sm:block" />
                 <span class="text-brand-green">Excess Proceeds Feeds</span>
@@ -1274,13 +1269,8 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
             }
         }
 
-        // Initialize dynamic live date in hero & calculators
+        // Initialize dynamic calculators
         document.addEventListener('DOMContentLoaded', () => {
-            const dateEl = document.getElementById('hero-live-date');
-            if (dateEl) {
-                const today = new Date();
-                dateEl.textContent = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-            }
             const calcDateEl = document.getElementById('calc-date');
             if (calcDateEl) {
                 calcDateEl.value = new Date().toISOString().split('T')[0];

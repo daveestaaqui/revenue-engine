@@ -1,7 +1,7 @@
 {
   "status": "success",
   "api_version": "v1.0",
-  "generated_at": "2026-08-25T07:53:06.560556",
+  "generated_at": "2026-08-25T07:57:14.387812",
   "meta": {
     "total_records": 22,
     "total_surplus_volume_usd": 1672200.0,
@@ -34,7 +34,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "GA",
@@ -53,7 +53,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "TX",
@@ -72,7 +72,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.cclerk.hctx.net/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "GA",
@@ -91,7 +91,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -110,7 +110,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "GA",
@@ -129,7 +129,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -148,7 +148,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "TX",
@@ -167,7 +167,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.cclerk.hctx.net/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "GA",
@@ -186,7 +186,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "TX",
@@ -205,7 +205,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -224,7 +224,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -243,7 +243,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "GA",
@@ -262,7 +262,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -281,7 +281,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "TX",
@@ -300,7 +300,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -319,7 +319,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -338,7 +338,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -357,7 +357,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "TX",
@@ -376,7 +376,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.cclerk.hctx.net/",
       "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -395,7 +395,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -414,7 +414,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     },
     {
       "State": "FL",
@@ -433,7 +433,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (FL Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "FL Statute \u00a7 197.582",
-      "Enriched_Timestamp": "2026-08-25 07:53:06"
+      "Enriched_Timestamp": "2026-08-25 07:57:14"
     }
   ]
 }
