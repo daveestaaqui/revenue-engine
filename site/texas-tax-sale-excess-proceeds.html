@@ -128,44 +128,80 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-navy-900 border-t border-navy-700/60 py-12 text-center text-xs text-slate-400 px-4">
-        <div class="max-w-4xl mx-auto flex flex-col items-center">
-            <a href="/" class="flex items-center gap-3 mb-6 group">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
-                <div class="flex items-baseline gap-1.5 leading-none">
-                    <span class="font-heading font-black text-lg sm:text-2xl text-[#5d8259]">SURPLUS</span>
-                    <span class="font-heading font-black text-lg sm:text-2xl text-white">DOCKET</span>
+    <!-- Footer (Institutional Multi-Column Grid) -->
+    <footer class="bg-white border-t border-slate-200 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-600">
+        <div class="max-w-7xl mx-auto">
+            <!-- Main Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-slate-200 text-left">
+                <!-- Col 1: Brand & Overview (Spans 2 cols on lg) -->
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="/" class="flex items-center gap-3 group shrink-0">
+                        <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                        <div class="flex items-baseline gap-1.5 leading-none">
+                            <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                            <span class="font-heading font-black text-xl sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                        </div>
+                    </a>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
+                        Structured daily public records intelligence indexing tax deed surplus and excess proceeds filings across county court registries for asset recovery law practices.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
+                            Daily 7:00 AM EST Dispatch
+                        </span>
+                        <a href="/api-documentation.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors">
+                            REST API v1
+                        </a>
+                    </div>
                 </div>
-            </a>
-            
-            <!-- Simple, Clean Centered Navigation Bar -->
-                        <!-- Condensed & Responsive Footer Navigation -->
-            <nav class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold text-slate-600 mb-6 max-w-3xl px-2">
-                <a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">FL Feed</a>
-                <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors">TX Feed</a>
-                <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors">GA Feed</a>
-                <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">Toolkit</a>
-                <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors">API</a>
-                <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/blog/" class="hover:text-brand-green transition-colors">Articles</a>
-                <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/#pricing" class="hover:text-brand-green transition-colors">Pricing</a>
-                <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/terms.html" class="hover:text-brand-green transition-colors">Terms</a>
-                <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="/refund-policy.html" class="hover:text-brand-green transition-colors">Refunds</a>
-                <span class="text-slate-300 hidden sm:inline">•</span>
-                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green transition-colors font-bold text-brand-navy">Customer Portal</a>
-            </nav>
-            
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-xs text-slate-500 w-full pt-6 border-t border-navy-800">
-                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
-                <span class="hidden sm:inline">•</span>
-                <p>Public Records Data Feeds • Court Registry Intelligence</p>
+
+                <!-- Col 2: Jurisdictions & Feeds -->
+                <div class="space-y-3">
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Jurisdiction Feeds</p>
+                    <ul class="space-y-2 text-xs font-medium">
+                        <li><a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Florida Feed</span> <span class="text-[10px] text-brand-green font-mono">FL § 197</span></a></li>
+                        <li><a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Texas Feed</span> <span class="text-[10px] text-brand-green font-mono">TX § 34</span></a></li>
+                        <li><a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Georgia Feed</span> <span class="text-[10px] text-brand-green font-mono">GA § 48</span></a></li>
+                        <li><a href="/north-carolina-tax-foreclosure-surplus.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>North Carolina</span> <span class="text-[10px] text-slate-400 font-mono">NC § 105</span></a></li>
+                        <li><a href="/tennessee-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Tennessee</span> <span class="text-[10px] text-slate-400 font-mono">TN § 67</span></a></li>
+                        <li><a href="/california-tax-defaulted-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>California</span> <span class="text-[10px] text-slate-400 font-mono">CA § 4675</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Legal Tech & Tools -->
+                <div class="space-y-3">
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Practitioner Tools</p>
+                    <ul class="space-y-2 text-xs font-medium">
+                        <li><a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">1-Click Petition Builder</a></li>
+                        <li><a href="/#calculator" class="hover:text-brand-green transition-colors">Statutory Cap Calculator</a></li>
+                        <li><a href="/methodology.html" class="hover:text-brand-green transition-colors">Lien Scrubbing Methodology</a></li>
+                        <li><a href="/comparison.html" class="hover:text-brand-green transition-colors">Provider Comparison Matrix</a></li>
+                        <li><a href="/api-documentation.html" class="hover:text-brand-green transition-colors">Programmatic REST API</a></li>
+                        <li><a href="/assets/sample_surplus_docket_feed.csv" download class="hover:text-brand-green transition-colors">Sample Data Export (.csv)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Account & Compliance -->
+                <div class="space-y-3">
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Company & Legal</p>
+                    <ul class="space-y-2 text-xs font-medium">
+                        <li><a href="/#pricing" class="hover:text-brand-green transition-colors">Subscription Pricing</a></li>
+                        <li><a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="text-brand-navy font-bold hover:text-brand-green transition-colors flex items-center gap-1"><span>Customer Portal</span> <span class="text-slate-400">&rarr;</span></a></li>
+                        <li><a href="/blog/" class="hover:text-brand-green transition-colors">Legal Research Articles</a></li>
+                        <li><a href="/press/" class="hover:text-brand-green transition-colors">Press & Newsroom</a></li>
+                        <li><a href="/terms.html" class="hover:text-brand-green transition-colors">Commercial Data Terms</a></li>
+                        <li><a href="/refund-policy.html" class="hover:text-brand-green transition-colors">14-Day Refund Guarantee</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Sub-Bar -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+                <p>&copy; 2026 Surplus Docket. All rights reserved. Public Records Legal Intelligence.</p>
+                <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
+                    Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
+                </p>
             </div>
         </div>
     </footer>
