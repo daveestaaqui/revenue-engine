@@ -11,6 +11,7 @@
       "Owner_Name": "MARCUS & ELEANOR JENKINS",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
+      "Heir_Search_Recommended": false,
       "Property_Address": "1420 PEACHTREE ST NE ATLANTA GA 30309",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 134000.0,
@@ -21,7 +22,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     },
     {
       "State": "GA",
@@ -30,6 +31,7 @@
       "Owner_Name": "ESTATE OF RAYMOND VAUGHN",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
+      "Heir_Search_Recommended": true,
       "Property_Address": "1205 ROSWELL RD MARIETTA GA 30062",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 118000.0,
@@ -40,7 +42,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     },
     {
       "State": "GA",
@@ -49,6 +51,7 @@
       "Owner_Name": "ESTATE OF HAROLD CRAWFORD",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
+      "Heir_Search_Recommended": true,
       "Property_Address": "892 CASCADE AVE SW ATLANTA GA 30310",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 96500.0,
@@ -59,7 +62,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     },
     {
       "State": "GA",
@@ -68,6 +71,7 @@
       "Owner_Name": "TERRENCE & MONICA BRADLEY",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
+      "Heir_Search_Recommended": false,
       "Property_Address": "2340 LAVISTA RD DECATUR GA 30033",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 82400.0,
@@ -78,7 +82,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     },
     {
       "State": "GA",
@@ -87,6 +91,7 @@
       "Owner_Name": "VICTORIA STRICKLAND",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
+      "Heir_Search_Recommended": false,
       "Property_Address": "4510 LAWRENCEVILLE HWY LILBURN GA 30047",
       "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 67800.0,
@@ -97,7 +102,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     }
   ]
 }

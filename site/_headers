@@ -15,4 +15,4 @@
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS
   Access-Control-Allow-Headers: Content-Type, Authorization, User-Agent
-  Cache-Control: public, max-age=300
+  Cache-Control: public, max-age=1800, s-maxage=3600, stale-while-revalidate=600

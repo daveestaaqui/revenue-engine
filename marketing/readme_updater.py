@@ -38,7 +38,7 @@ def generate_readme():
 [![REST API](https://img.shields.io/badge/API-REST%20JSON%20v1-0f172a?style=flat&logo=fastapi&logoColor=white)](https://surplusdocket.com/api-documentation.html)
 [![License: Commercial](https://img.shields.io/badge/Data%20License-Commercial-blue)](https://surplusdocket.com/terms.html)
 
-**[Surplus Docket](https://surplusdocket.com)** delivers structured, case-verified tax deed surplus and excess proceeds intelligence aggregated daily across Florida, Texas, and Georgia court registries. Built specifically for asset recovery attorneys, title counsel, and automated legal-tech practices.
+**[Surplus Docket](https://surplusdocket.com)** delivers structured, case-verified tax deed surplus and excess proceeds intelligence aggregated daily across Florida, Texas, Georgia, North Carolina, Tennessee, and California court registries. Built specifically for asset recovery attorneys, title counsel, and automated legal-tech practices.
 
 ---
 
@@ -46,10 +46,10 @@ def generate_readme():
 
 | Metric | Active Production Value | Statutory Provenance |
 | :--- | :--- | :--- |
-| **Active Monitored Surplus** | **${total_surplus:,.2f} USD** | Florida, Texas & Georgia District/Circuit Dockets |
-| **Available Statutory Fees** | **${total_fees:,.2f} USD** | Governed by Fla. Stat. § 197.582 & Tex. Tax Code § 34.04 |
+| **Active Monitored Surplus** | **${total_surplus:,.2f} USD** | 6-State Multi-Jurisdiction District/Circuit Dockets |
+| **Available Statutory Fees** | **${total_fees:,.2f} USD** | Governed by State Open Records & Recovery Codes |
 | **Active Indexed Records** | **{total_records} Verified Cases** | 100% Pre-filtered (Institutional Liens Removed) |
-| **Monitored Metro Hubs** | **12 Major Circuits** | Palm Beach, Miami-Dade, Orange, Harris, Dallas, Fulton, etc. |
+| **Monitored Metro Hubs** | **18 Major Judicial Circuits** | Palm Beach, Harris, Fulton, Wake, Davidson, Los Angeles, etc. |
 | **Delivery Frequency** | **Daily at 7:00 AM EST** | CSV, XLSX, and Live REST JSON API |
 
 ---
@@ -59,6 +59,9 @@ def generate_readme():
 - **Florida (Fla. Stat. § 197.582)**: 120-Day claim window. 20% non-attorney fee cap benchmark. ([Florida Docket Hub](https://surplusdocket.com/florida-tax-deed-surplus.html))
 - **Texas (Tex. Tax Code § 34.04)**: 2-Year limitation period. 25% statutory assignment cap. ([Texas Docket Hub](https://surplusdocket.com/texas-tax-sale-excess-proceeds.html))
 - **Georgia (O.C.G.A. § 48-4-5)**: 5-Year statutory claim window across Superior Court registries. ([Georgia Docket Hub](https://surplusdocket.com/georgia-tax-sale-excess-funds.html))
+- **North Carolina (N.C.G.S. § 105-374)**: 10-Day mandatory upset bid confirmation window. ([North Carolina Hub](https://surplusdocket.com/north-carolina-tax-foreclosure-surplus.html))
+- **Tennessee (T.C.A. § 67-5-2501)**: Chancery Court Clerk & Master excess proceeds distribution. ([Tennessee Hub](https://surplusdocket.com/tennessee-tax-sale-excess-proceeds.html))
+- **California (Cal. Rev. & Tax Code § 4675)**: 1-Year statutory claim window from tax deed recording. ([California Hub](https://surplusdocket.com/california-tax-defaulted-excess-proceeds.html))
 
 ---
 

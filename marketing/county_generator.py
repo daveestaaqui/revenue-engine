@@ -401,7 +401,7 @@ def generate_county_page(c):
             </div>
 
             <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-sm rounded-xl shadow-md transition-all">
-                Unlock Full {c['county']} Daily Lead Feed — /mo
+                Unlock Full {c['county']} Daily Lead Feed — $249/mo
             </a>
         </div>
 

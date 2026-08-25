@@ -31,12 +31,22 @@ CLERK_PORTALS = {
     "Miami-Dade": "https://www.miamidadeclerk.gov/",
     "Orange": "https://www.myorangeclerk.com/",
     "Hillsborough": "https://www.hillsclerk.com/",
-    "Harris": "https://www.cclerk.hctx.net/",
+    "Broward": "https://www.browardclerk.org/",
+    "Harris": "https://www.hcdistrictclerk.com/",
     "Dallas": "https://www.dallascounty.org/",
+    "Tarrant": "https://www.tarrantcountytx.gov/",
+    "Travis": "https://www.traviscountytx.gov/",
     "Fulton": "https://www.fultonclerk.org/",
     "DeKalb": "https://www.dekalbcountytax.org/",
     "Gwinnett": "https://www.gwinnetttaxcommissioner.com/",
     "Cobb": "https://www.cobbtax.org/",
+    "Wake": "https://www.nccourts.gov/locations/wake",
+    "Mecklenburg": "https://www.nccourts.gov/locations/mecklenburg",
+    "Durham": "https://www.nccourts.gov/locations/durham",
+    "Davidson": "https://chanceryclerkandmaster.nashville.gov/",
+    "Shelby": "https://chancery.shelbycountytn.gov/",
+    "Los Angeles": "https://ttc.lacounty.gov/",
+    "San Diego": "https://www.sdttc.com/",
 }
 
 def infer_property_class(address):
@@ -73,7 +83,15 @@ def classify_and_enrich_record(row, county_meta):
 
     state = county_meta.get("state", "FL")
     county_name = county_meta.get("county", "Unknown")
-    fee_rate = 0.20 if state in ["FL", "GA"] else 0.25
+    
+    # State-specific statutory fee rate caps
+    if state == "TX":
+        fee_rate = 0.25  # Tex. Tax Code § 34.04(i)
+    elif state in ["FL", "GA", "NC", "TN", "CA"]:
+        fee_rate = 0.20
+    else:
+        fee_rate = 0.20
+
     estimated_fee = round(surplus_amt * fee_rate, 2)
 
     address = str(row.get("property_address", row.get("SITUS", row.get("Address", "N/A")))).strip()
@@ -82,12 +100,19 @@ def classify_and_enrich_record(row, county_meta):
 
     prop_class = infer_property_class(address)
     clerk_url = CLERK_PORTALS.get(county_name, "https://surplusdocket.com")
+    
     if state == "FL":
-        deadline_rule = "120 Days from Notice (FL Stat. § 197.582)"
+        deadline_rule = "120 Days from Notice (Fla. Stat. § 197.582)"
     elif state == "TX":
-        deadline_rule = "2 Years from Sale (TX Tax Code § 34.04)"
+        deadline_rule = "2 Years from Sale (Tex. Tax Code § 34.04)"
     elif state == "GA":
         deadline_rule = "5 Years from Sale (O.C.G.A. § 48-4-5)"
+    elif state == "NC":
+        deadline_rule = "10-Day Upset Bid / Judicial Registry (N.C.G.S. § 105-374)"
+    elif state == "TN":
+        deadline_rule = "Chancery Court Motion Procedure (T.C.A. § 67-5-2501)"
+    elif state == "CA":
+        deadline_rule = "1 Year from Deed Recording (Cal. Rev. & Tax Code § 4675)"
     else:
         deadline_rule = "Statutory Filing Window"
 
@@ -98,6 +123,7 @@ def classify_and_enrich_record(row, county_meta):
         "Owner_Name": owner_raw,
         "Entity_Type": "Estate / Deceased" if is_estate else owner_type,
         "Is_Individual": not is_inst,
+        "Heir_Search_Recommended": is_estate,
         "Property_Address": address,
         "Property_Type": prop_class,
         "Surplus_Balance_USD": surplus_amt,

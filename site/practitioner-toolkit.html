@@ -119,7 +119,11 @@
         </div>
 
         <!-- Quick Jump Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-12">
+            <a href="#petition-generator" class="bg-brand-greenSoft p-3.5 rounded-xl border-2 border-brand-green text-center shadow-sm hover:shadow transition-all group">
+                <span class="text-xs font-bold text-brand-navy block mb-1">⚡ 1-Click Builder</span>
+                <span class="text-xs text-brand-green font-semibold">Interactive Motion</span>
+            </a>
             <a href="#florida-template" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
                 <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Florida Protocol</span>
                 <span class="text-xs text-slate-500">120-Day F.S. § 197.582</span>
@@ -133,10 +137,121 @@
                 <span class="text-xs text-slate-500">Statutory Fee Caps</span>
             </a>
             <a href="#heirship-checklist" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
-                <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Lien Extinction Audit</span>
+                <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Lien Extinction</span>
                 <span class="text-xs text-slate-500">Heirship Waterfall</span>
             </a>
         </div>
+
+        <!-- Interactive 1-Click Court Petition Generator -->
+        <section id="petition-generator" class="bg-white border-2 border-brand-green rounded-3xl p-6 sm:p-10 shadow-xl mb-14">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 pb-6 mb-8">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-2">
+                        <span>⚡ Autonomous Legal Document Engine</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy">Interactive 1-Click Court Petition Builder</h2>
+                    <p class="text-xs sm:text-sm text-slate-600">Select any indexed docket or enter case metadata to generate an instant statutory court filing packet.</p>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button onclick="downloadPetitionDoc()" class="inline-flex items-center gap-2 px-4 py-2.5 bg-brand-navy hover:bg-brand-navyDark text-white text-xs font-bold rounded-xl shadow-sm transition-all">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Download (.doc)
+                    </button>
+                    <button onclick="copyGeneratedPetition()" id="gen-copy-btn" class="inline-flex items-center gap-2 px-4 py-2.5 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold rounded-xl shadow-sm transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                        Copy Motion
+                    </button>
+                </div>
+            </div>
+
+            <!-- Form Controls -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">1. Select Jurisdiction & Statute</label>
+                    <select id="gen-state" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all" onchange="onStateChange()">
+                        <option value="FL">Florida — Fla. Stat. § 197.582 (120-Day Notice)</option>
+                        <option value="TX">Texas — Tex. Tax Code § 34.04 (2-Year Registry)</option>
+                        <option value="GA">Georgia — O.C.G.A. § 48-4-5 (5-Year Window)</option>
+                        <option value="NC">North Carolina — N.C.G.S. § 105-374 (10-Day Confirmation)</option>
+                        <option value="TN">Tennessee — T.C.A. § 67-5-2501 (Chancery Court)</option>
+                        <option value="CA">California — Cal. Rev. & Tax Code § 4675 (1-Year Deed)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">2. Pre-Load Verified Live Docket</label>
+                    <select id="gen-docket-preset" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-green focus:outline-none focus:border-brand-green focus:bg-white transition-all" onchange="loadDocketPreset()">
+                        <option value="">-- Choose High-Yield Sample Case --</option>
+                        <option value="FL_PB">Palm Beach FL: 2024-TD-004501 ($145,000.00)</option>
+                        <option value="TX_HC">Harris County TX: 2024-TX-04812 ($128,500.00)</option>
+                        <option value="GA_FC">Fulton County GA: 2024-GA-003810 ($134,000.00)</option>
+                        <option value="NC_WC">Wake County NC: 2024-NC-001420 ($114,500.00)</option>
+                        <option value="TN_DC">Davidson County TN: 2024-TN-002190 ($126,000.00)</option>
+                        <option value="CA_LA">Los Angeles CA: 2024-CA-008120 ($215,000.00)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">3. Claimant Capacity</label>
+                    <select id="gen-capacity" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all" onchange="renderLivePetition()">
+                        <option value="Former Record Titleholder">Former Record Titleholder (Direct Owner)</option>
+                        <option value="Estate Heir & Lawful Beneficiary">Estate Heir & Lawful Beneficiary (Probate Estate)</option>
+                        <option value="Judgment Creditor / Junior Lienholder">Judgment Creditor / Junior Lienholder</option>
+                        <option value="Authorized Assignee / Representative">Authorized Assignee / Representative</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 text-xs">
+                <div>
+                    <label class="block font-semibold text-slate-500 mb-1">Case / Docket Number</label>
+                    <input type="text" id="gen-case-no" value="2024-TD-004501" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono font-semibold" oninput="renderLivePetition()">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-500 mb-1">County Name</label>
+                    <input type="text" id="gen-county" value="Palm Beach" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-semibold" oninput="renderLivePetition()">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-500 mb-1">Surplus Balance ($)</label>
+                    <input type="text" id="gen-amount" value="145,000.00" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono font-bold text-brand-green" oninput="renderLivePetition()">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-500 mb-1">Auction Date</label>
+                    <input type="text" id="gen-date" value="August 18, 2026" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-semibold" oninput="renderLivePetition()">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="block font-semibold text-slate-500 mb-1">Claimant / Record Owner Name</label>
+                    <input type="text" id="gen-owner" value="Anthony & Grace Valentine" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-semibold" oninput="renderLivePetition()">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="block font-semibold text-slate-500 mb-1">Property Situs Address</label>
+                    <input type="text" id="gen-address" value="720 S Ocean Blvd, Palm Beach FL 33480" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-semibold" oninput="renderLivePetition()">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-500 mb-1">Attorney Name</label>
+                    <input type="text" id="gen-attorney" value="David Sterling, Esq." class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-semibold" oninput="renderLivePetition()">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-500 mb-1">State Bar Number</label>
+                    <input type="text" id="gen-bar-no" value="FL Bar # 1048291" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono font-semibold" oninput="renderLivePetition()">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-500 mb-1">Law Firm Name</label>
+                    <input type="text" id="gen-firm" value="Sterling Legal Group, P.A." class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-semibold" oninput="renderLivePetition()">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-500 mb-1">Firm Phone / Contact</label>
+                    <input type="text" id="gen-phone" value="(561) 555-0198" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-semibold" oninput="renderLivePetition()">
+                </div>
+            </div>
+
+            <!-- Dynamic Formatted Document Preview -->
+            <div class="bg-slate-900 rounded-2xl p-6 sm:p-8 text-slate-100 font-mono text-xs leading-relaxed overflow-x-auto border border-slate-800 shadow-inner">
+                <div class="flex items-center justify-between text-slate-400 border-b border-slate-800 pb-3 mb-4 text-[10px] font-bold uppercase tracking-wider">
+                    <span>Generated Court Filing Document Preview</span>
+                    <span id="gen-doc-type" class="text-emerald-400">FLORIDA CIR. CT. MOTION</span>
+                </div>
+                <pre id="live-petition-output" class="whitespace-pre-wrap font-mono"></pre>
+            </div>
+        </section>
 
         <!-- Template 1: Florida Motion for Distribution -->
         <section id="florida-template" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md mb-10">
@@ -368,9 +483,245 @@ ATTORNEY SIGNATURE: __________________________________ DATE: ______________</pre
     
 
     <script>
-        
-        
-        
+        const PRESETS = {
+            "FL_PB": { state: "FL", caseNo: "2024-TD-004501", county: "Palm Beach", amount: "145,000.00", date: "August 18, 2026", owner: "Anthony & Grace Valentine", address: "720 S Ocean Blvd, Palm Beach FL 33480", bar: "FL Bar # 1048291" },
+            "TX_HC": { state: "TX", caseNo: "2024-TX-04812", county: "Harris", amount: "128,500.00", date: "August 12, 2026", owner: "William & Mary Holloway", address: "5402 Braesvalley Dr, Houston TX 77096", bar: "State Bar of Texas # 24098112" },
+            "GA_FC": { state: "GA", caseNo: "2024-GA-003810", county: "Fulton", amount: "134,000.00", date: "August 15, 2026", owner: "Marcus & Eleanor Jenkins", address: "1420 Peachtree St NE, Atlanta GA 30309", bar: "GA State Bar # 591024" },
+            "NC_WC": { state: "NC", caseNo: "2024-NC-001420", county: "Wake", amount: "114,500.00", date: "July 18, 2026", owner: "Harrison & Caroline Vance", address: "4210 Glenwood Ave, Raleigh NC 27612", bar: "NC State Bar # 48210" },
+            "TN_DC": { state: "TN", caseNo: "2024-TN-002190", county: "Davidson", amount: "126,000.00", date: "July 16, 2026", owner: "Franklin & Judith Mercer", address: "2418 West End Ave, Nashville TN 37203", bar: "BPR # 038192 (TN)" },
+            "CA_LA": { state: "CA", caseNo: "2024-CA-008120", county: "Los Angeles", amount: "215,000.00", date: "July 09, 2026", owner: "Gregory & Evelyn Thatcher", address: "1420 Wilshire Blvd, Los Angeles CA 90017", bar: "CA State Bar # 294812" }
+        };
+
+        function onStateChange() {
+            const state = document.getElementById("gen-state").value;
+            if (state === "FL") {
+                document.getElementById("gen-bar-no").value = "FL Bar # 1048291";
+            } else if (state === "TX") {
+                document.getElementById("gen-bar-no").value = "State Bar of Texas # 24098112";
+            } else if (state === "GA") {
+                document.getElementById("gen-bar-no").value = "GA State Bar # 591024";
+            } else if (state === "NC") {
+                document.getElementById("gen-bar-no").value = "NC State Bar # 48210";
+            } else if (state === "TN") {
+                document.getElementById("gen-bar-no").value = "BPR # 038192 (TN)";
+            } else if (state === "CA") {
+                document.getElementById("gen-bar-no").value = "CA State Bar # 294812";
+            }
+            renderLivePetition();
+        }
+
+        function loadDocketPreset() {
+            const val = document.getElementById("gen-docket-preset").value;
+            if (!val || !PRESETS[val]) return;
+            const p = PRESETS[val];
+            document.getElementById("gen-state").value = p.state;
+            document.getElementById("gen-case-no").value = p.caseNo;
+            document.getElementById("gen-county").value = p.county;
+            document.getElementById("gen-amount").value = p.amount;
+            document.getElementById("gen-date").value = p.date;
+            document.getElementById("gen-owner").value = p.owner;
+            document.getElementById("gen-address").value = p.address;
+            document.getElementById("gen-bar-no").value = p.bar;
+            renderLivePetition();
+        }
+
+        function renderLivePetition() {
+            const state = document.getElementById("gen-state").value;
+            const caseNo = document.getElementById("gen-case-no").value || "[CASE NUMBER]";
+            const county = document.getElementById("gen-county").value || "[COUNTY]";
+            const amount = document.getElementById("gen-amount").value || "0.00";
+            const date = document.getElementById("gen-date").value || "[AUCTION DATE]";
+            const owner = document.getElementById("gen-owner").value || "[CLAIMANT / OWNER NAME]";
+            const address = document.getElementById("gen-address").value || "[PROPERTY SITUS ADDRESS]";
+            const capacity = document.getElementById("gen-capacity").value;
+            const attorney = document.getElementById("gen-attorney").value || "[ATTORNEY NAME]";
+            const barNo = document.getElementById("gen-bar-no").value || "[BAR NUMBER]";
+            const firm = document.getElementById("gen-firm").value || "[LAW FIRM NAME]";
+            const phone = document.getElementById("gen-phone").value || "[PHONE]";
+
+            const docTypeLabel = document.getElementById("gen-doc-type");
+            let docText = "";
+
+            if (state === "FL") {
+                docTypeLabel.innerText = "FLORIDA CIR. CT. MOTION (FLA. STAT. § 197.582)";
+                docText = `IN THE CIRCUIT COURT OF THE FIFTEENTH JUDICIAL CIRCUIT
+IN AND FOR ${county.toUpperCase()} COUNTY, FLORIDA
+
+IN RE: TAX DEED FILE NO.: ${caseNo}
+TAX CERTIFICATE / PARCEL ID: ${caseNo.replace("TD-", "")}
+PROPERTY ADDRESS: ${address.toUpperCase()}
+
+________________________________________/
+
+CLAIMANT'S STATUTORY MOTION FOR DISTRIBUTION OF TAX DEED SURPLUS PROCEEDS
+PURSUANT TO FLORIDA STATUTE § 197.582
+
+COMES NOW the Claimant, ${owner.toUpperCase()}, as ${capacity}, by and through undersigned legal counsel, and respectfully moves this Honorable Court and the Clerk of the Circuit Court & Comptroller for an Order authorizing the immediate disbursement of surplus proceeds currently retained in the Court registry, and in support states:
+
+1. JURISDICTION & VENUE: The real property subject to this proceeding is situated in ${county} County, Florida. The Clerk of the Circuit Court retains jurisdiction over the surplus funds pursuant to Fla. Stat. § 197.582.
+
+2. SALE OCCURRENCE: On ${date}, the Clerk conducted a statutory tax deed public sale for the subject property located at ${address}.
+
+3. SURPLUS CREATION: Following the satisfaction of all opening statutory bids, taxes, and Clerk fees, a net surplus in the amount of $${amount} was retained in the Clerk's registry.
+
+4. CLAIMANT ENTITLEMENT: Claimant was the lawful ${capacity} of the subject property on the date of the auction, as evidenced by Exhibit "A" (Recorded Title / Probate Letters).
+
+5. STATUTORY NOTICE COMPLIANCE: More than 120 days have passed from the Clerk's notice, or all junior encumbrance claims have been duly resolved in order of lien seniority.
+
+WHEREFORE, Claimant respectfully requests this Court enter an Order directing the Clerk of Court to issue payment of the surplus sum of $${amount} to ${attorney}, as counsel for Claimant.
+
+DATED: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}.
+
+Respectfully submitted,
+
+__________________________________________
+${attorney}
+${barNo}
+${firm}
+Telephone: ${phone}
+Counsel for Claimant`;
+            } else if (state === "TX") {
+                docTypeLabel.innerText = "TEXAS DIST. CT. PETITION (TEX. TAX CODE § 34.04)";
+                docText = `CAUSE NO. ${caseNo}
+
+TAXING ENTITIES OF ${county.toUpperCase()} COUNTY   §   IN THE DISTRICT COURT OF
+                                   §
+VS.                                §   ${county.toUpperCase()} COUNTY, TEXAS
+                                   §
+${owner.toUpperCase()}             §   JUDICIAL DISTRICT COURT
+
+ORIGINAL PETITION FOR RECOVERY OF EXCESS PROCEEDS
+PURSUANT TO TEXAS TAX CODE § 34.04
+
+TO THE HONORABLE JUDGE OF SAID COURT:
+
+COMES NOW ${owner}, Petitioner herein, appearing as ${capacity}, by and through attorney of record, and files this Original Petition for Release of Excess Proceeds pursuant to Section 34.04 of the Texas Tax Code, and demonstrates:
+
+I. JURISDICTION AND PARTIES
+1. Petitioner is entitled to claim excess proceeds under Tex. Tax Code § 34.04(a). This Court has jurisdiction over the registry funds generated under Cause No. ${caseNo}.
+
+II. FACTUAL BACKGROUND
+2. On ${date}, a tax foreclosure sale was conducted for the real property situated at ${address}.
+3. After satisfaction of the underlying tax judgment, the Constable/Sheriff deposited excess proceeds totaling $${amount} into the Registry of this District Court.
+4. Less than two (2) years have elapsed from the date of the tax sale.
+
+III. STATUTORY PRAYER
+WHEREFORE, Petitioner prays that notice issue to all parties to the underlying judgment, and upon consideration, the Court enter an Order directing the District Clerk to disburse $${amount} from the registry to Petitioner.
+
+Respectfully submitted,
+
+__________________________________________
+${attorney}
+${barNo} | ${firm}
+Telephone: ${phone}`;
+            } else if (state === "GA") {
+                docTypeLabel.innerText = "GEORGIA CLAIM & DEMAND (O.C.G.A. § 48-4-5)";
+                docText = `IN THE SUPERIOR COURT / TAX COMMISSIONER REGISTRY
+OF ${county.toUpperCase()} COUNTY, STATE OF GEORGIA
+
+IN RE: TAX SALE DOCKET NO.: ${caseNo}
+DEFENDANT IN FI. FA.: ${owner.toUpperCase()}
+PROPERTY SITUS: ${address}
+
+CLAIM AND DEMAND FOR DISBURSEMENT OF EXCESS TAX SALE FUNDS
+PURSUANT TO O.C.G.A. § 48-4-5
+
+TO: THE SHERIFF / TAX COMMISSIONER OF ${county.toUpperCase()} COUNTY, GEORGIA
+
+COMES NOW ${owner}, Claimant herein, acting in capacity as ${capacity}, and makes this formal demand for distribution of excess proceeds resulting from the tax sale conducted on ${date}:
+
+1. On ${date}, the subject property at ${address} was sold at public outcry.
+2. Excess funds in the amount of $${amount} were deposited into the registry.
+3. Claimant holds priority status as the defendant in fi. fa. / record owner / lawful successor pursuant to O.C.G.A. § 48-4-5.
+
+WHEREFORE, Claimant demands prompt payment of the $${amount} surplus balance.
+
+__________________________________________
+${attorney}
+${barNo} | ${firm} | Tel: ${phone}`;
+            } else if (state === "NC") {
+                docTypeLabel.innerText = "NORTH CAROLINA SUPERIOR COURT MOTION (N.C.G.S. § 105-374)";
+                docText = `NORTH CAROLINA
+${county.toUpperCase()} COUNTY
+IN THE GENERAL COURT OF JUSTICE
+SUPERIOR COURT DIVISION
+FILE NO.: ${caseNo}
+
+IN RE FORECLOSURE OF TAX LIENS:
+${owner.toUpperCase()}, RECORD DEFENDANT
+PROPERTY: ${address}
+
+MOTION FOR DISBURSEMENT OF FORECLOSURE SURPLUS
+PURSUANT TO N.C.G.S. § 105-374
+
+NOW COMES the Claimant, ${owner}, as ${capacity}, and moves the Clerk of Superior Court for entry of an Order disbursing the foreclosure surplus balance of $${amount}. The 10-day upset bid period has expired with sale confirmed.
+
+Respectfully submitted this date by:
+
+__________________________________________
+${attorney}
+${barNo} | ${firm}`;
+            } else if (state === "TN") {
+                docTypeLabel.innerText = "TENNESSEE CHANCERY COURT MOTION (T.C.A. § 67-5-2501)";
+                docText = `IN THE CHANCERY COURT FOR ${county.toUpperCase()} COUNTY, TENNESSEE
+AT NASHVILLE / REGISTRY DIVISION
+
+CASE NO. ${caseNo}
+DELINQUENT TAX SALE PROCEEDING
+
+MOTION FOR PAYMENT OF EXCESS PROCEEDS PURSUANT TO T.C.A. § 67-5-2501
+
+Comes the Movant, ${owner} (${capacity}), by counsel, and moves this Court for an Order directing the Clerk and Master to disburse excess tax sale funds in the amount of $${amount} resulting from the auction of ${address}.
+
+__________________________________________
+${attorney}
+${barNo} | ${firm}`;
+            } else if (state === "CA") {
+                docTypeLabel.innerText = "CALIFORNIA TAX-DEFAULTED CLAIM (CAL. REV. & TAX CODE § 4675)";
+                docText = `CLAIM FOR EXCESS PROCEEDS FROM SALE OF TAX-DEFAULTED PROPERTY
+PURSUANT TO CALIFORNIA REVENUE AND TAXATION CODE SECTION 4675
+
+TO: TREASURER-TAX COLLECTOR, COUNTY OF ${county.toUpperCase()}, CALIFORNIA
+ITEM / PARCEL NO.: ${caseNo}
+ASSESSMENT ADDRESS: ${address}
+TOTAL SURPLUS BALANCE: $${amount}
+
+Claimant Name: ${owner}
+Capacity: ${capacity}
+Sale Date: ${date}
+
+Claimant hereby applies for distribution of excess proceeds resulting from the sale of the above-referenced property. This claim is filed within one (1) year of deed recording.
+
+Executed under penalty of perjury under the laws of the State of California:
+
+__________________________________________
+${attorney}, Counsel of Record
+${barNo} | ${firm} | Tel: ${phone}`;
+            }
+
+            document.getElementById("live-petition-output").innerText = docText;
+        }
+
+        function copyGeneratedPetition() {
+            const text = document.getElementById("live-petition-output").innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById("gen-copy-btn");
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = `<span class="text-white font-bold">✓ Copied Motion!</span>`;
+                setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
+            });
+        }
+
+        function downloadPetitionDoc() {
+            const text = document.getElementById("live-petition-output").innerText;
+            const state = document.getElementById("gen-state").value;
+            const caseNo = document.getElementById("gen-case-no").value || "Petition";
+            const blob = new Blob([text], { type: "application/msword;charset=utf-8" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = `Surplus_Petition_${state}_${caseNo.replace(/[^a-zA-Z0-9]/g, "_")}.doc`;
+            link.click();
+        }
 
         function copySnippet(elementId, buttonId) {
             const text = document.getElementById(elementId).innerText;
@@ -381,6 +732,10 @@ ATTORNEY SIGNATURE: __________________________________ DATE: ______________</pre
                 setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
             });
         }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            renderLivePetition();
+        });
     </script>
 </body>
 </html>

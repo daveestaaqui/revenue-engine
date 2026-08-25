@@ -30,6 +30,9 @@ STATE_NAMES = {
     "FL": "Florida",
     "TX": "Texas",
     "GA": "Georgia",
+    "NC": "North Carolina",
+    "TN": "Tennessee",
+    "CA": "California",
 }
 
 # Stripe checkout links by state / tier

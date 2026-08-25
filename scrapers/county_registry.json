@@ -6,7 +6,7 @@
     "source_url": "https://www.orangecountycomptroller.com/Records-Search/Tax-Deeds",
     "format": "CSV/PDF",
     "avg_monthly_surplus": 1850000,
-    "statute": "FL Statute § 197.582"
+    "statute": "Fla. Stat. § 197.582"
   },
   {
     "state": "FL",
@@ -15,7 +15,7 @@
     "source_url": "https://www.hillsclerk.com/Court-Services/Tax-Deeds",
     "format": "CSV",
     "avg_monthly_surplus": 1420000,
-    "statute": "FL Statute § 197.582"
+    "statute": "Fla. Stat. § 197.582"
   },
   {
     "state": "FL",
@@ -24,7 +24,7 @@
     "source_url": "https://mypalmbeachclerk.com/departments/courts/tax-deeds",
     "format": "PDF",
     "avg_monthly_surplus": 2100000,
-    "statute": "FL Statute § 197.582"
+    "statute": "Fla. Stat. § 197.582"
   },
   {
     "state": "FL",
@@ -33,7 +33,16 @@
     "source_url": "https://www.miamidadeclerk.gov/clerk/tax-deeds.page",
     "format": "PDF/Table",
     "avg_monthly_surplus": 3400000,
-    "statute": "FL Statute § 197.582"
+    "statute": "Fla. Stat. § 197.582"
+  },
+  {
+    "state": "FL",
+    "county": "Broward",
+    "portal_name": "Broward County Clerk of the Circuit Court",
+    "source_url": "https://www.browardclerk.org/Divisions/TaxDeeds",
+    "format": "PDF/Table",
+    "avg_monthly_surplus": 2950000,
+    "statute": "Fla. Stat. § 197.582"
   },
   {
     "state": "FL",
@@ -42,33 +51,123 @@
     "source_url": "https://www.duvalclerk.com/departments/tax-deeds",
     "format": "PDF",
     "avg_monthly_surplus": 980000,
-    "statute": "FL Statute § 197.582"
+    "statute": "Fla. Stat. § 197.582"
   },
   {
     "state": "TX",
     "county": "Harris (Houston)",
-    "portal_name": "Harris County Tax Assessor",
-    "source_url": "https://www.hctax.net/Property/TaxSales",
+    "portal_name": "Harris County District Clerk (Court Registry)",
+    "source_url": "https://www.hcdistrictclerk.com/Common/Civil/CourtRegistry.aspx",
     "format": "CSV/PDF",
     "avg_monthly_surplus": 2800000,
-    "statute": "TX Tax Code § 34.04"
+    "statute": "Tex. Tax Code § 34.04"
   },
   {
     "state": "TX",
     "county": "Dallas",
-    "portal_name": "Dallas County District Clerk",
+    "portal_name": "Dallas County District Clerk (Civil Registry)",
     "source_url": "https://www.dallascounty.org/government/district-clerk/tax-foreclosures.php",
     "format": "PDF",
     "avg_monthly_surplus": 1650000,
-    "statute": "TX Tax Code § 34.04"
+    "statute": "Tex. Tax Code § 34.04"
+  },
+  {
+    "state": "TX",
+    "county": "Tarrant (Fort Worth)",
+    "portal_name": "Tarrant County District Clerk",
+    "source_url": "https://www.tarrantcountytx.gov/en/district-clerk.html",
+    "format": "PDF/CSV",
+    "avg_monthly_surplus": 1350000,
+    "statute": "Tex. Tax Code § 34.04"
+  },
+  {
+    "state": "TX",
+    "county": "Travis (Austin)",
+    "portal_name": "Travis County District Clerk",
+    "source_url": "https://www.traviscountytx.gov/district-clerk",
+    "format": "PDF",
+    "avg_monthly_surplus": 1150000,
+    "statute": "Tex. Tax Code § 34.04"
   },
   {
     "state": "GA",
     "county": "Fulton (Atlanta)",
-    "portal_name": "Fulton County Sheriff",
+    "portal_name": "Fulton County Sheriff & Superior Court",
     "source_url": "https://www.fultoncountysheriff.com/excess-funds.html",
     "format": "Web/PDF",
     "avg_monthly_surplus": 1200000,
-    "statute": "O.C.G.A. § 48-5-450"
+    "statute": "O.C.G.A. § 48-4-5"
+  },
+  {
+    "state": "GA",
+    "county": "Cobb",
+    "portal_name": "Cobb County Sheriff & Superior Court Clerk",
+    "source_url": "https://www.cobbsheriff.org/excess-funds",
+    "format": "PDF",
+    "avg_monthly_surplus": 940000,
+    "statute": "O.C.G.A. § 48-4-5"
+  },
+  {
+    "state": "GA",
+    "county": "DeKalb",
+    "portal_name": "DeKalb County Tax Commissioner",
+    "source_url": "https://www.dekalbcountytax.org/excess-funds",
+    "format": "PDF/Table",
+    "avg_monthly_surplus": 880000,
+    "statute": "O.C.G.A. § 48-4-5"
+  },
+  {
+    "state": "NC",
+    "county": "Wake (Raleigh)",
+    "portal_name": "Wake County Clerk of Superior Court",
+    "source_url": "https://www.nccourts.gov/locations/wake/wake-county-clerk-of-superior-court",
+    "format": "PDF/Judicial",
+    "avg_monthly_surplus": 920000,
+    "statute": "N.C.G.S. § 105-374"
+  },
+  {
+    "state": "NC",
+    "county": "Mecklenburg (Charlotte)",
+    "portal_name": "Mecklenburg County Clerk of Superior Court",
+    "source_url": "https://www.nccourts.gov/locations/mecklenburg",
+    "format": "PDF/Judicial",
+    "avg_monthly_surplus": 1100000,
+    "statute": "N.C.G.S. § 105-374"
+  },
+  {
+    "state": "TN",
+    "county": "Davidson (Nashville)",
+    "portal_name": "Davidson County Chancery Court Clerk & Master",
+    "source_url": "https://chanceryclerkandmaster.nashville.gov/",
+    "format": "PDF/Motion",
+    "avg_monthly_surplus": 860000,
+    "statute": "T.C.A. § 67-5-2501"
+  },
+  {
+    "state": "TN",
+    "county": "Shelby (Memphis)",
+    "portal_name": "Shelby County Chancery Court Clerk & Master",
+    "source_url": "https://chancery.shelbycountytn.gov/",
+    "format": "PDF/Motion",
+    "avg_monthly_surplus": 790000,
+    "statute": "T.C.A. § 67-5-2501"
+  },
+  {
+    "state": "CA",
+    "county": "Los Angeles",
+    "portal_name": "Los Angeles County Treasurer and Tax Collector",
+    "source_url": "https://ttc.lacounty.gov/tax-defaulted-property-sales/",
+    "format": "PDF/Table",
+    "avg_monthly_surplus": 4500000,
+    "statute": "Cal. Rev. & Tax Code § 4675"
+  },
+  {
+    "state": "CA",
+    "county": "San Diego",
+    "portal_name": "San Diego County Treasurer-Tax Collector",
+    "source_url": "https://www.sdttc.com/content/ttc/en/tax-collection/tax-sale.html",
+    "format": "PDF/Table",
+    "avg_monthly_surplus": 2300000,
+    "statute": "Cal. Rev. & Tax Code § 4675"
   }
 ]

@@ -11,6 +11,7 @@
       "Owner_Name": "WILLIAM & MARY HOLLOWAY",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
+      "Heir_Search_Recommended": false,
       "Property_Address": "5402 BRAESVALLEY DR HOUSTON TX 77096",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 128500.0,
@@ -18,10 +19,10 @@
       "Est_Finder_Fee_USD": 32125.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-09",
-      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
-      "Clerk_Verification_URL": "https://www.cclerk.hctx.net/",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
+      "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
+      "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     },
     {
       "State": "TX",
@@ -30,6 +31,7 @@
       "Owner_Name": "ESTATE OF CHARLES BEAUMONT",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
+      "Heir_Search_Recommended": true,
       "Property_Address": "1802 HEIGHTS BLVD HOUSTON TX 77008",
       "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 86200.0,
@@ -37,10 +39,10 @@
       "Est_Finder_Fee_USD": 21550.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-16",
-      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
-      "Clerk_Verification_URL": "https://www.cclerk.hctx.net/",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
+      "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
+      "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     },
     {
       "State": "TX",
@@ -49,6 +51,7 @@
       "Owner_Name": "ESTATE OF MARGARET THORNTON",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
+      "Heir_Search_Recommended": true,
       "Property_Address": "6412 ABRAMS RD DALLAS TX 75231",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 77800.0,
@@ -56,10 +59,10 @@
       "Est_Finder_Fee_USD": 19450.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-13",
-      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
+      "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     },
     {
       "State": "TX",
@@ -68,6 +71,7 @@
       "Owner_Name": "GEORGE & DOROTHY WASHINGTON",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
+      "Heir_Search_Recommended": false,
       "Property_Address": "3819 COLONIAL AVE DALLAS TX 75215",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 59400.0,
@@ -75,10 +79,10 @@
       "Est_Finder_Fee_USD": 14850.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-23",
-      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
+      "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     },
     {
       "State": "TX",
@@ -87,6 +91,7 @@
       "Owner_Name": "RAFAEL GUERRERO",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
+      "Heir_Search_Recommended": false,
       "Property_Address": "7120 NAVIGATION BLVD HOUSTON TX 77011",
       "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 41300.0,
@@ -94,10 +99,10 @@
       "Est_Finder_Fee_USD": 10325.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-06",
-      "Statutory_Deadline_Window": "2 Years from Sale (TX Tax Code \u00a7 34.04)",
-      "Clerk_Verification_URL": "https://www.cclerk.hctx.net/",
-      "Governing_Statute": "TX Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-08-25 08:12:37"
+      "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
+      "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
+      "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-08-25 08:42:46"
     }
   ]
 }

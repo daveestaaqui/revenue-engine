@@ -289,26 +289,32 @@
             </div>
 
             <!-- Interactive Live Search & Filter Bar -->
-            <div class="mb-3 bg-white border border-slate-200 rounded-xl p-3 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div class="flex items-center gap-2 w-full sm:w-auto">
-                    <div class="relative w-full sm:w-60">
+            <div class="mb-3 bg-white border border-slate-200 rounded-xl p-3 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-3">
+                <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                    <div class="relative flex-grow sm:flex-grow-0 sm:w-56">
                         <input type="text" id="docket-search" placeholder="Search county, docket #..." class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all" oninput="filterSampleTable()">
                         <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
                     <select id="state-filter" class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all shrink-0" onchange="filterSampleTable()">
-                        <option value="ALL">All States (FL, TX, GA)</option>
+                        <option value="ALL">All States (FL, TX, GA, NC, TN, CA)</option>
                         <option value="FL">Florida (FL)</option>
                         <option value="TX">Texas (TX)</option>
                         <option value="GA">Georgia (GA)</option>
+                        <option value="NC">North Carolina (NC)</option>
+                        <option value="TN">Tennessee (TN)</option>
+                        <option value="CA">California (CA)</option>
+                    </select>
+                    <select id="min-amount-filter" class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold text-brand-green focus:outline-none focus:border-brand-green focus:bg-white transition-all shrink-0" onchange="filterSampleTable()">
+                        <option value="0">All Balances ($0+)</option>
+                        <option value="50000">$50k+ High Yield</option>
+                        <option value="100000">$100k+ Tier 1 Priority</option>
                     </select>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                <div class="flex items-center gap-2 sm:gap-3 w-full lg:w-auto justify-between lg:justify-end">
+                    <span id="docket-count" class="text-xs font-bold text-slate-500">Showing 10 Verified Dockets</span>
                     <a href="/assets/sample_surplus_docket_feed.csv" download class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-brand-navy border border-slate-300 rounded-lg text-xs font-bold transition-all shadow-sm">
                         <svg class="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        Sample CSV (.csv)
-                    </a>
-                    <a href="/methodology.html" class="text-xs font-bold text-slate-600 hover:text-brand-green">
-                        Methodology &rarr;
+                        Sample CSV
                     </a>
                 </div>
             </div>
@@ -333,7 +339,17 @@
                             </tr>
                         </thead>
                         <tbody id="sample-table-body" class="divide-y divide-slate-200 font-mono text-slate-700">
-                            <tr data-state="FL" class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="CA" data-amount="215000" class="hover:bg-slate-50 transition-colors">
+                                <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">CA</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Los Angeles</td>
+                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-CA-008120</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 20, 2026</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">G. & E. T████████</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$215,000.00</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$43,000.00 (20%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://ttc.lacounty.gov/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
+                            </tr>
+                            <tr data-state="FL" data-amount="145000" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Palm Beach</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004501</td>
@@ -343,7 +359,7 @@
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$29,000.00 (20%)</td>
                                 <td class="py-3 px-3 text-center font-sans"><a href="https://www.mypalmbeachclerk.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
-                            <tr data-state="GA" class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="GA" data-amount="134000" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">GA</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Fulton</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-GA-003810</td>
@@ -351,9 +367,9 @@
                                 <td class="py-3 px-4 sm:px-5 font-sans">M. & E. J███████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$134,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$26,800.00 (20%)</td>
-                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.fcsoga.org/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.fultonclerk.org/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
-                            <tr data-state="TX" class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="TX" data-amount="128500" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04812</td>
@@ -363,17 +379,37 @@
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$32,125.00 (25%)</td>
                                 <td class="py-3 px-3 text-center font-sans"><a href="https://www.hcdistrictclerk.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
-                            <tr data-state="GA" class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="TN" data-amount="126000" class="hover:bg-slate-50 transition-colors">
+                                <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TN</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Davidson</td>
+                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TN-002190</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 10, 2026</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">F. & J. M██████</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$126,000.00</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$25,200.00 (20%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://chanceryclerkandmaster.nashville.gov/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
+                            </tr>
+                            <tr data-state="GA" data-amount="118000" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">GA</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Cobb</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-GA-001550</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 10, 2026</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 08, 2026</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans">Est. of R. V██████</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$118,000.00</td>
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$23,600.00 (20%)</td>
                                 <td class="py-3 px-3 text-center font-sans"><a href="https://www.cobbsheriff.org/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
-                            <tr data-state="FL" class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="NC" data-amount="114500" class="hover:bg-slate-50 transition-colors">
+                                <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">NC</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Wake</td>
+                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-NC-001420</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 06, 2026</td>
+                                <td class="py-3 px-4 sm:px-5 font-sans">H. & C. V█████</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$114,500.00</td>
+                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$22,900.00 (20%)</td>
+                                <td class="py-3 px-3 text-center font-sans"><a href="https://www.nccourts.gov/locations/wake" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
+                            </tr>
+                            <tr data-state="FL" data-amount="112000" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Miami-Dade</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-004812</td>
@@ -383,7 +419,7 @@
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$22,400.00 (20%)</td>
                                 <td class="py-3 px-3 text-center font-sans"><a href="https://www.miamidadeclerk.gov/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
-                            <tr data-state="FL" class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="FL" data-amount="92400" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">FL</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Hillsborough</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TD-008912</td>
@@ -393,7 +429,7 @@
                                 <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$18,480.00 (20%)</td>
                                 <td class="py-3 px-3 text-center font-sans"><a href="https://www.hillsclerk.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5">Verify ↗</a></td>
                             </tr>
-                            <tr data-state="TX" class="hover:bg-slate-50 transition-colors">
+                            <tr data-state="TX" data-amount="86200" class="hover:bg-slate-50 transition-colors">
                                 <td class="py-3 px-4 sm:px-5 font-sans font-bold text-brand-navy">TX</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">2024-TX-04950</td>
@@ -1119,16 +1155,19 @@
         function filterSampleTable() {
             const query = (document.getElementById('docket-search')?.value || '').toLowerCase().trim();
             const stateFilter = document.getElementById('state-filter')?.value || 'ALL';
+            const minAmount = parseFloat(document.getElementById('min-amount-filter')?.value || 0);
             const rows = document.querySelectorAll('#sample-table-body tr');
             let visible = 0;
 
             rows.forEach(row => {
                 const text = row.innerText.toLowerCase();
                 const rowState = row.getAttribute('data-state') || '';
+                const rowAmount = parseFloat(row.getAttribute('data-amount') || 0);
                 const stateMatch = (stateFilter === 'ALL' || rowState === stateFilter);
                 const queryMatch = !query || text.includes(query);
+                const amountMatch = rowAmount >= minAmount;
 
-                if (stateMatch && queryMatch) {
+                if (stateMatch && queryMatch && amountMatch) {
                     row.style.display = '';
                     visible++;
                 } else {
@@ -1138,7 +1177,7 @@
 
             const countEl = document.getElementById('docket-count');
             if (countEl) {
-                countEl.textContent = `Showing ${visible} of 7 Preview Records`;
+                countEl.textContent = `Showing ${visible} Verified Dockets`;
             }
         }
 
