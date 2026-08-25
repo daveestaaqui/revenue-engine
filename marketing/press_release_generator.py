@@ -298,7 +298,7 @@ def generate_individual_press_release(pr):
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved. Public Records Legal Intelligence.</p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
                 </p>
@@ -549,7 +549,7 @@ def generate_press_newsroom():
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved. Public Records Legal Intelligence.</p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
                 </p>

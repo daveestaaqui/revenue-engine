@@ -90,7 +90,7 @@
             </h1>
             <p class="text-slate-600 text-base md:text-lg leading-relaxed max-w-3xl">
                 The Surplus Docket REST API delivers structured, daily-refreshed tax deed surplus and excess proceeds datasets directly to law firm CRMs, legal research software, and custom automated pipelines.
-            </p>
+          </p>
         </div>
 
         <!-- Base URL -->
@@ -102,7 +102,7 @@
             </div>
             <p class="text-xs text-slate-500 mt-2">
                 All requests use standard HTTPS GET requests and return structured UTF-8 JSON. Cross-Origin Resource Sharing (CORS) is enabled on all endpoints.
-            </p>
+          </p>
         </div>
 
         <!-- Endpoints List -->
@@ -115,7 +115,7 @@
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
                     Returns the master consolidated multi-state public records dataset across all monitored Florida and Texas jurisdictions.
-                </p>
+              </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/feed.json"</code></pre>
                 </div>
@@ -129,7 +129,7 @@
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
                     Returns filtered Florida clerk of court tax deed surplus records governed by Fla. Stat. § 197.582.
-                </p>
+              </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/florida.json"</code></pre>
                 </div>
@@ -143,7 +143,7 @@
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
                     Returns filtered Texas district court registry excess proceeds records governed by Tex. Tax Code § 34.04.
-                </p>
+              </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/texas.json"</code></pre>
                 </div>
@@ -157,7 +157,7 @@
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
                     Returns filtered Georgia county tax commissioner excess funds records governed by O.C.G.A. § 48-4-5.
-                </p>
+              </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/georgia.json"</code></pre>
                 </div>
@@ -171,7 +171,7 @@
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
                     Health check endpoint returning API version, system uptime, and endpoint manifest.
-                </p>
+              </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/health.json"</code></pre>
                 </div>
@@ -233,7 +233,7 @@ console.log(`Ingested ${records.length} records generated at ${metadata.generate
                 </div>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
                     National + API subscribers can ingest daily records without code using Zapier's <strong>"Webhooks by Zapier (GET)"</strong> action or Airtable's <strong>"Data Fetcher"</strong> extension. Poll <code>https://surplusdocket.com/api/v1/feed.json</code> at 7:05 AM EST to automatically populate new matter leads and assign intake tasks to your staff.
-                </p>
+              </p>
                 <div class="flex flex-wrap gap-2 text-xs font-mono text-slate-600 font-bold">
                     <span class="px-2.5 py-1 bg-white rounded-lg border border-brand-green/20">Clio Manage</span>
                     <span class="px-2.5 py-1 bg-white rounded-lg border border-brand-green/20">PracticePanther</span>
@@ -262,7 +262,7 @@ console.log(`Ingested ${records.length} records generated at ${metadata.generate
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
                         Structured daily public records intelligence indexing tax deed surplus and excess proceeds filings across county court registries for asset recovery law practices.
-                    </p>
+                  </p>
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
@@ -316,10 +316,10 @@ console.log(`Ingested ${records.length} records generated at ${metadata.generate
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved. Public Records Legal Intelligence.</p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
-                </p>
+              </p>
             </div>
         </div>
     </footer>

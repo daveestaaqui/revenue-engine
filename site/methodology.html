@@ -77,7 +77,7 @@
             </h1>
             <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
                 An engineering and legal-tech specification on how Surplus Docket ingests, cross-references, scrubs institutional encumbrances, and standardizes multi-state judicial surplus records.
-            </p>
+          </p>
         </div>
 
         <!-- 1. The Core Problem: The Dead Bank Lead Crisis -->
@@ -87,7 +87,7 @@
             </h2>
             <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
                 Following real estate tax deed foreclosure auctions, county clerks and district court civil registries hold surplus funds created when winning auction bids exceed the opening statutory bid. While this information is public, raw court lists present severe operational hazards for legal practitioners:
-            </p>
+          </p>
             <div class="bg-red-50 border border-red-200 rounded-xl p-5 mb-4 text-xs sm:text-sm text-red-900 leading-relaxed space-y-2">
                 <p><strong>The "Dead Bank Lead" Dilemma:</strong> Over 70% of raw unscrubbed clerk rows represent properties with active senior mortgages (e.g. Wells Fargo, Bank of America, Fannie Mae) or municipal tax assessment liens. Under state statutory priority schemes, these institutional lienholders possess legal priority over the former titleholder.</p>
                 <p>When asset recovery firms rely on raw scraper lists, paralegals spend dozens of hours skip-tracing and contacting former owners, only to discover during title examination that 100% of the funds must be disbursed to a senior mortgage servicer.</p>
@@ -101,7 +101,7 @@
             </h2>
             <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-6">
                 Surplus Docket executes an autonomous daily pipeline that purges corporate encumbrances before records enter subscriber feeds:
-            </p>
+          </p>
 
             <div class="space-y-4">
                 <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex items-start gap-4">
@@ -110,7 +110,7 @@
                         <h3 class="font-heading font-bold text-sm text-brand-navy mb-1">Stage 1: Continuous Court Registry Ingestion</h3>
                         <p class="text-xs text-slate-600 leading-relaxed">
                             Aggregates fresh auction sale confirmations across Florida Circuit Courts, Texas District Court Civil Registries, and Georgia Superior Court Dockets. Ingests official docket numbers, parcel IDs, sale prices, opening bids, and excess balances.
-                        </p>
+                      </p>
                     </div>
                 </div>
 
@@ -120,7 +120,7 @@
                         <h3 class="font-heading font-bold text-sm text-brand-navy mb-1">Stage 2: Official Encumbrance &amp; O.R. Cross-Referencing</h3>
                         <p class="text-xs text-slate-600 leading-relaxed">
                             Automated scripts cross-reference the Official Records (O.R.) and clerk judgment indexes for the parcel, examining recorded Lis Pendens, Certificates of Title, and tax collector final judgment decrees to identify all named defendant lienholders.
-                        </p>
+                      </p>
                     </div>
                 </div>
 
@@ -130,7 +130,7 @@
                         <h3 class="font-heading font-bold text-sm text-brand-navy mb-1">Stage 3: Institutional Entity Purge (Lien Scrubbing)</h3>
                         <p class="text-xs text-slate-600 leading-relaxed">
                             Our proprietary entity classifier identifies and removes corporate institutional claims (commercial banks, mortgage trusts, servicer loan pools, junior HOA assessment foreclosures). If recorded senior debt exceeds the surplus balance, the lead is suppressed from feeds.
-                        </p>
+                      </p>
                     </div>
                 </div>
 
@@ -140,7 +140,7 @@
                         <h3 class="font-heading font-bold text-sm text-brand-navy mb-1">Stage 4: Statutory Benchmark Tagging &amp; Multi-Format Export</h3>
                         <p class="text-xs text-slate-600 leading-relaxed">
                             Surviving verified records are annotated with exact governing statutory references (Fla. Stat. § 197.582, Tex. Tax Code § 34.04, O.C.G.A. § 48-4-5), filing deadlines, and statutory fee benchmarks, exported in CSV, XLSX, and REST JSON daily at 7:00 AM EST.
-                        </p>
+                      </p>
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@
             </h2>
             <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
                 All data collected and standardized by Surplus Docket is gathered strictly in compliance with state open records statutes:
-            </p>
+          </p>
             <div class="grid sm:grid-cols-3 gap-4 text-xs">
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
                     <div class="font-bold text-brand-navy mb-1">Florida Sunshine Law</div>
@@ -203,7 +203,7 @@
             <h3 class="text-lg sm:text-xl font-heading font-bold text-brand-navy mb-2">Inspect Sample Feed or Start Risk-Free</h3>
             <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto mb-5 leading-relaxed">
                 Download a clean 5-record sample CSV export or subscribe with a 14-day money-back guarantee.
-            </p>
+          </p>
             <div class="flex flex-wrap items-center justify-center gap-3">
                 <a href="/assets/sample_surplus_docket_feed.csv" download class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-300 text-brand-navy font-bold text-xs rounded-lg transition-all shadow-sm">
                     Download Sample CSV (.csv) &darr;
@@ -232,7 +232,7 @@
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
                         Structured daily public records intelligence indexing tax deed surplus and excess proceeds filings across county court registries for asset recovery law practices.
-                    </p>
+                  </p>
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
@@ -286,10 +286,10 @@
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved. Public Records Legal Intelligence.</p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
-                </p>
+              </p>
             </div>
         </div>
     </footer>
