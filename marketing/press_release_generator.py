@@ -54,7 +54,7 @@ PRESS_RELEASES = [
         "headline": "Surplus Docket Launches Autonomous Public Records Intelligence Platform for Asset Recovery Counsel Across Florida, Texas, and Georgia",
         "subheadline": "New legal-tech data pipeline eliminates dead bank leads with automated institutional lien pre-filtering and daily 7:00 AM court registry feeds.",
         "location": "WEST PALM BEACH, Fla. & HOUSTON, Tex.",
-        "summary": "Surplus Docket officially announced the launch of its autonomous public records intelligence platform, providing structured, case-verified tax deed surplus and excess proceeds feeds to asset recovery attorneys, title counsel, and real estate practitioners.",
+        "summary": "Surplus Docket officially announced the launch of its autonomous public records intelligence platform, providing structured, case-verified tax deed surplus and excess proceeds data to asset recovery attorneys, title counsel, and real estate practitioners.",
         "body_paragraphs": [
             "Surplus Docket today announced the public launch of its autonomous legal data intelligence platform, engineered specifically for law firms, title searchers, and asset recovery practitioners specializing in county tax deed surplus and court excess proceeds retrieval.",
             "Across the United States, hundreds of millions of dollars in excess auction proceeds remain unclaimed in county clerk and district court registries following tax deed foreclosure sales. However, legal practitioners have historically faced significant operational friction, spending hours manually scraping fragmented county clerk portals only to encounter records encumbered by senior mortgage liens and institutional bank claims.",

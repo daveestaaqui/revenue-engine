@@ -65,7 +65,7 @@ COUNTIES = [
         'sample_fee': '$32,125.00',
         'sample_owner': 'W. & M. H██████',
         'sample_address': '5402 Braesvalley Dr, Houston TX',
-        'description': 'Daily automated Harris County / Houston excess proceeds feeds. Scrubbed court registry tax sale excess proceeds data for Texas recovery attorneys.'
+        'description': 'Daily automated Harris County / Houston excess proceeds feed. Scrubbed court registry tax sale excess proceeds data for Texas recovery attorneys.'
     },
     {
         'slug': 'miami-dade-tax-deed-surplus.html',
