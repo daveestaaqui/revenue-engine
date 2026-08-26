@@ -52,7 +52,7 @@ PRESS_RELEASES = [
         "iso_date": "2026-08-18T07:00:00-04:00",
         "rfc822_date": "Tue, 18 Aug 2026 07:00:00 -0400",
         "headline": "Surplus Docket Launches Autonomous Public Records Intelligence Platform for Asset Recovery Counsel Across Florida, Texas, and Georgia",
-        "subheadline": "New legal-tech data pipeline eliminates dead bank leads with automated institutional lien pre-filtering and daily 7:00 AM court registry feeds.",
+        "subheadline": "New legal-tech data pipeline eliminates dead bank leads with automated institutional lien pre-filtering and daily 7:00 AM court registry feed.",
         "location": "WEST PALM BEACH, Fla. & HOUSTON, Tex.",
         "summary": "Surplus Docket officially announced the launch of its autonomous public records intelligence platform, providing structured, case-verified tax deed surplus and excess proceeds data to asset recovery attorneys, title counsel, and real estate practitioners.",
         "body_paragraphs": [
@@ -61,7 +61,7 @@ PRESS_RELEASES = [
             "Surplus Docket solves this industry bottleneck by deploying an automated data pipeline that scrubs institutional bank liens, junior mortgage servicers, and HOA encumbrances from raw clerk lists. The platform delivers pure, case-verified individual and estate heir claims directly to subscribers every morning at 7:00 AM EST in CSV, XLSX, and programmatic REST JSON formats.",
             "\"Our mission is to bring institutional data cleanliness to the asset recovery legal sector,\" said the Product Architecture Team at Surplus Docket. \"By replacing unscrubbed PDF lists with case-verifiable court docket metadata and automated statutory deadline tracking, we allow recovery counsel to file petitions within days of auction confirmation instead of weeks.\"",
             "The platform launches with comprehensive monitoring across 12 high-volume judicial circuits in Florida (under Fla. Stat. § 197.582), Texas (under Tex. Tax Code § 34.04), and Georgia (under O.C.G.A. § 48-4-5), representing over 92% of total statewide surplus proceeds volume in those jurisdictions.",
-            "In addition to daily automated feeds, Surplus Docket provides all subscribers with a complete Asset Recovery Practitioner Toolkit featuring court-ready petition templates, client retainer agreements, statutory fee calculators, and a self-service Stripe billing portal."
+            "In addition to the daily automated feed, Surplus Docket provides all subscribers with a complete Asset Recovery Practitioner Toolkit featuring court-ready petition templates, client retainer agreements, statutory fee calculators, and a self-service Stripe billing portal."
         ]
     }
 ]
@@ -177,7 +177,7 @@ def generate_individual_press_release(pr):
             <div class="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-slate-600">
                 <a href="/press/" class="text-brand-green hover:text-brand-greenDark font-bold flex items-center gap-1">&larr; Newsroom</a>
                 <a href="/" class="hover:text-brand-green transition-colors">Home</a>
-                <a href="/#pricing" class="px-3.5 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg transition-all shadow-sm">Get Feeds</a>
+                <a href="/#pricing" class="px-3.5 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg transition-all shadow-sm">Get Feed</a>
             </div>
         </div>
     </header>
@@ -256,9 +256,9 @@ def generate_individual_press_release(pr):
                     </div>
                 </div>
 
-                <!-- Col 2: Jurisdictions & Feeds -->
+                <!-- Col 2: Jurisdictions & State Coverage -->
                 <div class="space-y-3">
-                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Jurisdiction Feeds</p>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">State Coverage</p>
                     <ul class="space-y-2 text-xs font-medium">
                         <li><a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Florida Feed</span> <span class="text-[10px] text-brand-green font-mono">FL § 197</span></a></li>
                         <li><a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Texas Feed</span> <span class="text-[10px] text-brand-green font-mono">TX § 34</span></a></li>
@@ -425,7 +425,7 @@ def generate_press_newsroom():
                 <a href="/press/" class="text-brand-navy font-bold hover:text-brand-green transition-colors">Newsroom</a>
                 <a href="/blog/" class="hover:text-brand-green transition-colors hidden sm:inline">Articles</a>
                 <a href="/api-documentation.html" class="hover:text-brand-green transition-colors hidden sm:inline">API</a>
-                <a href="/#pricing" class="px-3.5 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg transition-all shadow-sm">Get Feeds</a>
+                <a href="/#pricing" class="px-3.5 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg transition-all shadow-sm">Get Feed</a>
             </div>
         </div>
     </header>
@@ -472,7 +472,7 @@ def generate_press_newsroom():
                 <p class="text-slate-300 leading-relaxed">
                     <strong>Founded:</strong> 2026<br>
                     <strong>Primary Coverage:</strong> Florida (§ 197.582), Texas (§ 34.04), Georgia (§ 48-4-5)<br>
-                    <strong>Platform:</strong> Automated daily public records feeds &amp; REST JSON API<br>
+                    <strong>Platform:</strong> Automated daily public records feed &amp; REST JSON API<br>
                     <strong>Press Contact:</strong> press@surplusdocket.com
                 </p>
             </div>
@@ -509,7 +509,7 @@ def generate_press_newsroom():
 
                 <!-- Col 2: Jurisdictions & Feeds -->
                 <div class="space-y-3">
-                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Jurisdiction Feeds</p>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">State Coverage</p>
                     <ul class="space-y-2 text-xs font-medium">
                         <li><a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Florida Feed</span> <span class="text-[10px] text-brand-green font-mono">FL § 197</span></a></li>
                         <li><a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Texas Feed</span> <span class="text-[10px] text-brand-green font-mono">TX § 34</span></a></li>

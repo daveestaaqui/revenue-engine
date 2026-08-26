@@ -126,7 +126,7 @@ ARTICLES = [
         "category": "Data Intelligence & Workflow",
         "date": "2026-08-22",
         "read_time": "4 min read",
-        "keywords": "surplus fund filtering, tax deed lead scrubbing, asset recovery automation, legal CRM surplus feeds",
+        "keywords": "surplus fund filtering, tax deed lead scrubbing, asset recovery automation, legal CRM surplus feed",
         "content_html": """
         <p class="text-base text-slate-700 leading-relaxed mb-6">
             Law firms and asset recovery specialists entering the tax deed surplus market quickly encounter a major bottleneck: <strong>raw public clerk lists are cluttered with dead-end institutional records</strong>.
@@ -148,9 +148,9 @@ ARTICLES = [
         </ul>
 
         <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
-            <h3 class="text-2xl font-heading font-black mb-2">Get Pre-Filtered Clean Feeds Every Morning</h3>
+            <h3 class="text-2xl font-heading font-black mb-2">Get Pre-Filtered Clean Data Every Morning</h3>
             <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
-                Receive standardized CSV and Excel feeds ready for instant import into your firm's CRM.
+                Receive standardized CSV and Excel feed files ready for instant import into your firm's CRM.
             </p>
             <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
                 Subscribe to Multi-State Feed (FL, TX, GA) — $249/mo
@@ -330,9 +330,9 @@ def render_article_page(article):
                     </div>
                 </div>
 
-                <!-- Col 2: Jurisdictions & Feeds -->
+                <!-- Col 2: Jurisdictions & State Coverage -->
                 <div class="space-y-3">
-                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Jurisdiction Feeds</p>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">State Coverage</p>
                     <ul class="space-y-2 text-xs font-medium">
                         <li><a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Florida Feed</span> <span class="text-[10px] text-brand-green font-mono">FL § 197</span></a></li>
                         <li><a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Texas Feed</span> <span class="text-[10px] text-brand-green font-mono">TX § 34</span></a></li>
@@ -533,9 +533,9 @@ def render_blog_index():
                     </div>
                 </div>
 
-                <!-- Col 2: Jurisdictions & Feeds -->
+                <!-- Col 2: Jurisdictions & State Coverage -->
                 <div class="space-y-3">
-                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Jurisdiction Feeds</p>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">State Coverage</p>
                     <ul class="space-y-2 text-xs font-medium">
                         <li><a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Florida Feed</span> <span class="text-[10px] text-brand-green font-mono">FL § 197</span></a></li>
                         <li><a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Texas Feed</span> <span class="text-[10px] text-brand-green font-mono">TX § 34</span></a></li>

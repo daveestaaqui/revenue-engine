@@ -1,7 +1,7 @@
 FOR IMMEDIATE RELEASE
 
 SURPLUS DOCKET LAUNCHES AUTONOMOUS PUBLIC RECORDS INTELLIGENCE PLATFORM FOR ASSET RECOVERY COUNSEL ACROSS FLORIDA, TEXAS, AND GEORGIA
-New legal-tech data pipeline eliminates dead bank leads with automated institutional lien pre-filtering and daily 7:00 AM court registry feeds.
+New legal-tech data pipeline eliminates dead bank leads with automated institutional lien pre-filtering and daily 7:00 AM court registry feed.
 
 WEST PALM BEACH, Fla. & HOUSTON, Tex. — Surplus Docket today announced the public launch of its autonomous legal data intelligence platform, engineered specifically for law firms, title searchers, and asset recovery practitioners specializing in county tax deed surplus and court excess proceeds retrieval.
 
@@ -13,7 +13,7 @@ Surplus Docket solves this industry bottleneck by deploying an automated data pi
 
 The platform launches with comprehensive monitoring across 12 high-volume judicial circuits in Florida (under Fla. Stat. § 197.582), Texas (under Tex. Tax Code § 34.04), and Georgia (under O.C.G.A. § 48-4-5), representing over 92% of total statewide surplus proceeds volume in those jurisdictions.
 
-In addition to daily automated feeds, Surplus Docket provides all subscribers with a complete Asset Recovery Practitioner Toolkit featuring court-ready petition templates, client retainer agreements, statutory fee calculators, and a self-service Stripe billing portal.
+In addition to the daily automated feed, Surplus Docket provides all subscribers with a complete Asset Recovery Practitioner Toolkit featuring court-ready petition templates, client retainer agreements, statutory fee calculators, and a self-service Stripe billing portal.
 
 ###
 

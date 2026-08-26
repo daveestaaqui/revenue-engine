@@ -29,7 +29,7 @@ COUNTIES = [
         'sample_fee': '$29,000.00',
         'sample_owner': 'A. & G. V████████',
         'sample_address': '720 S Ocean Blvd, Palm Beach FL',
-        'description': 'Daily automated Palm Beach County tax deed surplus lead feeds. Pre-filtered individual surplus claims and court registry intelligence for Florida recovery practitioners.'
+        'description': 'Daily automated Palm Beach County tax deed surplus lead feed. Pre-filtered individual surplus claims and court registry intelligence for Florida recovery practitioners.'
     },
     {
         'slug': 'broward-county-tax-deed-surplus.html',
@@ -47,7 +47,7 @@ COUNTIES = [
         'sample_fee': '$27,600.00',
         'sample_owner': 'K. & D. M██████',
         'sample_address': '1820 Las Olas Blvd, Fort Lauderdale FL',
-        'description': 'Daily automated Broward County / Fort Lauderdale tax deed surplus data feeds. Verified clerk dockets and institutional lien scrubbing for recovery attorneys.'
+        'description': 'Daily automated Broward County / Fort Lauderdale tax deed surplus data feed. Verified clerk dockets and institutional lien scrubbing for recovery attorneys.'
     },
     {
         'slug': 'harris-county-excess-proceeds.html',
@@ -83,7 +83,7 @@ COUNTIES = [
         'sample_fee': '$22,400.00',
         'sample_owner': 'L. & M. H████████',
         'sample_address': '340 SW 8th St, Miami FL',
-        'description': 'Daily automated Miami-Dade County tax deed surplus data feeds. Filtered individual surplus equity with verified docket IDs for asset recovery lawyers.'
+        'description': 'Daily automated Miami-Dade County tax deed surplus data feed. Filtered individual surplus equity with verified docket IDs for asset recovery lawyers.'
     },
     {
         'slug': 'orange-county-tax-deed-surplus.html',
@@ -119,7 +119,7 @@ COUNTIES = [
         'sample_fee': '$18,480.00',
         'sample_owner': 'R. & C. S██████',
         'sample_address': '4502 W San Rafael St, Tampa FL',
-        'description': 'Daily automated Hillsborough County / Tampa tax deed surplus feeds. Instant CSV/Excel delivery of verified overage leads for asset recovery practitioners.'
+        'description': 'Daily automated Hillsborough County / Tampa tax deed surplus feed. Instant CSV/Excel delivery of verified overage leads for asset recovery practitioners.'
     },
     {
         'slug': 'dallas-county-excess-proceeds.html',
@@ -155,7 +155,7 @@ COUNTIES = [
         'sample_fee': '$24,125.00',
         'sample_owner': 'B. & T. W██████',
         'sample_address': '3201 Camp Bowie Blvd, Fort Worth TX',
-        'description': 'Daily Tarrant County / Fort Worth tax sale excess proceeds feeds. Pre-filtered court registry intelligence and statutory recovery data.'
+        'description': 'Daily Tarrant County / Fort Worth tax sale excess proceeds feed. Pre-filtered court registry intelligence and statutory recovery data.'
     },
     {
         'slug': 'travis-county-excess-proceeds.html',
@@ -209,7 +209,7 @@ COUNTIES = [
         'sample_fee': '$23,600.00',
         'sample_owner': 'Est. of R. V██████',
         'sample_address': '892 Powers Ferry Rd, Marietta GA',
-        'description': 'Daily Cobb County / Marietta tax sale excess funds data feeds. Clean individual surplus claims delivered in CSV/Excel every morning at 7:00 AM EST.'
+        'description': 'Daily Cobb County / Marietta tax sale excess funds data feed. Clean individual surplus claims delivered in CSV/Excel every morning at 7:00 AM EST.'
     },
     {
         'slug': 'dekalb-county-excess-funds.html',
@@ -227,7 +227,7 @@ COUNTIES = [
         'sample_fee': '$15,480.00',
         'sample_owner': 'T. & M. B██████',
         'sample_address': '2340 Lavista Rd, Decatur GA',
-        'description': 'Daily DeKalb County excess funds data feeds. Clean, case-verified tax auction overages delivered in CSV/Excel every morning at 7:00 AM EST.'
+        'description': 'Daily DeKalb County excess funds data feed. Clean, case-verified tax auction overages delivered in CSV/Excel every morning at 7:00 AM EST.'
     }
 ]
 
@@ -422,7 +422,7 @@ def generate_county_page(c):
                 When a tax deed auction or sheriff's tax sale closes above the upset bid in {c['county']}, the clerk deposits excess funds into the statutory court registry. Under {c['statute']}, junior lienholders have initial notice priority, after which remaining funds belong to the record titleholder or heirs.
             </p>
             <p>
-                Surplus Docket's automated crawler monitors {c['county']} filings daily, scrubs institutional mortgage and HOA claims, and formats actionable CSV and Excel feeds ready for immediate practitioner due diligence.
+                Surplus Docket's automated crawler monitors {c['county']} filings daily, scrubs institutional mortgage and HOA claims, and formats an actionable CSV and Excel feed ready for immediate practitioner due diligence.
             </p>
         </div>
 
@@ -470,9 +470,9 @@ def generate_county_page(c):
                     </div>
                 </div>
 
-                <!-- Col 2: Jurisdictions & Feeds -->
+                <!-- Col 2: Jurisdictions & State Coverage -->
                 <div class="space-y-3">
-                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Jurisdiction Feeds</p>
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">State Coverage</p>
                     <ul class="space-y-2 text-xs font-medium">
                         <li><a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Florida Feed</span> <span class="text-[10px] text-brand-green font-mono">FL § 197</span></a></li>
                         <li><a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Texas Feed</span> <span class="text-[10px] text-brand-green font-mono">TX § 34</span></a></li>

@@ -83,7 +83,7 @@ def generate_rss_feed():
       <link>https://surplusdocket.com/?docket={docket}</link>
       <guid isPermaLink="false">{docket}-{state}</guid>
       <pubDate>{now_rfc822}</pubDate>
-      <description>Public tax deed surplus docket filing in {county} County, {state}. Governed by {statute}. Indexed by Surplus Docket intelligence feeds.</description>
+      <description>Public tax deed surplus docket filing in {county} County, {state}. Governed by {statute}. Indexed by Surplus Docket intelligence feed.</description>
     </item>"""
 
     rss_content = f"""<?xml version="1.0" encoding="UTF-8" ?>
