@@ -5,9 +5,9 @@
 ---
 
 ### 📊 Key Market Metrics
-- **Active Scored Records:** 5
-- **Total Monitored Surplus:** $1,672,200.00
-- **Total Statutory Benchmark Fees:** $354,100.00
+- **Active Scored Records:** 35
+- **Total Monitored Surplus:** $3,244,600.00
+- **Total Statutory Benchmark Fees:** $668,580.00
 - **Institutional Lien Filtering Rate:** 100% (All corporate mortgagees purged)
 
 ---
@@ -21,5 +21,5 @@
 
 ### 📥 Subscriber Deliverables
 - **Master CSV / Excel Feed:** Standardized daily export at 7:00 AM EST
-- **REST API v1.0:** Programmatic JSON feeds with schema validation
+- **REST API v1.0:** Programmatic JSON feed with schema validation
 - **Data Provenance:** Florida Sunshine Law, Texas Public Information Act, Georgia Open Records Act

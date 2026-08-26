@@ -27,11 +27,12 @@ def generate_social_briefings():
     
     if json_feed.exists():
         try:
-            data = json.loads(json_feed.read_text(encoding="utf-8"))
-            total_leads = len(data)
-            total_balance = sum(item.get("Surplus_Balance_USD", 0.0) for item in data)
-            total_fees = sum(item.get("Estimated_Statutory_Fee_USD", 0.0) for item in data)
-        except Exception:
+            raw_data = json.loads(json_feed.read_text(encoding="utf-8"))
+            records = raw_data.get("data", []) if isinstance(raw_data, dict) else raw_data
+            total_leads = len(records)
+            total_balance = sum(float(item.get("Surplus_Balance_USD", 0.0)) for item in records)
+            total_fees = sum(float(item.get("Est_Finder_Fee_USD", item.get("Estimated_Statutory_Fee_USD", 0.0))) for item in records)
+        except Exception as e:
             pass
 
     # 1. Executive Legal Briefing
@@ -58,7 +59,7 @@ def generate_social_briefings():
 
 ### 📥 Subscriber Deliverables
 - **Master CSV / Excel Feed:** Standardized daily export at 7:00 AM EST
-- **REST API v1.0:** Programmatic JSON feeds with schema validation
+- **REST API v1.0:** Programmatic JSON feed with schema validation
 - **Data Provenance:** Florida Sunshine Law, Texas Public Information Act, Georgia Open Records Act
 """
     (SYNDICATE_DIR / "daily_briefing.md").write_text(briefing_md, encoding="utf-8")
@@ -91,7 +92,7 @@ Today's Public Records Intelligence Snapshot:
 
 Every record is pre-filtered for individual titleholders and verified against official court dockets.
 
-Full daily feeds delivered at 7:00 AM EST in CSV, Excel, and REST API: https://surplusdocket.com
+Full daily feed delivered at 7:00 AM EST in CSV, Excel, and REST API: https://surplusdocket.com
 
 #SurplusFunds #ExcessProceeds #PublicRecords #AssetRecovery
 """

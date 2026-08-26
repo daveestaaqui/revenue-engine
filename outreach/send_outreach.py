@@ -99,8 +99,13 @@ def personalize_text(text: str, target: dict) -> str:
     state_display = STATE_NAMES.get(raw_state, raw_state)
     stripe_link = STRIPE_LINKS.get(raw_state, STRIPE_LINKS["DEFAULT"])
 
+    full_name = target.get("Name", "Counsel").strip()
+    first_name = full_name.split()[0] if full_name else "Counsel"
+
     replacements = {
-        "{{name}}": target.get("Name", "Counsel"),
+        "{{name}}": first_name,
+        "{{full_name}}": full_name,
+        "{{first_name}}": first_name,
         "{{firm}}": target.get("Firm", "your firm"),
         "{{state}}": state_display,
         "{{stripe_link}}": stripe_link,
