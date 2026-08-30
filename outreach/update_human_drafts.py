@@ -117,6 +117,7 @@ Most county surplus lists are a headache to work through because the majority of
 If you'd like to see a sample export for {state_name} to see if it's useful for your practice, let me know and I'd be happy to send one over.
 
 Best,
+
 David Mahler
 surplusdocket.com
 david@surplusdocket.com"""
