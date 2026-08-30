@@ -248,7 +248,7 @@ david@surplusdocket.com"""
 
         # Create Draft in [Gmail]/Drafts
         draft_msg = MIMEText(reply_body, "plain", "utf-8")
-        draft_msg["From"] = f"{FROM_NAME} <{GMAIL_USER}>"
+        draft_msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
         draft_msg["To"] = sender_raw
         draft_msg["Subject"] = reply_subject
         draft_msg["Reply-To"] = f"{FROM_NAME} <{REPLY_TO}>"

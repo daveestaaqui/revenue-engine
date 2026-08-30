@@ -194,7 +194,7 @@ def sync_all_drafts():
         subject, body = compose_human_email(target)
 
         msg = MIMEText(body, "plain", "utf-8")
-        msg["From"] = f"{FROM_NAME} <{GMAIL_USER}>"
+        msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
         msg["To"] = f"{to_name} <{to_email}>" if to_name else to_email
         msg["Subject"] = subject
         msg["Reply-To"] = f"{FROM_NAME} <{REPLY_TO}>"
