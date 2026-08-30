@@ -1,0 +1,14 @@
+timestamp,firm,name,state,target_url,form_url,status,detail
+2026-08-30T17:52:10.692743,Taormina Law PA,Salvatore Taormina,FL,https://taorminalawpa.com,https://www.taorminalawpa.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot saved to /Users/davidmahler/revenue-engine/outreach/form_screenshots/Taormina_Law_PA_1788126730.png
+2026-08-30T17:52:13.808581,Kyle & Kyle Law,Andrew Kyle,FL,https://kyleandkylelaw.com,https://kyleandkylelaw.com,FAILED,No visible textarea message field found.
+2026-08-30T17:52:18.544431,Bilu Law,Ron Bilu,FL,https://bilulaw.com,https://www.bilulaw.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot saved to /Users/davidmahler/revenue-engine/outreach/form_screenshots/Bilu_Law_1788126738.png
+2026-08-30T17:52:21.733507,Brown Law Group LLC,David Brown,FL,https://thebrownlawgroup.net,https://www.thebrownlawgroup.net/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot saved to /Users/davidmahler/revenue-engine/outreach/form_screenshots/Brown_Law_Group_LLC_1788126741.png
+2026-08-30T17:52:25.362725,Lopez Law Group,Jason Lopez,FL,https://thelopezlawgroup.com,https://www.thelopezlawgroup.com/contact/,FAILED,No visible textarea message field found.
+2026-08-30T17:57:22.863234,Kyle & Kyle Law,Andrew Kyle,FL,https://kyleandkylelaw.com,https://kyleandkylelaw.com,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T17:57:28.311037,Lopez Law Group,Jason Lopez,FL,https://thelopezlawgroup.com,https://www.thelopezlawgroup.com/contact/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T17:57:36.867175,Rocky Rinker Law,Rocky Rinker,FL,https://rockyrinker.com,https://www.rockyrinker.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: Rocky_Rinker_Law_1788127055.png
+2026-08-30T17:57:42.011340,Law Offices of Brett L. Bigham,Brett Bigham,TX,http://www.bighamlaw.com,http://www.bighamlaw.com/contact_us,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T17:57:47.637950,Law Office of Victor D. Walker,Victor Walker,TX,https://walkersecuritieslaw.com,https://walkersecuritieslaw.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: Law_Office_of_Victor_D__Walker_1788127067.png
+2026-08-30T17:57:53.507028,The Rogers Law Group,Jonathan Rogers,TX,https://jonrogerslaw.com,https://www.jonrogerslaw.com/contact,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: The_Rogers_Law_Group_1788127073.png
+2026-08-30T17:57:57.657316,Duffley Law,William Duffley,TX,https://duffleylaw.com,https://duffleylaw.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: Duffley_Law_1788127077.png
+2026-08-30T17:58:00.696228,The Daves Law Firm,Robert Daves,TX,https://daveslaw.com,,ERROR,"Locator.count: Execution context was destroyed, most likely because of a navigation"
