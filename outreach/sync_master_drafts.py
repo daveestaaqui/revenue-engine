@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-Surplus Docket — Master Deduplicator & High-Quality Target Selector
-===================================================================
-1. Deduplicates targets by domain and firm so no law firm receives multiple emails.
-2. Selects direct attorney emails (e.g. travis@, brett@, eric@) over generic (info@).
-3. Generates the natural, human, well-spaced outreach draft for each unique firm.
-4. Uploads them directly into Gmail's Drafts folder.
+Surplus Docket — Self-Serve Legal Outreach Generator & Gmail Uploader
+====================================================================
+Generates 100% self-serve, personalized outreach emails with specific
+jurisdictional links for each attorney, and uploads them to Gmail Drafts.
+
+No manual fulfillment required:
+- Recipient can inspect the live feed and sample data directly via their state/county link.
+- Recipient can initiate their daily feed subscription directly via the self-serve Stripe link.
 """
 
 import csv
@@ -33,6 +35,7 @@ FROM_NAME = "David Mahler"
 SENDER_EMAIL = "david@surplusdocket.com"
 REPLY_TO = "david@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
+STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
 
 STATE_NAMES = {
     "FL": "Florida",
@@ -50,6 +53,41 @@ STATE_NAMES = {
     "AZ": "Arizona",
     "WA": "Washington",
     "MI": "Michigan",
+}
+
+# State-level direct landing pages
+STATE_URLS = {
+    "FL": "https://surplusdocket.com/florida-tax-deed-surplus.html",
+    "TX": "https://surplusdocket.com/texas-tax-sale-excess-proceeds.html",
+    "GA": "https://surplusdocket.com/georgia-tax-sale-excess-funds.html",
+    "NC": "https://surplusdocket.com/north-carolina-tax-foreclosure-surplus.html",
+    "TN": "https://surplusdocket.com/tennessee-tax-sale-excess-proceeds.html",
+    "CA": "https://surplusdocket.com/california-tax-defaulted-excess-proceeds.html",
+}
+
+# Specific County Landing Pages for targeted local firms
+COUNTY_URLS = {
+    # Florida
+    "miami": "https://surplusdocket.com/miami-dade-tax-deed-surplus.html",
+    "palm beach": "https://surplusdocket.com/palm-beach-tax-deed-surplus.html",
+    "orange": "https://surplusdocket.com/orange-county-tax-deed-surplus.html",
+    "orlando": "https://surplusdocket.com/orange-county-tax-deed-surplus.html",
+    "hillsborough": "https://surplusdocket.com/hillsborough-tax-deed-surplus.html",
+    "tampa": "https://surplusdocket.com/hillsborough-tax-deed-surplus.html",
+    "broward": "https://surplusdocket.com/broward-county-tax-deed-surplus.html",
+    # Texas
+    "harris": "https://surplusdocket.com/harris-county-excess-proceeds.html",
+    "houston": "https://surplusdocket.com/harris-county-excess-proceeds.html",
+    "dallas": "https://surplusdocket.com/dallas-county-excess-proceeds.html",
+    "tarrant": "https://surplusdocket.com/tarrant-county-excess-proceeds.html",
+    "fort worth": "https://surplusdocket.com/tarrant-county-excess-proceeds.html",
+    "travis": "https://surplusdocket.com/travis-county-excess-proceeds.html",
+    "austin": "https://surplusdocket.com/travis-county-excess-proceeds.html",
+    # Georgia
+    "fulton": "https://surplusdocket.com/fulton-county-excess-funds.html",
+    "atlanta": "https://surplusdocket.com/fulton-county-excess-funds.html",
+    "dekalb": "https://surplusdocket.com/dekalb-county-excess-funds.html",
+    "cobb": "https://surplusdocket.com/cobb-county-excess-funds.html",
 }
 
 
@@ -85,7 +123,6 @@ def select_best_targets():
             domain = email_addr.split("@")[1]
             user = email_addr.split("@")[0]
 
-            # Priority score: direct personal name > info/contact/consultations
             is_generic = user in ["info", "contact", "consultations", "admin", "office", "support", "help"]
             priority = 0 if is_generic else 1
 
@@ -95,27 +132,46 @@ def select_best_targets():
                     "priority": priority,
                 }
 
-    final_list = [v["target"] for v in domain_map.values()]
-    return final_list
+    return [v["target"] for v in domain_map.values()]
 
 
 def get_first_name(full_name):
     if not full_name:
         return ""
-    # Strip titles
     name = re.sub(r"^(Attorney|Mr\.|Ms\.|Mrs\.|Dr\.)\s+", "", full_name, flags=re.IGNORECASE)
     parts = name.strip().split()
     return parts[0] if parts else ""
 
 
-def compose_human_email(target):
+def get_recommended_link(state_code, practice_details):
+    """
+    Selects the most specific self-serve link for an attorney:
+    County-specific if mentioned in their practice, otherwise state-specific, otherwise main site.
+    """
+    details_lower = (practice_details or "").lower()
+    
+    # Check for county match
+    for county_kw, url in COUNTY_URLS.items():
+        if county_kw in details_lower:
+            return url
+
+    # Fallback to state-specific page
+    if state_code in STATE_URLS:
+        return STATE_URLS[state_code]
+
+    return SITE_URL
+
+
+def compose_self_serve_email(target):
     full_name = target.get("Name", "").strip()
     first_name = get_first_name(full_name)
     firm = target.get("Firm", "").strip()
     state_code = target.get("State", "FL").strip().upper()
     state_name = STATE_NAMES.get(state_code, state_code)
+    practice_details = target.get("Practice_Details", "")
 
     greeting = f"Hi {first_name}," if first_name else f"Hello {firm} team,"
+    recommended_link = get_recommended_link(state_code, practice_details)
 
     subject = f"{state_name} surplus & excess proceeds data"
 
@@ -125,7 +181,11 @@ I'm reaching out because I built a tool that indexes tax deed surplus and excess
 
 Most county surplus lists are a headache to work through because the majority of files are encumbered by senior mortgages or bank liens that wipe out the funds. We pull the dockets daily and filter out those institutional liens upstream, so you're only looking at clean individual and estate claims.
 
-If you'd like to see a sample export for {state_name} to see if it's useful for your practice, let me know and I'd be happy to send one over.
+You can inspect the live {state_name} feed and sample cases directly here:
+{recommended_link}
+
+We deliver the standardized feed every morning at 7:00 AM EST (CSV, Excel, JSON). If you'd like to set up daily delivery for your practice ($249/mo flat, cancel anytime), you can get started right here:
+{STRIPE_LINK}
 
 Best,
 
@@ -138,8 +198,10 @@ david@surplusdocket.com"""
 
 def sync_all_drafts():
     print("=" * 75)
-    print("  🚀 SYNCING ALL UNIQUE VERIFIED DRAFTS TO GMAIL")
+    print("  🚀 SELF-SERVE LEGAL DRAFTS GENERATOR & GMAIL SYNC")
     print("=" * 75)
+    print(f"Sender Identity : {FROM_NAME} <{SENDER_EMAIL}>")
+    print(f"Target Gmail    : {GMAIL_USER}\n")
 
     already_sent = get_already_sent()
     best_targets = select_best_targets()
@@ -182,7 +244,7 @@ def sync_all_drafts():
     failed = 0
     manifest = []
 
-    print(f"Uploading {len(eligible)} clean, beautifully spaced drafts...")
+    print(f"Uploading {len(eligible)} self-serve drafts to Gmail...")
     print("-" * 75)
 
     for i, target in enumerate(eligible, 1):
@@ -191,7 +253,7 @@ def sync_all_drafts():
         firm = target.get("Firm", "").strip()
         state = target.get("State", "").strip()
 
-        subject, body = compose_human_email(target)
+        subject, body = compose_self_serve_email(target)
 
         msg = MIMEText(body, "plain", "utf-8")
         msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
@@ -215,7 +277,8 @@ def sync_all_drafts():
             append_status, res = mail.append(drafts_mailbox, r"(\Draft)", internal_date, msg.as_bytes())
             if append_status == "OK":
                 uploaded += 1
-                print(f"  [{i:03d}/{len(eligible):03d}] ✅ Draft Created: {to_name} | {firm} ({to_email}) — {state}")
+                rec_link = get_recommended_link(state, target.get("Practice_Details", ""))
+                print(f"  [{i:03d}/{len(eligible):03d}] ✅ Draft Created: {to_name} | {firm} ({to_email}) -> {rec_link}")
                 manifest.append({
                     "idx": i,
                     "name": to_name,
@@ -223,6 +286,7 @@ def sync_all_drafts():
                     "email": to_email,
                     "state": state,
                     "subject": subject,
+                    "recommended_link": rec_link,
                     "file": eml_filename,
                     "status": "DRAFT_IN_GMAIL",
                     "timestamp": datetime.now().isoformat(),
@@ -236,19 +300,19 @@ def sync_all_drafts():
 
     mail.logout()
 
-    manifest_path = LOG_DIR / "gmail_master_drafts_manifest.csv"
+    manifest_path = LOG_DIR / "gmail_self_serve_manifest.csv"
     with open(manifest_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["idx", "name", "firm", "email", "state", "subject", "file", "status", "timestamp"])
+        writer = csv.DictWriter(f, fieldnames=["idx", "name", "firm", "email", "state", "subject", "recommended_link", "file", "status", "timestamp"])
         writer.writeheader()
         writer.writerows(manifest)
 
     print("\n" + "=" * 75)
-    print("  🎉 MASTER DRAFTS SYNC COMPLETE")
+    print("  🎉 SELF-SERVE DRAFTS SYNC COMPLETE")
     print("=" * 75)
-    print(f"  • Total Unique Drafts in Gmail : {uploaded}")
-    print(f"  • Deliverable / MX Verified    : 100%")
-    print(f"  • Sender Identity              : David Mahler (david@surplusdocket.com)")
-    print(f"  • Manifest Log                 : {manifest_path}")
+    print(f"  • Total Self-Serve Drafts in Gmail : {uploaded}")
+    print(f"  • Deliverable / MX Verified        : 100%")
+    print(f"  • Sender Identity                  : David Mahler <david@surplusdocket.com>")
+    print(f"  • Manifest Log                     : {manifest_path}")
     print("=" * 75)
 
 

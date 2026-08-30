@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 """
-Surplus Docket — Auto-Responder & Drafts Synchronizer
-=====================================================
-1. Auto-Cleaner: Scans [Gmail]/Sent Mail. If any target has been sent an email,
-   automatically purges the leftover draft from [Gmail]/Drafts so your Drafts folder
-   stays perfectly clean.
-2. Auto-Responder: Scans INBOX for replies stemming from outreach. When a prospect
-   replies (asking for samples, questions, or pricing), it automatically drafts a
-   personalized, natural reply in your voice with state-specific sample records
-   and places it in [Gmail]/Drafts ready for review.
+Surplus Docket — Continuous Background Daemon: Auto-Cleaner & Reply Drafter
+==========================================================================
+1. Instantly cleans sent drafts from BOTH Apple Mail (Mail.app) and Gmail IMAP
+   so drafts disappear the moment you click Send.
+2. Monitors INBOX for any prospect replies and automatically prepares customized
+   response drafts with verified state benchmark records and Stripe link in your voice.
+3. Runs continuously in a lightweight background process.
 """
 
 import csv
@@ -17,6 +15,7 @@ from email.header import decode_header
 import imaplib
 import os
 import re
+import subprocess
 import sys
 import time
 from datetime import datetime
@@ -29,7 +28,6 @@ BASE_DIR = Path("/Users/davidmahler/revenue-engine")
 OUTREACH_DIR = BASE_DIR / "outreach"
 FEED_CSV = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
 LOG_FILE = OUTREACH_DIR / "auto_responder.log"
-PROCESSED_REPLIES_FILE = OUTREACH_DIR / "processed_replies.json"
 
 # Credentials & Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
@@ -96,12 +94,69 @@ def load_feed_data():
     return state_cases
 
 
-def clean_sent_drafts(mail):
+def clean_apple_mail_drafts():
     """
-    Scans [Gmail]/Sent Mail and removes corresponding drafts from [Gmail]/Drafts.
+    Tells Apple Mail (Mail.app) directly via AppleScript to delete drafts
+    whose recipients have already been sent to.
     """
-    log("Checking [Gmail]/Sent Mail to clean up any sent drafts...")
-    
+    applescript = """
+    tell application "System Events"
+        set isRunning to (name of processes) contains "Mail"
+    end tell
+    if isRunning then
+        tell application "Mail"
+            try
+                set sentBox to sent mailbox
+                set totalSent to count of messages of sentBox
+                set maxCount to 40
+                if totalSent < maxCount then set maxCount to totalSent
+                
+                set recentSent to messages 1 thru maxCount of sentBox
+                set sentRecipients to {}
+                repeat with aMsg in recentSent
+                    try
+                        repeat with aRecipient in (every to recipient of aMsg)
+                            set end of sentRecipients to (address of aRecipient)
+                        end repeat
+                    end try
+                end repeat
+                
+                set draftsBox to drafts mailbox
+                set draftList to every message of draftsBox
+                set deletedCount to 0
+                repeat with dMsg in draftList
+                    try
+                        repeat with dRecipient in (every to recipient of dMsg)
+                            set dAddr to (address of dRecipient)
+                            if sentRecipients contains dAddr then
+                                delete dMsg
+                                set deletedCount to deletedCount + 1
+                            end if
+                        end repeat
+                    end try
+                end repeat
+                return deletedCount
+            on error
+                return 0
+            end try
+        end tell
+    else
+        return 0
+    end if
+    """
+    try:
+        res = subprocess.run(["osascript", "-e", applescript], capture_output=True, text=True, timeout=5)
+        count = int(res.stdout.strip()) if res.stdout.strip().isdigit() else 0
+        if count > 0:
+            log(f"  🍎 Apple Mail: Expunged {count} sent draft(s) directly in Mail.app.")
+    except Exception:
+        pass
+
+
+def clean_imap_drafts(mail):
+    """
+    Scans [Gmail]/Sent Mail and purges corresponding drafts from [Gmail]/Drafts.
+    """
     # 1. Get recent sent recipients
     status, count = mail.select('"[Gmail]/Sent Mail"')
     if status != "OK":
@@ -113,8 +168,7 @@ def clean_sent_drafts(mail):
 
     sent_emails = set()
     msg_ids = messages[0].split()
-    # Check last 100 sent messages
-    for mid in reversed(msg_ids[-100:]):
+    for mid in reversed(msg_ids[-50:]):
         res, data = mail.fetch(mid, "(BODY[HEADER.FIELDS (TO CC SUBJECT)])")
         if res == "OK" and data and isinstance(data[0], tuple):
             msg = email.message_from_bytes(data[0][1])
@@ -126,7 +180,7 @@ def clean_sent_drafts(mail):
     if not sent_emails:
         return
 
-    # 2. Select Drafts and check for matches
+    # 2. Select Drafts and purge matches
     status, count = mail.select('"[Gmail]/Drafts"')
     if status != "OK":
         return
@@ -149,32 +203,26 @@ def clean_sent_drafts(mail):
             if to_clean in sent_emails:
                 mail.store(did, "+FLAGS", r"(\Deleted)")
                 removed_count += 1
-                log(f"  🗑️ Removed sent draft for: {to_clean}")
+                log(f"  🗑️ IMAP: Removed sent draft for: {to_clean}")
 
     if removed_count > 0:
         mail.expunge()
-        log(f"✓ Expunged {removed_count} sent drafts from [Gmail]/Drafts.")
-    else:
-        log("✓ Drafts folder is in sync (0 leftover sent drafts).")
+        log(f"✓ Expunged {removed_count} sent draft(s) from [Gmail]/Drafts.")
 
 
 def check_and_create_auto_responses(mail, state_cases):
     """
     Scans INBOX for replies to outreach emails and creates a customized reply draft.
     """
-    log("Scanning INBOX for prospect replies...")
     status, count = mail.select("INBOX")
     if status != "OK":
         return
 
-    # Search for unread or recent messages with "surplus" in subject or from prospects
-    status, messages = mail.search(None, 'UNSEEN')
+    status, messages = mail.search(None, "UNSEEN")
     if status != "OK" or not messages[0]:
-        log("No unread messages in INBOX.")
         return
 
     msg_ids = messages[0].split()
-    log(f"Found {len(msg_ids)} unread message(s) in INBOX. Checking for outreach replies...")
 
     for mid in msg_ids:
         res, data = mail.fetch(mid, "(RFC822)")
@@ -187,16 +235,13 @@ def check_and_create_auto_responses(mail, state_cases):
         subject_raw = decode_str(msg.get("Subject", ""))
         message_id = msg.get("Message-ID", "")
 
-        # Check if subject matches outreach thread
         if "surplus" not in subject_raw.lower() and "excess proceeds" not in subject_raw.lower():
             continue
 
         log(f"  📩 Detected outreach reply from: {sender_name} <{sender_email}> (Sub: {subject_raw})")
 
-        # Determine first name
         first_name = sender_name.split()[0] if sender_name else ""
 
-        # Determine state from subject or body
         body_text = ""
         if msg.is_multipart():
             for part in msg.walk():
@@ -222,7 +267,6 @@ def check_and_create_auto_responses(mail, state_cases):
 
         greeting = f"Hi {first_name}," if first_name else "Hello,"
 
-        # Build response body in David's authentic voice
         reply_body = f"""{greeting}
 
 Thanks for getting back to me.
@@ -246,7 +290,6 @@ david@surplusdocket.com"""
 
         reply_subject = subject_raw if subject_raw.lower().startswith("re:") else f"Re: {subject_raw}"
 
-        # Create Draft in [Gmail]/Drafts
         draft_msg = MIMEText(reply_body, "plain", "utf-8")
         draft_msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
         draft_msg["To"] = sender_raw
@@ -267,30 +310,32 @@ david@surplusdocket.com"""
                 log(f"  🎉 Auto-response draft created in Gmail for {sender_email}!")
 
 
-def run_sync_cycle():
+def run_single_check():
+    """Runs a single check across Apple Mail and Gmail."""
+    clean_apple_mail_drafts()
     state_cases = load_feed_data()
     try:
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
         mail.login(GMAIL_USER, GMAIL_APP_PASS)
-        
-        # 1. Clean sent drafts
-        clean_sent_drafts(mail)
-        
-        # 2. Check for replies and create response drafts
+        clean_imap_drafts(mail)
         check_and_create_auto_responses(mail, state_cases)
-        
         mail.logout()
     except Exception as e:
-        log(f"❌ Error during sync cycle: {e}")
+        log(f"IMAP connection error: {e}")
 
 
-def main():
-    print("=" * 70)
-    print("  🤖 SURPLUS DOCKET — GMAIL AUTO-RESPONDER & DRAFTS CLEANER")
-    print("=" * 70)
-    run_sync_cycle()
-    print("=" * 70)
+def daemon_loop():
+    log("🚀 Surplus Docket Continuous Daemon Started (Running every 15s)...")
+    while True:
+        try:
+            run_single_check()
+        except Exception as e:
+            log(f"Unexpected error in daemon loop: {e}")
+        time.sleep(15)
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "--once":
+        run_single_check()
+    else:
+        daemon_loop()
