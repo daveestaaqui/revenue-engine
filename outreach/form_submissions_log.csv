@@ -12,3 +12,66 @@ timestamp,firm,name,state,target_url,form_url,status,detail
 2026-08-30T17:57:53.507028,The Rogers Law Group,Jonathan Rogers,TX,https://jonrogerslaw.com,https://www.jonrogerslaw.com/contact,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: The_Rogers_Law_Group_1788127073.png
 2026-08-30T17:57:57.657316,Duffley Law,William Duffley,TX,https://duffleylaw.com,https://duffleylaw.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: Duffley_Law_1788127077.png
 2026-08-30T17:58:00.696228,The Daves Law Firm,Robert Daves,TX,https://daveslaw.com,,ERROR,"Locator.count: Execution context was destroyed, most likely because of a navigation"
+2026-08-30T18:02:40.557834,Kyle & Kyle Law,Andrew Kyle,FL,https://kyleandkylelaw.com,https://kyleandkylelaw.com,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:02:45.688125,Lopez Law Group,Jason Lopez,FL,https://thelopezlawgroup.com,https://www.thelopezlawgroup.com/contact/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:02:50.469521,Law Offices of Brett L. Bigham,Brett Bigham,TX,http://www.bighamlaw.com,http://www.bighamlaw.com/contact_us,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:02:53.007402,The Daves Law Firm,Robert Daves,TX,https://daveslaw.com,,ERROR,"Locator.count: Execution context was destroyed, most likely because of a navigation"
+2026-08-30T18:02:56.884980,Manfred Sternberg & Associates,Manfred Sternberg,TX,https://sternberglaw.com,https://sternberglaw.com/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:03:05.678568,Dubyak Law,David Dubyak,OH,https://dubyaklaw.com,https://www.dubyaklaw.com/,FAILED,CAPTCHA detected.
+2026-08-30T18:03:09.298011,Cmapa Law,Mark Cmapa,FL,https://cmapalaw.com,https://cmapalaw.com/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:03:15.078664,Dunivan Law,Peter Dunivan,FL,https://dunivanlaw.com,https://www.dunivanlaw.com/contact,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:03:20.586121,Michael Ira Asen P.C.,Michael Ira Asen,NY,https://asenlaw.com,https://www.asenlaw.com/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:03:34.652004,Law Office of Steven J. Richardson,Steven J. Richardson,NJ,https://richardsonlaw.com,,ERROR,"Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to ""https://richardsonlaw.com/"", waiting until ""domcontentloaded""
+"
+2026-08-30T18:03:43.293124,Law Office of Joel R. Spivack,Joel R. Spivack,NJ,https://spivacklaw.com,https://spivacklaw.com/,FAILED,CAPTCHA detected.
+2026-08-30T18:03:50.587494,Levinson Law Group,Kenneth L. Levinson,CA,https://levinsonlaw.com,https://www.levinsonlaw.com/,SUCCESS,SUCCESS: Submitted. Proof saved to Levinson_Law_Group_1788127427.png
+2026-08-30T18:03:58.707001,Brian P. Kowal PA,Brian P. Kowal,FL,https://briankowallaw.com,https://briankowallaw.com/,FAILED,CAPTCHA detected.
+2026-08-30T18:04:01.416325,Marshall Law,Charles K. Marshall,GA,https://marshalllaw.com,,ERROR,"Locator.count: Execution context was destroyed, most likely because of a navigation"
+2026-08-30T18:04:06.264450,Salata Law,J. Thomas Salata,GA,https://salatalaw.com,https://www.salatalaw.com/get-in-touch/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:04:09.010153,Law Office of Robert M. Baskin,Robert M. Baskin,CA,https://baskinlaw.com,,ERROR,"Page.goto: net::ERR_SSL_VERSION_OR_CIPHER_MISMATCH at https://baskinlaw.com/
+Call log:
+  - navigating to ""https://baskinlaw.com/"", waiting until ""domcontentloaded""
+"
+2026-08-30T18:04:13.325825,Law Office of David A. Fernandez,David A. Fernandez,TX,https://fernandezlaw.com,https://fernandezlaw.com,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:04:15.757568,Danz Law,Matthew E. Danz,FL,https://danzlaw.com,,ERROR,"Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://danzlaw.com/
+Call log:
+  - navigating to ""https://danzlaw.com/"", waiting until ""domcontentloaded""
+"
+2026-08-30T18:04:26.417558,Campanaro Law,Steven A. Campanaro,NY,https://campanarolaw.com,https://www.campanarolaw.com/,SUCCESS,SUCCESS: Submitted. Proof saved to Campanaro_Law_1788127462.png
+2026-08-30T18:04:31.811693,Crane Law,Richard L. Crane,TN,https://cranelaw.com,https://cranelaw.com/contact,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:06:40.737219,Kyle & Kyle Law,Andrew Kyle,FL,https://kyleandkylelaw.com,https://www.kyleandkylelaw.com/locations,SUCCESS,SUCCESS: Submitted. Proof saved to Kyle___Kyle_Law_1788127597.png
+2026-08-30T18:06:46.523438,Lopez Law Group,Jason Lopez,FL,https://thelopezlawgroup.com,https://www.thelopezlawgroup.com/contact/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:06:51.440988,Law Offices of Brett L. Bigham,Brett Bigham,TX,http://www.bighamlaw.com,http://www.bighamlaw.com/contact_us,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:06:54.325206,The Daves Law Firm,Robert Daves,TX,https://daveslaw.com,,ERROR,"Locator.count: Execution context was destroyed, most likely because of a navigation"
+2026-08-30T18:06:57.813151,Manfred Sternberg & Associates,Manfred Sternberg,TX,https://sternberglaw.com,https://sternberglaw.com/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:07:06.488472,Dubyak Law,David Dubyak,OH,https://dubyaklaw.com,https://www.dubyaklaw.com/,FAILED,CAPTCHA detected.
+2026-08-30T18:07:10.203774,Cmapa Law,Mark Cmapa,FL,https://cmapalaw.com,https://cmapalaw.com/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:07:18.015970,Dunivan Law,Peter Dunivan,FL,https://dunivanlaw.com,https://www.dunivanlaw.com/,FAILED,CAPTCHA detected.
+2026-08-30T18:07:23.790099,Michael Ira Asen P.C.,Michael Ira Asen,NY,https://asenlaw.com,https://www.asenlaw.com/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:07:37.857777,Law Office of Steven J. Richardson,Steven J. Richardson,NJ,https://richardsonlaw.com,,ERROR,"Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to ""https://richardsonlaw.com/"", waiting until ""domcontentloaded""
+"
+2026-08-30T18:07:46.164427,Law Office of Joel R. Spivack,Joel R. Spivack,NJ,https://spivacklaw.com,https://spivacklaw.com/,FAILED,CAPTCHA detected.
+2026-08-30T18:07:53.727758,Brian P. Kowal PA,Brian P. Kowal,FL,https://briankowallaw.com,https://briankowallaw.com/,SUCCESS,SUCCESS: Submitted. Proof saved to Brian_P__Kowal_PA_1788127670.png
+2026-08-30T18:07:56.439398,Marshall Law,Charles K. Marshall,GA,https://marshalllaw.com,,ERROR,"Locator.count: Execution context was destroyed, most likely because of a navigation"
+2026-08-30T18:08:01.308314,Salata Law,J. Thomas Salata,GA,https://salatalaw.com,https://www.salatalaw.com/get-in-touch/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:08:03.735710,Law Office of Robert M. Baskin,Robert M. Baskin,CA,https://baskinlaw.com,,ERROR,"Page.goto: net::ERR_SSL_VERSION_OR_CIPHER_MISMATCH at https://baskinlaw.com/
+Call log:
+  - navigating to ""https://baskinlaw.com/"", waiting until ""domcontentloaded""
+"
+2026-08-30T18:08:08.049307,Law Office of David A. Fernandez,David A. Fernandez,TX,https://fernandezlaw.com,https://fernandezlaw.com,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:08:14.534275,Danz Law,Matthew E. Danz,FL,https://danzlaw.com,https://danzlaw.com,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:08:19.710715,Crane Law,Richard L. Crane,TN,https://cranelaw.com,https://cranelaw.com/contact,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:08:24.770107,Farris Law,John C. Farris,NC,https://farrislaw.com,https://farrislaw.com/contact-farris-law.html,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:08:27.855941,Harding Law,William H. Harding,NC,https://hardinglaw.com,,ERROR,"Locator.count: Execution context was destroyed, most likely because of a navigation"
+2026-08-30T18:08:32.803237,Davis Law Group,Michael J. Davis,CA,https://davislaw.com,https://jeffdavislawfirm.com/,FAILED,Could not find compatible contact form fields on page.
+2026-08-30T18:08:41.937729,Rinaldi Law,Thomas E. Rinaldi,FL,https://rinaldilaw.com,https://www.rinaldilaw.com/contact/3222093,FAILED,CAPTCHA detected.
+2026-08-30T18:08:49.499442,Roa Law,Adam J. Roa,MD,https://roalaw.com,https://ibpcpa.co.uk/,SUCCESS,SUCCESS: Submitted. Proof saved to Roa_Law_1788127726.png
+2026-08-30T18:08:58.520643,O'Brien Law,Kevin M. O'Brien,IL,https://obrienlaw.com,https://obrienlaw.com/contact-us/,FAILED,CAPTCHA detected.
+2026-08-30T18:09:12.584119,Fenster Law,Stephen M. Fenster,FL,https://fensterlaw.com,,ERROR,"Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to ""https://fensterlaw.com/"", waiting until ""domcontentloaded""
+"

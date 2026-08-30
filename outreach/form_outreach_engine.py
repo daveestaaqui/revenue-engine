@@ -138,10 +138,9 @@ def get_already_submitted():
 
 async def find_contact_page(page, base_url):
     """Attempts to locate the Contact or Consultation page on the firm's website."""
-    # Check if current page already has a contact form or textarea
-    if await page.locator("textarea, iframe[src*='form' i], form").count() > 0:
-        if await page.locator("textarea").count() > 0:
-            return page.url
+    # Check if current page already has a contact form
+    if await page.locator("textarea, form input[type='email']").count() > 0:
+        return page.url
 
     # Look for common contact links
     contact_patterns = [
@@ -159,17 +158,15 @@ async def find_contact_page(page, base_url):
         try:
             loc = page.locator(sel).first
             if await loc.is_visible(timeout=1000):
-                href = await loc.get_attribute("href")
-                if href and not href.startswith("mailto:") and not href.startswith("tel:"):
-                    await loc.click(timeout=3000)
-                    await page.wait_for_load_state("domcontentloaded", timeout=5000)
-                    await asyncio.sleep(1)
-                    return page.url
+                await loc.click(timeout=3000)
+                await page.wait_for_load_state("domcontentloaded", timeout=4000)
+                await asyncio.sleep(1)
+                return page.url
         except Exception:
             continue
 
-    # If not found, try direct navigation to standard contact paths
-    for path in ["/contact", "/contact-us", "/free-consultation", "/contact-our-firm"]:
+    # Try direct navigation to standard contact paths
+    for path in ["/contact", "/contact-us", "/contact_us", "/contact-our-firm", "/free-consultation", "/get-in-touch"]:
         try:
             target = base_url.rstrip("/") + path
             resp = await page.goto(target, timeout=5000, wait_until="domcontentloaded")
@@ -196,7 +193,6 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     except Exception:
         pass
 
-    # Check for target form contexts (main page + iframes)
     contexts = [page]
     for frame in page.frames:
         if frame != page.main_frame:
@@ -207,13 +203,15 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
 
     for ctx in contexts:
         try:
-            # 1. Message field
+            # 1. Message field (textarea or wide input)
             msg_selectors = [
                 "textarea",
                 "input[name*='message' i]",
                 "input[name*='comment' i]",
+                "input[name*='detail' i]",
                 "input[placeholder*='message' i]",
                 "input[placeholder*='how can we help' i]",
+                "input[placeholder*='case' i]",
                 "div[contenteditable='true']",
             ]
             msg_elem = None
@@ -222,9 +220,6 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 if await loc.is_visible(timeout=1000):
                     msg_elem = loc
                     break
-
-            if not msg_elem:
-                continue
 
             # 2. Email field
             email_selectors = [
@@ -243,9 +238,9 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
             if not email_elem:
                 continue
 
-            # Found valid form context!
             target_context = ctx
-            await msg_elem.fill(body)
+            if msg_elem:
+                await msg_elem.fill(body)
             await email_elem.fill(SENDER_EMAIL)
 
             # 3. Name fields
@@ -338,7 +333,12 @@ async def process_target(browser, target, is_dry_run=False):
     if not source_url or not source_url.startswith("http"):
         return {"status": "SKIPPED", "detail": "Invalid Source_URL"}
 
-    page = await browser.new_page()
+    context = await browser.new_context(
+        ignore_https_errors=True,
+        user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        viewport={"width": 1280, "height": 800}
+    )
+    page = await context.new_page()
     try:
         print(f"  🌐 Visiting {firm} ({source_url})...")
         await page.goto(source_url, timeout=12000, wait_until="domcontentloaded")
@@ -356,7 +356,7 @@ async def process_target(browser, target, is_dry_run=False):
         print(f"     [ERROR] Failed to process {firm}: {e}")
         return {"status": "ERROR", "detail": str(e)}
     finally:
-        await page.close()
+        await context.close()
 
 
 async def run_engine(is_dry_run=False, limit=10, state_filter=None):
