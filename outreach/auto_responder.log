@@ -72,3 +72,4 @@
 [2026-08-30 16:02:12]   🍎 Apple Mail: Expunged 2 sent draft(s) directly in Mail.app.
 [2026-08-30 16:02:35]   🗑️ IMAP: Removed sent draft for: info@courtst-legal.com
 [2026-08-30 16:02:35] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
+[2026-08-30 16:08:49] IMAP connection error: command: FETCH => socket error: EOF
