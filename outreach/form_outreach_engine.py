@@ -15,7 +15,7 @@ Features:
 
 import asyncio
 import csv
-import os
+import random
 import re
 import sys
 import time
@@ -23,8 +23,8 @@ from datetime import datetime
 from pathlib import Path
 from playwright.async_api import async_playwright
 
-# Paths
-BASE_DIR = Path("/Users/davidmahler/revenue-engine")
+# Dynamic Paths (works on both local Mac and GitHub Actions)
+BASE_DIR = Path(__file__).resolve().parent.parent
 OUTREACH_DIR = BASE_DIR / "outreach"
 TARGETS_CSV = OUTREACH_DIR / "verified_attorney_targets.csv"
 LOG_CSV = OUTREACH_DIR / "form_submissions_log.csv"
@@ -413,7 +413,13 @@ async def run_engine(is_dry_run=False, limit=10, state_filter=None):
             res["target_url"] = target.get("Source_URL", "")
             res["timestamp"] = datetime.now().isoformat()
             results.append(res)
-            await asyncio.sleep(2)  # courteous delay
+            # Polite random jitter to mimic human browsing behavior (8-18 seconds)
+            if i < len(candidate_list) and not is_dry_run:
+                jitter = random.uniform(8.0, 18.0)
+                print(f"     ⏳ Waiting {jitter:.1f}s before next firm...")
+                await asyncio.sleep(jitter)
+            else:
+                await asyncio.sleep(1)
         await browser.close()
 
     # Append to log
@@ -443,7 +449,7 @@ async def run_engine(is_dry_run=False, limit=10, state_filter=None):
 
 if __name__ == "__main__":
     dry_run = "--dry-run" in sys.argv or "--preview" in sys.argv
-    limit_val = 5
+    limit_val = 20
     for arg in sys.argv:
         if arg.startswith("--limit="):
             limit_val = int(arg.split("=")[1])

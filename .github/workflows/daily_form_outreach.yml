@@ -1,0 +1,67 @@
+name: Daily Autonomous Legal Form Outreach
+
+on:
+  schedule:
+    # Runs Monday through Friday at 14:00 UTC (10:00 AM EST / 7:00 AM PST)
+    - cron: '0 14 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Number of law firms to contact'
+        required: false
+        default: '20'
+      dry_run:
+        description: 'Run in dry-run preview mode (no live submission)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  run-form-outreach:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright Headless Chromium
+        run: |
+          playwright install --with-deps chromium
+
+      - name: Execute Automated Legal Outreach Batch
+        run: |
+          LIMIT="${{ github.event.inputs.limit || '20' }}"
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python outreach/form_outreach_engine.py --dry-run --limit=$LIMIT
+          else
+            python outreach/form_outreach_engine.py --limit=$LIMIT
+          fi
+
+      - name: Commit & Push Updated Submission Logs & Screenshots
+        run: |
+          git config --global user.name "Surplus Docket Outreach Bot"
+          git config --global user.email "outreach@surplusdocket.com"
+          git add outreach/form_submissions_log.csv outreach/form_screenshots/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(outreach): recorded daily law firm contact form submissions [skip ci]" && git pull --rebase origin main && git push)
+
+      - name: Upload Screenshot Proof Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: outreach-submission-proofs
+          path: outreach/form_screenshots/
+          retention-days: 30
