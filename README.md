@@ -9,7 +9,7 @@
 
 ---
 
-### 📊 Live Pipeline Statistics *(Updated August 30, 2026)*
+### 📊 Live Pipeline Statistics *(Updated August 31, 2026)*
 
 | Metric | Active Production Value | Statutory Provenance |
 | :--- | :--- | :--- |
