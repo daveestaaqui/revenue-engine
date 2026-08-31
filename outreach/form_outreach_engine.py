@@ -359,9 +359,98 @@ async def process_target(browser, target, is_dry_run=False):
         await context.close()
 
 
-async def run_engine(is_dry_run=False, limit=10, state_filter=None):
+def clean_domain(url_or_email):
+    """Extracts a normalized canonical domain string."""
+    if not url_or_email:
+        return ""
+    s = url_or_email.lower().strip()
+    if "@" in s:
+        s = s.split("@")[1]
+    s = re.sub(r"^https?://", "", s)
+    s = re.sub(r"^www\.", "", s)
+    s = s.split("/")[0].split("?")[0].split(":")[0]
+    return s
+
+
+def calculate_priority_score(target):
+    """
+    Computes a 0-100 Priority Relevance Score:
+    - Specialty: Tax Deed Surplus / Excess Proceeds (+45 pts)
+    - State: High-Volume Surplus States FL/TX (+30), CA/GA (+25), NC/TN (+20)
+    - Decision Maker: Boutique Managing Partner / Solo P.A. (+15 pts)
+    - County Relevance: Mention of top target county (+10 pts)
+    """
+    score = 0
+    spec = (target.get("Specialty", "") + " " + target.get("Practice_Details", "")).lower()
+    state = target.get("State", "").upper()
+    firm = target.get("Firm", "").lower()
+
+    # 1. Specialty relevance (max 45)
+    if any(k in spec for k in ["surplus fund", "excess proceed", "tax deed surplus", "overage", "unclaimed fund"]):
+        score += 45
+    elif any(k in spec for k in ["surplus", "asset recovery", "tax foreclosure", "tax sale"]):
+        score += 35
+    elif any(k in spec for k in ["foreclosure defense", "real estate litigation", "quiet title"]):
+        score += 20
+    else:
+        score += 10
+
+    # 2. State market value (max 30)
+    if state in ["FL", "TX"]:
+        score += 30
+    elif state in ["CA", "GA"]:
+        score += 25
+    elif state in ["NC", "TN"]:
+        score += 20
+    elif state in ["OH", "NY", "NJ", "PA", "IL", "MD", "AZ"]:
+        score += 15
+    else:
+        score += 5
+
+    # 3. Decision maker / boutique firm (max 15)
+    if any(k in firm for k in ["law office of", "p.a.", "pa", "pllc", "law group", "legal"]):
+        score += 15
+    else:
+        score += 10
+
+    # 4. County specific detail (max 10)
+    if any(k in spec for k in ["miami", "orange", "hillsborough", "harris", "dallas", "tarrant", "fulton", "los angeles", "broward", "palm beach"]):
+        score += 10
+
+    return score
+
+
+def get_already_submitted():
+    """
+    Returns a set of all normalized domains that have EVER been processed or contacted.
+    Ensures zero duplicate submissions.
+    """
+    submitted = set()
+    if LOG_CSV.exists():
+        with open(LOG_CSV, "r", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                t_url = row.get("target_url", "")
+                f_url = row.get("form_url", "")
+                d1 = clean_domain(t_url)
+                d2 = clean_domain(f_url)
+                if d1: submitted.add(d1)
+                if d2: submitted.add(d2)
+
+    # Also check sent log
+    sent_log = OUTREACH_DIR / "sent_log.csv"
+    if sent_log.exists():
+        with open(sent_log, "r", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                em = row.get("Email", "")
+                dom = clean_domain(em)
+                if dom: submitted.add(dom)
+
+    return submitted
+
+
+async def run_engine(is_dry_run=False, limit=20, state_filter=None):
     print("=" * 75)
-    print("  🤖 SURPLUS DOCKET — LAW FIRM CONTACT FORM OUTREACH ENGINE")
+    print("  🤖 SURPLUS DOCKET — HIGH-PROBABILITY FORM OUTREACH ENGINE")
     print("=" * 75)
     print(f"Mode         : {'DRY RUN (Preview / Screenshot only)' if is_dry_run else 'LIVE SUBMISSION'}")
     print(f"Sender       : {SENDER_NAME} <{SENDER_EMAIL}>")
@@ -373,33 +462,47 @@ async def run_engine(is_dry_run=False, limit=10, state_filter=None):
         return
 
     already_done = get_already_submitted()
-    targets = []
+    print(f"✓ Found {len(already_done)} previously contacted domains (PERMANENTLY EXCLUDED)")
+
+    eligible_targets = []
     with open(TARGETS_CSV, "r", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             clean = {k.strip(): (v or "").strip() for k, v in r.items() if k}
             url = clean.get("Source_URL", "").lower().strip()
             state = clean.get("State", "").upper()
+            dom = clean_domain(url) or clean_domain(clean.get("Email", ""))
             
+            if not dom or dom in already_done:
+                continue
             if state_filter and state != state_filter.upper():
                 continue
-            if url in already_done:
-                continue
             if url and url.startswith("http"):
-                targets.append(clean)
+                clean["domain"] = dom
+                clean["priority_score"] = calculate_priority_score(clean)
+                eligible_targets.append(clean)
 
-    # Deduplicate by domain
-    unique_targets = {}
-    for t in targets:
-        domain = re.sub(r"^https?://(www\.)?", "", t["Source_URL"].lower()).split("/")[0]
-        if domain not in unique_targets:
-            unique_targets[domain] = t
+    # Deduplicate candidate list by domain, retaining highest priority score
+    unique_candidates = {}
+    for t in eligible_targets:
+        d = t["domain"]
+        if d not in unique_candidates or t["priority_score"] > unique_candidates[d]["priority_score"]:
+            unique_candidates[d] = t
 
-    candidate_list = list(unique_targets.values())[:limit]
-    print(f"✓ Found {len(candidate_list)} target law firms ready for processing\n")
+    # Rank by Priority Score descending (Highest Probability Targets First)
+    ranked_targets = sorted(unique_candidates.values(), key=lambda x: x["priority_score"], reverse=True)
+    candidate_list = ranked_targets[:limit]
+
+    print(f"✓ Found {len(ranked_targets)} fresh, untouched law firms in database")
+    print(f"✓ Selected top {len(candidate_list)} HIGHEST PROBABILITY targets for this batch\n")
 
     if not candidate_list:
-        print("No eligible targets found.")
+        print("No eligible targets remaining.")
         return
+
+    print("Target Queue Priority Breakdown:")
+    for idx, cand in enumerate(candidate_list, 1):
+        print(f"  [{idx:02d}] Score: {cand['priority_score']} | {cand['Name']} | {cand['Firm']} ({cand['State']}) — {cand['Specialty']}")
+    print("-" * 75 + "\n")
 
     results = []
     async with async_playwright() as p:
