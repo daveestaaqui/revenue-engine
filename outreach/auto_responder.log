@@ -73,3 +73,10 @@
 [2026-08-30 16:02:35]   🗑️ IMAP: Removed sent draft for: info@courtst-legal.com
 [2026-08-30 16:02:35] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
 [2026-08-30 16:08:49] IMAP connection error: command: FETCH => socket error: EOF
+[2026-08-30 20:48:34] IMAP connection error: [Errno 54] Connection reset by peer
+[2026-08-30 21:04:28] IMAP connection error: [Errno 54] Connection reset by peer
+[2026-09-01 02:38:47] IMAP connection error: [Errno 60] Operation timed out
+[2026-09-01 02:39:04] IMAP connection error: [Errno 8] nodename nor servname provided, or not known
+[2026-09-01 06:28:52] IMAP connection error: [Errno 54] Connection reset by peer
+[2026-09-01 10:53:38] IMAP connection error: [Errno 54] Connection reset by peer
+[2026-09-01 17:05:32] IMAP connection error: command: FETCH => socket error: EOF
