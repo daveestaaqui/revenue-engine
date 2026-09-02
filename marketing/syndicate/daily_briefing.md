@@ -1,5 +1,5 @@
 # Surplus Docket — Daily Market Intelligence Briefing
-**Published:** September 01, 2026
+**Published:** September 02, 2026
 **Coverage:** 12 Major Metropolitan Circuits (Florida, Texas, Georgia)
 
 ---

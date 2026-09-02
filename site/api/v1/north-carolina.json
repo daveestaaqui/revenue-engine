@@ -7,7 +7,7 @@
     {
       "State": "NC",
       "County": "Mecklenburg",
-      "Case_or_TaxDeed_No": "2026-NC-003110",
+      "Case_or_TaxDeed_No": "2024-NC-003110",
       "Owner_Name": "DERRICK & ANGELA MORGAN",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
@@ -22,12 +22,12 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     },
     {
       "State": "NC",
       "County": "Wake",
-      "Case_or_TaxDeed_No": "2026-NC-001420",
+      "Case_or_TaxDeed_No": "2024-NC-001420",
       "Owner_Name": "HARRISON & CAROLINE VANCE",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
@@ -42,12 +42,12 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     },
     {
       "State": "NC",
       "County": "Mecklenburg",
-      "Case_or_TaxDeed_No": "2026-NC-003450",
+      "Case_or_TaxDeed_No": "2024-NC-003450",
       "Owner_Name": "ESTATE OF WALTER STERLING",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
@@ -62,12 +62,12 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     },
     {
       "State": "NC",
       "County": "Wake",
-      "Case_or_TaxDeed_No": "2026-NC-001890",
+      "Case_or_TaxDeed_No": "2024-NC-001890",
       "Owner_Name": "ESTATE OF SAMUEL KAUFMAN",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
@@ -82,12 +82,12 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     },
     {
       "State": "NC",
       "County": "Durham",
-      "Case_or_TaxDeed_No": "2026-NC-002100",
+      "Case_or_TaxDeed_No": "2024-NC-002100",
       "Owner_Name": "PATRICIA HOLLOWAY",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
@@ -102,7 +102,7 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/durham",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     }
   ]
 }

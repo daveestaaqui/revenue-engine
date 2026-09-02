@@ -7,7 +7,7 @@
     {
       "State": "TX",
       "County": "Harris",
-      "Case_or_TaxDeed_No": "2026-TX-04812",
+      "Case_or_TaxDeed_No": "2024-TX-04812",
       "Owner_Name": "WILLIAM & MARY HOLLOWAY",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
@@ -22,12 +22,12 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     },
     {
       "State": "TX",
       "County": "Harris",
-      "Case_or_TaxDeed_No": "2026-TX-04950",
+      "Case_or_TaxDeed_No": "2024-TX-04950",
       "Owner_Name": "ESTATE OF CHARLES BEAUMONT",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
@@ -42,12 +42,12 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     },
     {
       "State": "TX",
       "County": "Dallas",
-      "Case_or_TaxDeed_No": "2026-TX-02044",
+      "Case_or_TaxDeed_No": "2024-TX-02044",
       "Owner_Name": "ESTATE OF MARGARET THORNTON",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
@@ -62,12 +62,12 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     },
     {
       "State": "TX",
       "County": "Dallas",
-      "Case_or_TaxDeed_No": "2026-TX-01928",
+      "Case_or_TaxDeed_No": "2024-TX-01928",
       "Owner_Name": "GEORGE & DOROTHY WASHINGTON",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
@@ -82,12 +82,12 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     },
     {
       "State": "TX",
       "County": "Harris",
-      "Case_or_TaxDeed_No": "2026-TX-05110",
+      "Case_or_TaxDeed_No": "2024-TX-05110",
       "Owner_Name": "RAFAEL GUERRERO",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
@@ -102,7 +102,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-01 15:18:38"
+      "Enriched_Timestamp": "2026-09-02 14:48:41"
     }
   ]
 }
