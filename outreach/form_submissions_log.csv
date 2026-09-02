@@ -109,3 +109,49 @@ Call log:
   - navigating to ""https://zaretskylaw.com/"", waiting until ""domcontentloaded""
 ",
 2026-09-02T09:35:22.446671,Berkowitz & Associates,Jonathan A. Berkowitz,FL,https://berkowitzlawgroup.com,,ERROR,"Locator.count: Execution context was destroyed, most likely because of a navigation",
+2026-09-02T17:48:32.529913,"Law Office of Andrew J. Pascale, P.A.",Andrew J. Pascale,FL,https://pascalelaw.com,https://www.pascalelaw.com/get-in-touch/,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-02T17:48:46.425529,Zaretsky Law Group,Richard P. Zaretsky,FL,https://zaretskylaw.com,,ERROR,"Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://zaretskylaw.com/
+Call log:
+  - navigating to ""https://zaretskylaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-02T17:48:58.568827,Berkowitz & Associates,Jonathan A. Berkowitz,FL,https://berkowitzlawgroup.com,https://berkowitzlawgroup.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-02T17:49:14.891552,"Finke Law Firm, P.C.",John P. Finke,TX,https://finkelawfirm.com,,ERROR,"Page.goto: net::ERR_NAME_NOT_RESOLVED at https://finkelawfirm.com/
+Call log:
+  - navigating to ""https://finkelawfirm.com/"", waiting until ""domcontentloaded""
+",
+2026-09-02T17:49:30.062922,Mitchell & Duff Law Firm,Charles B. Mitchell,TX,https://mitchelldufflaw.com,,ERROR,"Page.goto: net::ERR_NAME_NOT_RESOLVED at https://mitchelldufflaw.com/
+Call log:
+  - navigating to ""https://mitchelldufflaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-02T17:49:49.156279,"Marshall Legal Group, LLC",David C. Marshall,GA,https://marshalllegal.com,https://www.marshalllegal.com/contact-us,SUCCESS,SUCCESS: Submitted. Proof saved to Marshall_Legal_Group__LLC_1788371385.png,C
+2026-09-02T17:50:04.031357,"Pierce Law Group, LLC",J. William Pierce,GA,https://piercelawga.com,,ERROR,"Page.goto: net::ERR_NAME_NOT_RESOLVED at https://piercelawga.com/
+Call log:
+  - navigating to ""https://piercelawga.com/"", waiting until ""domcontentloaded""
+",
+2026-09-02T17:50:25.066176,Lopez Law Group,Jason Lopez,FL,https://thelopezlawgroup.com,https://www.thelopezlawgroup.com/contact/,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-02T17:50:40.115242,Law Office of David A. Fernandez,David A. Fernandez,TX,https://fernandezlaw.com,https://fernandezlaw.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-02T17:50:55.631172,"The Law Offices of Travis R. Walker, P.A.",Travis R. Walker,FL,https://traviswalkerlaw.com,https://www.traviswalkerlaw.com/,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-02T17:51:12.125522,"Sewar Legal, P.A.",Richard Sewar,FL,https://sewarlegal.com,https://sewarlegal.com/contact-us-2/,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-02T17:51:28.829473,Haynes Law Group,Benjamin Haynes,FL,https://hayneslawgroup.com,https://forsale.godaddy.com/forsale/hayneslawgroup.com?utm_source=TDFS_BINNS2&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-binns2_base&traffic_type=TDFS_BINNS2&traffic_id=binns2&,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-02T17:51:41.125683,"Law Offices of Scott W. Spradley, P.A.",Scott W. Spradley,FL,https://spradleylaw.com,https://spradleylaw.com/contact,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-02T17:51:59.713502,Jason English Law PLLC,Jason S. English,TX,https://jasonenglishlaw.com,https://www.jasonenglishlaw.com/,FAILED,CAPTCHA detected.,C
+2026-09-02T17:52:19.250938,"Kelly Legal Group, PLLC",Michael B. Kelly,TX,https://kellylegalgroup.com,https://www.kellylegalgroup.com/contact-us/,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-02T17:52:38.430475,"Law Office of Paul M. Gonzalez, P.C.",Paul M. Gonzalez,TX,https://gonzalezlawpc.com,https://gonzalezlawpc.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-02T17:52:55.594371,Shapero Law Firm,Aaron Shapero,CA,https://shaperolawfirm.com,https://shaperolawfirm.com/contact,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-02T17:53:23.307710,"Financial Relief Law Center, APC",Sarah Financial,CA,https://bwlawcenter.com,https://www.bwlawcenter.com/contact-us/,SUCCESS,SUCCESS: Submitted. Proof saved to Financial_Relief_Law_Center__A_1788371599.png,B
+2026-09-02T17:53:34.619019,Stopa Law Firm,Mark P. Stopa,FL,https://stopalawfirm.com,,ERROR,"Page.goto: net::ERR_NAME_NOT_RESOLVED at https://stopalawfirm.com/
+Call log:
+  - navigating to ""https://stopalawfirm.com/"", waiting until ""domcontentloaded""
+",
+2026-09-02T17:53:50.609407,"Velasquez Dolan, P.A.",Daniel A. Velasquez,FL,https://velasquezdolan.com,https://velasquezdolan.com/contact,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-02T17:54:06.438792,"Peter M. Feaman, P.A.",Peter M. Feaman,FL,https://feamanlaw.com,,ERROR,"Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://feamanlaw.com/
+Call log:
+  - navigating to ""https://feamanlaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-02T17:54:18.545390,Miles Law Firm,Keith R. Miles,CA,https://kmileslaw.com,,ERROR,"Page.goto: net::ERR_NAME_NOT_RESOLVED at https://kmileslaw.com/
+Call log:
+  - navigating to ""https://kmileslaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-02T17:54:33.580438,Law Offices of Brett L. Bigham,Brett Bigham,TX,http://www.bighamlaw.com,http://www.bighamlaw.com/contact,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-02T17:54:47.307765,The Daves Law Firm,Robert Daves,TX,https://daveslaw.com,https://forsale.godaddy.com/forsale/daveslaw.com?utm_source=TDFS_BINNS2&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-binns2_base&traffic_type=TDFS_BINNS2&traffic_id=binns2&,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-02T17:55:06.323906,Manfred Sternberg & Associates,Manfred Sternberg,TX,https://sternberglaw.com,https://sternberglaw.com/,FAILED,Could not find compatible contact form fields on page.,C
