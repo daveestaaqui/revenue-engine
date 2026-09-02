@@ -80,3 +80,17 @@ Call log:
 2026-08-31T10:12:15.252875,Michael T. Heider PA,Michael T. Heider,FL,https://heiderlaw.com,https://www.heiderlaw.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: Michael_T__Heider_PA_1788185535.png
 2026-08-31T10:12:18.942739,"The Law Offices of Travis R. Walker, P.A.",Travis R. Walker,FL,https://traviswalkerlaw.com,https://www.traviswalkerlaw.com/,FAILED,Could not find compatible contact form fields on page.
 2026-08-31T10:12:24.392122,"Sewar Legal, P.A.",Richard Sewar,FL,https://sewarlegal.com,https://sewarlegal.com/contact-us-2/,FAILED,Could not find compatible contact form fields on page.
+2026-09-01T20:02:47.904687,"Law Offices of Carlos M. Amor, P.A.",Carlos M. Amor,FL,https://carlosamorlaw.com,,ERROR,"Page.goto: net::ERR_NAME_NOT_RESOLVED at https://carlosamorlaw.com/
+Call log:
+  - navigating to ""https://carlosamorlaw.com/"", waiting until ""domcontentloaded""
+"
+2026-09-01T20:02:49.403981,Zaretsky Law Group,Richard P. Zaretsky,FL,https://zaretskylaw.com,,ERROR,"Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://zaretskylaw.com/
+Call log:
+  - navigating to ""https://zaretskylaw.com/"", waiting until ""domcontentloaded""
+"
+2026-09-01T20:02:50.515421,"Bosseler & Feist, P.A.",Gregory J. Bosseler,FL,https://bosselerfeist.com,,ERROR,"Page.goto: net::ERR_NAME_NOT_RESOLVED at https://bosselerfeist.com/
+Call log:
+  - navigating to ""https://bosselerfeist.com/"", waiting until ""domcontentloaded""
+"
+2026-09-01T20:02:53.854371,"Law Office of Neil Tygar, P.A.",Neil B. Tygar,FL,https://tygarlaw.com,https://tygarlaw.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: Law_Office_of_Neil_Tygar__P_A__1788307373.png
+2026-09-01T20:02:56.849541,"Law Offices of Evan M. Rosen, P.A.",Evan M. Rosen,FL,https://evanmrosen.com,https://www.evanmrosen.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: Law_Offices_of_Evan_M__Rosen___1788307376.png
