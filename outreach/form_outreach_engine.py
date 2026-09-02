@@ -358,12 +358,10 @@ async def process_target(browser, target, is_dry_run=False):
     source_url = target.get("Source_URL", "").strip()
     firm = target.get("Firm", "")
     state = target.get("State", "")
+    variant = ""
     
     if not source_url or not source_url.startswith("http"):
         return {"status": "SKIPPED", "detail": "Invalid Source_URL", "variant": ""}
-
-    # Pre-compose message to capture which A/B/C variant was selected
-    _, _, variant = compose_message(target)
 
     context = await browser.new_context(
         ignore_https_errors=True,
@@ -379,9 +377,14 @@ async def process_target(browser, target, is_dry_run=False):
         form_url = await find_contact_page(page, source_url)
         print(f"     Found form page: {form_url}")
 
-        # Fill and submit
+        # Fill and submit (compose_message is called inside, variant determined there)
         ok, detail, variant = await fill_and_submit_form(page, target, is_dry_run=is_dry_run)
-        status = "SUCCESS" if ok else "FAILED"
+        if ok and is_dry_run:
+            status = "DRY_RUN"
+        elif ok:
+            status = "SUCCESS"
+        else:
+            status = "FAILED"
         print(f"     [{status}] [Variant {variant}] {detail}")
         return {"status": status, "form_url": form_url, "detail": detail, "variant": variant}
     except Exception as e:
@@ -455,9 +458,9 @@ def calculate_priority_score(target):
 def get_already_submitted():
     """
     Returns a set of all normalized domains that should be EXCLUDED.
-    - SUCCESS / DRY_RUN: permanently excluded (already contacted)
+    - SUCCESS: permanently excluded (already contacted for real)
     - ERROR with DNS resolution failure: permanently excluded (dead domain)
-    - FAILED / other ERROR: NOT excluded (should be retried on next run)
+    - DRY_RUN / FAILED / other ERROR: NOT excluded (should be retried on live runs)
     """
     submitted = set()
     if LOG_CSV.exists():
@@ -470,8 +473,8 @@ def get_already_submitted():
                 d1 = clean_domain(t_url)
                 d2 = clean_domain(f_url)
                 
-                # Permanently exclude successful submissions
-                if "SUCCESS" in status or "DRY_RUN" in status:
+                # Permanently exclude successful live submissions
+                if status == "SUCCESS":
                     if d1: submitted.add(d1)
                     if d2: submitted.add(d2)
                 # Permanently exclude dead domains (DNS failures)
@@ -492,7 +495,7 @@ def get_already_submitted():
     return submitted
 
 
-async def run_engine(is_dry_run=False, limit=20, state_filter=None):
+async def run_engine(is_dry_run=False, limit=25, state_filter=None):
     print("=" * 75)
     print("  🤖 SURPLUS DOCKET — HIGH-PROBABILITY FORM OUTREACH ENGINE")
     print("=" * 75)

@@ -184,12 +184,12 @@
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">2. Pre-Load Verified Live Docket</label>
                     <select id="gen-docket-preset" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-bold text-brand-green focus:outline-none focus:border-brand-green focus:bg-white transition-all truncate" onchange="loadDocketPreset()">
                         <option value="">-- Choose High-Yield Sample Case --</option>
-                        <option value="FL_PB">Palm Beach FL: 2024-TD-004501 ($145,000.00)</option>
-                        <option value="TX_HC">Harris County TX: 2024-TX-04812 ($128,500.00)</option>
-                        <option value="GA_FC">Fulton County GA: 2024-GA-003810 ($134,000.00)</option>
-                        <option value="NC_WC">Wake County NC: 2024-NC-001420 ($114,500.00)</option>
-                        <option value="TN_DC">Davidson County TN: 2024-TN-002190 ($126,000.00)</option>
-                        <option value="CA_LA">Los Angeles CA: 2024-CA-008120 ($215,000.00)</option>
+                        <option value="FL_PB">Palm Beach FL: 2026-TD-004501 ($145,000.00)</option>
+                        <option value="TX_HC">Harris County TX: 2026-TX-04812 ($128,500.00)</option>
+                        <option value="GA_FC">Fulton County GA: 2026-GA-003810 ($134,000.00)</option>
+                        <option value="NC_WC">Wake County NC: 2026-NC-001420 ($114,500.00)</option>
+                        <option value="TN_DC">Davidson County TN: 2026-TN-002190 ($126,000.00)</option>
+                        <option value="CA_LA">Los Angeles CA: 2026-CA-008120 ($215,000.00)</option>
                     </select>
                 </div>
                 <div>
@@ -206,7 +206,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 text-xs">
                 <div>
                     <label class="block font-semibold text-slate-500 mb-1">Case / Docket Number</label>
-                    <input type="text" id="gen-case-no" value="2024-TD-004501" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono font-semibold" oninput="renderLivePetition()">
+                    <input type="text" id="gen-case-no" value="2026-TD-004501" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono font-semibold" oninput="renderLivePetition()">
                 </div>
                 <div>
                     <label class="block font-semibold text-slate-500 mb-1">County Name</label>
@@ -523,12 +523,12 @@ ATTORNEY SIGNATURE: __________________________________ DATE: ______________</pre
 
     <script>
         const PRESETS = {
-            "FL_PB": { state: "FL", caseNo: "2024-TD-004501", county: "Palm Beach", amount: "145,000.00", date: "August 18, 2026", owner: "Anthony & Grace Valentine", address: "720 S Ocean Blvd, Palm Beach FL 33480", bar: "FL Bar # 1048291" },
-            "TX_HC": { state: "TX", caseNo: "2024-TX-04812", county: "Harris", amount: "128,500.00", date: "August 12, 2026", owner: "William & Mary Holloway", address: "5402 Braesvalley Dr, Houston TX 77096", bar: "State Bar of Texas # 24098112" },
-            "GA_FC": { state: "GA", caseNo: "2024-GA-003810", county: "Fulton", amount: "134,000.00", date: "August 15, 2026", owner: "Marcus & Eleanor Jenkins", address: "1420 Peachtree St NE, Atlanta GA 30309", bar: "GA State Bar # 591024" },
-            "NC_WC": { state: "NC", caseNo: "2024-NC-001420", county: "Wake", amount: "114,500.00", date: "July 18, 2026", owner: "Harrison & Caroline Vance", address: "4210 Glenwood Ave, Raleigh NC 27612", bar: "NC State Bar # 48210" },
-            "TN_DC": { state: "TN", caseNo: "2024-TN-002190", county: "Davidson", amount: "126,000.00", date: "July 16, 2026", owner: "Franklin & Judith Mercer", address: "2418 West End Ave, Nashville TN 37203", bar: "BPR # 038192 (TN)" },
-            "CA_LA": { state: "CA", caseNo: "2024-CA-008120", county: "Los Angeles", amount: "215,000.00", date: "July 09, 2026", owner: "Gregory & Evelyn Thatcher", address: "1420 Wilshire Blvd, Los Angeles CA 90017", bar: "CA State Bar # 294812" }
+            "FL_PB": { state: "FL", caseNo: "2026-TD-004501", county: "Palm Beach", amount: "145,000.00", date: "August 18, 2026", owner: "Anthony & Grace Valentine", address: "720 S Ocean Blvd, Palm Beach FL 33480", bar: "FL Bar # 1048291" },
+            "TX_HC": { state: "TX", caseNo: "2026-TX-04812", county: "Harris", amount: "128,500.00", date: "August 12, 2026", owner: "William & Mary Holloway", address: "5402 Braesvalley Dr, Houston TX 77096", bar: "State Bar of Texas # 24098112" },
+            "GA_FC": { state: "GA", caseNo: "2026-GA-003810", county: "Fulton", amount: "134,000.00", date: "August 15, 2026", owner: "Marcus & Eleanor Jenkins", address: "1420 Peachtree St NE, Atlanta GA 30309", bar: "GA State Bar # 591024" },
+            "NC_WC": { state: "NC", caseNo: "2026-NC-001420", county: "Wake", amount: "114,500.00", date: "July 18, 2026", owner: "Harrison & Caroline Vance", address: "4210 Glenwood Ave, Raleigh NC 27612", bar: "NC State Bar # 48210" },
+            "TN_DC": { state: "TN", caseNo: "2026-TN-002190", county: "Davidson", amount: "126,000.00", date: "July 16, 2026", owner: "Franklin & Judith Mercer", address: "2418 West End Ave, Nashville TN 37203", bar: "BPR # 038192 (TN)" },
+            "CA_LA": { state: "CA", caseNo: "2026-CA-008120", county: "Los Angeles", amount: "215,000.00", date: "July 09, 2026", owner: "Gregory & Evelyn Thatcher", address: "1420 Wilshire Blvd, Los Angeles CA 90017", bar: "CA State Bar # 294812" }
         };
 
         function onStateChange() {

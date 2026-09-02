@@ -1,11 +1,11 @@
 State,County,Case_or_TaxDeed_No,Owner_Name_Redacted,Property_Address,Property_Type,Surplus_Balance_USD,Statutory_Fee_Rate,Est_Finder_Fee_USD,Opportunity_Tier,Governing_Statute,Clerk_Verification_URL
-CA,Los Angeles,2024-CA-008120,G. & T. ████████,1420 WILSHIRE BLVD LOS ANGELES CA 90017,Commercial / Mixed Use,215000.0,20%,43000.0,Tier 1: High Value ($25k+),Cal. Rev. & Tax Code § 4675,https://ttc.lacounty.gov/
-CA,San Diego,2024-CA-005210,V. & R. █████,4910 LA JOLLA BLVD SAN DIEGO CA 92037,Commercial / Mixed Use,184000.0,20%,36800.0,Tier 1: High Value ($25k+),Cal. Rev. & Tax Code § 4675,https://www.sdttc.com/
-CA,Los Angeles,2024-CA-008640,E. & D. ███████,3820 SUNSET BLVD LOS ANGELES CA 90026,Commercial / Mixed Use,168000.0,20%,33600.0,Tier 1: High Value ($25k+),Cal. Rev. & Tax Code § 4675,https://ttc.lacounty.gov/
-FL,Palm Beach,2024-TD-004501,A. & V. ████████,720 S OCEAN BLVD PALM BEACH FL 33480,Commercial / Mixed Use,145000.0,20%,29000.0,Tier 1: High Value ($25k+),Fla. Stat. § 197.582,https://www.mypalmbeachclerk.com/
-NC,Mecklenburg,2024-NC-003110,D. & M. ██████,5820 SHARON RD CHARLOTTE NC 28210,Vacant Land / Acreage,138000.0,20%,27600.0,Tier 1: High Value ($25k+),N.C.G.S. § 105-374,https://www.nccourts.gov/locations/mecklenburg
-GA,Fulton,2024-GA-003810,M. & J. ███████,1420 PEACHTREE ST NE ATLANTA GA 30309,Single Family Residential,134000.0,20%,26800.0,Tier 1: High Value ($25k+),O.C.G.A. § 48-4-5,https://www.fultonclerk.org/
-TX,Harris,2024-TX-04812,W. & H. ████████,5402 BRAESVALLEY DR HOUSTON TX 77096,Single Family Residential,128500.0,25%,32125.0,Tier 1: High Value ($25k+),Tex. Tax Code § 34.04,https://www.hcdistrictclerk.com/
-TN,Davidson,2024-TN-002190,F. & M. ██████,2418 WEST END AVE NASHVILLE TN 37203,Single Family Residential,126000.0,20%,25200.0,Tier 1: High Value ($25k+),T.C.A. § 67-5-2501,https://chanceryclerkandmaster.nashville.gov/
-CA,San Diego,2024-CA-005780,E. & W. ███████,2104 CORONADO AVE SAN DIEGO CA 92154,Single Family Residential,119500.0,20%,23900.0,Tier 1: High Value ($25k+),Cal. Rev. & Tax Code § 4675,https://www.sdttc.com/
-GA,Cobb,2024-GA-001550,E. & V. ██████,1205 ROSWELL RD MARIETTA GA 30062,Single Family Residential,118000.0,20%,23600.0,Tier 1: High Value ($25k+),O.C.G.A. § 48-4-5,https://www.cobbtax.org/
+CA,Los Angeles,2026-CA-008120,G. & T. ████████,1420 WILSHIRE BLVD LOS ANGELES CA 90017,Commercial / Mixed Use,215000.0,20%,43000.0,Tier 1: High Value ($25k+),Cal. Rev. & Tax Code § 4675,https://ttc.lacounty.gov/
+CA,San Diego,2026-CA-005210,V. & R. █████,4910 LA JOLLA BLVD SAN DIEGO CA 92037,Commercial / Mixed Use,184000.0,20%,36800.0,Tier 1: High Value ($25k+),Cal. Rev. & Tax Code § 4675,https://www.sdttc.com/
+CA,Los Angeles,2026-CA-008640,E. & D. ███████,3820 SUNSET BLVD LOS ANGELES CA 90026,Commercial / Mixed Use,168000.0,20%,33600.0,Tier 1: High Value ($25k+),Cal. Rev. & Tax Code § 4675,https://ttc.lacounty.gov/
+FL,Palm Beach,2026-TD-004501,A. & V. ████████,720 S OCEAN BLVD PALM BEACH FL 33480,Commercial / Mixed Use,145000.0,20%,29000.0,Tier 1: High Value ($25k+),Fla. Stat. § 197.582,https://www.mypalmbeachclerk.com/
+NC,Mecklenburg,2026-NC-003110,D. & M. ██████,5820 SHARON RD CHARLOTTE NC 28210,Vacant Land / Acreage,138000.0,20%,27600.0,Tier 1: High Value ($25k+),N.C.G.S. § 105-374,https://www.nccourts.gov/locations/mecklenburg
+GA,Fulton,2026-GA-003810,M. & J. ███████,1420 PEACHTREE ST NE ATLANTA GA 30309,Single Family Residential,134000.0,20%,26800.0,Tier 1: High Value ($25k+),O.C.G.A. § 48-4-5,https://www.fultonclerk.org/
+TX,Harris,2026-TX-04812,W. & H. ████████,5402 BRAESVALLEY DR HOUSTON TX 77096,Single Family Residential,128500.0,25%,32125.0,Tier 1: High Value ($25k+),Tex. Tax Code § 34.04,https://www.hcdistrictclerk.com/
+TN,Davidson,2026-TN-002190,F. & M. ██████,2418 WEST END AVE NASHVILLE TN 37203,Single Family Residential,126000.0,20%,25200.0,Tier 1: High Value ($25k+),T.C.A. § 67-5-2501,https://chanceryclerkandmaster.nashville.gov/
+CA,San Diego,2026-CA-005780,E. & W. ███████,2104 CORONADO AVE SAN DIEGO CA 92154,Single Family Residential,119500.0,20%,23900.0,Tier 1: High Value ($25k+),Cal. Rev. & Tax Code § 4675,https://www.sdttc.com/
+GA,Cobb,2026-GA-001550,E. & V. ██████,1205 ROSWELL RD MARIETTA GA 30062,Single Family Residential,118000.0,20%,23600.0,Tier 1: High Value ($25k+),O.C.G.A. § 48-4-5,https://www.cobbtax.org/
