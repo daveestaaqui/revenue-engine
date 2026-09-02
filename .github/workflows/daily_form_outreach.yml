@@ -23,7 +23,7 @@ permissions:
 jobs:
   run-form-outreach:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
 
     steps:
       - name: Checkout Repository
@@ -46,7 +46,7 @@ jobs:
 
       - name: Execute Automated Legal Outreach Batch
         run: |
-          LIMIT="${{ github.event.inputs.limit || '20' }}"
+          LIMIT="${{ github.event.inputs.limit || '25' }}"
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             python outreach/form_outreach_engine.py --dry-run --limit=$LIMIT
           else

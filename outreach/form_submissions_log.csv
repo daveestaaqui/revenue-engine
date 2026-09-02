@@ -94,3 +94,12 @@ Call log:
 "
 2026-09-01T20:02:53.854371,"Law Office of Neil Tygar, P.A.",Neil B. Tygar,FL,https://tygarlaw.com,https://tygarlaw.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: Law_Office_of_Neil_Tygar__P_A__1788307373.png
 2026-09-01T20:02:56.849541,"Law Offices of Evan M. Rosen, P.A.",Evan M. Rosen,FL,https://evanmrosen.com,https://www.evanmrosen.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot: Law_Offices_of_Evan_M__Rosen___1788307376.png
+2026-09-02T08:31:12.149710,"Law Office of Andrew J. Pascale, P.A.",Andrew J. Pascale,FL,https://pascalelaw.com,https://www.pascalelaw.com/get-in-touch/,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-02T08:31:14.194629,Zaretsky Law Group,Richard P. Zaretsky,FL,https://zaretskylaw.com,,ERROR,"Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://zaretskylaw.com/
+Call log:
+  - navigating to ""https://zaretskylaw.com/"", waiting until ""domcontentloaded""
+",C
+2026-09-02T08:31:15.406794,"Rains Law Firm, PLLC",Mark C. Rains,TX,https://rainslawfirm.com,,ERROR,"Page.goto: net::ERR_NAME_NOT_RESOLVED at https://rainslawfirm.com/
+Call log:
+  - navigating to ""https://rainslawfirm.com/"", waiting until ""domcontentloaded""
+",C

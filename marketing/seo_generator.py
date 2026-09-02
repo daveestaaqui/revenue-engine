@@ -52,6 +52,7 @@ ALL_SITE_URLS = [
     "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
     "https://surplusdocket.com/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html",
     "https://surplusdocket.com/blog/posts/institutional-lien-filtering-asset-recovery.html",
+    "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
     "https://surplusdocket.com/terms.html",
     "https://surplusdocket.com/refund-policy.html",
     "https://surplusdocket.com/press/",

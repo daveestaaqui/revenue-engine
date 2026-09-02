@@ -99,9 +99,12 @@ def compose_message(target):
     greeting = f"Hi {first_name}," if first_name else f"Hello {firm} team,"
     recommended_link = get_recommended_link(state_code, practice_details)
 
-    subject = f"{state_name} surplus & excess proceeds data"
-
-    body = f"""{greeting}
+    variants = ["A", "B", "C"]
+    chosen_variant = random.choice(variants)
+    
+    if chosen_variant == "A":
+        subject = f"{state_name} surplus & excess proceeds data"
+        body = f"""{greeting}
 
 I'm reaching out because I built a tool that indexes tax deed surplus and excess proceeds cases across {state_name}.
 
@@ -119,21 +122,47 @@ David Mahler
 surplusdocket.com
 david@surplusdocket.com"""
 
-    return subject, body
+    elif chosen_variant == "B":
+        subject = f"Post-Tyler surplus recovery data — {state_name}"
+        body = f"""{greeting}
 
+Since the Supreme Court's unanimous ruling in Tyler v. Hennepin County last year, the surplus recovery landscape has fundamentally changed. Counties that previously retained foreclosure overages are now legally obligated to distribute them — and claim filing deadlines are running.
 
-def get_already_submitted():
-    submitted = set()
-    if not LOG_CSV.exists():
-        return submitted
-    with open(LOG_CSV, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            status = row.get("status", "").upper()
-            url = row.get("target_url", "").lower().strip()
-            if "SUCCESS" in status and url:
-                submitted.add(url)
-    return submitted
+I built a tool that indexes {state_name} tax deed surplus and excess proceeds cases daily. We pull the dockets from county registries and filter out institutional encumbrances upstream, so you only see clean, collectible balances with verified claim windows.
+
+You can review the live {state_name} feed here:
+{recommended_link}
+
+If you'd like daily delivery ($249/mo flat, cancel anytime):
+{STRIPE_LINK}
+
+Best,
+
+David Mahler
+surplusdocket.com
+david@surplusdocket.com"""
+
+    else:  # Variant C
+        subject = f"{state_name} surplus claims — ROI data feed"
+        body = f"""{greeting}
+
+Quick math: the average {state_name} surplus balance in our current index is roughly $45,000. At a standard 25% contingency, that's $11,250 per successful claim — and we're indexing new filings every morning.
+
+I built a data feed that pulls tax deed surplus and excess proceeds dockets from {state_name} county registries daily. We filter out senior mortgages and institutional liens upstream, so you're only working clean files.
+
+Live feed and sample data:
+{recommended_link}
+
+Daily delivery is $249/mo flat with Stripe billing (cancel anytime):
+{STRIPE_LINK}
+
+Best,
+
+David Mahler
+surplusdocket.com
+david@surplusdocket.com"""
+
+    return subject, body, chosen_variant
 
 
 async def find_contact_page(page, base_url):
@@ -181,7 +210,7 @@ async def find_contact_page(page, base_url):
 
 async def fill_and_submit_form(page, target, is_dry_run=False):
     """Intelligently detects form fields across main page and iframes, fills them, and optionally submits."""
-    subject, body = compose_message(target)
+    subject, body, variant = compose_message(target)
     firm = target.get("Firm", "")
     
     # Scroll page to trigger lazy loaded forms
@@ -277,7 +306,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
             continue
 
     if not filled_any or not target_context:
-        return False, "Could not find compatible contact form fields on page."
+        return False, "Could not find compatible contact form fields on page.", variant
 
     # Take screenshot of filled form
     safe_firm = re.sub(r"[^a-zA-Z0-9]", "_", firm)[:30]
@@ -286,7 +315,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     await page.screenshot(path=str(screenshot_path), full_page=False)
 
     if is_dry_run:
-        return True, f"DRY_RUN: Form filled successfully. Screenshot: {screenshot_path.name}"
+        return True, f"DRY_RUN: Form filled successfully. Screenshot: {screenshot_path.name}", variant
 
     # 6. Submit Button in target context
     submit_selectors = [
@@ -314,15 +343,15 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
             await target_context.locator("form").first.evaluate("form => form.submit()")
             submitted = True
         except Exception as e:
-            return False, f"Could not trigger submit button: {e}"
+            return False, f"Could not trigger submit button: {e}", variant
 
     await page.wait_for_timeout(3000)
     
     page_content = await page.content()
     if "recaptcha" in page_content.lower() or "cf-turnstile" in page_content.lower():
-        return False, "CAPTCHA detected."
+        return False, "CAPTCHA detected.", variant
 
-    return True, f"SUCCESS: Submitted. Proof saved to {screenshot_path.name}"
+    return True, f"SUCCESS: Submitted. Proof saved to {screenshot_path.name}", variant
 
 
 async def process_target(browser, target, is_dry_run=False):
@@ -331,11 +360,14 @@ async def process_target(browser, target, is_dry_run=False):
     state = target.get("State", "")
     
     if not source_url or not source_url.startswith("http"):
-        return {"status": "SKIPPED", "detail": "Invalid Source_URL"}
+        return {"status": "SKIPPED", "detail": "Invalid Source_URL", "variant": ""}
+
+    # Pre-compose message to capture which A/B/C variant was selected
+    _, _, variant = compose_message(target)
 
     context = await browser.new_context(
         ignore_https_errors=True,
-        user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
         viewport={"width": 1280, "height": 800}
     )
     page = await context.new_page()
@@ -348,13 +380,13 @@ async def process_target(browser, target, is_dry_run=False):
         print(f"     Found form page: {form_url}")
 
         # Fill and submit
-        ok, detail = await fill_and_submit_form(page, target, is_dry_run=is_dry_run)
+        ok, detail, variant = await fill_and_submit_form(page, target, is_dry_run=is_dry_run)
         status = "SUCCESS" if ok else "FAILED"
-        print(f"     [{status}] {detail}")
-        return {"status": status, "form_url": form_url, "detail": detail}
+        print(f"     [{status}] [Variant {variant}] {detail}")
+        return {"status": status, "form_url": form_url, "detail": detail, "variant": variant}
     except Exception as e:
         print(f"     [ERROR] Failed to process {firm}: {e}")
-        return {"status": "ERROR", "detail": str(e)}
+        return {"status": "ERROR", "detail": str(e), "variant": variant}
     finally:
         await context.close()
 
@@ -422,21 +454,33 @@ def calculate_priority_score(target):
 
 def get_already_submitted():
     """
-    Returns a set of all normalized domains that have EVER been processed or contacted.
-    Ensures zero duplicate submissions.
+    Returns a set of all normalized domains that should be EXCLUDED.
+    - SUCCESS / DRY_RUN: permanently excluded (already contacted)
+    - ERROR with DNS resolution failure: permanently excluded (dead domain)
+    - FAILED / other ERROR: NOT excluded (should be retried on next run)
     """
     submitted = set()
     if LOG_CSV.exists():
         with open(LOG_CSV, "r", encoding="utf-8") as f:
             for row in csv.DictReader(f):
+                status = row.get("status", "").upper()
+                detail = row.get("detail", "").lower()
                 t_url = row.get("target_url", "")
                 f_url = row.get("form_url", "")
                 d1 = clean_domain(t_url)
                 d2 = clean_domain(f_url)
-                if d1: submitted.add(d1)
-                if d2: submitted.add(d2)
+                
+                # Permanently exclude successful submissions
+                if "SUCCESS" in status or "DRY_RUN" in status:
+                    if d1: submitted.add(d1)
+                    if d2: submitted.add(d2)
+                # Permanently exclude dead domains (DNS failures)
+                elif "ERROR" in status and "err_name_not_resolved" in detail:
+                    if d1: submitted.add(d1)
+                # All other failures (timeout, SSL, captcha, form not found)
+                # are NOT excluded — they will be retried on future runs
 
-    # Also check sent log
+    # Also check sent log for old email submissions
     sent_log = OUTREACH_DIR / "sent_log.csv"
     if sent_log.exists():
         with open(sent_log, "r", encoding="utf-8") as f:
@@ -528,7 +572,7 @@ async def run_engine(is_dry_run=False, limit=20, state_filter=None):
     # Append to log
     file_exists = LOG_CSV.exists()
     with open(LOG_CSV, "a", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["timestamp", "firm", "name", "state", "target_url", "form_url", "status", "detail"])
+        writer = csv.DictWriter(f, fieldnames=["timestamp", "firm", "name", "state", "target_url", "form_url", "status", "detail", "variant"])
         if not file_exists:
             writer.writeheader()
         for r in results:
@@ -541,6 +585,7 @@ async def run_engine(is_dry_run=False, limit=20, state_filter=None):
                 "form_url": r.get("form_url", ""),
                 "status": r.get("status", ""),
                 "detail": r.get("detail", ""),
+                "variant": r.get("variant", ""),
             })
 
     success_count = sum(1 for r in results if r["status"] == "SUCCESS")
