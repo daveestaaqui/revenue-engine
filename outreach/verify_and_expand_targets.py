@@ -14,7 +14,7 @@ import socket
 import subprocess
 from pathlib import Path
 
-BASE_DIR = Path("/Users/davidmahler/revenue-engine")
+BASE_DIR = Path(__file__).resolve().parent.parent
 OUTREACH_DIR = BASE_DIR / "outreach"
 MAIN_CSV = OUTREACH_DIR / "verified_attorney_targets.csv"
 NEW_CSV = OUTREACH_DIR / "new_verified_attorneys.csv"

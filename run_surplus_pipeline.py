@@ -10,8 +10,13 @@ import os
 from surplus_intel.surplus_extractor import parse_tabular_surplus_data, process_raw_records
 from surplus_intel.lead_ranker import score_leads, export_summary
 from surplus_intel.packet_generator import generate_claim_packet
+from pathlib import Path
 
-def run_pipeline(input_file, state="FL", min_surplus=5000.0, output_dir="/Users/davidmahler/revenue-engine/output"):
+BASE_DIR = Path(__file__).resolve().parent
+DEFAULT_OUT_DIR = str(BASE_DIR / "output")
+DEFAULT_DATA_FILE = str(BASE_DIR / "data" / "sample_florida_tax_deed_surplus.csv")
+
+def run_pipeline(input_file=DEFAULT_DATA_FILE, state="FL", min_surplus=5000.0, output_dir=DEFAULT_OUT_DIR):
     print(f"[*] Ingesting: {input_file} (Jurisdiction: {state})")
     raw_records = parse_tabular_surplus_data(input_file)
     print(f"[*] Raw Records Ingested: {len(raw_records)}")
@@ -49,5 +54,5 @@ def run_pipeline(input_file, state="FL", min_surplus=5000.0, output_dir="/Users/
     print(f"📁 Claim packets generated in: {output_dir}")
 
 if __name__ == "__main__":
-    data_file = sys.argv[1] if len(sys.argv) > 1 else "/Users/davidmahler/revenue-engine/data/sample_florida_tax_deed_surplus.csv"
+    data_file = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_DATA_FILE
     run_pipeline(data_file)

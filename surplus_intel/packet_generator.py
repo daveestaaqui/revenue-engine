@@ -6,6 +6,7 @@ Produces legally structured recovery documentation for owners/claimants.
 
 import os
 from datetime import datetime
+from pathlib import Path
 
 AGREEMENT_TEMPLATE = """# SURPLUS FUNDS RECOVERY & CONTINGENCY FEE AGREEMENT
 
@@ -39,7 +40,10 @@ Date: ________________________
 Phone / Contact: _____________________________  
 """
 
-def generate_claim_packet(lead, out_dir="/Users/davidmahler/revenue-engine/output"):
+BASE_DIR = Path(__file__).resolve().parent.parent
+DEFAULT_OUT_DIR = str(BASE_DIR / "output")
+
+def generate_claim_packet(lead, out_dir=DEFAULT_OUT_DIR):
     os.makedirs(out_dir, exist_ok=True)
     clean_name = "".join(c for c in lead["owner_name"] if c.isalnum() or c in " _-").strip().replace(" ", "_")
     filename = os.path.join(out_dir, f"Claim_Packet_{clean_name}_{lead['parcel_or_case']}.md")

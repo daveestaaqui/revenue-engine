@@ -8,7 +8,7 @@ import os
 import json
 from pathlib import Path
 
-BASE_DIR = Path("/Users/davidmahler/revenue-engine")
+BASE_DIR = Path(__file__).resolve().parent.parent
 CONFIG_FILE = BASE_DIR / "portal" / "monetization_config.json"
 
 PRODUCTS = {

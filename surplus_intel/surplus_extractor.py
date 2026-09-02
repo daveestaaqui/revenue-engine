@@ -6,9 +6,8 @@ Ingests public tax sale overage lists (CSV, PDF, TXT) and outputs clean structur
 
 import os
 import re
+import csv
 import json
-import pandas as pd
-from pypdf import PdfReader
 
 EXCLUDED_INSTITUTIONAL_KEYWORDS = [
     "BANK", "MORTGAGE", "TRUSTEE", "SERVICING", "LLC", "INC", "CORP", 
@@ -30,21 +29,25 @@ def parse_tabular_surplus_data(file_path):
     Parses CSV or Excel surplus dumps.
     """
     if file_path.endswith(".csv"):
-        df = pd.read_csv(file_path)
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+            reader = csv.DictReader(f)
+            return [dict(row) for row in reader]
     elif file_path.endswith((".xls", ".xlsx")):
+        import pandas as pd
         df = pd.read_excel(file_path)
+        return [row.to_dict() for _, row in df.iterrows()]
     else:
         raise ValueError(f"Unsupported file format: {file_path}")
-
-    records = []
-    for _, row in df.iterrows():
-        records.append(row.to_dict())
-    return records
 
 def parse_pdf_surplus_list(pdf_path):
     """
     Extracts text lines from multi-page County surplus PDF rosters.
     """
+    try:
+        from pypdf import PdfReader
+    except ImportError:
+        raise ImportError("pypdf is required to parse PDF files. Install via: pip install pypdf")
+
     reader = PdfReader(pdf_path)
     extracted_text = []
     for page in reader.pages:

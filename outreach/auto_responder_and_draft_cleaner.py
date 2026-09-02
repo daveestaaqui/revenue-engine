@@ -24,7 +24,7 @@ from email.utils import formatdate, make_msgid, parseaddr
 from pathlib import Path
 
 # Paths
-BASE_DIR = Path("/Users/davidmahler/revenue-engine")
+BASE_DIR = Path(__file__).resolve().parent.parent
 OUTREACH_DIR = BASE_DIR / "outreach"
 FEED_CSV = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
 LOG_FILE = OUTREACH_DIR / "auto_responder.log"

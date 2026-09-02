@@ -68,15 +68,16 @@ def generate_rss_feed():
     now_rfc822 = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
 
     if master_csv.exists():
+        import xml.sax.saxutils
         with open(master_csv, mode="r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for i, row in enumerate(reader):
                 if i >= 10:
                     break
-                state = row.get("State", "US")
-                county = row.get("County", "")
-                docket = row.get("Case_or_TaxDeed_No", "")
-                statute = row.get("Governing_Statute", "State Law")
+                state = xml.sax.saxutils.escape(row.get("State", "US"))
+                county = xml.sax.saxutils.escape(row.get("County", ""))
+                docket = xml.sax.saxutils.escape(row.get("Case_or_TaxDeed_No", ""))
+                statute = xml.sax.saxutils.escape(row.get("Governing_Statute", "State Law"))
 
                 items_xml += f"""
     <item>

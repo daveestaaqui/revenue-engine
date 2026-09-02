@@ -20,7 +20,7 @@ from email.utils import formatdate, make_msgid
 from pathlib import Path
 
 # Paths
-BASE_DIR = Path("/Users/davidmahler/revenue-engine")
+BASE_DIR = Path(__file__).resolve().parent.parent
 OUTREACH_DIR = BASE_DIR / "outreach"
 TARGETS_CSV = OUTREACH_DIR / "verified_attorney_targets.csv"
 SENT_LOG_CSV = OUTREACH_DIR / "sent_log.csv"
