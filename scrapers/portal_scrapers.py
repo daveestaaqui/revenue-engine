@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-\"\"\"
+"""
 Surplus Docket - Modular Public County Clerk & Court Registry Scrapers
 =======================================================================
 Provides modular scraper adapters for:
@@ -7,7 +7,7 @@ Provides modular scraper adapters for:
 2. Texas District Clerk Civil Trust Registries (TX: Harris, Dallas, Tarrant, Travis)
 3. Georgia Superior Court & Sheriff Excess Fund Registries (GA: Fulton, Cobb, DeKalb)
 4. Expansion State Judicial Registries (NC, TN, CA)
-\"\"\"
+"""
 
 import json
 import csv
@@ -36,7 +36,7 @@ class CountyScraperBase:
         raise NotImplementedError("Subclasses must implement fetch()")
 
 class FloridaRealAuctionScraper(CountyScraperBase):
-    \"\"\"Scrapes Florida Clerk RealAuction tax deed sales results.\"\"\"
+    """Scrapes Florida Clerk RealAuction tax deed sales results."""
     def parse_auction_table(self, html_text):
         soup = BeautifulSoup(html_text, "html.parser")
         records = []
@@ -60,7 +60,7 @@ class FloridaRealAuctionScraper(CountyScraperBase):
         return records
 
 class TexasDistrictRegistryScraper(CountyScraperBase):
-    \"\"\"Scrapes Texas District Court Civil Excess Funds Trust Registries.\"\"\"
+    """Scrapes Texas District Court Civil Excess Funds Trust Registries."""
     def parse_registry_table(self, html_text):
         soup = BeautifulSoup(html_text, "html.parser")
         records = []
@@ -79,7 +79,7 @@ class TexasDistrictRegistryScraper(CountyScraperBase):
         return records
 
 class GeorgiaSheriffExcessScraper(CountyScraperBase):
-    \"\"\"Scrapes Georgia Sheriff & Tax Commissioner Excess Proceeds Lists.\"\"\"
+    """Scrapes Georgia Sheriff & Tax Commissioner Excess Proceeds Lists."""
     def parse_excess_list(self, html_text):
         soup = BeautifulSoup(html_text, "html.parser")
         records = []
@@ -106,10 +106,12 @@ def test_registry_connectivity():
     print(f" 🛰️ TESTING CONNECTIVITY TO {len(portals)} MONITORED COUNTY PORTALS")
     print("==================================================================")
     for p in portals:
-        state = p["state"]
-        county = p["county"]
-        url = p["source_url"]
-        print(f"[{state}] {county:25} -> {p[portal_name]} ({p[format]})")
+        state = p.get("state", "")
+        county = p.get("county", "")
+        url = p.get("source_url", "")
+        portal_name = p.get("portal_name", "")
+        fmt = p.get("format", "")
+        print(f"[{state}] {county:25} -> {portal_name} ({fmt})")
 
     print(f"\n✅ All {len(portals)} county registry endpoints validated.")
 

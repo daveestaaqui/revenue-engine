@@ -103,3 +103,9 @@ Call log:
 Call log:
   - navigating to ""https://rainslawfirm.com/"", waiting until ""domcontentloaded""
 ",C
+2026-09-02T09:35:19.090447,"Law Office of Andrew J. Pascale, P.A.",Andrew J. Pascale,FL,https://pascalelaw.com,https://www.pascalelaw.com/get-in-touch/,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-02T09:35:20.673472,Zaretsky Law Group,Richard P. Zaretsky,FL,https://zaretskylaw.com,,ERROR,"Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://zaretskylaw.com/
+Call log:
+  - navigating to ""https://zaretskylaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-02T09:35:22.446671,Berkowitz & Associates,Jonathan A. Berkowitz,FL,https://berkowitzlawgroup.com,,ERROR,"Locator.count: Execution context was destroyed, most likely because of a navigation",
