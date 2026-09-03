@@ -223,3 +223,37 @@ Call log:
 2026-09-03T17:50:10.761381,Rinaldi Law,Thomas E. Rinaldi,FL,https://rinaldilaw.com,https://www.rinaldilaw.com/contact/3222093,FAILED,CAPTCHA detected.,A
 2026-09-03T17:50:22.488795,Kramer Law,David M. Kramer,FL,https://kramerlaw.com,https://kramerlaw.com,FAILED,Could not find compatible contact form fields on page.,A
 2026-09-03T17:50:38.380789,Perry Law,Richard A. Perry,TX,https://perrylaw.com,https://perrylaw.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-03T20:40:01.675028,"Law Office of Andrew J. Pascale, P.A.",Andrew J. Pascale,FL,https://pascalelaw.com,https://www.pascalelaw.com/get-in-touch/,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-03T20:40:10.107586,Zaretsky Law Group,Richard P. Zaretsky,FL,https://zaretskylaw.com,,ERROR,"Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://zaretskylaw.com/
+Call log:
+  - navigating to ""https://zaretskylaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-03T20:40:26.801438,Berkowitz & Associates,Jonathan A. Berkowitz,FL,https://berkowitzlawgroup.com,https://berkowitzlawgroup.com,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-03T20:40:42.798602,Lopez Law Group,Jason Lopez,FL,https://thelopezlawgroup.com,https://www.thelopezlawgroup.com/contact/,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-03T20:41:00.803208,Law Office of David A. Fernandez,David A. Fernandez,TX,https://fernandezlaw.com,https://fernandezlaw.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-03T20:41:18.699515,"The Law Offices of Travis R. Walker, P.A.",Travis R. Walker,FL,https://traviswalkerlaw.com,https://www.traviswalkerlaw.com/,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-03T20:41:33.086765,"Sewar Legal, P.A.",Richard Sewar,FL,https://sewarlegal.com,https://sewarlegal.com/contact-us-2/,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-03T20:41:45.002776,Haynes Law Group,Benjamin Haynes,FL,https://hayneslawgroup.com,https://forsale.godaddy.com/forsale/hayneslawgroup.com?utm_source=TDFS_BINNS2&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-binns2_base&traffic_type=TDFS_BINNS2&traffic_id=binns2&,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-03T20:42:08.001621,"Law Offices of Scott W. Spradley, P.A.",Scott W. Spradley,FL,https://spradleylaw.com,https://spradleylaw.com,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-03T20:42:29.966641,Jason English Law PLLC,Jason S. English,TX,https://jasonenglishlaw.com,https://www.jasonenglishlaw.com/,FAILED,CAPTCHA detected.,A
+2026-09-03T20:42:50.643947,"Kelly Legal Group, PLLC",Michael B. Kelly,TX,https://kellylegalgroup.com,https://www.kellylegalgroup.com/contact-us/,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-03T20:43:11.199934,"Law Office of Paul M. Gonzalez, P.C.",Paul M. Gonzalez,TX,https://gonzalezlawpc.com,https://gonzalezlawpc.com,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-03T20:43:33.962354,Shapero Law Firm,Aaron Shapero,CA,https://shaperolawfirm.com,https://www.shaperolawfirm.com/,FAILED,CAPTCHA detected.,B
+2026-09-03T20:43:50.580731,"Velasquez Dolan, P.A.",Daniel A. Velasquez,FL,https://velasquezdolan.com,https://www.velasquezdolan.com/contact-us-lawyer/,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-03T20:44:00.529566,"Peter M. Feaman, P.A.",Peter M. Feaman,FL,https://feamanlaw.com,,ERROR,"Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://feamanlaw.com/
+Call log:
+  - navigating to ""https://feamanlaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-03T20:44:12.184318,Law Offices of Brett L. Bigham,Brett Bigham,TX,http://www.bighamlaw.com,http://www.bighamlaw.com/contact_us,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-03T20:44:29.949136,The Daves Law Firm,Robert Daves,TX,https://daveslaw.com,https://forsale.godaddy.com/forsale/daveslaw.com?utm_source=TDFS_BINNS2&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-binns2_base&traffic_type=TDFS_BINNS2&traffic_id=binns2&,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-03T20:44:41.207248,Manfred Sternberg & Associates,Manfred Sternberg,TX,https://sternberglaw.com,https://sternberglaw.com/,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-03T20:45:03.863428,Dunivan Law,Peter Dunivan,FL,https://dunivanlaw.com,https://www.dunivanlaw.com/,FAILED,CAPTCHA detected.,A
+2026-09-03T20:45:20.559590,Law Office of Robert M. Baskin,Robert M. Baskin,CA,https://baskinlaw.com,,ERROR,"Page.goto: net::ERR_SSL_VERSION_OR_CIPHER_MISMATCH at https://baskinlaw.com/
+Call log:
+  - navigating to ""https://baskinlaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-03T20:45:40.451876,Danz Law,Matthew E. Danz,FL,https://danzlaw.com,https://danzlaw.com,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-03T20:46:01.985534,Davis Law Group,Michael J. Davis,CA,https://davislaw.com,https://jeffdavislawfirm.com/,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-03T20:46:20.321943,Rinaldi Law,Thomas E. Rinaldi,FL,https://rinaldilaw.com,https://www.rinaldilaw.com/contact/3222093,FAILED,CAPTCHA detected.,A
+2026-09-03T20:46:36.507737,Kramer Law,David M. Kramer,FL,https://kramerlaw.com,https://kramerlaw.com,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-03T20:46:48.813978,Perry Law,Richard A. Perry,TX,https://perrylaw.com,https://perrylaw.com,FAILED,Could not find compatible contact form fields on page.,B
