@@ -256,6 +256,36 @@ class TestSiteAssetsIntegrity(unittest.TestCase):
         security_txt = self.site_dir / ".well-known" / "security.txt"
         self.assertTrue(security_txt.exists(), "security.txt must exist")
 
+    def test_all_onclick_and_form_handlers_defined(self):
+        for hf in self.html_files:
+            content = hf.read_text(encoding="utf-8", errors="ignore")
+            defined_funcs = set(re.findall(r"function\s+([a-zA-Z0-9_$]+)\s*\(", content))
+            arrow_funcs = set(re.findall(r"(?:const|let|var)\s+([a-zA-Z0-9_$]+)\s*=\s*(?:\([^)]*\)|[a-zA-Z0-9_$]+)\s*=>", content))
+            defined_funcs.update(arrow_funcs)
+            onclick_calls = re.findall(r"(?:onclick|onsubmit)=[\"\']([a-zA-Z0-9_$]+)\(", content)
+            for fn in onclick_calls:
+                if fn in ["alert", "confirm", "prompt", "window", "document", "console"]:
+                    continue
+                self.assertIn(fn, defined_funcs, f"Handler '{fn}' called in {hf.name} but not defined on the page")
+
+    def test_all_rest_api_endpoints_valid(self):
+        api_dir = self.site_dir / "api" / "v1"
+        self.assertTrue(api_dir.exists())
+        endpoints = ["feed.json", "florida.json", "texas.json", "georgia.json", "north-carolina.json", "tennessee.json", "california.json", "health.json"]
+        for ep in endpoints:
+            ep_file = api_dir / ep
+            self.assertTrue(ep_file.exists(), f"API endpoint file {ep} must exist")
+            data = json.loads(ep_file.read_text(encoding="utf-8"))
+            self.assertTrue(data.get("status") in ["success", "healthy"], f"API endpoint {ep} status not success/healthy")
+
+    def test_statutory_rules_integrity(self):
+        rules_path = BASE_DIR / "compliance" / "statutory_rules.json"
+        self.assertTrue(rules_path.exists())
+        rules = json.loads(rules_path.read_text(encoding="utf-8"))
+        self.assertIn("jurisdictions", rules)
+        for state in ["FL", "TX", "GA", "NC", "TN", "CA"]:
+            self.assertIn(state, rules["jurisdictions"], f"State {state} missing from statutory rules")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

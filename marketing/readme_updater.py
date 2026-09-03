@@ -80,16 +80,16 @@ response = requests.get(
 )
 
 dockets = response.json()
-print(f"Total Active Dockets: {{dockets['total_records']}}")
-print(f"Total Surplus Monitored: ${{dockets['total_surplus_volume_usd']:,.2f}}")
+print(f"Total Active Dockets: {{dockets['meta']['total_records']}}")
+print(f"Total Surplus Monitored: ${{dockets['meta']['total_surplus_volume_usd']:,.2f}}")
 
-for item in dockets["data"]:
-    print(f"[{{item['state']}}] {{item['county']}} | Docket: {{item['case_number']}} | Surplus: ${{item['surplus_amount']:,.2f}}")
+for item in dockets["records"]:
+    print(f"[{{item['State']}}] {{item['County']}} | Docket: {{item['Case_or_TaxDeed_No']}} | Surplus: ${{item['Surplus_Balance_USD']:,.2f}}")
 ```
 
 #### cURL Terminal Snippet:
 ```bash
-curl -s https://surplusdocket.com/api/v1/feed.json | jq '.data[0:3]'
+curl -s https://surplusdocket.com/api/v1/feed.json | jq '.records[0:3]'
 ```
 
 Full documentation and SDK guides available at **[surplusdocket.com/api-documentation.html](https://surplusdocket.com/api-documentation.html)**.

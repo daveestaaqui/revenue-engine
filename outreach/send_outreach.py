@@ -120,26 +120,25 @@ def personalize_text(text: str, target: dict) -> str:
 
 def send_email_smtp(to_email: str, subject: str, body_text: str) -> bool:
     """
-    Placeholder SMTP email dispatcher.
+    Standard production SMTP email dispatcher using smtplib.
 
     ========================================================================
-    HOW TO CONFIGURE LIVE SMTP SENDING:
+    CONFIGURATION FOR LIVE SMTP SENDING:
     ========================================================================
-    1. Gmail App Password:
-       - Enable 2-Step Verification on your Google Account.
-       - Go to: https://myaccount.google.com/apppasswords
-       - Create an App Password for 'Mail'.
+    1. Google Workspace / Gmail SMTP:
+       - Enable 2-Step Verification on your Google Workspace / Gmail account.
+       - Generate an App Password for Mail.
        - Set environment variables:
            export SMTP_HOST="smtp.gmail.com"
            export SMTP_PORT="587"
-           export SMTP_USER="your-email@gmail.com"
-           export SMTP_PASS="your-16-character-app-password"
-           export FROM_EMAIL="your-email@gmail.com"
+           export SMTP_USER="david@surplusdocket.com"
+           export SMTP_PASS="<app-password>"
+           export FROM_EMAIL="david@surplusdocket.com"
 
-    2. SendGrid / Mailgun / AWS SES:
+    2. Transactional Relay (SendGrid / Mailgun / AWS SES):
        - Set SMTP_HOST="smtp.sendgrid.net", SMTP_PORT="587"
-       - Set SMTP_USER="apikey", SMTP_PASS="your_api_key"
-       - Set FROM_EMAIL="verified-sender@yourdomain.com"
+       - Set SMTP_USER="apikey", SMTP_PASS="<api_key>"
+       - Set FROM_EMAIL="david@surplusdocket.com"
     ========================================================================
     """
     smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")

@@ -258,9 +258,14 @@
 
     <!-- Verification Display & Modal Script -->
     <script>
-        
-        
-        
+        function openBillingModal() {
+            var m = document.getElementById('billing-modal');
+            if (m) m.classList.remove('hidden');
+        }
+        function closeBillingModal() {
+            var m = document.getElementById('billing-modal');
+            if (m) m.classList.add('hidden');
+        }
 
         (function() {
             var params = new URLSearchParams(window.location.search);

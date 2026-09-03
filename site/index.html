@@ -1185,6 +1185,94 @@
     </footer>
 
     <script>
+        let currentBillingCycle = 'monthly';
+
+        function toggleBillingCycle() {
+            setBillingCycle(currentBillingCycle === 'monthly' ? 'annual' : 'monthly');
+        }
+
+        function setBillingCycle(cycle) {
+            currentBillingCycle = cycle;
+            const toggleBtn = document.getElementById('billing-toggle-btn');
+            const toggleKnob = document.getElementById('billing-toggle-knob');
+            const monthlyBtn = document.getElementById('toggle-btn-monthly');
+            const annualBtn = document.getElementById('toggle-btn-annual');
+
+            const card1Price = document.getElementById('card1-price');
+            const card1Sub = document.getElementById('card1-subtext');
+            const card1Cta = document.getElementById('card1-cta');
+
+            const card2Price = document.getElementById('card2-price');
+            const card2Sub = document.getElementById('card2-subtext');
+            const card2Cta = document.getElementById('card2-cta');
+
+            if (cycle === 'annual') {
+                if (toggleBtn) {
+                    toggleBtn.classList.remove('bg-slate-300');
+                    toggleBtn.classList.add('bg-brand-green');
+                    toggleBtn.setAttribute('aria-checked', 'true');
+                }
+                if (toggleKnob) {
+                    toggleKnob.classList.remove('translate-x-0');
+                    toggleKnob.classList.add('translate-x-5');
+                }
+                if (monthlyBtn) {
+                    monthlyBtn.classList.remove('font-bold', 'text-brand-navy');
+                    monthlyBtn.classList.add('font-semibold', 'text-slate-500');
+                }
+                if (annualBtn) {
+                    annualBtn.classList.remove('font-semibold', 'text-slate-500');
+                    annualBtn.classList.add('font-bold', 'text-brand-navy');
+                }
+
+                if (card1Price) card1Price.textContent = '$199';
+                if (card1Sub) card1Sub.textContent = 'Billed annually at $2,388/year (Save $600 • 2 Months Free)';
+                if (card1Cta) {
+                    card1Cta.textContent = 'Subscribe Annual Plan ($2,388/yr)';
+                    card1Cta.href = 'https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20';
+                }
+
+                if (card2Price) card2Price.textContent = '$349';
+                if (card2Sub) card2Sub.textContent = 'Billed annually at $4,188/year (Save $1,200 • 22% Off)';
+                if (card2Cta) {
+                    card2Cta.textContent = 'Subscribe Annual Plan ($4,188/yr)';
+                    card2Cta.href = 'https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20';
+                }
+            } else {
+                if (toggleBtn) {
+                    toggleBtn.classList.remove('bg-brand-green');
+                    toggleBtn.classList.add('bg-slate-300');
+                    toggleBtn.setAttribute('aria-checked', 'false');
+                }
+                if (toggleKnob) {
+                    toggleKnob.classList.remove('translate-x-5');
+                    toggleKnob.classList.add('translate-x-0');
+                }
+                if (monthlyBtn) {
+                    monthlyBtn.classList.remove('font-semibold', 'text-slate-500');
+                    monthlyBtn.classList.add('font-bold', 'text-brand-navy');
+                }
+                if (annualBtn) {
+                    annualBtn.classList.remove('font-bold', 'text-brand-navy');
+                    annualBtn.classList.add('font-semibold', 'text-slate-500');
+                }
+
+                if (card1Price) card1Price.textContent = '$249';
+                if (card1Sub) card1Sub.textContent = 'Billed month-to-month • Cancel anytime';
+                if (card1Cta) {
+                    card1Cta.textContent = 'Subscribe Now — $249/mo';
+                    card1Cta.href = 'https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X';
+                }
+
+                if (card2Price) card2Price.textContent = '$449';
+                if (card2Sub) card2Sub.textContent = 'Billed month-to-month • Cancel anytime';
+                if (card2Cta) {
+                    card2Cta.textContent = 'Subscribe Now — $449/mo';
+                    card2Cta.href = 'https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X';
+                }
+            }
+        }
+
         function calculateStatutoryBenchmark() {
             const state = document.getElementById('calc-state')?.value || 'FL';
             const dateVal = document.getElementById('calc-date')?.value || '';

@@ -51,7 +51,9 @@ def generate_claim_packet(lead, out_dir=DEFAULT_OUT_DIR):
     statute_map = {
         "FL": "Florida Statute § 197.582",
         "TX": "Texas Property Tax Code § 34.04",
-        "GA": "O.C.G.A. § 48-5-450",
+        "GA": "O.C.G.A. § 48-4-5",
+        "NC": "N.C.G.S. § 105-374",
+        "TN": "T.C.A. § 67-5-2501",
         "CA": "California Rev. & Tax Code § 4675"
     }
 
