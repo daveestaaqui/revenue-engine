@@ -75,7 +75,7 @@ ARTICLES = [
                 Receive fresh, case-verified tax deed surplus dockets across Orange, Palm Beach, Miami-Dade, and Hillsborough counties every business morning at 7:00 AM EST.
             </p>
             <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
-                Subscribe to Multi-State Feed (FL, TX, GA) — $249/mo
+                Subscribe to Multi-State Feed — $249/mo
             </a>
         </div>
         """
@@ -114,7 +114,7 @@ ARTICLES = [
                 Never miss newly deposited excess funds in Harris County (Houston), Dallas County, and major Texas district courts.
             </p>
             <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
-                Subscribe to Multi-State Feed (FL, TX, GA) — $249/mo
+                Subscribe to Multi-State Feed — $249/mo
             </a>
         </div>
         """
@@ -153,7 +153,7 @@ ARTICLES = [
                 Receive standardized CSV and Excel feed files ready for instant import into your firm's CRM.
             </p>
             <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
-                Subscribe to Multi-State Feed (FL, TX, GA) — $249/mo
+                Subscribe to Multi-State Feed — $249/mo
             </a>
         </div>
         """
@@ -413,7 +413,7 @@ def render_article_page(article):
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/inquiry.html" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
                 </p>
@@ -465,7 +465,7 @@ def render_blog_index():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legal Insights & Statutory Guides | Surplus Docket</title>
-    <meta name="description" content="Expert legal breakdowns, statutory guides, and public records analysis on Florida and Texas tax deed surplus funds and court registry excess proceeds.">
+    <meta name="description" content="Expert legal breakdowns, statutory guides, and public records analysis on Florida, Texas, Georgia, North Carolina, Tennessee, and California tax deed surplus funds and court registry excess proceeds.">
     <link rel="canonical" href="https://surplusdocket.com/blog/">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     
@@ -616,7 +616,7 @@ def render_blog_index():
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/inquiry.html" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
                 </p>

@@ -1,0 +1,95 @@
+{
+  "manifest_version": "1.0.0",
+  "publisher": "Surplus Docket \u2014 Autonomous Public Records Intelligence",
+  "generated_at": "2026-09-04T16:49:15.367330+00:00",
+  "audit_status": "PASSED_100_PERCENT",
+  "jurisdictions_verified": [
+    "FL",
+    "TX",
+    "GA",
+    "NC",
+    "TN",
+    "CA"
+  ],
+  "statistics": {
+    "total_feed_records_verified": 35,
+    "total_surplus_volume_verified_usd": 3244600.0,
+    "total_finder_fees_verified_usd": 668580.0,
+    "mathematical_discrepancies": 0,
+    "statutory_violations": 0,
+    "institutional_bank_violations": 0,
+    "publications_audited": 14,
+    "banned_phrase_violations": 0,
+    "duplicate_paragraph_violations": 0,
+    "exposed_email_violations": 0
+  },
+  "statutory_rules": {
+    "FL": {
+      "statute": "Fla. Stat. \u00a7 197.582",
+      "fee_cap": 0.2,
+      "fee_label": "20%",
+      "window_desc": "120 Days from Notice (Fla. Stat. \u00a7 197.582)"
+    },
+    "TX": {
+      "statute": "Tex. Tax Code \u00a7 34.04",
+      "fee_cap": 0.25,
+      "fee_label": "25%",
+      "window_desc": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)"
+    },
+    "GA": {
+      "statute": "O.C.G.A. \u00a7 48-4-5",
+      "fee_cap": 0.2,
+      "fee_label": "20%",
+      "window_desc": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)"
+    },
+    "NC": {
+      "statute": "N.C.G.S. \u00a7 105-374",
+      "fee_cap": 0.2,
+      "fee_label": "20%",
+      "window_desc": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)"
+    },
+    "TN": {
+      "statute": "T.C.A. \u00a7 67-5-2501",
+      "fee_cap": 0.2,
+      "fee_label": "20%",
+      "window_desc": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)"
+    },
+    "CA": {
+      "statute": "Cal. Rev. & Tax Code \u00a7 4675",
+      "fee_cap": 0.2,
+      "fee_label": "20%",
+      "window_desc": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)"
+    }
+  },
+  "cryptographic_digests_sha256": {
+    "exports/North_Carolina_Surplus_Feed.xlsx": "f08b687b89e9e7981fb29faff78d2b2cf402b6a9dd062507ba1799206c3ee1d7",
+    "exports/Master_Surplus_Lead_Feed.xlsx": "f9e47aba63c4810f89cccb89ab3209f58dca798472138fdf5119e071fd29b4fb",
+    "exports/California_Surplus_Feed.csv": "9958654bcb400587f899043971a3ad991a4defb3ba1b0712f4fec0f17f1ea1a3",
+    "exports/Master_Surplus_Lead_Feed.csv": "29f8f7ba411c3d2bf29a66da1db6c3a18ba711773cb1bbd12891c298821ba28c",
+    "exports/Georgia_Surplus_Feed.csv": "5ad50f184351e585d2fd1bee415cb895c16d8d023bf1140bc6aa52b04d007ce8",
+    "exports/Florida_Surplus_Feed.csv": "e3d25cd002d6d8bc88d7b897bb822c846a725c9d96109b595131c6d06fefef9d",
+    "exports/Texas_Surplus_Feed.csv": "4f1b36c3070492d5d7e4cd3904bb9ae74e08c757819f9e3b41ebb47a54e0f23b",
+    "exports/Florida_Surplus_Feed.xlsx": "7483642e1a4d59e5ebcdb7bd7ee435428bf7ddab041d4e53a5ac83091fe9cf79",
+    "exports/Georgia_Surplus_Feed.xlsx": "8227dfc311890c93dff573ccb683a17a590a944070eb2ead723f7d12b2d048f8",
+    "exports/Tennessee_Surplus_Feed.csv": "db5952330addcde0041bb3a311304d46aea0a50c2428724acce95dace27a637f",
+    "exports/Master_Surplus_Lead_Feed.json": "6a9a197f1300b57a721959338b8b310f1ef92a31ada45c1ece352427b8ff551e",
+    "exports/North_Carolina_Surplus_Feed.csv": "4330fc30909cdc4915d8da7ee4c8a5e1bdbebaaf1ce02de7161a2af12c073d11",
+    "exports/California_Surplus_Feed.xlsx": "1010faf9ef39d8808d728e3456f39690e573a129ba3a415c25adc1f5af092c36",
+    "exports/Texas_Surplus_Feed.xlsx": "728972200d26d4a41cb69d83a8aef4bb336e0d1730318f998bf349c55118ae3a",
+    "exports/Tennessee_Surplus_Feed.xlsx": "d1a62379e8cf0bf14a662aa541c9418d8f66c742ea2c11da842820db23edb3d6",
+    "site/api/v1/texas.json": "f3b8bdbce96c1fb741799791224a7cb3295ade0bedadb5a8a36e1418882bb2cc",
+    "site/api/v1/georgia.json": "84e1ce4f6b92ee90714a5d70e2a23a12a34cc0c1d02aae5039e32af177731e4c",
+    "site/api/v1/health.json": "13900df332c1c08de7e41a374595965f6f87694773a9ef233f6dda7d1a9f70ce",
+    "site/api/v1/california.json": "9b29b7acb039836d63d59492b63fdcca43186ea4f0acbff4f135bc1664b10456",
+    "site/api/v1/florida.json": "afaaba37e5597a89adb7aeed056651a515af54250fc56e9875bb779876ccb8dc",
+    "site/api/v1/tennessee.json": "e294ad9a32dc2d8ed9e306434aae6c8f94f164ae96f066332068a80c2d86d028",
+    "site/api/v1/north-carolina.json": "a0c4483536a25dc7da65ec8b553d5f5bb00bb774caccdc3e600c9ddd09dd07c4",
+    "site/api/v1/feed.json": "8039daa0879f1cce1f7b98b0652797b97c8adab9015c2299961c8c85077d178c",
+    "site/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html": "2d08e4dd9fc9c2d72b914ec5c8e71239aa0f38d690b26d24a62fcf0cafaa5424",
+    "site/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html": "0e4fe7116b089e7f59461360116d9fbbafe3f3d795a1f5b870cca4e452f51b31",
+    "site/blog/posts/institutional-lien-filtering-asset-recovery.html": "8d21cda9339e55d700364ce0037229991f76bda9421fb0273940db2e1e6e2201",
+    "site/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html": "d5bc12a9201f95759c1262ea2fddf1d4f86ea27e27c4b32c4d1f850d7e913582",
+    "site/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html": "6dc8037b994322b93c7aa780cd371d2536a521975391c2ba1a30d00beca5bd7c",
+    "site/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html": "f8ee6f6f0158bfac3e71899f886b4dc4f95ed44535fefa8ee348747839674138"
+  }
+}

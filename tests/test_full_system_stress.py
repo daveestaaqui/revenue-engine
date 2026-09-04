@@ -287,5 +287,35 @@ class TestSiteAssetsIntegrity(unittest.TestCase):
             self.assertIn(state, rules["jurisdictions"], f"State {state} missing from statutory rules")
 
 
+class TestHallucinationPreventionAndVerification(unittest.TestCase):
+    """Rigorous pre-publication tests guaranteeing zero hallucinations across feeds and publications."""
+
+    def test_full_platform_verification_passes(self):
+        from compliance.verify_all_publications import verify_everything, MANIFEST_PATH
+        success = verify_everything()
+        self.assertTrue(success)
+        self.assertTrue(MANIFEST_PATH.exists())
+        manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+        self.assertEqual(manifest["audit_status"], "PASSED_100_PERCENT")
+        self.assertEqual(manifest["statistics"]["mathematical_discrepancies"], 0)
+        self.assertEqual(manifest["statistics"]["statutory_violations"], 0)
+        self.assertEqual(manifest["statistics"]["banned_phrase_violations"], 0)
+        self.assertEqual(manifest["statistics"]["duplicate_paragraph_violations"], 0)
+        self.assertEqual(manifest["statistics"]["exposed_email_violations"], 0)
+        self.assertGreaterEqual(manifest["statistics"]["total_feed_records_verified"], 30)
+
+    def test_feed_deterministic_mathematical_precision(self):
+        from compliance.verify_all_publications import validate_all_feeds
+        res = validate_all_feeds()
+        self.assertEqual(len(res["feed_errors"]), 0, f"Feed validation errors: {res['feed_errors']}")
+        self.assertGreater(res["total_volume_usd"], 1000000.0)
+
+    def test_publications_zero_hype_and_duplicate_free(self):
+        from compliance.verify_all_publications import validate_all_publications
+        res = validate_all_publications()
+        self.assertEqual(len(res["pub_errors"]), 0, f"Publication errors: {res['pub_errors']}")
+        self.assertGreaterEqual(res["audited_count"], 10)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

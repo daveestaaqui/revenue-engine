@@ -5,7 +5,7 @@
     <link>https://surplusdocket.com/press/</link>
     <description>Official press releases and legal intelligence announcements from Surplus Docket.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Sep 2026 14:37:28 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 04 Sep 2026 16:48:43 GMT</lastBuildDate>
     <atom:link href="https://surplusdocket.com/press/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title><![CDATA[Surplus Docket Unveils Programmatic REST JSON API for Law Firm Practice Management and AI Intake Automation]]></title>
@@ -13,6 +13,7 @@
       <guid isPermaLink="true">https://surplusdocket.com/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html</guid>
       <pubDate>Sun, 23 Aug 2026 07:00:00 -0400</pubDate>
       <description><![CDATA[Surplus Docket introduced its programmatic REST JSON API endpoint (/api/v1/feed.json), allowing legal-tech practices to stream live court surplus records directly into their CRM intake pipelines without manual data entry.]]></description>
+      <author>press@surplusdocket.com (Surplus Docket Newsroom)</author>
       <category>Legal Technology / Public Records</category>
     </item>
     <item>
@@ -21,6 +22,7 @@
       <guid isPermaLink="true">https://surplusdocket.com/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html</guid>
       <pubDate>Tue, 18 Aug 2026 07:00:00 -0400</pubDate>
       <description><![CDATA[Surplus Docket officially announced the launch of its autonomous public records intelligence platform, providing structured, case-verified tax deed surplus and excess proceeds data to asset recovery attorneys, title counsel, and real estate practitioners.]]></description>
+      <author>press@surplusdocket.com (Surplus Docket Newsroom)</author>
       <category>Legal Technology / Public Records</category>
     </item>
   </channel>

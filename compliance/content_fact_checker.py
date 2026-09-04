@@ -106,11 +106,29 @@ def verify_content_integrity(title: str, content_text: str, pub_date_str: str, c
         cited_statutes.append("Tex. Tax Code § 34.04")
     if "48-4-5" in content_text or "Georgia" in title or "GA" in category:
         cited_statutes.append("O.C.G.A. § 48-4-5")
+    if "105-374" in content_text or "North Carolina" in title or "NC" in category:
+        cited_statutes.append("N.C.G.S. § 105-374")
+    if "67-5-2501" in content_text or "Tennessee" in title or "TN" in category:
+        cited_statutes.append("T.C.A. § 67-5-2501")
+    if "4675" in content_text or "California" in title or "CA" in category:
+        cited_statutes.append("Cal. Rev. & Tax Code § 4675")
 
     # 4. Mandatory Public Records Disclaimers Check
     # Ensure content has no false claims of providing direct legal counsel
     if "i am your attorney" in full_text or "we provide legal advice" in full_text:
         errors.append("Prohibited claim of direct legal representation detected.")
+
+    # 5. Email Exposure Sentinel (Zero raw exposed emails on site)
+    exposed_emails = re.findall(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+', content_text)
+    # Whitelist placeholder/doc examples if any, else reject
+    raw_emails = [e for e in exposed_emails if not e.endswith("example.com")]
+    if raw_emails:
+        errors.append(f"Exposed raw email address detected: {raw_emails}. Route through /inquiry.html instead.")
+
+    # 6. EST Timezone Sentinel
+    time_matches = re.findall(r'\b[0-9]{1,2}:[0-9]{2}\s*(?:AM|PM)\b(?!\s*EST)', content_text)
+    if time_matches:
+        errors.append(f"Time specified without mandatory EST designation: {time_matches}")
 
     if errors:
         error_msg = f"Fact-Checking Validation FAILED for '{title}':\n" + "\n".join(f"  ❌ {e}" for e in errors)
@@ -123,6 +141,8 @@ def verify_content_integrity(title: str, content_text: str, pub_date_str: str, c
         "cited_statutes": cited_statutes or ["General Public Records Intelligence"],
         "banned_phrase_check": "PASSED (0 violations)",
         "temporal_check": "PASSED (Valid chronological date)",
+        "email_exposure_check": "PASSED (0 exposed emails)",
+        "timezone_check": "PASSED (EST verified)",
         "regulatory_classification": "Non-CRA Public Court Records Compiler"
     }
 

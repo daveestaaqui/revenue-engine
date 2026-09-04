@@ -67,16 +67,17 @@ PRESS_RELEASES = [
 ]
 
 BOILERPLATE = """About Surplus Docket
-Surplus Docket is an autonomous public records intelligence and legal data compiler that aggregates, case-verifies, and standardizes tax deed surplus and excess proceeds records across judicial registries in Florida, Texas, and Georgia. Purpose-built for asset recovery attorneys, title searchers, and probate investors, Surplus Docket delivers clean, institutional-lien-scrubbed datasets via daily automated CSV/Excel exports and programmatic REST APIs. For more information, visit https://surplusdocket.com."""
+Surplus Docket is an autonomous public records intelligence and legal data compiler that aggregates, case-verifies, and standardizes tax deed surplus and excess proceeds records across judicial registries in Florida, Texas, Georgia, North Carolina, Tennessee, and California. Purpose-built for asset recovery attorneys, title searchers, and probate investors, Surplus Docket delivers clean, institutional-lien-scrubbed datasets via daily automated CSV/Excel exports and programmatic REST APIs. For more information, visit https://surplusdocket.com."""
 
 MEDIA_CONTACT = """Media Relations:
-Surplus Docket Press Office
-Email: press@surplusdocket.com
+Surplus Docket Editorial & Compliance Desk
+Publisher Inquiries: https://surplusdocket.com/inquiry.html
 Website: https://surplusdocket.com/press/
 Digital Media Kit: https://surplusdocket.com/press/"""
 
 def generate_individual_press_release(pr):
-    paragraphs_html = "".join(f'<p class="mb-4 sm:mb-5 leading-relaxed text-slate-700">{p}</p>' for p in pr["body_paragraphs"])
+    # Slice from [1:] because paragraph 0 is combined with location dateline
+    paragraphs_html = "".join(f'<p class="mb-4 sm:mb-5 leading-relaxed text-slate-700">{p}</p>' for p in pr["body_paragraphs"][1:])
     about_text = BOILERPLATE.replace("About Surplus Docket\n", "").strip()
     
     # Pre-publication editorial & statutory fact-check sentinel
@@ -213,9 +214,9 @@ def generate_individual_press_release(pr):
                     {about_text}
                 </p>
                 <div class="pt-4 border-t border-slate-200 text-xs text-slate-600">
-                    <p class="font-bold text-brand-navy mb-1">Media Contact:</p>
-                    <p>Surplus Docket Press Relations</p>
-                    <p>Email: <a href="mailto:press@surplusdocket.com" class="text-brand-green hover:underline">press@surplusdocket.com</a></p>
+                    <p class="font-bold text-brand-navy mb-1">Media &amp; Publisher Contact:</p>
+                    <p>Surplus Docket Editorial &amp; Compliance Desk</p>
+                    <p>Inquiries: <a href="/inquiry.html" class="text-brand-green hover:underline">Publisher &amp; Media Inquiry Form &rarr;</a></p>
                     <p>Website: <a href="https://surplusdocket.com" class="text-brand-green hover:underline">https://surplusdocket.com</a></p>
                 </div>
             </div>
@@ -298,7 +299,7 @@ def generate_individual_press_release(pr):
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/inquiry.html" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
                 </p>
@@ -463,17 +464,17 @@ def generate_press_newsroom():
                 <p class="text-xs text-slate-300 leading-relaxed mb-4">
                     Our team provides journalists, legal analysts, and real estate publications with ground-truth court registry data, county surplus statistics, and expert commentary on statutory excess proceeds.
                 </p>
-                <a href="mailto:press@surplusdocket.com" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-lg transition-colors shadow">
-                    Contact Press Office &rarr;
+                <a href="/inquiry.html" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-lg transition-colors shadow">
+                    Submit Media Inquiry &rarr;
                 </a>
             </div>
             <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 text-xs space-y-2">
                 <div class="font-bold text-emerald-300 uppercase tracking-wider">Fast Facts &amp; Boilerplate:</div>
                 <p class="text-slate-300 leading-relaxed">
                     <strong>Founded:</strong> 2026<br>
-                    <strong>Primary Coverage:</strong> Florida (§ 197.582), Texas (§ 34.04), Georgia (§ 48-4-5)<br>
+                    <strong>Primary Coverage:</strong> 6 States (FL § 197, TX § 34, GA § 48, NC § 105, TN § 67, CA § 4675)<br>
                     <strong>Platform:</strong> Automated daily public records feed &amp; REST JSON API<br>
-                    <strong>Press Contact:</strong> press@surplusdocket.com
+                    <strong>Media Inquiries:</strong> <a href="/inquiry.html" class="text-emerald-300 hover:underline">Editorial &amp; Media Desk (/inquiry.html)</a>
                 </p>
             </div>
         </div>
@@ -549,7 +550,7 @@ def generate_press_newsroom():
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/inquiry.html" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
                 </p>

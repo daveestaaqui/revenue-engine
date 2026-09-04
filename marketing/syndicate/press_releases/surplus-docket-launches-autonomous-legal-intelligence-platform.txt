@@ -18,10 +18,10 @@ In addition to the daily automated feed, Surplus Docket provides all subscribers
 ###
 
 About Surplus Docket
-Surplus Docket is an autonomous public records intelligence and legal data compiler that aggregates, case-verifies, and standardizes tax deed surplus and excess proceeds records across judicial registries in Florida, Texas, and Georgia. Purpose-built for asset recovery attorneys, title searchers, and probate investors, Surplus Docket delivers clean, institutional-lien-scrubbed datasets via daily automated CSV/Excel exports and programmatic REST APIs. For more information, visit https://surplusdocket.com.
+Surplus Docket is an autonomous public records intelligence and legal data compiler that aggregates, case-verifies, and standardizes tax deed surplus and excess proceeds records across judicial registries in Florida, Texas, Georgia, North Carolina, Tennessee, and California. Purpose-built for asset recovery attorneys, title searchers, and probate investors, Surplus Docket delivers clean, institutional-lien-scrubbed datasets via daily automated CSV/Excel exports and programmatic REST APIs. For more information, visit https://surplusdocket.com.
 
 Media Relations:
-Surplus Docket Press Office
-Email: press@surplusdocket.com
+Surplus Docket Editorial & Compliance Desk
+Publisher Inquiries: https://surplusdocket.com/inquiry.html
 Website: https://surplusdocket.com/press/
 Digital Media Kit: https://surplusdocket.com/press/

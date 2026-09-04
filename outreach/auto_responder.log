@@ -80,3 +80,13 @@
 [2026-09-01 06:28:52] IMAP connection error: [Errno 54] Connection reset by peer
 [2026-09-01 10:53:38] IMAP connection error: [Errno 54] Connection reset by peer
 [2026-09-01 17:05:32] IMAP connection error: command: FETCH => socket error: EOF
+[2026-09-04 10:59:31]   🗑️ IMAP: Removed sent draft for: support@breathefum.com
+[2026-09-04 10:59:31] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
+[2026-09-04 11:08:03]   🗑️ IMAP: Removed sent draft for: support@breathefum.com
+[2026-09-04 11:08:03] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
+[2026-09-04 11:08:20]   🍎 Apple Mail: Expunged 1 sent draft(s) directly in Mail.app.
+[2026-09-04 11:10:42]   🗑️ IMAP: Removed sent draft for: support@breathefum.com
+[2026-09-04 11:10:42] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
+[2026-09-04 11:12:40]   🗑️ IMAP: Removed sent draft for: support@breathefum.com
+[2026-09-04 11:12:41] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
+[2026-09-04 11:16:53]   🍎 Apple Mail: Expunged 1 sent draft(s) directly in Mail.app.
