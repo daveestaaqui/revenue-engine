@@ -257,3 +257,85 @@ Call log:
 2026-09-03T20:46:20.321943,Rinaldi Law,Thomas E. Rinaldi,FL,https://rinaldilaw.com,https://www.rinaldilaw.com/contact/3222093,FAILED,CAPTCHA detected.,A
 2026-09-03T20:46:36.507737,Kramer Law,David M. Kramer,FL,https://kramerlaw.com,https://kramerlaw.com,FAILED,Could not find compatible contact form fields on page.,C
 2026-09-03T20:46:48.813978,Perry Law,Richard A. Perry,TX,https://perrylaw.com,https://perrylaw.com,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-04T17:30:55.849604,Brown Law Group LLC,David Brown,FL,https://thebrownlawgroup.net,https://www.thebrownlawgroup.net/contact,SUCCESS,SUCCESS: Submitted. Proof saved to Brown_Law_Group_LLC_1788543052.png,C
+2026-09-04T17:31:21.716469,Zoecklein Law P.A.,Eric Zoecklein,FL,https://zoeckleinlawpa.com,https://zoeckleinlawpa.com,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-04T17:31:43.123033,"Law Office of Andrew J. Pascale, P.A.",Andrew J. Pascale,FL,https://pascalelaw.com,https://www.pascalelaw.com/get-in-touch/,SUCCESS,SUCCESS: Submitted. Proof saved to Law_Office_of_Andrew_J__Pascal_1788543100.png,B
+2026-09-04T17:31:55.678562,Zaretsky Law Group,Richard P. Zaretsky,FL,https://zaretskylaw.com,,ERROR,"Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://zaretskylaw.com/
+Call log:
+  - navigating to ""https://zaretskylaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-04T17:32:13.100789,"Law Office of Neil Tygar, P.A.",Neil B. Tygar,FL,https://tygarlaw.com,,ERROR,"Locator.click: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator(""button[type='submit']"").first
+    - locator resolved to <button type=""submit"" class=""eg-btn btn--outline btn--lg sibling3 capsule"">…</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not stable
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not stable
+    - retrying click action
+      - waiting 100ms
+    - waiting for element to be visible, enabled and stable
+    - element is not stable
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <p>↵↵This website has been designed solely for the p…</p> from <footer class=""footer-section sibling3"">…</footer> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div id=""disclaimerModal"" class=""disclaimer-modal"">…</div> from <footer class=""footer-section sibling3"">…</footer> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div id=""disclaimerModal"" class=""disclaimer-modal"">…</div> from <footer class=""footer-section sibling3"">…</footer> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+",
+2026-09-04T17:32:42.101942,"Law Offices of Evan M. Rosen, P.A.",Evan M. Rosen,FL,https://evanmrosen.com,https://evanmrosen.com,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-04T17:33:07.399222,Berkowitz & Associates,Jonathan A. Berkowitz,FL,https://berkowitzlawgroup.com,https://berkowitzlawgroup.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-04T17:33:31.703103,Taormina Law PA,Salvatore Taormina,FL,https://taorminalawpa.com,https://www.taorminalawpa.com/contact,SUCCESS,SUCCESS: Submitted. Proof saved to Taormina_Law_PA_1788543208.png,A
+2026-09-04T17:34:02.876363,Lopez Law Group,Jason Lopez,FL,https://thelopezlawgroup.com,https://thelopezlawgroup.com,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-04T17:34:21.601573,Law Office of Victor D. Walker,Victor Walker,TX,https://walkersecuritieslaw.com,https://walkersecuritieslaw.com/contact-2/,SUCCESS,SUCCESS: Submitted. Proof saved to Law_Office_of_Victor_D__Walker_1788543258.png,C
+2026-09-04T17:34:40.516027,The Rogers Law Group,Jonathan Rogers,TX,https://jonrogerslaw.com,https://www.jonrogerslaw.com/contact,SUCCESS,SUCCESS: Submitted. Proof saved to The_Rogers_Law_Group_1788543277.png,B
+2026-09-04T17:34:59.947807,Law Office of David A. Fernandez,David A. Fernandez,TX,https://fernandezlaw.com,https://fernandezlaw.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-04T17:35:16.726507,Michael T. Heider PA,Michael T. Heider,FL,https://heiderlaw.com,https://www.heiderlaw.com/contact/,SUCCESS,SUCCESS: Submitted. Proof saved to Michael_T__Heider_PA_1788543313.png,C
+2026-09-04T17:35:40.674618,"The Law Offices of Travis R. Walker, P.A.",Travis R. Walker,FL,https://traviswalkerlaw.com,https://www.traviswalkerlaw.com/contact-us/,SUCCESS,SUCCESS: Submitted. Proof saved to The_Law_Offices_of_Travis_R__W_1788543336.png,C
+2026-09-04T17:36:27.699200,"Sewar Legal, P.A.",Richard Sewar,FL,https://sewarlegal.com,https://sewarlegal.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-04T17:36:55.274310,Haynes Law Group,Benjamin Haynes,FL,https://hayneslawgroup.com,https://hayneslawgroup.com,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-04T17:37:24.410514,"Law Offices of Scott W. Spradley, P.A.",Scott W. Spradley,FL,https://spradleylaw.com,https://spradleylaw.com,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-04T17:37:43.184457,Jason English Law PLLC,Jason S. English,TX,https://jasonenglishlaw.com,https://www.jasonenglishlaw.com/contact-us,SUCCESS,SUCCESS: Submitted. Proof saved to Jason_English_Law_PLLC_1788543459.png,A
+2026-09-04T17:38:05.239984,"Kelly Legal Group, PLLC",Michael B. Kelly,TX,https://kellylegalgroup.com,https://www.kellylegalgroup.com/contact-us/,SUCCESS,SUCCESS: Submitted. Proof saved to Kelly_Legal_Group__PLLC_1788543482.png,C
+2026-09-04T17:38:37.155597,"Law Office of Paul M. Gonzalez, P.C.",Paul M. Gonzalez,TX,https://gonzalezlawpc.com,https://gonzalezlawpc.com,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-04T17:38:58.021664,Shapero Law Firm,Aaron Shapero,CA,https://shaperolawfirm.com,https://www.shaperolawfirm.com/contact-us/,SUCCESS,SUCCESS: Submitted. Proof saved to Shapero_Law_Firm_1788543534.png,C
+2026-09-04T17:39:34.080992,"Velasquez Dolan, P.A.",Daniel A. Velasquez,FL,https://velasquezdolan.com,https://velasquezdolan.com,SUCCESS,SUCCESS: Submitted. Proof saved to Velasquez_Dolan__P_A__1788543570.png,B
+2026-09-04T17:39:42.693720,"Peter M. Feaman, P.A.",Peter M. Feaman,FL,https://feamanlaw.com,,ERROR,"Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://feamanlaw.com/
+Call log:
+  - navigating to ""https://feamanlaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-04T17:40:11.092989,Bilu Law,Ron Bilu,FL,https://bilulaw.com,https://bilulaw.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-04T17:40:41.532940,Law Offices of Brett L. Bigham,Brett Bigham,TX,http://www.bighamlaw.com,http://www.bighamlaw.com/contact_us,SUCCESS,SUCCESS: Submitted. Proof saved to Law_Offices_of_Brett_L__Bigham_1788543638.png,B
+2026-09-04T17:40:58.343834,Duffley Law,William Duffley,TX,https://duffleylaw.com,https://duffleylaw.com/contact/,SUCCESS,SUCCESS: Submitted. Proof saved to Duffley_Law_1788543655.png,C
+2026-09-04T17:41:24.477089,The Daves Law Firm,Robert Daves,TX,https://daveslaw.com,https://daveslaw.com,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-04T17:41:53.080547,Manfred Sternberg & Associates,Manfred Sternberg,TX,https://sternberglaw.com,https://sternberglaw.com/,SUCCESS,SUCCESS: Submitted. Proof saved to Manfred_Sternberg___Associates_1788543709.png,A
+2026-09-04T17:42:13.911448,Dunivan Law,Peter Dunivan,FL,https://dunivanlaw.com,https://www.dunivanlaw.com/contact,SUCCESS,SUCCESS: Submitted. Proof saved to Dunivan_Law_1788543730.png,A
+2026-09-04T17:42:24.748301,Law Office of Robert M. Baskin,Robert M. Baskin,CA,https://baskinlaw.com,,ERROR,"Page.goto: net::ERR_SSL_VERSION_OR_CIPHER_MISMATCH at https://baskinlaw.com/
+Call log:
+  - navigating to ""https://baskinlaw.com/"", waiting until ""domcontentloaded""
+",
+2026-09-04T17:42:59.170931,Danz Law,Matthew E. Danz,FL,https://danzlaw.com,https://danzlaw.com,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-04T17:43:18.919116,Davis Law Group,Michael J. Davis,CA,https://davislaw.com,https://jeffdavislawfirm.com/contact/,SUCCESS,SUCCESS: Submitted. Proof saved to Davis_Law_Group_1788543795.png,B
+2026-09-04T17:43:39.993943,Rinaldi Law,Thomas E. Rinaldi,FL,https://rinaldilaw.com,https://www.rinaldilaw.com/contact/3222093,SUCCESS,SUCCESS: Submitted. Proof saved to Rinaldi_Law_1788543816.png,A
+2026-09-04T17:44:02.561470,Kramer Law,David M. Kramer,FL,https://kramerlaw.com,https://kramerlaw.com,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-04T17:44:28.868249,Perry Law,Richard A. Perry,TX,https://perrylaw.com,https://perrylaw.com,FAILED,Could not find compatible contact form fields on page.,B
