@@ -42,10 +42,18 @@
                             500: '#f59e0b',
                             600: '#d97706',
                         },
-                        brandGreen: {
-                            DEFAULT: '#4c6d48',
-                            light: '#5d8259',
-                            dark: '#365134'
+                        brand: {
+                            green: '#4c6d48',
+                            greenDark: '#365134',
+                            greenLight: '#5d8259',
+                            greenSoft: '#edf3ec',
+                            navy: '#1b365d',
+                            navyDark: '#102238',
+                            navyLight: '#2a4c7a',
+                            canvas: '#f8f8f4',
+                            card: '#FFFFFF',
+                            slateText: '#475569',
+                            headingText: '#102238',
                         }
                     }
                 }
@@ -65,10 +73,10 @@
     <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
     <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 </head>
-<body class="antialiased min-h-screen flex flex-col font-sans bg-navy-950 text-slate-200">
+<body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-slate-700 selection:bg-brand-green selection:text-white">
 
     <!-- Header -->
-    <header class="w-full border-b border-navy-700/60 bg-navy-950/90 backdrop-blur-lg sticky top-0 z-50">
+    <header class="w-full border-b border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
             <a href="/" class="flex items-center gap-3 group" aria-label="Surplus Docket">
                 <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
@@ -78,135 +86,137 @@
                 </div>
             </a>
             <div class="flex items-center gap-2.5 sm:gap-4">
-                <a href="/" class="text-xs sm:text-sm font-semibold text-slate-300 hover:text-emerald-400 transition-colors">Main Hub</a>
-                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-200 hover:text-white border border-navy-700 bg-navy-900/80 px-3 py-2 rounded-lg transition-all">Billing Portal</a>
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:brightness-110 shadow-md shrink-0">
+                <a href="/" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-navy transition-colors">Main Hub</a>
+                <a href="/api-documentation.html" class="hidden md:inline-block text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-navy transition-colors">API Docs</a>
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">Billing Portal</a>
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow-sm transition-all shrink-0">
                     Subscribe
                 </a>
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow">
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
         <!-- Breadcrumb -->
-        <nav class="text-xs text-slate-400 mb-6">
-            <a href="/" class="hover:text-emerald-400">Home</a> &gt; <span class="text-slate-200">Florida Tax Deed Surplus</span>
+        <nav class="text-xs text-slate-500 mb-6">
+            <a href="/" class="hover:text-brand-navy">Home</a> &gt; <span class="text-slate-800 font-medium">Florida Tax Deed Surplus</span>
         </nav>
 
-        <div class="mb-10">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white mb-4 leading-tight">
-                Florida Tax Deed Surplus Claims & Overbid Intelligence
+        <div class="mb-10 text-center md:text-left">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-brand-navy mb-4 leading-tight">
+                Florida Tax Deed Surplus Claims &amp; Overbid Intelligence
             </h1>
-            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
                 Comprehensive statutory framework, claim filing timelines, and automated daily data feed for Florida tax deed excess proceeds.
-          </p>
+            </p>
         </div>
 
-        <div class="space-y-8 text-xs sm:text-sm text-slate-300">
+        <div class="space-y-8">
             <!-- Statutory Overview -->
-            <div class="bg-navy-900/60 rounded-xl border border-navy-700/60 p-6">
-                <h2 class="text-lg font-heading font-bold text-white mb-3">Statutory Authority: Fla. Stat. § 197.582</h2>
-                <p class="leading-relaxed mb-3">
-                    Under Florida law, when real property is sold at a tax deed auction for an amount exceeding the statutory opening bid (statutory taxes, interest, and clerk costs), the excess funds constitute <strong class="text-emerald-400">surplus proceeds</strong>.
-              </p>
-                <p class="leading-relaxed">
-                    The Clerk of the Circuit Court holds these funds in the court registry and issues a Notice of Surplus to all persons who held an interest in the property as recorded in the property records.
-              </p>
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <h2 class="text-xl font-heading font-bold text-brand-navy mb-3">Statutory Authority: Fla. Stat. § 197.582</h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                    Under Florida law, when real property is sold at a tax deed auction for an amount exceeding the statutory opening bid (statutory taxes, interest, and clerk costs), the excess funds constitute <strong class="text-brand-navy font-semibold">surplus proceeds</strong>.
+                </p>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    The Clerk of the Circuit Court holds these funds in the court registry and issues a Notice of Surplus to all persons who held an interest in the property as recorded in the official public records.
+                </p>
             </div>
 
             <!-- Priority Scheme -->
-            <div class="bg-navy-900/60 rounded-xl border border-navy-700/60 p-6">
-                <h2 class="text-lg font-heading font-bold text-white mb-3">Claimant Priority & Statutory Timelines</h2>
-                <p class="leading-relaxed mb-3">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <h2 class="text-xl font-heading font-bold text-brand-navy mb-3">Claimant Priority &amp; Statutory Timelines</h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-4">
                     Florida law establishes a strict priority scheme for distributing tax deed surplus proceeds:
-              </p>
-                <ol class="list-decimal list-inside space-y-2 text-slate-300 ml-2">
-                    <li><strong class="text-white">Government Liens:</strong> Municipal liens and special assessments of record.</li>
-                    <li><strong class="text-white">Senior Lienholders:</strong> First mortgage holders, recorded judgments according to recording priority.</li>
-                    <li><strong class="text-white">Junior Lienholders:</strong> Second mortgages, HOA/COA liens, subordinate judgment creditors.</li>
-                    <li><strong class="text-white">Titleholder of Record:</strong> The former owner(s) or their legal heirs as of the date the tax deed was executed.</li>
+                </p>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 ml-2">
+                    <li><strong class="text-slate-800">Government Liens:</strong> Municipal liens and special assessments of record.</li>
+                    <li><strong class="text-slate-800">Senior Lienholders:</strong> First mortgage holders, recorded judgments according to recording priority.</li>
+                    <li><strong class="text-slate-800">Junior Lienholders:</strong> Second mortgages, HOA/COA liens, subordinate judgment creditors.</li>
+                    <li><strong class="text-slate-800">Titleholder of Record:</strong> The former owner(s) or their legal heirs as of the date the tax deed was executed.</li>
                 </ol>
-                <div class="mt-4 p-3 bg-navy-950/80 rounded-lg border border-navy-700 text-xs text-slate-400">
-                    <strong class="text-emerald-400">120-Day Window:</strong> Claimants must submit notarized claims within 120 days of the date of the clerk's surplus notice. The feed updates daily at 7:00 AM EST with newly generated notices.
+                <div class="mt-5 p-3.5 bg-brand-canvas rounded-xl border border-slate-200 text-xs text-slate-600 leading-relaxed">
+                    <strong class="text-brand-navy">120-Day Window:</strong> Claimants must submit notarized claims within 120 days of the date of the clerk's surplus notice. The feed updates daily at 7:00 AM EST with newly generated notices.
                 </div>
             </div>
 
-            <!-- Interactive ROI & Contingency Fee Calculator -->
-            <div class="bg-gradient-to-br from-navy-900 to-navy-950 rounded-2xl border border-emerald-500/30 p-6 sm:p-8 my-8 shadow-xl">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-navy-700/60">
+            <!-- Practice ROI Economics -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-100">
                     <div>
-                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Practice ROI Economics</span>
-                        <h3 class="text-xl sm:text-2xl font-heading font-black text-white mt-1">What is a Single Surplus Claim Worth?</h3>
+                        <span class="text-xs font-bold text-brand-green uppercase tracking-wider">Practice ROI Economics</span>
+                        <h3 class="text-xl sm:text-2xl font-heading font-black text-brand-navy mt-1">What is a Single Surplus Claim Worth?</h3>
                     </div>
-                    <div class="bg-emerald-500/10 border border-emerald-500/30 px-3.5 py-1.5 rounded-lg text-emerald-400 font-mono text-xs font-bold shrink-0">
-                        Avg. ROI: 45x Subscription Value
+                    <div class="bg-brand-greenSoft border border-brand-green/30 px-3.5 py-1.5 rounded-lg text-brand-greenDark font-mono text-xs font-bold shrink-0">
+                        Avg. ROI: 36x Subscription Value
                     </div>
                 </div>
                 
-                <div class="grid sm:grid-cols-3 gap-6 mb-6">
-                    <div class="bg-navy-950/80 p-4 rounded-xl border border-navy-800">
-                        <span class="text-xs text-slate-400 block mb-1">Average Surplus Balance</span>
-                        <span class="text-2xl font-black text-white font-mono">$45,000</span>
+                <div class="grid sm:grid-cols-3 gap-4 sm:gap-6 mb-6">
+                    <div class="bg-brand-canvas p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block mb-1">Average Surplus Balance</span>
+                        <span class="text-2xl font-black text-brand-navy font-mono">$45,000</span>
                         <span class="text-[11px] text-slate-400 block mt-1">Florida Court Registry Index</span>
                     </div>
-                    <div class="bg-navy-950/80 p-4 rounded-xl border border-navy-800">
-                        <span class="text-xs text-slate-400 block mb-1">Legal Fee (25% Contingency)</span>
-                        <span class="text-2xl font-black text-emerald-400 font-mono">$11,250</span>
-                        <span class="text-[11px] text-slate-400 block mt-1">Per Claim Recovery</span>
+                    <div class="bg-brand-canvas p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block mb-1">Statutory Cap Fee (20%)</span>
+                        <span class="text-2xl font-black text-brand-green font-mono">$9,000</span>
+                        <span class="text-[11px] text-slate-400 block mt-1">Fla. Stat. § 197.582 Cap</span>
                     </div>
-                    <div class="bg-navy-950/80 p-4 rounded-xl border border-navy-800">
-                        <span class="text-xs text-slate-400 block mb-1">Monthly Data Subscription</span>
-                        <span class="text-2xl font-black text-gold-400 font-mono">$249<span class="text-xs text-slate-400">/mo</span></span>
+                    <div class="bg-brand-canvas p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block mb-1">Monthly Data Subscription</span>
+                        <span class="text-2xl font-black text-brand-navy font-mono">$249<span class="text-xs text-slate-400 font-normal">/mo</span></span>
                         <span class="text-[11px] text-slate-400 block mt-1">Flat Rate • Cancel Anytime</span>
                     </div>
                 </div>
 
-                <div class="p-4 bg-navy-950/60 rounded-xl border border-navy-700/60 text-xs text-slate-300 leading-relaxed mb-6">
-                    <strong class="text-white">Bottom Line:</strong> Recovering just <strong>one single surplus file</strong> per month generates an immediate <strong>45x return</strong> on your data investment. We filter out senior mortgages upstream so you only work clean, collectible balances.
+                <div class="p-4 bg-brand-canvas rounded-xl border border-slate-200 text-xs text-slate-600 leading-relaxed mb-6">
+                    <strong class="text-brand-navy">Bottom Line:</strong> Recovering just <strong>one single surplus file</strong> per month generates an immediate <strong>36x return</strong> on your data investment. We filter out senior mortgages upstream so you only work clean, collectible balances.
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-heading font-bold rounded-xl shadow-lg hover:brightness-110 text-center transition-all">
+                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-xl shadow-md hover:shadow-lg text-center transition-all text-sm">
                         Start Daily Feed Access — $249/mo
                     </a>
-                    <a href="/assets/sample_surplus_docket_feed.csv" download class="w-full sm:w-auto px-6 py-3.5 bg-navy-800 hover:bg-navy-700 text-slate-200 font-heading font-semibold rounded-xl border border-navy-700 text-center transition-all text-xs">
+                    <a href="/assets/sample_surplus_docket_feed.csv" download class="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-brand-navy font-heading font-semibold rounded-xl border border-slate-300 text-center transition-all text-xs shadow-sm">
                         Download Sample CSV Feed
                     </a>
                 </div>
             </div>
 
             <!-- Monitored Counties -->
-            <div class="bg-navy-900/60 rounded-xl border border-navy-700/60 p-6">
-                <h2 class="text-lg font-heading font-bold text-white mb-3">Monitored Florida Jurisdictions</h2>
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                <h2 class="text-xl font-heading font-bold text-brand-navy mb-4">Monitored Florida Jurisdictions</h2>
                 <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
-                        <strong class="text-white block">Orange County (Orlando)</strong>
-                        <span class="text-slate-400 text-xs">Clerk: Tiffany Moore Russell • Online Tax Deed Auctions</span>
-                    </div>
-                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
-                        <strong class="text-white block">Hillsborough County (Tampa)</strong>
-                        <span class="text-slate-400 text-xs">Clerk: Cindy Stuart • Weekly Public Surplus Ledgers</span>
-                    </div>
-                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
-                        <strong class="text-white block">Palm Beach County (West Palm)</strong>
-                        <span class="text-slate-400 text-xs">Clerk: Joseph Abruzzo • RealAuction Tax Deed Portal</span>
-                    </div>
-                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
-                        <strong class="text-white block">Miami-Dade County (Miami)</strong>
-                        <span class="text-slate-400 text-xs">Clerk: Juan Fernandez-Barquin • Circuit Court Registry</span>
-                    </div>
+                    <a href="/orange-county-tax-deed-surplus.html" class="p-4 bg-brand-canvas hover:bg-white rounded-xl border border-slate-200 hover:border-brand-green/50 transition-all block">
+                        <strong class="text-brand-navy block text-sm">Orange County (Orlando)</strong>
+                        <span class="text-slate-500 text-xs mt-1 block">Clerk: Tiffany Moore Russell • Online Tax Deed Auctions</span>
+                    </a>
+                    <a href="/hillsborough-tax-deed-surplus.html" class="p-4 bg-brand-canvas hover:bg-white rounded-xl border border-slate-200 hover:border-brand-green/50 transition-all block">
+                        <strong class="text-brand-navy block text-sm">Hillsborough County (Tampa)</strong>
+                        <span class="text-slate-500 text-xs mt-1 block">Clerk: Cindy Stuart • Weekly Public Surplus Ledgers</span>
+                    </a>
+                    <a href="/palm-beach-tax-deed-surplus.html" class="p-4 bg-brand-canvas hover:bg-white rounded-xl border border-slate-200 hover:border-brand-green/50 transition-all block">
+                        <strong class="text-brand-navy block text-sm">Palm Beach County (West Palm)</strong>
+                        <span class="text-slate-500 text-xs mt-1 block">Clerk: Joseph Abruzzo • RealAuction Tax Deed Portal</span>
+                    </a>
+                    <a href="/miami-dade-tax-deed-surplus.html" class="p-4 bg-brand-canvas hover:bg-white rounded-xl border border-slate-200 hover:border-brand-green/50 transition-all block">
+                        <strong class="text-brand-navy block text-sm">Miami-Dade County (Miami)</strong>
+                        <span class="text-slate-500 text-xs mt-1 block">Clerk: Juan Fernandez-Barquin • Circuit Court Registry</span>
+                    </a>
                 </div>
             </div>
-        </div>
 
-        <div class="text-center py-8">
-            <h3 class="text-2xl font-heading font-bold text-white mb-4">Access Daily Automated Florida Feed</h3>
-            <p class="text-sm text-slate-400 max-w-lg mx-auto mb-6">
-                Receive standardized daily CSV/Excel spreadsheets indexing newly published surplus balances across Orange, Hillsborough, Palm Beach, and Miami-Dade counties.
-            </p>
-            <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-heading font-bold rounded-lg shadow-lg hover:brightness-110">
-                Subscribe to Multi-State Feed — $249/mo
-            </a>
+            <!-- CTA Card -->
+            <div class="bg-brand-navy text-white rounded-2xl p-8 md:p-10 text-center shadow-xl">
+                <h3 class="text-2xl md:text-3xl font-heading font-black mb-3">Access Daily Automated Florida Feed</h3>
+                <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                    Receive standardized daily CSV, Excel, and JSON public record dockets indexing newly published surplus balances across Orange, Hillsborough, Palm Beach, and Miami-Dade counties. Delivered daily at 7:00 AM EST.
+                </p>
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-4 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-xl shadow-lg transition-all">
+                    Subscribe to Multi-State Feed — $249/mo
+                </a>
+            </div>
         </div>
     </main>
 

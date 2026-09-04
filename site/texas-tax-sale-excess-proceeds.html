@@ -42,10 +42,18 @@
                             500: '#f59e0b',
                             600: '#d97706',
                         },
-                        brandGreen: {
-                            DEFAULT: '#4c6d48',
-                            light: '#5d8259',
-                            dark: '#365134'
+                        brand: {
+                            green: '#4c6d48',
+                            greenDark: '#365134',
+                            greenLight: '#5d8259',
+                            greenSoft: '#edf3ec',
+                            navy: '#1b365d',
+                            navyDark: '#102238',
+                            navyLight: '#2a4c7a',
+                            canvas: '#f8f8f4',
+                            card: '#FFFFFF',
+                            slateText: '#475569',
+                            headingText: '#102238',
                         }
                     }
                 }
@@ -65,10 +73,10 @@
     <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
     <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 </head>
-<body class="antialiased min-h-screen flex flex-col font-sans bg-navy-950 text-slate-200">
+<body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-slate-700 selection:bg-brand-green selection:text-white">
 
     <!-- Header -->
-    <header class="w-full border-b border-navy-700/60 bg-navy-950/90 backdrop-blur-lg sticky top-0 z-50">
+    <header class="w-full border-b border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
             <a href="/" class="flex items-center gap-3 group" aria-label="Surplus Docket">
                 <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
@@ -78,117 +86,128 @@
                 </div>
             </a>
             <div class="flex items-center gap-2.5 sm:gap-4">
-                <a href="/" class="text-xs sm:text-sm font-semibold text-slate-300 hover:text-emerald-400 transition-colors">Main Hub</a>
-                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-200 hover:text-white border border-navy-700 bg-navy-900/80 px-3 py-2 rounded-lg transition-all">Billing Portal</a>
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:brightness-110 shadow-md shrink-0">
+                <a href="/" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-navy transition-colors">Main Hub</a>
+                <a href="/api-documentation.html" class="hidden md:inline-block text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-navy transition-colors">API Docs</a>
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">Billing Portal</a>
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow-sm transition-all shrink-0">
                     Subscribe
                 </a>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow max-w-4xl mx-auto px-4 py-16">
-        <h1 class="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
-            Texas Tax Sale Excess Proceeds <br />
-            <span class="text-gold-400">Court Registry Intelligence Feed</span>
-        </h1>
-        
-        <p class="text-base md:text-lg text-slate-300 leading-relaxed mb-8">
-            Under <strong>Texas Tax Code § 34.04</strong>, funds remaining from a tax warrant or judicial foreclosure sale after satisfying delinquent tax judgments and costs are transferred to the registry of the court for distribution to statutory claimants.
-      </p>
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <!-- Breadcrumb -->
+        <nav class="text-xs text-slate-500 mb-6">
+            <a href="/" class="hover:text-brand-navy">Home</a> &gt; <span class="text-slate-800 font-medium">Texas Tax Sale Excess Proceeds</span>
+        </nav>
 
-        <div class="bg-navy-850 border border-navy-700 rounded-xl p-6 mb-10">
-            <h2 class="text-xl font-heading font-bold text-white mb-4">Key Texas Excess Proceeds Framework:</h2>
-            <ul class="space-y-3 text-sm text-slate-300">
-                <li class="flex items-start gap-2">
-                    <span class="text-gold-400 font-bold">1. Two-Year Limitation Period:</span>
-                    <span>Claims must be filed within two (2) years of the date of the sale pursuant to Tex. Tax Code § 34.04(a). Unclaimed funds transfer to the county general fund.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="text-gold-400 font-bold">2. Third-Party Representative Rules:</span>
-                    <span>Statutory compensation caps (typically 25% under § 34.045) and strict formal verification requirements govern third-party representation petitions.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="text-gold-400 font-bold">3. Judicial Petition Requirement:</span>
-                    <span>Unlike administrative clerk claim procedures, Texas claims require formal petition filing in the district court where the tax judgment originated.</span>
-                </li>
-            </ul>
-            <!-- Interactive ROI & Contingency Fee Calculator -->
-            <div class="bg-gradient-to-br from-navy-900 to-navy-950 rounded-2xl border border-emerald-500/30 p-6 sm:p-8 my-8 shadow-xl">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-navy-700/60">
+        <div class="mb-10 text-center md:text-left">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-brand-navy mb-4 leading-tight">
+                Texas Tax Sale Excess Proceeds Claims &amp; Court Registry Feed
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
+                Under <strong>Texas Tax Code § 34.04</strong>, funds remaining from a tax foreclosure sale after satisfying delinquent tax judgments and costs are transferred to the registry of the court for distribution to statutory claimants.
+            </p>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Statutory Overview -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <h2 class="text-xl font-heading font-bold text-brand-navy mb-4">Key Texas Excess Proceeds Statutory Framework:</h2>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-brand-navy font-bold shrink-0">1. Two-Year Limitation Period:</span>
+                        <span>Claims must be filed within two (2) years of the date of the sale pursuant to Tex. Tax Code § 34.04(a). Unclaimed funds transfer to the county general fund.</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-brand-navy font-bold shrink-0">2. Third-Party Representative Rules:</span>
+                        <span>Statutory compensation caps (typically 25% under § 34.045) and strict formal verification requirements govern third-party representation petitions.</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-brand-navy font-bold shrink-0">3. Judicial Petition Requirement:</span>
+                        <span>Unlike administrative clerk claim procedures, Texas claims require formal petition filing in the district court where the tax judgment originated.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Practice ROI Economics -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-100">
                     <div>
-                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Texas Practice ROI Economics</span>
-                        <h3 class="text-xl sm:text-2xl font-heading font-black text-white mt-1">What is a Single Texas Excess Proceeds Claim Worth?</h3>
+                        <span class="text-xs font-bold text-brand-green uppercase tracking-wider">Texas Practice ROI Economics</span>
+                        <h3 class="text-xl sm:text-2xl font-heading font-black text-brand-navy mt-1">What is a Single Texas Excess Proceeds Claim Worth?</h3>
                     </div>
-                    <div class="bg-emerald-500/10 border border-emerald-500/30 px-3.5 py-1.5 rounded-lg text-emerald-400 font-mono text-xs font-bold shrink-0">
+                    <div class="bg-brand-greenSoft border border-brand-green/30 px-3.5 py-1.5 rounded-lg text-brand-greenDark font-mono text-xs font-bold shrink-0">
                         Avg. ROI: 48x Subscription Value
                     </div>
                 </div>
                 
-                <div class="grid sm:grid-cols-3 gap-6 mb-6">
-                    <div class="bg-navy-950/80 p-4 rounded-xl border border-navy-800">
-                        <span class="text-xs text-slate-400 block mb-1">Average Texas Surplus</span>
-                        <span class="text-2xl font-black text-white font-mono">$48,500</span>
+                <div class="grid sm:grid-cols-3 gap-4 sm:gap-6 mb-6">
+                    <div class="bg-brand-canvas p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block mb-1">Average Texas Surplus</span>
+                        <span class="text-2xl font-black text-brand-navy font-mono">$48,500</span>
                         <span class="text-[11px] text-slate-400 block mt-1">District Court Registry Index</span>
                     </div>
-                    <div class="bg-navy-950/80 p-4 rounded-xl border border-navy-800">
-                        <span class="text-xs text-slate-400 block mb-1">Legal Fee (25% Contingency)</span>
-                        <span class="text-2xl font-black text-emerald-400 font-mono">$12,125</span>
+                    <div class="bg-brand-canvas p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block mb-1">Legal Fee (25% Contingency)</span>
+                        <span class="text-2xl font-black text-brand-green font-mono">$12,125</span>
                         <span class="text-[11px] text-slate-400 block mt-1">Per Claim Recovery</span>
                     </div>
-                    <div class="bg-navy-950/80 p-4 rounded-xl border border-navy-800">
-                        <span class="text-xs text-slate-400 block mb-1">Monthly Data Subscription</span>
-                        <span class="text-2xl font-black text-gold-400 font-mono">$249<span class="text-xs text-slate-400">/mo</span></span>
+                    <div class="bg-brand-canvas p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block mb-1">Monthly Data Subscription</span>
+                        <span class="text-2xl font-black text-brand-navy font-mono">$249<span class="text-xs text-slate-400 font-normal">/mo</span></span>
                         <span class="text-[11px] text-slate-400 block mt-1">Flat Rate • Cancel Anytime</span>
                     </div>
                 </div>
 
-                <div class="p-4 bg-navy-950/60 rounded-xl border border-navy-700/60 text-xs text-slate-300 leading-relaxed mb-6">
-                    <strong class="text-white">Bottom Line:</strong> Recovering just <strong>one Texas tax foreclosure file</strong> per month generates an immediate <strong>48x return</strong> on your data investment. We filter out senior mortgage encumbrances upstream so you only work clean, collectible balances.
+                <div class="p-4 bg-brand-canvas rounded-xl border border-slate-200 text-xs text-slate-600 leading-relaxed mb-6">
+                    <strong class="text-brand-navy">Bottom Line:</strong> Recovering just <strong>one Texas tax foreclosure file</strong> per month generates an immediate <strong>48x return</strong> on your data investment. We filter out senior mortgage encumbrances upstream so you only work clean, collectible balances.
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-heading font-bold rounded-xl shadow-lg hover:brightness-110 text-center transition-all">
+                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-xl shadow-md hover:shadow-lg text-center transition-all text-sm">
                         Start Daily Feed Access — $249/mo
                     </a>
-                    <a href="/assets/sample_surplus_docket_feed.csv" download class="w-full sm:w-auto px-6 py-3.5 bg-navy-800 hover:bg-navy-700 text-slate-200 font-heading font-semibold rounded-xl border border-navy-700 text-center transition-all text-xs">
+                    <a href="/assets/sample_surplus_docket_feed.csv" download class="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-brand-navy font-heading font-semibold rounded-xl border border-slate-300 text-center transition-all text-xs shadow-sm">
                         Download Sample CSV Feed
                     </a>
                 </div>
             </div>
 
             <!-- Monitored Counties -->
-            <div class="bg-navy-900/60 rounded-xl border border-navy-700/60 p-6">
-                <h2 class="text-lg font-heading font-bold text-white mb-3">Monitored Texas Jurisdictions</h2>
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                <h2 class="text-xl font-heading font-bold text-brand-navy mb-4">Monitored Texas Jurisdictions</h2>
                 <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
-                        <strong class="text-white block">Harris County (Houston)</strong>
-                        <span class="text-slate-400 text-xs">District Clerk: Marilyn Burgess • First Tuesday Tax Sales</span>
-                    </div>
-                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
-                        <strong class="text-white block">Dallas County (Dallas)</strong>
-                        <span class="text-slate-400 text-xs">District Clerk: Felicia Pitre • Constables Sale Registry</span>
-                    </div>
-                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
-                        <strong class="text-white block">Tarrant County (Fort Worth)</strong>
-                        <span class="text-slate-400 text-xs">District Clerk: Thomas A. Wilder • Sheriff Sale Excess Funds</span>
-                    </div>
-                    <div class="p-3 bg-navy-950/60 rounded-lg border border-navy-700/40">
-                        <strong class="text-white block">Travis County (Austin)</strong>
-                        <span class="text-slate-400 text-xs">District Clerk: Velva L. Price • Registry of the Court</span>
-                    </div>
+                    <a href="/harris-county-excess-proceeds.html" class="p-4 bg-brand-canvas hover:bg-white rounded-xl border border-slate-200 hover:border-brand-green/50 transition-all block">
+                        <strong class="text-brand-navy block text-sm">Harris County (Houston)</strong>
+                        <span class="text-slate-500 text-xs mt-1 block">District Clerk: Marilyn Burgess • First Tuesday Tax Sales</span>
+                    </a>
+                    <a href="/dallas-county-excess-proceeds.html" class="p-4 bg-brand-canvas hover:bg-white rounded-xl border border-slate-200 hover:border-brand-green/50 transition-all block">
+                        <strong class="text-brand-navy block text-sm">Dallas County (Dallas)</strong>
+                        <span class="text-slate-500 text-xs mt-1 block">District Clerk: Felicia Pitre • Constables Sale Registry</span>
+                    </a>
+                    <a href="/tarrant-county-excess-proceeds.html" class="p-4 bg-brand-canvas hover:bg-white rounded-xl border border-slate-200 hover:border-brand-green/50 transition-all block">
+                        <strong class="text-brand-navy block text-sm">Tarrant County (Fort Worth)</strong>
+                        <span class="text-slate-500 text-xs mt-1 block">District Clerk: Thomas A. Wilder • Sheriff Sale Excess Funds</span>
+                    </a>
+                    <a href="/travis-county-excess-proceeds.html" class="p-4 bg-brand-canvas hover:bg-white rounded-xl border border-slate-200 hover:border-brand-green/50 transition-all block">
+                        <strong class="text-brand-navy block text-sm">Travis County (Austin)</strong>
+                        <span class="text-slate-500 text-xs mt-1 block">District Clerk: Velva L. Price • Registry of the Court</span>
+                    </a>
                 </div>
             </div>
-        </div>
 
-        <div class="text-center py-8">
-            <h3 class="text-2xl font-heading font-bold text-white mb-4">Access Daily Automated Texas Feed</h3>
-            <p class="text-sm text-slate-400 max-w-lg mx-auto mb-6">
-                Receive standardized daily CSV/Excel spreadsheets indexing newly published surplus balances across Harris, Dallas, Tarrant, and Travis counties.
-            </p>
-            <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-heading font-bold rounded-lg shadow-lg hover:brightness-110">
-                Subscribe to Multi-State Feed — $249/mo
-            </a>
+            <!-- CTA Card -->
+            <div class="bg-brand-navy text-white rounded-2xl p-8 md:p-10 text-center shadow-xl">
+                <h3 class="text-2xl md:text-3xl font-heading font-black mb-3">Access Daily Automated Texas Feed</h3>
+                <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                    Receive standardized daily CSV, Excel, and JSON public record dockets indexing newly published surplus balances across Harris, Dallas, Tarrant, and Travis counties. Delivered daily at 7:00 AM EST.
+                </p>
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-4 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-xl shadow-lg transition-all">
+                    Subscribe to Multi-State Feed — $249/mo
+                </a>
+            </div>
         </div>
     </main>
 

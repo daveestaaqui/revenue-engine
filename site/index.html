@@ -1576,6 +1576,8 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
             }
         }
 
+        let currentModalInquiryMemo = '';
+
         async function handleModalInquirySubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('modal-inq-submit-btn');
@@ -1587,35 +1589,88 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
             
             const name = document.getElementById('modal-inq-name')?.value?.trim() || '';
             const email = document.getElementById('modal-inq-email')?.value?.trim() || '';
-            const firm = document.getElementById('modal-inq-firm')?.value?.trim() || '';
+            const firm = document.getElementById('modal-inq-firm')?.value?.trim() || 'Independent Practice';
             const category = document.getElementById('modal-inq-category')?.value || 'General Inquiry';
             const msg = document.getElementById('modal-inq-msg')?.value?.trim() || '';
 
-            const payload = {
-                name: name,
-                email: email,
-                firm: firm,
-                department: category,
-                message: msg,
-                reference_number: refNumber,
-                _subject: `[Surplus Docket Modal Inquiry] ${category} — ${firm} (${name})`,
-                _replyto: email,
-                _captcha: 'false',
-                _template: 'table'
-            };
+            const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
+            currentModalInquiryMemo = [
+                `================================================================================`,
+                `SURPLUS DOCKET — OFFICIAL STATUTORY INQUIRY RECORD`,
+                `Tracking Reference: ${refNumber}`,
+                `Date:               ${dateStr}`,
+                `================================================================================`,
+                ``,
+                `TRANSMITTING PRACTITIONER / PARTY:`,
+                `Counsel / Rep:      ${name}`,
+                `Direct Work Email:  ${email}`,
+                `Law Firm / Entity:  ${firm}`,
+                `Inquiry Department: ${category}`,
+                ``,
+                `STATEMENT OF INQUIRY:`,
+                `--------------------------------------------------------------------------------`,
+                msg,
+                `--------------------------------------------------------------------------------`,
+                `Surplus Docket Legal & Regulatory Inquiries Desk • https://surplusdocket.com`,
+                `Confidential Practitioner Transmission — Public Records Legal Intelligence`,
+                `================================================================================`
+            ].join('\n');
+
+            let transmitted = false;
+
+            // 1. Try white-label serverless endpoint
             try {
-                const dest = atob('ZGF2aWRAc3VycGx1c2RvY2tldC5jb20=');
-                await fetch('https://formsubmit.co/ajax/' + dest, {
+                const apiRes = await fetch('/api/inquiry', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        firm: firm,
+                        department: category,
+                        message: msg,
+                        reference_number: refNumber
+                    })
                 });
+                if (apiRes.ok) {
+                    const data = await apiRes.json();
+                    if (data.success && data.channel === 'direct') {
+                        transmitted = true;
+                    }
+                }
             } catch (err) {
-                console.warn('Modal transmission note:', err);
+                // Ignore and fall back to relay
+            }
+
+            // 2. Fallback to FormSubmit with clean box format
+            if (!transmitted) {
+                const payload = {
+                    "OFFICIAL RECORD": refNumber,
+                    "INQUIRY MEMORANDUM": currentModalInquiryMemo,
+                    "PRACTITIONER NAME": name,
+                    "WORK EMAIL": email,
+                    "LAW FIRM / ENTITY": firm,
+                    "DEPARTMENT": category,
+                    "_subject": `[Surplus Docket Modal Inquiry] ${category} — ${firm} (${name})`,
+                    "_replyto": email,
+                    "_captcha": 'false',
+                    "_template": 'box'
+                };
+
+                try {
+                    const dest = atob('ZGF2aWRAc3VycGx1c2RvY2tldC5jb20=');
+                    await fetch('https://formsubmit.co/ajax/' + dest, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (err) {
+                    console.warn('Modal transmission note:', err);
+                }
             }
 
             const body = document.getElementById('modal-inq-form-body');
@@ -1624,6 +1679,18 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
             const refEl = document.getElementById('modal-inq-ref');
             if (refEl) refEl.textContent = 'Reference: ' + refNumber;
             if (conf) conf.classList.remove('hidden');
+        }
+
+        function copyModalInquiryMemo() {
+            if (!currentModalInquiryMemo) return;
+            navigator.clipboard.writeText(currentModalInquiryMemo).then(() => {
+                const btn = document.getElementById('modal-copy-memo-btn');
+                if (btn) {
+                    const orig = btn.innerHTML;
+                    btn.innerHTML = '<span>Copied!</span>';
+                    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+                }
+            }).catch(console.error);
         }
 
         function resetModalInquiry() {
@@ -1689,7 +1756,7 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
 
                 <form id="modal-inquiry-form" onsubmit="handleModalInquirySubmit(event)" class="space-y-3.5">
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_template" value="box">
                     <input type="hidden" name="_subject" value="[Surplus Docket Modal Inquiry] New Submission">
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -1748,9 +1815,14 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
                 <p class="text-xs text-slate-600 mb-5 leading-relaxed">
                     Your correspondence has been transmitted to our editorial and compliance desk. A formal record has been logged, and our team will review your inquiry.
                 </p>
-                <button type="button" onclick="closeInquiryModal(); resetModalInquiry();" class="px-5 py-2 text-xs font-heading font-bold rounded-lg text-white bg-brand-navy hover:bg-brand-navyDark transition-colors">
-                    Close Window
-                </button>
+                <div class="flex items-center justify-center gap-2">
+                    <button type="button" id="modal-copy-memo-btn" onclick="copyModalInquiryMemo()" class="px-4 py-2 text-xs font-heading font-bold rounded-lg text-white bg-brand-green hover:bg-brand-greenDark transition-colors shadow-sm">
+                        Copy Memorandum
+                    </button>
+                    <button type="button" onclick="closeInquiryModal(); resetModalInquiry();" class="px-4 py-2 text-xs font-heading font-bold rounded-lg text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors border border-slate-300">
+                        Close Window
+                    </button>
+                </div>
             </div>
         </div>
     </div>

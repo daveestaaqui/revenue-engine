@@ -225,9 +225,15 @@
                 <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto mb-6 leading-relaxed">
                     Your correspondence has been transmitted to our editorial and compliance desk. A formal record has been logged, and our team will review your inquiry.
                 </p>
-                <button type="button" onclick="resetInquiryForm()" class="inline-flex items-center justify-center px-6 py-2.5 text-xs font-heading font-bold rounded-lg text-brand-navy bg-slate-100 hover:bg-slate-200 transition-colors border border-slate-300">
-                    Submit Another Inquiry
-                </button>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button type="button" id="copy-memo-btn" onclick="copyInquiryMemo()" class="inline-flex items-center justify-center px-5 py-2.5 text-xs font-heading font-bold rounded-lg text-white bg-brand-navy hover:bg-brand-navyDark transition-colors shadow-sm gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                        <span>Copy Official Memorandum</span>
+                    </button>
+                    <button type="button" onclick="resetInquiryForm()" class="inline-flex items-center justify-center px-5 py-2.5 text-xs font-heading font-bold rounded-lg text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors border border-slate-300">
+                        Submit Another Inquiry
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -322,6 +328,8 @@
     </footer>
 
     <script>
+        let currentInquiryMemo = '';
+
         async function handleInquirySubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('inq-submit-btn');
@@ -332,45 +340,97 @@
             
             const name = document.getElementById('inq-name').value.trim();
             const email = document.getElementById('inq-email').value.trim();
-            const firm = document.getElementById('inq-firm').value.trim();
+            const firm = document.getElementById('inq-firm').value.trim() || 'Independent Practice';
             const jurisdiction = document.getElementById('inq-jurisdiction').value;
             const category = document.getElementById('inq-category').value;
-            const docket = document.getElementById('inq-docket').value.trim() || 'N/A';
+            const docket = document.getElementById('inq-docket').value.trim() || 'Not Specified';
             const message = document.getElementById('inq-message').value.trim();
 
-            const hiddenRef = document.getElementById('inq-hidden-ref');
-            if (hiddenRef) hiddenRef.value = refNumber;
-            const hiddenSub = document.getElementById('inq-hidden-subject');
-            if (hiddenSub) hiddenSub.value = `[Surplus Docket Inquiry] ${category} — ${firm} (${name})`;
+            const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-            const payload = {
-                name: name,
-                email: email,
-                firm: firm,
-                jurisdiction: jurisdiction,
-                department: category,
-                docket_or_parcel: docket,
-                message: message,
-                reference_number: refNumber,
-                _subject: `[Surplus Docket Inquiry] ${category} — ${firm} (${name})`,
-                _replyto: email,
-                _captcha: 'false',
-                _template: 'table'
-            };
+            // Institutional formatted memorandum for clean quote formatting on reply
+            currentInquiryMemo = [
+                `================================================================================`,
+                `SURPLUS DOCKET — OFFICIAL STATUTORY INQUIRY RECORD`,
+                `Tracking Reference: ${refNumber}`,
+                `Date:               ${dateStr}`,
+                `================================================================================`,
+                ``,
+                `TRANSMITTING PRACTITIONER / PARTY:`,
+                `Counsel / Rep:      ${name}`,
+                `Direct Work Email:  ${email}`,
+                `Law Firm / Entity:  ${firm}`,
+                `Target Jurisdiction:${jurisdiction}`,
+                `Inquiry Department: ${category}`,
+                `Case / Docket / APN:${docket}`,
+                ``,
+                `STATEMENT OF INQUIRY:`,
+                `--------------------------------------------------------------------------------`,
+                message,
+                `--------------------------------------------------------------------------------`,
+                `Surplus Docket Legal & Regulatory Inquiries Desk • https://surplusdocket.com`,
+                `Confidential Practitioner Transmission — Public Records Legal Intelligence`,
+                `================================================================================`
+            ].join('\n');
 
+            let transmitted = false;
+
+            // 1. First attempt: Direct white-label serverless endpoint (zero sponsor ads)
             try {
-                // Obfuscated recipient prevents web scrapers from harvesting email from client source
-                const dest = atob('ZGF2aWRAc3VycGx1c2RvY2tldC5jb20=');
-                await fetch('https://formsubmit.co/ajax/' + dest, {
+                const apiRes = await fetch('/api/inquiry', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        firm: firm,
+                        jurisdiction: jurisdiction,
+                        department: category,
+                        docket_or_parcel: docket,
+                        message: message,
+                        reference_number: refNumber
+                    })
                 });
-            } catch (err) {
-                console.warn('Form transmission note:', err);
+                if (apiRes.ok) {
+                    const data = await apiRes.json();
+                    if (data.success && data.channel === 'direct') {
+                        transmitted = true;
+                    }
+                }
+            } catch (apiErr) {
+                // Serverless route unconfigured or local static server; continue to relay fallback
+            }
+
+            // 2. Fallback attempt: Standard relay endpoint with clean box formatting
+            if (!transmitted) {
+                const payload = {
+                    "OFFICIAL RECORD": refNumber,
+                    "INQUIRY MEMORANDUM": currentInquiryMemo,
+                    "PRACTITIONER NAME": name,
+                    "WORK EMAIL": email,
+                    "LAW FIRM / ENTITY": firm,
+                    "JURISDICTION": jurisdiction,
+                    "DEPARTMENT": category,
+                    "DOCKET / PARCEL": docket,
+                    "_subject": `[Surplus Docket Inquiry] ${category} — ${firm} (${name})`,
+                    "_replyto": email,
+                    "_captcha": 'false',
+                    "_template": 'box'
+                };
+
+                try {
+                    const dest = atob('ZGF2aWRAc3VycGx1c2RvY2tldC5jb20=');
+                    await fetch('https://formsubmit.co/ajax/' + dest, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (err) {
+                    console.warn('Transmission note:', err);
+                }
             }
 
             // Reveal confirmation state with reference code
@@ -380,6 +440,24 @@
             if (refEl) refEl.textContent = 'Reference: ' + refNumber;
             confEl.classList.remove('hidden');
             confEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function copyInquiryMemo() {
+            if (!currentInquiryMemo) return;
+            navigator.clipboard.writeText(currentInquiryMemo).then(() => {
+                const btn = document.getElementById('copy-memo-btn');
+                if (btn) {
+                    const orig = btn.innerHTML;
+                    btn.innerHTML = '<span>Copied to Clipboard!</span>';
+                    btn.classList.replace('bg-brand-navy', 'bg-brand-green');
+                    setTimeout(() => {
+                        btn.innerHTML = orig;
+                        btn.classList.replace('bg-brand-green', 'bg-brand-navy');
+                    }, 2500);
+                }
+            }).catch(err => {
+                console.error('Clipboard copy error:', err);
+            });
         }
 
         function resetInquiryForm() {
