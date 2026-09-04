@@ -35,7 +35,7 @@ PRESS_RELEASES = [
         "iso_date": "2026-08-23T07:00:00-04:00",
         "rfc822_date": "Sun, 23 Aug 2026 07:00:00 -0400",
         "headline": "Surplus Docket Unveils Programmatic REST JSON API for Law Firm Practice Management and AI Intake Automation",
-        "subheadline": "Enterprise API tier enables direct ingestion into Clio, MyCase, Airtable, and custom legal-tech pipelines with priority 6:00 AM dispatch.",
+        "subheadline": "Enterprise API tier enables direct ingestion into Clio, MyCase, Airtable, and custom legal-tech pipelines with priority 6:00 AM EST dispatch.",
         "location": "ATLANTA, Ga.",
         "summary": "Surplus Docket introduced its programmatic REST JSON API endpoint (/api/v1/feed.json), allowing legal-tech practices to stream live court surplus records directly into their CRM intake pipelines without manual data entry.",
         "body_paragraphs": [
@@ -52,7 +52,7 @@ PRESS_RELEASES = [
         "iso_date": "2026-08-18T07:00:00-04:00",
         "rfc822_date": "Tue, 18 Aug 2026 07:00:00 -0400",
         "headline": "Surplus Docket Launches Autonomous Public Records Intelligence Platform for Asset Recovery Counsel Across Florida, Texas, and Georgia",
-        "subheadline": "New legal-tech data pipeline eliminates dead bank leads with automated institutional lien pre-filtering and daily 7:00 AM court registry feed.",
+        "subheadline": "New legal-tech data pipeline eliminates dead bank leads with automated institutional lien pre-filtering and daily 7:00 AM EST court registry feed.",
         "location": "WEST PALM BEACH, Fla. & HOUSTON, Tex.",
         "summary": "Surplus Docket officially announced the launch of its autonomous public records intelligence platform, providing structured, case-verified tax deed surplus and excess proceeds data to asset recovery attorneys, title counsel, and real estate practitioners.",
         "body_paragraphs": [

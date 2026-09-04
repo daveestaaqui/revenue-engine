@@ -303,7 +303,7 @@
 <pre><code>import requests
 import json
 
-# Ingest Daily 7:00 AM Normalized Court Feed
+# Ingest Daily 7:00 AM EST Normalized Court Feed
 FEED_URL = "https://surplusdocket.com/api/v1/feed.json"
 response = requests.get(FEED_URL, timeout=10)
 docket_data = response.json()

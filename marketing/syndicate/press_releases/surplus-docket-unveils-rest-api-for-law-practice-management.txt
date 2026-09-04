@@ -1,7 +1,7 @@
 FOR IMMEDIATE RELEASE
 
 SURPLUS DOCKET UNVEILS PROGRAMMATIC REST JSON API FOR LAW FIRM PRACTICE MANAGEMENT AND AI INTAKE AUTOMATION
-Enterprise API tier enables direct ingestion into Clio, MyCase, Airtable, and custom legal-tech pipelines with priority 6:00 AM dispatch.
+Enterprise API tier enables direct ingestion into Clio, MyCase, Airtable, and custom legal-tech pipelines with priority 6:00 AM EST dispatch.
 
 ATLANTA, Ga. — Surplus Docket today expanded its enterprise offerings with the release of its developer-first REST JSON API endpoint (`/api/v1/feed.json`), designed to power automated client intake and workflow management for modern asset recovery practices.
 

@@ -107,8 +107,8 @@ Full documentation and SDK guides available at **[surplusdocket.com/api-document
 
 ### 💳 Subscription Tiers & Commercial Licensing
 
-- **Multi-State Core Feed (FL, TX, GA)**: **$249/month** or **$2,388/year** ($199/mo with 2 months free).
-- **National Master Feed + REST API**: **$449/month** or **$4,188/year** ($349/mo with priority 6:00 AM dispatch).
+- **Multi-State Core Feed (6 States: FL, TX, GA, NC, TN, CA)**: **$249/month** or **$2,388/year** ($199/mo with 2 months free).
+- **National Master Feed + REST API**: **$449/month** or **$4,188/year** ($349/mo with priority 6:00 AM EST dispatch).
 - **1-Click Self-Service Portal**: Manage subscriptions and download invoices anytime via the **[Stripe Customer Portal](https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00)**.
 - **14-Day Money-Back Guarantee**: 100% risk-free evaluation on all annual commitments. Read our **[Refund Policy](https://surplusdocket.com/refund-policy.html)**.
 
