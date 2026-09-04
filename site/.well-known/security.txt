@@ -1,4 +1,4 @@
-Contact: mailto:david@surplusdocket.com
+Contact: https://surplusdocket.com/inquiry.html
 Expires: 2027-12-31T23:59:59.000Z
 Preferred-Languages: en
 Canonical: https://surplusdocket.com/.well-known/security.txt

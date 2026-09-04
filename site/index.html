@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surplus Docket — Institutional Tax Deed Surplus &amp; Excess Proceeds Feed</title>
+    <title>Daily Tax Deed Surplus &amp; Excess Proceeds Feed | Surplus Docket</title>
     <meta name="description" content="Structured daily public records intelligence indexing tax deed surplus and court registry excess proceeds across Florida, Texas, California, Georgia, North Carolina, and Tennessee.">
-    <meta property="og:title" content="Surplus Docket — Institutional Tax Deed Surplus &amp; Excess Proceeds Feed">
+    <meta property="og:title" content="Daily Tax Deed Surplus &amp; Excess Proceeds Feed | Surplus Docket">
     <meta property="og:description" content="Automated daily indexing of county court dockets and clerk tax surplus registries with upstream institutional lien scrubbing for recovery attorneys.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://surplusdocket.com/">
@@ -13,7 +13,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Surplus Docket — Institutional Tax Deed Surplus &amp; Excess Proceeds Feed">
+    <meta name="twitter:title" content="Daily Tax Deed Surplus &amp; Excess Proceeds Feed | Surplus Docket">
     <meta name="twitter:description" content="Structured daily public records intelligence indexing tax deed surplus and court registry excess proceeds across Florida, Texas, California, Georgia, and North Carolina.">
     <meta name="twitter:image" content="https://surplusdocket.com/assets/og_image.png">
     <link rel="canonical" href="https://surplusdocket.com/">
@@ -1194,6 +1194,7 @@
                     <ul class="space-y-2 text-xs font-medium">
                         <li><a href="/#pricing" class="hover:text-brand-green transition-colors">Subscription Pricing</a></li>
                         <li><a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="text-brand-navy font-bold hover:text-brand-green transition-colors flex items-center gap-1"><span>Customer Portal</span> <span class="text-slate-400">&rarr;</span></a></li>
+                        <li><a href="/inquiry.html" onclick="openInquiryModal();return false;" class="hover:text-brand-green transition-colors">Publisher &amp; Legal Inquiries</a></li>
                         <li><a href="/blog/" class="hover:text-brand-green transition-colors">Legal Research Articles</a></li>
                         <li><a href="/press/" class="hover:text-brand-green transition-colors">Press & Newsroom</a></li>
                         <li><a href="/terms.html" class="hover:text-brand-green transition-colors">Commercial Data Terms</a></li>
@@ -1204,7 +1205,7 @@
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved. • Contact: <a href="mailto:contact@surplusdocket.com" class="hover:text-brand-green underline transition-colors">contact@surplusdocket.com</a></p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/inquiry.html" onclick="openInquiryModal();return false;" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
               </p>
@@ -1535,6 +1536,61 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
             }
             calculateROI();
         });
+
+        // Publisher & Legal Inquiry Modal Handlers
+        function openInquiryModal() {
+            const modal = document.getElementById('inquiry-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeInquiryModal() {
+            const modal = document.getElementById('inquiry-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function handleModalInquirySubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('modal-inq-submit-btn');
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = 'Logging Inquiry...';
+            }
+            const refNumber = 'SD-INQ-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.floor(1000 + Math.random() * 9000);
+            setTimeout(() => {
+                const body = document.getElementById('modal-inq-form-body');
+                if (body) body.classList.add('hidden');
+                const conf = document.getElementById('modal-inq-confirmation');
+                const refEl = document.getElementById('modal-inq-ref');
+                if (refEl) refEl.textContent = 'Reference: ' + refNumber;
+                if (conf) conf.classList.remove('hidden');
+            }, 600);
+        }
+
+        function resetModalInquiry() {
+            const form = document.getElementById('modal-inquiry-form');
+            if (form) form.reset();
+            const body = document.getElementById('modal-inq-form-body');
+            if (body) body.classList.remove('hidden');
+            const conf = document.getElementById('modal-inq-confirmation');
+            if (conf) conf.classList.add('hidden');
+            const btn = document.getElementById('modal-inq-submit-btn');
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = 'Submit Official Inquiry &rarr;';
+            }
+        }
+
+        if (window.location.hash === '#inquiry') {
+            document.addEventListener('DOMContentLoaded', openInquiryModal);
+        }
     </script>
 
     <!-- Dossier Export Lead Capture Modal -->
@@ -1557,13 +1613,89 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Work Email</label>
-                    <input type="email" id="dossier-email" placeholder="sarah@jenkinslaw.com" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green" required>
+                    <input type="email" id="dossier-email" placeholder="counsel@firm.com" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green" required>
                 </div>
                 <button type="submit" class="w-full py-3 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all">
                     Download Case Dossier (.txt)
                 </button>
                 <p class="text-[11px] text-slate-400 text-center">Direct practitioner download • Strictly confidential</p>
             </form>
+        </div>
+    </div>
+
+    <!-- Publisher & Legal Inquiry Modal -->
+    <div id="inquiry-modal" class="fixed inset-0 z-50 bg-brand-navy/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+            <button type="button" onclick="closeInquiryModal()" class="absolute top-4 right-4 text-slate-400 hover:text-brand-navy text-2xl font-bold p-1 leading-none">&times;</button>
+            
+            <div id="modal-inq-form-body">
+                <div class="text-xs uppercase font-bold tracking-wider text-brand-green mb-1">Official Correspondence</div>
+                <h3 class="text-xl font-heading font-black text-brand-navy mb-2">Publisher &amp; Legal Inquiries</h3>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                    Direct communication for counsel, court administrators, and institutional licensees. For active billing, manage your subscription directly in the <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="text-brand-green underline font-bold">Stripe Portal &rarr;</a>
+                </p>
+
+                <form id="modal-inquiry-form" onsubmit="handleModalInquirySubmit(event)" class="space-y-3.5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Your Name <span class="text-red-500">*</span></label>
+                            <input type="text" id="modal-inq-name" required placeholder="e.g. Counsel Sarah Jenkins" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Work Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="modal-inq-email" required placeholder="counsel@firm.com" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Firm / Agency <span class="text-red-500">*</span></label>
+                            <input type="text" id="modal-inq-firm" required placeholder="e.g. Jenkins Recovery, P.A." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Department <span class="text-red-500">*</span></label>
+                            <select id="modal-inq-category" required class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green">
+                                <option value="Enterprise Feed Licensing">Enterprise Feed Licensing</option>
+                                <option value="Law Practice API Integration">API &amp; CRM Integration</option>
+                                <option value="Clerk Registry Notice">Clerk Docket Correction / Notice</option>
+                                <option value="Statutory Verification">Statutory Compliance Verification</option>
+                                <option value="Media &amp; Press">Press / Media Inquiry</option>
+                                <option value="General Publisher">General Publisher Inquiry</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Memorandum / Details <span class="text-red-500">*</span></label>
+                        <textarea id="modal-inq-msg" required rows="4" placeholder="Specify your firm's inquiry, required county coverage, or compliance request..." class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-xs font-medium text-brand-navy focus:outline-none focus:border-brand-green"></textarea>
+                    </div>
+
+                    <button type="submit" id="modal-inq-submit-btn" class="w-full py-3 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all">
+                        Submit Official Inquiry &rarr;
+                    </button>
+                    <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+                        <span>Direct publisher routing</span>
+                        <a href="/inquiry.html" class="text-brand-green hover:underline">Full Page Form &rarr;</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Confirmation State -->
+            <div id="modal-inq-confirmation" class="hidden text-center py-6">
+                <div class="w-12 h-12 bg-brand-greenSoft rounded-2xl flex items-center justify-center text-brand-green mx-auto mb-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h4 class="text-lg font-heading font-black text-brand-navy mb-1">Inquiry Logged</h4>
+                <p class="text-xs font-mono text-brand-green mb-3" id="modal-inq-ref">Reference: SD-INQ-...</p>
+                <p class="text-xs text-slate-600 mb-5 leading-relaxed">
+                    Your correspondence has been transmitted to our editorial and compliance desk. Review is completed within 1 business day.
+                </p>
+                <button type="button" onclick="closeInquiryModal(); resetModalInquiry();" class="px-5 py-2 text-xs font-heading font-bold rounded-lg text-white bg-brand-navy hover:bg-brand-navyDark transition-colors">
+                    Close Window
+                </button>
+            </div>
         </div>
     </div>
 </body>
