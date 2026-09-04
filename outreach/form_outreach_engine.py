@@ -168,17 +168,19 @@ david@surplusdocket.com"""
 async def find_contact_page(page, base_url):
     """Attempts to locate the Contact or Consultation page on the firm's website."""
     # Check if current page already has a contact form
-    if await page.locator("textarea, form input[type='email']").count() > 0:
+    if await page.locator("textarea, form input[type='email'], input[name*='email' i]").count() > 0:
         return page.url
 
     # Look for common contact links
     contact_patterns = [
         "a[href*='contact' i]",
-        "a[href*='consultation' i]",
+        "a[href*='consult' i]",
         "a[href*='get-in-touch' i]",
         "a[href*='intake' i]",
+        "a[href*='reach-us' i]",
         "a:has-text('Contact')",
         "a:has-text('Free Consultation')",
+        "a:has-text('Consultation')",
         "a:has-text('Get in Touch')",
         "a:has-text('Schedule')",
     ]
@@ -187,21 +189,36 @@ async def find_contact_page(page, base_url):
         try:
             loc = page.locator(sel).first
             if await loc.is_visible(timeout=1000):
-                await loc.click(timeout=3000)
-                await page.wait_for_load_state("domcontentloaded", timeout=4000)
-                await asyncio.sleep(1)
-                return page.url
+                href = await loc.get_attribute("href")
+                if href and not href.startswith("tel:") and not href.startswith("mailto:"):
+                    if href.startswith("http"):
+                        target = href
+                    elif href.startswith("/"):
+                        target = base_url.rstrip("/") + href
+                    else:
+                        target = base_url.rstrip("/") + "/" + href
+                    resp = await page.goto(target, timeout=12000, wait_until="domcontentloaded")
+                    if resp and resp.status < 400:
+                        await asyncio.sleep(1)
+                        if await page.locator("textarea, form input[type='email'], input[name*='email' i]").count() > 0:
+                            return page.url
+                else:
+                    await loc.click(timeout=3000)
+                    await page.wait_for_load_state("domcontentloaded", timeout=6000)
+                    await asyncio.sleep(1)
+                    return page.url
         except Exception:
             continue
 
     # Try direct navigation to standard contact paths
-    for path in ["/contact", "/contact-us", "/contact_us", "/contact-our-firm", "/free-consultation", "/get-in-touch"]:
+    for path in ["/contact", "/contact-us", "/contact/", "/contact-us/", "/contact_us", "/contact-our-firm", "/free-consultation", "/consultation", "/get-in-touch"]:
         try:
             target = base_url.rstrip("/") + path
-            resp = await page.goto(target, timeout=5000, wait_until="domcontentloaded")
+            resp = await page.goto(target, timeout=10000, wait_until="domcontentloaded")
             if resp and resp.status < 400:
                 await asyncio.sleep(1)
-                return page.url
+                if await page.locator("textarea, form input[type='email'], input[name*='email' i]").count() > 0:
+                    return page.url
         except Exception:
             continue
 
@@ -238,9 +255,13 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 "input[name*='message' i]",
                 "input[name*='comment' i]",
                 "input[name*='detail' i]",
+                "input[name*='inquiry' i]",
+                "input[name*='notes' i]",
+                "input[name*='description' i]",
                 "input[placeholder*='message' i]",
                 "input[placeholder*='how can we help' i]",
                 "input[placeholder*='case' i]",
+                "input[placeholder*='tell us' i]",
                 "div[contenteditable='true']",
             ]
             msg_elem = None
@@ -256,6 +277,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 "input[name*='email' i]",
                 "input[id*='email' i]",
                 "input[placeholder*='email' i]",
+                "input[class*='email' i]",
             ]
             email_elem = None
             for sel in email_selectors:
@@ -300,6 +322,18 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                     await loc.fill(subject)
                     break
 
+            # 6. Consent & Disclaimer Checkboxes (mandatory on many law firm forms)
+            try:
+                checkboxes = ctx.locator("input[type='checkbox'][required], input[type='checkbox'][name*='agree' i], input[type='checkbox'][name*='consent' i], input[type='checkbox'][name*='disclaimer' i], input[type='checkbox'][id*='agree' i]")
+                cb_count = await checkboxes.count()
+                for cb_idx in range(cb_count):
+                    cb = checkboxes.nth(cb_idx)
+                    if await cb.is_visible(timeout=300):
+                        if not await cb.is_checked():
+                            await cb.check(timeout=1000)
+            except Exception:
+                pass
+
             filled_any = True
             break
         except Exception:
@@ -317,7 +351,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     if is_dry_run:
         return True, f"DRY_RUN: Form filled successfully. Screenshot: {screenshot_path.name}", variant
 
-    # 6. Submit Button in target context
+    # 7. Submit Button in target context
     submit_selectors = [
         "button[type='submit']",
         "input[type='submit']",
@@ -327,7 +361,9 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
         "button:has-text('Submit Form')",
         "button:has-text('Contact Us')",
         "button:has-text('Request Consultation')",
+        "button:has-text('Get in Touch')",
         "a:has-text('Submit')",
+        "a:has-text('Send Message')",
     ]
     
     submitted = False
@@ -347,9 +383,22 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
 
     await page.wait_for_timeout(3000)
     
-    page_content = await page.content()
-    if "recaptcha" in page_content.lower() or "cf-turnstile" in page_content.lower():
-        return False, "CAPTCHA detected.", variant
+    # Check for explicit failure cues instead of naive string matching on recaptcha script tags
+    try:
+        page_text = (await page.inner_text("body")).lower()
+        captcha_failure_cues = [
+            "please complete the captcha",
+            "recaptcha verification failed",
+            "invalid captcha",
+            "captcha was incorrect",
+            "please verify you are not a robot",
+            "please check the captcha",
+            "turnstile verification failed",
+        ]
+        if any(cue in page_text for cue in captcha_failure_cues):
+            return False, "CAPTCHA verification required.", variant
+    except Exception:
+        pass
 
     return True, f"SUCCESS: Submitted. Proof saved to {screenshot_path.name}", variant
 
@@ -371,7 +420,7 @@ async def process_target(browser, target, is_dry_run=False):
     page = await context.new_page()
     try:
         print(f"  🌐 Visiting {firm} ({source_url})...")
-        await page.goto(source_url, timeout=12000, wait_until="domcontentloaded")
+        await page.goto(source_url, timeout=20000, wait_until="domcontentloaded")
         
         # Locate contact form page
         form_url = await find_contact_page(page, source_url)
@@ -458,9 +507,9 @@ def calculate_priority_score(target):
 def get_already_submitted():
     """
     Returns a set of all normalized domains that should be EXCLUDED.
-    - SUCCESS: permanently excluded (already contacted for real)
+    - SUCCESS: permanently excluded (only if actually submitted live, NOT dry runs)
     - ERROR with DNS resolution failure: permanently excluded (dead domain)
-    - DRY_RUN / FAILED / other ERROR: NOT excluded (should be retried on live runs)
+    - DRY_RUN / FAILED / other ERROR: NOT excluded (eligible for live runs)
     """
     submitted = set()
     if LOG_CSV.exists():
@@ -473,29 +522,19 @@ def get_already_submitted():
                 d1 = clean_domain(t_url)
                 d2 = clean_domain(f_url)
                 
-                # Permanently exclude successful live submissions
-                if status == "SUCCESS":
+                # Permanently exclude live submissions only (do NOT exclude dry-run tests)
+                if status == "SUCCESS" and "dry_run" not in detail:
                     if d1: submitted.add(d1)
                     if d2: submitted.add(d2)
                 # Permanently exclude dead domains (DNS failures)
                 elif "ERROR" in status and "err_name_not_resolved" in detail:
                     if d1: submitted.add(d1)
-                # All other failures (timeout, SSL, captcha, form not found)
-                # are NOT excluded — they will be retried on future runs
-
-    # Also check sent log for old email submissions
-    sent_log = OUTREACH_DIR / "sent_log.csv"
-    if sent_log.exists():
-        with open(sent_log, "r", encoding="utf-8") as f:
-            for row in csv.DictReader(f):
-                em = row.get("Email", "")
-                dom = clean_domain(em)
-                if dom: submitted.add(dom)
+                # All other failures or dry runs will be retried on live runs
 
     return submitted
 
 
-async def run_engine(is_dry_run=False, limit=25, state_filter=None):
+async def run_engine(is_dry_run=False, limit=35, state_filter=None):
     print("=" * 75)
     print("  🤖 SURPLUS DOCKET — HIGH-PROBABILITY FORM OUTREACH ENGINE")
     print("=" * 75)
@@ -600,7 +639,7 @@ async def run_engine(is_dry_run=False, limit=25, state_filter=None):
 
 if __name__ == "__main__":
     dry_run = "--dry-run" in sys.argv or "--preview" in sys.argv
-    limit_val = 25
+    limit_val = 35
     for arg in sys.argv:
         if arg.startswith("--limit="):
             limit_val = int(arg.split("=")[1])
