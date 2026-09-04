@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REST API Documentation | Surplus Docket Public Records API</title>
-    <meta name="description" content="Programmatic REST JSON API documentation for querying daily Florida and Texas tax deed surplus and excess proceeds court dockets.">
+    <meta name="description" content="Programmatic REST JSON API documentation for querying daily Florida, Texas, Georgia, North Carolina, Tennessee, and California tax deed surplus and excess proceeds court dockets.">
     <link rel="canonical" href="https://surplusdocket.com/api-documentation.html">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta property="og:title" content="REST API Documentation | Surplus Docket Public Records API">
-    <meta property="og:description" content="Programmatic REST JSON API documentation for querying daily tax deed surplus and excess proceeds court dockets.">
+    <meta property="og:description" content="Programmatic REST JSON API documentation for querying daily tax deed surplus and excess proceeds court dockets across 6 states.">
     <meta property="og:image" content="https://surplusdocket.com/assets/og_image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -93,7 +93,7 @@
         </div>
 
         <!-- Base URL -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 mb-10 shadow-sm">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
             <h2 class="font-heading font-bold text-base text-brand-navy mb-2">Base Endpoint URL</h2>
             <div class="bg-slate-900 text-emerald-400 font-mono text-sm p-4 rounded-lg flex items-center justify-between overflow-x-auto">
                 <code>https://surplusdocket.com/api/v1</code>
@@ -101,26 +101,93 @@
             </div>
             <p class="text-xs text-slate-500 mt-2">
                 All requests use standard HTTPS GET requests and return structured UTF-8 JSON. Cross-Origin Resource Sharing (CORS) is enabled on all endpoints.
-          </p>
+            </p>
+        </div>
+
+        <!-- Interactive Live API Console -->
+        <div class="bg-white border-2 border-brand-navy rounded-2xl p-6 sm:p-8 mb-12 shadow-lg">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-slate-200">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="px-2.5 py-0.5 bg-emerald-100 text-brand-green font-mono font-bold text-[11px] rounded-full uppercase tracking-wider">Live Sandbox</span>
+                        <span class="text-xs font-semibold text-slate-500">CORS Enabled</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Interactive Live API Console</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                        Execute real HTTP GET requests directly against production endpoints and inspect structured JSON responses.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span id="api-status-badge" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-brand-green font-mono text-xs font-bold">
+                        <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+                        <span id="api-status-text">Ready</span>
+                    </span>
+                    <span id="api-latency-badge" class="inline-flex items-center px-2.5 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-mono text-xs font-semibold">
+                        -- ms
+                    </span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <div class="relative flex-grow">
+                        <span class="absolute left-3.5 top-3 font-mono font-bold text-xs text-brand-green">GET</span>
+                        <select id="api-console-endpoint" onchange="runApiConsoleTest()" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-14 pr-4 py-2.5 text-xs sm:text-sm font-mono font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all">
+                            <option value="/api/v1/feed.json" selected>/api/v1/feed.json (Master 6-State Feed)</option>
+                            <option value="/api/v1/florida.json">/api/v1/florida.json (FL § 197.582)</option>
+                            <option value="/api/v1/texas.json">/api/v1/texas.json (TX § 34.04)</option>
+                            <option value="/api/v1/georgia.json">/api/v1/georgia.json (GA § 48-4-5)</option>
+                            <option value="/api/v1/north-carolina.json">/api/v1/north-carolina.json (NC § 105-374)</option>
+                            <option value="/api/v1/tennessee.json">/api/v1/tennessee.json (TN § 67-5-2501)</option>
+                            <option value="/api/v1/california.json">/api/v1/california.json (CA § 4675)</option>
+                            <option value="/api/v1/health.json">/api/v1/health.json (System Health)</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button type="button" onclick="runApiConsoleTest()" id="api-send-btn" class="flex-grow sm:flex-grow-0 inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-xl transition-all shadow-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            <span>Send Request</span>
+                        </button>
+                        <button type="button" onclick="copyApiConsoleResponse()" id="api-copy-btn" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-brand-navy border border-slate-300 font-heading font-bold text-xs rounded-xl transition-all">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                            <span id="api-copy-text">Copy JSON</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+                    <div class="bg-slate-950/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between text-slate-400 font-mono text-xs">
+                        <span id="api-response-summary">Response Payload: 200 OK</span>
+                        <span id="api-records-count">Records: --</span>
+                    </div>
+                    <pre class="p-4 text-xs font-mono text-emerald-400 overflow-x-auto max-h-96 leading-relaxed select-all" id="api-response-output"><code>Click "Send Request" to test endpoint live...</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Endpoints List Header -->
+        <div class="mb-6">
+            <h2 class="text-2xl font-heading font-black text-brand-navy">Production REST Endpoints</h2>
+            <p class="text-xs sm:text-sm text-slate-600">Complete reference for all 6 jurisdictional routes and system manifest endpoints.</p>
         </div>
 
         <!-- Endpoints List -->
-        <div class="space-y-10">
-            <!-- Endpoint 1 -->
+        <div class="space-y-8">
+            <!-- Endpoint 1: Master Consolidated Feed -->
             <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
                     <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/feed.json</span>
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
-                    Returns the master consolidated multi-state public records dataset across all monitored Florida and Texas jurisdictions.
-              </p>
+                    Returns the master consolidated multi-state public records dataset across all 6 monitored jurisdictions (Florida, Texas, Georgia, North Carolina, Tennessee, and California).
+                </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/feed.json"</code></pre>
                 </div>
             </div>
 
-            <!-- Endpoint 2 -->
+            <!-- Endpoint 2: Florida -->
             <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
@@ -128,13 +195,13 @@
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
                     Returns filtered Florida clerk of court tax deed surplus records governed by Fla. Stat. § 197.582.
-              </p>
+                </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/florida.json"</code></pre>
                 </div>
             </div>
 
-            <!-- Endpoint 3 -->
+            <!-- Endpoint 3: Texas -->
             <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
@@ -142,7 +209,7 @@
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
                     Returns filtered Texas district court registry excess proceeds records governed by Tex. Tax Code § 34.04.
-              </p>
+                </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/texas.json"</code></pre>
                 </div>
@@ -156,21 +223,63 @@
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
                     Returns filtered Georgia county tax commissioner excess funds records governed by O.C.G.A. § 48-4-5.
-              </p>
+                </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/georgia.json"</code></pre>
                 </div>
             </div>
 
-            <!-- Endpoint 5 -->
+            <!-- Endpoint 5: North Carolina -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
+                    <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/north-carolina.json</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">
+                    Returns filtered North Carolina judicial tax foreclosure surplus records governed by N.C.G.S. § 105-374 (including 10-day upset bid tracking).
+                </p>
+                <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
+<pre><code>curl -s "https://surplusdocket.com/api/v1/north-carolina.json"</code></pre>
+                </div>
+            </div>
+
+            <!-- Endpoint 6: Tennessee -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
+                    <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/tennessee.json</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">
+                    Returns filtered Tennessee chancery court tax sale surplus proceeds records governed by T.C.A. § 67-5-2501.
+                </p>
+                <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
+<pre><code>curl -s "https://surplusdocket.com/api/v1/tennessee.json"</code></pre>
+                </div>
+            </div>
+
+            <!-- Endpoint 7: California -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
+                    <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/california.json</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">
+                    Returns filtered California county tax collector defaulted excess proceeds records governed by Cal. Rev. &amp; Tax Code § 4675.
+                </p>
+                <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
+<pre><code>curl -s "https://surplusdocket.com/api/v1/california.json"</code></pre>
+                </div>
+            </div>
+
+            <!-- Endpoint 8: Health & System Discovery -->
             <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="px-3 py-1 bg-emerald-100 text-brand-green font-mono font-bold text-xs rounded-md">GET</span>
                     <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/health.json</span>
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
-                    Health check endpoint returning API version, system uptime, and endpoint manifest.
-              </p>
+                    Health check endpoint returning system uptime, API version manifest, and verified active endpoints.
+                </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/health.json"</code></pre>
                 </div>
@@ -326,9 +435,66 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
     
 
     <script>
-        
-        
-        
+        let lastApiResponse = '';
+
+        async function runApiConsoleTest() {
+            const endpoint = document.getElementById('api-console-endpoint')?.value || '/api/v1/feed.json';
+            const outputEl = document.getElementById('api-response-output');
+            const statusText = document.getElementById('api-status-text');
+            const latencyBadge = document.getElementById('api-latency-badge');
+            const summaryEl = document.getElementById('api-response-summary');
+            const countEl = document.getElementById('api-records-count');
+            const statusBadge = document.getElementById('api-status-badge');
+
+            if (statusText) statusText.textContent = 'Fetching...';
+            if (outputEl) outputEl.innerHTML = '<code>Fetching live endpoint data...</code>';
+
+            const startTime = performance.now();
+            try {
+                const res = await fetch(endpoint);
+                const latency = Math.round(performance.now() - startTime);
+                if (latencyBadge) latencyBadge.textContent = `${latency} ms`;
+
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status} ${res.statusText}`);
+                }
+
+                const data = await res.json();
+                lastApiResponse = JSON.stringify(data, null, 2);
+                
+                if (statusText) statusText.textContent = `200 OK`;
+                if (summaryEl) summaryEl.textContent = `Response Payload: 200 OK (${endpoint})`;
+                
+                const recCount = data.records ? data.records.length : (data.endpoints ? data.endpoints.length : 0);
+                if (countEl) countEl.textContent = `Count: ${recCount} items`;
+
+                if (outputEl) {
+                    outputEl.textContent = lastApiResponse;
+                }
+            } catch (err) {
+                const latency = Math.round(performance.now() - startTime);
+                if (latencyBadge) latencyBadge.textContent = `${latency} ms`;
+                if (statusText) statusText.textContent = 'Error';
+                if (outputEl) outputEl.textContent = `Error fetching ${endpoint}: ${err.message}`;
+            }
+        }
+
+        function copyApiConsoleResponse() {
+            if (!lastApiResponse) return;
+            navigator.clipboard.writeText(lastApiResponse).then(() => {
+                const copyText = document.getElementById('api-copy-text');
+                if (copyText) {
+                    const orig = copyText.textContent;
+                    copyText.textContent = 'Copied!';
+                    setTimeout(() => { copyText.textContent = orig; }, 2000);
+                }
+            }).catch(() => {});
+        }
+
+        // Run live console on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            runApiConsoleTest();
+        });
     </script>
 </body>
 </html>

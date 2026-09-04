@@ -42,7 +42,7 @@
         {
           "@type": "Dataset",
           "name": "Daily Tax Deed Surplus & Excess Proceeds Public Records Feed",
-          "description": "Daily normalized court docket and clerk of court tax sale surplus balance records across Florida and Texas counties.",
+          "description": "Daily normalized court docket and clerk of court tax sale surplus balance records across Florida, Texas, Georgia, North Carolina, Tennessee, and California counties.",
           "license": "https://surplusdocket.com/#compliance",
           "creator": {
             "@id": "https://surplusdocket.com/#organization"
@@ -528,6 +528,9 @@
                                 <option value="FL">Florida (Fla. Stat. § 197.582)</option>
                                 <option value="TX">Texas (Tex. Tax Code § 34.04)</option>
                                 <option value="GA">Georgia (O.C.G.A. § 48-4-5)</option>
+                                <option value="NC">North Carolina (N.C.G.S. § 105-374)</option>
+                                <option value="TN">Tennessee (T.C.A. § 67-5-2501)</option>
+                                <option value="CA">California (Cal. Rev. & Tax Code § 4675)</option>
                             </select>
                         </div>
                         <div>
@@ -792,13 +795,13 @@
                                 </tr>
                                 <tr class="hover:bg-slate-50">
                                     <td class="py-3.5 px-5 font-semibold text-brand-navy">Programmatic REST JSON API</td>
-                                    <td class="py-3.5 px-5 text-center font-bold text-brand-green bg-emerald-50/50">✓ Full Endpoints (FL, TX, GA)</td>
+                                    <td class="py-3.5 px-5 text-center font-bold text-brand-green bg-emerald-50/50">✓ Full Endpoints (6 States: FL, TX, GA, NC, TN, CA)</td>
                                     <td class="py-3.5 px-5 text-center text-red-500 font-semibold">✗ No API</td>
                                     <td class="py-3.5 px-5 text-center text-slate-400">Expensive Enterprise Addon</td>
                                 </tr>
                                 <tr class="hover:bg-slate-50">
                                     <td class="py-3.5 px-5 font-semibold text-brand-navy">Statutory Motion &amp; Contract Toolkit</td>
-                                    <td class="py-3.5 px-5 text-center font-bold text-brand-green bg-emerald-50/50">✓ Included (FL, TX, GA)</td>
+                                    <td class="py-3.5 px-5 text-center font-bold text-brand-green bg-emerald-50/50">✓ Included (6 States: FL, TX, GA, NC, TN, CA)</td>
                                     <td class="py-3.5 px-5 text-center text-red-500 font-semibold">✗ None</td>
                                     <td class="py-3.5 px-5 text-center text-slate-400">✗ None</td>
                                 </tr>
@@ -970,7 +973,7 @@
                     <!-- Core Plan -->
                     <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 flex flex-col shadow-sm hover:shadow-md transition-shadow relative">
                         <div class="text-xs uppercase font-bold tracking-widest text-brand-green mb-1">Multi-State Core</div>
-                        <h3 class="text-xl sm:text-2xl font-heading font-bold text-brand-navy mb-2">FL, TX &amp; GA Core Feed</h3>
+                        <h3 class="text-xl sm:text-2xl font-heading font-bold text-brand-navy mb-2">Multi-State Public Records Feed</h3>
                         <div class="flex items-baseline gap-2 mb-1">
                             <span id="card1-price" class="text-3xl sm:text-4xl font-heading font-black text-brand-navy transition-all">$249</span>
                             <span class="text-slate-500 text-sm">/ month</span>
@@ -1321,6 +1324,18 @@
                 capRate = 0.20;
                 windowText = "5 Years (Judicial/Lien)";
                 daysToAdd = 1825;
+            } else if (state === 'NC') {
+                capRate = 0.20;
+                windowText = "10-Day Upset / Judicial Registry";
+                daysToAdd = 365;
+            } else if (state === 'TN') {
+                capRate = 0.20;
+                windowText = "Chancery Court Motion";
+                daysToAdd = 365;
+            } else if (state === 'CA') {
+                capRate = 0.20;
+                windowText = "1 Year (Cal. Rev. & Tax Code § 4675)";
+                daysToAdd = 365;
             }
 
             const netEquity = Math.max(0, amount - mortgage - hoa);
@@ -1426,7 +1441,12 @@
             const mortgage = parseFloat(document.getElementById('lien-mortgage')?.value) || 0;
             const hoa = parseFloat(document.getElementById('lien-hoa')?.value) || 0;
 
-            const statuteName = state === 'FL' ? 'Florida Statute § 197.582' : (state === 'TX' ? 'Texas Tax Code § 34.04' : 'O.C.G.A. § 48-4-5');
+            let statuteName = 'Florida Statute § 197.582';
+            if (state === 'TX') statuteName = 'Texas Tax Code § 34.04';
+            else if (state === 'GA') statuteName = 'O.C.G.A. § 48-4-5';
+            else if (state === 'NC') statuteName = 'N.C.G.S. § 105-374';
+            else if (state === 'TN') statuteName = 'T.C.A. § 67-5-2501';
+            else if (state === 'CA') statuteName = 'Cal. Rev. & Tax Code § 4675';
 
             const dossierContent = `========================================================================
 SURPLUS DOCKET™ | STATUTORY CLAIM CALCULATION & FILING DOSSIER
