@@ -176,7 +176,7 @@ class TestDeduplicationStress(unittest.TestCase):
         self.assertIn("rainslawfirm.com", submitted)
         
         # Verify that temporary retryable errors are NOT excluded
-        self.assertNotIn("pascalelaw.com", submitted)
+        self.assertNotIn("kramerlaw.com", submitted)
 
 
 class TestPipelineExecutionStress(unittest.TestCase):
