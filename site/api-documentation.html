@@ -451,7 +451,17 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
 
             const startTime = performance.now();
             try {
-                const res = await fetch(endpoint);
+                const prodUrl = 'https://surplusdocket.com' + endpoint;
+                let res;
+                try {
+                    res = await fetch(endpoint);
+                    if (!res.ok) {
+                        res = await fetch(prodUrl);
+                    }
+                } catch (fetchErr) {
+                    res = await fetch(prodUrl);
+                }
+
                 const latency = Math.round(performance.now() - startTime);
                 if (latencyBadge) latencyBadge.textContent = `${latency} ms`;
 
