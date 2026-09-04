@@ -94,7 +94,7 @@ def generate_individual_press_release(pr):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{pr['headline']} | Surplus Docket Newsroom</title>
+    <title>Surplus Docket — {pr['headline']}</title>
     <meta name="description" content="{pr['summary']}">
     <link rel="canonical" href="https://surplusdocket.com/press/releases/{pr['slug']}.html">
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
@@ -103,7 +103,7 @@ def generate_individual_press_release(pr):
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Surplus Docket">
-    <meta property="og:title" content="{pr['headline']}">
+    <meta property="og:title" content="Surplus Docket — {pr['headline']}">
     <meta property="og:description" content="{pr['summary']}">
     <meta property="og:url" content="https://surplusdocket.com/press/releases/{pr['slug']}.html">
     <meta property="og:image" content="https://surplusdocket.com/assets/logo_surplus_docket.png">
@@ -368,7 +368,7 @@ def generate_press_newsroom():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Press &amp; Media Newsroom | Surplus Docket</title>
+    <title>Surplus Docket — Press Newsroom &amp; Media Announcements</title>
     <meta name="description" content="Official press releases, announcements, and media resources for Surplus Docket, the autonomous public records intelligence platform.">
     <link rel="canonical" href="https://surplusdocket.com/press/">
     <link rel="alternate" type="application/rss+xml" title="Surplus Docket Press Feed" href="https://surplusdocket.com/press/feed.xml">

@@ -247,7 +247,7 @@ def generate_county_page(c):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{c['county']} Tax Deed Surplus & Excess Funds Leads | Surplus Docket</title>
+    <title>Surplus Docket — {c['county']} Tax Deed Surplus &amp; Excess Proceeds</title>
     <meta name="description" content="{c['description']}">
     <link rel="canonical" href="https://surplusdocket.com/{c['slug']}">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -255,7 +255,7 @@ def generate_county_page(c):
 
     <!-- Open Graph / SEO -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{c['county']} Tax Deed Surplus Leads | Surplus Docket">
+    <meta property="og:title" content="Surplus Docket — {c['county']} Tax Deed Surplus &amp; Excess Proceeds">
     <meta property="og:description" content="{c['description']}">
     <meta property="og:url" content="https://surplusdocket.com/{c['slug']}">
     <meta property="og:image" content="https://surplusdocket.com/assets/og_image.png">

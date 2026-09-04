@@ -220,14 +220,14 @@ def render_article_page(article):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{article['title']} | Surplus Docket Legal Insights</title>
+    <title>Surplus Docket — {article['title']}</title>
     <meta name="description" content="{article['excerpt']}">
     <link rel="canonical" href="https://surplusdocket.com/blog/posts/{article['slug']}.html">
     <meta name="keywords" content="{article['keywords']}">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     
     <!-- OpenGraph & Twitter Cards -->
-    <meta property="og:title" content="{article['title']}">
+    <meta property="og:title" content="Surplus Docket — {article['title']}">
     <meta property="og:description" content="{article['excerpt']}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://surplusdocket.com/blog/posts/{article['slug']}.html">
@@ -464,7 +464,7 @@ def render_blog_index():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Insights & Statutory Guides | Surplus Docket</title>
+    <title>Surplus Docket — Legal Insights, Case Law &amp; Statutory Surplus Guides</title>
     <meta name="description" content="Expert legal breakdowns, statutory guides, and public records analysis on Florida, Texas, Georgia, North Carolina, Tennessee, and California tax deed surplus funds and court registry excess proceeds.">
     <link rel="canonical" href="https://surplusdocket.com/blog/">
     <link rel="icon" type="image/png" href="/assets/favicon.png">

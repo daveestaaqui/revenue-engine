@@ -91,7 +91,7 @@ def generate_rss_feed():
     rss_content = f"""<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Surplus Docket - Daily Tax Deed Surplus &amp; Excess Proceeds Index</title>
+    <title>Surplus Docket — Daily Tax Deed Surplus &amp; Excess Proceeds Feed</title>
     <link>https://surplusdocket.com/</link>
     <description>Daily public records intelligence tracking tax deed surplus and excess proceeds court dockets across Florida, Texas, and Georgia jurisdictions.</description>
     <language>en-us</language>
