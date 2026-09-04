@@ -30,9 +30,9 @@ SENT_LOG_CSV = OUTREACH_DIR / "sent_log.csv"
 DRAFTS_DIR = OUTREACH_DIR / "drafts"
 FEED_CSV = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
 
-FROM_EMAIL = "sandwichfitness@gmail.com"
-FROM_NAME = "Dave Mahler"
-REPLY_TO = "data@surplusdocket.com"
+FROM_EMAIL = "david@surplusdocket.com"
+FROM_NAME = "David Mahler"
+REPLY_TO = "david@surplusdocket.com"
 
 # Domains confirmed dead via MX lookup — exclude from generation
 DEAD_DOMAINS = {

@@ -37,8 +37,8 @@ LOG_DIR = OUTREACH_DIR / "drafts_uploaded"
 # Gmail Account Credentials
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "nxgfaiebqpmobhkp")
-FROM_NAME = "Dave Mahler"
-REPLY_TO = "data@surplusdocket.com"
+FROM_NAME = "David Mahler"
+REPLY_TO = "david@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
 
