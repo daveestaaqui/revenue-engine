@@ -166,7 +166,7 @@ def generate_individual_press_release(pr):
 <body class="bg-brand-canvas text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- Header Navigation -->
-    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <header class="w-full border-b border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
             <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
                 <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
@@ -412,7 +412,7 @@ def generate_press_newsroom():
 <body class="bg-brand-canvas text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- Header Navigation -->
-    <header class="w-full border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <header class="w-full border-b border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
             <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
                 <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
