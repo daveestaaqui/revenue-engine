@@ -165,6 +165,284 @@ david@surplusdocket.com"""
     return subject, body, chosen_variant
 
 
+CHROMIUM_STEALTH_ARGS = [
+    "--disable-blink-features=AutomationControlled",
+    "--no-sandbox",
+    "--disable-infobars",
+    "--disable-dev-shm-usage",
+    "--disable-browser-side-navigation",
+    "--disable-gpu",
+]
+
+STEALTH_INIT_SCRIPT = """
+Object.defineProperty(navigator, 'webdriver', {
+    get: () => undefined,
+});
+window.chrome = {
+    runtime: {},
+    loadTimes: function() {},
+    csi: function() {},
+    app: {}
+};
+Object.defineProperty(navigator, 'languages', {
+    get: () => ['en-US', 'en'],
+});
+Object.defineProperty(navigator, 'plugins', {
+    get: () => [1, 2, 3, 4, 5],
+});
+"""
+
+
+def solve_math_question(prompt_text):
+    """
+    Parses and solves anti-spam arithmetic and logic questions found on contact forms.
+    Examples:
+    - 'What is 4 + 7?' -> '11'
+    - '12 - 3 = ' -> '9'
+    - '3 * 4 = ?' -> '12'
+    - 'Please enter the sum of 6 and 8' -> '14'
+    - 'What color is the sky?' -> 'blue'
+    """
+    if not prompt_text:
+        return None
+    text = prompt_text.lower().strip()
+
+    # Addition: e.g. "4 + 7", "what is 4 + 7", "sum of 4 and 7", "4 plus 7"
+    m = re.search(r"(\d+)\s*(?:\+|\bplus\b)\s*(\d+)", text)
+    if m:
+        return str(int(m.group(1)) + int(m.group(2)))
+    m = re.search(r"sum\s+of\s+(\d+)\s+(?:and|\+)\s+(\d+)", text)
+    if m:
+        return str(int(m.group(1)) + int(m.group(2)))
+
+    # Subtraction: e.g. "12 - 5", "12 minus 5"
+    m = re.search(r"(\d+)\s*(?:-|\bminus\b)\s*(\d+)", text)
+    if m:
+        return str(int(m.group(1)) - int(m.group(2)))
+
+    # Multiplication: e.g. "3 * 4", "3 x 4", "3 times 4"
+    m = re.search(r"(\d+)\s*(?:\*|x|\btimes\b)\s*(\d+)", text)
+    if m:
+        return str(int(m.group(1)) * int(m.group(2)))
+
+    # Word-number addition: e.g. "one plus three", "two + four"
+    word_to_num = {
+        "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+        "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12
+    }
+    for w1, n1 in word_to_num.items():
+        for w2, n2 in word_to_num.items():
+            if f"{w1} + {w2}" in text or f"{w1} plus {w2}" in text:
+                return str(n1 + n2)
+
+    # Common anti-spam trivia
+    if "color" in text and ("sky" in text or "ocean" in text):
+        return "blue"
+    if "color" in text and ("grass" in text or "tree" in text):
+        return "green"
+    if "color" in text and ("fire truck" in text or "apple" in text or "blood" in text):
+        return "red"
+    if "capital" in text and ("usa" in text or "united states" in text or "america" in text):
+        return "Washington"
+
+    return None
+
+
+async def is_honeypot(locator):
+    """
+    Checks whether an input element is a hidden bot honeypot trap.
+    """
+    try:
+        if not await locator.is_visible(timeout=300):
+            return True
+        box = await locator.bounding_box()
+        if not box or box["width"] <= 2 or box["height"] <= 2:
+            return True
+        hidden_state = await locator.evaluate("""el => {
+            const style = window.getComputedStyle(el);
+            if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') return 'hidden';
+            if (parseInt(style.left) < -1000 || parseInt(style.top) < -1000) return 'offscreen';
+            if (el.getAttribute('aria-hidden') === 'true' || el.getAttribute('tabindex') === '-1') return 'inaccessible';
+            const attr = (el.name || '') + ' ' + (el.id || '') + ' ' + (el.className || '');
+            return attr.toLowerCase();
+        }""")
+        if hidden_state in ('hidden', 'offscreen', 'inaccessible'):
+            return True
+        honeypot_terms = ['honeypot', 'honey_pot', 'wpforms-hp', 'gform_honeypot', 'akismet', 'botcheck', 'no_bot']
+        if any(term in hidden_state for term in honeypot_terms):
+            return True
+        return False
+    except Exception:
+        return False
+
+
+async def handle_human_verification_widgets(page):
+    """
+    Detects and interacts with human verification checkbox challenges:
+    - Cloudflare Turnstile (challenges.cloudflare.com)
+    - Google reCAPTCHA v2 checkbox (recaptcha/api2/anchor)
+    - hCaptcha checkbox (hcaptcha.com)
+    """
+    try:
+        # 1. Cloudflare Turnstile
+        turnstile_frames = [f for f in page.frames if "challenges.cloudflare.com" in f.url or "turnstile" in f.url]
+        for f in turnstile_frames:
+            try:
+                target = f.locator("input[type='checkbox'], .ctp-checkbox-label, #cf-stage, body").first
+                if await target.is_visible(timeout=1000):
+                    await target.hover()
+                    await asyncio.sleep(0.3)
+                    await target.click()
+                    await asyncio.sleep(2.0)
+            except Exception:
+                pass
+
+        # 2. Google reCAPTCHA v2 Checkbox
+        recaptcha_frames = [f for f in page.frames if "google.com/recaptcha" in f.url and "anchor" in f.url]
+        for f in recaptcha_frames:
+            try:
+                anchor = f.locator("#recaptcha-anchor, .recaptcha-checkbox-border").first
+                if await anchor.is_visible(timeout=1000):
+                    aria_checked = await anchor.get_attribute("aria-checked")
+                    if aria_checked != "true":
+                        await anchor.hover()
+                        await asyncio.sleep(0.4)
+                        await anchor.click()
+                        await asyncio.sleep(2.5)
+            except Exception:
+                pass
+
+        # 3. hCaptcha Checkbox
+        hcaptcha_frames = [f for f in page.frames if "hcaptcha.com" in f.url and "checkbox" in f.url]
+        for f in hcaptcha_frames:
+            try:
+                cb = f.locator("#checkbox, .anchor").first
+                if await cb.is_visible(timeout=1000):
+                    await cb.hover()
+                    await asyncio.sleep(0.3)
+                    await cb.click()
+                    await asyncio.sleep(2.0)
+            except Exception:
+                pass
+    except Exception:
+        pass
+
+
+async def handle_dropdowns_and_radios(ctx):
+    """
+    Intelligently selects practice area / consultation dropdowns and radio buttons.
+    """
+    # 1. Dropdowns (<select>)
+    try:
+        selects = ctx.locator("select")
+        sel_count = await selects.count()
+        for idx in range(sel_count):
+            sel = selects.nth(idx)
+            if not await sel.is_visible(timeout=300) or await is_honeypot(sel):
+                continue
+            
+            # Read options
+            options = await sel.locator("option").all()
+            if not options:
+                continue
+
+            chosen_val = None
+            priority_terms = ["surplus", "excess proceeds", "tax deed", "foreclosure", "real estate", "litigation", "civil", "property", "consultation", "other", "general"]
+            
+            for opt in options:
+                val = await opt.get_attribute("value") or ""
+                text = (await opt.inner_text()).lower().strip()
+                if any(term in text or term in val.lower() for term in priority_terms):
+                    chosen_val = val or text
+                    break
+            
+            if chosen_val:
+                try:
+                    await sel.select_option(value=chosen_val)
+                except Exception:
+                    try:
+                        await sel.select_option(label=chosen_val)
+                    except Exception:
+                        pass
+            elif len(options) > 1:
+                try:
+                    await sel.select_option(index=1)
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+    # 2. Radio buttons
+    try:
+        radios = ctx.locator("input[type='radio']")
+        r_count = await radios.count()
+        if r_count > 0:
+            for idx in range(r_count):
+                r = radios.nth(idx)
+                if not await r.is_visible(timeout=300) or await is_honeypot(r):
+                    continue
+                name = (await r.get_attribute("name") or "").lower()
+                val = (await r.get_attribute("value") or "").lower()
+                label_text = ""
+                try:
+                    r_id = await r.get_attribute("id")
+                    if r_id:
+                        lbl = ctx.locator(f"label[for='{r_id}']").first
+                        if await lbl.is_visible(timeout=200):
+                            label_text = (await lbl.inner_text()).lower()
+                except Exception:
+                    pass
+
+                # If asking "existing client?", select "No" or "New Client"
+                if "client" in name or "existing" in name or "client" in label_text:
+                    if "no" in val or "new" in val or "no" in label_text or "new" in label_text:
+                        await r.check(timeout=500)
+                        break
+    except Exception:
+        pass
+
+
+async def handle_anti_spam_math_questions(ctx):
+    """
+    Detects math captcha or verification inputs, solves the arithmetic question, and fills it.
+    """
+    captcha_selectors = [
+        "input[name*='captcha' i]",
+        "input[name*='math' i]",
+        "input[name*='quiz' i]",
+        "input[name*='question' i]",
+        "input[id*='captcha' i]",
+        "input[id*='math' i]",
+        "input[placeholder*='=']",
+        "input[name*='verify' i]",
+        "input[name*='sum' i]",
+        "input[name*='security' i]",
+    ]
+    for sel in captcha_selectors:
+        try:
+            locs = await ctx.locator(sel).all()
+            for loc in locs:
+                if not await loc.is_visible(timeout=300) or await is_honeypot(loc):
+                    continue
+                prompt_text = await loc.get_attribute("placeholder") or ""
+                if not prompt_text or "=" not in prompt_text:
+                    loc_id = await loc.get_attribute("id")
+                    if loc_id:
+                        lbl = ctx.locator(f"label[for='{loc_id}']").first
+                        if await lbl.is_visible(timeout=300):
+                            prompt_text = await lbl.inner_text()
+                if not prompt_text:
+                    prompt_text = await loc.evaluate("el => el.parentElement ? el.parentElement.innerText : ''")
+
+                ans = solve_math_question(prompt_text)
+                if ans:
+                    await loc.fill(ans)
+                    print(f"     🧮 Solved anti-spam challenge '{prompt_text.strip()}': {ans}")
+                    break
+        except Exception:
+            continue
+
+
 async def find_contact_page(page, base_url):
     """Attempts to locate the Contact or Consultation page on the firm's website."""
     # 1. First look for dedicated Contact / Consultation links on the page
@@ -241,6 +519,9 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     subject, body, variant = compose_message(target)
     firm = target.get("Firm", "")
     
+    # 0. Attempt human verification widgets first (Cloudflare Turnstile, reCAPTCHA, etc.)
+    await handle_human_verification_widgets(page)
+
     # Scroll page to trigger lazy loaded forms
     try:
         await page.evaluate("window.scrollTo(0, document.body.scrollHeight / 2)")
@@ -282,6 +563,8 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
             for sel in msg_selectors:
                 loc = ctx.locator(sel).first
                 if await loc.is_visible(timeout=800):
+                    if await is_honeypot(loc):
+                        continue
                     msg_elem = loc
                     break
 
@@ -294,7 +577,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                             for_id = await lbl.get_attribute("for")
                             if for_id:
                                 candidate = ctx.locator(f"#{for_id}, [name='{for_id}']").first
-                                if await candidate.is_visible(timeout=300):
+                                if await candidate.is_visible(timeout=300) and not await is_honeypot(candidate):
                                     msg_elem = candidate
                                     break
                     except Exception:
@@ -319,6 +602,8 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
             for sel in email_selectors:
                 loc = ctx.locator(sel).first
                 if await loc.is_visible(timeout=800):
+                    if await is_honeypot(loc):
+                        continue
                     email_elem = loc
                     break
 
@@ -331,11 +616,11 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                             for_id = await lbl.get_attribute("for")
                             if for_id:
                                 candidate = ctx.locator(f"#{for_id}, [name='{for_id}']").first
-                                if await candidate.is_visible(timeout=300):
+                                if await candidate.is_visible(timeout=300) and not await is_honeypot(candidate):
                                     email_elem = candidate
                                     break
                             candidate = lbl.locator("input").first
-                            if await candidate.is_visible(timeout=300):
+                            if await candidate.is_visible(timeout=300) and not await is_honeypot(candidate):
                                 email_elem = candidate
                                 break
                     except Exception:
@@ -366,12 +651,13 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 last_name_loc = ctx.locator("input[name*='last' i], input[id*='last' i], input[placeholder*='last' i], input[name*='bGFzdF9uYW1l']").first
                 
                 if await first_name_loc.is_visible(timeout=500) and await last_name_loc.is_visible(timeout=500):
-                    await first_name_loc.fill(SENDER_FIRST_NAME)
-                    await last_name_loc.fill(SENDER_LAST_NAME)
+                    if not await is_honeypot(first_name_loc) and not await is_honeypot(last_name_loc):
+                        await first_name_loc.fill(SENDER_FIRST_NAME)
+                        await last_name_loc.fill(SENDER_LAST_NAME)
                 else:
                     for sel in ["input[name*='name' i]", "input[id*='name' i]", "input[placeholder*='name' i]", "input[aria-label*='name' i]"]:
                         loc = ctx.locator(sel).first
-                        if await loc.is_visible(timeout=500):
+                        if await loc.is_visible(timeout=500) and not await is_honeypot(loc):
                             await loc.fill(SENDER_NAME)
                             break
             except Exception:
@@ -382,7 +668,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
             for sel in ["input[type='tel']", "input[name*='phone' i]", "input[id*='phone' i]", "input[placeholder*='phone' i]", "input[name*='cGhvbmU']"]:
                 try:
                     loc = ctx.locator(sel).first
-                    if await loc.is_visible(timeout=500):
+                    if await loc.is_visible(timeout=500) and not await is_honeypot(loc):
                         inp_type = await loc.get_attribute("type")
                         if inp_type == "number":
                             await loc.fill(clean_phone_digits)
@@ -399,19 +685,25 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
             for sel in ["input[name*='subject' i]", "input[id*='subject' i]", "input[placeholder*='subject' i]", "[name*='cHJhY3RpY2VfYXJlYQ']"]:
                 try:
                     loc = ctx.locator(sel).first
-                    if await loc.is_visible(timeout=500):
+                    if await loc.is_visible(timeout=500) and not await is_honeypot(loc):
                         await loc.fill(subject)
                         break
                 except Exception:
                     pass
 
-            # 6. Consent & Disclaimer Checkboxes (mandatory on many law firm forms)
+            # 6. Practice Area Dropdowns & Radio selections
+            await handle_dropdowns_and_radios(ctx)
+
+            # 7. Anti-Spam Arithmetic / Logic Challenge Solvers
+            await handle_anti_spam_math_questions(ctx)
+
+            # 8. Consent & Disclaimer Checkboxes (mandatory on many law firm forms)
             try:
                 checkboxes = ctx.locator("input[type='checkbox'][required], input[type='checkbox'][name*='agree' i], input[type='checkbox'][name*='consent' i], input[type='checkbox'][name*='disclaimer' i], input[type='checkbox'][id*='agree' i]")
                 cb_count = await checkboxes.count()
                 for cb_idx in range(cb_count):
                     cb = checkboxes.nth(cb_idx)
-                    if await cb.is_visible(timeout=300):
+                    if await cb.is_visible(timeout=300) and not await is_honeypot(cb):
                         if not await cb.is_checked():
                             await cb.check(timeout=1000)
             except Exception:
@@ -424,6 +716,9 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     if not filled_any or not target_context:
         return False, "Could not find compatible contact form fields on page.", variant
 
+    # 9. Handle any active human verification challenge (Turnstile, reCAPTCHA v2)
+    await handle_human_verification_widgets(page)
+
     # Take screenshot of filled form
     safe_firm = re.sub(r"[^a-zA-Z0-9]", "_", firm)[:30]
     SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -433,7 +728,18 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     if is_dry_run:
         return True, f"DRY_RUN: Form filled successfully. Screenshot: {screenshot_path.name}", variant
 
-    # 7. Submit Button in target context
+    # 10. Multi-step progression check (if form has 'Next' or 'Continue' before submit)
+    for next_sel in ["button:has-text('Next')", "input[value*='Next' i]", "button:has-text('Continue')", "a:has-text('Next')"]:
+        try:
+            n_loc = target_context.locator(next_sel).first
+            if await n_loc.is_visible(timeout=300) and not await is_honeypot(n_loc):
+                await n_loc.click(timeout=2000)
+                await page.wait_for_timeout(1500)
+                break
+        except Exception:
+            pass
+
+    # 11. Submit Button in target context
     submit_selectors = [
         "button[type='submit']",
         "input[type='submit']",
@@ -497,8 +803,11 @@ async def process_target(browser, target, is_dry_run=False):
     context = await browser.new_context(
         ignore_https_errors=True,
         user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
-        viewport={"width": 1280, "height": 800}
+        viewport={"width": 1280, "height": 800},
+        locale="en-US",
+        timezone_id="America/New_York",
     )
+    await context.add_init_script(STEALTH_INIT_SCRIPT)
     page = await context.new_page()
     try:
         print(f"  🌐 Visiting {firm} ({source_url})...")
@@ -674,7 +983,7 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
 
     results = []
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+        browser = await p.chromium.launch(headless=True, args=CHROMIUM_STEALTH_ARGS)
         for i, target in enumerate(candidate_list, 1):
             print(f"[{i:02d}/{len(candidate_list):02d}] Processing {target.get('Firm')} ({target.get('State')})...")
             res = await process_target(browser, target, is_dry_run=is_dry_run)
