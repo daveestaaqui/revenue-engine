@@ -32,7 +32,11 @@
           "@id": "https://surplusdocket.com/#organization",
           "name": "Surplus Docket",
           "url": "https://surplusdocket.com",
-          "logo": "https://surplusdocket.com/assets/logo_docket_scale.png",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://surplusdocket.com/assets/logo_surplus_docket.png",
+            "caption": "Surplus Docket"
+          },
           "description": "Institutional public records data indexing tax deed surplus and excess proceeds filings."
         },
         {
@@ -148,8 +152,9 @@
             text-wrap: pretty;
         }
     </style>
-    <!-- Plausible Analytics (privacy-first, no cookies) -->
-    <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.js"></script>
+    <!-- Plausible Analytics (privacy-first, tracks outbound links & downloads) -->
+    <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
+    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 </head>
 <body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText selection:bg-brand-green selection:text-white">
 
@@ -157,12 +162,12 @@
     <header class="w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-md sticky top-0 z-50 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 h-20 flex items-center justify-between">
             <!-- Brand Logo Lockup -->
-            <a href="/" class="flex items-center gap-3 group shrink-0">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket Logo" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+            <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
-                </div>
+                </span>
             </a>
 
             <!-- Spacious Primary Navigation Links -->
@@ -234,7 +239,7 @@
                 <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden xl:inline-flex text-xs font-semibold text-slate-500 hover:text-brand-navy transition-colors px-2 py-1">
                     Portal
                 </a>
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 sm:px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md">
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 sm:px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md plausible-event-name=Stripe-Checkout-Click">
                     Get Feed
                 </a>
                 <!-- Mobile Menu Button -->
@@ -256,7 +261,7 @@
                 <a href="#pricing" onclick="toggleMobileMenu()" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Pricing</a>
             </div>
             <div class="border-t border-slate-100 pt-3 space-y-2">
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="block w-full py-3 text-center text-sm font-heading font-bold text-white bg-brand-green hover:bg-brand-greenDark rounded-xl shadow-md">
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="block w-full py-3 text-center text-sm font-heading font-bold text-white bg-brand-green hover:bg-brand-greenDark rounded-xl shadow-md plausible-event-name=Stripe-Checkout-Click">
                     Subscribe ($249/mo)
                 </a>
                 <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 text-center text-xs font-semibold text-slate-600 bg-slate-50 border border-slate-200 rounded-xl">
@@ -269,11 +274,6 @@
     <main class="flex-grow">
         <!-- 1. Hero Section (Clean & Minimalist) -->
         <section id="overview" class="pt-12 sm:pt-20 pb-12 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-greenSoft/90 border border-brand-green/20 text-brand-greenDark text-xs font-semibold mb-6 shadow-xs">
-                <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
-                <span>Case-Verified Court Intelligence • Daily 7:00 AM EST Dispatch</span>
-            </div>
-
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight text-brand-navy mb-4 leading-[1.15] max-w-4xl mx-auto">
                 Daily Tax Deed Surplus &amp; <br class="hidden sm:block" />
                 <span class="text-brand-green">Excess Proceeds Feed</span>
@@ -285,7 +285,7 @@
             
             <div class="flex flex-col sm:flex-row justify-center items-center sm:items-start gap-3 sm:gap-4 max-w-lg mx-auto">
                 <div class="flex flex-col items-center w-full sm:w-auto">
-                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-md hover:shadow-lg">
+                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-md hover:shadow-lg plausible-event-name=Hero-Checkout-Click">
                         Get Core Feed — $249/mo
                     </a>
                     <div class="mt-2.5 text-center text-[11px] leading-tight text-slate-500">
@@ -356,15 +356,15 @@
                 </div>
                 <div class="flex items-center gap-2 sm:gap-3 w-full lg:w-auto justify-between lg:justify-end">
                     <span id="docket-count" class="text-xs font-bold text-slate-500">Showing 10 Verified Dockets</span>
-                    <a href="/assets/sample_surplus_docket_feed.csv" download class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-brand-navy border border-slate-300 rounded-lg text-xs font-bold transition-all shadow-sm">
+                    <a href="/assets/sample_surplus_docket_feed.csv" download class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-brand-navy border border-slate-300 rounded-lg text-xs font-bold transition-all shadow-sm plausible-event-name=Sample-CSV-Download">
                         <svg class="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Sample CSV
                     </a>
                 </div>
             </div>
 
-            <div class="block md:hidden text-center text-xs text-slate-500 font-semibold mb-3 bg-slate-100 py-1.5 px-3 rounded-lg border border-slate-200">
-                <span>👉 Swipe table horizontally to view full docket & statutory caps &rarr;</span>
+            <div class="block md:hidden text-center text-[11px] text-slate-500 font-medium mb-3 bg-slate-50 py-1.5 px-3 rounded-lg border border-slate-200">
+                <span>Scroll horizontally to view complete docket details &rarr;</span>
             </div>
 
             <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-lg">
@@ -494,7 +494,7 @@
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                     <div class="flex items-center gap-2 mb-1">
-                        <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-400 bg-white/10 px-2 py-0.5 rounded">Free Practitioner Bonus</span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-white/10 px-2.5 py-0.5 rounded">Included Practice Toolkit</span>
                         <h3 class="text-lg sm:text-xl font-heading font-bold text-white">Court Motions, Retainers &amp; Filing Checklists</h3>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300">
@@ -805,7 +805,7 @@
                                 </tr>
                                 <tr class="hover:bg-slate-50">
                                     <td class="py-3.5 px-5 font-semibold text-brand-navy">Statutory Motion &amp; Contract Toolkit</td>
-                                    <td class="py-3.5 px-5 text-center font-bold text-brand-green bg-emerald-50/50">✓ Included Free ($1,500 Value)</td>
+                                    <td class="py-3.5 px-5 text-center font-bold text-brand-green bg-emerald-50/50">✓ Included (FL, TX, GA)</td>
                                     <td class="py-3.5 px-5 text-center text-red-500 font-semibold">✗ None</td>
                                     <td class="py-3.5 px-5 text-center text-slate-400">✗ None</td>
                                 </tr>
@@ -894,19 +894,31 @@
             <div class="max-w-5xl mx-auto">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
                     <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-brand-green/30 hover:shadow-md transition-all">
-                        <div class="text-brand-green font-bold text-sm mb-0.5">🔒 Stripe Verified</div>
+                        <div class="text-brand-green font-bold text-sm mb-0.5 flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 text-brand-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                            <span>Stripe Verified</span>
+                        </div>
                         <div class="text-[11px] text-slate-500">Self-Service Billing Portal</div>
                     </div>
                     <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-brand-green/30 hover:shadow-md transition-all">
-                        <div class="text-brand-navy font-bold text-sm mb-0.5">⚖️ Public Provenance</div>
+                        <div class="text-brand-navy font-bold text-sm mb-0.5 flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 text-brand-navy shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+                            <span>Public Provenance</span>
+                        </div>
                         <div class="text-[11px] text-slate-500">FL § 197, TX § 34, GA § 48</div>
                     </div>
                     <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-brand-green/30 hover:shadow-md transition-all">
-                        <div class="text-brand-green font-bold text-sm mb-0.5">🛡️ 14-Day Guarantee</div>
+                        <div class="text-brand-green font-bold text-sm mb-0.5 flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 text-brand-green shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            <span>14-Day Guarantee</span>
+                        </div>
                         <div class="text-[11px] text-slate-500">Annual Evaluation Window</div>
                     </div>
                     <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-brand-green/30 hover:shadow-md transition-all">
-                        <div class="text-brand-navy font-bold text-sm mb-0.5">⚡ 7:00 AM Daily Feed</div>
+                        <div class="text-brand-navy font-bold text-sm mb-0.5 flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 text-brand-navy shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Morning Delivery</span>
+                        </div>
                         <div class="text-[11px] text-slate-500">Automated Court Crawlers</div>
                     </div>
                 </div>
@@ -997,7 +1009,7 @@
                                 <span>Statutory fee &amp; deadline calculations included</span>
                             </li>
                         </ul>
-                        <a id="card1-cta" href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3 px-6 border-2 border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white font-heading font-bold transition-all rounded-lg shadow-sm text-sm">
+                        <a id="card1-cta" href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3 px-6 border-2 border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white font-heading font-bold transition-all rounded-lg shadow-sm text-sm plausible-event-name=Core-Plan-Selected">
                             Subscribe Now — $249/mo
                         </a>
                         <div class="mt-2.5 text-center text-[11px] leading-tight text-slate-500">
@@ -1041,7 +1053,7 @@
                                 <span>Priority 6:00 AM EST delivery dispatch</span>
                             </li>
                         </ul>
-                        <a id="card2-cta" href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3 px-6 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold transition-all rounded-lg shadow-lg text-sm">
+                        <a id="card2-cta" href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3 px-6 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold transition-all rounded-lg shadow-lg text-sm plausible-event-name=Enterprise-Plan-Selected">
                             Subscribe Now — $449/mo
                         </a>
                         <div class="mt-2.5 text-center text-[11px] leading-tight text-slate-300">
@@ -1139,12 +1151,12 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-slate-200">
                 <!-- Col 1: Brand & Overview (Spans 2 cols on lg) -->
                 <div class="lg:col-span-2 space-y-4">
-                    <a href="/" class="flex items-center gap-3 group shrink-0">
-                        <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
-                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
-                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
-                </div>
+                    <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
+                        <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                        <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                        </span>
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
                         Structured daily public records intelligence indexing tax deed surplus and excess proceeds filings across county court registries for asset recovery law practices.
