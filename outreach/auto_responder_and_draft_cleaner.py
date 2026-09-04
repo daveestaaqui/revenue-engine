@@ -36,6 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 OUTREACH_DIR = BASE_DIR / "outreach"
 FEED_CSV = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
 TARGETS_CSV = OUTREACH_DIR / "verified_attorney_targets.csv"
+MASTER_TARGETS_CSV = OUTREACH_DIR / "master_ranked_attorney_targets.csv"
 SUBMISSIONS_LOG_CSV = OUTREACH_DIR / "form_submissions_log.csv"
 LOG_FILE = OUTREACH_DIR / "auto_responder.log"
 UNSUBSCRIBE_LOG = OUTREACH_DIR / "unsubscribed.log"
@@ -111,6 +112,15 @@ def clean_domain_str(url_or_email):
 def load_target_domains():
     """Loads all known target attorney/law firm domains."""
     domains = set()
+    if MASTER_TARGETS_CSV.exists():
+        with open(MASTER_TARGETS_CSV, "r", encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                d1 = clean_domain_str(r.get("Source_URL", ""))
+                d2 = clean_domain_str(r.get("Contact_Email", ""))
+                d3 = clean_domain_str(r.get("Form_URL", ""))
+                if d1: domains.add(d1)
+                if d2: domains.add(d2)
+                if d3: domains.add(d3)
     if TARGETS_CSV.exists():
         with open(TARGETS_CSV, "r", encoding="utf-8") as f:
             for r in csv.DictReader(f):

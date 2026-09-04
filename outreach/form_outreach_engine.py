@@ -26,7 +26,9 @@ from playwright.async_api import async_playwright
 # Dynamic Paths (works on both local Mac and GitHub Actions)
 BASE_DIR = Path(__file__).resolve().parent.parent
 OUTREACH_DIR = BASE_DIR / "outreach"
-TARGETS_CSV = OUTREACH_DIR / "verified_attorney_targets.csv"
+MASTER_TARGETS_CSV = OUTREACH_DIR / "master_ranked_attorney_targets.csv"
+LEGACY_TARGETS_CSV = OUTREACH_DIR / "verified_attorney_targets.csv"
+TARGETS_CSV = MASTER_TARGETS_CSV if MASTER_TARGETS_CSV.exists() else LEGACY_TARGETS_CSV
 LOG_CSV = OUTREACH_DIR / "form_submissions_log.csv"
 SCREENSHOTS_DIR = OUTREACH_DIR / "form_screenshots"
 
@@ -947,7 +949,7 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
             clean = {k.strip(): (v or "").strip() for k, v in r.items() if k}
             url = clean.get("Source_URL", "").lower().strip()
             state = clean.get("State", "").upper()
-            dom = clean_domain(url) or clean_domain(clean.get("Email", ""))
+            dom = clean_domain(url) or clean_domain(clean.get("Email", "")) or clean_domain(clean.get("Contact_Email", ""))
             
             if not dom or dom in already_done:
                 continue
@@ -955,7 +957,8 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
                 continue
             if url and url.startswith("http"):
                 clean["domain"] = dom
-                clean["priority_score"] = calculate_priority_score(clean)
+                raw_score = clean.get("Conversion_Score")
+                clean["priority_score"] = float(raw_score) if raw_score else calculate_priority_score(clean)
                 eligible_targets.append(clean)
 
     # Deduplicate candidate list by domain, retaining highest priority score
