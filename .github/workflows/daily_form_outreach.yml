@@ -11,7 +11,7 @@ on:
       limit:
         description: 'Number of law firms to contact per run'
         required: false
-        default: '25'
+        default: '35'
       dry_run:
         description: 'Run in dry-run preview mode (no live submission)'
         type: boolean
@@ -46,7 +46,7 @@ jobs:
 
       - name: Execute Automated Legal Outreach Batch
         run: |
-          LIMIT="${{ github.event.inputs.limit || '25' }}"
+          LIMIT="${{ github.event.inputs.limit || '35' }}"
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             python outreach/form_outreach_engine.py --dry-run --limit=$LIMIT
           else

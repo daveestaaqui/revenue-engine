@@ -167,17 +167,14 @@ david@surplusdocket.com"""
 
 async def find_contact_page(page, base_url):
     """Attempts to locate the Contact or Consultation page on the firm's website."""
-    # Check if current page already has a contact form
-    if await page.locator("textarea, form input[type='email'], input[name*='email' i]").count() > 0:
-        return page.url
-
-    # Look for common contact links
+    # 1. First look for dedicated Contact / Consultation links on the page
     contact_patterns = [
         "a[href*='contact' i]",
         "a[href*='consult' i]",
         "a[href*='get-in-touch' i]",
         "a[href*='intake' i]",
         "a[href*='reach-us' i]",
+        "a:has-text('Contact Us')",
         "a:has-text('Contact')",
         "a:has-text('Free Consultation')",
         "a:has-text('Consultation')",
@@ -185,42 +182,56 @@ async def find_contact_page(page, base_url):
         "a:has-text('Schedule')",
     ]
 
+    from urllib.parse import urlparse
+    base_netloc = urlparse(base_url).netloc.replace("www.", "")
+
     for sel in contact_patterns:
         try:
-            loc = page.locator(sel).first
-            if await loc.is_visible(timeout=1000):
-                href = await loc.get_attribute("href")
-                if href and not href.startswith("tel:") and not href.startswith("mailto:"):
-                    if href.startswith("http"):
-                        target = href
-                    elif href.startswith("/"):
-                        target = base_url.rstrip("/") + href
-                    else:
-                        target = base_url.rstrip("/") + "/" + href
-                    resp = await page.goto(target, timeout=12000, wait_until="domcontentloaded")
-                    if resp and resp.status < 400:
-                        await asyncio.sleep(1)
-                        if await page.locator("textarea, form input[type='email'], input[name*='email' i]").count() > 0:
-                            return page.url
-                else:
-                    await loc.click(timeout=3000)
-                    await page.wait_for_load_state("domcontentloaded", timeout=6000)
-                    await asyncio.sleep(1)
+            locators = await page.locator(sel).all()
+            for loc in locators[:4]:
+                if await loc.is_visible():
+                    href = await loc.get_attribute("href")
+                    if href and not href.startswith(("tel:", "mailto:", "#", "javascript:")):
+                        if href.startswith("http"):
+                            target = href
+                        elif href.startswith("/"):
+                            target = base_url.rstrip("/") + href
+                        else:
+                            target = base_url.rstrip("/") + "/" + href
+                        
+                        target_netloc = urlparse(target).netloc.replace("www.", "")
+                        if target_netloc and target_netloc != base_netloc:
+                            continue
+                            
+                        resp = await page.goto(target, timeout=12000, wait_until="domcontentloaded")
+                        await page.wait_for_timeout(1500)
+                        if resp and resp.status < 400:
+                            if await page.locator("textarea, form input[type='email'], input[name*='email' i], [name*='ZW1haWw']").count() > 0:
+                                return page.url
+        except Exception:
+            continue
+
+    # 2. Try direct navigation to standard contact paths
+    for path in ["/contact", "/contact-us/", "/contact-us", "/contact/", "/free-consultation", "/consultation", "/get-in-touch"]:
+        try:
+            target = base_url.rstrip("/") + path
+            resp = await page.goto(target, timeout=10000, wait_until="domcontentloaded")
+            await page.wait_for_timeout(1500)
+            if resp and resp.status < 400:
+                if await page.locator("textarea, form input[type='email'], input[name*='email' i], [name*='ZW1haWw']").count() > 0:
                     return page.url
         except Exception:
             continue
 
-    # Try direct navigation to standard contact paths
-    for path in ["/contact", "/contact-us", "/contact/", "/contact-us/", "/contact_us", "/contact-our-firm", "/free-consultation", "/consultation", "/get-in-touch"]:
-        try:
-            target = base_url.rstrip("/") + path
-            resp = await page.goto(target, timeout=10000, wait_until="domcontentloaded")
-            if resp and resp.status < 400:
-                await asyncio.sleep(1)
-                if await page.locator("textarea, form input[type='email'], input[name*='email' i]").count() > 0:
-                    return page.url
-        except Exception:
-            continue
+    # 3. Fallback: check if the initial page itself has a visible form
+    try:
+        if page.url != base_url:
+            await page.goto(base_url, timeout=10000, wait_until="domcontentloaded")
+            await page.wait_for_timeout(1000)
+        if await page.locator("textarea").count() > 0:
+            return page.url
+    except Exception:
+        pass
 
     return base_url
 
@@ -263,13 +274,31 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 "input[placeholder*='case' i]",
                 "input[placeholder*='tell us' i]",
                 "div[contenteditable='true']",
+                # Lawmatics case blurb selector
+                "textarea[name*='Y2FzZV9ibHVyYg']",
+                "input[name*='Y2FzZV9ibHVyYg']",
             ]
             msg_elem = None
             for sel in msg_selectors:
                 loc = ctx.locator(sel).first
-                if await loc.is_visible(timeout=1000):
+                if await loc.is_visible(timeout=800):
                     msg_elem = loc
                     break
+
+            if not msg_elem:
+                # Try label matching for message
+                for lbl_sel in ["label:has-text('Message')", "label:has-text('Comments')", "label:has-text('Description')"]:
+                    try:
+                        lbl = ctx.locator(lbl_sel).first
+                        if await lbl.is_visible(timeout=300):
+                            for_id = await lbl.get_attribute("for")
+                            if for_id:
+                                candidate = ctx.locator(f"#{for_id}, [name='{for_id}']").first
+                                if await candidate.is_visible(timeout=300):
+                                    msg_elem = candidate
+                                    break
+                    except Exception:
+                        pass
 
             # 2. Email field
             email_selectors = [
@@ -277,50 +306,104 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 "input[name*='email' i]",
                 "input[id*='email' i]",
                 "input[placeholder*='email' i]",
+                "input[placeholder*='e-mail' i]",
+                "input[placeholder*='mail' i]",
                 "input[class*='email' i]",
+                "input[aria-label*='email' i]",
+                "input[aria-label*='e-mail' i]",
+                # Lawmatics base64 email selector
+                "input[name*='ZW1haWw']",
+                "input[id*='ZW1haWw']",
             ]
             email_elem = None
             for sel in email_selectors:
                 loc = ctx.locator(sel).first
-                if await loc.is_visible(timeout=500):
+                if await loc.is_visible(timeout=800):
                     email_elem = loc
                     break
+
+            if not email_elem:
+                # Try label matching for email
+                for lbl_sel in ["label:has-text('Email')", "label:has-text('E-mail')", "label:has-text('Your Email')"]:
+                    try:
+                        lbl = ctx.locator(lbl_sel).first
+                        if await lbl.is_visible(timeout=300):
+                            for_id = await lbl.get_attribute("for")
+                            if for_id:
+                                candidate = ctx.locator(f"#{for_id}, [name='{for_id}']").first
+                                if await candidate.is_visible(timeout=300):
+                                    email_elem = candidate
+                                    break
+                            candidate = lbl.locator("input").first
+                            if await candidate.is_visible(timeout=300):
+                                email_elem = candidate
+                                break
+                    except Exception:
+                        pass
 
             if not email_elem:
                 continue
 
             target_context = ctx
+            filled_any = True
+
+            # Fill Message
             if msg_elem:
-                await msg_elem.fill(body)
-            await email_elem.fill(SENDER_EMAIL)
+                try:
+                    await msg_elem.fill(body)
+                except Exception:
+                    pass
+
+            # Fill Email
+            try:
+                await email_elem.fill(SENDER_EMAIL)
+            except Exception:
+                pass
 
             # 3. Name fields
-            first_name_loc = ctx.locator("input[name*='first' i], input[id*='first' i], input[placeholder*='first' i]").first
-            last_name_loc = ctx.locator("input[name*='last' i], input[id*='last' i], input[placeholder*='last' i]").first
-            
-            if await first_name_loc.is_visible(timeout=500) and await last_name_loc.is_visible(timeout=500):
-                await first_name_loc.fill(SENDER_FIRST_NAME)
-                await last_name_loc.fill(SENDER_LAST_NAME)
-            else:
-                for sel in ["input[name*='name' i]", "input[id*='name' i]", "input[placeholder*='name' i]", "input[aria-label*='name' i]"]:
-                    loc = ctx.locator(sel).first
-                    if await loc.is_visible(timeout=500):
-                        await loc.fill(SENDER_NAME)
-                        break
+            try:
+                first_name_loc = ctx.locator("input[name*='first' i], input[id*='first' i], input[placeholder*='first' i], input[name*='Zmlyc3RfbmFtZQ']").first
+                last_name_loc = ctx.locator("input[name*='last' i], input[id*='last' i], input[placeholder*='last' i], input[name*='bGFzdF9uYW1l']").first
+                
+                if await first_name_loc.is_visible(timeout=500) and await last_name_loc.is_visible(timeout=500):
+                    await first_name_loc.fill(SENDER_FIRST_NAME)
+                    await last_name_loc.fill(SENDER_LAST_NAME)
+                else:
+                    for sel in ["input[name*='name' i]", "input[id*='name' i]", "input[placeholder*='name' i]", "input[aria-label*='name' i]"]:
+                        loc = ctx.locator(sel).first
+                        if await loc.is_visible(timeout=500):
+                            await loc.fill(SENDER_NAME)
+                            break
+            except Exception:
+                pass
 
             # 4. Phone field (optional)
-            for sel in ["input[type='tel']", "input[name*='phone' i]", "input[id*='phone' i]", "input[placeholder*='phone' i]"]:
-                loc = ctx.locator(sel).first
-                if await loc.is_visible(timeout=500):
-                    await loc.fill(SENDER_PHONE)
-                    break
+            clean_phone_digits = re.sub(r"\D", "", SENDER_PHONE)
+            for sel in ["input[type='tel']", "input[name*='phone' i]", "input[id*='phone' i]", "input[placeholder*='phone' i]", "input[name*='cGhvbmU']"]:
+                try:
+                    loc = ctx.locator(sel).first
+                    if await loc.is_visible(timeout=500):
+                        inp_type = await loc.get_attribute("type")
+                        if inp_type == "number":
+                            await loc.fill(clean_phone_digits)
+                        else:
+                            try:
+                                await loc.fill(SENDER_PHONE)
+                            except Exception:
+                                await loc.fill(clean_phone_digits)
+                        break
+                except Exception:
+                    pass
 
             # 5. Subject field (optional)
-            for sel in ["input[name*='subject' i]", "input[id*='subject' i]", "input[placeholder*='subject' i]"]:
-                loc = ctx.locator(sel).first
-                if await loc.is_visible(timeout=500):
-                    await loc.fill(subject)
-                    break
+            for sel in ["input[name*='subject' i]", "input[id*='subject' i]", "input[placeholder*='subject' i]", "[name*='cHJhY3RpY2VfYXJlYQ']"]:
+                try:
+                    loc = ctx.locator(sel).first
+                    if await loc.is_visible(timeout=500):
+                        await loc.fill(subject)
+                        break
+                except Exception:
+                    pass
 
             # 6. Consent & Disclaimer Checkboxes (mandatory on many law firm forms)
             try:
@@ -334,7 +417,6 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
             except Exception:
                 pass
 
-            filled_any = True
             break
         except Exception:
             continue
