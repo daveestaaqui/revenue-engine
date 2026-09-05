@@ -301,18 +301,18 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
             formats = sub.get("delivery_format", ["CSV", "Excel"])
             if "CSV" in formats and MASTER_CSV.exists():
                 with open(MASTER_CSV, "rb") as cf:
-                    part = MIMEBase("application", "octet-stream")
+                    part = MIMEBase("text", "csv")
                     part.set_payload(cf.read())
                     encoders.encode_base64(part)
-                    part.add_header("Content-Disposition", f"attachment; filename={MASTER_CSV.name}")
+                    part.add_header("Content-Disposition", "attachment", filename=MASTER_CSV.name)
                     msg.attach(part)
 
             if "Excel" in formats and MASTER_XLSX.exists():
                 with open(MASTER_XLSX, "rb") as xf:
-                    part = MIMEBase("application", "octet-stream")
+                    part = MIMEBase("application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet")
                     part.set_payload(xf.read())
                     encoders.encode_base64(part)
-                    part.add_header("Content-Disposition", f"attachment; filename={MASTER_XLSX.name}")
+                    part.add_header("Content-Disposition", "attachment", filename=MASTER_XLSX.name)
                     msg.attach(part)
 
             server.sendmail(GMAIL_USER, [dest], msg.as_string())

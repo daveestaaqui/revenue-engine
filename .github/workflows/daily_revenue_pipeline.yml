@@ -86,6 +86,18 @@ jobs:
           git add README.md exports/ site/ domain_arbitrage/listings/ marketing/syndicate/ compliance/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, compliance, PRs & SEO refresh" && git pull --rebase origin main && git push)
 
+      - name: 10b. Autonomous Stripe Subscriber & Trial Intake
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
+        run: |
+          python portal/sync_stripe_subscribers.py
+          git config --global user.name "Surplus Docket Bot"
+          git config --global user.email "bot@surplusdocket.com"
+          git add portal/subscribers.json portal/processed_stripe_events.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(subscribers): auto-sync Stripe trial subscribers [skip ci]" && git pull --rebase origin main && git push)
+
       - name: 11. Dispatch 7:00 AM EST Morning Feed to Active Subscribers
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}

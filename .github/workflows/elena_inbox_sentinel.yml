@@ -47,13 +47,14 @@ jobs:
             exit 0
           fi
           python outreach/auto_responder_and_draft_cleaner.py --single-pass
+          python portal/sync_stripe_subscribers.py
 
       - name: Commit & Push Updated Logs & Tracking
         run: |
           git config --global user.name "Elena Brooks Bot"
           git config --global user.email "elena.brooks@surplusdocket.com"
-          git add outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(inbox): updated Elena draft registry & auto-response logs [skip ci]" && git pull --rebase origin main && git push)
+          git add outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log portal/subscribers.json portal/processed_stripe_events.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(inbox): updated Elena drafts, auto-responses & Stripe subscribers [skip ci]" && git pull --rebase origin main && git push)
 
       - name: Archive Sentinel Logs Artifact
         uses: actions/upload-artifact@v4
