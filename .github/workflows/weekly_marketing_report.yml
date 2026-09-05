@@ -41,7 +41,7 @@ jobs:
       - name: Compile & Email Weekly Marketing Progress Report
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
-          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS || 'nxgfaiebqpmobhkp' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
           REPORT_RECIPIENT: ${{ github.event.inputs.recipient || secrets.REPORT_RECIPIENT || 'sandwichfitness@gmail.com' }}
           SMTP_HOST: 'smtp.gmail.com'
           SMTP_PORT: '587'

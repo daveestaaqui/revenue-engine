@@ -74,7 +74,21 @@ jobs:
           git add README.md exports/ site/ domain_arbitrage/listings/ marketing/syndicate/ compliance/
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, compliance, PRs & SEO refresh" && git pull --rebase origin main && git push)
 
-      - name: 11. Upload Delivery Artifacts
+      - name: 11. Dispatch 7:00 AM EST Morning Feed to Active Subscribers
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          FROM_EMAIL: 'elena.brooks@surplusdocket.com'
+          FROM_NAME: 'Elena Brooks | Surplus Docket'
+        run: |
+          if [ -n "$GMAIL_APP_PASS" ]; then
+            python portal/dispatch_morning_feed.py --send
+          else
+            echo "GMAIL_APP_PASS secret not set; running dry-run preview."
+            python portal/dispatch_morning_feed.py --dry-run
+          fi
+
+      - name: 12. Upload Delivery Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: daily-revenue-deliverables
@@ -82,3 +96,4 @@ jobs:
             exports/
             domain_arbitrage/listings/
           retention-days: 30
+

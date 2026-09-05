@@ -37,11 +37,24 @@ CREATED_DRAFTS_LOG = OUTREACH_DIR / "created_drafts_log.json"
 AUTO_RESPONDER_LOG = OUTREACH_DIR / "auto_responder.log"
 SITE_DIR = BASE_DIR / "site"
 
+# Optional local .env loading
+ENV_FILE = BASE_DIR / ".env"
+if ENV_FILE.exists():
+    try:
+        with open(ENV_FILE, "r") as ef:
+            for line in ef:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip("'\""))
+    except Exception:
+        pass
+
 # Credentials & Defaults
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
-GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "nxgfaiebqpmobhkp")
+GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
 DEFAULT_RECIPIENT = os.getenv("REPORT_RECIPIENT", "sandwichfitness@gmail.com")
 FROM_NAME = os.getenv("FROM_NAME", "Surplus Docket Intelligence")
 FROM_EMAIL = os.getenv("FROM_EMAIL", "elena.brooks@surplusdocket.com")

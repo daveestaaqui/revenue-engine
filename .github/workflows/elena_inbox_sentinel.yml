@@ -1,0 +1,64 @@
+name: Elena Brooks Inbound Inbox Sentinel & Draft Engine
+
+on:
+  schedule:
+    # Every 30 minutes during US business hours (9:00 AM - 6:00 PM EST / 13:00 - 22:00 UTC, Mon-Fri)
+    - cron: '*/30 13-22 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run check without creating drafts'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  monitor-inbox-and-draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute Elena Inbox Scan & Draft Generation Pass
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          FROM_NAME: 'Elena Brooks'
+          SENDER_EMAIL: 'elena.brooks@surplusdocket.com'
+          REPLY_TO: 'elena.brooks@surplusdocket.com'
+        run: |
+          if [ -z "$GMAIL_APP_PASS" ]; then
+            echo "ℹ️ GMAIL_APP_PASS secret not configured in repository. Skipping IMAP pass."
+            exit 0
+          fi
+          python outreach/auto_responder_and_draft_cleaner.py --single-pass
+
+      - name: Commit & Push Updated Logs & Tracking
+        run: |
+          git config --global user.name "Elena Brooks Bot"
+          git config --global user.email "elena.brooks@surplusdocket.com"
+          git add outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(inbox): updated Elena draft registry & auto-response logs [skip ci]" && git pull --rebase origin main && git push)
+
+      - name: Archive Sentinel Logs Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: elena-sentinel-log
+          path: outreach/auto_responder.log
+          retention-days: 14

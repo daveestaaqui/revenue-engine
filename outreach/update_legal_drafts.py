@@ -27,9 +27,22 @@ FEED_CSV = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
 DRAFTS_DIR = OUTREACH_DIR / "drafts"
 LOG_DIR = OUTREACH_DIR / "drafts_uploaded"
 
+# Optional local .env loading
+ENV_FILE = BASE_DIR / ".env"
+if ENV_FILE.exists():
+    try:
+        with open(ENV_FILE, "r") as ef:
+            for line in ef:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip("'\""))
+    except Exception:
+        pass
+
 # Credentials & Sender Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
-GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "nxgfaiebqpmobhkp")
+GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
 FROM_NAME = "Dave Mahler"
 REPLY_TO = "data@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"

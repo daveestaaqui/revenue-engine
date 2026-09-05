@@ -43,9 +43,22 @@ UNSUBSCRIBE_LOG = OUTREACH_DIR / "unsubscribed.log"
 UNSUBSCRIBED_URLS_FILE = OUTREACH_DIR / "unsubscribed_urls.json"
 CREATED_DRAFTS_LOG = OUTREACH_DIR / "created_drafts_log.json"
 
+# Optional local .env loading
+ENV_FILE = BASE_DIR / ".env"
+if ENV_FILE.exists():
+    try:
+        with open(ENV_FILE, "r") as ef:
+            for line in ef:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip("'\""))
+    except Exception:
+        pass
+
 # Credentials & Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
-GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "nxgfaiebqpmobhkp")
+GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
 FROM_NAME = os.getenv("FROM_NAME", "Elena Brooks")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL", "elena.brooks@surplusdocket.com")
 REPLY_TO = os.getenv("REPLY_TO", "elena.brooks@surplusdocket.com")
@@ -1583,6 +1596,9 @@ def run_single_check():
     """Runs a single check across Apple Mail and Gmail."""
     clean_apple_mail_drafts()
     state_cases = load_feed_data()
+    if not GMAIL_APP_PASS:
+        log("GMAIL_APP_PASS is not configured in environment or .env; skipping IMAP operations.")
+        return
     try:
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
         mail.login(GMAIL_USER, GMAIL_APP_PASS)
@@ -1604,7 +1620,8 @@ def daemon_loop():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "--once":
+    if len(sys.argv) > 1 and sys.argv[1] in ["--once", "--single-pass"]:
         run_single_check()
     else:
         daemon_loop()
+
