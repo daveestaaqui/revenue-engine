@@ -60,6 +60,58 @@ STATE_NAMES = {
     "AZ": "Arizona", "WA": "Washington", "MI": "Michigan",
 }
 
+STATE_STATUTES = {
+    "FL": ("Florida", "Fla. Stat. § 197.582"),
+    "TX": ("Texas", "Tex. Tax Code § 34.04"),
+    "GA": ("Georgia", "O.C.G.A. § 48-4-5"),
+    "NC": ("North Carolina", "N.C.G.S. § 105-374"),
+    "TN": ("Tennessee", "T.C.A. § 67-5-2501"),
+    "CA": ("California", "Cal. Rev. & Tax Code § 4675"),
+}
+
+# Policy SD-POL-OUTREACH-2026-V1 Hard Domain Blocklist
+SYSTEM_BLOCKLIST_DOMAINS = {
+    # Tech / Platform / Email providers
+    "google.com", "gmail.com", "googlemail.com", "googleapis.com",
+    "cloudflare.com", "cloudflare.net",
+    "microsoft.com", "outlook.com", "hotmail.com", "live.com", "office.com", "office365.com", "msn.com",
+    "apple.com", "icloud.com",
+    "yahoo.com", "aol.com",
+    # Transactional / APIs / Infrastructure
+    "stripe.com", "github.com", "resend.com", "formsubmit.co",
+    "sendgrid.net", "sendgrid.com", "mailgun.org", "mailgun.net", "postmarkapp.com",
+    "amazonses.com", "amazonaws.com",
+    # Marketing platforms & CRMs
+    "mailchimp.com", "lawmatics.com", "hubspot.com", "activecampaign.com", "constantcontact.com",
+    # Retail / E-commerce / Banking
+    "amazon.com", "paypal.com", "citi.com", "citicards.com", "chase.com", "bankofamerica.com",
+    "wellsfargo.com", "capitalist.net", "starkbros.com",
+    # Internal domain
+    "surplusdocket.com",
+}
+
+# Senders matching these patterns never receive outreach drafts
+SYSTEM_SENDER_PATTERNS = [
+    "noreply", "no-reply", "no_reply", "donotreply", "do-not-reply",
+    "mailer-daemon", "postmaster", "bounce", "notification", "notifications",
+    "alert", "alerts", "security", "support", "billing", "invoicing",
+    "account", "accounts", "service", "services", "team", "newsletter", "digest",
+    "confirm", "confirmation", "verify", "verification", "auto-reply", "automated"
+]
+
+# Subjects matching these cues are system / administrative emails
+SYSTEM_SUBJECT_BLOCKLIST = [
+    "confirmation", "verification", "verify", "security alert",
+    "payment", "invoice", "statement", "receipt", "shipping confirmation",
+    "password", "login", "welcome to", "delivery status", "failure notice",
+    "undelivered mail", "out of office", "automatic reply", "auto-reply", "missing email"
+]
+
+BANNED_FIRST_NAMES = {
+    "gmail", "google", "noreply", "no-reply", "team", "support", "info",
+    "admin", "intake", "mailer", "daemon", "service", "customer", "billing"
+}
+
 
 def log(msg):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -109,32 +161,60 @@ def clean_domain_str(url_or_email):
     return s
 
 
-def load_target_domains():
-    """Loads all known target attorney/law firm domains."""
+def load_target_directory():
+    """
+    Loads verified target database into:
+    1. directory: dict mapping canonical domain -> target metadata dict
+    2. email_directory: dict mapping email address -> target metadata dict
+    3. domains: set of valid domains
+    """
+    directory = {}
+    email_directory = {}
     domains = set()
+
+    def add_target(domain, email_addr, name, firm, state, specialty, details):
+        record = {
+            "name": (name or "").strip(),
+            "firm": (firm or "").strip(),
+            "state": (state or "FL").strip().upper(),
+            "specialty": (specialty or "").strip(),
+            "practice_details": (details or "").strip(),
+        }
+        if domain and domain not in SYSTEM_BLOCKLIST_DOMAINS:
+            domains.add(domain)
+            if domain not in directory or not directory[domain].get("name"):
+                directory[domain] = record
+        if email_addr and "@" in email_addr:
+            clean_em = email_addr.lower().strip()
+            if clean_em not in email_directory or not email_directory[clean_em].get("name"):
+                email_directory[clean_em] = record
+
     if MASTER_TARGETS_CSV.exists():
         with open(MASTER_TARGETS_CSV, "r", encoding="utf-8") as f:
             for r in csv.DictReader(f):
-                d1 = clean_domain_str(r.get("Source_URL", ""))
-                d2 = clean_domain_str(r.get("Contact_Email", ""))
-                d3 = clean_domain_str(r.get("Form_URL", ""))
-                if d1: domains.add(d1)
-                if d2: domains.add(d2)
-                if d3: domains.add(d3)
+                d = clean_domain_str(r.get("Source_URL", "")) or clean_domain_str(r.get("Contact_Email", ""))
+                em = r.get("Contact_Email", "").strip()
+                add_target(d, em, r.get("Name"), r.get("Firm"), r.get("State"), r.get("Specialty"), r.get("Practice_Details"))
+
     if TARGETS_CSV.exists():
         with open(TARGETS_CSV, "r", encoding="utf-8") as f:
             for r in csv.DictReader(f):
-                d1 = clean_domain_str(r.get("Source_URL", ""))
-                d2 = clean_domain_str(r.get("Email", ""))
-                if d1: domains.add(d1)
-                if d2: domains.add(d2)
+                d = clean_domain_str(r.get("Source_URL", "")) or clean_domain_str(r.get("Email", ""))
+                em = r.get("Email", "").strip()
+                add_target(d, em, r.get("Name"), r.get("Firm"), r.get("State"), r.get("Specialty"), r.get("Practice_Details"))
+
     if SUBMISSIONS_LOG_CSV.exists():
         with open(SUBMISSIONS_LOG_CSV, "r", encoding="utf-8") as f:
             for r in csv.DictReader(f):
-                d1 = clean_domain_str(r.get("target_url", ""))
-                d2 = clean_domain_str(r.get("form_url", ""))
-                if d1: domains.add(d1)
-                if d2: domains.add(d2)
+                d = clean_domain_str(r.get("target_url", "")) or clean_domain_str(r.get("form_url", ""))
+                add_target(d, "", r.get("firm_name"), r.get("firm_name"), r.get("state"), "", "")
+
+    return directory, email_directory, domains
+
+
+def load_target_domains():
+    """Backward compatibility wrapper returning set of domains."""
+    _, _, domains = load_target_directory()
     return domains
 
 
@@ -277,31 +357,298 @@ def is_automated_receipt_or_bounce(msg, sender_email, subject_raw):
     """Identifies automated delivery notices, bounces, and out-of-office autoreplies."""
     subj = subject_raw.lower().strip()
     s_email = sender_email.lower().strip()
+    s_dom = clean_domain_str(s_email)
+    local_part = s_email.split("@")[0] if "@" in s_email else s_email
 
-    # Bounce and notification senders
-    if any(k in s_email for k in ["mailer-daemon", "postmaster", "bounce", "notifications@", "no-reply@", "noreply@"]):
+    # 1. Hard domain blocklist
+    if s_dom in SYSTEM_BLOCKLIST_DOMAINS:
         return True
 
-    # Standard headers for automated emails
+    # 2. Bounce and notification sender local-parts
+    if any(k in local_part for k in SYSTEM_SENDER_PATTERNS):
+        return True
+
+    # 3. Standard headers for automated emails
     auto_submitted = (msg.get("Auto-Submitted") or "").lower()
-    if auto_submitted in ["auto-generated", "auto-replied"]:
+    if auto_submitted and auto_submitted != "no":
         return True
 
-    # Bounce / Autoreply subject cues
-    bounce_cues = [
-        "automatic reply:",
-        "out of office:",
-        "undelivered mail",
-        "delivery status notification",
-        "failure notice",
-        "mail delivery failed",
-        "auto-reply",
-        "autosubmitted",
-    ]
-    if any(cue in subj for cue in bounce_cues):
+    if (msg.get("X-Autoreply") or "").lower() == "yes":
+        return True
+
+    precedence = (msg.get("Precedence") or "").lower()
+    if precedence in ["bulk", "list", "junk"]:
+        return True
+
+    if msg.get("List-Unsubscribe"):
+        return True
+
+    # 4. Bounce / Administrative subject cues
+    if any(cue in subj for cue in SYSTEM_SUBJECT_BLOCKLIST):
         return True
 
     return False
+
+
+def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body, directory, email_directory, target_domains):
+    """
+    Enforces Rule 2.1 & 2.2 of Surplus Docket Inbound Outreach Policy (SD-POL-OUTREACH-2026-V1):
+    Returns: (is_eligible: bool, reason: str, target_info: dict, inquiry_info: dict)
+    """
+    # 1. Check if it is an official statutory website inquiry from surplusdocket.com/inquiry.html
+    # (Must check this first because third-party delivery relays like FormSubmit or Cloudflare forward these)
+    inquiry_data = parse_statutory_inquiry(subject_raw, text_body)
+    if inquiry_data and inquiry_data.get("email"):
+        inq_email = inquiry_data.get("email", "").lower().strip()
+        inq_dom = clean_domain_str(inq_email)
+        if inq_dom not in SYSTEM_BLOCKLIST_DOMAINS and inq_email != "sandwichfitness@gmail.com":
+            return True, "Verified statutory website inquiry", None, inquiry_data
+
+    s_email = sender_email.lower().strip()
+    s_dom = clean_domain_str(s_email)
+
+    # 2. Filter all automated, bounce, or system messages
+    if is_automated_receipt_or_bounce(msg, s_email, subject_raw):
+        return False, "Message identified as automated notification, bounce, or system alert", None, None
+
+    # 3. Filter self-sent or internal domain emails
+    if s_dom == "surplusdocket.com" or s_email == "sandwichfitness@gmail.com":
+        return False, "Self-sent or internal domain transmission", None, None
+
+    # 4. Check if sender matches our verified law firm target directory
+    target_info = email_directory.get(s_email) or directory.get(s_dom)
+    if target_info:
+        return True, f"Verified target firm match ({target_info.get('firm', s_dom)})", target_info, None
+
+    # Fallback: check if domain is directly in target domains
+    if s_dom in target_domains:
+        fallback_info = {
+            "name": sender_name or "",
+            "firm": s_dom.replace(".com", "").replace("-", " ").title(),
+            "state": "FL",
+            "specialty": "Surplus & Excess Proceeds",
+            "practice_details": "",
+        }
+        return True, f"Verified target domain match ({s_dom})", fallback_info, None
+
+    return False, f"Sender '{s_email}' is not in verified target database and not a statutory inquiry", None, None
+
+
+def analyze_prospect_intent(subject_raw, text_body):
+    """
+    Classifies attorney inbound intent into:
+    - 'OPT_OUT'
+    - 'PRICING'
+    - 'JURISDICTION'
+    - 'DATA_FORMAT'
+    - 'SAMPLE_DATA'
+    - 'GENERAL'
+    """
+    content = (subject_raw + " " + text_body).lower()
+
+    # Opt-out check takes absolute precedence
+    opt_out_cues = [
+        "unsubscribe", "remove me", "remove us", "stop emailing",
+        "not interested", "take me off", "do not contact", "please remove",
+        "wrong email", "cease and desist", "do not email"
+    ]
+    if any(c in content for c in opt_out_cues):
+        return "OPT_OUT"
+
+    # Pricing & Terms
+    pricing_cues = [
+        "how much", "cost", "pricing", "rate", "rates", "fee", "fees",
+        "contract", "terms", "subscription", "price", "month to month",
+        "billing", "payment options", "retainer"
+    ]
+    if any(c in content for c in pricing_cues):
+        return "PRICING"
+
+    # Jurisdiction / County Coverage
+    jurisdiction_cues = [
+        "what counties", "which counties", "do you cover", "jurisdiction", "circuits",
+        "harris", "dallas", "tarrant", "travis", "bexar",
+        "miami", "palm beach", "hillsborough", "orange", "broward", "duval", "pinellas",
+        "fulton", "dekalb", "cobb", "gwinnett",
+        "wake", "mecklenburg", "guilford",
+        "shelby", "davidson", "knox", "hamilton",
+        "los angeles", "san diego", "riverside", "san bernardino",
+        "statewide", "coverage"
+    ]
+    if any(c in content for c in jurisdiction_cues):
+        return "JURISDICTION"
+
+    # Data Format / Technical Integration
+    format_cues = [
+        "api", "format", "csv", "excel", "xlsx", "json", "fields",
+        "integration", "software", "crm", "clio", "filevine", "smokeball",
+        "webhook", "feed format"
+    ]
+    if any(c in content for c in format_cues):
+        return "DATA_FORMAT"
+
+    # Sample Data Request
+    sample_cues = [
+        "sample", "example", "examples", "preview", "proof", "show me", "send me", "pull a few"
+    ]
+    if any(c in content for c in sample_cues):
+        return "SAMPLE_DATA"
+
+    return "GENERAL"
+
+
+def compose_elena_response(intent, target_info, sender_name, sender_email, subject_raw, text_body, state_cases):
+    """
+    Drafts an authoritative, context-aware response adhering strictly to Elena Brooks' persona voice.
+    """
+    # 1. Resolve Name and Greeting
+    raw_name = target_info.get("name") if target_info else sender_name
+    first_name = ""
+    if raw_name:
+        parts = [p.strip() for p in raw_name.split() if p.strip()]
+        if parts:
+            cand = parts[0].title()
+            if cand.lower() not in BANNED_FIRST_NAMES and len(cand) > 1:
+                first_name = cand
+
+    firm_name = target_info.get("firm") if target_info else ""
+    if first_name:
+        greeting = f"Hi {first_name},"
+    elif firm_name:
+        greeting = f"Hello {firm_name} team,"
+    else:
+        greeting = "Hello,"
+
+    # 2. Resolve State & Statutory Context
+    detected_state = target_info.get("state", "FL") if target_info else "FL"
+    for code, name in STATE_NAMES.items():
+        if name.lower() in subject_raw.lower() or name.lower() in text_body.lower():
+            detected_state = code
+            break
+
+    state_name = STATE_NAMES.get(detected_state, "Florida")
+    statute_cite = STATE_STATUTES.get(detected_state, (state_name, "applicable state civil code"))[1]
+
+    # Sample block for cases
+    cases = state_cases.get(detected_state, state_cases.get("FL", []))[:3]
+    sample_bullets = []
+    for c in cases:
+        sample_bullets.append(f"• Docket {c['case_no']} ({c['county']} Co.) — ${c['balance']:,.0f} surplus balance")
+    sample_block = "\n".join(sample_bullets) if sample_bullets else "• Verified individual & estate records indexed daily across all circuits"
+
+    signature = f"""Best regards,
+
+Elena Brooks
+Senior Docket Specialist | Surplus Docket
+surplusdocket.com
+elena.brooks@surplusdocket.com"""
+
+    # 3. Formulate Intent-Specific Body
+    if intent == "OPT_OUT":
+        body = f"""{greeting}
+
+Understood. I have marked your firm's file and removed you from all future docket distributions and updates.
+
+{signature}"""
+
+    elif intent == "PRICING":
+        body = f"""{greeting}
+
+Thanks for following up regarding our data subscription.
+
+Our pricing is a flat $249/month for your entire practice—there are zero per-claim fees, no contingency cuts, and no long-term contracts. Billing is month-to-month and managed through our self-service Stripe portal, allowing cancellation at any time.
+
+From an ROI perspective, the average {state_name} surplus balance in our current index is roughly $45,000. At a standard 25% statutory contingency fee ($11,250), a single successful recovery covers multiple years of access.
+
+You can inspect sample dockets and activate daily morning delivery here:
+{STRIPE_LINK}
+
+Let me know if your firm requires an invoice or specific vendor billing documentation.
+
+{signature}"""
+
+    elif intent == "JURISDICTION":
+        body = f"""{greeting}
+
+Thanks for reaching out regarding our court registry coverage.
+
+Our automated court crawlers monitor county clerk of court registries and tax collector excess funds dockets daily across {state_name}. 
+
+Critically, we filter out senior institutional mortgages, municipal utility liens, and bank encumbrances upstream before delivery. Your attorneys only receive verified, actionable equity balances with active statutory claim windows under {statute_cite}.
+
+Here are active sample records from our {state_name} index:
+{sample_block}
+
+Standardized feeds are delivered every business morning at 7:00 AM EST (CSV, Excel, JSON). You can set up daily delivery for your practice directly here:
+{STRIPE_LINK}
+
+If your firm focuses on specific judicial circuits or county registries, let me know and I can verify our active inventory for those jurisdictions.
+
+{signature}"""
+
+    elif intent == "DATA_FORMAT":
+        body = f"""{greeting}
+
+Thanks for asking about our delivery specifications.
+
+We deliver the standardized feed every morning at 7:00 AM EST in three concurrent formats:
+1. Standard CSV & Excel (.xlsx) for direct review by counsel and paralegal staff.
+2. Structured REST JSON API with webhooks for direct intake into practice management systems (Clio, Smokeball, Filevine).
+
+Each record includes:
+• Court / Registry Docket Number & Judicial Circuit
+• Verified Surplus Balance & Sale Date
+• Former Record Titleholder / Estate Identification
+• Property Parcel ID & Situs Address
+• Senior Mortgage & Institutional Lien Scrubbing Verification
+• Direct Clerk Verification Portal Link
+
+Access is $249/month flat across all circuits:
+{STRIPE_LINK}
+
+Happy to provide our JSON API schema or a sample Excel extract if your team would like to review the fields.
+
+{signature}"""
+
+    elif intent == "SAMPLE_DATA":
+        body = f"""{greeting}
+
+Thanks for getting back to me.
+
+Here are three active, verified surplus records from our current {state_name} index, pre-scrubbed to eliminate senior bank encumbrances:
+
+{sample_block}
+
+Our crawlers index new foreclosure filings and court overages daily, delivering the standardized feed every morning at 7:00 AM EST in CSV, Excel, and JSON ($249/month flat, cancel anytime).
+
+You can activate daily delivery directly for your practice here:
+{STRIPE_LINK}
+
+Let me know if you would like me to pull historical files for any specific county or circuit in {state_name}.
+
+{signature}"""
+
+    else:  # GENERAL
+        body = f"""{greeting}
+
+Thanks for following up with our research desk.
+
+Our morning intelligence feed delivers verified, case-level public records every business day at 7:00 AM EST in CSV, Excel, and REST API formats ($249/month flat, cancel anytime).
+
+Key details for your practice:
+• 100% of institutional bank mortgages and senior liens are filtered out upstream so your attorneys only work claimable individual and estate equity.
+• We index all high-volume judicial circuits in {state_name} (along with TX, GA, NC, TN, and CA).
+• All subscriptions include our Asset Recovery Toolkit (court-ready petition motions, heir retainer contracts, and statutory fee calculators).
+
+You can activate daily feed delivery directly for your firm here:
+{STRIPE_LINK}
+
+Please let me know if you have any questions or if you would like to review records for a specific county.
+
+{signature}"""
+
+    reply_subject = subject_raw if subject_raw.lower().startswith("re:") else f"Re: {subject_raw}"
+    return reply_subject, body
 
 
 def parse_statutory_inquiry(subject_raw, text_body):
@@ -514,7 +861,7 @@ def check_and_create_auto_responses(mail, state_cases):
         return
 
     msg_ids = messages[0].split()
-    target_domains = load_target_domains()
+    directory, email_directory, target_domains = load_target_directory()
     already_unsubscribed = load_unsubscribed_urls()
     already_drafted = load_created_drafts()
 
@@ -575,21 +922,27 @@ def check_and_create_auto_responses(mail, state_cases):
                 continue
 
         # -------------------------------------------------------------
-        # 2. FILTER AUTOMATED BOUNCES / NOTICES
+        # 2. ELIGIBILITY & POLICY ENFORCEMENT (SD-POL-OUTREACH-2026-V1)
         # -------------------------------------------------------------
-        if is_automated_receipt_or_bounce(msg, sender_email, subject_raw):
+        is_eligible, reason, target_info, inquiry_info = is_prospect_eligible(
+            msg, sender_email, sender_name, subject_raw, text_body,
+            directory, email_directory, target_domains
+        )
+
+        if not is_eligible:
+            log(f"  ⏭️ Skipped non-prospect from {sender_email} (Sub: '{subject_raw[:40]}'): {reason}")
             mail.store(mid, "+FLAGS", r"(\Seen)")
             continue
 
         # -------------------------------------------------------------
-        # 3. STATUTORY WEBSITE INQUIRY DETECTION
+        # 3. STATUTORY WEBSITE INQUIRY HANDLING
         # -------------------------------------------------------------
-        inquiry_data = parse_statutory_inquiry(subject_raw, text_body)
-        if inquiry_data:
-            prospect_name = inquiry_data["name"]
-            prospect_email = inquiry_data["email"] or reply_to_email
-            state_code = inquiry_data["state_code"]
+        if inquiry_info:
+            prospect_name = inquiry_info["name"]
+            prospect_email = inquiry_info["email"] or reply_to_email
+            state_code = inquiry_info["state_code"]
             state_name = STATE_NAMES.get(state_code, "Florida")
+            statute_cite = STATE_STATUTES.get(state_code, (state_name, "applicable state civil code"))[1]
             cases = state_cases.get(state_code, state_cases.get("FL", []))[:3]
 
             draft_key = f"inquiry:{prospect_email}:{state_code}"
@@ -597,13 +950,18 @@ def check_and_create_auto_responses(mail, state_cases):
                 mail.store(mid, "+FLAGS", r"(\Seen)")
                 continue
 
-            first_name = prospect_name.split()[0] if prospect_name else ""
+            first_name = ""
+            if prospect_name:
+                parts = [p.strip() for p in prospect_name.split() if p.strip()]
+                if parts and parts[0].title().lower() not in BANNED_FIRST_NAMES:
+                    first_name = parts[0].title()
+
             greeting = f"Hi {first_name}," if first_name else "Hello,"
 
             sample_bullets = []
             for c in cases:
                 sample_bullets.append(f"• Docket {c['case_no']} ({c['county']} Co.) — ${c['balance']:,.0f} surplus balance")
-            sample_block = "\n".join(sample_bullets)
+            sample_block = "\n".join(sample_bullets) if sample_bullets else "• Verified individual & estate records indexed daily across all circuits"
 
             reply_body = f"""{greeting}
 
@@ -613,22 +971,21 @@ Here are a few verified, active records from our current {state_name} docket ind
 
 {sample_block}
 
-We publish and deliver the complete standardized morning feed at 7:00 AM EST every day in CSV, Excel, and JSON API formats ($249/month flat, cancel anytime).
+We publish and deliver the complete standardized morning feed at 7:00 AM EST every business day in CSV, Excel, and JSON API formats ($249/month flat, cancel anytime).
 
 You can activate daily feed delivery for your practice directly here:
 {STRIPE_LINK}
 
-Please let me know if you would like custom county-level filtering or have specific questions about our statutory lien-filtering methodology.
+Please let me know if you would like custom county-level filtering or have specific questions about statutory filing windows under {statute_cite}.
 
 Best regards,
 
-David Mahler
-Surplus Docket
+Elena Brooks
+Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-david@surplusdocket.com"""
+elena.brooks@surplusdocket.com"""
 
             reply_subject = f"Re: Surplus Docket — Statutory Public Record Inquiry [{state_name}]"
-
             draft_msg = MIMEText(reply_body, "plain", "utf-8")
             draft_msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
             draft_msg["To"] = f"{prospect_name} <{prospect_email}>" if prospect_name else prospect_email
@@ -652,96 +1009,26 @@ david@surplusdocket.com"""
             continue
 
         # -------------------------------------------------------------
-        # 4. LAW FIRM OUTREACH REPLY DETECTION
+        # 4. VERIFIED LAW FIRM OUTREACH REPLY HANDLING
         # -------------------------------------------------------------
-        sender_dom = clean_domain_str(sender_email)
-        is_target_firm = sender_dom in target_domains
-        has_surplus_kw = any(k in subject_raw.lower() or k in text_body.lower() for k in [
-            "surplus", "excess proceeds", "tax deed", "excess funds", "surplus docket", "tax sale", "overages"
-        ])
-
-        if not is_target_firm and not has_surplus_kw:
-            continue
-
-        # Use unique Message-ID (or content hash fallback) so EVERY follow-up in a thread triggers a fresh draft
         msg_uid = re.sub(r"[^a-zA-Z0-9_\-]", "", message_id) if message_id else f"{sender_email}_{hash(text_body[:80])}"
         draft_key = f"reply:{sender_email}:{msg_uid}"
         if draft_key in already_drafted:
             mail.store(mid, "+FLAGS", r"(\Seen)")
             continue
 
-        log(f"  📩 Detected outreach reply / follow-up from: {sender_name} <{sender_email}> (Sub: {subject_raw})")
+        intent = analyze_prospect_intent(subject_raw, text_body)
+        log(f"  📩 Processing verified prospect reply from: {sender_name} <{sender_email}> | Intent: {intent} (Sub: {subject_raw})")
 
-        first_name = sender_name.split()[0] if sender_name else ""
-        detected_state = "FL"
-        for code, name in STATE_NAMES.items():
-            if name.lower() in subject_raw.lower() or name.lower() in text_body.lower():
-                detected_state = code
-                break
-
-        state_name = STATE_NAMES.get(detected_state, "Florida")
-        cases = state_cases.get(detected_state, state_cases.get("FL", []))[:3]
-        
-        sample_bullets = []
-        for c in cases:
-            sample_bullets.append(f"• Docket {c['case_no']} ({c['county']} Co.) — ${c['balance']:,.0f} surplus balance")
-        sample_block = "\n".join(sample_bullets)
-
-        greeting = f"Hi {first_name}," if first_name else "Hello,"
-
-        # Distinguish initial inquiry from ongoing multi-turn follow-ups
-        is_subsequent_followup = (
-            subject_raw.lower().count("re:") >= 2 or
-            any(q in text_body.lower() for q in ["how much", "can you", "what counties", "do you cover", "what is the cost", "send me", "thanks for reaching out", "interested in", "more info"])
+        reply_subject, reply_body = compose_elena_response(
+            intent=intent,
+            target_info=target_info,
+            sender_name=sender_name,
+            sender_email=sender_email,
+            subject_raw=subject_raw,
+            text_body=text_body,
+            state_cases=state_cases,
         )
-
-        if is_subsequent_followup:
-            reply_body = f"""{greeting}
-
-Thanks for following up.
-
-To answer your question: our morning intelligence feed delivers verified, case-level public records every business day at 7:00 AM EST in CSV, Excel, and REST API formats ($249/month flat, cancel anytime).
-
-Key details for your practice:
-• 100% of institutional bank mortgages and senior liens are filtered out upstream so your firm only sees claimable individual and estate equity.
-• We monitor all high-volume judicial circuits in {state_name} (along with TX, GA, NC, TN, and CA).
-• All subscriptions include our complete Asset Recovery Toolkit (court-ready petition motions, heir retainer contracts, and statutory fee calculators).
-
-You can activate daily feed delivery directly for your firm here:
-{STRIPE_LINK}
-
-If you would like me to pull sample dockets for specific counties in your circuit or set up a custom data filter, just let me know.
-
-Best regards,
-
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
-surplusdocket.com
-elena.brooks@surplusdocket.com"""
-        else:
-            reply_body = f"""{greeting}
-
-Thanks for getting back to me.
-
-Here are a few verified records from our current {state_name} index with bank and senior mortgages filtered out:
-
-{sample_block}
-
-We deliver the full standardized feed every morning at 7:00 AM EST in CSV, Excel, and JSON ($249/month flat, cancel anytime).
-
-You can start subscription access directly here:
-{STRIPE_LINK}
-
-Let me know if you have any questions or if you'd like to see more details on any of these files.
-
-Best regards,
-
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
-surplusdocket.com
-elena.brooks@surplusdocket.com"""
-
-        reply_subject = subject_raw if subject_raw.lower().startswith("re:") else f"Re: {subject_raw}"
 
         draft_msg = MIMEText(reply_body, "plain", "utf-8")
         draft_msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
@@ -762,7 +1049,7 @@ elena.brooks@surplusdocket.com"""
         if append_status == "OK":
             save_created_draft(draft_key)
             mail.store(mid, "+FLAGS", r"(\Seen)")
-            log(f"  🎉 {'Follow-up' if is_subsequent_followup else 'Initial'} auto-response draft created in Gmail for {sender_email}!")
+            log(f"  🎉 Contextual [{intent}] follow-up draft created in Gmail for {sender_email}!")
 
 
 def run_single_check():
