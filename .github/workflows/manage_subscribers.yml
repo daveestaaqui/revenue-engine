@@ -1,0 +1,76 @@
+name: Manage Subscribers
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        type: choice
+        options:
+          - add
+          - deactivate
+          - list
+      email:
+        description: 'Subscriber Email (required for add / deactivate)'
+        required: false
+        default: ''
+      name:
+        description: 'Attorney / Contact Name (for add)'
+        required: false
+        default: 'Counsel'
+      firm:
+        description: 'Law Firm or Practice Name (for add)'
+        required: false
+        default: 'Legal Practice'
+      tier:
+        description: 'Subscription Tier'
+        required: false
+        default: 'Core Plan (7-Day Evaluation)'
+
+permissions:
+  contents: write
+
+jobs:
+  manage-subscribers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Execute Subscriber Management
+        run: |
+          ACTION="${{ github.event.inputs.action }}"
+          EMAIL="${{ github.event.inputs.email }}"
+          NAME="${{ github.event.inputs.name }}"
+          FIRM="${{ github.event.inputs.firm }}"
+          TIER="${{ github.event.inputs.tier }}"
+
+          if [ "$ACTION" = "list" ]; then
+            python portal/manage_subscribers.py list
+          elif [ "$ACTION" = "add" ]; then
+            if [ -z "$EMAIL" ]; then
+              echo "Error: Email is required to add a subscriber."
+              exit 1
+            fi
+            python portal/manage_subscribers.py add --email "$EMAIL" --name "$NAME" --firm "$FIRM" --tier "$TIER"
+          elif [ "$ACTION" = "deactivate" ]; then
+            if [ -z "$EMAIL" ]; then
+              echo "Error: Email is required to deactivate a subscriber."
+              exit 1
+            fi
+            python portal/manage_subscribers.py deactivate --email "$EMAIL"
+          fi
+
+      - name: Commit & Push Subscribers Update
+        if: github.event.inputs.action != 'list'
+        run: |
+          git config --global user.name "Surplus Docket Bot"
+          git config --global user.email "bot@surplusdocket.com"
+          git add portal/subscribers.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(subscribers): update subscriber registry [skip ci]" && git pull --rebase origin main && git push)

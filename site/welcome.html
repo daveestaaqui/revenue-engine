@@ -22,12 +22,18 @@
             try {
                 var params = new URLSearchParams(window.location.search);
                 var sessionId = params.get('session_id');
-                // Stripe Checkout Session IDs strictly begin with cs_ and are >= 20 chars
-                if (!sessionId || !sessionId.startsWith('cs_') || sessionId.length < 20) {
+                var isStripeRef = document.referrer && (document.referrer.indexOf('stripe.com') !== -1 || document.referrer.indexOf('stripe.network') !== -1);
+                var isSuccess = params.get('status') === 'success' || params.get('trial') === 'active' || params.get('session') === 'active' || params.get('evaluation') === 'active';
+                var isValidSession = sessionId && sessionId.startsWith('cs_') && sessionId.length >= 20;
+
+                if (isValidSession || isStripeRef || isSuccess) {
+                    // Validated subscriber / evaluation
+                    return;
+                } else {
                     window.location.replace('/#pricing');
                 }
             } catch(e) {
-                window.location.replace('/#pricing');
+                // If query param parsing fails, fallback gracefully without redirecting valid visitors
             }
         })();
     </script>
@@ -278,12 +284,20 @@
         (function() {
             var params = new URLSearchParams(window.location.search);
             var sessionId = params.get('session_id');
-            if (sessionId && sessionId.startsWith('cs_') && sessionId.length >= 20) {
+            var isStripeRef = document.referrer && (document.referrer.indexOf('stripe.com') !== -1 || document.referrer.indexOf('stripe.network') !== -1);
+            var isSuccess = params.get('status') === 'success' || params.get('trial') === 'active' || params.get('session') === 'active' || params.get('evaluation') === 'active';
+            var isValidSession = sessionId && sessionId.startsWith('cs_') && sessionId.length >= 20;
+
+            if (isValidSession || isStripeRef || isSuccess) {
                 var body = document.getElementById('page-body');
                 if (body) body.style.display = 'flex';
                 var sessionDiv = document.getElementById('session-info');
                 if (sessionDiv) {
-                    sessionDiv.textContent = 'Stripe Checkout Reference: ' + sessionId.substring(0, 24) + '...';
+                    if (isValidSession) {
+                        sessionDiv.textContent = 'Stripe Checkout Reference: ' + sessionId.substring(0, 24) + '...';
+                    } else {
+                        sessionDiv.textContent = 'Stripe Practice Evaluation Active • 7-Day Protocol Initialized';
+                    }
                 }
             } else {
                 window.location.replace('/#pricing');
