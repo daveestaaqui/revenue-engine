@@ -73,11 +73,13 @@ export async function onRequestPost(context) {
 <head>
     <meta charset="utf-8">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px; color: #1e293b; }
-        .container { max-width: 640px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .header { background: #1b365d; padding: 24px 32px; border-bottom: 3px solid #4c6d48; }
-        .header h1 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: #ffffff; }
-        .header p { margin: 6px 0 0 0; font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; font-family: monospace; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; }
+        .container { max-width: 680px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 16px -2px rgba(0,0,0,0.05); }
+        .header { background: #ffffff; padding: 20px 32px; border-bottom: 2px solid #1b365d; display: flex; align-items: center; justify-content: space-between; }
+        .brand-wrap { display: flex; align-items: center; gap: 12px; }
+        .brand-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -0.02em; margin: 0; line-height: 1.15; }
+        .brand-sub { margin: 2px 0 0 0; font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+        .badge-pill { display: inline-block; background: #edf3ec; border: 1px solid #c2d9c0; color: #365134; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 9999px; }
         .content { padding: 32px; }
         .meta-grid { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
         .meta-grid td { padding: 8px 12px; font-size: 13px; border-bottom: 1px solid #f1f5f9; }
@@ -93,8 +95,14 @@ export async function onRequestPost(context) {
 <body>
     <div class="container">
         <div class="header">
-            <h1>SURPLUS DOCKET</h1>
-            <p>Official Statutory Correspondence Memorandum</p>
+            <div class="brand-wrap">
+                <img src="https://surplusdocket.com/assets/logo_surplus_docket.png" alt="Surplus Docket Crest" width="40" height="32" style="display: block; width: 40px; height: auto;" />
+                <div>
+                    <div class="brand-title"><span style="color: #4c6d48;">SURPLUS</span> <span style="color: #1b365d;">DOCKET</span></div>
+                    <p class="brand-sub">Official Statutory Correspondence Memorandum</p>
+                </div>
+            </div>
+            <span class="badge-pill">TRANSMISSION</span>
         </div>
         <div class="content">
             <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">

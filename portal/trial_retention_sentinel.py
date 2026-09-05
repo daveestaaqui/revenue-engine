@@ -124,44 +124,51 @@ Subscriber Billing & Seat Portal: {STRIPE_PORTAL_URL}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice Advisory — Statutory Claim Windows</title>
     <style type="text/css">
-        @media only screen and (max-width: 600px) {{
-            .email-wrapper {{ width: 100% !important; padding: 6px !important; }}
-            .email-container {{ width: 100% !important; max-width: 100% !important; }}
-            .content-cell {{ padding: 18px 14px !important; }}
-            .header-cell {{ padding: 18px 14px !important; }}
+        @media only screen and (max-width: 680px) {{
+            .email-wrapper {{ width: 100% !important; }}
+            .email-outer-td {{ padding: 6px 2px !important; }}
+            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
+            .content-cell {{ padding: 20px 14px !important; }}
+            .header-cell {{ padding: 16px 14px !important; }}
+            .header-tag-cell {{ display: none !important; }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 16px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 20px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
         <tr>
-            <td align="center" style="padding: 0;">
-                <table role="presentation" width="580" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 580px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                    <!-- Header -->
+            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
+                <!-- Main Card Container: Expanded to 680px max for spacious readability -->
+                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 16px -2px rgba(0,0,0,0.05);">
+                    <!-- Header with Official Logo (Clean White Navbar Matching Website) -->
                     <tr>
-                        <td class="header-cell" style="background-color: #1b365d; padding: 22px 28px; border-bottom: 3px solid #4c6d48;">
+                        <td class="header-cell" style="background-color: #ffffff; padding: 20px 32px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                                 <tr>
-                                    <td align="left" valign="middle">
+                                    <td align="left" valign="middle" style="padding: 0;">
                                         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                                             <tr>
                                                 <td valign="middle" style="padding-right: 12px;">
-                                                    <img src="{LOGO_URL}" alt="Surplus Docket Logo" width="38" height="30" style="display: block; width: 38px; height: auto; max-height: 32px; border: 0;" />
+                                                    <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none; display: block;">
+                                                        <img src="{LOGO_URL}" alt="Surplus Docket Crest" width="44" height="34" style="display: block; width: 44px; height: auto; max-height: 36px; border: 0;" />
+                                                    </a>
                                                 </td>
-                                                <td valign="middle" style="line-height: 1.1;">
-                                                    <div style="font-family: Georgia, 'Times New Roman', serif; font-weight: 900; font-size: 20px; letter-spacing: -0.01em; margin: 0;">
-                                                        <span style="color: #4c6d48;">SURPLUS</span> <span style="color: #ffffff;">DOCKET</span>
+                                                <td valign="middle" style="line-height: 1.15;">
+                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -0.02em; margin: 0;">
+                                                        <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none;">
+                                                            <span style="color: #4c6d48;">SURPLUS</span> <span style="color: #1b365d;">DOCKET</span>
+                                                        </a>
                                                     </div>
-                                                    <div style="font-family: 'Courier New', Courier, monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-top: 4px;">
+                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; font-weight: 600; color: #64748b; letter-spacing: 0.04em; text-transform: uppercase; margin-top: 2px;">
                                                         Practice Evaluation Advisory • Day 3
                                                     </div>
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
-                                    <td align="right" valign="middle">
-                                        <span style="display: inline-block; background-color: #365134; color: #ffffff; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: 700; padding: 5px 9px; border-radius: 6px; letter-spacing: 0.04em;">
-                                            STATUTORY TOOLKIT
+                                    <td align="right" valign="middle" class="header-tag-cell" style="padding: 0;">
+                                        <span style="display: inline-block; background-color: #edf3ec; border: 1px solid #c2d9c0; color: #365134; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; letter-spacing: 0.02em; white-space: nowrap;">
+                                            DAY 3 • STATUTORY ADVISORY
                                         </span>
                                     </td>
                                 </tr>
@@ -170,7 +177,7 @@ Subscriber Billing & Seat Portal: {STRIPE_PORTAL_URL}
                     </tr>
                     <!-- Body -->
                     <tr>
-                        <td class="content-cell" style="padding: 28px; background-color: #ffffff;">
+                        <td class="content-cell" style="padding: 30px 32px; background-color: #ffffff;">
                             <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Dear <b>{name}</b> ({firm}),</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 18px 0;">
                                 As your practice enters Day 3 of your 7-day evaluation with Surplus Docket, we want to highlight how institutional asset recovery counsel utilize the statutory countdown metrics embedded in your morning court feed.
@@ -215,7 +222,7 @@ Subscriber Billing & Seat Portal: {STRIPE_PORTAL_URL}
 
                             <!-- Toolkit Callout -->
                             <div style="text-align: center; margin: 26px 0 20px 0;">
-                                <a href="{TOOLKIT_URL}" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 24px; border-radius: 6px; letter-spacing: 0.03em;">
+                                <a href="{TOOLKIT_URL}" style="display: inline-block; background-color: #4c6d48; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 26px; border-radius: 6px; letter-spacing: 0.03em;">
                                     Access Practitioner Motion Dossiers →
                                 </a>
                             </div>
@@ -298,44 +305,51 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courtesy Notice — Practice Evaluation Summary</title>
     <style type="text/css">
-        @media only screen and (max-width: 600px) {{
-            .email-wrapper {{ width: 100% !important; padding: 6px !important; }}
-            .email-container {{ width: 100% !important; max-width: 100% !important; }}
-            .content-cell {{ padding: 18px 14px !important; }}
-            .header-cell {{ padding: 18px 14px !important; }}
+        @media only screen and (max-width: 680px) {{
+            .email-wrapper {{ width: 100% !important; }}
+            .email-outer-td {{ padding: 6px 2px !important; }}
+            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
+            .content-cell {{ padding: 20px 14px !important; }}
+            .header-cell {{ padding: 16px 14px !important; }}
+            .header-tag-cell {{ display: none !important; }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 16px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 20px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
         <tr>
-            <td align="center" style="padding: 0;">
-                <table role="presentation" width="580" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 580px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                    <!-- Header -->
+            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
+                <!-- Main Card Container: Expanded to 680px max for spacious layout -->
+                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 16px -2px rgba(0,0,0,0.05);">
+                    <!-- Header with Official Logo (Clean White Navbar Matching Website) -->
                     <tr>
-                        <td class="header-cell" style="background-color: #1b365d; padding: 22px 28px; border-bottom: 3px solid #4c6d48;">
+                        <td class="header-cell" style="background-color: #ffffff; padding: 20px 32px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                                 <tr>
-                                    <td align="left" valign="middle">
+                                    <td align="left" valign="middle" style="padding: 0;">
                                         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                                             <tr>
                                                 <td valign="middle" style="padding-right: 12px;">
-                                                    <img src="{LOGO_URL}" alt="Surplus Docket Logo" width="38" height="30" style="display: block; width: 38px; height: auto; max-height: 32px; border: 0;" />
+                                                    <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none; display: block;">
+                                                        <img src="{LOGO_URL}" alt="Surplus Docket Crest" width="44" height="34" style="display: block; width: 44px; height: auto; max-height: 36px; border: 0;" />
+                                                    </a>
                                                 </td>
-                                                <td valign="middle" style="line-height: 1.1;">
-                                                    <div style="font-family: Georgia, 'Times New Roman', serif; font-weight: 900; font-size: 20px; letter-spacing: -0.01em; margin: 0;">
-                                                        <span style="color: #4c6d48;">SURPLUS</span> <span style="color: #ffffff;">DOCKET</span>
+                                                <td valign="middle" style="line-height: 1.15;">
+                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -0.02em; margin: 0;">
+                                                        <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none;">
+                                                            <span style="color: #4c6d48;">SURPLUS</span> <span style="color: #1b365d;">DOCKET</span>
+                                                        </a>
                                                     </div>
-                                                    <div style="font-family: 'Courier New', Courier, monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-top: 4px;">
-                                                        Courtesy Notice • Day 6
+                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; font-weight: 600; color: #64748b; letter-spacing: 0.04em; text-transform: uppercase; margin-top: 2px;">
+                                                        Courtesy Notice • Evaluation Concluding
                                                     </div>
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
-                                    <td align="right" valign="middle">
-                                        <span style="display: inline-block; background-color: #b45309; color: #ffffff; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: 700; padding: 5px 9px; border-radius: 6px; letter-spacing: 0.04em;">
-                                            TRIAL CONCLUDING
+                                    <td align="right" valign="middle" class="header-tag-cell" style="padding: 0;">
+                                        <span style="display: inline-block; background-color: #edf3ec; border: 1px solid #c2d9c0; color: #365134; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; letter-spacing: 0.02em; white-space: nowrap;">
+                                            DAY 6 • COURTESY NOTICE
                                         </span>
                                     </td>
                                 </tr>
@@ -344,7 +358,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                     </tr>
                     <!-- Body -->
                     <tr>
-                        <td class="content-cell" style="padding: 28px; background-color: #ffffff;">
+                        <td class="content-cell" style="padding: 30px 32px; background-color: #ffffff;">
                             <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Dear <b>{name}</b> ({firm}),</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 18px 0;">
                                 We are writing with an institutional courtesy notice regarding your 7-day practice evaluation of Surplus Docket. Your trial evaluation period concludes tomorrow.
@@ -374,7 +388,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                                     If you wish to keep your feed active, no action is needed. If you ever need to adjust practice seats, update payment methods, or cancel before the rollover, you have 1-click self-service access at any time:
                                 </p>
                                 <div style="text-align: center;">
-                                    <a href="{STRIPE_PORTAL_URL}" style="display: inline-block; background-color: #365134; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 11px 22px; border-radius: 6px; letter-spacing: 0.02em;">
+                                    <a href="{STRIPE_PORTAL_URL}" style="display: inline-block; background-color: #4c6d48; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 26px; border-radius: 6px; letter-spacing: 0.02em;">
                                         Open Stripe Subscriber Portal →
                                     </a>
                                 </div>
