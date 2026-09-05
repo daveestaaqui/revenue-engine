@@ -1,6 +1,6 @@
 # SURPLUS FUNDS RECOVERY & CONTINGENCY FEE AGREEMENT
 
-**Date:** September 04, 2026  
+**Date:** September 05, 2026  
 **Claimant (Former Owner/Heir):** ESTATE OF ELEANOR VANCE  
 **Property Address / Parcel ID:** 3309 ROSEWOOD CT WINTER PARK FL 32792 (Tax Deed #2024-TD-001501)  
 **Jurisdiction:** FL - County Court Clerk / Comptroller  

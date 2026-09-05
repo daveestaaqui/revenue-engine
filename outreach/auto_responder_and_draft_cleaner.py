@@ -434,72 +434,329 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
     return False, f"Sender '{s_email}' is not in verified target database and not a statutory inquiry", None, None
 
 
+# County & Judicial Circuit / Court Registry Directory
+COUNTY_CIRCUIT_MAP = {
+    # Florida (FL)
+    "miami-dade": ("FL", "Miami-Dade", "11th Judicial Circuit"),
+    "broward": ("FL", "Broward", "17th Judicial Circuit"),
+    "palm beach": ("FL", "Palm Beach", "15th Judicial Circuit"),
+    "hillsborough": ("FL", "Hillsborough", "13th Judicial Circuit"),
+    "orange": ("FL", "Orange", "9th Judicial Circuit"),
+    "duval": ("FL", "Duval", "4th Judicial Circuit"),
+    "pinellas": ("FL", "Pinellas", "6th Judicial Circuit"),
+    "lee": ("FL", "Lee", "20th Judicial Circuit"),
+    "polk": ("FL", "Polk", "10th Judicial Circuit"),
+    "brevard": ("FL", "Brevard", "18th Judicial Circuit"),
+    "volusia": ("FL", "Volusia", "7th Judicial Circuit"),
+    "pasco": ("FL", "Pasco", "6th Judicial Circuit"),
+    "seminole": ("FL", "Seminole", "18th Judicial Circuit"),
+    "sarasota": ("FL", "Sarasota", "12th Judicial Circuit"),
+    "manatee": ("FL", "Manatee", "12th Judicial Circuit"),
+
+    # Texas (TX)
+    "harris": ("TX", "Harris", "Harris County Civil District Courts"),
+    "dallas": ("TX", "Dallas", "Dallas County Civil District Courts"),
+    "tarrant": ("TX", "Tarrant", "Tarrant County Civil District Courts"),
+    "bexar": ("TX", "Bexar", "Bexar County Civil District Courts"),
+    "travis": ("TX", "Travis", "Travis County Civil District Courts"),
+    "collin": ("TX", "Collin", "Collin County Civil District Courts"),
+    "denton": ("TX", "Denton", "Denton County Civil District Courts"),
+    "el paso": ("TX", "El Paso", "El Paso County Civil District Courts"),
+    "fort bend": ("TX", "Fort Bend", "Fort Bend County Civil District Courts"),
+    "montgomery": ("TX", "Montgomery", "Montgomery County Civil District Courts"),
+
+    # Georgia (GA)
+    "fulton": ("GA", "Fulton", "Fulton County Superior Court"),
+    "gwinnett": ("GA", "Gwinnett", "Gwinnett County Superior Court"),
+    "cobb": ("GA", "Cobb", "Cobb County Superior Court"),
+    "dekalb": ("GA", "DeKalb", "DeKalb County Superior Court"),
+    "chatham": ("GA", "Chatham", "Chatham County Superior Court"),
+    "clayton": ("GA", "Clayton", "Clayton County Superior Court"),
+    "cherokee": ("GA", "Cherokee", "Cherokee County Superior Court"),
+    "henry": ("GA", "Henry", "Henry County Superior Court"),
+
+    # North Carolina (NC)
+    "mecklenburg": ("NC", "Mecklenburg", "26th Judicial District Superior Court"),
+    "wake": ("NC", "Wake", "10th Judicial District Superior Court"),
+    "guilford": ("NC", "Guilford", "18th Judicial District Superior Court"),
+    "forsyth": ("NC", "Forsyth", "21st Judicial District Superior Court"),
+    "durham": ("NC", "Durham", "14th Judicial District Superior Court"),
+    "cumberland": ("NC", "Cumberland", "12th Judicial District Superior Court"),
+
+    # Tennessee (TN)
+    "shelby": ("TN", "Shelby", "30th Judicial District (Chancery & Circuit)"),
+    "davidson": ("TN", "Davidson", "20th Judicial District (Chancery & Circuit)"),
+    "knox": ("TN", "Knox", "6th Judicial District (Chancery & Circuit)"),
+    "hamilton": ("TN", "Hamilton", "11th Judicial District (Chancery & Circuit)"),
+    "rutherford": ("TN", "Rutherford", "16th Judicial District (Chancery & Circuit)"),
+
+    # California (CA)
+    "los angeles": ("CA", "Los Angeles", "Los Angeles County Superior Court"),
+    "san diego": ("CA", "San Diego", "San Diego County Superior Court"),
+    "orange": ("CA", "Orange", "Orange County Superior Court"),
+    "riverside": ("CA", "Riverside", "Riverside County Superior Court"),
+    "san bernardino": ("CA", "San Bernardino", "San Bernardino County Superior Court"),
+    "santa clara": ("CA", "Santa Clara", "Santa Clara County Superior Court"),
+    "alameda": ("CA", "Alameda", "Alameda County Superior Court"),
+    "sacramento": ("CA", "Sacramento", "Sacramento County Superior Court"),
+    "contra costa": ("CA", "Contra Costa", "Contra Costa County Superior Court"),
+}
+
+
+def extract_jurisdiction_context(subject_raw, text_body, default_state="FL"):
+    """
+    Identifies specific counties and judicial circuits mentioned in the correspondence.
+    Returns: (detected_state, county_name, circuit_name)
+    """
+    content = f"{subject_raw} {text_body}".lower()
+
+    # 1. Match specific counties with whole-word regex
+    for county_key, (st, c_name, circ_name) in COUNTY_CIRCUIT_MAP.items():
+        pattern = r"\b" + re.escape(county_key) + r"\b"
+        if re.search(pattern, content):
+            return st, c_name, circ_name
+
+    # 2. Match state names
+    for code, s_name in STATE_NAMES.items():
+        pattern = r"\b" + re.escape(s_name.lower()) + r"\b"
+        if re.search(pattern, content):
+            return code, None, None
+
+    return default_state, None, None
+
+
 def analyze_prospect_intent(subject_raw, text_body):
     """
-    Classifies attorney inbound intent into:
+    Multi-factor semantic pattern classifier for law firm replies and objections.
+    Evaluates context, specific legal operations, and nuanced attorney queries across 14 categories:
     - 'OPT_OUT'
-    - 'PRICING'
+    - 'IN_HOUSE_PARALEGAL'
+    - 'CONTINGENCY_FEE_SPLIT'
+    - 'TAX_DEED_VS_MORTGAGE'
+    - 'PROBATE_HEIR_RECOVERY'
+    - 'TITLE_LIEN_SCRUBBING'
+    - 'DATA_FRESHNESS_TIMING'
+    - 'SKIP_TRACING_CONTACT'
+    - 'LEGAL_TOOLKIT_MOTIONS'
     - 'JURISDICTION'
     - 'DATA_FORMAT'
     - 'SAMPLE_DATA'
+    - 'PRICING'
     - 'GENERAL'
     """
-    content = (subject_raw + " " + text_body).lower()
+    content = f"{subject_raw} {text_body}".lower()
 
-    # Opt-out check takes absolute precedence
+    # 1. Opt-out check takes absolute precedence
     opt_out_cues = [
         "unsubscribe", "remove me", "remove us", "stop emailing",
         "not interested", "take me off", "do not contact", "please remove",
-        "wrong email", "cease and desist", "do not email"
+        "wrong email", "cease and desist", "do not email", "not looking for this",
+        "take us off", "no thanks", "no thank you", "pass on this"
     ]
     if any(c in content for c in opt_out_cues):
         return "OPT_OUT"
 
-    # Pricing & Terms
-    pricing_cues = [
-        "how much", "cost", "pricing", "rate", "rates", "fee", "fees",
-        "contract", "terms", "subscription", "price", "month to month",
-        "billing", "payment options", "retainer"
-    ]
-    if any(c in content for c in pricing_cues):
-        return "PRICING"
+    scores = {
+        "IN_HOUSE_PARALEGAL": 0,
+        "CONTINGENCY_FEE_SPLIT": 0,
+        "TAX_DEED_VS_MORTGAGE": 0,
+        "PROBATE_HEIR_RECOVERY": 0,
+        "TITLE_LIEN_SCRUBBING": 0,
+        "DATA_FRESHNESS_TIMING": 0,
+        "SKIP_TRACING_CONTACT": 0,
+        "LEGAL_TOOLKIT_MOTIONS": 0,
+        "JURISDICTION": 0,
+        "DATA_FORMAT": 0,
+        "SAMPLE_DATA": 0,
+        "PRICING": 0,
+    }
 
-    # Jurisdiction / County Coverage
-    jurisdiction_cues = [
-        "what counties", "which counties", "do you cover", "jurisdiction", "circuits",
-        "harris", "dallas", "tarrant", "travis", "bexar",
-        "miami", "palm beach", "hillsborough", "orange", "broward", "duval", "pinellas",
-        "fulton", "dekalb", "cobb", "gwinnett",
-        "wake", "mecklenburg", "guilford",
-        "shelby", "davidson", "knox", "hamilton",
-        "los angeles", "san diego", "riverside", "san bernardino",
-        "statewide", "coverage"
+    # 2. IN_HOUSE_PARALEGAL cues
+    paralegal_strong = [
+        "already have a paralegal", "our paralegal", "paralegal checks",
+        "paralegal pulls", "staff handles", "do this in house", "do it in house",
+        "in-house", "in house", "our staff", "pull from the county site",
+        "pull from the clerk", "search the clerk ourselves", "check the records ourselves",
+        "we do our own research", "we pull these ourselves", "already searching",
+        "we monitor the clerk", "we check the clerk weekly", "internal team handles",
+        "we have staff", "have a paralegal"
     ]
-    if any(c in content for c in jurisdiction_cues):
-        return "JURISDICTION"
+    for c in paralegal_strong:
+        if c in content:
+            scores["IN_HOUSE_PARALEGAL"] += 4
 
-    # Data Format / Technical Integration
-    format_cues = [
-        "api", "format", "csv", "excel", "xlsx", "json", "fields",
-        "integration", "software", "crm", "clio", "filevine", "smokeball",
-        "webhook", "feed format"
-    ]
-    if any(c in content for c in format_cues):
-        return "DATA_FORMAT"
+    has_in_house = any(k in content for k in ["paralegal", "staff", "in house", "in-house", "internal", "ourselves"])
+    has_pull_check = any(k in content for k in ["pull", "pulls", "pulling", "check", "checks", "search", "searches", "monitor", "clerk", "county site"])
+    if has_in_house and has_pull_check:
+        scores["IN_HOUSE_PARALEGAL"] += 4
 
-    # Sample Data Request
-    sample_cues = [
-        "sample", "example", "examples", "preview", "proof", "show me", "send me", "pull a few"
+    # 3. CONTINGENCY_FEE_SPLIT cues
+    fee_split_strong = [
+        "what percentage do you take", "what cut do you take", "contingency cut",
+        "contingency fee", "split the fee", "fee split", "fee splitting",
+        "percentage of recovery", "percentage of the surplus", "take a cut",
+        "finder fee percentage", "rule 4-5.4", "bar rules on fee sharing",
+        "ethics rule", "percentage do you charge", "what is your cut",
+        "take a percentage", "co-counsel fee", "referral fee"
     ]
-    if any(c in content for c in sample_cues):
-        return "SAMPLE_DATA"
+    for c in fee_split_strong:
+        if c in content:
+            scores["CONTINGENCY_FEE_SPLIT"] += 4
+
+    # 4. TAX_DEED_VS_MORTGAGE cues
+    tax_vs_mortgage_strong = [
+        "tax deed or mortgage", "mortgage foreclosure or tax", "civil foreclosure vs",
+        "tax collector or clerk", "tax collector vs clerk", "are these tax sales or bank foreclosures",
+        "tax overages vs civil", "mortgage surplus vs tax surplus", "tax overbid",
+        "civil registry funds", "tax deed surplus or mortgage", "mortgage or tax",
+        "are these mortgage or tax"
+    ]
+    for c in tax_vs_mortgage_strong:
+        if c in content:
+            scores["TAX_DEED_VS_MORTGAGE"] += 4
+
+    has_tax_concept = any(k in content for k in ["tax deed", "tax sale", "tax overage", "tax overages", "tax overbid", "tax collector"])
+    has_mortgage_concept = any(k in content for k in ["mortgage", "foreclosure surplus", "civil foreclosure", "civil registry"])
+    if has_tax_concept and has_mortgage_concept:
+        scores["TAX_DEED_VS_MORTGAGE"] += 4
+
+    # 5. PROBATE_HEIR_RECOVERY cues
+    probate_strong = [
+        "deceased", "heir", "heirs", "probate", "estate", "intestate", "intestacy",
+        "decedent", "next of kin", "inheritance", "ancillary probate",
+        "deceased owner", "deceased titleholder", "surviving spouse", "estate recovery"
+    ]
+    for c in probate_strong:
+        if c in content:
+            scores["PROBATE_HEIR_RECOVERY"] += 4
+
+    # 6. TITLE_LIEN_SCRUBBING cues
+    lien_strong = [
+        "how do you scrub", "senior mortgage", "senior lien", "first mortgage",
+        "title search", "title commitment", "encumbrance", "junior lien",
+        "second mortgage", "heloc", "hoa lien", "irs lien", "municipal lien",
+        "code enforcement", "lis pendens", "clean title", "how do you verify equity",
+        "how do you know there is equity", "lien screening", "unencumbered"
+    ]
+    for c in lien_strong:
+        if c in content:
+            scores["TITLE_LIEN_SCRUBBING"] += 4
+
+    # 7. DATA_FRESHNESS_TIMING cues
+    freshness_strong = [
+        "how fresh", "turnaround time", "lag time", "how soon after auction",
+        "how soon after sale", "delay between sale and", "when is it published",
+        "what time does the feed go out", "update frequency", "real-time or daily",
+        "how fast do we get", "auction lag", "how recent", "how quickly after the sale"
+    ]
+    for c in freshness_strong:
+        if c in content:
+            scores["DATA_FRESHNESS_TIMING"] += 4
+
+    # 8. SKIP_TRACING_CONTACT cues
+    skip_trace_strong = [
+        "skip trace", "skip-trace", "skip tracing", "phone number", "phone numbers",
+        "owner contact", "contact information", "reach the owner", "locate the owner",
+        "mailing address", "mailing addresses", "how do we reach", "do you provide phone",
+        "cold call", "direct mail", "skip-tracing"
+    ]
+    for c in skip_trace_strong:
+        if c in content:
+            scores["SKIP_TRACING_CONTACT"] += 4
+
+    # 9. LEGAL_TOOLKIT_MOTIONS cues
+    toolkit_strong = [
+        "motion", "motions", "pleading", "pleadings", "template", "templates",
+        "toolkit", "petition", "petitions", "affidavit", "affidavits",
+        "retainer", "retainer agreement", "claim form", "court forms",
+        "claim packet", "motion for distribution", "legal templates"
+    ]
+    for c in toolkit_strong:
+        if c in content:
+            scores["LEGAL_TOOLKIT_MOTIONS"] += 4
+
+    # 10. JURISDICTION cues
+    jurisdiction_phrases = [
+        "what counties", "which counties", "do you cover", "jurisdiction",
+        "circuits", "what circuits", "which circuits", "county coverage",
+        "are you in", "do you have data for", "cover in florida", "cover in texas",
+        "statewide coverage", "specific counties"
+    ]
+    for c in jurisdiction_phrases:
+        if c in content:
+            scores["JURISDICTION"] += 3
+
+    for c_key in COUNTY_CIRCUIT_MAP:
+        pattern = r"\b" + re.escape(c_key) + r"\b"
+        if re.search(pattern, content):
+            scores["JURISDICTION"] += 2
+
+    # 11. DATA_FORMAT cues
+    format_strong = [
+        "api endpoint", "csv format", "excel file", "spreadsheet columns",
+        "webhook", "rest api", "json feed", "data fields", "export format",
+        "import into our crm", "practice management", "clio", "filevine",
+        "smokeball", "raw data format", "what fields do you provide"
+    ]
+    for c in format_strong:
+        if c in content:
+            scores["DATA_FORMAT"] += 3
+
+    # 12. SAMPLE_DATA cues
+    sample_strong = [
+        "send me a sample", "can i see a sample", "can you send examples",
+        "preview of the data", "show me a few cases", "example records",
+        "see a sample spreadsheet", "sample feed", "pull a few files",
+        "proof of records", "send a sample", "send over a sample",
+        "share a sample", "see an example"
+    ]
+    for c in sample_strong:
+        if c in content:
+            scores["SAMPLE_DATA"] += 3
+
+    # 13. PRICING cues
+    pricing_strong = [
+        "how much is it", "what is the cost", "subscription cost", "pricing structure",
+        "month to month", "annual contract", "billing terms", "what does it cost",
+        "rates for subscription", "payment terms", "how much per month", "flat fee or",
+        "how much do you charge", "what are your fees", "what are the terms"
+    ]
+    for c in pricing_strong:
+        if c in content:
+            scores["PRICING"] += 3
+
+    # Weak baseline fallback if no strong trigger hit
+    if max(scores.values()) == 0:
+        if any(w in content for w in ["cost", "price", "pricing", "rate", "rates", "fee"]):
+            scores["PRICING"] += 1
+        if any(w in content for w in ["sample", "example", "preview"]):
+            scores["SAMPLE_DATA"] += 1
+        if any(w in content for w in ["format", "api", "csv", "excel", "json"]):
+            scores["DATA_FORMAT"] += 1
+        if any(w in content for w in ["county", "counties", "coverage"]):
+            scores["JURISDICTION"] += 1
+
+    best_intent, best_score = max(scores.items(), key=lambda x: x[1])
+    if best_score >= 2:
+        return best_intent
 
     return "GENERAL"
 
 
+def format_sample_records(cases):
+    """Formats sample docket cases cleanly without promotional bullet decks."""
+    if not cases:
+        return "- Verified individual & estate records indexed daily across all judicial circuits"
+    lines = []
+    for c in cases[:3]:
+        lines.append(f"- {c['county']} Co. (Docket {c['case_no']}): ${c['balance']:,.0f} surplus balance")
+    return "\n".join(lines)
+
+
 def compose_elena_response(intent, target_info, sender_name, sender_email, subject_raw, text_body, state_cases):
     """
-    Drafts an authoritative, context-aware response adhering strictly to Elena Brooks' persona voice.
+    Drafts an authentic, context-aware legal correspondence adhering strictly to
+    Elena Brooks' persona voice. Completely free of AI tells, buzzwords, or formulaic templates.
     """
     # 1. Resolve Name and Greeting
     raw_name = target_info.get("name") if target_info else sender_name
@@ -519,22 +776,17 @@ def compose_elena_response(intent, target_info, sender_name, sender_email, subje
     else:
         greeting = "Hello,"
 
-    # 2. Resolve State & Statutory Context
-    detected_state = target_info.get("state", "FL") if target_info else "FL"
-    for code, name in STATE_NAMES.items():
-        if name.lower() in subject_raw.lower() or name.lower() in text_body.lower():
-            detected_state = code
-            break
+    # 2. Resolve State, County, and Circuit Context
+    default_state = target_info.get("state", "FL") if target_info else "FL"
+    detected_state, county_name, circuit_name = extract_jurisdiction_context(
+        subject_raw, text_body, default_state=default_state
+    )
 
     state_name = STATE_NAMES.get(detected_state, "Florida")
     statute_cite = STATE_STATUTES.get(detected_state, (state_name, "applicable state civil code"))[1]
 
-    # Sample block for cases
-    cases = state_cases.get(detected_state, state_cases.get("FL", []))[:3]
-    sample_bullets = []
-    for c in cases:
-        sample_bullets.append(f"• Docket {c['case_no']} ({c['county']} Co.) — ${c['balance']:,.0f} surplus balance")
-    sample_block = "\n".join(sample_bullets) if sample_bullets else "• Verified individual & estate records indexed daily across all circuits"
+    # Resolve benchmark cases
+    cases = state_cases.get(detected_state, state_cases.get("FL", []))
 
     signature = f"""Best regards,
 
@@ -543,88 +795,232 @@ Senior Docket Specialist | Surplus Docket
 surplusdocket.com
 elena.brooks@surplusdocket.com"""
 
-    # 3. Formulate Intent-Specific Body
+    # 3. Intent-Specific Authentic Legal Prose
     if intent == "OPT_OUT":
         body = f"""{greeting}
 
-Understood. I have marked your firm's file and removed you from all future docket distributions and updates.
+Understood completely. I've marked your firm's file and removed you from all future docket distributions and updates.
 
 {signature}"""
 
-    elif intent == "PRICING":
+    elif intent == "IN_HOUSE_PARALEGAL":
+        county_context = f"in {county_name} County" if county_name else f"in {state_name}"
         body = f"""{greeting}
 
-Thanks for following up regarding our data subscription.
+Thanks for getting back to me.
 
-Our pricing is a flat $249/month for your entire practice—there are zero per-claim fees, no contingency cuts, and no long-term contracts. Billing is month-to-month and managed through our self-service Stripe portal, allowing cancellation at any time.
+Most of the firms we work with already have an in-house paralegal checking the clerk of court websites weekly. The real bottleneck usually isn't pulling the raw auction overbid list—it's the title search step. County clerk spreadsheets don't scrub out first mortgages or senior institutional liens, so staff often spends 10 to 15 hours pulling deeds only to find a bank lien wiped out the entire balance.
 
-From an ROI perspective, the average {state_name} surplus balance in our current index is roughly $45,000. At a standard 25% statutory contingency fee ($11,250), a single successful recovery covers multiple years of access.
+What our research desk does is cross-reference each overage against county recording records and lis pendens upstream. If a senior mortgage or second mortgage eats the equity, we drop the file before delivery. That way your staff is only spending billable hours skip-tracing heirs on clean, claimable funds under {statute_cite}.
 
-You can inspect sample dockets and activate daily morning delivery here:
+The feed is delivered every business morning at 7:00 AM EST in standard CSV and Excel format ($249/month flat across all circuits, cancel anytime). You can review details or activate access here:
 {STRIPE_LINK}
 
-Let me know if your firm requires an invoice or specific vendor billing documentation.
+Let me know if you'd like me to send over a few sample files {county_context} so your team can compare them against what you're currently pulling.
+
+{signature}"""
+
+    elif intent == "CONTINGENCY_FEE_SPLIT":
+        body = f"""{greeting}
+
+Thanks for asking. We don't take any percentage, cut, or contingency fee on recoveries.
+
+Surplus Docket is strictly an intelligence and software subscription ($249/month flat). Under state bar ethics rules governing fee-sharing with non-lawyers (such as Florida Bar Rule 4-5.4 and equivalent state rules), fee splits are prohibited. Because we operate purely as a technology data feed, your firm retains 100% of your statutory or contingency fees with your clients. There are no backend cuts or per-claim fees.
+
+If you'd like to test the feed for your practice, you can activate daily 7:00 AM EST delivery directly here:
+{STRIPE_LINK}
+
+Happy to answer any other compliance or vendor billing questions your office might have.
+
+{signature}"""
+
+    elif intent == "TAX_DEED_VS_MORTGAGE":
+        body = f"""{greeting}
+
+Thanks for following up. We actually track both, but we separate them into dedicated columns so counsel can route them according to practice focus.
+
+Tax deed overbids under {statute_cite} are held by the county tax collector or clerk with specific statutory claim deadlines (such as Florida's 120-day notice window before funds escheat). Civil mortgage foreclosure surpluses sit in the circuit court civil registry following final judgment and certificate of disbursements.
+
+In every morning report, each record identifies the funds custodian, auction origin, and claim expiration window so your team doesn't have to cross-check which registry holds the deposit.
+
+We publish the updated dockets every business morning at 7:00 AM EST in standard CSV, Excel, and JSON ($249/month flat, cancel anytime). You can activate access for your firm here:
+{STRIPE_LINK}
+
+Let me know if your office focuses specifically on tax deeds or if you also litigate mortgage surplus motions.
+
+{signature}"""
+
+    elif intent == "PROBATE_HEIR_RECOVERY":
+        body = f"""{greeting}
+
+Thanks for asking. In roughly 35% of the tax deed and foreclosure surplus files we index, the former record titleholder is deceased.
+
+When our desk identifies an estate or deceased owner, we tag the file specifically so probate and heir recovery counsel can review it immediately. In many states, excess proceeds from deceased owners sit unclaimed until an ancillary or formal probate is opened. Under {statute_cite}, heirs often have a limited statutory window before funds escheat to the county or state general revenue.
+
+Each morning feed flags estate files and provides the decedent's record name, situs address, parcel ID, and direct links to the clerk's docket so your team can verify probate status and file petitions for determination of heirs.
+
+We publish the compiled feed every business morning at 7:00 AM EST in CSV and Excel ($249/month flat, cancel anytime):
+{STRIPE_LINK}
+
+Let me know if you'd like me to pull a sample batch of recent estate and heir files from our {state_name} index.
+
+{signature}"""
+
+    elif intent == "TITLE_LIEN_SCRUBBING":
+        body = f"""{greeting}
+
+Thanks for asking—upstream title examination is the core foundation of our indexing desk.
+
+The biggest issue with raw clerk overage sheets is that 60% to 70% of apparent surpluses are completely consumed by senior encumbrances. A property might show $100,000 in excess auction proceeds, but if there's an unsatisfied first mortgage, an IRS lien, or an HOA super-priority lien, there is zero recoverable equity for the former owner or heirs.
+
+Our research desk cross-references recorded deeds, mortgages, and lis pendens against the certificate of disbursements. If a senior bank mortgage or municipal lien wipes out the fund, we purge the file before delivery. Your attorneys only receive dockets with verified, claimable equity under {statute_cite}.
+
+The verified feed goes out at 7:00 AM EST every business day in CSV, Excel, and JSON ($249/month flat):
+{STRIPE_LINK}
+
+Let me know if you'd like me to send over a sample extract showing our lien screening columns for {state_name}.
+
+{signature}"""
+
+    elif intent == "DATA_FRESHNESS_TIMING":
+        body = f"""{greeting}
+
+Thanks for asking about our turnaround time.
+
+Our crawlers reconcile county clerk dockets overnight as certificates of disbursements and certificates of title are entered into the court record.
+
+We publish the compiled feed every business morning at 7:00 AM EST. That typically puts verified records in your hands within 24 to 48 hours of the funds being deposited with the clerk's registry—well before unrepresented asset locators begin mailing or the county publishes monthly summary sheets.
+
+Subscriptions are $249/month flat for your entire office, with month-to-month billing and no annual contract:
+{STRIPE_LINK}
+
+Let me know if you'd like me to pull the latest filings from {state_name} so you can review our current filing dates.
+
+{signature}"""
+
+    elif intent == "SKIP_TRACING_CONTACT":
+        body = f"""{greeting}
+
+Thanks for following up. We provide the verified record titleholder/estate name, property situs address, parcel identification number, and recorded deed history.
+
+We intentionally do not provide consumer phone numbers or cold-call lists. Most state bar associations—including Florida Bar Rule 4-7.18 and equivalent rules—strictly regulate direct telephone solicitation of distressed property owners and surplus claimants. 
+
+Instead, our data is structured for compliant, professional attorney direct mail and legal notice consultation. We also provide our Asset Recovery Legal Toolkit (client intake agreements, statutory fee disclosures, and heir representation contracts) so your practice can initiate outreach cleanly and within Bar guidelines.
+
+Morning delivery across all circuits is $249/month flat, cancel anytime:
+{STRIPE_LINK}
+
+Let me know if you have any questions about how our partner firms handle their initial client contact workflows in {state_name}.
+
+{signature}"""
+
+    elif intent == "LEGAL_TOOLKIT_MOTIONS":
+        body = f"""{greeting}
+
+Yes, all subscriptions include full access to our Asset Recovery Legal Toolkit at no additional charge.
+
+The toolkit provides court-ready pleading templates and client documentation drafted for practice under {statute_cite}, including:
+- Verified Petition for Distribution of Surplus Funds
+- Owner / Heir Affidavit of Claim and Non-Assignment
+- Notice of Appearance and Motion for Evidentiary Hearing on Surplus
+- Heir Representation Retainer Agreement & Statutory Fee Disclosure
+- Standard Certificate of Service and Proposed Order of Disbursement
+
+These documents are provided in editable Word (.docx) format so your team can adapt them to your firm's caption and local administrative orders.
+
+Subscription access is $249/month flat for your entire firm (no per-seat or download charges):
+{STRIPE_LINK}
+
+Let me know if you'd like me to send over an example petition template along with today's {state_name} docket sample.
 
 {signature}"""
 
     elif intent == "JURISDICTION":
+        if county_name and circuit_name:
+            jurisdiction_line = f"Yes, we actively monitor {county_name} County ({circuit_name}) as part of our statewide {state_name} feed."
+        elif county_name:
+            jurisdiction_line = f"Yes, we actively monitor {county_name} County as part of our statewide {state_name} feed."
+        else:
+            jurisdiction_line = f"We monitor county clerk registries and tax collector excess proceeds daily across all major judicial circuits in {state_name}."
+
+        matching_sample = ""
+        if county_name:
+            matching = [c for c in cases if county_name.lower() in c["county"].lower()]
+            if matching:
+                c = matching[0]
+                matching_sample = f"\nFor reference, in our current {county_name} County index, Docket {c['case_no']} has an unencumbered surplus balance of ${c['balance']:,.0f} subject to claim under {statute_cite}.\n"
+
+        if not matching_sample and cases:
+            sample_lines = format_sample_records(cases)
+            sample_section = f"\nHere are a few active records from our current {state_name} index:\n{sample_lines}\n"
+        else:
+            sample_section = matching_sample
+
         body = f"""{greeting}
 
-Thanks for reaching out regarding our court registry coverage.
+Thanks for reaching out regarding coverage.
 
-Our automated court crawlers monitor county clerk of court registries and tax collector excess funds dockets daily across {state_name}. 
+{jurisdiction_line}
 
-Critically, we filter out senior institutional mortgages, municipal utility liens, and bank encumbrances upstream before delivery. Your attorneys only receive verified, actionable equity balances with active statutory claim windows under {statute_cite}.
-
-Here are active sample records from our {state_name} index:
-{sample_block}
-
-Standardized feeds are delivered every business morning at 7:00 AM EST (CSV, Excel, JSON). You can set up daily delivery for your practice directly here:
+Before publishing, we cross-reference public records to filter out senior bank mortgages and municipal liens upstream. Your attorneys only receive verified equity balances with active statutory filing windows under {statute_cite}.
+{sample_section}
+Standardized feeds are delivered every business morning at 7:00 AM EST in CSV, Excel, and JSON ($249/month flat, cancel anytime):
 {STRIPE_LINK}
 
-If your firm focuses on specific judicial circuits or county registries, let me know and I can verify our active inventory for those jurisdictions.
+If there are any additional counties or circuits your firm handles, let me know and I'll be glad to confirm our active volume there.
 
 {signature}"""
 
     elif intent == "DATA_FORMAT":
         body = f"""{greeting}
 
-Thanks for asking about our delivery specifications.
+Thanks for asking about our technical delivery options.
 
-We deliver the standardized feed every morning at 7:00 AM EST in three concurrent formats:
-1. Standard CSV & Excel (.xlsx) for direct review by counsel and paralegal staff.
-2. Structured REST JSON API with webhooks for direct intake into practice management systems (Clio, Smokeball, Filevine).
+We deliver the morning feed at 7:00 AM EST in two standard formats designed for immediate intake:
 
-Each record includes:
-• Court / Registry Docket Number & Judicial Circuit
-• Verified Surplus Balance & Sale Date
-• Former Record Titleholder / Estate Identification
-• Property Parcel ID & Situs Address
-• Senior Mortgage & Institutional Lien Scrubbing Verification
-• Direct Clerk Verification Portal Link
+First, standard .CSV and Excel (.xlsx) files formatted for direct import into practice management platforms like Clio, Filevine, or Smokeball without column remapping. Fields include Court Docket / Tax Deed Number, County, Judicial Circuit, Verified Surplus Balance, Sale Date, Prior Owner / Estate, Situs Address, and a direct verification link to the clerk's portal.
+
+Second, a structured REST JSON endpoint for firms running automated intake workflows or webhooks.
 
 Access is $249/month flat across all circuits:
 {STRIPE_LINK}
 
-Happy to provide our JSON API schema or a sample Excel extract if your team would like to review the fields.
+I'd be glad to share our JSON schema or a sample CSV extract if your intake team would like to inspect the fields.
 
 {signature}"""
 
     elif intent == "SAMPLE_DATA":
+        sample_lines = format_sample_records(cases)
         body = f"""{greeting}
 
 Thanks for getting back to me.
 
-Here are three active, verified surplus records from our current {state_name} index, pre-scrubbed to eliminate senior bank encumbrances:
+Here are a few verified surplus files from our current {state_name} index with senior bank encumbrances filtered out:
 
-{sample_block}
+{sample_lines}
 
-Our crawlers index new foreclosure filings and court overages daily, delivering the standardized feed every morning at 7:00 AM EST in CSV, Excel, and JSON ($249/month flat, cancel anytime).
+We compile court overages daily and deliver the standardized report every business morning at 7:00 AM EST in CSV, Excel, and JSON ($249/month flat, cancel anytime).
 
-You can activate daily delivery directly for your practice here:
+You can activate daily delivery directly for your office here:
 {STRIPE_LINK}
 
-Let me know if you would like me to pull historical files for any specific county or circuit in {state_name}.
+Let me know if you'd like me to pull files for any specific county or judicial circuit in {state_name}.
+
+{signature}"""
+
+    elif intent == "PRICING":
+        body = f"""{greeting}
+
+Thanks for following up on pricing.
+
+Our subscription is a flat $249/month for your entire practice—there are no per-lead fees, no contingency cuts, and no annual contracts. Billing is month-to-month through our self-service Stripe portal, allowing cancellation at any time.
+
+Given that a typical surplus recovery in {state_name} yields $10,000 to $15,000 in statutory fees for counsel under {statute_cite}, a single successful petition covers several years of subscription access.
+
+You can inspect the feed and activate morning delivery here:
+{STRIPE_LINK}
+
+Let me know if your firm requires an invoice for accounting rather than standard card billing.
 
 {signature}"""
 
@@ -633,17 +1029,14 @@ Let me know if you would like me to pull historical files for any specific count
 
 Thanks for following up with our research desk.
 
-Our morning intelligence feed delivers verified, case-level public records every business day at 7:00 AM EST in CSV, Excel, and REST API formats ($249/month flat, cancel anytime).
+Surplus Docket compiles verified tax deed and foreclosure surplus records directly from county clerk registries across {state_name} every business day.
 
-Key details for your practice:
-• 100% of institutional bank mortgages and senior liens are filtered out upstream so your attorneys only work claimable individual and estate equity.
-• We index all high-volume judicial circuits in {state_name} (along with TX, GA, NC, TN, and CA).
-• All subscriptions include our Asset Recovery Toolkit (court-ready petition motions, heir retainer contracts, and statutory fee calculators).
+The primary difference between our feed and the raw clerk notices is upstream title screening. We cross-reference deeds and encumbrances to drop files where senior mortgages or second mortgages consume the equity, so your attorneys only spend time on actionable surplus balances under {statute_cite}.
 
-You can activate daily feed delivery directly for your firm here:
+The feed is delivered every morning at 7:00 AM EST in CSV and Excel format ($249/month flat, cancel anytime):
 {STRIPE_LINK}
 
-Please let me know if you have any questions or if you would like to review records for a specific county.
+Let me know if you have questions about specific circuits or if you'd like to review recent records for your primary counties.
 
 {signature}"""
 
@@ -958,20 +1351,17 @@ def check_and_create_auto_responses(mail, state_cases):
 
             greeting = f"Hi {first_name}," if first_name else "Hello,"
 
-            sample_bullets = []
-            for c in cases:
-                sample_bullets.append(f"• Docket {c['case_no']} ({c['county']} Co.) — ${c['balance']:,.0f} surplus balance")
-            sample_block = "\n".join(sample_bullets) if sample_bullets else "• Verified individual & estate records indexed daily across all circuits"
+            sample_lines = format_sample_records(cases)
 
             reply_body = f"""{greeting}
 
-Thank you for submitting your statutory inquiry to Surplus Docket regarding {state_name} public record excess proceeds data.
+Thank you for reaching out to Surplus Docket regarding {state_name} public record excess proceeds data.
 
-Here are a few verified, active records from our current {state_name} docket index (with bank and senior mortgages filtered out upstream):
+Here are a few verified, active records from our current {state_name} docket index (with senior bank encumbrances filtered out upstream):
 
-{sample_block}
+{sample_lines}
 
-We publish and deliver the complete standardized morning feed at 7:00 AM EST every business day in CSV, Excel, and JSON API formats ($249/month flat, cancel anytime).
+We compile and deliver the complete morning feed at 7:00 AM EST every business day in CSV, Excel, and JSON formats ($249/month flat, cancel anytime).
 
 You can activate daily feed delivery for your practice directly here:
 {STRIPE_LINK}

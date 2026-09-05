@@ -90,3 +90,6 @@
 [2026-09-04 11:12:40]   🗑️ IMAP: Removed sent draft for: support@breathefum.com
 [2026-09-04 11:12:41] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
 [2026-09-04 11:16:53]   🍎 Apple Mail: Expunged 1 sent draft(s) directly in Mail.app.
+[2026-09-05 03:04:58] IMAP connection error: [Errno 60] Operation timed out
+[2026-09-05 09:23:36]   📩 Detected outreach reply from: Gmail Team <gmail-noreply@google.com> (Sub: Gmail Confirmation - Send Mail as elena.brooks@surplusdocket.com)
+[2026-09-05 09:23:37]   🎉 Auto-response draft created in Gmail for gmail-noreply@google.com!
