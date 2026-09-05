@@ -39,7 +39,8 @@ from outreach.form_outreach_engine import (
     STATE_URLS,
     COUNTY_URLS,
     STRIPE_LINK,
-    SITE_URL
+    SITE_URL,
+    SENDER_NAME
 )
 from run_surplus_pipeline import run_pipeline
 
@@ -126,7 +127,7 @@ class TestMessageComposerStress(unittest.TestCase):
             self.assertIn("Texas", body)  # State name mapped
             self.assertIn(STRIPE_LINK, body)  # Stripe checkout link present
             self.assertIn("https://surplusdocket.com", body)  # Link present
-            self.assertIn("David Mahler", body)  # Sender name
+            self.assertIn(SENDER_NAME, body)  # Sender name
             self.assertNotIn("{", body)  # Zero unpopulated template tags
             self.assertNotIn("}", body)
             self.assertNotIn("{", subject)

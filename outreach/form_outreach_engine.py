@@ -32,11 +32,12 @@ TARGETS_CSV = MASTER_TARGETS_CSV if MASTER_TARGETS_CSV.exists() else LEGACY_TARG
 LOG_CSV = OUTREACH_DIR / "form_submissions_log.csv"
 SCREENSHOTS_DIR = OUTREACH_DIR / "form_screenshots"
 
-# Sender Info
-SENDER_NAME = "David Mahler"
-SENDER_FIRST_NAME = "David"
-SENDER_LAST_NAME = "Mahler"
-SENDER_EMAIL = "david@surplusdocket.com"
+# Sender Info (Default: Elena Vance — Senior Docket Intelligence Specialist)
+SENDER_NAME = "Elena Vance"
+SENDER_FIRST_NAME = "Elena"
+SENDER_LAST_NAME = "Vance"
+SENDER_TITLE = "Senior Docket Specialist"
+SENDER_EMAIL = "elena.vance@surplusdocket.com"
 SENDER_PHONE = "508-888-0000"
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
@@ -105,12 +106,12 @@ def compose_message(target):
     chosen_variant = random.choice(variants)
     
     if chosen_variant == "A":
-        subject = f"{state_name} surplus & excess proceeds data"
+        subject = f"{state_name} surplus & excess proceeds intelligence"
         body = f"""{greeting}
 
-I'm reaching out because I built a tool that indexes tax deed surplus and excess proceeds cases across {state_name}.
+I'm reaching out from the public records research desk at Surplus Docket. We index tax deed surplus and excess proceeds dockets daily across {state_name}.
 
-Most county surplus lists are a headache to work through because the majority of files are encumbered by senior mortgages or bank liens that wipe out the funds. We pull the dockets daily and filter out those institutional liens upstream, so you're only looking at clean individual and estate claims.
+Most county surplus lists are a headache to work through because the majority of files are encumbered by senior mortgages or bank liens that wipe out the funds. We pull the dockets daily and filter out those institutional liens upstream, so your practice is only looking at clean individual and estate claims.
 
 You can inspect the live {state_name} feed and sample cases directly here:
 {recommended_link}
@@ -118,51 +119,54 @@ You can inspect the live {state_name} feed and sample cases directly here:
 We deliver the standardized feed every morning at 7:00 AM EST (CSV, Excel, JSON). If you'd like to set up daily delivery for your practice ($249/mo flat, cancel anytime), you can get started right here:
 {STRIPE_LINK}
 
-Best,
+Best regards,
 
-David Mahler
+Elena Vance
+Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-david@surplusdocket.com"""
+elena.vance@surplusdocket.com"""
 
     elif chosen_variant == "B":
         subject = f"Post-Tyler surplus recovery data — {state_name}"
         body = f"""{greeting}
 
-Since the Supreme Court's unanimous ruling in Tyler v. Hennepin County last year, the surplus recovery landscape has fundamentally changed. Counties that previously retained foreclosure overages are now legally obligated to distribute them — and claim filing deadlines are running.
+Since the Supreme Court's unanimous ruling in Tyler v. Hennepin County, the surplus recovery landscape has fundamentally changed. Counties that previously retained foreclosure overages are now legally obligated to distribute them — and statutory claim filing deadlines are running.
 
-I built a tool that indexes {state_name} tax deed surplus and excess proceeds cases daily. We pull the dockets from county registries and filter out institutional encumbrances upstream, so you only see clean, collectible balances with verified claim windows.
+Our data intelligence desk indexes {state_name} tax deed surplus and excess proceeds cases daily. We pull the dockets directly from county registries and filter out institutional encumbrances upstream, so your attorneys only see clean, collectible balances with verified claim windows.
 
 You can review the live {state_name} feed here:
 {recommended_link}
 
-If you'd like daily delivery ($249/mo flat, cancel anytime):
+If your firm would like daily 7:00 AM EST delivery ($249/mo flat, cancel anytime):
 {STRIPE_LINK}
 
-Best,
+Best regards,
 
-David Mahler
+Elena Vance
+Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-david@surplusdocket.com"""
+elena.vance@surplusdocket.com"""
 
     else:  # Variant C
-        subject = f"{state_name} surplus claims — ROI data feed"
+        subject = f"{state_name} surplus claims — daily ROI feed"
         body = f"""{greeting}
 
-Quick math: the average {state_name} surplus balance in our current index is roughly $45,000. At a standard 25% contingency, that's $11,250 per successful claim — and we're indexing new filings every morning.
+Quick math for your recovery practice: the average {state_name} surplus balance in our current index is roughly $45,000. At a standard 25% statutory fee, that's $11,250 per successful claim — and our automated court monitors index new filings every morning.
 
-I built a data feed that pulls tax deed surplus and excess proceeds dockets from {state_name} county registries daily. We filter out senior mortgages and institutional liens upstream, so you're only working clean files.
+Our team compiles tax deed surplus and court registry excess proceeds dockets across {state_name} daily. We filter out senior mortgages and institutional liens upstream, so your attorneys are only working actionable, pure-equity files.
 
-Live feed and sample data:
+Live feed and sample docket data:
 {recommended_link}
 
-Daily delivery is $249/mo flat with Stripe billing (cancel anytime):
+Daily delivery is $249/mo flat with self-service Stripe billing (cancel anytime):
 {STRIPE_LINK}
 
-Best,
+Best regards,
 
-David Mahler
+Elena Vance
+Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-david@surplusdocket.com"""
+elena.vance@surplusdocket.com"""
 
     return subject, body, chosen_variant
 
