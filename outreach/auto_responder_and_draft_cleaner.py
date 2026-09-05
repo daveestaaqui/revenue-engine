@@ -663,12 +663,14 @@ david@surplusdocket.com"""
         if not is_target_firm and not has_surplus_kw:
             continue
 
-        draft_key = f"reply:{sender_email}:{subject_raw[:30]}"
+        # Use unique Message-ID (or content hash fallback) so EVERY follow-up in a thread triggers a fresh draft
+        msg_uid = re.sub(r"[^a-zA-Z0-9_\-]", "", message_id) if message_id else f"{sender_email}_{hash(text_body[:80])}"
+        draft_key = f"reply:{sender_email}:{msg_uid}"
         if draft_key in already_drafted:
             mail.store(mid, "+FLAGS", r"(\Seen)")
             continue
 
-        log(f"  📩 Detected outreach reply from: {sender_name} <{sender_email}> (Sub: {subject_raw})")
+        log(f"  📩 Detected outreach reply / follow-up from: {sender_name} <{sender_email}> (Sub: {subject_raw})")
 
         first_name = sender_name.split()[0] if sender_name else ""
         detected_state = "FL"
@@ -687,7 +689,38 @@ david@surplusdocket.com"""
 
         greeting = f"Hi {first_name}," if first_name else "Hello,"
 
-        reply_body = f"""{greeting}
+        # Distinguish initial inquiry from ongoing multi-turn follow-ups
+        is_subsequent_followup = (
+            subject_raw.lower().count("re:") >= 2 or
+            any(q in text_body.lower() for q in ["how much", "can you", "what counties", "do you cover", "what is the cost", "send me", "thanks for reaching out", "interested in", "more info"])
+        )
+
+        if is_subsequent_followup:
+            reply_body = f"""{greeting}
+
+Thanks for following up.
+
+To answer your question: our morning intelligence feed delivers verified, case-level public records every business day at 7:00 AM EST in CSV, Excel, and REST API formats ($249/month flat, cancel anytime).
+
+Key details for your practice:
+• 100% of institutional bank mortgages and senior liens are filtered out upstream so your firm only sees claimable individual and estate equity.
+• We monitor all high-volume judicial circuits in {state_name} (along with TX, GA, NC, TN, and CA).
+• All subscriptions include our complete Asset Recovery Toolkit (court-ready petition motions, heir retainer contracts, and statutory fee calculators).
+
+You can activate daily feed delivery directly for your firm here:
+{STRIPE_LINK}
+
+If you would like me to pull sample dockets for specific counties in your circuit or set up a custom data filter, just let me know.
+
+Best regards,
+
+David Mahler
+Founder & Research Director
+Surplus Docket
+surplusdocket.com
+david@surplusdocket.com"""
+        else:
+            reply_body = f"""{greeting}
 
 Thanks for getting back to me.
 
@@ -705,6 +738,8 @@ Let me know if you have any questions or if you'd like to see more details on an
 Best,
 
 David Mahler
+Founder & Research Director
+Surplus Docket
 surplusdocket.com
 david@surplusdocket.com"""
 
@@ -729,7 +764,7 @@ david@surplusdocket.com"""
         if append_status == "OK":
             save_created_draft(draft_key)
             mail.store(mid, "+FLAGS", r"(\Seen)")
-            log(f"  🎉 Auto-response draft created in Gmail for {sender_email}!")
+            log(f"  🎉 {'Follow-up' if is_subsequent_followup else 'Initial'} auto-response draft created in Gmail for {sender_email}!")
 
 
 def run_single_check():
