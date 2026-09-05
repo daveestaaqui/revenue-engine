@@ -47,8 +47,9 @@ MASTER_XLSX = EXPORTS_DIR / "Master_Surplus_Lead_Feed.xlsx"
 # Credentials & Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
-FROM_NAME = os.getenv("FROM_NAME", "Elena Brooks | Surplus Docket")
-FROM_EMAIL = os.getenv("FROM_EMAIL", "elena.brooks@surplusdocket.com")
+FROM_NAME = os.getenv("FROM_NAME", "Surplus Docket Intelligence")
+FROM_EMAIL = os.getenv("FROM_EMAIL", "dockets@surplusdocket.com")
+REPLY_TO = os.getenv("REPLY_TO", "dockets@surplusdocket.com")
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 
@@ -85,11 +86,12 @@ def get_feed_statistics():
     top_dockets = []
     for _, r in df.head(4).iterrows():
         top_dockets.append({
-            "docket": str(r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
+            "docket": str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
             "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
             "amount": float(r.get(surplus_col, 0.0)),
             "state": str(r.get("State") or "FL"),
-            "county": str(r.get("County") or r.get("COUNTY") or "")
+            "county": str(r.get("County") or r.get("COUNTY") or ""),
+            "statute": str(r.get("Governing_Statute") or "")
         })
 
     return {
@@ -109,19 +111,36 @@ def compose_email_content(subscriber, stats, date_str):
     dockets_text = ""
     dockets_html = ""
     for d in stats["top_dockets"]:
-        dockets_text += f"• Docket {d['docket']} ({d['county']}, {d['state']}) — ${d['amount']:,.2f} surplus balance\n"
+        dockets_text += f"• Docket {d['docket']} ({d['county']}, {d['state']}) — ${d['amount']:,.2f} | Owner: {d['owner']}\n"
         dockets_html += f"""
-        <tr>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0; font-family: monospace; font-size: 12px; color: #1b365d;"><b>{d['docket']}</b></td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0; font-size: 13px;">{d['owner']}</td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0; font-size: 13px; color: #64748b;">{d['county']}, {d['state']}</td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0; font-family: monospace; font-size: 13px; font-weight: bold; color: #4c6d48; text-align: right;">${d['amount']:,.2f}</td>
-        </tr>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-bottom: 10px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+            <tr>
+                <td style="padding: 10px 14px; background-color: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                        <tr>
+                            <td align="left" style="font-family: 'Courier New', Courier, monospace; font-size: 13px; font-weight: 700; color: #1b365d;">
+                                {d['docket']}
+                                <span style="display: inline-block; background-color: #edf3ec; color: #365134; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-family: -apple-system, sans-serif;">{d['county']}, {d['state']}</span>
+                            </td>
+                            <td align="right" style="font-family: 'Courier New', Courier, monospace; font-size: 14px; font-weight: 800; color: #4c6d48; white-space: nowrap;">
+                                ${d['amount']:,.2f}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px 14px; font-size: 12px; color: #475569; background-color: #ffffff;">
+                    <span style="color: #64748b; font-size: 11px; text-transform: uppercase; font-weight: 600;">Titleholder:</span> <strong style="color: #0f172a;">{d['owner']}</strong>
+                    {f'<br><span style="color: #94a3b8; font-size: 10px; font-family: monospace;">Statute: {d["statute"]}</span>' if d.get("statute") else ''}
+                </td>
+            </tr>
+        </table>
         """
 
     text_body = f"""Good morning {name},
 
-Here is your daily Surplus Docket intelligence briefing for {date_str}.
+Here is your daily Surplus Docket court intelligence briefing for {date_str}.
 
 Our automated court registry crawlers completed today's morning ingestion run at 7:00 AM EST. All dockets have been audited against clerk verification portals and filtered upstream to eliminate senior mortgages, institutional bank liens, and junior municipal encumbrances.
 
@@ -140,10 +159,9 @@ If you have any questions on specific file dockets or require custom circuit exp
 
 Best regards,
 
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
-surplusdocket.com
-elena.brooks@surplusdocket.com
+Surplus Docket Intelligence
+Court Registry Ingestion Desk | Surplus Docket
+surplusdocket.com • dockets@surplusdocket.com
 
 ---
 {LEGAL_DISCLAIMER}
@@ -155,72 +173,99 @@ elena.brooks@surplusdocket.com
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surplus Docket Intelligence Dispatch</title>
+    <style type="text/css">
+        @media only screen and (max-width: 600px) {{
+            .email-wrapper {{ width: 100% !important; padding: 6px !important; }}
+            .email-container {{ width: 100% !important; max-width: 100% !important; }}
+            .content-cell {{ padding: 18px 14px !important; }}
+            .header-cell {{ padding: 18px 14px !important; }}
+            .dispatch-tag {{ display: none !important; }}
+            .metric-cell {{ display: block !important; width: 100% !important; border-right: none !important; border-bottom: 1px solid #e2e8f0 !important; border-radius: 6px !important; margin-bottom: 8px !important; }}
+        }}
+    </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px; color: #1e293b; line-height: 1.5;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8f8f4; width: 100%;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 16px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
         <tr>
             <td align="center" style="padding: 0;">
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                    <!-- Header -->
+                <!-- Main Card Container: Fixed at 580px max for mobile-safe rendering -->
+                <table role="presentation" width="580" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 580px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                    <!-- Header with Official Logo -->
                     <tr>
-                        <td style="background-color: #1b365d; padding: 26px 32px; border-bottom: 3px solid #4c6d48;">
-                            <h1 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #ffffff;">SURPLUS DOCKET</h1>
-                            <p style="margin: 6px 0 0 0; font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Courier New', Courier, monospace;">Daily Court Intelligence Dispatch • {date_str}</p>
+                        <td class="header-cell" style="background-color: #1b365d; padding: 22px 28px; border-bottom: 3px solid #4c6d48;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                                <tr>
+                                    <td align="left" valign="middle" style="padding: 0;">
+                                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td valign="middle" style="padding-right: 12px;">
+                                                    <img src="https://surplusdocket.com/assets/logo_surplus_docket.png" alt="Surplus Docket Logo" width="38" height="30" style="display: block; width: 38px; height: auto; max-height: 32px; border: 0;" />
+                                                </td>
+                                                <td valign="middle" style="line-height: 1.1;">
+                                                    <div style="font-family: Georgia, 'Times New Roman', serif; font-weight: 900; font-size: 20px; letter-spacing: -0.01em; margin: 0;">
+                                                        <span style="color: #4c6d48;">SURPLUS</span> <span style="color: #ffffff;">DOCKET</span>
+                                                    </div>
+                                                    <div style="font-family: 'Courier New', Courier, monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-top: 4px;">
+                                                        Court Intelligence &amp; Public Records Desk
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td align="right" valign="middle" class="dispatch-tag" style="padding: 0;">
+                                        <span style="display: inline-block; background-color: #102238; color: #94a3b8; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: 600; padding: 5px 9px; border-radius: 6px; border: 1px solid #233a5e; letter-spacing: 0.04em;">
+                                            7:00 AM EST
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
-                    <!-- Main Content -->
+                    <!-- Main Content Body -->
                     <tr>
-                        <td style="padding: 32px; background-color: #ffffff;">
-                            <p style="font-size: 15px; margin: 0 0 16px 0; color: #1e293b;">Good morning <b>{name}</b> ({firm}),</p>
-                            <p style="font-size: 14px; line-height: 1.6; color: #475569; margin: 0 0 24px 0;">
-                                Here is your verified 7:00 AM EST Surplus Docket feed. All filings have been cross-referenced with county court registries with senior mortgages, institutional bank liens, and junior municipal encumbrances filtered upstream.
+                        <td class="content-cell" style="padding: 28px; background-color: #ffffff;">
+                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Good morning <b>{name}</b> ({firm}),</p>
+                            <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
+                                Here is your verified daily Surplus Docket intelligence feed for <b>{date_str}</b>. All filings have been cross-referenced with county court registries with senior mortgages, institutional bank liens, and junior municipal encumbrances filtered upstream.
                             </p>
 
-                            <!-- Benchmark Metrics Grid -->
-                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 20px 0;">
+                            <!-- Benchmark Metrics Grid (Mobile fluid) -->
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 18px 0;">
                                 <tr>
-                                    <td width="50%" style="width: 50%; padding: 14px; background-color: #edf3ec; border-radius: 8px 0 0 8px; text-align: center; border-right: 1px solid #e2e8f0;">
-                                        <div style="font-size: 22px; font-weight: 800; color: #365134; font-family: 'Courier New', Courier, monospace;">{total_bal_fmt}</div>
-                                        <div style="font-size: 11px; text-transform: uppercase; color: #4c6d48; font-weight: bold; margin-top: 4px; letter-spacing: 0.05em;">Unencumbered Equity</div>
+                                    <td class="metric-cell" width="50%" style="width: 50%; padding: 14px 10px; background-color: #edf3ec; border-radius: 8px 0 0 8px; text-align: center; border-right: 1px solid #e2e8f0;">
+                                        <div style="font-size: 21px; font-weight: 800; color: #365134; font-family: 'Courier New', Courier, monospace;">{total_bal_fmt}</div>
+                                        <div style="font-size: 10px; text-transform: uppercase; color: #4c6d48; font-weight: 700; margin-top: 4px; letter-spacing: 0.05em;">Unencumbered Equity</div>
                                     </td>
-                                    <td width="50%" style="width: 50%; padding: 14px; background-color: #f1f5f9; border-radius: 0 8px 8px 0; text-align: center;">
-                                        <div style="font-size: 22px; font-weight: 800; color: #1b365d; font-family: 'Courier New', Courier, monospace;">{rec_count} Files</div>
-                                        <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: bold; margin-top: 4px; letter-spacing: 0.05em;">Audited Dockets</div>
+                                    <td class="metric-cell" width="50%" style="width: 50%; padding: 14px 10px; background-color: #f1f5f9; border-radius: 0 8px 8px 0; text-align: center;">
+                                        <div style="font-size: 21px; font-weight: 800; color: #1b365d; font-family: 'Courier New', Courier, monospace;">{rec_count} Files</div>
+                                        <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 4px; letter-spacing: 0.05em;">Audited Dockets</div>
                                     </td>
                                 </tr>
                             </table>
 
-                            <h3 style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #1b365d; margin: 28px 0 12px 0;">Featured High-Equity Dockets</h3>
-                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-                                <thead>
-                                    <tr style="background-color: #f8fafc;">
-                                        <th style="padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; color: #475569; font-weight: 700; border-bottom: 2px solid #e2e8f0;">Docket</th>
-                                        <th style="padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; color: #475569; font-weight: 700; border-bottom: 2px solid #e2e8f0;">Claimant / Owner</th>
-                                        <th style="padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; color: #475569; font-weight: 700; border-bottom: 2px solid #e2e8f0;">Jurisdiction</th>
-                                        <th style="padding: 10px 12px; text-align: right; font-size: 11px; text-transform: uppercase; color: #475569; font-weight: 700; border-bottom: 2px solid #e2e8f0;">Surplus</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {dockets_html}
-                                </tbody>
-                            </table>
+                            <h3 style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #1b365d; margin: 24px 0 10px 0; font-weight: 800;">
+                                Featured High-Equity Dockets
+                            </h3>
+                            
+                            <!-- Mobile Fluid Docket Cards -->
+                            {dockets_html}
 
-                            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px; margin: 24px 0;">
-                                <p style="font-size: 13px; line-height: 1.6; color: #334155; margin: 0;">
-                                    📎 <b>Attached Deliverables:</b> Your verified morning dockets are attached in both <b>Master_Surplus_Lead_Feed.csv</b> and <b>Master_Surplus_Lead_Feed.xlsx</b> for direct import into your practice management software.
+                            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin: 20px 0;">
+                                <p style="font-size: 12px; line-height: 1.6; color: #334155; margin: 0;">
+                                    📎 <b>Attached Deliverables:</b> Your complete morning dockets are attached in both <b>Master_Surplus_Lead_Feed.csv</b> and <b>Master_Surplus_Lead_Feed.xlsx</b> for direct importation into your practice management software.
                                 </p>
                             </div>
 
-                            <div style="margin-top: 32px; padding-top: 18px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #475569;">
-                                <b>Elena Brooks</b><br>
-                                Senior Docket Specialist | Surplus Docket<br>
-                                <a href="https://surplusdocket.com" style="color: #4c6d48; text-decoration: none; font-weight: 600;">surplusdocket.com</a> • <a href="mailto:elena.brooks@surplusdocket.com" style="color: #1b365d; text-decoration: none;">elena.brooks@surplusdocket.com</a>
+                            <div style="margin-top: 28px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #475569;">
+                                <strong style="color: #1b365d; font-size: 13px;">Surplus Docket Intelligence</strong><br>
+                                <span style="font-size: 12px; color: #64748b;">Court Registry Ingestion &amp; Verification Desk</span><br>
+                                <a href="https://surplusdocket.com" style="color: #4c6d48; text-decoration: none; font-weight: 600;">surplusdocket.com</a> • <a href="mailto:dockets@surplusdocket.com" style="color: #1b365d; text-decoration: none;">dockets@surplusdocket.com</a>
                             </div>
                         </td>
                     </tr>
                     <!-- Footer -->
                     <tr>
-                        <td style="background-color: #f8fafc; padding: 20px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.5;">
+                        <td style="background-color: #f8fafc; padding: 18px 24px; border-top: 1px solid #e2e8f0; font-size: 10px; color: #94a3b8; text-align: center; line-height: 1.5;">
                             {LEGAL_DISCLAIMER}<br>
                             © {datetime.now().year} Surplus Docket. All rights reserved. • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" style="color: #64748b; text-decoration: underline;">Subscriber Billing Portal</a>
                         </td>

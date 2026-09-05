@@ -102,8 +102,8 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-          FROM_EMAIL: 'elena.brooks@surplusdocket.com'
-          FROM_NAME: 'Elena Brooks | Surplus Docket'
+          FROM_EMAIL: 'dockets@surplusdocket.com'
+          FROM_NAME: 'Surplus Docket Intelligence'
         run: |
           if [ -n "$GMAIL_APP_PASS" ]; then
             python portal/dispatch_morning_feed.py --send
