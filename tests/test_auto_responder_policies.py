@@ -133,13 +133,13 @@ class TestAutoResponderPolicies(unittest.TestCase):
 
     def test_verified_law_firm_reply_accepted(self):
         msg = Message()
-        # Gomez Law is in master_ranked_attorney_targets.csv
-        sender_email = "jason@gomezlawfl.com"
-        subject = "Thanks for Reaching Out to Gomez Law!"
+        # Zoecklein Law P.A. is in master_ranked_attorney_targets.csv
+        sender_email = "eric@zoeckleinlawpa.com"
+        subject = "Thanks for Reaching Out to Zoecklein Law P.A.!"
         text_body = "Hello Elena, how much is your Florida surplus feed per month?"
 
         eligible, reason, target_info, inq_info = is_prospect_eligible(
-            msg, sender_email, "Gomez Law", subject, text_body,
+            msg, sender_email, "Zoecklein Law P.A.", subject, text_body,
             self.directory, self.email_directory, self.domains
         )
         self.assertTrue(eligible, "Target law firm replies must be eligible")
