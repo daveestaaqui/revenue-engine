@@ -63,12 +63,17 @@ jobs:
         run: |
           python marketing/social_syndicator.py
 
-      - name: 8b. Run Upgraded Authority & Link Building Engine
+      - name: 8b. Run Upgraded Authority, Link Building & Search Engine Syndication
+        env:
+          DEV_TO_API_KEY: ${{ secrets.DEV_TO_API_KEY }}
+          MEDIUM_TOKEN: ${{ secrets.MEDIUM_TOKEN }}
+          SYNDICATION_WEBHOOK_URL: ${{ secrets.SYNDICATION_WEBHOOK_URL }}
         run: |
           python marketing/link_building/pr_pitcher.py
           python marketing/link_building/clerk_outreach_generator.py
           python marketing/link_building/syndication_publisher.py
           python marketing/link_building/directory_citations.py
+          python marketing/link_building/auto_article_submitter.py
 
       - name: 9. Update Dynamic Repository Showcase
         run: |

@@ -161,5 +161,38 @@ class TestEmbedAssets(unittest.TestCase):
         self.assertIn("https://surplusdocket.com/resources/homeowner-surplus-guide", guide_content)
 
 
+class TestAutoArticleSubmitter(unittest.TestCase):
+    def test_get_indexnow_key(self):
+        from marketing.link_building.auto_article_submitter import get_indexnow_key
+        key = get_indexnow_key()
+        self.assertEqual(len(key), 32)
+
+    def test_parse_sitemap_urls(self):
+        from marketing.link_building.auto_article_submitter import parse_sitemap_urls
+        urls = parse_sitemap_urls()
+        self.assertGreaterEqual(len(urls), 20)
+        self.assertTrue(all(u.startswith("https://surplusdocket.com") for u in urls))
+
+    def test_submit_to_indexnow_dry_run(self):
+        from marketing.link_building.auto_article_submitter import submit_to_indexnow
+        res = submit_to_indexnow(["https://surplusdocket.com/"], dry_run=True)
+        self.assertEqual(res["status"], "dry_run_success")
+        self.assertEqual(res["urls_submitted"], 1)
+
+    def test_ping_search_engines_dry_run(self):
+        from marketing.link_building.auto_article_submitter import ping_search_engines
+        pings = ping_search_engines(dry_run=True)
+        self.assertIn("google", pings)
+        self.assertIn("bing", pings)
+        self.assertEqual(pings["google"]["status"], "dry_run_success")
+
+    def test_run_article_and_link_pipeline_dry_run(self):
+        from marketing.link_building.auto_article_submitter import run_article_and_link_pipeline
+        summary = run_article_and_link_pipeline(dry_run=True)
+        self.assertGreater(summary["urls_indexed"], 0)
+        self.assertEqual(summary["indexnow_status"], "dry_run_success")
+        self.assertIn("google", summary["search_engine_pings"])
+
+
 if __name__ == "__main__":
     unittest.main()

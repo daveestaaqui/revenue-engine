@@ -121,7 +121,7 @@ Most county surplus lists are a headache to work through because the majority of
 You can inspect the live {state_name} feed and sample cases directly here:
 {recommended_link}
 
-We deliver the standardized feed every morning at 7:00 AM EST (CSV, Excel, JSON). If you'd like to set up daily delivery for your practice ($249/mo flat, cancel anytime), you can get started right here:
+We deliver the standardized feed every morning at 7:00 AM EST (CSV, Excel, JSON). If your practice would like to evaluate live morning filings with a 7-day complimentary practice evaluation ($0 due today, cancel anytime via Stripe portal):
 {STRIPE_LINK}
 
 Best regards,
@@ -142,7 +142,7 @@ Our data intelligence desk indexes {state_name} tax deed surplus and excess proc
 You can review the live {state_name} feed here:
 {recommended_link}
 
-If your firm would like daily 7:00 AM EST delivery ($249/mo flat, cancel anytime):
+We offer a 7-day complimentary practice evaluation for counsel of record ($0 due today with card on file, 7 business days of live 7:00 AM EST morning feeds, cancel anytime via Stripe portal):
 {STRIPE_LINK}
 
 Best regards,
@@ -163,7 +163,7 @@ Our team compiles tax deed surplus and court registry excess proceeds dockets ac
 Live feed and sample docket data:
 {recommended_link}
 
-Daily delivery is $249/mo flat with self-service Stripe billing (cancel anytime):
+Your office can evaluate live morning filings with a 7-day complimentary practice evaluation ($0 due today, $249/mo flat thereafter, cancel anytime via Stripe portal):
 {STRIPE_LINK}
 
 Best regards,

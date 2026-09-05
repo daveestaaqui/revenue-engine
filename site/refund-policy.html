@@ -18,8 +18,14 @@
     <link rel="shortcut icon" href="/favicon.ico">
 
     <!-- Google Fonts -->
+    <!-- Performance & Resource Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//plausible.io">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link rel="preload" as="image" href="/assets/logo_surplus_docket.webp" type="image/webp" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
@@ -58,7 +64,10 @@
     <header class="bg-white border-b border-brand-navy sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
             <a href="/" class="flex items-center gap-2.5 sm:gap-3 group" aria-label="Surplus Docket">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                <picture>
+                    <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                    <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" fetchpriority="high" decoding="async" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                </picture>
                 <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
@@ -111,10 +120,26 @@
                 </div>
             </div>
 
-            <!-- Section 2: Monthly Subscriptions -->
+            <!-- Section 2: 7-Day Institutional Practice Evaluation Protocol -->
             <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-8 h-8 rounded-lg bg-emerald-100 text-brand-green flex items-center justify-center font-bold text-sm">2</div>
+                    <h2 class="text-xl font-heading font-bold text-brand-navy">7-Day Institutional Practice Evaluation Protocol</h2>
+                </div>
+                <p class="mb-4">
+                    For licensed attorneys, law firms, and certified asset recovery practices, Surplus Docket offers a <strong>7-Day Complimentary Practice Evaluation</strong> for our Multi-State Public Records Feed.
+                </p>
+                <ul class="space-y-2 mb-4 list-disc list-inside text-slate-600 text-xs sm:text-sm">
+                    <li><strong>$0 Initial Charge:</strong> When activating an institutional practice evaluation, your payment card is pre-authorized via Stripe Billing with $0 charged on the date of activation.</li>
+                    <li><strong>7 Full Days of Morning Delivery:</strong> Your practice receives 7 consecutive business days of live 7:00 AM EST court docket deliveries across Florida, Texas, Georgia, North Carolina, Tennessee, and California.</li>
+                    <li><strong>Automatic Transition &amp; Cancellation:</strong> If you elect to maintain daily docket feeds for your firm, your account automatically transitions to the standard rate of $249/month on Day 8. You may cancel with 1 click at any point during the 7-day evaluation via the self-service Stripe Customer Portal with zero fees or charges.</li>
+                </ul>
+            </div>
+
+            <!-- Section 3: Monthly Subscriptions -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-100 text-brand-green flex items-center justify-center font-bold text-sm">3</div>
                     <h2 class="text-xl font-heading font-bold text-brand-navy">Monthly Subscription Refund Terms</h2>
                 </div>
                 <p class="mb-4">
@@ -176,7 +201,10 @@
                 <!-- Col 1: Brand & Overview (Spans 2 cols on lg) -->
                 <div class="lg:col-span-2 space-y-4">
                     <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
-                        <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                        <picture>
+                            <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                            <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                        </picture>
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>

@@ -17,6 +17,11 @@
     <meta property="og:url" content="https://surplusdocket.com/comparison.html">
     <meta property="og:image" content="https://surplusdocket.com/assets/logo_surplus_docket.png">
     
+    <!-- Performance & Resource Hints -->
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//plausible.io">
+    <link rel="preload" as="image" href="/assets/logo_surplus_docket.webp" type="image/webp" fetchpriority="high">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -52,7 +57,10 @@
     <header class="w-full border-b border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
             <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0" aria-label="Surplus Docket">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                <picture>
+                    <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                    <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" fetchpriority="high" decoding="async" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                </picture>
                 <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
@@ -206,13 +214,14 @@
                 Join asset recovery law firms, title searchers, and institutional practitioners who have switched to automated morning court docket delivery.
           </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="/#pricing" class="w-full sm:w-auto px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-sm rounded-xl transition-all shadow-lg hover:shadow-xl">
-                    Subscribe Now ($249/mo) &rarr;
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-sm rounded-xl transition-all shadow-lg hover:shadow-xl">
+                    Start 7-Day Practice Evaluation ($0 Today) &rarr;
                 </a>
                 <a href="/practitioner-toolkit.html" class="w-full sm:w-auto px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 font-heading font-bold text-sm rounded-xl transition-all">
                     Explore Free Toolkit &rarr;
                 </a>
             </div>
+            <p class="text-[11px] text-slate-400 mt-4">$0 due today • 7-day complimentary docket evaluation • Cancel anytime via Stripe portal</p>
         </div>
     </main>
 
@@ -225,7 +234,10 @@
                 <!-- Col 1: Brand & Overview (Spans 2 cols on lg) -->
                 <div class="lg:col-span-2 space-y-4">
                     <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
-                        <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                        <picture>
+                            <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                            <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                        </picture>
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>

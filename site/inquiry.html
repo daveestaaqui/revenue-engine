@@ -27,8 +27,14 @@
     <meta name="twitter:image" content="https://surplusdocket.com/assets/og_image.png">
 
     <!-- Fonts -->
+    <!-- Performance & Resource Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//plausible.io">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="/assets/logo_surplus_docket.webp" type="image/webp" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
@@ -72,7 +78,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 h-20 flex items-center justify-between">
             <!-- Brand Logo Lockup -->
             <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                <picture>
+                    <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                    <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" fetchpriority="high" decoding="async" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                </picture>
                 <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
@@ -182,6 +191,7 @@
                         <div>
                             <label for="inq-category" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Inquiry Department <span class="text-red-500">*</span></label>
                             <select id="inq-category" name="department" required class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
+                                <option value="7-Day Institutional Practice Evaluation">7-Day Institutional Practice Evaluation ($0 Due Today)</option>
                                 <option value="Enterprise Feed Licensing">Enterprise / Multi-Jurisdiction Custom Feed Licensing</option>
                                 <option value="Law Practice API Integration">Practice Management &amp; REST API Integration</option>
                                 <option value="Clerk Docket Correction / Notice">County Clerk Registry Correction or Notice</option>
@@ -271,7 +281,10 @@
                 <!-- Col 1 -->
                 <div class="space-y-3 col-span-2 md:col-span-1">
                     <div class="flex items-center gap-2 mb-2">
-                        <img src="/assets/logo_surplus_docket.png?v=6" alt="" class="h-6 w-auto object-contain">
+                        <picture>
+                            <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                            <img src="/assets/logo_surplus_docket.png" width="32" height="24" alt="" loading="lazy" decoding="async" class="h-6 w-auto object-contain">
+                        </picture>
                         <span class="font-heading font-bold text-brand-navy text-sm">SURPLUS DOCKET</span>
                     </div>
                     <p class="text-xs text-slate-500 leading-relaxed">

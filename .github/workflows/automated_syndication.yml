@@ -1,0 +1,80 @@
+name: Autonomous Article Submission & Link-Building Syndication
+
+on:
+  schedule:
+    # Runs twice weekly on Wednesday & Friday at 15:00 UTC (11:00 AM EST)
+    - cron: '0 15 * * 3,5'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run in dry-run preview mode (no live network requests)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  run-syndication-and-linkbuilding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONPATH: .
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 1. Generate Latest Syndication Articles
+        run: |
+          python marketing/link_building/syndication_publisher.py
+
+      - name: 2. Refresh High-DA Directory Citations & Packets
+        run: |
+          python marketing/link_building/directory_citations.py
+
+      - name: 3. Generate Digital PR Pitches
+        run: |
+          python marketing/link_building/pr_pitcher.py
+
+      - name: 4. Generate County Clerk & Legal Aid Educational Letters
+        run: |
+          python marketing/link_building/clerk_outreach_generator.py
+
+      - name: 5. Execute Article Submissions, IndexNow & Search Engine Indexing
+        env:
+          DEV_TO_API_KEY: ${{ secrets.DEV_TO_API_KEY }}
+          MEDIUM_TOKEN: ${{ secrets.MEDIUM_TOKEN }}
+          SYNDICATION_WEBHOOK_URL: ${{ secrets.SYNDICATION_WEBHOOK_URL }}
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python marketing/link_building/auto_article_submitter.py --dry-run
+          else
+            python marketing/link_building/auto_article_submitter.py
+          fi
+
+      - name: 6. Commit & Push Updated Submission Logs, Citations & Syndications
+        run: |
+          git config --global user.name "Surplus Docket Syndication Bot"
+          git config --global user.email "syndication@surplusdocket.com"
+          git add marketing/syndicate/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(syndicate): autonomous search engine indexing & article publication [skip ci]" && git pull --rebase origin main && git push)
+
+      - name: 7. Upload Syndication Registry Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: syndication-submission-registry
+          path: marketing/link_building/submission_registry.json
+          retention-days: 30

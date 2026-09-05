@@ -1159,11 +1159,13 @@ Let me know if you'd like me to pull files for any specific county or judicial c
 
 Thanks for following up on pricing.
 
-Our subscription is a flat $249/month for your entire practice—there are no per-lead fees, no contingency cuts, and no annual contracts. Billing is month-to-month through our self-service Stripe portal, allowing cancellation at any time.
+Our subscription is a flat $249/month for your entire practice—there are no per-lead fees, no contingency cuts, and no annual contracts. 
+
+We also offer a 7-day complimentary practice evaluation for counsel of record ($0 due today with card on file). Your office receives 7 full business days of live 7:00 AM EST morning docket feeds. If your practice decides to maintain uninterrupted delivery, it transitions to $249/month on Day 8, and you can cancel anytime with 1 click in our self-service Stripe portal.
 
 Given that a typical surplus recovery in {state_name} yields $10,000 to $15,000 in statutory fees for counsel under {statute_cite}, a single successful petition covers several years of subscription access.
 
-You can inspect the feed and activate morning delivery here:
+You can activate your 7-day practice evaluation directly here:
 {STRIPE_LINK}
 
 Let me know if your firm requires an invoice for accounting rather than standard card billing.
