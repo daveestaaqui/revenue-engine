@@ -147,6 +147,7 @@ def collect_marketing_metrics(now=None):
                 metrics["total_targets_in_pipeline"] += 1
                 tier = (row.get("Priority_Tier") or row.get("Tier", "")).strip()
                 tier_upper = tier.upper()
+                spec = (row.get("Specialty") or "").lower()
                 if "TIER 1" in tier_upper or "TIER_1" in tier_upper:
                     metrics["targets_by_tier"]["Tier 1"] += 1
                 elif "TIER 2" in tier_upper or "TIER_2" in tier_upper:
@@ -154,6 +155,14 @@ def collect_marketing_metrics(now=None):
                 elif "TIER 3" in tier_upper or "TIER_3" in tier_upper:
                     metrics["targets_by_tier"]["Tier 3"] += 1
                 elif "TIER 4" in tier_upper or "TIER_4" in tier_upper:
+                    metrics["targets_by_tier"]["Tier 4"] += 1
+                elif "surplus" in spec or "overage" in spec or "excess" in spec:
+                    metrics["targets_by_tier"]["Tier 1"] += 1
+                elif "foreclosure" in spec:
+                    metrics["targets_by_tier"]["Tier 2"] += 1
+                elif "probate" in spec or "heir" in spec or "estate" in spec:
+                    metrics["targets_by_tier"]["Tier 3"] += 1
+                else:
                     metrics["targets_by_tier"]["Tier 4"] += 1
 
                 st = (row.get("State") or "OTHER").strip().upper()
