@@ -83,24 +83,40 @@ elena.brooks@surplusdocket.com
 
 ## 4. Multi-Factor Context-Aware Intent & Objection Routing Matrix
 
-The engine scores inbound messages across **14 distinct legal and operational dimensions**:
+The engine scores inbound messages across **15 distinct legal and operational dimensions**:
 
 | Category / Intent | Inbound Triggers / Scenarios | Elena's Strategic Response Strategy |
 | :--- | :--- | :--- |
 | **`OPT_OUT`** | "unsubscribe", "remove me", "stop emailing", "not interested", "remove us", "take me off", "pass on this" | Respectful, immediate 1-sentence confirmation that their firm is removed from all future docket updates. **Zero sales push.** |
+| **`TYLER_V_HENNEPIN`** | "tyler", "hennepin", "supreme court", "scotus", "takings clause", "5th amendment", "fifth amendment", "unconstitutional taking", "equity forfeiture" | Authoritative analysis of *Tyler v. Hennepin County*, 598 U.S. 631 (unanimous 9-0 ruling under Takings Clause); explains how state statutes are invalidating forfeiture schemes and opening county registry claim windows; positions daily morning feed as tracking these newly opened recovery windows. |
 | **`IN_HOUSE_PARALEGAL`** | "already have a paralegal", "staff handles", "do this in house", "pull from clerk site ourselves", "we search the records ourselves" | Validates that most firms have staff pulling raw lists; explains the 10–15 hr title bottleneck where unscrubbed lists contain dead leads eaten by junior mortgages/liens; highlights upstream encumbrance purging. |
 | **`CONTINGENCY_FEE_SPLIT`** | "what percentage do you take", "contingency cut", "fee split", "cut of recovery", "rule 4-5.4", "do you take a cut", "ethics rules" | Clarifies Surplus Docket is purely a flat technology subscription ($249/mo), takes 0% cut, and complies strictly with Bar ethics rules (e.g. FL Rule 4-5.4) prohibiting fee-splitting with non-lawyers. Law firm keeps 100% of statutory fees. |
-| **`TAX_DEED_VS_MORTGAGE`** | "tax deed or mortgage", "civil foreclosure vs tax deed", "administrative overage vs court registry", "tax overbid" | Delineates administrative tax collector overages (Fla. Stat. § 197.582, Tex. Tax Code § 34.04 with 120-day claim windows) vs. civil circuit court mortgage registry deposits; notes each record identifies the custodian and claim window. |
-| **`PROBATE_HEIR_RECOVERY`** | "deceased", "heir", "probate", "estate", "intestate", "decedent", "ancillary probate", "deceased owner" | Explains that ~35% of surplus files involve deceased record owners; highlights how our desk flags estate files so probate litigators can open probate administration and petition for surplus before statutory escheat. |
+| **`TAX_DEED_VS_MORTGAGE`** | "tax deed or mortgage", "civil foreclosure vs tax deed", "administrative overage vs court registry", "tax overbid" | Delineates administrative tax collector overages (Fla. Stat. § 197.582, Tex. Tax Code § 34.04 with statutory claim windows) vs. civil circuit court mortgage registry deposits; notes each record identifies the custodian and claim window. |
+| **`PROBATE_HEIR_RECOVERY`** | "deceased", "heir", "probate", "estate", "intestate", "decedent", "ancillary probate", "deceased owner" | Explains that ~35% of surplus files involve deceased record owners; highlights how our desk flags estate files so probate litigators can open probate administration and petition for surplus before statutory escheat; outlines heir priority over junior judgment creditors. |
 | **`TITLE_LIEN_SCRUBBING`** | "how do you scrub", "senior mortgage", "first mortgage", "title search", "encumbrance", "junior lien", "hoa lien", "irs lien" | Explains that 60–70% of raw clerk overages are eaten by mortgages/liens; details how our desk cross-references recorded deeds, mortgages, and lis pendens against certificates of disbursement to purge encumbered files before delivery. |
 | **`DATA_FRESHNESS_TIMING`** | "how fresh", "turnaround time", "lag time after auction", "when is it published", "how soon after sale" | Details overnight reconciliation as certificates of disbursements/title are docketed; confirms 7:00 AM EST publication giving counsel a 24–48 hour head start before unrepresented locators or monthly summary sheets appear. |
 | **`SKIP_TRACING_CONTACT`** | "skip trace", "phone number", "contact information", "reach the owner", "mailing address", "cold call" | Explains that we provide verified record owner/estate name, situs, parcel ID, and deed history; clarifies why we do not sell phone lists (Bar advertising / solicitation rules like FL Rule 4-7.18) and provides compliant direct mail tools. |
-| **`LEGAL_TOOLKIT_MOTIONS`** | "motion", "pleading", "template", "petition", "affidavit", "retainer agreement", "toolkit", "court forms" | Outlines the Asset Recovery Legal Toolkit included with subscriptions: court-ready Petition for Surplus, Affidavit of Claim, Motion for Evidentiary Hearing, Heir Retainer Agreement, and Proposed Orders in editable Word format. |
+| **`LEGAL_TOOLKIT_MOTIONS`** | "motion", "pleading", "template", "petition", "affidavit", "retainer agreement", "toolkit", "court forms" | Outlines the Asset Recovery Legal Toolkit included with subscriptions: state-specific Petition for Surplus (e.g., Fla. Stat. § 197.582 or Tex. Tax Code § 34.04), Affidavit of Claim, Motion for Evidentiary Hearing, Heir Retainer Agreement, and Proposed Orders in editable Word format. |
 | **`JURISDICTION`** | "what counties", "which counties", "do you cover", county names (e.g. "Hillsborough", "Harris", "Fulton", "Mecklenburg") | Identifies the specific county and maps it to its judicial circuit / court registry; provides verified live benchmark files from that specific county and state. |
 | **`DATA_FORMAT`** | "clio", "filevine", "smokeball", "api", "csv format", "excel file", "spreadsheet columns", "webhook", "rest api" | Details 7:00 AM EST delivery in CSV and Excel (.xlsx) formatted for direct matter intake into Clio, Filevine, or Smokeball without column remapping, plus direct REST JSON endpoints. |
 | **`SAMPLE_DATA`** | "send me a sample", "can i see a sample", "preview of the data", "show me a few cases", "example records" | Provides 2–3 active, verified, unencumbered surplus records from their state with docket numbers, county, and balances. |
 | **`PRICING`** | "how much is it", "what is the cost", "subscription cost", "month to month", "annual contract", "billing terms" | Clarifies flat $249/mo for the entire practice, no per-claim fees, no seat limits, cancel anytime through self-service Stripe portal, and contextualizes statutory contingency fee economics. |
 | **`GENERAL`** | General inquiries or non-specific follow-ups | Collegial, pragmatic overview from Elena Brooks highlighting upstream title screening, 7:00 AM EST delivery, and flat pricing. |
+
+---
+
+## 5. Synchronized Statutory Knowledge Base & Appellate Authority
+
+Elena Brooks' knowledge base dynamically reflects all state legal guidelines, statutes, and appellate authorities published on `surplusdocket.com`:
+
+| State | Primary Statute | Claim Window / Deadline | Funds Custodian | Statutory Priority / Escheat Rules |
+| :--- | :--- | :--- | :--- | :--- |
+| **FL** | `Fla. Stat. § 197.582` | 120-Day Notice Window | County Clerk of Court / Tax Collector | Governmental liens -> senior mortgagees -> record titleholder / heirs. Unclaimed escheat to FL DFS Unclaimed Property. |
+| **TX** | `Tex. Tax Code § 34.04` | Strict 2-Year Limitation Period | District Court Registry | Taxing entities -> non-party lienholders -> former titleholder. Unclaimed after 2 years transfer to county general fund. |
+| **GA** | `O.C.G.A. § 48-4-5` | 5-Year Interpleader Hold | County Tax Commissioner / Sheriff Registry | Record owner at tax sale -> junior lienholders. Custodian interpleads in Superior Court if disputed. |
+| **CA** | `Cal. Rev. & Tax Code § 4675` | Strict 1-Year Deadline from Deed Recording | County Board of Supervisors / Tax Collector | Recorded liens in priority -> parties of interest (titleholders/heirs). Stringent assignee disclosure rules under § 4675(e). |
+| **NC** | `N.C. Gen. Stat. § 105-374` | 10-Day Upset Bid; Statutory Window | Clerk of Superior Court Registry | Costs and taxes -> mortgagees and judgment creditors -> titleholders. Unclaimed escheat to state Escheat Fund. |
+| **TN** | `Tenn. Code Ann. § 67-5-2510` | 1-Year Statutory Redemption & Claim Window | Chancery Court / Circuit Court Registry | Taxes/costs -> recorded lienholders -> property owner / heirs. Motion for distribution filed in Chancery Court. |
 
 ---
 

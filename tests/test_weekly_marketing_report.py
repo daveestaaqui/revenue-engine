@@ -65,6 +65,10 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertGreaterEqual(metrics["active_surplus_dockets"], 0)
         self.assertGreaterEqual(metrics["total_verified_surplus_usd"], 0.0)
 
+        # Organic assets check
+        self.assertGreaterEqual(metrics["published_seo_pages"], 18)
+        self.assertGreaterEqual(metrics["published_articles"], 6)
+
     def test_render_html_report(self):
         metrics = collect_marketing_metrics()
         html = render_html_report(metrics)

@@ -340,6 +340,28 @@ class TestAutoResponderPolicies(unittest.TestCase):
         )
         self.assertIn("Harris County (Harris County Civil District Courts)", body)
 
+    def test_tyler_v_hennepin_handled(self):
+        # 1. Intent analysis check
+        intent = analyze_prospect_intent(
+            "SCOTUS Tyler v Hennepin question",
+            "How does the Supreme Court ruling in Tyler v. Hennepin County affect excess proceeds recovery under the Takings Clause?"
+        )
+        self.assertEqual(intent, "TYLER_V_HENNEPIN")
+
+        # 2. Response composition check
+        target_info = {"name": "Elena Rostova", "firm": "Rostova Law", "state": "FL"}
+        subj, body = compose_elena_response(
+            "TYLER_V_HENNEPIN", target_info, "Elena Rostova", "elena@rostovalaw.com",
+            "SCOTUS Tyler v Hennepin question", "How does Tyler v Hennepin impact Florida surplus recovery?",
+            self.mock_state_cases
+        )
+        self.assertIn("Tyler v. Hennepin County, 598 U.S. 631", body)
+        self.assertIn("Takings Clause of the Fifth Amendment", body)
+        self.assertIn("Fla. Stat. § 197.582", body)
+        self.assertIn("County Clerk of Court / Tax Collector", body)
+        self.assertIn("120-day statutory notice window", body)
+        self.assertIn("Elena Brooks", body)
+
 
 if __name__ == "__main__":
     unittest.main()

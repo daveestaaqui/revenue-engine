@@ -449,15 +449,60 @@ async def handle_anti_spam_math_questions(ctx):
             continue
 
 
-async def find_contact_page(page, base_url):
+async def has_form_elements(page):
+    """Checks if page or any of its child frames contains visible contact form fields."""
+    try:
+        for frame in page.frames:
+            try:
+                # Textarea
+                if await frame.locator("textarea").count() > 0:
+                    return True
+                # Email inputs
+                if await frame.locator("input[type='email'], input[name*='email' i], [name*='ZW1haWw'], input[placeholder*='email' i], input.wpforms-field-email, input.ginput_email").count() > 0:
+                    return True
+                # Forms with submit buttons
+                if await frame.locator("form button[type='submit'], form input[type='submit']").count() > 0:
+                    return True
+            except Exception:
+                continue
+    except Exception:
+        pass
+    return False
+
+
+async def find_contact_page(page, base_url, explicit_form_url=None):
     """Attempts to locate the Contact or Consultation page on the firm's website."""
-    # 1. First look for dedicated Contact / Consultation links on the page
+    from urllib.parse import urlparse
+    base_netloc = urlparse(base_url).netloc.replace("www.", "")
+
+    # 1. First priority: if target already has an explicit Form_URL, navigate directly
+    if explicit_form_url and explicit_form_url.startswith("http"):
+        try:
+            resp = await page.goto(explicit_form_url, timeout=12000, wait_until="domcontentloaded")
+            await page.wait_for_timeout(1000)
+            if resp and resp.status < 400 and await has_form_elements(page):
+                return page.url
+        except Exception:
+            pass
+
+    # 2. Check if current page (e.g. homepage) already contains a visible contact form
+    try:
+        if page.url != base_url:
+            resp = await page.goto(base_url, timeout=10000, wait_until="domcontentloaded")
+            await page.wait_for_timeout(1000)
+        if await has_form_elements(page):
+            return page.url
+    except Exception:
+        pass
+
+    # 3. Look for dedicated Contact / Consultation links on the page
     contact_patterns = [
         "a[href*='contact' i]",
         "a[href*='consult' i]",
         "a[href*='get-in-touch' i]",
         "a[href*='intake' i]",
         "a[href*='reach-us' i]",
+        "a[href*='locations' i]",
         "a:has-text('Contact Us')",
         "a:has-text('Contact')",
         "a:has-text('Free Consultation')",
@@ -466,74 +511,70 @@ async def find_contact_page(page, base_url):
         "a:has-text('Schedule')",
     ]
 
-    from urllib.parse import urlparse
-    base_netloc = urlparse(base_url).netloc.replace("www.", "")
-
+    candidate_links = []
     for sel in contact_patterns:
         try:
             locators = await page.locator(sel).all()
-            for loc in locators[:4]:
-                if await loc.is_visible():
-                    href = await loc.get_attribute("href")
-                    if href and not href.startswith(("tel:", "mailto:", "#", "javascript:")):
-                        if href.startswith("http"):
-                            target = href
-                        elif href.startswith("/"):
-                            target = base_url.rstrip("/") + href
-                        else:
-                            target = base_url.rstrip("/") + "/" + href
-                        
-                        target_netloc = urlparse(target).netloc.replace("www.", "")
-                        if target_netloc and target_netloc != base_netloc:
-                            continue
-                            
-                        resp = await page.goto(target, timeout=12000, wait_until="domcontentloaded")
-                        await page.wait_for_timeout(1500)
-                        if resp and resp.status < 400:
-                            if await page.locator("textarea, form input[type='email'], input[name*='email' i], [name*='ZW1haWw']").count() > 0:
-                                return page.url
+            for loc in locators[:6]:
+                href = await loc.get_attribute("href")
+                if href and not href.startswith(("tel:", "mailto:", "#", "javascript:")):
+                    if href.startswith("http"):
+                        target = href
+                    elif href.startswith("/"):
+                        target = base_url.rstrip("/") + href
+                    else:
+                        target = base_url.rstrip("/") + "/" + href
+
+                    target_netloc = urlparse(target).netloc.replace("www.", "")
+                    if target_netloc and target_netloc != base_netloc:
+                        continue
+                    if target not in candidate_links:
+                        candidate_links.append(target)
         except Exception:
             continue
 
-    # 2. Try direct navigation to standard contact paths
-    for path in ["/contact", "/contact-us/", "/contact-us", "/contact/", "/free-consultation", "/consultation", "/get-in-touch"]:
+    for target in candidate_links[:5]:
+        try:
+            resp = await page.goto(target, timeout=10000, wait_until="domcontentloaded")
+            await page.wait_for_timeout(1200)
+            if resp and resp.status < 400 and await has_form_elements(page):
+                return page.url
+        except Exception:
+            continue
+
+    # 4. Try direct navigation to standard contact paths
+    for path in ["/contact", "/contact-us/", "/contact-us", "/contact/", "/free-consultation", "/consultation", "/get-in-touch", "/contact-us-lawyer/", "/contact-us-lawyer", "/locations"]:
         try:
             target = base_url.rstrip("/") + path
-            resp = await page.goto(target, timeout=10000, wait_until="domcontentloaded")
-            await page.wait_for_timeout(1500)
-            if resp and resp.status < 400:
-                if await page.locator("textarea, form input[type='email'], input[name*='email' i], [name*='ZW1haWw']").count() > 0:
-                    return page.url
+            resp = await page.goto(target, timeout=9000, wait_until="domcontentloaded")
+            await page.wait_for_timeout(1200)
+            if resp and resp.status < 400 and await has_form_elements(page):
+                return page.url
         except Exception:
             continue
 
-    # 3. Fallback: check if the initial page itself has a visible form
-    try:
-        if page.url != base_url:
-            await page.goto(base_url, timeout=10000, wait_until="domcontentloaded")
-            await page.wait_for_timeout(1000)
-        if await page.locator("textarea").count() > 0:
-            return page.url
-    except Exception:
-        pass
-
-    return base_url
+    return page.url or base_url
 
 
 async def fill_and_submit_form(page, target, is_dry_run=False):
     """Intelligently detects form fields across main page and iframes, fills them, and optionally submits."""
     subject, body, variant = compose_message(target)
     firm = target.get("Firm", "")
-    
+
+    # Wait for dynamic frames/scripts to initialize
+    await page.wait_for_timeout(1000)
+
     # 0. Attempt human verification widgets first (Cloudflare Turnstile, reCAPTCHA, etc.)
     await handle_human_verification_widgets(page)
 
     # Scroll page to trigger lazy loaded forms
     try:
-        await page.evaluate("window.scrollTo(0, document.body.scrollHeight / 2)")
-        await asyncio.sleep(0.5)
-        await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-        await asyncio.sleep(0.5)
+        await page.evaluate("window.scrollTo(0, document.body.scrollHeight / 3)")
+        await asyncio.sleep(0.3)
+        await page.evaluate("window.scrollTo(0, document.body.scrollHeight * 2 / 3)")
+        await asyncio.sleep(0.3)
+        await page.evaluate("window.scrollTo(0, 0)")
+        await asyncio.sleep(0.3)
     except Exception:
         pass
 
@@ -547,9 +588,17 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
 
     for ctx in contexts:
         try:
-            # 1. Message field (textarea or wide input)
+            # 1. Message field (textarea or wide input across WP, Gravity, CF7, Elementor, Lawmatics)
             msg_selectors = [
                 "textarea",
+                "textarea[name^='input_']",
+                "textarea[name*='wpforms']",
+                "textarea[name*='your-message' i]",
+                "textarea[name*='form_fields' i]",
+                "textarea[name*='item_meta' i]",
+                "textarea[name*='Y2FzZV9ibHVyYg']",
+                "input[name*='Y2FzZV9ibHVyYg']",
+                "div[contenteditable='true']",
                 "input[name*='message' i]",
                 "input[name*='comment' i]",
                 "input[name*='detail' i]",
@@ -560,38 +609,62 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 "input[placeholder*='how can we help' i]",
                 "input[placeholder*='case' i]",
                 "input[placeholder*='tell us' i]",
-                "div[contenteditable='true']",
-                # Lawmatics case blurb selector
-                "textarea[name*='Y2FzZV9ibHVyYg']",
-                "input[name*='Y2FzZV9ibHVyYg']",
             ]
             msg_elem = None
             for sel in msg_selectors:
                 loc = ctx.locator(sel).first
-                if await loc.is_visible(timeout=800):
+                if await loc.is_visible(timeout=500):
                     if await is_honeypot(loc):
                         continue
                     msg_elem = loc
                     break
 
             if not msg_elem:
-                # Try label matching for message
-                for lbl_sel in ["label:has-text('Message')", "label:has-text('Comments')", "label:has-text('Description')"]:
+                # Try label matching for message (including parent container and sibling inputs)
+                for lbl_sel in [
+                    "label:has-text('Message')", "label:has-text('Comments')",
+                    "label:has-text('Description')", "label:has-text('Inquiry')",
+                    "label:has-text('Case Description')", "label:has-text('How Can We Help')"
+                ]:
                     try:
                         lbl = ctx.locator(lbl_sel).first
-                        if await lbl.is_visible(timeout=300):
+                        if await lbl.is_visible(timeout=200):
                             for_id = await lbl.get_attribute("for")
                             if for_id:
                                 candidate = ctx.locator(f"#{for_id}, [name='{for_id}']").first
-                                if await candidate.is_visible(timeout=300) and not await is_honeypot(candidate):
+                                if await candidate.is_visible(timeout=200) and not await is_honeypot(candidate):
                                     msg_elem = candidate
                                     break
+                            candidate = lbl.locator("textarea, input").first
+                            if await candidate.is_visible(timeout=200) and not await is_honeypot(candidate):
+                                msg_elem = candidate
+                                break
+                            # Sibling textarea in parent wrapper (.form-group, .gfield, .wpforms-field, etc.)
+                            try:
+                                candidate = lbl.locator("xpath=..//textarea").first
+                                if await candidate.is_visible(timeout=200) and not await is_honeypot(candidate):
+                                    msg_elem = candidate
+                                    break
+                            except Exception:
+                                pass
                     except Exception:
                         pass
 
-            # 2. Email field
+            # Universal Message Fallback: any visible non-honeypot textarea in context
+            if not msg_elem:
+                try:
+                    all_textareas = await ctx.locator("textarea").all()
+                    for ta in all_textareas:
+                        if await ta.is_visible(timeout=200) and not await is_honeypot(ta):
+                            msg_elem = ta
+                            break
+                except Exception:
+                    pass
+
+            # 2. Email field (standard, WordPress, CF7, Gravity, WPForms, Elementor, Lawmatics)
             email_selectors = [
                 "input[type='email']",
+                "input[autocomplete='email']",
                 "input[name*='email' i]",
                 "input[id*='email' i]",
                 "input[placeholder*='email' i]",
@@ -600,35 +673,49 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 "input[class*='email' i]",
                 "input[aria-label*='email' i]",
                 "input[aria-label*='e-mail' i]",
-                # Lawmatics base64 email selector
+                "input[name*='your-email' i]",
                 "input[name*='ZW1haWw']",
                 "input[id*='ZW1haWw']",
+                "input.wpforms-field-email",
+                "input[name*='wpforms'][name*='email' i]",
+                "input.ginput_email",
+                "div.ginput_container_email input",
+                "input[name*='form_fields'][type='email']",
+                "input[name*='item_meta'][type='email']",
             ]
             email_elem = None
             for sel in email_selectors:
                 loc = ctx.locator(sel).first
-                if await loc.is_visible(timeout=800):
+                if await loc.is_visible(timeout=500):
                     if await is_honeypot(loc):
                         continue
                     email_elem = loc
                     break
 
             if not email_elem:
-                # Try label matching for email
-                for lbl_sel in ["label:has-text('Email')", "label:has-text('E-mail')", "label:has-text('Your Email')"]:
+                # Try label matching for email (for ID, child, and parent container sibling)
+                for lbl_sel in ["label:has-text('Email')", "label:has-text('E-mail')", "label:has-text('Your Email')", "label:has-text('Email Address')"]:
                     try:
                         lbl = ctx.locator(lbl_sel).first
-                        if await lbl.is_visible(timeout=300):
+                        if await lbl.is_visible(timeout=200):
                             for_id = await lbl.get_attribute("for")
                             if for_id:
                                 candidate = ctx.locator(f"#{for_id}, [name='{for_id}']").first
-                                if await candidate.is_visible(timeout=300) and not await is_honeypot(candidate):
+                                if await candidate.is_visible(timeout=200) and not await is_honeypot(candidate):
                                     email_elem = candidate
                                     break
                             candidate = lbl.locator("input").first
-                            if await candidate.is_visible(timeout=300) and not await is_honeypot(candidate):
+                            if await candidate.is_visible(timeout=200) and not await is_honeypot(candidate):
                                 email_elem = candidate
                                 break
+                            # Sibling input in parent container (.form-group, .gfield, .wpforms-field, etc.)
+                            try:
+                                candidate = lbl.locator("xpath=..//input[not(@type='hidden') and not(@type='submit') and not(@type='checkbox') and not(@type='radio')]").first
+                                if await candidate.is_visible(timeout=200) and not await is_honeypot(candidate):
+                                    email_elem = candidate
+                                    break
+                            except Exception:
+                                pass
                     except Exception:
                         pass
 
@@ -651,30 +738,76 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
             except Exception:
                 pass
 
-            # 3. Name fields
+            # 3. Name fields (First / Last or Full Name across Gravity, WPForms, CF7, Elementor)
             try:
-                first_name_loc = ctx.locator("input[name*='first' i], input[id*='first' i], input[placeholder*='first' i], input[name*='Zmlyc3RfbmFtZQ']").first
-                last_name_loc = ctx.locator("input[name*='last' i], input[id*='last' i], input[placeholder*='last' i], input[name*='bGFzdF9uYW1l']").first
-                
-                if await first_name_loc.is_visible(timeout=500) and await last_name_loc.is_visible(timeout=500):
+                first_name_loc = ctx.locator(
+                    "input[name*='first' i], input[id*='first' i], input[placeholder*='first' i], "
+                    "input[name*='fname' i], input[id*='fname' i], input[autocomplete='given-name'], "
+                    "input[name*='Zmlyc3RfbmFtZQ'], input.wpforms-field-name-first, input[name$='.3']"
+                ).first
+                last_name_loc = ctx.locator(
+                    "input[name*='last' i], input[id*='last' i], input[placeholder*='last' i], "
+                    "input[name*='lname' i], input[id*='lname' i], input[autocomplete='family-name'], "
+                    "input[name*='bGFzdF9uYW1l'], input.wpforms-field-name-last, input[name$='.6']"
+                ).first
+
+                if await first_name_loc.is_visible(timeout=300) and await last_name_loc.is_visible(timeout=300):
                     if not await is_honeypot(first_name_loc) and not await is_honeypot(last_name_loc):
                         await first_name_loc.fill(SENDER_FIRST_NAME)
                         await last_name_loc.fill(SENDER_LAST_NAME)
                 else:
-                    for sel in ["input[name*='name' i]", "input[id*='name' i]", "input[placeholder*='name' i]", "input[aria-label*='name' i]"]:
+                    name_selectors = [
+                        "input[name*='your-name' i]",
+                        "input[autocomplete='name']",
+                        "input[name='name' i]", "input[id='name' i]",
+                        "input[name*='full_name' i]", "input[name*='fullname' i]",
+                        "input[name*='contact_name' i]", "input[placeholder*='name' i]",
+                        "input[aria-label*='name' i]", "input.wpforms-field-name",
+                        "div.ginput_container_name input[type='text']",
+                        "input[name*='name' i]"
+                    ]
+                    name_filled = False
+                    for sel in name_selectors:
                         loc = ctx.locator(sel).first
-                        if await loc.is_visible(timeout=500) and not await is_honeypot(loc):
+                        if await loc.is_visible(timeout=300) and not await is_honeypot(loc):
                             await loc.fill(SENDER_NAME)
+                            name_filled = True
                             break
+
+                    if not name_filled:
+                        # Label matching for Name
+                        for n_lbl in ["label:has-text('Name')", "label:has-text('Full Name')", "label:has-text('Your Name')"]:
+                            try:
+                                lbl = ctx.locator(n_lbl).first
+                                if await lbl.is_visible(timeout=200):
+                                    for_id = await lbl.get_attribute("for")
+                                    if for_id:
+                                        cand = ctx.locator(f"#{for_id}, [name='{for_id}']").first
+                                        if await cand.is_visible(timeout=200) and not await is_honeypot(cand):
+                                            await cand.fill(SENDER_NAME)
+                                            break
+                                    cand = lbl.locator("xpath=..//input[not(@type='hidden') and not(@type='submit') and not(@type='checkbox') and not(@type='radio')]").first
+                                    if await cand.is_visible(timeout=200) and not await is_honeypot(cand):
+                                        await cand.fill(SENDER_NAME)
+                                        break
+                            except Exception:
+                                pass
             except Exception:
                 pass
 
             # 4. Phone field (optional)
             clean_phone_digits = re.sub(r"\D", "", SENDER_PHONE)
-            for sel in ["input[type='tel']", "input[name*='phone' i]", "input[id*='phone' i]", "input[placeholder*='phone' i]", "input[name*='cGhvbmU']"]:
+            phone_selectors = [
+                "input[type='tel']", "input[autocomplete='tel']",
+                "input[name*='phone' i]", "input[id*='phone' i]", "input[placeholder*='phone' i]",
+                "input[name*='your-tel' i]", "input[name*='your-phone' i]",
+                "input[name*='cGhvbmU']", "input.wpforms-field-phone",
+                "div.ginput_container_phone input", "input[name*='tel' i]"
+            ]
+            for sel in phone_selectors:
                 try:
                     loc = ctx.locator(sel).first
-                    if await loc.is_visible(timeout=500) and not await is_honeypot(loc):
+                    if await loc.is_visible(timeout=300) and not await is_honeypot(loc):
                         inp_type = await loc.get_attribute("type")
                         if inp_type == "number":
                             await loc.fill(clean_phone_digits)
@@ -688,10 +821,14 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                     pass
 
             # 5. Subject field (optional)
-            for sel in ["input[name*='subject' i]", "input[id*='subject' i]", "input[placeholder*='subject' i]", "[name*='cHJhY3RpY2VfYXJlYQ']"]:
+            subject_selectors = [
+                "input[name*='subject' i]", "input[id*='subject' i]", "input[placeholder*='subject' i]",
+                "input[name*='your-subject' i]", "[name*='cHJhY3RpY2VfYXJlYQ']"
+            ]
+            for sel in subject_selectors:
                 try:
                     loc = ctx.locator(sel).first
-                    if await loc.is_visible(timeout=500) and not await is_honeypot(loc):
+                    if await loc.is_visible(timeout=300) and not await is_honeypot(loc):
                         await loc.fill(subject)
                         break
                 except Exception:
@@ -705,13 +842,31 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
 
             # 8. Consent & Disclaimer Checkboxes (mandatory on many law firm forms)
             try:
-                checkboxes = ctx.locator("input[type='checkbox'][required], input[type='checkbox'][name*='agree' i], input[type='checkbox'][name*='consent' i], input[type='checkbox'][name*='disclaimer' i], input[type='checkbox'][id*='agree' i]")
-                cb_count = await checkboxes.count()
-                for cb_idx in range(cb_count):
-                    cb = checkboxes.nth(cb_idx)
-                    if await cb.is_visible(timeout=300) and not await is_honeypot(cb):
+                cb_locators = await ctx.locator("input[type='checkbox']").all()
+                for cb in cb_locators:
+                    if not await cb.is_visible(timeout=100) or await is_honeypot(cb):
+                        continue
+                    is_req = await cb.get_attribute("required") is not None or await cb.get_attribute("aria-required") == "true"
+                    cb_name = (await cb.get_attribute("name") or "").lower()
+                    cb_id = (await cb.get_attribute("id") or "").lower()
+                    cb_text = ""
+                    if cb_id:
+                        try:
+                            lbl = ctx.locator(f"label[for='{cb_id}']").first
+                            if await lbl.is_visible(timeout=100):
+                                cb_text = (await lbl.inner_text()).lower()
+                        except Exception:
+                            pass
+                    if not cb_text:
+                        try:
+                            cb_text = (await cb.evaluate("el => el.parentElement ? el.parentElement.innerText : ''")).lower()
+                        except Exception:
+                            pass
+
+                    keywords = ["agree", "consent", "disclaimer", "terms", "privacy", "policy", "accept", "ack", "relationship", "sms", "communication"]
+                    if is_req or any(k in cb_name or k in cb_id or k in cb_text for k in keywords):
                         if not await cb.is_checked():
-                            await cb.check(timeout=1000)
+                            await cb.check(timeout=500)
             except Exception:
                 pass
 
@@ -799,6 +954,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
 
 async def process_target(browser, target, is_dry_run=False):
     source_url = target.get("Source_URL", "").strip()
+    explicit_form_url = target.get("Form_URL", "").strip()
     firm = target.get("Firm", "")
     state = target.get("State", "")
     variant = ""
@@ -816,12 +972,20 @@ async def process_target(browser, target, is_dry_run=False):
     await context.add_init_script(STEALTH_INIT_SCRIPT)
     page = await context.new_page()
     try:
+        # Check initial domain broker
+        for bp in ["hugedomains.com", "dan.com", "sedo.com", "afternic.com", "godaddy.com/domainsearch"]:
+            if bp in source_url.lower() or bp in explicit_form_url.lower():
+                return {"status": "ERROR", "detail": "Domain expired / parked broker page", "variant": ""}
+
         print(f"  🌐 Visiting {firm} ({source_url})...")
-        await page.goto(source_url, timeout=20000, wait_until="domcontentloaded")
-        
-        # Locate contact form page
-        form_url = await find_contact_page(page, source_url)
+        # Locate contact form page (using explicit Form_URL first if available)
+        form_url = await find_contact_page(page, source_url, explicit_form_url=explicit_form_url)
         print(f"     Found form page: {form_url}")
+
+        # Check if landed on domain broker page
+        for bp in ["hugedomains.com", "dan.com", "sedo.com", "afternic.com", "godaddy.com/domainsearch"]:
+            if bp in page.url.lower():
+                return {"status": "ERROR", "form_url": page.url, "detail": "Domain expired / redirected to broker", "variant": ""}
 
         # Fill and submit (compose_message is called inside, variant determined there)
         ok, detail, variant = await fill_and_submit_form(page, target, is_dry_run=is_dry_run)
@@ -905,7 +1069,7 @@ def get_already_submitted():
     """
     Returns a set of all normalized domains that should be EXCLUDED.
     - SUCCESS: permanently excluded (only if actually submitted live, NOT dry runs)
-    - ERROR with DNS resolution failure: permanently excluded (dead domain)
+    - ERROR with DNS resolution failure or broker redirect: permanently excluded (dead domain)
     - DRY_RUN / FAILED / other ERROR: NOT excluded (eligible for live runs)
     """
     submitted = set()
@@ -923,9 +1087,10 @@ def get_already_submitted():
                 if status == "SUCCESS" and "dry_run" not in detail:
                     if d1: submitted.add(d1)
                     if d2: submitted.add(d2)
-                # Permanently exclude dead domains (DNS failures)
-                elif "ERROR" in status and "err_name_not_resolved" in detail:
+                # Permanently exclude dead / broker domains
+                elif "ERROR" in status and any(err in detail for err in ["err_name_not_resolved", "broker", "hugedomains", "expired", "dan.com", "sedo.com"]):
                     if d1: submitted.add(d1)
+                    if d2: submitted.add(d2)
                 # All other failures or dry runs will be retried on live runs
 
     return submitted
@@ -947,6 +1112,18 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
     already_done = get_already_submitted()
     print(f"✓ Found {len(already_done)} previously contacted domains (PERMANENTLY EXCLUDED)")
 
+    # 1. Load verified real domains & firms from verified_attorney_targets.csv
+    verified_domains = set()
+    verified_firms = set()
+    if LEGACY_TARGETS_CSV.exists():
+        with open(LEGACY_TARGETS_CSV, "r", encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                u = r.get("Source_URL", "")
+                d = clean_domain(u) or clean_domain(r.get("Email", ""))
+                if d: verified_domains.add(d)
+                fn = r.get("Firm", "").strip().lower()
+                if fn: verified_firms.add(fn)
+
     eligible_targets = []
     with open(TARGETS_CSV, "r", encoding="utf-8") as f:
         for r in csv.DictReader(f):
@@ -961,23 +1138,30 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
                 continue
             if url and url.startswith("http"):
                 clean["domain"] = dom
+                is_ver = (clean.get("Verified_Status") == "VERIFIED_ACTIVE") or (dom in verified_domains) or (clean.get("Firm", "").strip().lower() in verified_firms)
+                clean["is_verified"] = is_ver
                 raw_score = clean.get("Conversion_Score")
                 clean["priority_score"] = float(raw_score) if raw_score else calculate_priority_score(clean)
                 eligible_targets.append(clean)
 
-    # Deduplicate candidate list by domain, retaining highest priority score
+    # Deduplicate candidate list by domain, retaining highest priority score and verified flag
     unique_candidates = {}
     for t in eligible_targets:
         d = t["domain"]
-        if d not in unique_candidates or t["priority_score"] > unique_candidates[d]["priority_score"]:
+        if d not in unique_candidates or (t["is_verified"] and not unique_candidates[d]["is_verified"]) or t["priority_score"] > unique_candidates[d]["priority_score"]:
             unique_candidates[d] = t
 
-    # Rank by Priority Score descending (Highest Probability Targets First)
-    ranked_targets = sorted(unique_candidates.values(), key=lambda x: x["priority_score"], reverse=True)
+    # Rank: 100% VERIFIED REAL LAW FIRMS FIRST, then by Priority Score descending
+    ranked_targets = sorted(
+        unique_candidates.values(),
+        key=lambda x: (1 if x.get("is_verified") else 0, x["priority_score"]),
+        reverse=True
+    )
     candidate_list = ranked_targets[:limit]
 
+    verified_count = sum(1 for t in candidate_list if t.get("is_verified"))
     print(f"✓ Found {len(ranked_targets)} fresh, untouched law firms in database")
-    print(f"✓ Selected top {len(candidate_list)} HIGHEST PROBABILITY targets for this batch\n")
+    print(f"✓ Selected top {len(candidate_list)} HIGHEST PROBABILITY targets ({verified_count} VERIFIED REAL FIRMS) for this batch\n")
 
     if not candidate_list:
         print("No eligible targets remaining.")
@@ -985,7 +1169,8 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
 
     print("Target Queue Priority Breakdown:")
     for idx, cand in enumerate(candidate_list, 1):
-        print(f"  [{idx:02d}] Score: {cand['priority_score']} | {cand['Name']} | {cand['Firm']} ({cand['State']}) — {cand['Specialty']}")
+        tag = "[VERIFIED REAL]" if cand.get("is_verified") else "[UNVERIFIED]"
+        print(f"  [{idx:02d}] {tag} Score: {cand['priority_score']} | {cand['Name']} | {cand['Firm']} ({cand['State']}) — {cand['Specialty']}")
     print("-" * 75 + "\n")
 
     results = []

@@ -64,9 +64,73 @@ STATE_STATUTES = {
     "FL": ("Florida", "Fla. Stat. § 197.582"),
     "TX": ("Texas", "Tex. Tax Code § 34.04"),
     "GA": ("Georgia", "O.C.G.A. § 48-4-5"),
-    "NC": ("North Carolina", "N.C.G.S. § 105-374"),
-    "TN": ("Tennessee", "T.C.A. § 67-5-2501"),
+    "NC": ("North Carolina", "N.C. Gen. Stat. § 105-374"),
+    "TN": ("Tennessee", "Tenn. Code Ann. § 67-5-2510"),
     "CA": ("California", "Cal. Rev. & Tax Code § 4675"),
+}
+
+# Synchronized Statutory Knowledge Base (Reflects all website guides & appellate authorities)
+JURISDICTION_STATUTORY_KNOWLEDGE = {
+    "FL": {
+        "state_name": "Florida",
+        "statute_cite": "Fla. Stat. § 197.582",
+        "claim_window": "120-day statutory notice window from clerk mailing",
+        "custodian": "County Clerk of Court / Tax Collector",
+        "procedural_mechanism": "Verified claim or motion for distribution filed with the clerk of the circuit court",
+        "priority_rules": "Governmental liens -> senior recorded mortgagees/lienholders -> record title owner or estate heirs",
+        "escheat_rule": "Unclaimed funds escheat to Florida Department of Financial Services (DFS) Division of Unclaimed Property",
+        "toolkit_motion": "Verified Petition for Distribution of Tax Deed Surplus Funds",
+    },
+    "TX": {
+        "state_name": "Texas",
+        "statute_cite": "Tex. Tax Code § 34.04",
+        "claim_window": "Strict 2-year statutory limitation period from deed recordation",
+        "custodian": "District Court Registry",
+        "procedural_mechanism": "Formal judicial petition filed in original tax suit with citation/service on all former taxing units",
+        "priority_rules": "Taxing entities -> non-party lienholders -> former titleholder of record",
+        "escheat_rule": "Funds unclaimed after 2 years transfer to county general fund under Sec. 34.04",
+        "toolkit_motion": "Petition for Distribution of Excess Proceeds under Tex. Tax Code § 34.04",
+    },
+    "GA": {
+        "state_name": "Georgia",
+        "statute_cite": "O.C.G.A. § 48-4-5",
+        "claim_window": "5-year statutory hold before interpleader",
+        "custodian": "County Tax Commissioner / Sheriff Registry",
+        "procedural_mechanism": "Statutory demand to custodian or interpleader action in Superior Court",
+        "priority_rules": "Record owner at time of tax sale -> junior lienholders in order of priority",
+        "escheat_rule": "Custodian may interplead funds into Superior Court if competing claims exist",
+        "toolkit_motion": "Demand for Excess Proceeds & Affidavit of Record Ownership",
+    },
+    "CA": {
+        "state_name": "California",
+        "statute_cite": "Cal. Rev. & Tax Code § 4675",
+        "claim_window": "Strict 1-year statutory deadline from recording of tax deed",
+        "custodian": "County Board of Supervisors / County Tax Collector",
+        "procedural_mechanism": "Claim for Excess Proceeds with required documentary proof of interest under Section 4675",
+        "priority_rules": "Holders of recorded liens in legal priority -> parties of interest (titleholders/heirs)",
+        "escheat_rule": "Unclaimed funds remain with county or escheat to state controller",
+        "toolkit_motion": "Claim for Excess Proceeds from Sale of Tax-Defaulted Property",
+    },
+    "NC": {
+        "state_name": "North Carolina",
+        "statute_cite": "N.C. Gen. Stat. § 105-374",
+        "claim_window": "10-day upset bid period following sale; statutory claim window",
+        "custodian": "Clerk of Superior Court Registry",
+        "procedural_mechanism": "Special proceeding or motion in tax foreclosure cause",
+        "priority_rules": "Costs and taxes -> mortgagees and judgment creditors -> titleholders",
+        "escheat_rule": "Unclaimed proceeds escheat to state Escheat Fund",
+        "toolkit_motion": "Motion for Disbursement of Surplus Foreclosure Proceeds",
+    },
+    "TN": {
+        "state_name": "Tennessee",
+        "statute_cite": "Tenn. Code Ann. § 67-5-2510",
+        "claim_window": "1-year statutory redemption and claim period",
+        "custodian": "Chancery Court / Circuit Court Registry",
+        "procedural_mechanism": "Motion for distribution of excess proceeds filed in Chancery Court",
+        "priority_rules": "Taxes and court costs -> lienholders -> delinquent property owner or heirs",
+        "escheat_rule": "Funds held by clerk & master pending judicial order of distribution",
+        "toolkit_motion": "Petition for Excess Proceeds from Chancery Delinquent Tax Sale",
+    },
 }
 
 # Policy SD-POL-OUTREACH-2026-V1 Hard Domain Blocklist
@@ -557,6 +621,7 @@ def analyze_prospect_intent(subject_raw, text_body):
         return "OPT_OUT"
 
     scores = {
+        "TYLER_V_HENNEPIN": 0,
         "IN_HOUSE_PARALEGAL": 0,
         "CONTINGENCY_FEE_SPLIT": 0,
         "TAX_DEED_VS_MORTGAGE": 0,
@@ -571,7 +636,18 @@ def analyze_prospect_intent(subject_raw, text_body):
         "PRICING": 0,
     }
 
-    # 2. IN_HOUSE_PARALEGAL cues
+    # 2. TYLER_V_HENNEPIN cues (SCOTUS 9-0 ruling on Takings Clause & surplus retention)
+    tyler_strong = [
+        "tyler", "hennepin", "supreme court", "scotus", "takings clause",
+        "5th amendment", "fifth amendment", "unconstitutional taking", "equity forfeiture",
+        "home equity theft", "unconstitutional retention", "constitutional challenge",
+        "post-tyler", "post tyler", "county keeping surplus", "can the county keep"
+    ]
+    for c in tyler_strong:
+        if c in content:
+            scores["TYLER_V_HENNEPIN"] += 4
+
+    # 3. IN_HOUSE_PARALEGAL cues
     paralegal_strong = [
         "already have a paralegal", "our paralegal", "paralegal checks",
         "paralegal pulls", "staff handles", "do this in house", "do it in house",
@@ -784,6 +860,11 @@ def compose_elena_response(intent, target_info, sender_name, sender_email, subje
 
     state_name = STATE_NAMES.get(detected_state, "Florida")
     statute_cite = STATE_STATUTES.get(detected_state, (state_name, "applicable state civil code"))[1]
+    stat_entry = JURISDICTION_STATUTORY_KNOWLEDGE.get(detected_state, JURISDICTION_STATUTORY_KNOWLEDGE["FL"])
+    claim_window = stat_entry.get("claim_window", "designated statutory claim window")
+    custodian = stat_entry.get("custodian", "court or county registry")
+    toolkit_motion = stat_entry.get("toolkit_motion", "Verified Petition for Distribution of Surplus Funds")
+    priority_rules = stat_entry.get("priority_rules", "Governmental liens -> recorded senior mortgagees -> titleholder of record")
 
     # Resolve benchmark cases
     cases = state_cases.get(detected_state, state_cases.get("FL", []))
@@ -800,6 +881,24 @@ elena.brooks@surplusdocket.com"""
         body = f"""{greeting}
 
 Understood completely. I've marked your firm's file and removed you from all future docket distributions and updates.
+
+{signature}"""
+
+    elif intent == "TYLER_V_HENNEPIN":
+        body = f"""{greeting}
+
+Thanks for asking about how Tyler v. Hennepin County impacts surplus recovery.
+
+The Supreme Court's unanimous 9-0 ruling in Tyler v. Hennepin County, 598 U.S. 631 (2023), established unequivocally that county governments cannot retain property equity exceeding the tax debt owed. Chief Justice Roberts made clear that the Takings Clause of the Fifth Amendment protects excess proceeds as private property, fundamentally invalidating state statutes that historically allowed municipal windfalls.
+
+As a practical matter for recovery counsel in {state_name}, counties that previously allowed surplus funds to escheat directly to county general funds or retained overages under strict forfeiture schemes are now establishing administrative court registry procedures. Under {statute_cite}, former owners and lienholders have designated statutory windows ({claim_window}) to claim excess proceeds deposited with the {custodian}.
+
+Our data intelligence desk monitors clerk registries and tax collector sale dockets across {state_name} every morning. We identify unencumbered equity balances, scrub out junior and senior bank liens upstream, and alert counsel to files with active statutory claim windows before funds escheat.
+
+The feed is delivered every business morning at 7:00 AM EST in CSV, Excel, and JSON ($249/month flat, cancel anytime):
+{STRIPE_LINK}
+
+Let me know if your practice is litigating post-Tyler recovery claims in {state_name} or if you'd like to inspect sample cases from our current index.
 
 {signature}"""
 
@@ -839,7 +938,7 @@ Happy to answer any other compliance or vendor billing questions your office mig
 
 Thanks for following up. We actually track both, but we separate them into dedicated columns so counsel can route them according to practice focus.
 
-Tax deed overbids under {statute_cite} are held by the county tax collector or clerk with specific statutory claim deadlines (such as Florida's 120-day notice window before funds escheat). Civil mortgage foreclosure surpluses sit in the circuit court civil registry following final judgment and certificate of disbursements.
+Tax deed overbids under {statute_cite} are held by the {custodian} with specific statutory claim deadlines ({claim_window} before funds escheat). Civil mortgage foreclosure surpluses sit in the circuit court civil registry following final judgment and certificate of disbursements.
 
 In every morning report, each record identifies the funds custodian, auction origin, and claim expiration window so your team doesn't have to cross-check which registry holds the deposit.
 
@@ -855,7 +954,7 @@ Let me know if your office focuses specifically on tax deeds or if you also liti
 
 Thanks for asking. In roughly 35% of the tax deed and foreclosure surplus files we index, the former record titleholder is deceased.
 
-When our desk identifies an estate or deceased owner, we tag the file specifically so probate and heir recovery counsel can review it immediately. In many states, excess proceeds from deceased owners sit unclaimed until an ancillary or formal probate is opened. Under {statute_cite}, heirs often have a limited statutory window before funds escheat to the county or state general revenue.
+When our desk identifies an estate or deceased owner, we tag the file specifically so probate and heir recovery counsel can review it immediately. In many states, excess proceeds from deceased owners sit unclaimed in the {custodian} until an ancillary or formal probate is opened. Under {statute_cite}, heirs have a limited statutory window ({claim_window}) before funds escheat under state unclaimed property statutes. Statutory priority strictly favors verifiable heirs over junior judgment creditors: {priority_rules}.
 
 Each morning feed flags estate files and provides the decedent's record name, situs address, parcel ID, and direct links to the clerk's docket so your team can verify probate status and file petitions for determination of heirs.
 
@@ -920,7 +1019,7 @@ Let me know if you have any questions about how our partner firms handle their i
 Yes, all subscriptions include full access to our Asset Recovery Legal Toolkit at no additional charge.
 
 The toolkit provides court-ready pleading templates and client documentation drafted for practice under {statute_cite}, including:
-- Verified Petition for Distribution of Surplus Funds
+- Verified Petition for Distribution of Surplus Funds ({toolkit_motion})
 - Owner / Heir Affidavit of Claim and Non-Assignment
 - Notice of Appearance and Motion for Evidentiary Hearing on Surplus
 - Heir Representation Retainer Agreement & Statutory Fee Disclosure

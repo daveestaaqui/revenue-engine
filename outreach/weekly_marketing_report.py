@@ -254,17 +254,39 @@ def collect_marketing_metrics(now=None):
 
     # 6. Ingest Programmatic SEO & Content Count
     if SITE_DIR.exists():
+        # Count county & state jurisdictional landing pages in site/
+        jurisdictional_pages = []
+        exclude_site_pages = {
+            "index.html", "404.html", "terms.html", "refund-policy.html",
+            "welcome.html", "inquiry.html", "api-documentation.html",
+            "comparison.html", "methodology.html", "practitioner-toolkit.html"
+        }
+        for p in SITE_DIR.glob("*.html"):
+            if p.name not in exclude_site_pages:
+                jurisdictional_pages.append(p.name)
         counties_dir = SITE_DIR / "counties"
         if counties_dir.exists():
-            metrics["published_seo_pages"] = len(list(counties_dir.glob("*.html")))
+            jurisdictional_pages.extend([p.name for p in counties_dir.glob("*.html")])
+        metrics["published_seo_pages"] = len(set(jurisdictional_pages))
+
+        articles = []
+        # Blog posts (e.g. site/blog/posts/*.html)
+        blog_posts_dir = SITE_DIR / "blog" / "posts"
+        if blog_posts_dir.exists():
+            articles.extend([p.name for p in blog_posts_dir.glob("*.html")])
         blog_dir = SITE_DIR / "blog"
-        news_dir = SITE_DIR / "news"
-        articles_count = 0
         if blog_dir.exists():
-            articles_count += len(list(blog_dir.glob("*.html")))
+            articles.extend([p.name for p in blog_dir.glob("*.html") if p.name != "index.html"])
+
+        # Press releases (e.g. site/press/releases/*.html)
+        press_releases_dir = SITE_DIR / "press" / "releases"
+        if press_releases_dir.exists():
+            articles.extend([p.name for p in press_releases_dir.glob("*.html")])
+        news_dir = SITE_DIR / "news"
         if news_dir.exists():
-            articles_count += len(list(news_dir.glob("*.html")))
-        metrics["published_articles"] = articles_count
+            articles.extend([p.name for p in news_dir.glob("*.html") if p.name != "index.html"])
+
+        metrics["published_articles"] = len(set(articles))
 
     return metrics
 
@@ -539,7 +561,7 @@ def render_plaintext_report(metrics):
     lines.extend([
         "",
         "📩 ELENA BROOKS INBOUND & SAFEGUARDS:",
-        f"• Multi-Factor Intent Classifier: 14 legal dimensions active",
+        f"• Multi-Factor Intent Classifier: 15 legal dimensions active",
         f"• Anti-AI Voice Compliance:       100% verified (zero buzzwords, zero pitch decks)",
         f"• Prospect Follow-up Drafts:      {m['created_drafts_count']} prepared in [Gmail]/Drafts",
         f"• Human In The Loop:             100% manual click-to-send review",
