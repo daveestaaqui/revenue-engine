@@ -32,12 +32,12 @@ TARGETS_CSV = MASTER_TARGETS_CSV if MASTER_TARGETS_CSV.exists() else LEGACY_TARG
 LOG_CSV = OUTREACH_DIR / "form_submissions_log.csv"
 SCREENSHOTS_DIR = OUTREACH_DIR / "form_screenshots"
 
-# Sender Info (Default: Elena Vance — Senior Docket Intelligence Specialist)
-SENDER_NAME = "Elena Vance"
+# Sender Info (Default: Elena Collins — Senior Docket Intelligence Specialist)
+SENDER_NAME = "Elena Collins"
 SENDER_FIRST_NAME = "Elena"
-SENDER_LAST_NAME = "Vance"
+SENDER_LAST_NAME = "Collins"
 SENDER_TITLE = "Senior Docket Specialist"
-SENDER_EMAIL = "elena.vance@surplusdocket.com"
+SENDER_EMAIL = "elena.collins@surplusdocket.com"
 SENDER_PHONE = "508-888-0000"
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
@@ -121,10 +121,10 @@ We deliver the standardized feed every morning at 7:00 AM EST (CSV, Excel, JSON)
 
 Best regards,
 
-Elena Vance
+Elena Collins
 Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-elena.vance@surplusdocket.com"""
+elena.collins@surplusdocket.com"""
 
     elif chosen_variant == "B":
         subject = f"Post-Tyler surplus recovery data — {state_name}"
@@ -142,10 +142,10 @@ If your firm would like daily 7:00 AM EST delivery ($249/mo flat, cancel anytime
 
 Best regards,
 
-Elena Vance
+Elena Collins
 Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-elena.vance@surplusdocket.com"""
+elena.collins@surplusdocket.com"""
 
     else:  # Variant C
         subject = f"{state_name} surplus claims — daily ROI feed"
@@ -163,10 +163,10 @@ Daily delivery is $249/mo flat with self-service Stripe billing (cancel anytime)
 
 Best regards,
 
-Elena Vance
+Elena Collins
 Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-elena.vance@surplusdocket.com"""
+elena.collins@surplusdocket.com"""
 
     return subject, body, chosen_variant
 
