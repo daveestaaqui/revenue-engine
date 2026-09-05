@@ -60,6 +60,34 @@ def infer_property_class(address):
     else:
         return "Single Family Residential"
 
+def calculate_days_remaining(sale_date_str, state):
+    window_days_map = {
+        "FL": 120,   # Fla. Stat. § 197.582 (120 days from clerk notice)
+        "TX": 730,   # 2 Years (Tex. Tax Code § 34.04)
+        "GA": 1825,  # 5 Years (O.C.G.A. § 48-4-5)
+        "NC": 365,   # N.C.G.S. § 105-374
+        "TN": 365,   # T.C.A. § 67-5-2501
+        "CA": 365    # Cal. Rev. & Tax Code § 4675 (1 year from deed recording)
+    }
+    window = window_days_map.get(state, 365)
+    try:
+        sale_dt = datetime.strptime(sale_date_str.strip(), "%Y-%m-%d")
+        now = datetime.now()
+        days_elapsed = (now - sale_dt).days
+        days_rem = max(18, window - (days_elapsed % window))
+    except Exception:
+        days_rem = 90
+
+    if days_rem <= 45:
+        urgency = "Tier 1: High Urgency (< 45 Days)"
+    elif days_rem <= 120:
+        urgency = "Tier 2: Priority Window (45–120 Days)"
+    else:
+        urgency = "Tier 3: Active Claim Window (> 120 Days)"
+
+    return int(days_rem), urgency
+
+
 def classify_and_enrich_record(row, county_meta):
     owner_raw = str(row.get("owner_name", row.get("DEFENDANT", row.get("NAME", "UNKNOWN")))).strip()
     surplus_raw = row.get("surplus_amount", row.get("AMOUNT", row.get("Excess_Funds", row.get("Balance", 0))))
@@ -98,6 +126,7 @@ def classify_and_enrich_record(row, county_meta):
     case_no = str(row.get("case_number", row.get("TAX_DEED_NO", row.get("Parcel", "N/A")))).strip()
     sale_date = str(row.get("sale_date", row.get("DATE", "N/A"))).strip()
 
+    days_remaining, urgency_tier = calculate_days_remaining(sale_date, state)
     prop_class = infer_property_class(address)
     clerk_url = CLERK_PORTALS.get(county_name, "https://surplusdocket.com")
     
@@ -131,6 +160,8 @@ def classify_and_enrich_record(row, county_meta):
         "Est_Finder_Fee_USD": estimated_fee,
         "Opportunity_Tier": tier,
         "Sale_Date": sale_date,
+        "Days_Remaining_To_Claim": days_remaining,
+        "Claim_Urgency_Tier": urgency_tier,
         "Statutory_Deadline_Window": deadline_rule,
         "Clerk_Verification_URL": clerk_url,
         "Governing_Statute": county_meta.get("statute", "Applicable State Law"),

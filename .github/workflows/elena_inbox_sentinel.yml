@@ -38,9 +38,9 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-          FROM_NAME: 'Elena Brooks'
-          SENDER_EMAIL: 'elena.brooks@surplusdocket.com'
-          REPLY_TO: 'elena.brooks@surplusdocket.com'
+          FROM_NAME: 'Surplus Docket Intelligence'
+          SENDER_EMAIL: 'dockets@surplusdocket.com'
+          REPLY_TO: 'dockets@surplusdocket.com'
         run: |
           if [ -z "$GMAIL_APP_PASS" ]; then
             echo "ℹ️ GMAIL_APP_PASS secret not configured in repository. Skipping IMAP pass."
@@ -51,10 +51,10 @@ jobs:
 
       - name: Commit & Push Updated Logs & Tracking
         run: |
-          git config --global user.name "Elena Brooks Bot"
-          git config --global user.email "elena.brooks@surplusdocket.com"
+          git config --global user.name "Surplus Docket Bot"
+          git config --global user.email "bot@surplusdocket.com"
           git add outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log portal/subscribers.json portal/processed_stripe_events.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(inbox): updated Elena drafts, auto-responses & Stripe subscribers [skip ci]" && git pull --rebase origin main && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(inbox): updated auto-responses & Stripe subscribers [skip ci]" && git pull --rebase origin main && git push)
 
       - name: Archive Sentinel Logs Artifact
         uses: actions/upload-artifact@v4

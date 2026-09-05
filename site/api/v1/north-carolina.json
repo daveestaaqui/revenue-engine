@@ -19,10 +19,12 @@
       "Est_Finder_Fee_USD": 27600.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-25",
+      "Days_Remaining_To_Claim": 323,
+      "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "NC",
@@ -39,10 +41,12 @@
       "Est_Finder_Fee_USD": 22900.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-18",
+      "Days_Remaining_To_Claim": 316,
+      "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "NC",
@@ -59,10 +63,12 @@
       "Est_Finder_Fee_USD": 19280.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-08",
+      "Days_Remaining_To_Claim": 337,
+      "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "NC",
@@ -79,10 +85,12 @@
       "Est_Finder_Fee_USD": 17640.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-01",
+      "Days_Remaining_To_Claim": 330,
+      "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "NC",
@@ -99,10 +107,12 @@
       "Est_Finder_Fee_USD": 12900.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-11",
+      "Days_Remaining_To_Claim": 309,
+      "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/durham",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     }
   ]
 }

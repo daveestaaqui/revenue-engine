@@ -112,6 +112,24 @@ jobs:
             python portal/dispatch_morning_feed.py --dry-run
           fi
 
+      - name: 11b. Run Institutional 7-Day Trial Retention Sentinel (Day 3 & Day 6)
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          FROM_EMAIL: 'dockets@surplusdocket.com'
+          FROM_NAME: 'Surplus Docket Intelligence'
+        run: |
+          if [ -n "$GMAIL_APP_PASS" ]; then
+            python portal/trial_retention_sentinel.py --send
+          else
+            echo "GMAIL_APP_PASS secret not set; running dry-run preview."
+            python portal/trial_retention_sentinel.py --dry-run
+          fi
+          git config --global user.name "Surplus Docket Bot"
+          git config --global user.email "bot@surplusdocket.com"
+          git add portal/trial_lifecycle_log.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(trials): update trial retention lifecycle log [skip ci]" && git pull --rebase origin main && git push)
+
       - name: 12. Upload Delivery Artifacts
         uses: actions/upload-artifact@v4
         with:

@@ -59,9 +59,9 @@ if ENV_FILE.exists():
 # Credentials & Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
-FROM_NAME = os.getenv("FROM_NAME", "Elena Brooks")
-SENDER_EMAIL = os.getenv("SENDER_EMAIL", "elena.brooks@surplusdocket.com")
-REPLY_TO = os.getenv("REPLY_TO", "elena.brooks@surplusdocket.com")
+FROM_NAME = os.getenv("FROM_NAME", "Surplus Docket Intelligence")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL", "dockets@surplusdocket.com")
+REPLY_TO = os.getenv("REPLY_TO", "dockets@surplusdocket.com")
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
 

@@ -32,12 +32,12 @@ TARGETS_CSV = MASTER_TARGETS_CSV if MASTER_TARGETS_CSV.exists() else LEGACY_TARG
 LOG_CSV = OUTREACH_DIR / "form_submissions_log.csv"
 SCREENSHOTS_DIR = OUTREACH_DIR / "form_screenshots"
 
-# Sender Info (Default: Elena Brooks — Senior Docket Intelligence Specialist)
-SENDER_NAME = "Elena Brooks"
-SENDER_FIRST_NAME = "Elena"
-SENDER_LAST_NAME = "Brooks"
-SENDER_TITLE = "Senior Docket Specialist"
-SENDER_EMAIL = "elena.brooks@surplusdocket.com"
+# Sender Info (Default: Surplus Docket Intelligence)
+SENDER_NAME = "Surplus Docket Intelligence"
+SENDER_FIRST_NAME = "Docket"
+SENDER_LAST_NAME = "Intelligence"
+SENDER_TITLE = "Court Registry Ingestion Desk"
+SENDER_EMAIL = "dockets@surplusdocket.com"
 SENDER_PHONE = "508-888-0000"
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
@@ -107,6 +107,30 @@ def compose_message(target):
     greeting = f"Hi {first_name}," if first_name else f"Hello {firm} team,"
     recommended_link = get_recommended_link(state_code, practice_details)
 
+    if target.get("is_refresh"):
+        quarter_num = ((datetime.now().month - 1) // 3) + 1
+        subject = f"Q{quarter_num} Surplus Docket Intelligence Update — {state_name} Court Registries"
+        body = f"""{greeting}
+
+I'm following up from the research desk at Surplus Docket with our quarterly court registry update for {state_name}.
+
+Since our previous outreach, our automated crawlers have indexed substantial new tax deed surplus and excess proceeds filings across {state_name} county courts. As a reminder, we audit and filter out senior mortgages and institutional bank encumbrances upstream so your attorneys only receive clean, actionable equity balances.
+
+You can inspect current live dockets and county metrics here:
+{recommended_link}
+
+Your practice can evaluate live morning filings anytime with a 7-day complimentary evaluation ($0 due today, daily 7:00 AM EST feeds, cancel anytime via Stripe portal):
+{STRIPE_LINK}
+
+Best regards,
+
+Surplus Docket Intelligence
+Court Registry Ingestion Desk | Surplus Docket
+surplusdocket.com
+dockets@surplusdocket.com"""
+        body = f"{body}\n\n{FORM_LEGAL_DISCLAIMER}"
+        return subject, body, "Q"
+
     variants = ["A", "B", "C"]
     chosen_variant = random.choice(variants)
     
@@ -126,10 +150,10 @@ We deliver the standardized feed every morning at 7:00 AM EST (CSV, Excel, JSON)
 
 Best regards,
 
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
+Surplus Docket Intelligence
+Court Registry Ingestion Desk | Surplus Docket
 surplusdocket.com
-elena.brooks@surplusdocket.com"""
+dockets@surplusdocket.com"""
 
     elif chosen_variant == "B":
         subject = f"Post-Tyler surplus recovery data — {state_name}"
@@ -147,10 +171,10 @@ We offer a 7-day complimentary practice evaluation for counsel of record ($0 due
 
 Best regards,
 
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
+Surplus Docket Intelligence
+Court Registry Ingestion Desk | Surplus Docket
 surplusdocket.com
-elena.brooks@surplusdocket.com"""
+dockets@surplusdocket.com"""
 
     else:  # Variant C
         subject = f"{state_name} surplus claims — daily ROI feed"
@@ -168,10 +192,10 @@ Your office can evaluate live morning filings with a 7-day complimentary practic
 
 Best regards,
 
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
+Surplus Docket Intelligence
+Court Registry Ingestion Desk | Surplus Docket
 surplusdocket.com
-elena.brooks@surplusdocket.com"""
+dockets@surplusdocket.com"""
 
     body = f"{body}\n\n{FORM_LEGAL_DISCLAIMER}"
     return subject, body, chosen_variant
@@ -1071,14 +1095,15 @@ def calculate_priority_score(target):
     return score
 
 
-def get_already_submitted():
+def get_submission_history(cooldown_days=90):
     """
-    Returns a set of all normalized domains that should be EXCLUDED.
-    - SUCCESS: permanently excluded (only if actually submitted live, NOT dry runs)
-    - ERROR with DNS resolution failure or broker redirect: permanently excluded (dead domain)
-    - DRY_RUN / FAILED / other ERROR: NOT excluded (eligible for live runs)
+    Analyzes LOG_CSV to categorize contacted domains:
+    - dead_domains: set of domains that had fatal DNS/broker errors (permanently excluded)
+    - latest_success: dict mapping clean domain -> latest live SUCCESS datetime
     """
-    submitted = set()
+    dead_domains = set()
+    latest_success = {}
+
     if LOG_CSV.exists():
         with open(LOG_CSV, "r", encoding="utf-8") as f:
             for row in csv.DictReader(f):
@@ -1088,18 +1113,51 @@ def get_already_submitted():
                 f_url = row.get("form_url", "")
                 d1 = clean_domain(t_url)
                 d2 = clean_domain(f_url)
-                
-                # Permanently exclude live submissions only (do NOT exclude dry-run tests)
-                if status == "SUCCESS" and "dry_run" not in detail:
-                    if d1: submitted.add(d1)
-                    if d2: submitted.add(d2)
-                # Permanently exclude dead / broker domains
-                elif "ERROR" in status and any(err in detail for err in ["err_name_not_resolved", "broker", "hugedomains", "expired", "dan.com", "sedo.com"]):
-                    if d1: submitted.add(d1)
-                    if d2: submitted.add(d2)
-                # All other failures or dry runs will be retried on live runs
+                timestamp_str = row.get("timestamp", "")
 
-    return submitted
+                # Permanently exclude dead / broker domains
+                if "ERROR" in status and any(err in detail for err in ["err_name_not_resolved", "broker", "hugedomains", "expired", "dan.com", "sedo.com"]):
+                    if d1: dead_domains.add(d1)
+                    if d2: dead_domains.add(d2)
+                    continue
+
+                # Live successful submissions
+                if status == "SUCCESS" and "dry_run" not in detail:
+                    dt = None
+                    if timestamp_str:
+                        try:
+                            dt = datetime.fromisoformat(timestamp_str.replace("Z", "+00:00"))
+                            if dt.tzinfo:
+                                dt = dt.replace(tzinfo=None)
+                        except Exception:
+                            try:
+                                dt = datetime.strptime(timestamp_str[:10], "%Y-%m-%d")
+                            except Exception:
+                                pass
+                    if not dt:
+                        dt = datetime.now()
+
+                    for dom in [d1, d2]:
+                        if dom:
+                            if dom not in latest_success or dt > latest_success[dom]:
+                                latest_success[dom] = dt
+
+    return dead_domains, latest_success
+
+
+def get_already_submitted(cooldown_days=90):
+    """
+    Returns a set of all normalized domains that should be EXCLUDED from current batches:
+    - dead/broker domains (permanently excluded)
+    - domains submitted successfully within cooldown_days (default: 90 days)
+    """
+    dead_domains, latest_success = get_submission_history(cooldown_days=cooldown_days)
+    now = datetime.now()
+    excluded = set(dead_domains)
+    for dom, dt in latest_success.items():
+        if (now - dt).days < cooldown_days:
+            excluded.add(dom)
+    return excluded
 
 
 async def run_engine(is_dry_run=False, limit=35, state_filter=None):
@@ -1115,8 +1173,9 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
         print(f"❌ Targets CSV not found at {TARGETS_CSV}")
         return
 
-    already_done = get_already_submitted()
-    print(f"✓ Found {len(already_done)} previously contacted domains (PERMANENTLY EXCLUDED)")
+    dead_domains, latest_success = get_submission_history(cooldown_days=90)
+    now = datetime.now()
+    print(f"✓ Found {len(dead_domains)} permanently dead domains and {len(latest_success)} historical live submissions")
 
     # 1. Load verified real domains & firms from verified_attorney_targets.csv
     verified_domains = set()
@@ -1138,36 +1197,64 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
             state = clean.get("State", "").upper()
             dom = clean_domain(url) or clean_domain(clean.get("Email", "")) or clean_domain(clean.get("Contact_Email", ""))
             
-            if not dom or dom in already_done:
+            if not dom or dom in dead_domains:
                 continue
+
+            days_since = None
+            is_refresh = False
+            if dom in latest_success:
+                days_since = (now - latest_success[dom]).days
+                if days_since < 90:
+                    continue  # Active within 90-day cooldown window
+                is_refresh = True
+
             if state_filter and state != state_filter.upper():
                 continue
             if url and url.startswith("http"):
                 clean["domain"] = dom
                 is_ver = (clean.get("Verified_Status") == "VERIFIED_ACTIVE") or (dom in verified_domains) or (clean.get("Firm", "").strip().lower() in verified_firms)
                 clean["is_verified"] = is_ver
+                clean["is_refresh"] = is_refresh
+                clean["days_since"] = days_since if days_since is not None else 9999
                 raw_score = clean.get("Conversion_Score")
                 clean["priority_score"] = float(raw_score) if raw_score else calculate_priority_score(clean)
                 eligible_targets.append(clean)
 
-    # Deduplicate candidate list by domain, retaining highest priority score and verified flag
+    # Deduplicate candidate list by domain
     unique_candidates = {}
     for t in eligible_targets:
         d = t["domain"]
-        if d not in unique_candidates or (t["is_verified"] and not unique_candidates[d]["is_verified"]) or t["priority_score"] > unique_candidates[d]["priority_score"]:
+        if d not in unique_candidates:
             unique_candidates[d] = t
+        else:
+            prev = unique_candidates[d]
+            # Priority tuple: (0 if refresh else 1, 1 if verified else 0, priority_score)
+            prev_rank = (0 if prev["is_refresh"] else 1, 1 if prev["is_verified"] else 0, prev["priority_score"])
+            curr_rank = (0 if t["is_refresh"] else 1, 1 if t["is_verified"] else 0, t["priority_score"])
+            if curr_rank > prev_rank:
+                unique_candidates[d] = t
 
-    # Rank: 100% VERIFIED REAL LAW FIRMS FIRST, then by Priority Score descending
+    # Rank: 100% FRESH uncontacted firms first, verified firms first, then longest elapsed refresh, then priority score
     ranked_targets = sorted(
         unique_candidates.values(),
-        key=lambda x: (1 if x.get("is_verified") else 0, x["priority_score"]),
+        key=lambda x: (
+            0 if x["is_refresh"] else 1,
+            1 if x.get("is_verified") else 0,
+            x["days_since"] if x["is_refresh"] else 0,
+            x["priority_score"]
+        ),
         reverse=True
     )
     candidate_list = ranked_targets[:limit]
 
+    fresh_count = sum(1 for t in candidate_list if not t.get("is_refresh"))
+    refresh_count = sum(1 for t in candidate_list if t.get("is_refresh"))
     verified_count = sum(1 for t in candidate_list if t.get("is_verified"))
-    print(f"✓ Found {len(ranked_targets)} fresh, untouched law firms in database")
-    print(f"✓ Selected top {len(candidate_list)} HIGHEST PROBABILITY targets ({verified_count} VERIFIED REAL FIRMS) for this batch\n")
+    total_fresh = sum(1 for t in unique_candidates.values() if not t.get("is_refresh"))
+    total_refresh = sum(1 for t in unique_candidates.values() if t.get("is_refresh"))
+
+    print(f"✓ Found {len(unique_candidates)} total actionable law firms in database ({total_fresh} FRESH UNTOUCHED, {total_refresh} 90-DAY REFRESH)")
+    print(f"✓ Selected top {len(candidate_list)} targets for this batch: {fresh_count} FRESH, {refresh_count} 90-DAY REFRESH ({verified_count} VERIFIED REAL FIRMS)\n")
 
     if not candidate_list:
         print("No eligible targets remaining.")
@@ -1175,8 +1262,9 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
 
     print("Target Queue Priority Breakdown:")
     for idx, cand in enumerate(candidate_list, 1):
-        tag = "[VERIFIED REAL]" if cand.get("is_verified") else "[UNVERIFIED]"
-        print(f"  [{idx:02d}] {tag} Score: {cand['priority_score']} | {cand['Name']} | {cand['Firm']} ({cand['State']}) — {cand['Specialty']}")
+        v_tag = "[VERIFIED REAL]" if cand.get("is_verified") else "[UNVERIFIED]"
+        r_tag = f"[90D REFRESH - {cand['days_since']}d]" if cand.get("is_refresh") else "[FRESH UNCONTACTED]"
+        print(f"  [{idx:02d}] {v_tag} {r_tag} Score: {cand['priority_score']} | {cand['Name']} | {cand['Firm']} ({cand['State']}) — {cand['Specialty']}")
     print("-" * 75 + "\n")
 
     results = []

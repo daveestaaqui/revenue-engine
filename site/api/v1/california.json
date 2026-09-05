@@ -19,10 +19,12 @@
       "Est_Finder_Fee_USD": 43000.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-09",
+      "Days_Remaining_To_Claim": 307,
+      "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "CA",
@@ -39,10 +41,12 @@
       "Est_Finder_Fee_USD": 36800.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-16",
+      "Days_Remaining_To_Claim": 314,
+      "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "CA",
@@ -59,10 +63,12 @@
       "Est_Finder_Fee_USD": 33600.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-30",
+      "Days_Remaining_To_Claim": 328,
+      "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "CA",
@@ -79,10 +85,12 @@
       "Est_Finder_Fee_USD": 23900.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-06",
+      "Days_Remaining_To_Claim": 335,
+      "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     }
   ]
 }

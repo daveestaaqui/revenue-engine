@@ -27,6 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
 from portal.manage_subscribers import add_subscriber, deactivate_subscriber, load_subscribers
+from portal.dispatch_morning_feed import dispatch_activation_starter_kit
 
 # Paths
 PORTAL_DIR = BASE_DIR / "portal"
@@ -112,6 +113,10 @@ def sync_via_stripe_api(api_key):
                     if is_new:
                         print(f"  ✨ [Stripe API] Added new subscriber: {cust_email} ({status})")
                         changes += 1
+                        try:
+                            dispatch_activation_starter_kit(sub_obj)
+                        except Exception as err:
+                            print(f"  ⚠️ Could not dispatch welcome starter kit: {err}")
                 elif status in ("canceled", "unpaid"):
                     if deactivate_subscriber(cust_email):
                         print(f"  🛑 [Stripe API] Deactivated subscriber: {cust_email} ({status})")
@@ -276,6 +281,10 @@ def sync_via_imap(user, password):
                     if is_new:
                         print(f"  ✨ [Stripe Email] Auto-enrolled new trial subscriber: {cust_name} <{cust_email}>")
                         changes += 1
+                        try:
+                            dispatch_activation_starter_kit(sub_obj)
+                        except Exception as err:
+                            print(f"  ⚠️ Could not dispatch welcome starter kit: {err}")
 
             processed_ids.add(msg_id)
 

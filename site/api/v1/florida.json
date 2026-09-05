@@ -19,10 +19,12 @@
       "Est_Finder_Fee_USD": 29000.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-06-28",
+      "Days_Remaining_To_Claim": 41,
+      "Claim_Urgency_Tier": "Tier 1: High Urgency (< 45 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -39,10 +41,12 @@
       "Est_Finder_Fee_USD": 22400.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-05",
+      "Days_Remaining_To_Claim": 79,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -59,10 +63,12 @@
       "Est_Finder_Fee_USD": 18480.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-25",
+      "Days_Remaining_To_Claim": 68,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -79,10 +85,12 @@
       "Est_Finder_Fee_USD": 14860.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-08",
+      "Days_Remaining_To_Claim": 82,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -99,10 +107,12 @@
       "Est_Finder_Fee_USD": 13780.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-14",
+      "Days_Remaining_To_Claim": 57,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -119,10 +129,12 @@
       "Est_Finder_Fee_USD": 12360.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-03",
+      "Days_Remaining_To_Claim": 46,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -139,10 +151,12 @@
       "Est_Finder_Fee_USD": 10820.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-02",
+      "Days_Remaining_To_Claim": 76,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -159,10 +173,12 @@
       "Est_Finder_Fee_USD": 9650.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-06-12",
+      "Days_Remaining_To_Claim": 25,
+      "Claim_Urgency_Tier": "Tier 1: High Urgency (< 45 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -179,10 +195,12 @@
       "Est_Finder_Fee_USD": 8700.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-12",
+      "Days_Remaining_To_Claim": 86,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -199,10 +217,12 @@
       "Est_Finder_Fee_USD": 6350.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-10",
+      "Days_Remaining_To_Claim": 84,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -219,10 +239,12 @@
       "Est_Finder_Fee_USD": 5880.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-17",
+      "Days_Remaining_To_Claim": 60,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     },
     {
       "State": "FL",
@@ -239,10 +261,12 @@
       "Est_Finder_Fee_USD": 3780.0,
       "Opportunity_Tier": "Tier 2: Medium Value ($10k-$25k)",
       "Sale_Date": "2024-08-01",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-05 13:36:45"
+      "Enriched_Timestamp": "2026-09-05 17:55:58"
     }
   ]
 }
