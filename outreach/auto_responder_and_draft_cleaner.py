@@ -133,6 +133,10 @@ JURISDICTION_STATUTORY_KNOWLEDGE = {
     },
 }
 
+# Regulatory & Non-Legal-Advice Disclaimer (Protects against UPL and ensures clear non-lawyer status)
+LEGAL_DISCLAIMER = """---
+Legal Notice & Regulatory Disclaimer: Surplus Docket is a specialized legal technology and court records intelligence service, not a law firm. Surplus Docket does not provide legal advice, legal counsel, or legal representation, and no attorney-client relationship is formed by this correspondence. All docket records, statutory references, and procedural timelines are compiled exclusively for informational and intelligence purposes for licensed attorneys and recovery professionals. Surplus recovery petitions, motions, and pleadings must be prepared and filed by a licensed attorney admitted to practice in the appropriate jurisdiction."""
+
 # Policy SD-POL-OUTREACH-2026-V1 Hard Domain Blocklist
 SYSTEM_BLOCKLIST_DOMAINS = {
     # Tech / Platform / Email providers
@@ -622,6 +626,7 @@ def analyze_prospect_intent(subject_raw, text_body):
 
     scores = {
         "TYLER_V_HENNEPIN": 0,
+        "LEGAL_REPRESENTATION_OR_ADVICE_REQUEST": 0,
         "IN_HOUSE_PARALEGAL": 0,
         "CONTINGENCY_FEE_SPLIT": 0,
         "TAX_DEED_VS_MORTGAGE": 0,
@@ -636,7 +641,23 @@ def analyze_prospect_intent(subject_raw, text_body):
         "PRICING": 0,
     }
 
-    # 2. TYLER_V_HENNEPIN cues (SCOTUS 9-0 ruling on Takings Clause & surplus retention)
+    # 2. LEGAL_REPRESENTATION_OR_ADVICE_REQUEST cues (UPL Protection & Non-Lawyer Boundaries)
+    upl_cues = [
+        "represent me", "represent us", "represent my", "need a lawyer", "need an attorney",
+        "are you an attorney", "are you a lawyer", "are you lawyers", "hire you", "hire your firm",
+        "take my case", "take our case", "help me get my money", "get my money back",
+        "can you file my claim", "file my claim for me", "file a claim for me",
+        "is my claim valid", "evaluate my claim", "give me legal advice", "need legal advice",
+        "legal counsel", "do i have a case", "fight the bank for me",
+        "represent my estate", "can you file on my behalf", "act as my attorney",
+        "i need legal help", "give me advice on my case", "can you recover my surplus",
+        "get the money from the county for me", "can you handle my claim"
+    ]
+    for c in upl_cues:
+        if c in content:
+            scores["LEGAL_REPRESENTATION_OR_ADVICE_REQUEST"] += 5
+
+    # 3. TYLER_V_HENNEPIN cues (SCOTUS 9-0 ruling on Takings Clause & surplus retention)
     tyler_strong = [
         "tyler", "hennepin", "supreme court", "scotus", "takings clause",
         "5th amendment", "fifth amendment", "unconstitutional taking", "equity forfeiture",
@@ -902,6 +923,19 @@ Let me know if your practice is litigating post-Tyler recovery claims in {state_
 
 {signature}"""
 
+    elif intent == "LEGAL_REPRESENTATION_OR_ADVICE_REQUEST":
+        body = f"""{greeting}
+
+Thank you for reaching out to Surplus Docket.
+
+Surplus Docket is a specialized court records intelligence and public data indexing service for licensed legal counsel and recovery professionals—we are not a law firm and do not provide legal representation, legal counsel, or legal advice, nor do we file surplus petitions on behalf of individuals or property owners.
+
+Because tax deed surplus and excess proceeds claims involve formal court procedures, title encumbrance examinations, and strict statutory deadlines (such as {statute_cite}), all surplus recovery petitions, motions, and evidentiary hearings must be evaluated and conducted by independent, licensed legal counsel admitted to practice in {state_name}.
+
+If you are seeking legal counsel regarding property equity or surplus funds, we strongly recommend consulting a licensed real estate litigation or probate attorney in your county, or contacting the {state_name} Bar Association Lawyer Referral Service for assistance in retaining qualified counsel.
+
+{signature}"""
+
     elif intent == "IN_HOUSE_PARALEGAL":
         county_context = f"in {county_name} County" if county_name else f"in {state_name}"
         body = f"""{greeting}
@@ -1140,6 +1174,8 @@ Let me know if you have questions about specific circuits or if you'd like to re
 {signature}"""
 
     reply_subject = subject_raw if subject_raw.lower().startswith("re:") else f"Re: {subject_raw}"
+    if intent != "OPT_OUT":
+        body = f"{body}\n\n{LEGAL_DISCLAIMER}"
     return reply_subject, body
 
 
@@ -1472,7 +1508,9 @@ Best regards,
 Elena Brooks
 Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-elena.brooks@surplusdocket.com"""
+elena.brooks@surplusdocket.com
+
+{LEGAL_DISCLAIMER}"""
 
             reply_subject = f"Re: Surplus Docket — Statutory Public Record Inquiry [{state_name}]"
             draft_msg = MIMEText(reply_body, "plain", "utf-8")

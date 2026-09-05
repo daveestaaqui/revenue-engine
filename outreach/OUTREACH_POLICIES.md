@@ -83,11 +83,12 @@ elena.brooks@surplusdocket.com
 
 ## 4. Multi-Factor Context-Aware Intent & Objection Routing Matrix
 
-The engine scores inbound messages across **15 distinct legal and operational dimensions**:
+The engine scores inbound messages across **16 distinct legal and operational dimensions**:
 
 | Category / Intent | Inbound Triggers / Scenarios | Elena's Strategic Response Strategy |
 | :--- | :--- | :--- |
 | **`OPT_OUT`** | "unsubscribe", "remove me", "stop emailing", "not interested", "remove us", "take me off", "pass on this" | Respectful, immediate 1-sentence confirmation that their firm is removed from all future docket updates. **Zero sales push.** |
+| **`LEGAL_REPRESENTATION_OR_ADVICE_REQUEST`** | "represent me", "represent us", "need a lawyer", "need an attorney", "are you an attorney", "hire you", "take my case", "help me get my money back", "can you file my claim", "do i have a case" | Strictly declines representation or legal advice. Explains Surplus Docket is an independent court data intelligence platform for licensed counsel, not a law firm; emphasizes that surplus claims require formal court filings by licensed counsel; refers claimant to the state bar association lawyer referral service. |
 | **`TYLER_V_HENNEPIN`** | "tyler", "hennepin", "supreme court", "scotus", "takings clause", "5th amendment", "fifth amendment", "unconstitutional taking", "equity forfeiture" | Authoritative analysis of *Tyler v. Hennepin County*, 598 U.S. 631 (unanimous 9-0 ruling under Takings Clause); explains how state statutes are invalidating forfeiture schemes and opening county registry claim windows; positions daily morning feed as tracking these newly opened recovery windows. |
 | **`IN_HOUSE_PARALEGAL`** | "already have a paralegal", "staff handles", "do this in house", "pull from clerk site ourselves", "we search the records ourselves" | Validates that most firms have staff pulling raw lists; explains the 10–15 hr title bottleneck where unscrubbed lists contain dead leads eaten by junior mortgages/liens; highlights upstream encumbrance purging. |
 | **`CONTINGENCY_FEE_SPLIT`** | "what percentage do you take", "contingency cut", "fee split", "cut of recovery", "rule 4-5.4", "do you take a cut", "ethics rules" | Clarifies Surplus Docket is purely a flat technology subscription ($249/mo), takes 0% cut, and complies strictly with Bar ethics rules (e.g. FL Rule 4-5.4) prohibiting fee-splitting with non-lawyers. Law firm keeps 100% of statutory fees. |
@@ -120,7 +121,25 @@ Elena Brooks' knowledge base dynamically reflects all state legal guidelines, st
 
 ---
 
-## 5. Review & Approval Protocol
+## 6. Legal Safety, UPL Safeguards & Mandatory Disclaimers
+
+Surplus Docket operates strictly as a legal technology and court records indexing platform under state bar regulatory frameworks. The following safeguards are permanently enforced:
+
+### 6.1 Prohibition on Unauthorized Practice of Law (UPL)
+- **Non-Lawyer Classification:** Elena Brooks is identified exclusively as "Senior Docket Specialist | Surplus Docket". She must never refer to herself as an attorney, lawyer, legal counsel, or advocate.
+- **No Representation:** Surplus Docket never represents claimants, negotiates on behalf of claimants, or files pleadings in court.
+- **No Case-Specific Legal Opinions:** Elena Brooks never renders legal opinions regarding the outcome of specific litigation, legal viability of competing lien priority, or tactical litigation advice.
+- **Strict B2B Targeting:** All data feeds and toolkits are marketed exclusively to licensed legal counsel and professional asset recovery practitioners.
+
+### 6.2 Mandatory Non-Legal-Advice Disclaimer
+Every email response and form outreach submission must append the standard legal disclaimer:
+```text
+Legal Notice & Regulatory Disclaimer: Surplus Docket is a specialized legal technology and court records intelligence service, not a law firm. Surplus Docket does not provide legal advice, legal counsel, or legal representation, and no attorney-client relationship is formed by this correspondence. All docket records, statutory references, and procedural timelines are compiled exclusively for informational and intelligence purposes for licensed attorneys and recovery professionals. Surplus recovery petitions, motions, and pleadings must be prepared and filed by a licensed attorney admitted to practice in the appropriate jurisdiction.
+```
+
+---
+
+## 7. Review & Approval Protocol
 - **Zero Automated Dispatch:** Under no circumstances are outgoing emails sent automatically. All generated drafts are uploaded strictly to `[Gmail]/Drafts` with `\Draft` flags.
 - **Human In The Loop:** David Mahler reviews every draft in Gmail prior to manual click-to-send.
 

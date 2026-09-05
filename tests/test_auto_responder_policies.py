@@ -30,9 +30,11 @@ from outreach.auto_responder_and_draft_cleaner import (
     is_prospect_eligible,
     analyze_prospect_intent,
     compose_elena_response,
+    LEGAL_DISCLAIMER,
     FROM_NAME,
     SENDER_EMAIL
 )
+from outreach.form_outreach_engine import compose_message, FORM_LEGAL_DISCLAIMER
 
 
 class TestAutoResponderPolicies(unittest.TestCase):
@@ -361,6 +363,70 @@ class TestAutoResponderPolicies(unittest.TestCase):
         self.assertIn("County Clerk of Court / Tax Collector", body)
         self.assertIn("120-day statutory notice window", body)
         self.assertIn("Elena Brooks", body)
+
+    def test_legal_disclaimer_appended_to_substantive_responses(self):
+        target_info = {"name": "Arthur Pendelton", "firm": "Pendelton Law", "state": "FL"}
+        intents_to_test = [
+            "TYLER_V_HENNEPIN", "IN_HOUSE_PARALEGAL", "CONTINGENCY_FEE_SPLIT",
+            "TAX_DEED_VS_MORTGAGE", "PROBATE_HEIR_RECOVERY", "TITLE_LIEN_SCRUBBING",
+            "DATA_FRESHNESS_TIMING", "SKIP_TRACING_CONTACT", "LEGAL_TOOLKIT_MOTIONS",
+            "JURISDICTION", "DATA_FORMAT", "SAMPLE_DATA", "PRICING", "GENERAL",
+            "LEGAL_REPRESENTATION_OR_ADVICE_REQUEST"
+        ]
+        for intent in intents_to_test:
+            subj, body = compose_elena_response(
+                intent, target_info, "Arthur Pendelton", "arthur@pendeltonlaw.com",
+                "Question", "Here is my question about surplus files.",
+                self.mock_state_cases
+            )
+            self.assertIn(LEGAL_DISCLAIMER, body, f"Disclaimer must be present for intent: {intent}")
+            self.assertIn("Surplus Docket is a specialized legal technology and court records intelligence service, not a law firm", body)
+            self.assertIn("does not provide legal advice, legal counsel, or legal representation", body)
+
+    def test_legal_representation_request_classified_and_refused(self):
+        # 1. Intent classification
+        intent = analyze_prospect_intent(
+            "Can you represent me in court?",
+            "I found money in Orange County. Can you represent me and file a claim for me to get my money back?"
+        )
+        self.assertEqual(intent, "LEGAL_REPRESENTATION_OR_ADVICE_REQUEST")
+
+        # 2. Response refuses UPL and directs to bar referral
+        target_info = {"name": "John Public", "firm": "", "state": "FL"}
+        subj, body = compose_elena_response(
+            "LEGAL_REPRESENTATION_OR_ADVICE_REQUEST", target_info, "John Public", "john@example.com",
+            "Can you represent me?", "Can you file my claim for me?",
+            self.mock_state_cases
+        )
+        self.assertIn("we are not a law firm and do not provide legal representation, legal counsel, or legal advice", body)
+        self.assertIn("independent, licensed legal counsel", body)
+        self.assertIn("Bar Association Lawyer Referral Service", body)
+        self.assertIn(LEGAL_DISCLAIMER, body)
+
+    def test_form_outreach_contains_legal_disclaimer(self):
+        target = {
+            "Name": "Sarah Jenkins",
+            "Firm": "Jenkins Legal PLLC",
+            "State": "FL",
+            "Practice_Details": "Foreclosure defense and surplus funds in Palm Beach"
+        }
+        subj, body, variant = compose_message(target)
+        self.assertIn(FORM_LEGAL_DISCLAIMER, body)
+        self.assertIn("not a law firm", body)
+        self.assertIn("We do not provide legal advice", body)
+
+    def test_elena_persona_anti_upl_safeguards(self):
+        target_info = {"name": "Jessica Taylor", "firm": "Taylor Law", "state": "TX"}
+        subj, body = compose_elena_response(
+            "GENERAL", target_info, "Jessica Taylor", "jtaylor@taylorlaw.com",
+            "Question", "Tell me more about your service.",
+            self.mock_state_cases
+        )
+        # Verify Elena never calls herself lawyer/attorney
+        self.assertNotIn("Elena Brooks, Esq.", body)
+        self.assertNotIn("Attorney at Law", body)
+        self.assertNotIn("I am an attorney", body)
+        self.assertIn("Senior Docket Specialist | Surplus Docket", body)
 
 
 if __name__ == "__main__":

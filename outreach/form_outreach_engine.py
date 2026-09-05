@@ -91,6 +91,11 @@ def get_recommended_link(state_code, practice_details):
     return SITE_URL
 
 
+# Regulatory & Non-Legal-Advice Disclaimer for Web Form Submissions
+FORM_LEGAL_DISCLAIMER = """---
+Legal Notice: Surplus Docket is a specialized legal technology and public court records intelligence service, not a law firm. We do not provide legal advice, legal counsel, or legal representation. Feeds and docket records are compiled exclusively for research and intelligence purposes for licensed attorneys."""
+
+
 def compose_message(target):
     full_name = target.get("Name", "").strip()
     first_name = full_name.split()[0] if full_name else ""
@@ -168,6 +173,7 @@ Senior Docket Specialist | Surplus Docket
 surplusdocket.com
 elena.brooks@surplusdocket.com"""
 
+    body = f"{body}\n\n{FORM_LEGAL_DISCLAIMER}"
     return subject, body, chosen_variant
 
 

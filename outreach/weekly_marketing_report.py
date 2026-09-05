@@ -132,14 +132,15 @@ def collect_marketing_metrics(now=None):
             reader = csv.DictReader(f)
             for row in reader:
                 metrics["total_targets_in_pipeline"] += 1
-                tier = row.get("Priority_Tier", "")
-                if "Tier 1" in tier:
+                tier = (row.get("Priority_Tier") or row.get("Tier", "")).strip()
+                tier_upper = tier.upper()
+                if "TIER 1" in tier_upper or "TIER_1" in tier_upper:
                     metrics["targets_by_tier"]["Tier 1"] += 1
-                elif "Tier 2" in tier:
+                elif "TIER 2" in tier_upper or "TIER_2" in tier_upper:
                     metrics["targets_by_tier"]["Tier 2"] += 1
-                elif "Tier 3" in tier:
+                elif "TIER 3" in tier_upper or "TIER_3" in tier_upper:
                     metrics["targets_by_tier"]["Tier 3"] += 1
-                elif "Tier 4" in tier:
+                elif "TIER 4" in tier_upper or "TIER_4" in tier_upper:
                     metrics["targets_by_tier"]["Tier 4"] += 1
 
                 st = (row.get("State") or "OTHER").strip().upper()
@@ -462,14 +463,14 @@ def render_html_report(metrics):
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td width="50%" style="vertical-align: top;">
-                                        <div style="margin-bottom: 8px;">• <strong>Auto-Responder Engine:</strong> 14-dimension multi-factor objection classifier active.</div>
+                                        <div style="margin-bottom: 8px;">• <strong>Auto-Responder Engine:</strong> 16-dimension multi-factor objection classifier active.</div>
                                         <div style="margin-bottom: 8px;">• <strong>Anti-AI Enforced:</strong> 0% bulleted pitch decks, 0% buzzwords.</div>
                                         <div>• <strong>Drafts Prepared:</strong> {m['created_drafts_count']} total verified prospect follow-up drafts.</div>
                                     </td>
                                     <td width="50%" style="vertical-align: top; padding-left: 20px;">
+                                        <div style="margin-bottom: 8px;">• <strong>Legal Safety & Disclaimers:</strong> Mandatory Non-Legal-Advice Disclaimers & UPL guardrails active.</div>
                                         <div style="margin-bottom: 8px;">• <strong>Zero Auto-Dispatch:</strong> 100% human-in-the-loop review in Gmail Drafts.</div>
-                                        <div style="margin-bottom: 8px;">• <strong>Hard Gatekeeping:</strong> Platform/daemon senders 100% blocked.</div>
-                                        <div>• <strong>Auto-Unsubscribe:</strong> Cleared newsletters/drips automatically.</div>
+                                        <div>• <strong>Hard Gatekeeping:</strong> Platform/daemon senders 100% blocked.</div>
                                     </td>
                                 </tr>
                             </table>
@@ -561,7 +562,8 @@ def render_plaintext_report(metrics):
     lines.extend([
         "",
         "📩 ELENA BROOKS INBOUND & SAFEGUARDS:",
-        f"• Multi-Factor Intent Classifier: 15 legal dimensions active",
+        f"• Multi-Factor Intent Classifier: 16 legal dimensions active",
+        f"• Legal Safety & Disclaimers:   Mandatory Non-Legal-Advice Disclaimers & UPL guardrails",
         f"• Anti-AI Voice Compliance:       100% verified (zero buzzwords, zero pitch decks)",
         f"• Prospect Follow-up Drafts:      {m['created_drafts_count']} prepared in [Gmail]/Drafts",
         f"• Human In The Loop:             100% manual click-to-send review",

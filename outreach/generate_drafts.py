@@ -286,7 +286,10 @@ Happy to send a free sample extract if you want to see the data first — just r
 {closing}
 Elena Brooks
 Senior Docket Specialist | Surplus Docket
-{SITE_URL}"""
+{SITE_URL}
+
+---
+Legal Notice & Regulatory Disclaimer: Surplus Docket is a specialized legal technology and court records intelligence service, not a law firm. Surplus Docket does not provide legal advice, legal counsel, or legal representation, and no attorney-client relationship is formed by this correspondence. All docket records, statutory references, and procedural timelines are compiled exclusively for informational and intelligence purposes for licensed attorneys and recovery professionals."""
 
     return subject, body
 
