@@ -18,6 +18,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+import email.utils
 from pathlib import Path
 
 # Root directory setup
@@ -149,80 +150,85 @@ elena.brooks@surplusdocket.com
 """
 
     html_body = f"""<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <style>
-        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px; color: #1e293b; }}
-        .container {{ max-width: 680px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; }}
-        .header {{ background: #1b365d; padding: 24px 32px; border-bottom: 3px solid #4c6d48; }}
-        .header h1 {{ margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: #ffffff; }}
-        .header p {{ margin: 6px 0 0 0; font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; font-family: monospace; }}
-        .content {{ padding: 32px; }}
-        .metric-grid {{ display: flex; gap: 16px; margin: 24px 0; }}
-        .metric-card {{ flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; text-align: center; }}
-        .metric-card .val {{ font-size: 20px; font-weight: 800; color: #1b365d; font-family: monospace; }}
-        .metric-card .lbl {{ font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 600; margin-top: 4px; }}
-        table {{ width: 100%; border-collapse: collapse; margin-top: 16px; }}
-        th {{ background: #f1f5f9; padding: 8px 12px; text-align: left; font-size: 11px; text-transform: uppercase; color: #475569; }}
-        .footer {{ background: #f8fafc; padding: 20px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; }}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surplus Docket Intelligence Dispatch</title>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>SURPLUS DOCKET</h1>
-            <p>Daily Court Intelligence Dispatch • {date_str}</p>
-        </div>
-        <div class="content">
-            <p style="font-size: 15px; margin-top: 0;">Good morning <b>{name}</b> ({firm}),</p>
-            <p style="font-size: 14px; line-height: 1.6; color: #475569;">
-                Here is your verified 7:00 AM EST Surplus Docket feed. All filings have been cross-referenced with county court registries with bank and senior mortgages filtered upstream.
-            </p>
-
-            <table style="width: 100%; margin: 20px 0;">
-                <tr>
-                    <td style="width: 50%; padding: 12px; background: #edf3ec; border-radius: 8px 0 0 8px; text-align: center;">
-                        <div style="font-size: 22px; font-weight: 800; color: #365134; font-family: monospace;">{total_bal_fmt}</div>
-                        <div style="font-size: 11px; text-transform: uppercase; color: #4c6d48; font-weight: bold; margin-top: 4px;">Unencumbered Equity</div>
-                    </td>
-                    <td style="width: 50%; padding: 12px; background: #f1f5f9; border-radius: 0 8px 8px 0; text-align: center;">
-                        <div style="font-size: 22px; font-weight: 800; color: #1b365d; font-family: monospace;">{rec_count} Files</div>
-                        <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: bold; margin-top: 4px;">Audited Dockets</div>
-                    </td>
-                </tr>
-            </table>
-
-            <h3 style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #1b365d; margin-top: 24px;">High-Equity Dockets Highlight</h3>
-            <table>
-                <thead>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px; color: #1e293b; line-height: 1.5;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8f8f4; width: 100%;">
+        <tr>
+            <td align="center" style="padding: 0;">
+                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                    <!-- Header -->
                     <tr>
-                        <th>Docket</th>
-                        <th>Claimant / Owner</th>
-                        <th>Jurisdiction</th>
-                        <th style="text-align: right;">Surplus</th>
+                        <td style="background-color: #1b365d; padding: 26px 32px; border-bottom: 3px solid #4c6d48;">
+                            <h1 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #ffffff;">SURPLUS DOCKET</h1>
+                            <p style="margin: 6px 0 0 0; font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Courier New', Courier, monospace;">Daily Court Intelligence Dispatch • {date_str}</p>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {dockets_html}
-                </tbody>
-            </table>
+                    <!-- Main Content -->
+                    <tr>
+                        <td style="padding: 32px; background-color: #ffffff;">
+                            <p style="font-size: 15px; margin: 0 0 16px 0; color: #1e293b;">Good morning <b>{name}</b> ({firm}),</p>
+                            <p style="font-size: 14px; line-height: 1.6; color: #475569; margin: 0 0 24px 0;">
+                                Here is your verified 7:00 AM EST Surplus Docket feed. All filings have been cross-referenced with county court registries with senior mortgages, institutional bank liens, and junior municipal encumbrances filtered upstream.
+                            </p>
 
-            <p style="font-size: 13px; line-height: 1.6; color: #64748b; margin-top: 24px;">
-                📎 <b>Attached Deliverables:</b> Your complete morning dockets are attached in both <b>Master_Surplus_Lead_Feed.csv</b> and <b>Master_Surplus_Lead_Feed.xlsx</b>.
-            </p>
+                            <!-- Benchmark Metrics Grid -->
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 20px 0;">
+                                <tr>
+                                    <td width="50%" style="width: 50%; padding: 14px; background-color: #edf3ec; border-radius: 8px 0 0 8px; text-align: center; border-right: 1px solid #e2e8f0;">
+                                        <div style="font-size: 22px; font-weight: 800; color: #365134; font-family: 'Courier New', Courier, monospace;">{total_bal_fmt}</div>
+                                        <div style="font-size: 11px; text-transform: uppercase; color: #4c6d48; font-weight: bold; margin-top: 4px; letter-spacing: 0.05em;">Unencumbered Equity</div>
+                                    </td>
+                                    <td width="50%" style="width: 50%; padding: 14px; background-color: #f1f5f9; border-radius: 0 8px 8px 0; text-align: center;">
+                                        <div style="font-size: 22px; font-weight: 800; color: #1b365d; font-family: 'Courier New', Courier, monospace;">{rec_count} Files</div>
+                                        <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: bold; margin-top: 4px; letter-spacing: 0.05em;">Audited Dockets</div>
+                                    </td>
+                                </tr>
+                            </table>
 
-            <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #475569;">
-                <b>Elena Brooks</b><br>
-                Senior Docket Specialist | Surplus Docket<br>
-                <a href="https://surplusdocket.com" style="color: #4c6d48; text-decoration: none;">surplusdocket.com</a> • <a href="mailto:elena.brooks@surplusdocket.com" style="color: #1b365d; text-decoration: none;">elena.brooks@surplusdocket.com</a>
-            </div>
-        </div>
-        <div class="footer">
-            {LEGAL_DISCLAIMER}<br>
-            © {datetime.now().year} Surplus Docket. All rights reserved.
-        </div>
-    </div>
+                            <h3 style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #1b365d; margin: 28px 0 12px 0;">Featured High-Equity Dockets</h3>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                                <thead>
+                                    <tr style="background-color: #f8fafc;">
+                                        <th style="padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; color: #475569; font-weight: 700; border-bottom: 2px solid #e2e8f0;">Docket</th>
+                                        <th style="padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; color: #475569; font-weight: 700; border-bottom: 2px solid #e2e8f0;">Claimant / Owner</th>
+                                        <th style="padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; color: #475569; font-weight: 700; border-bottom: 2px solid #e2e8f0;">Jurisdiction</th>
+                                        <th style="padding: 10px 12px; text-align: right; font-size: 11px; text-transform: uppercase; color: #475569; font-weight: 700; border-bottom: 2px solid #e2e8f0;">Surplus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {dockets_html}
+                                </tbody>
+                            </table>
+
+                            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px; margin: 24px 0;">
+                                <p style="font-size: 13px; line-height: 1.6; color: #334155; margin: 0;">
+                                    📎 <b>Attached Deliverables:</b> Your verified morning dockets are attached in both <b>Master_Surplus_Lead_Feed.csv</b> and <b>Master_Surplus_Lead_Feed.xlsx</b> for direct import into your practice management software.
+                                </p>
+                            </div>
+
+                            <div style="margin-top: 32px; padding-top: 18px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #475569;">
+                                <b>Elena Brooks</b><br>
+                                Senior Docket Specialist | Surplus Docket<br>
+                                <a href="https://surplusdocket.com" style="color: #4c6d48; text-decoration: none; font-weight: 600;">surplusdocket.com</a> • <a href="mailto:elena.brooks@surplusdocket.com" style="color: #1b365d; text-decoration: none;">elena.brooks@surplusdocket.com</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f8fafc; padding: 20px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.5;">
+                            {LEGAL_DISCLAIMER}<br>
+                            © {datetime.now().year} Surplus Docket. All rights reserved. • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" style="color: #64748b; text-decoration: underline;">Subscriber Billing Portal</a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
 """
@@ -287,21 +293,26 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
             if not dest:
                 continue
 
-            msg = MIMEMultipart("alternative")
+            msg = MIMEMultipart("mixed")
             msg["Subject"] = subject
             msg["From"] = f"{FROM_NAME} <{FROM_EMAIL}>"
             msg["To"] = dest
             msg["Reply-To"] = FROM_EMAIL
+            msg["Date"] = email.utils.formatdate(localtime=True)
+            msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
 
+            # Nested alternative container for Plain Text & HTML Body
+            body_container = MIMEMultipart("alternative")
             text_body, html_body = compose_email_content(sub, stats, date_str)
-            msg.attach(MIMEText(text_body, "plain", "utf-8"))
-            msg.attach(MIMEText(html_body, "html", "utf-8"))
+            body_container.attach(MIMEText(text_body, "plain", "utf-8"))
+            body_container.attach(MIMEText(html_body, "html", "utf-8"))
+            msg.attach(body_container)
 
-            # Attachments
+            # Attachments attached to mixed root
             formats = sub.get("delivery_format", ["CSV", "Excel"])
             if "CSV" in formats and MASTER_CSV.exists():
                 with open(MASTER_CSV, "rb") as cf:
-                    part = MIMEBase("text", "csv")
+                    part = MIMEBase("text", "csv", name=MASTER_CSV.name)
                     part.set_payload(cf.read())
                     encoders.encode_base64(part)
                     part.add_header("Content-Disposition", "attachment", filename=MASTER_CSV.name)
@@ -309,7 +320,7 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
 
             if "Excel" in formats and MASTER_XLSX.exists():
                 with open(MASTER_XLSX, "rb") as xf:
-                    part = MIMEBase("application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                    part = MIMEBase("application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet", name=MASTER_XLSX.name)
                     part.set_payload(xf.read())
                     encoders.encode_base64(part)
                     part.add_header("Content-Disposition", "attachment", filename=MASTER_XLSX.name)
