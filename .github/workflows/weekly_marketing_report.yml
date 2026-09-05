@@ -1,0 +1,64 @@
+name: Weekly Autonomous Marketing Progress Report
+
+on:
+  schedule:
+    # Every Monday at 12:00 UTC (8:00 AM EST / 5:00 AM PST)
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+    inputs:
+      recipient:
+        description: 'Recipient email address'
+        required: false
+        default: 'sandwichfitness@gmail.com'
+      dry_run:
+        description: 'Dry run preview (do not send email)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  generate-and-send-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compile & Email Weekly Marketing Progress Report
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS || 'nxgfaiebqpmobhkp' }}
+          REPORT_RECIPIENT: ${{ github.event.inputs.recipient || secrets.REPORT_RECIPIENT || 'sandwichfitness@gmail.com' }}
+          SMTP_HOST: 'smtp.gmail.com'
+          SMTP_PORT: '587'
+          FROM_NAME: 'Surplus Docket Intelligence'
+          FROM_EMAIL: 'elena.brooks@surplusdocket.com'
+        run: |
+          RECIPIENT="${{ github.event.inputs.recipient || secrets.REPORT_RECIPIENT || 'sandwichfitness@gmail.com' }}"
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python outreach/weekly_marketing_report.py --dry-run --output-html=weekly_marketing_report.html
+          else
+            python outreach/weekly_marketing_report.py --send --recipient="$RECIPIENT" --output-html=weekly_marketing_report.html
+          fi
+
+      - name: Archive Weekly Report HTML Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: weekly-marketing-report
+          path: weekly_marketing_report.html
+          retention-days: 30
