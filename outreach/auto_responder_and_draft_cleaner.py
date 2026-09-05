@@ -46,9 +46,9 @@ CREATED_DRAFTS_LOG = OUTREACH_DIR / "created_drafts_log.json"
 # Credentials & Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "nxgfaiebqpmobhkp")
-FROM_NAME = "David Mahler"
-SENDER_EMAIL = "david@surplusdocket.com"
-REPLY_TO = "david@surplusdocket.com"
+FROM_NAME = os.getenv("FROM_NAME", "Elena Brooks")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL", "elena.brooks@surplusdocket.com")
+REPLY_TO = os.getenv("REPLY_TO", "elena.brooks@surplusdocket.com")
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
 
@@ -714,11 +714,10 @@ If you would like me to pull sample dockets for specific counties in your circui
 
 Best regards,
 
-David Mahler
-Founder & Research Director
-Surplus Docket
+Elena Brooks
+Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-david@surplusdocket.com"""
+elena.brooks@surplusdocket.com"""
         else:
             reply_body = f"""{greeting}
 
@@ -735,13 +734,12 @@ You can start subscription access directly here:
 
 Let me know if you have any questions or if you'd like to see more details on any of these files.
 
-Best,
+Best regards,
 
-David Mahler
-Founder & Research Director
-Surplus Docket
+Elena Brooks
+Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-david@surplusdocket.com"""
+elena.brooks@surplusdocket.com"""
 
         reply_subject = subject_raw if subject_raw.lower().startswith("re:") else f"Re: {subject_raw}"
 

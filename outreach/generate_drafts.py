@@ -30,9 +30,9 @@ SENT_LOG_CSV = OUTREACH_DIR / "sent_log.csv"
 DRAFTS_DIR = OUTREACH_DIR / "drafts"
 FEED_CSV = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
 
-FROM_EMAIL = "david@surplusdocket.com"
-FROM_NAME = "David Mahler"
-REPLY_TO = "david@surplusdocket.com"
+FROM_EMAIL = "elena.brooks@surplusdocket.com"
+FROM_NAME = "Elena Brooks"
+REPLY_TO = "elena.brooks@surplusdocket.com"
 
 # Domains confirmed dead via MX lookup — exclude from generation
 DEAD_DOMAINS = {
@@ -284,8 +284,8 @@ Subscribe directly: {STRIPE_LINK}
 Happy to send a free sample extract if you want to see the data first — just reply here.
 
 {closing}
-Dave Mahler
-Surplus Docket
+Elena Brooks
+Senior Docket Specialist | Surplus Docket
 {SITE_URL}"""
 
     return subject, body
