@@ -311,6 +311,45 @@ def collect_marketing_metrics(now=None):
 
         metrics["published_articles"] = len(set(articles))
 
+    # 7. Ingest Authority & Link Building Engine
+    metrics["link_building"] = {
+        "citations_total": 0,
+        "citations_avg_da": 0.0,
+        "citations_da_80": 0,
+        "pr_pitches": 0,
+        "clerk_letters": 0,
+        "syndicated_articles": 0,
+        "embed_widgets": 0,
+    }
+    citation_csv = BASE_DIR / "marketing" / "link_building" / "citation_registry.csv"
+    if citation_csv.exists():
+        try:
+            with open(citation_csv, "r", encoding="utf-8") as f:
+                rows = list(csv.DictReader(f))
+                metrics["link_building"]["citations_total"] = len(rows)
+                das = [int(r["da"]) for r in rows if r.get("da", "").isdigit()]
+                if das:
+                    metrics["link_building"]["citations_avg_da"] = round(sum(das) / len(das), 1)
+                    metrics["link_building"]["citations_da_80"] = sum(1 for d in das if d >= 80)
+        except Exception:
+            pass
+
+    pitches_dir = BASE_DIR / "marketing" / "pitches"
+    if pitches_dir.exists():
+        metrics["link_building"]["pr_pitches"] = len(list(pitches_dir.glob("*.md")))
+
+    clerk_dir = BASE_DIR / "marketing" / "clerk_outreach"
+    if clerk_dir.exists():
+        metrics["link_building"]["clerk_letters"] = len(list(clerk_dir.glob("*.md")))
+
+    syndicate_pub_dir = BASE_DIR / "marketing" / "syndicate" / "published"
+    if syndicate_pub_dir.exists():
+        metrics["link_building"]["syndicated_articles"] = len(list(syndicate_pub_dir.glob("*.md")))
+
+    embed_dir = BASE_DIR / "site" / "embed"
+    if embed_dir.exists():
+        metrics["link_building"]["embed_widgets"] = len(list(embed_dir.glob("*.html"))) + len(list(embed_dir.glob("*.svg")))
+
     return metrics
 
 
@@ -519,12 +558,38 @@ def render_html_report(metrics):
                             </tr>
                         </table>
 
+                        <!-- Authority & Link Building Engine -->
+                        <h2 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 12px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">🔗 Authority & Link Building Engine</h2>
+                        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 28px; font-size: 13px;">
+                            <tr>
+                                <td width="23%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; text-align: center;">
+                                    <div style="font-weight: 700; color: #0f172a; font-size: 20px;">{m['link_building']['citations_total']}</div>
+                                    <div style="color: #64748b; font-size: 11px; margin-top: 2px;">Directory Citations (Avg DA {m['link_building']['citations_avg_da']})</div>
+                                </td>
+                                <td width="2%"></td>
+                                <td width="23%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; text-align: center;">
+                                    <div style="font-weight: 700; color: #0284c7; font-size: 20px;">{m['link_building']['citations_da_80']}</div>
+                                    <div style="color: #64748b; font-size: 11px; margin-top: 2px;">High-DA Targets (DA 80+)</div>
+                                </td>
+                                <td width="2%"></td>
+                                <td width="23%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; text-align: center;">
+                                    <div style="font-weight: 700; color: #0f172a; font-size: 20px;">{m['link_building']['clerk_letters']}</div>
+                                    <div style="color: #64748b; font-size: 11px; margin-top: 2px;">.Gov Clerk Resource Outreaches</div>
+                                </td>
+                                <td width="2%"></td>
+                                <td width="23%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; text-align: center;">
+                                    <div style="font-weight: 700; color: #16a34a; font-size: 20px;">{m['link_building']['embed_widgets']}</div>
+                                    <div style="color: #64748b; font-size: 11px; margin-top: 2px;">Interactive Embed Widgets</div>
+                                </td>
+                            </tr>
+                        </table>
+
                         <!-- Next Week Projected Milestones -->
                         <h2 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 12px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">📅 Next Week Focus & Projections</h2>
                         <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.7; color: #334155;">
-                            <li><strong>Daily Batch Velocity:</strong> 35 law firms contacted per business day (projected 175 contacts next week).</li>
+                            <li><strong>Daily Batch Velocity:</strong> 24 law firms contacted per business day (12/batch × 2 runs = 120 contacts/week).</li>
                             <li><strong>Priority Focus:</strong> Expanding Tier 1 Texas & Florida surplus/tax deed litigation boutiques.</li>
-                            <li><strong>Pipeline Target:</strong> Advancing towards 350+ cumulative firms contacted (~35% market penetration).</li>
+                            <li><strong>Upgraded Link Building:</strong> Submitting 45 high-DA directories and pitching legal journalists on post-Tyler v. Hennepin compliance.</li>
                             <li><strong>Inbound Review:</strong> Elena Brooks response drafts ready for review in <code>[Gmail]/Drafts</code>.</li>
                         </ul>
 
@@ -595,6 +660,13 @@ def render_plaintext_report(metrics):
         f"• Legal Blog & PR Releases:      {m['published_articles']}",
         f"• Pre-Publication Audit:         100% verified math and citations",
         "",
+        "🔗 AUTHORITY & LINK BUILDING ENGINE:",
+        f"• Curated Directories:           {m['link_building']['citations_total']} (Avg DA {m['link_building']['citations_avg_da']}, {m['link_building']['citations_da_80']} elite DA 80+)",
+        f"• Digital PR Press Pitches:      {m['link_building']['pr_pitches']} ready for legal journalists",
+        f"• .Gov Clerk Outreach Proposals: {m['link_building']['clerk_letters']} county clerk letters generated",
+        f"• Syndication Articles:          {m['link_building']['syndicated_articles']} cross-platform canonical docs",
+        f"• Embed Widgets & Badges:        {m['link_building']['embed_widgets']} interactive publisher assets",
+        "",
         "=" * 70,
         "Generated autonomously via GitHub Actions. surplusdocket.com",
         "=" * 70,
@@ -619,6 +691,15 @@ def write_github_step_summary(metrics):
 | **Submission Success Rate** | **{m['form_success_rate_past_7_days']}%** | **{m['form_success_rate_lifetime']}%** | Clean Headless Playwright Runs |
 | **Inbound Follow-up Drafts** | — | **{m['created_drafts_count']}** | `[Gmail]/Drafts` Manual Review |
 | **Verified Surplus Inventory** | — | **${m['total_verified_surplus_usd']:,.0f}** | {m['active_surplus_dockets']} unencumbered files (~${m['total_potential_fees_usd']:,.0f} fees) |
+
+### 🔗 Authority & Link Building Engine
+| Link Asset Category | Volume | Quality / Status |
+| :--- | :---: | :--- |
+| **High-DA Directory Citations** | **{m['link_building']['citations_total']}** | Average DA {m['link_building']['citations_avg_da']} ({m['link_building']['citations_da_80']} elite DA 80+ directories) |
+| **Digital PR Press Pitches** | **{m['link_building']['pr_pitches']}** | Ready for Law360, Bloomberg Law, Inman |
+| **.Gov Clerk & Legal Aid Letters** | **{m['link_building']['clerk_letters']}** | County Clerk consumer protection proposals |
+| **Syndicated Canonical Articles** | **{m['link_building']['syndicated_articles']}** | Formatted for Medium, Substack, LinkedIn & Dev.to |
+| **Interactive Embed Widgets** | **{m['link_building']['embed_widgets']}** | Responsive calculator & SVG trust badges |
 
 ### 🗺️ State Penetration Progress
 | Jurisdiction | Addressable Pipeline | Contacted | Last 7 Days | Penetration % |

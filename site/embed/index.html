@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Tech Embeds & Research Widgets | Surplus Docket</title>
+  <meta name="description" content="Embed statutory surplus deadline calculators, court registry badges, and foreclosure excess proceeds research widgets on your law firm or legal publication website.">
+  <link rel="canonical" href="https://surplusdocket.com/embed/">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #0f172a;
+      --card-border: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-hover: #0ea5e9;
+      --accent: #d97706;
+      --code-bg: #030712;
+      --code-border: #1f2937;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px 80px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 32px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 16px;
+    }
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .preview-box {
+      background: #020617;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+    }
+    .code-container {
+      position: relative;
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
+      border-radius: 8px;
+      padding: 16px;
+      color: #e2e8f0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+    .copy-btn.copied {
+      background: #059669;
+      color: #ffffff;
+      border-color: #10b981;
+    }
+    .badge-preview-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+    footer {
+      margin-top: 60px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 24px;
+      color: #64748b;
+      font-size: 12px;
+      text-align: center;
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Publisher & Law Practice Tools</span>
+      <h1>Embeddable Legal Research Widgets & Authority Badges</h1>
+      <p class="subtitle">Provide interactive statutory deadline calculation tools and verified court registry validation to your site visitors while maintaining rigorous legal standards.</p>
+    </header>
+
+    <div class="grid">
+      <!-- WIDGET 1: CALCULATOR -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Statutory Surplus Deadline Calculator</h2>
+            <p class="card-desc">Interactive calculator calculating statutory filing deadlines across FL, TX, CA, GA, NC, and TN.</p>
+          </div>
+        </div>
+
+        <div class="preview-box">
+          <iframe src="surplus-calculator.html" width="100%" height="480" frameborder="0" style="border-radius: 8px; max-width: 580px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);"></iframe>
+        </div>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode('calc-code', this)">Copy Embed Code</button>
+          <pre id="calc-code">&lt;iframe src="https://surplusdocket.com/embed/surplus-calculator.html" width="100%" height="480" frameborder="0" style="border: 1px solid #1e293b; border-radius: 8px; max-width: 580px;" title="Statutory Surplus Deadline Calculator"&gt;&lt;/iframe&gt;
+&lt;p style="font-size: 11px; color: #64748b; text-align: center; margin-top: 6px;"&gt;Powered by &lt;a href="https://surplusdocket.com/" style="color: #0284c7; text-decoration: none; font-weight: 500;" target="_blank" rel="noopener"&gt;Surplus Docket Legal Intelligence&lt;/a&gt;&lt;/p&gt;</pre>
+        </div>
+      </section>
+
+      <!-- WIDGET 2: TRUST BADGES -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Court Registry Verification Badges</h2>
+            <p class="card-desc">Institutional trust badges displaying real-time verification of excess proceeds and tax deed court registries.</p>
+          </div>
+        </div>
+
+        <div class="preview-box">
+          <div class="badge-preview-row">
+            <img src="badge.svg" alt="Surplus Docket Verified Light Badge" width="280" height="56">
+            <img src="badge-dark.svg" alt="Surplus Docket Verified Dark Badge" width="280" height="56">
+          </div>
+        </div>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode('badge-code', this)">Copy Embed Code</button>
+          <pre id="badge-code">&lt;!-- Light Mode Badge --&gt;
+&lt;a href="https://surplusdocket.com/data" title="Surplus Docket Court Registry Feeds" target="_blank" rel="noopener"&gt;
+  &lt;img src="https://surplusdocket.com/embed/badge.svg" alt="Verified by Surplus Docket" width="280" height="56" style="border: none;"&gt;
+&lt;/a&gt;
+
+&lt;!-- Dark Mode Badge --&gt;
+&lt;a href="https://surplusdocket.com/data" title="Surplus Docket Court Registry Feeds" target="_blank" rel="noopener"&gt;
+  &lt;img src="https://surplusdocket.com/embed/badge-dark.svg" alt="Verified by Surplus Docket" width="280" height="56" style="border: none;"&gt;
+&lt;/a&gt;</pre>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>SURPLUS DOCKET IS A LEGAL INTELLIGENCE AND COURT DOCKET RESEARCH PLATFORM. NOT A LAW FIRM. NO LEGAL ADVICE PROVIDED.</p>
+      <p style="margin-top: 6px;">&copy; 2026 Surplus Docket LLC. All Rights Reserved. | <a href="https://surplusdocket.com/">Surplus Docket Home</a> | <a href="https://surplusdocket.com/embed/">Embeds</a></p>
+    </footer>
+  </div>
+
+  <script>
+    function copyCode(elementId, btn) {
+      const code = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

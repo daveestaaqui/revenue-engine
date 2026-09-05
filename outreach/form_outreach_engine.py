@@ -1228,7 +1228,7 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
 
 if __name__ == "__main__":
     dry_run = "--dry-run" in sys.argv or "--preview" in sys.argv
-    limit_val = 35
+    limit_val = 24
     for arg in sys.argv:
         if arg.startswith("--limit="):
             limit_val = int(arg.split("=")[1])

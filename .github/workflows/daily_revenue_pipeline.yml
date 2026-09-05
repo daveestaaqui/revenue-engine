@@ -63,6 +63,13 @@ jobs:
         run: |
           python marketing/social_syndicator.py
 
+      - name: 8b. Run Upgraded Authority & Link Building Engine
+        run: |
+          python marketing/link_building/pr_pitcher.py
+          python marketing/link_building/clerk_outreach_generator.py
+          python marketing/link_building/syndication_publisher.py
+          python marketing/link_building/directory_citations.py
+
       - name: 9. Update Dynamic Repository Showcase
         run: |
           python marketing/readme_updater.py
@@ -71,7 +78,7 @@ jobs:
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          git add README.md exports/ site/ domain_arbitrage/listings/ marketing/syndicate/ compliance/
+          git add README.md exports/ site/ domain_arbitrage/listings/ marketing/syndicate/ compliance/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, compliance, PRs & SEO refresh" && git pull --rebase origin main && git push)
 
       - name: 11. Dispatch 7:00 AM EST Morning Feed to Active Subscribers

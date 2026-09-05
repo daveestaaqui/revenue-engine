@@ -69,6 +69,12 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertGreaterEqual(metrics["published_seo_pages"], 18)
         self.assertGreaterEqual(metrics["published_articles"], 6)
 
+        # Link building assets check
+        self.assertIn("link_building", metrics)
+        self.assertGreaterEqual(metrics["link_building"]["citations_total"], 40)
+        self.assertGreaterEqual(metrics["link_building"]["pr_pitches"], 3)
+        self.assertGreaterEqual(metrics["link_building"]["clerk_letters"], 6)
+
     def test_render_html_report(self):
         metrics = collect_marketing_metrics()
         html = render_html_report(metrics)
@@ -82,6 +88,7 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertIn("Florida (FL)", html)
         self.assertIn("Texas (TX)", html)
         self.assertIn("Elena Brooks Response Desk", html)
+        self.assertIn("Authority & Link Building Engine", html)
 
     def test_render_plaintext_report(self):
         metrics = collect_marketing_metrics()
@@ -95,6 +102,7 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertIn("FL", text)
         self.assertIn("TX", text)
         self.assertIn("ELENA BROOKS INBOUND & SAFEGUARDS:", text)
+        self.assertIn("AUTHORITY & LINK BUILDING ENGINE:", text)
 
     def test_send_report_email_dry_run(self):
         metrics = collect_marketing_metrics()

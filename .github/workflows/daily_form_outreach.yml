@@ -2,14 +2,14 @@ name: Daily Autonomous Legal Form Outreach
 
 on:
   schedule:
-    # Morning Batch: Monday through Friday at 14:00 UTC (10:00 AM EST / 7:00 AM PST)
+    # Morning Batch: Monday through Friday at 14:00 UTC (10:00 AM EST / 7:00 AM PST) — 12 messages
     - cron: '0 14 * * 1-5'
-    # Afternoon Batch: Monday through Friday at 18:00 UTC (2:00 PM EST / 11:00 AM PST)
+    # Afternoon Batch: Monday through Friday at 18:00 UTC (2:00 PM EST / 11:00 AM PST) — 12 messages
     - cron: '0 18 * * 1-5'
   workflow_dispatch:
     inputs:
       limit:
-        description: 'Number of law firms to contact per run'
+        description: 'Number of law firms to contact per run (12/run x 2 runs = 24 messages/day)'
         required: false
         default: '12'
       dry_run:

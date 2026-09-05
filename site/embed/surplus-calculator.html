@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statutory Surplus Funds Claim Deadline Calculator — Surplus Docket</title>
+  <link rel="canonical" href="https://surplusdocket.com/embed/surplus-calculator.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { navy: '#0F172A', slate: '#1E293B', green: '#10B981', blue: '#2563EB', light: '#F8FAFC' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 p-4 md:p-6 antialiased">
+  <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+    <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+      <div>
+        <h2 class="text-lg font-bold text-slate-900">Tax Deed Surplus Deadline Calculator</h2>
+        <p class="text-xs text-slate-500">Official Statutory Windows across Core US Jurisdictions</p>
+      </div>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+        2026 Statutory Index
+      </span>
+    </div>
+
+    <form id="calcForm" class="space-y-4" onsubmit="event.preventDefault(); calculateDeadline();">
+      <div>
+        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Select Jurisdiction</label>
+        <select id="jurisdiction" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium" onchange="calculateDeadline()">
+          <option value="FL" selected>Florida (Fla. Stat. § 197.582 — 120-Day Window)</option>
+          <option value="TX">Texas (Tex. Tax Code § 34.04 — 2-Year Court Registry Limit)</option>
+          <option value="CA">California (Cal. Rev. & Tax Code § 4675 — 1-Year Window)</option>
+          <option value="GA">Georgia (O.C.G.A. § 48-4-5 — 5-Year Claim Window)</option>
+          <option value="NC">North Carolina (N.C. Gen. Stat. § 105-374 — 10-Day Upset Bid)</option>
+          <option value="TN">Tennessee (Tenn. Code Ann. § 67-5-2510 — 1-Year Redemption/Claim)</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Trigger Date (Notice / Sale)</label>
+          <input type="date" id="triggerDate" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium" onchange="calculateDeadline()">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Estimated Surplus ($)</label>
+          <input type="number" id="surplusBalance" placeholder="e.g. 50000" min="0" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium" oninput="calculateDeadline()">
+        </div>
+      </div>
+    </form>
+
+    <!-- Calculation Results -->
+    <div id="resultsBox" class="mt-5 p-4 bg-slate-900 text-white rounded-xl shadow-inner">
+      <div class="flex justify-between items-start mb-3">
+        <div>
+          <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Statutory Filing Deadline</div>
+          <div id="deadlineDate" class="text-xl font-extrabold text-emerald-400 mt-0.5">Select a Date Above</div>
+        </div>
+        <div class="text-right">
+          <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Days Remaining</div>
+          <div id="daysRemaining" class="text-xl font-bold text-amber-300 mt-0.5">—</div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-800 grid grid-cols-2 gap-2 text-xs">
+        <div>
+          <span class="text-slate-400">Governing Statute:</span>
+          <div id="statuteCitation" class="font-semibold text-slate-200">Fla. Stat. § 197.582</div>
+        </div>
+        <div>
+          <span class="text-slate-400">Registry Custodian:</span>
+          <div id="registryCustodian" class="font-semibold text-slate-200">Clerk of the Circuit Court</div>
+        </div>
+        <div>
+          <span class="text-slate-400">Statutory Fee Cap:</span>
+          <div id="feeCap" class="font-semibold text-slate-200">20% Cap (Non-Attorney)</div>
+        </div>
+        <div>
+          <span class="text-slate-400">Est. Fee Benchmark:</span>
+          <div id="estRecoveryFee" class="font-semibold text-emerald-300">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Educational Citation & Canonical Attribution -->
+    <div class="mt-4 pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+      <div class="flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <span>Verified Public Records Intelligence</span>
+      </div>
+      <div>
+        Powered by <a href="https://surplusdocket.com" target="_blank" rel="noopener" class="font-bold text-blue-600 hover:text-blue-800 underline">Surplus Docket</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STATUTORY_RULES = {
+      FL: { statute: 'Fla. Stat. § 197.582', windowDays: 120, custodian: 'Clerk of Circuit Court', capPct: 0.20, label: '20% Statutory Non-Attorney Cap' },
+      TX: { statute: 'Tex. Tax Code § 34.04', windowDays: 730, custodian: 'District Court Registry', capPct: 0.25, label: '25% Maximum Recovery Cap' },
+      CA: { statute: 'Cal. Rev. & Tax Code § 4675', windowDays: 365, custodian: 'Board of Supervisors / Tax Collector', capPct: 0.20, label: 'Section 4675(e) Assignee Rules' },
+      GA: { statute: 'O.C.G.A. § 48-4-5', windowDays: 1825, custodian: 'County Tax Commissioner', capPct: 0.25, label: '5-Year Interpleader Benchmark' },
+      NC: { statute: 'N.C. Gen. Stat. § 105-374', windowDays: 10, custodian: 'Clerk of Superior Court', capPct: 0.20, label: '10-Day Upset Bid Rule' },
+      TN: { statute: 'Tenn. Code Ann. § 67-5-2510', windowDays: 365, custodian: 'Chancery Court Registry', capPct: 0.25, label: '1-Year Statutory Claim Period' }
+    };
+
+    function initTriggerDate() {
+      const today = new Date();
+      document.getElementById('triggerDate').value = today.toISOString().split('T')[0];
+      calculateDeadline();
+    }
+
+    function calculateDeadline() {
+      const jur = document.getElementById('jurisdiction').value;
+      const dateVal = document.getElementById('triggerDate').value;
+      const surplus = parseFloat(document.getElementById('surplusBalance').value) || 0;
+      const rule = STATUTORY_RULES[jur];
+
+      document.getElementById('statuteCitation').textContent = rule.statute;
+      document.getElementById('registryCustodian').textContent = rule.custodian;
+      document.getElementById('feeCap').textContent = rule.label;
+
+      if (surplus > 0) {
+        const estFee = surplus * rule.capPct;
+        document.getElementById('estRecoveryFee').textContent = '$' + estFee.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      } else {
+        document.getElementById('estRecoveryFee').textContent = '—';
+      }
+
+      if (!dateVal) {
+        document.getElementById('deadlineDate').textContent = 'Select a Date Above';
+        document.getElementById('daysRemaining').textContent = '—';
+        return;
+      }
+
+      const baseDate = new Date(dateVal + 'T00:00:00');
+      const deadline = new Date(baseDate);
+      deadline.setDate(deadline.getDate() + rule.windowDays);
+
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      document.getElementById('deadlineDate').textContent = deadline.toLocaleDateString('en-US', options);
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const diffTime = deadline - today;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays > 0) {
+        document.getElementById('daysRemaining').textContent = diffDays + ' days';
+        document.getElementById('daysRemaining').className = 'text-xl font-bold text-emerald-400 mt-0.5';
+      } else if (diffDays === 0) {
+        document.getElementById('daysRemaining').textContent = 'TODAY';
+        document.getElementById('daysRemaining').className = 'text-xl font-bold text-amber-400 mt-0.5';
+      } else {
+        document.getElementById('daysRemaining').textContent = Math.abs(diffDays) + 'd EXPIRED';
+        document.getElementById('daysRemaining').className = 'text-xl font-bold text-rose-400 mt-0.5';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initTriggerDate);
+  </script>
+</body>
+</html>
