@@ -9,11 +9,21 @@
     </filter>
   </defs>
   <rect x="1" y="1" width="278" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#sd-shadow)"/>
-  <!-- Shield Icon -->
-  <g transform="translate(14, 12)">
-    <rect width="32" height="32" rx="6" fill="url(#sd-grad-light)"/>
-    <path d="M16 8L10 11V16C10 20 12.5 23.5 16 25C19.5 23.5 22 20 22 16V11L16 8Z" stroke="#38bdf8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <path d="M13.5 16.5L15.5 18.5L19 14" stroke="#38bdf8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Official Judicial Scales & Shield Logo Emblem -->
+  <g transform="translate(12, 10)">
+    <rect width="36" height="36" rx="8" fill="#1b365d"/>
+    <!-- Outer Crest Border -->
+    <path d="M18 5 L9 9 V18 C9 24 13 29 18 31 C23 29 27 24 27 18 V9 L18 5 Z" stroke="#4c6d48" stroke-width="1.5" fill="#102238"/>
+    <!-- Central Pillar / Fulcrum -->
+    <path d="M18 10 V23 M15 23 H21" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Crossbeam Balance -->
+    <path d="M12 13.5 H24" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Left Scale Pan -->
+    <path d="M12 13.5 L10 18 M12 13.5 L14 18" stroke="#38bdf8" stroke-width="1"/>
+    <path d="M9 18 Q12 21 15 18 Z" fill="#38bdf8" fill-opacity="0.8"/>
+    <!-- Right Scale Pan -->
+    <path d="M24 13.5 L22 18 M24 13.5 L26 18" stroke="#38bdf8" stroke-width="1"/>
+    <path d="M21 18 Q24 21 27 18 Z" fill="#38bdf8" fill-opacity="0.8"/>
   </g>
   <!-- Text -->
   <text x="54" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#0f172a" letter-spacing="0.02em">SURPLUS DOCKET</text>

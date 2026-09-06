@@ -58,6 +58,10 @@ ALL_SITE_URLS = [
     "https://surplusdocket.com/press/",
     "https://surplusdocket.com/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html",
     "https://surplusdocket.com/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html",
+    "https://surplusdocket.com/embed/",
+    "https://surplusdocket.com/embed/surplus-calculator.html",
+    "https://surplusdocket.com/resources/homeowner-surplus-guide.html",
+    "https://surplusdocket.com/inquiry.html",
 ]
 
 def generate_rss_feed():

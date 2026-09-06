@@ -1,0 +1,88 @@
+{
+  "updated_at": "2026-09-06T14:20:51.575486+00:00",
+  "state_weights_pct": {
+    "FL": 19.2,
+    "TX": 18.0,
+    "CA": 22.8,
+    "GA": 40.0,
+    "NC": 0.0,
+    "TN": 0.0
+  },
+  "primary_focus_states": [
+    "GA",
+    "CA"
+  ],
+  "embed_promotion_priority": [
+    "GA",
+    "CA",
+    "FL"
+  ],
+  "channel_allocation": {
+    "direct_practitioner_outreach": 45,
+    "embed_widget_promotion": 25,
+    "high_da_directory_citations": 20,
+    "syndicated_educational_content": 10
+  },
+  "state_performance_breakdown": {
+    "FL": {
+      "score": 0.0719,
+      "win_rate": 18.0,
+      "surplus_pool": 0.0,
+      "fee_pool": 0.0,
+      "lead_count": 12,
+      "attempts": 128,
+      "successes": 23,
+      "allocated_weight_pct": 19.2
+    },
+    "TX": {
+      "score": 0.0677,
+      "win_rate": 16.9,
+      "surplus_pool": 0.0,
+      "fee_pool": 0.0,
+      "lead_count": 5,
+      "attempts": 65,
+      "successes": 11,
+      "allocated_weight_pct": 18.0
+    },
+    "CA": {
+      "score": 0.0857,
+      "win_rate": 21.4,
+      "surplus_pool": 0.0,
+      "fee_pool": 0.0,
+      "lead_count": 4,
+      "attempts": 28,
+      "successes": 6,
+      "allocated_weight_pct": 22.8
+    },
+    "GA": {
+      "score": 0.15,
+      "win_rate": 37.5,
+      "surplus_pool": 0.0,
+      "fee_pool": 0.0,
+      "lead_count": 5,
+      "attempts": 8,
+      "successes": 3,
+      "allocated_weight_pct": 40.0
+    },
+    "NC": {
+      "score": 0.0,
+      "win_rate": 0.0,
+      "surplus_pool": 0.0,
+      "fee_pool": 0.0,
+      "lead_count": 5,
+      "attempts": 2,
+      "successes": 0,
+      "allocated_weight_pct": 0.0
+    },
+    "TN": {
+      "score": 0.0,
+      "win_rate": 0.0,
+      "surplus_pool": 0.0,
+      "fee_pool": 0.0,
+      "lead_count": 4,
+      "attempts": 2,
+      "successes": 0,
+      "allocated_weight_pct": 0.0
+    }
+  }
+}

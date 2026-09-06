@@ -1,0 +1,22 @@
+{
+  "directory_name": "Futurepedia",
+  "domain_authority": "68",
+  "category": "AI Tools",
+  "submission_url": "https://www.futurepedia.io/submit-tool",
+  "company_name": "Surplus Docket",
+  "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
+  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery attorneys, with automated title scrubbing and statutory deadline calculations.",
+  "website_url": "https://surplusdocket.com/",
+  "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
+  "api_docs_url": "https://surplusdocket.com/api-documentation.html",
+  "keywords": [
+    "LegalTech",
+    "Legal Software",
+    "Tax Deed Surplus",
+    "Excess Proceeds",
+    "Court Dockets",
+    "Foreclosure Intelligence"
+  ],
+  "target_anchor": "Surplus Docket AI Docket Intelligence",
+  "status": "READY_FOR_SUBMISSION"
+}

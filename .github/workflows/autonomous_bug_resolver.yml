@@ -1,0 +1,102 @@
+name: Autonomous Bug Resolver & Executive Sentinel
+
+on:
+  issues:
+    types: [opened, reopened, labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'GitHub Issue Number to triage and resolve'
+        required: false
+        type: number
+      issue_title:
+        description: 'Issue Title (if testing manually)'
+        required: false
+        type: string
+        default: 'Manual System Diagnostic & Integrity Run'
+      issue_body:
+        description: 'Issue Body / Description'
+        required: false
+        type: string
+        default: 'Automated diagnostic trigger via workflow_dispatch'
+      dry_run:
+        description: 'Run diagnostics without committing fixes or closing issues'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  triage-and-resolve:
+    # Only run on issues with 'bug', 'automated-triage', or all newly opened issues (unless specifically non-bug)
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.action == 'opened' ||
+      github.event.action == 'reopened' ||
+      (github.event.action == 'labeled' && (github.event.label.name == 'bug' || github.event.label.name == 'automated-triage'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute Autonomous Bug Resolver & Email Sentinel
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+          GITHUB_ISSUE_TITLE: ${{ github.event.issue.title || inputs.issue_title }}
+          GITHUB_ISSUE_BODY: ${{ github.event.issue.body || inputs.issue_body }}
+          GITHUB_ISSUE_URL: ${{ github.event.issue.html_url || '' }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+        run: |
+          DRY_RUN_FLAG=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            DRY_RUN_FLAG="--dry-run"
+          fi
+          
+          python compliance/autonomous_bug_resolver.py $DRY_RUN_FLAG
+
+      - name: Commit & Push Self-Healed Files
+        if: inputs.dry_run != true
+        run: |
+          git config --global user.name "Surplus Docket Sentinel"
+          git config --global user.email "sentinel@surplusdocket.com"
+          
+          # Stage any healed or updated files safely
+          for f in compliance/bug_resolution_log.json compliance/compliance_audit_log.json site/; do
+            if [ -e "$f" ]; then
+              git add "$f"
+            fi
+          done
+          
+          ISSUE_REF="${{ github.event.issue.number || inputs.issue_number || 'auto' }}"
+          git diff --quiet && git diff --staged --quiet || (git commit -m "fix(auto-heal): self-remediated issue #${ISSUE_REF} [skip ci]" && git pull --rebase origin main && git push)
+
+      - name: Upload Diagnostic Logs & Email Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bug-resolution-artifacts
+          path: |
+            compliance/latest_bug_report_email.html
+            compliance/bug_resolution_log.json
+          retention-days: 14

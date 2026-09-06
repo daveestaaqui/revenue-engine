@@ -27,7 +27,7 @@ COMPANY_PROFILE = {
     ),
     "website_url": "https://surplusdocket.com",
     "embed_url": "https://surplusdocket.com/embed/",
-    "data_feed_url": "https://surplusdocket.com/data",
+    "data_feed_url": "https://surplusdocket.com/#live-docket",
     "resource_guide_url": "https://surplusdocket.com/resources/homeowner-surplus-guide",
     "categories": ["LegalTech", "Legal Practice Software", "Real Estate Intelligence", "Court Docket Research"],
     "keywords": [

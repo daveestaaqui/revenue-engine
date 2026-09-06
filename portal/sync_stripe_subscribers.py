@@ -53,13 +53,16 @@ STRIPE_API_KEY = os.getenv("STRIPE_API_KEY", "")
 
 
 def load_processed_events():
+    default_data = {"processed_message_ids": [], "processed_subscription_ids": []}
     if not PROCESSED_EVENTS_FILE.exists():
-        return {"processed_message_ids": [], "processed_subscription_ids": []}
+        save_processed_events(default_data)
+        return default_data
     try:
         with open(PROCESSED_EVENTS_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except Exception:
-        return {"processed_message_ids": [], "processed_subscription_ids": []}
+        save_processed_events(default_data)
+        return default_data
 
 
 def save_processed_events(data):

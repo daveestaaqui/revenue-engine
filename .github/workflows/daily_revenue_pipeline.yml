@@ -74,6 +74,9 @@ jobs:
           python marketing/link_building/syndication_publisher.py
           python marketing/link_building/directory_citations.py
           python marketing/link_building/auto_article_submitter.py
+          python marketing/link_building/embed_promoter.py
+          python marketing/strategy_optimizer.py
+          python marketing/reddit_publisher.py
 
       - name: 9. Update Dynamic Repository Showcase
         run: |
@@ -83,8 +86,8 @@ jobs:
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          git add README.md exports/ site/ domain_arbitrage/listings/ marketing/syndicate/ compliance/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, compliance, PRs & SEO refresh" && git pull --rebase origin main && git push)
+          git add README.md exports/ site/ domain_arbitrage/listings/ marketing/syndicate/ compliance/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/ marketing/reddit/ marketing/strategy_weights.json marketing/CURRENT_STRATEGY.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): daily B2B surplus feeds, REST API, compliance, PRs, SEO & strategy refresh" && git pull --rebase origin main && git push)
 
       - name: 10b. Autonomous Stripe Subscriber & Trial Intake
         env:
@@ -95,7 +98,7 @@ jobs:
           python portal/sync_stripe_subscribers.py
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          git add portal/subscribers.json portal/processed_stripe_events.json
+          for f in portal/subscribers.json portal/processed_stripe_events.json; do if [ -f "$f" ]; then git add "$f"; fi; done
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(subscribers): auto-sync Stripe trial subscribers [skip ci]" && git pull --rebase origin main && git push)
 
       - name: 11. Dispatch 7:00 AM EST Morning Feed to Active Subscribers
@@ -127,7 +130,7 @@ jobs:
           fi
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          git add portal/trial_lifecycle_log.json
+          for f in portal/trial_lifecycle_log.json; do if [ -f "$f" ]; then git add "$f"; fi; done
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(trials): update trial retention lifecycle log [skip ci]" && git pull --rebase origin main && git push)
 
       - name: 12. Upload Delivery Artifacts

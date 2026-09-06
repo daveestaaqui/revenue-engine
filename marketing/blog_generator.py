@@ -284,6 +284,8 @@ def render_article_page(article):
             }}
         }}
     </script>
+    <!-- Plausible Analytics (Privacy-First) -->
+    <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
     <style>
         h1, h2, h3, h4, h5 {{
             text-wrap: balance;
@@ -310,7 +312,7 @@ def render_article_page(article):
                 <a href="/blog/" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">All Articles</a>
                 <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">Billing Portal</a>
                 <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 sm:px-5 py-2.5 rounded-lg shadow-sm transition-all">
-                    Subscribe
+                    Start 7-Day Trial
                 </a>
             </div>
         </div>
@@ -495,6 +497,8 @@ def render_blog_index():
             }}
         }}
     </script>
+    <!-- Plausible Analytics (Privacy-First) -->
+    <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
     <style>
         h1, h2, h3, h4, h5 {{
             text-wrap: balance;
@@ -522,7 +526,7 @@ def render_blog_index():
                 <a href="/api-documentation.html" class="hidden md:inline-block text-xs sm:text-sm font-semibold text-slate-600 hover:text-brand-green transition-colors">API Docs</a>
                 <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">Billing Portal</a>
                 <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 sm:px-5 py-2.5 rounded-lg shadow-sm transition-all">
-                    Subscribe
+                    Start 7-Day Trial
                 </a>
             </div>
         </div>

@@ -53,7 +53,7 @@ jobs:
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          git add outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log portal/subscribers.json portal/processed_stripe_events.json
+          for f in outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log portal/subscribers.json portal/processed_stripe_events.json; do if [ -f "$f" ]; then git add "$f"; fi; done
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(inbox): updated auto-responses & Stripe subscribers [skip ci]" && git pull --rebase origin main && git push)
 
       - name: Archive Sentinel Logs Artifact

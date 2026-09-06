@@ -1,7 +1,7 @@
 ================================================================================
  SURPLUS DOCKET — PRACTITIONER STATUTORY FILING CHECKLIST & DEADLINE PROTOCOL
 ================================================================================
- Version: 2026.1 | Applicable Jurisdictions: Florida, Texas, Georgia
+ Version: 2026.1 | Applicable Jurisdictions: Florida, Texas, Georgia, North Carolina, Tennessee, California
  Document Class: Standard Operating Procedure (SOP) for Asset Recovery Filers
 
 --------------------------------------------------------------------------------
@@ -30,6 +30,21 @@
      • Deadline: 5 years from the date of the sheriff/commissioner tax sale.
      • Fee Benchmark: Statutory lien priority order; non-contingent models.
      • Venue: Tax Commissioner / Sheriff Civil Division.
+
+ [ ] 2.4 NORTH CAROLINA (N.C.G.S. § 105-374 / § 1-339.25):
+     • Deadline: 10-day upset bid period following report of sale; claim filed within statutory retention period.
+     • Fee Benchmark: Strict judicial scrutiny; subject to State Bar ethics rules on contingent asset recovery.
+     • Venue: Superior Court Civil Registry (Special Proceedings Division).
+
+ [ ] 2.5 TENNESSEE (T.C.A. § 67-5-2501):
+     • Deadline: Motion filed within 1 year from the date of confirmation of the tax sale.
+     • Fee Benchmark: Governed by court rule and TN Rules of Professional Conduct.
+     • Venue: Chancery Court / Circuit Court Registry (Motion for Excess Sale Proceeds).
+
+ [ ] 2.6 CALIFORNIA (Cal. Rev. & Tax Code § 4675):
+     • Deadline: 1 year from the date the tax deed to the purchaser is recorded.
+     • Fee Benchmark: Strict written assignment disclosures; attorney representation permitted under state bar guidelines.
+     • Venue: County Board of Supervisors / County Auditor-Controller.
 
 --------------------------------------------------------------------------------
  3. CLIENT ENGAGEMENT & AUTHORITY DOCUMENTATION (STAGE 3)

@@ -1,0 +1,187 @@
+[
+  {
+    "timestamp": "2026-09-06T14:30:03.176415+00:00",
+    "issue_number": null,
+    "issue_title": "System Integrity & Link Audit",
+    "issue_body": "",
+    "issue_url": "",
+    "reporter": "User Submission",
+    "categories": [
+      "general_integrity"
+    ],
+    "resolution_status": "VERIFIED CLEAN",
+    "resolution_summary": "No automated regressions detected. All 44 site pages, statutory rules, and 97 unit tests verified healthy.",
+    "healed_actions": [],
+    "test_results": {
+      "passed": true,
+      "test_count": 97,
+      "elapsed_seconds": 0.97,
+      "output": " Submitting URLs to IndexNow protocol...\n    -> IndexNow Status: dry_run_success (Code: 200)\n[*] Pinging Google and Bing sitemap indexes...\n    -> Google: dry_run_success (200)\n    -> Bing: dry_run_success (200)\n[*] Processed 4 platform syndication targets.\n\n[DRY RUN] Email would be dispatched to: ['test@example.com']\nSubject: \ud83d\udcca Surplus Docket Weekly Marketing Report \u2014 Sep 06, 2026\nBody preview:\n======================================================================\nSURPLUS DOCKET \u2014 WEEKLY MARKETING & PIPELINE REPORT\nCoverage Period: Aug 30, 2026 \u2013 Sep 06, 2026\n======================================================================\n\n\ud83d\ude80 EXECUTIVE HEADLINE:\n\u2022 Firms Contacted (Past 7 Days): 244\n\u2022 Cumulative Firms Contacted:    116 unique firms\n\u2022 Market Penetration:            9.6% of 1213 addre...\n\n.................................................................................................\n----------------------------------------------------------------------\nRan 97 tests in 0.716s\n\nOK\n"
+    },
+    "link_results": {
+      "html_pages_scanned": 44,
+      "total_links_checked": 1493,
+      "broken_links": [],
+      "broken_assets": [],
+      "is_healthy": true
+    },
+    "python_health": {
+      "files_checked": 474,
+      "errors": [],
+      "is_healthy": true
+    },
+    "statutory_health": {
+      "status": "verified",
+      "jurisdictions_count": 6,
+      "missing_states": [],
+      "is_healthy": true
+    }
+  },
+  {
+    "timestamp": "2026-09-06T14:28:45.805738+00:00",
+    "issue_number": 101,
+    "issue_title": "Integrity Verification Test",
+    "issue_body": "Verification of links and tests",
+    "issue_url": "",
+    "reporter": "User Submission",
+    "categories": [
+      "general_integrity"
+    ],
+    "resolution_status": "VERIFIED CLEAN",
+    "resolution_summary": "No automated regressions detected. All 43 site pages, statutory rules, and 92 unit tests verified healthy.",
+    "healed_actions": [],
+    "test_results": {
+      "passed": true,
+      "test_count": 92,
+      "elapsed_seconds": 0.51,
+      "output": ".\n[*] Submitting URLs to IndexNow protocol...\n    -> IndexNow Status: dry_run_success (Code: 200)\n[*] Pinging Google and Bing sitemap indexes...\n    -> Google: dry_run_success (200)\n    -> Bing: dry_run_success (200)\n[*] Processed 4 platform syndication targets.\n\n[DRY RUN] Email would be dispatched to: ['test@example.com']\nSubject: \ud83d\udcca Surplus Docket Weekly Marketing Report \u2014 Sep 06, 2026\nBody preview:\n======================================================================\nSURPLUS DOCKET \u2014 WEEKLY MARKETING & PIPELINE REPORT\nCoverage Period: Aug 30, 2026 \u2013 Sep 06, 2026\n======================================================================\n\n\ud83d\ude80 EXECUTIVE HEADLINE:\n\u2022 Firms Contacted (Past 7 Days): 244\n\u2022 Cumulative Firms Contacted:    116 unique firms\n\u2022 Market Penetration:            9.6% of 1213 addre...\n\n............................................................................................\n----------------------------------------------------------------------\nRan 92 tests in 0.258s\n\nOK\n"
+    },
+    "link_results": {
+      "html_pages_scanned": 43,
+      "total_links_checked": 1377,
+      "broken_links": [],
+      "broken_assets": [],
+      "is_healthy": true
+    },
+    "python_health": {
+      "files_checked": 473,
+      "errors": [],
+      "is_healthy": true
+    },
+    "statutory_health": {
+      "status": "verified",
+      "jurisdictions_count": 6,
+      "missing_states": [],
+      "is_healthy": true
+    }
+  },
+  {
+    "timestamp": "2026-09-06T14:28:38.252417+00:00",
+    "issue_number": 999,
+    "issue_title": "Verification Dry Run",
+    "issue_body": "Testing auto-resolver triage engine",
+    "issue_url": "",
+    "reporter": "User Submission",
+    "categories": [
+      "general_integrity"
+    ],
+    "resolution_status": "TRIAGED / ATTENTION REQUIRED",
+    "resolution_summary": "Anomalies detected requiring manual review. Full diagnostic log attached below.",
+    "healed_actions": [],
+    "test_results": {
+      "passed": true,
+      "test_count": 92,
+      "elapsed_seconds": 0.58,
+      "output": ".\n[*] Submitting URLs to IndexNow protocol...\n    -> IndexNow Status: dry_run_success (Code: 200)\n[*] Pinging Google and Bing sitemap indexes...\n    -> Google: dry_run_success (200)\n    -> Bing: dry_run_success (200)\n[*] Processed 4 platform syndication targets.\n\n[DRY RUN] Email would be dispatched to: ['test@example.com']\nSubject: \ud83d\udcca Surplus Docket Weekly Marketing Report \u2014 Sep 06, 2026\nBody preview:\n======================================================================\nSURPLUS DOCKET \u2014 WEEKLY MARKETING & PIPELINE REPORT\nCoverage Period: Aug 30, 2026 \u2013 Sep 06, 2026\n======================================================================\n\n\ud83d\ude80 EXECUTIVE HEADLINE:\n\u2022 Firms Contacted (Past 7 Days): 244\n\u2022 Cumulative Firms Contacted:    116 unique firms\n\u2022 Market Penetration:            9.6% of 1213 addre...\n\n............................................................................................\n----------------------------------------------------------------------\nRan 92 tests in 0.266s\n\nOK\n"
+    },
+    "link_results": {
+      "html_pages_scanned": 43,
+      "total_links_checked": 1391,
+      "broken_links": [
+        {
+          "file": "site/refund-policy.html",
+          "href": "//fonts.googleapis.com",
+          "target": "/Users/davidmahler/revenue-engine/site/fonts.googleapis.com"
+        },
+        {
+          "file": "site/refund-policy.html",
+          "href": "//fonts.gstatic.com",
+          "target": "/Users/davidmahler/revenue-engine/site/fonts.gstatic.com"
+        },
+        {
+          "file": "site/refund-policy.html",
+          "href": "//cdn.tailwindcss.com",
+          "target": "/Users/davidmahler/revenue-engine/site/cdn.tailwindcss.com"
+        },
+        {
+          "file": "site/refund-policy.html",
+          "href": "//plausible.io",
+          "target": "/Users/davidmahler/revenue-engine/site/plausible.io"
+        },
+        {
+          "file": "site/index.html",
+          "href": "//fonts.googleapis.com",
+          "target": "/Users/davidmahler/revenue-engine/site/fonts.googleapis.com"
+        },
+        {
+          "file": "site/index.html",
+          "href": "//fonts.gstatic.com",
+          "target": "/Users/davidmahler/revenue-engine/site/fonts.gstatic.com"
+        },
+        {
+          "file": "site/index.html",
+          "href": "//cdn.tailwindcss.com",
+          "target": "/Users/davidmahler/revenue-engine/site/cdn.tailwindcss.com"
+        },
+        {
+          "file": "site/index.html",
+          "href": "//plausible.io",
+          "target": "/Users/davidmahler/revenue-engine/site/plausible.io"
+        },
+        {
+          "file": "site/comparison.html",
+          "href": "//cdn.tailwindcss.com",
+          "target": "/Users/davidmahler/revenue-engine/site/cdn.tailwindcss.com"
+        },
+        {
+          "file": "site/comparison.html",
+          "href": "//plausible.io",
+          "target": "/Users/davidmahler/revenue-engine/site/plausible.io"
+        },
+        {
+          "file": "site/inquiry.html",
+          "href": "//fonts.googleapis.com",
+          "target": "/Users/davidmahler/revenue-engine/site/fonts.googleapis.com"
+        },
+        {
+          "file": "site/inquiry.html",
+          "href": "//fonts.gstatic.com",
+          "target": "/Users/davidmahler/revenue-engine/site/fonts.gstatic.com"
+        },
+        {
+          "file": "site/inquiry.html",
+          "href": "//cdn.tailwindcss.com",
+          "target": "/Users/davidmahler/revenue-engine/site/cdn.tailwindcss.com"
+        },
+        {
+          "file": "site/inquiry.html",
+          "href": "//plausible.io",
+          "target": "/Users/davidmahler/revenue-engine/site/plausible.io"
+        }
+      ],
+      "broken_assets": [],
+      "is_healthy": false
+    },
+    "python_health": {
+      "files_checked": 473,
+      "errors": [],
+      "is_healthy": true
+    },
+    "statutory_health": {
+      "status": "verified",
+      "jurisdictions_count": 6,
+      "missing_states": [],
+      "is_healthy": true
+    }
+  }
+]

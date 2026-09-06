@@ -66,34 +66,118 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-slate-700 selection:bg-brand-green selection:text-white">
 
-    <!-- Header / Nav -->
-    <header class="w-full border-b border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
-            <!-- Brand Logo -->
+    <!-- Standardized Navigation Header -->
+    <header class="w-full border-b border-brand-navy bg-white/90 backdrop-blur-md sticky top-0 z-50 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo Lockup -->
             <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="" role="presentation" aria-hidden="true" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
-                <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+                <picture>
+                    <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                    <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" fetchpriority="high" decoding="async" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                </picture>
+                <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
-                </div>
+                </span>
             </a>
 
-            <!-- Condensed Navigation -->
-            <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-600">
-                <a href="/" class="px-3 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Home</a>
-                <a href="/#data" class="px-3 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Live Docket</a>
-                <a href="/#calculator" class="px-3 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Calculator</a>
-                <a href="/methodology.html" class="px-3 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Methodology</a>
-                <a href="/comparison.html" class="px-3 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Comparison</a>
-                <a href="/#pricing" class="px-3 py-2 rounded-lg hover:text-brand-green hover:bg-slate-50 transition-all">Pricing</a>
+            <!-- Primary Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-7 xl:gap-9 text-sm font-semibold text-slate-600">
+                <a href="/#live-docket" class="nav-link py-1 border-b-2 border-transparent hover:text-brand-navy hover:border-brand-navy/30 transition-all">Live Docket</a>
+                <a href="/#calculator" class="nav-link py-1 border-b-2 border-transparent hover:text-brand-navy hover:border-brand-navy/30 transition-all">Calculator</a>
+                <a href="/practitioner-toolkit.html" class="nav-link py-1 border-b-2 border-brand-green text-brand-navy font-bold transition-all">Toolkit</a>
+                <a href="/#pricing" class="nav-link py-1 border-b-2 border-transparent hover:text-brand-navy hover:border-brand-navy/30 transition-all">Pricing</a>
+
+                <!-- Resources Dropdown -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1.5 hover:text-brand-navy transition-colors py-2 focus:outline-none font-semibold">
+                        <span>Resources</span>
+                        <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-navy group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute right-0 top-full pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 transform group-hover:translate-y-0 translate-y-1 z-50">
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl p-3 space-y-1 text-xs max-h-[80vh] overflow-y-auto">
+                            <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-navy">Tri-State Core Feed (FL, TX, GA)</div>
+                            <a href="/florida-tax-deed-surplus.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                <span>Florida Tax Deed Feed</span>
+                                <span class="text-[10px] text-brand-green font-mono">FL § 197</span>
+                            </a>
+                            <a href="/texas-tax-sale-excess-proceeds.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                <span>Texas Excess Proceeds</span>
+                                <span class="text-[10px] text-brand-green font-mono">TX § 34</span>
+                            </a>
+                            <a href="/georgia-tax-sale-excess-funds.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                <span>Georgia Excess Funds</span>
+                                <span class="text-[10px] text-brand-green font-mono">GA § 48</span>
+                            </a>
+                            <div class="border-t border-slate-100 my-1"></div>
+                            <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Expansion States (National Tier)</div>
+                            <a href="/north-carolina-tax-foreclosure-surplus.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                <span>North Carolina Foreclosures</span>
+                                <span class="text-[10px] text-slate-500 font-mono">NC § 105</span>
+                            </a>
+                            <a href="/tennessee-tax-sale-excess-proceeds.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                <span>Tennessee Chancery Sales</span>
+                                <span class="text-[10px] text-slate-500 font-mono">TN § 67</span>
+                            </a>
+                            <a href="/california-tax-defaulted-excess-proceeds.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                <span>California Tax-Defaulted</span>
+                                <span class="text-[10px] text-slate-500 font-mono">CA § 4675</span>
+                            </a>
+                            <div class="border-t border-slate-100 my-1"></div>
+                            <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Case Law &amp; Legal Precedent</div>
+                            <a href="/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                ⚖ Tyler v. Hennepin County (SCOTUS 9-0)
+                            </a>
+                            <a href="/methodology.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                🛡 Senior Lien Scrubbing Methodology
+                            </a>
+                            <a href="/#faq" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                📋 Lien Priority &amp; Claim FAQs
+                            </a>
+                            <div class="border-t border-slate-100 my-1"></div>
+                            <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Practice Automation</div>
+                            <a href="/practitioner-toolkit.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                ⚡ Court Petitions &amp; Retainers
+                            </a>
+                            <a href="/api-documentation.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                🔌 REST API v1 Documentation
+                            </a>
+                            <a href="/comparison.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
+                                📊 Provider Comparison Matrix
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </nav>
 
-            <!-- Actions -->
-            <div class="flex items-center gap-2.5 sm:gap-3">
-                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 hover:border-slate-400 bg-white px-3.5 py-2 rounded-lg transition-all shadow-sm">Customer Portal</a>
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg shrink-0">
-                    Get Feed
+            <!-- Right Actions & Mobile Trigger -->
+            <div class="flex items-center gap-3 sm:gap-4 shrink-0">
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">
+                    Billing Portal
                 </a>
+                <a href="/#pricing" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all shrink-0">
+                    Start 7-Day Evaluation
+                </a>
+                <button onclick="toggleMobileNavMenu()" class="lg:hidden p-2 text-slate-600 hover:text-brand-navy hover:bg-slate-100 rounded-xl transition-colors" aria-label="Toggle Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="sub-mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-6 pt-5 pb-8 shadow-xl space-y-4 max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div class="grid grid-cols-2 gap-2.5 text-xs font-semibold">
+                <a href="/#live-docket" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Live Docket</a>
+                <a href="/#calculator" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Calculator</a>
+                <a href="/practitioner-toolkit.html" class="p-3 bg-brand-green text-white rounded-xl">Toolkit</a>
+                <a href="/methodology.html" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Methodology</a>
+                <a href="/comparison.html" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Comparison</a>
+                <a href="/api-documentation.html" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">REST API v1</a>
+                <a href="/#pricing" class="col-span-2 p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Pricing</a>
+            </div>
+            <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="w-full text-center py-2.5 text-xs font-bold text-slate-600 bg-slate-100 rounded-xl">Subscriber Billing Portal</a>
+                <a href="/#pricing" class="w-full text-center py-2.5 text-xs font-bold text-white bg-brand-green hover:bg-brand-greenDark rounded-xl shadow-sm">Start 7-Day Evaluation ($0 Today)</a>
             </div>
         </div>
     </header>
@@ -119,7 +203,7 @@
         </div>
 
         <!-- Quick Jump Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-12">
+        <div class="grid grid-cols-2 sm:grid-cols-6 gap-3 mb-12">
             <a href="#petition-generator" class="bg-brand-greenSoft p-3.5 rounded-xl border-2 border-brand-green text-center shadow-sm hover:shadow transition-all group">
                 <span class="text-xs font-bold text-brand-navy block mb-1">⚡ 1-Click Builder</span>
                 <span class="text-xs text-brand-green font-semibold">Interactive Motion</span>
@@ -132,13 +216,17 @@
                 <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Texas Registry</span>
                 <span class="text-xs text-slate-500">2-Year Tex. Tax § 34.04</span>
             </a>
+            <a href="#georgia-template" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
+                <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Georgia Fi. Fa.</span>
+                <span class="text-xs text-slate-500">5-Year O.C.G.A. § 48-4-5</span>
+            </a>
             <a href="#retainer-template" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
                 <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Contingency Retainer</span>
                 <span class="text-xs text-slate-500">Statutory Fee Caps</span>
             </a>
-            <a href="#heirship-checklist" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
-                <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">Lien Extinction</span>
-                <span class="text-xs text-slate-500">Heirship Waterfall</span>
+            <a href="#crm-sync" class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-300 hover:border-brand-green text-center shadow-sm hover:shadow transition-all group">
+                <span class="text-xs font-bold text-brand-navy group-hover:text-brand-green block mb-1">CRM &amp; Webhooks</span>
+                <span class="text-xs text-brand-green font-semibold">Clio / Zapier Sync</span>
             </a>
         </div>
 
@@ -146,6 +234,18 @@
         <section id="petition-generator" class="bg-white border-2 border-brand-green rounded-3xl p-6 sm:p-10 shadow-xl mb-14 scroll-mt-24 sm:scroll-mt-28">
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 pb-6 mb-8">
                 <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-900 border border-amber-200">
+                            <svg class="w-3 h-3 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            Notary Required
+                        </span>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-900 border border-blue-200">
+                            Hearing Dependent on Jurisdiction
+                        </span>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-900 border border-emerald-200">
+                            Direct Clerk Disbursal
+                        </span>
+                    </div>
                     <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-2">Interactive Court Petition & Motion Generator</h2>
                     <p class="text-xs sm:text-sm text-slate-600">Select any indexed docket or enter case metadata to generate an instant statutory court filing packet.</p>
                 </div>
@@ -224,7 +324,7 @@
                 </div>
                 <div>
                     <label class="block font-semibold text-slate-500 mb-1">Attorney Name</label>
-                    <input type="text" id="gen-attorney" value="David Sterling, Esq." class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-semibold" oninput="renderLivePetition()">
+                    <input type="text" id="gen-attorney" value="Sterling Legal Group, P.A." class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-semibold" oninput="renderLivePetition()">
                 </div>
                 <div>
                     <label class="block font-semibold text-slate-500 mb-1">State Bar Number</label>
@@ -254,7 +354,13 @@
         <section id="florida-template" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md mb-10 scroll-mt-24 sm:scroll-mt-28">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-6">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-brand-green">Protocol 01 • Florida Circuit Court</span>
+                    <div class="flex flex-wrap items-center gap-1.5 mb-1.5">
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-green">Protocol 01 • Florida Circuit Court</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-200">Notary Required</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-900 border border-emerald-200">Direct Clerk Disbursal</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-900 border border-blue-200">120-Day Limit (F.S. § 197.582)</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-900 border border-purple-200">20% Statutory Cap</span>
+                    </div>
                     <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Motion for Distribution of Tax Deed Surplus Proceeds</h2>
                     <p class="text-xs text-slate-500">Governed by Fla. Stat. § 197.582 (Strict 120-Day Notice & Lienholder Resolution)</p>
                 </div>
@@ -308,7 +414,13 @@ Telephone: [PHONE NUMBER]</pre>
         <section id="texas-template" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md mb-10 scroll-mt-24 sm:scroll-mt-28">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-6">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-brand-green">Template 02 • Texas District Court</span>
+                    <div class="flex flex-wrap items-center gap-1.5 mb-1.5">
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-green">Template 02 • Texas District Court</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-200">Notary Required</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-red-50 text-red-900 border border-red-200">Hearing Mandatory</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-900 border border-blue-200">2-Year Limitation (Tex. Tax § 34.04)</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-900 border border-purple-200">25% Statutory Cap</span>
+                    </div>
                     <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Petition for Release of Excess Proceeds from Registry</h2>
                     <p class="text-xs text-slate-500">Governed by Tex. Tax Code § 34.04 (2-Year Statutory Limitation Window)</p>
                 </div>
@@ -358,11 +470,71 @@ Counsel for Petitioner</pre>
             </div>
         </section>
 
+        <!-- Template 2.5: Georgia Excess Funds Demand -->
+        <section id="georgia-template" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md mb-10 scroll-mt-24 sm:scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-6">
+                <div>
+                    <div class="flex flex-wrap items-center gap-1.5 mb-1.5">
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-green">Template 02.5 • Georgia Superior Court / Sheriff</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-200">Notary Required</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-900 border border-emerald-200">Direct Clerk / Fi. Fa. Demand</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-900 border border-blue-200">5-Year Claim Window (O.C.G.A. § 48-4-5)</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-900 border border-purple-200">20% Standard Benchmark</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Demand for Disbursement of Excess Tax Sale Funds</h2>
+                    <p class="text-xs text-slate-500">Governed by Official Code of Georgia Annotated (O.C.G.A.) § 48-4-5</p>
+                </div>
+                <button onclick="copySnippet('ga-demand-text', 'ga-copy-btn')" id="ga-copy-btn" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 hover:bg-brand-greenSoft text-brand-navy hover:text-brand-green text-xs font-bold rounded-lg border border-slate-200 transition-all shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    <span>Copy Template</span>
+                </button>
+            </div>
+
+            <div class="bg-slate-900 text-slate-200 p-5 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed max-h-96">
+<pre id="ga-demand-text">IN THE OFFICE OF THE SHERIFF / TAX COMMISSIONER
+IN AND FOR [COUNTY NAME] COUNTY, STATE OF GEORGIA
+
+IN RE: TAX SALE FI. FA. DOCKET NO.: [DOCKET / FI. FA. NUMBER]
+DEFENDANT IN FI. FA. / RECORD OWNER: [RECORD TITLEHOLDER]
+PROPERTY SITUS ADDRESS: [PROPERTY ADDRESS]
+TAX PARCEL IDENTIFICATION: [PARCEL ID]
+
+CLAIM AND FORMAL DEMAND FOR DISBURSEMENT OF EXCESS TAX SALE FUNDS
+PURSUANT TO O.C.G.A. § 48-4-5
+
+TO: THE SHERIFF / TAX COMMISSIONER OF [COUNTY NAME] COUNTY, GEORGIA
+
+COMES NOW the Claimant, [CLAIMANT NAME], by and through undersigned legal counsel, and presents this Formal Claim and Demand for immediate disbursement of excess tax sale proceeds currently held in escrow / registry resulting from the tax sale conducted on [AUCTION DATE], stating:
+
+1. On [AUCTION DATE], pursuant to statutory tax levy and execution, the real property commonly known as [PROPERTY ADDRESS], Parcel ID: [PARCEL ID], was sold at public outcry.
+2. Following full satisfaction of delinquent county ad valorem taxes, statutory costs, and advertising fees, net excess proceeds in the amount of $[SURPLUS AMOUNT] were deposited into the registry.
+3. Claimant holds lawful priority entitlement as the [Defendant in fi. fa. / Legal Successor in Title / Heir] under O.C.G.A. § 48-4-5, as proven by the attached title deed recorded in Deed Book [BOOK], Page [PAGE] of the [COUNTY NAME] County Records (Exhibit "A").
+4. Less than five (5) years have elapsed since the date of the tax sale execution.
+
+WHEREFORE, Claimant respectfully demands that the Tax Commissioner/Sheriff issue disbursement of $[SURPLUS AMOUNT] payable to [ATTORNEY TRUST ACCOUNT / CLAIMANT].
+
+DATED this _____ day of _______________, 20___.
+
+Respectfully submitted,
+
+__________________________________________
+[ATTORNEY NAME / GA BAR NO.]
+[FIRM NAME & ADDRESS]
+Telephone: [PHONE NUMBER]
+Counsel for Claimant</pre>
+            </div>
+        </section>
+
         <!-- Template 3: Client Contingency Representation Agreement -->
         <section id="retainer-template" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md mb-10 scroll-mt-24 sm:scroll-mt-28">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-6">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-brand-green">Template 03 • Legal Retainer</span>
+                    <div class="flex flex-wrap items-center gap-1.5 mb-1.5">
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-green">Template 03 • Legal Retainer</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-900 border border-emerald-200">Zero Upfront / Contingency</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-900 border border-blue-200">IOLTA Trust Account Protection</span>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-900 border border-purple-200">Statutory Fee Cap Compliance</span>
+                    </div>
                     <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Excess Funds Representation Agreement & Statutory Fee Disclosure</h2>
                     <p class="text-xs text-slate-500">Includes Statutory Fee Cap Disclosures (20% FL / 25% TX Compliance Clauses)</p>
                 </div>
@@ -395,6 +567,169 @@ CASE / DOCKET NO.: [DOCKET NUMBER]
 
 CLIENT SIGNATURE: ____________________________________ DATE: ______________
 ATTORNEY SIGNATURE: __________________________________ DATE: ______________</pre>
+            </div>
+        </section>
+
+        <!-- Template 5: CRM Sync & Webhook Configuration -->
+        <section id="crm-sync" class="bg-white border-2 border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg mb-14 scroll-mt-24 sm:scroll-mt-28">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Practice Automation</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-0.5 rounded">REST API &amp; Webhooks</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy">CRM Sync &amp; Webhook Configuration</h2>
+                    <p class="text-xs sm:text-sm text-slate-600">Standardized field mappings and ingestion listeners for Clio, MyCase, Zapier, and Make (Integromat).</p>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <a href="/api-documentation.html" class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-brand-navy hover:bg-brand-navyDark text-white text-xs font-bold rounded-xl shadow-sm transition-all">
+                        Full REST API Specs &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- CRM Schema Mappers Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <!-- Clio Setup Guide -->
+                <div class="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-7 h-7 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-xs">C</span>
+                            <h3 class="font-heading font-bold text-brand-navy text-sm sm:text-base">Clio Manage Field Mapping</h3>
+                        </div>
+                        <span class="text-[10px] font-mono font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Custom Matter Schema</span>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-4">Create these custom fields in <em>Settings &rarr; Custom Fields &rarr; Matters</em> to auto-populate from daily webhook feeds:</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs font-mono border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-slate-500 text-[10px]">
+                                    <th class="py-1.5 px-2">Field Label</th>
+                                    <th class="py-1.5 px-2">Type</th>
+                                    <th class="py-1.5 px-2">Surplus Docket JSON Key</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Surplus Docket #</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">Text (String)</td>
+                                    <td class="py-1.5 px-2 text-brand-green">docket_number</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Gross Surplus Pool</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">Currency ($)</td>
+                                    <td class="py-1.5 px-2 text-brand-green">surplus_balance_usd</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Filing Deadline</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">Date</td>
+                                    <td class="py-1.5 px-2 text-brand-green">statutory_deadline</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Governing Statute</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">Text</td>
+                                    <td class="py-1.5 px-2 text-brand-green">governing_statute</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Clerk Verification URL</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">URL</td>
+                                    <td class="py-1.5 px-2 text-brand-green">clerk_verification_url</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- MyCase Setup Guide -->
+                <div class="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-7 h-7 bg-emerald-600 text-white rounded-lg flex items-center justify-center font-bold text-xs">M</span>
+                            <h3 class="font-heading font-bold text-brand-navy text-sm sm:text-base">MyCase / Lead Intake Mapping</h3>
+                        </div>
+                        <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Case &amp; Lead Schema</span>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-4">Map incoming JSON leads directly into prospective client consultation pipelines:</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs font-mono border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-slate-500 text-[10px]">
+                                    <th class="py-1.5 px-2">Field Label</th>
+                                    <th class="py-1.5 px-2">Type</th>
+                                    <th class="py-1.5 px-2">Surplus Docket JSON Key</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Record Titleholder</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">Contact Name</td>
+                                    <td class="py-1.5 px-2 text-brand-green">owner_name</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Property Situs</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">Street Address</td>
+                                    <td class="py-1.5 px-2 text-brand-green">property_address</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Jurisdiction / Court</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">Text</td>
+                                    <td class="py-1.5 px-2 text-brand-green">county_state</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Statutory Finder Cap</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">Currency ($)</td>
+                                    <td class="py-1.5 px-2 text-brand-green">est_finder_fee_usd</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 px-2 font-semibold">Lien Scrub Status</td>
+                                    <td class="py-1.5 px-2 text-slate-500 font-sans">Status Badge</td>
+                                    <td class="py-1.5 px-2 text-brand-green">lien_cleared</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Webhook Listener & Payload Simulator -->
+            <div class="bg-slate-900 rounded-2xl p-5 sm:p-7 text-slate-100 border border-slate-800">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4 mb-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span class="text-xs font-mono font-bold text-emerald-400">7:00 AM EST Webhook Dispatch Payload</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Compatible with Zapier "Catch Hook" and Make.com "Custom Webhook" modules</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="copyWebhookPayload()" id="webhook-copy-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono rounded-lg border border-slate-700 transition-colors">
+                            <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            <span>Copy JSON</span>
+                        </button>
+                    </div>
+                </div>
+
+                <pre id="webhook-json-sample" class="text-xs font-mono text-emerald-300 overflow-x-auto leading-relaxed max-h-72">{
+  "event": "docket.new_verified_surplus",
+  "dispatch_timestamp": "2026-09-05T07:00:00-04:00",
+  "data": {
+    "docket_number": "2026-TD-004501",
+    "state": "FL",
+    "county": "Palm Beach",
+    "auction_confirmed_date": "2026-08-18",
+    "surplus_balance_usd": 145000.00,
+    "statutory_cap_rate": 0.20,
+    "est_finder_fee_usd": 29000.00,
+    "statutory_deadline": "2026-12-16",
+    "governing_statute": "Fla. Stat. § 197.582",
+    "owner_name": "Anthony & Grace Valentine",
+    "property_address": "720 S Ocean Blvd, Palm Beach FL 33480",
+    "parcel_id": "50-43-44-15-00-000-1020",
+    "lien_cleared": true,
+    "senior_mortgage_balance": 0.00,
+    "clerk_verification_url": "https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501"
+  }
+}</pre>
             </div>
         </section>
 
@@ -485,7 +820,7 @@ ATTORNEY SIGNATURE: __________________________________ DATE: ______________</pre
                         <li><a href="/methodology.html" class="hover:text-brand-green transition-colors">Lien Scrubbing Methodology</a></li>
                         <li><a href="/comparison.html" class="hover:text-brand-green transition-colors">Provider Comparison Matrix</a></li>
                         <li><a href="/api-documentation.html" class="hover:text-brand-green transition-colors">Programmatic REST API</a></li>
-                        <li><a href="/assets/sample_surplus_docket_feed.csv" download class="hover:text-brand-green transition-colors">Sample Data Export (.csv)</a></li>
+                        <li><a href="/assets/sample_docket.csv" download class="hover:text-brand-green transition-colors">Sample Data Export (.csv)</a></li>
                     </ul>
                 </div>
 
@@ -497,18 +832,19 @@ ATTORNEY SIGNATURE: __________________________________ DATE: ______________</pre
                         <li><a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="text-brand-navy font-bold hover:text-brand-green transition-colors flex items-center gap-1"><span>Customer Portal</span> <span class="text-slate-400">&rarr;</span></a></li>
                         <li><a href="/blog/" class="hover:text-brand-green transition-colors">Legal Research Articles</a></li>
                         <li><a href="/press/" class="hover:text-brand-green transition-colors">Press & Newsroom</a></li>
+                        <li><a href="/report-bug.html" class="hover:text-brand-green transition-colors">Report an Issue</a></li>
                         <li><a href="/terms.html" class="hover:text-brand-green transition-colors">Commercial Data Terms</a></li>
                         <li><a href="/refund-policy.html" class="hover:text-brand-green transition-colors">14-Day Refund Guarantee</a></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Bottom Sub-Bar -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/inquiry.html" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
-                <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
+            <!-- Bottom Sub-Bar (WCAG AA High Contrast) -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/report-bug.html" class="hover:text-brand-green underline transition-colors">Report an Issue</a> • <a href="/inquiry.html" class="hover:text-brand-green font-semibold underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green font-semibold underline transition-colors">Subscriber Billing Portal</a></p>
+                <p class="text-center sm:text-right text-xs text-slate-600 max-w-md font-medium">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
-              </p>
+                </p>
             </div>
         </div>
     </footer>
@@ -764,6 +1100,36 @@ ${barNo} | ${firm} | Tel: ${phone}`;
                 btn.innerHTML = `<span class="text-brand-green font-bold">✓ Copied!</span>`;
                 setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
             });
+        }
+
+        function copyWebhookPayload() {
+            const sampleEl = document.getElementById("webhook-json-sample");
+            if (!sampleEl) return;
+            navigator.clipboard.writeText(sampleEl.innerText).then(() => {
+                const btn = document.getElementById("webhook-copy-btn");
+                if (btn) {
+                    const originalHtml = btn.innerHTML;
+                    btn.innerHTML = `<span class="text-emerald-400 font-bold">✓ Copied Payload!</span>`;
+                    setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
+                }
+            });
+        }
+
+        // Header shadow on scroll
+        window.addEventListener("scroll", () => {
+            const header = document.querySelector("header");
+            if (header) {
+                if (window.scrollY > 20) {
+                    header.classList.add("shadow-md", "border-slate-300");
+                } else {
+                    header.classList.remove("shadow-md", "border-slate-300");
+                }
+            }
+        });
+
+        function toggleMobileNavMenu() {
+            const m = document.getElementById('sub-mobile-menu');
+            if (m) m.classList.toggle('hidden');
         }
 
         window.addEventListener("DOMContentLoaded", () => {

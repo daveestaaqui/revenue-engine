@@ -108,6 +108,9 @@ def generate_individual_press_release(pr):
     <meta property="og:url" content="https://surplusdocket.com/press/releases/{pr['slug']}.html">
     <meta property="og:image" content="https://surplusdocket.com/assets/logo_surplus_docket.png">
     
+    <!-- Plausible Analytics (Privacy-First) -->
+    <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -382,6 +385,9 @@ def generate_press_newsroom():
     <meta property="og:description" content="Official press releases, media kits, and corporate announcements from Surplus Docket.">
     <meta property="og:url" content="https://surplusdocket.com/press/">
     <meta property="og:image" content="https://surplusdocket.com/assets/logo_surplus_docket.png">
+    
+    <!-- Plausible Analytics (Privacy-First) -->
+    <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>

@@ -1,0 +1,22 @@
+{
+  "directory_name": "American Bar Association Legal Technology Resource Center",
+  "domain_authority": "88",
+  "category": "Legal",
+  "submission_url": "https://www.americanbar.org/submit",
+  "company_name": "Surplus Docket",
+  "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
+  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery attorneys, with automated title scrubbing and statutory deadline calculations.",
+  "website_url": "https://surplusdocket.com/",
+  "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
+  "api_docs_url": "https://surplusdocket.com/api-documentation.html",
+  "keywords": [
+    "LegalTech",
+    "Legal Software",
+    "Tax Deed Surplus",
+    "Excess Proceeds",
+    "Court Dockets",
+    "Foreclosure Intelligence"
+  ],
+  "target_anchor": "Automated Foreclosure Surplus Docket Intelligence",
+  "status": "READY_FOR_SUBMISSION"
+}

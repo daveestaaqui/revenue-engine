@@ -1,0 +1,71 @@
+name: "🐛 Report a Bug / Integrity Issue"
+description: "Submit a bug, broken link, data calculation discrepancy, or display issue for autonomous triage and resolution."
+title: "[Bug]: "
+labels: ["bug", "automated-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🛡️ Surplus Docket Autonomous Bug Triage & Self-Healing Engine
+        Submissions to this repository are automatically ingested by our GitHub Actions Autonomous Sentinel.
+        The system executes automated diagnostics, statutory validation, unit tests, and applies self-healing patches when applicable.
+
+  - type: dropdown
+    id: subsystem
+    attributes:
+      label: Affected Subsystem / Component
+      description: What part of Surplus Docket is affected?
+      options:
+        - "Live Docket & Lead Feed"
+        - "Statutory Fee Calculator / Embeddable Tool"
+        - "Practitioner Toolkit & Petition Builder"
+        - "State Hubs (FL, TX, GA, NC, TN, CA)"
+        - "REST API & JSON Endpoints (/api/v1/)"
+        - "Stripe Billing & Subscription Checkout"
+        - "Navigation, Broken Link or 404 Error"
+        - "Mobile Layout & Visual Styling"
+        - "Other / General"
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Page URL or File Path
+      description: The exact URL (e.g. https://surplusdocket.com/practitioner-toolkit.html) or repository file path.
+      placeholder: "https://surplusdocket.com/..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of the Issue
+      description: Describe what happened and why it seems incorrect or broken.
+      placeholder: "A clear description of the issue or discrepancy..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can our autonomous diagnostic engine reproduce this issue?
+      placeholder: |
+        1. Navigate to '...'
+        2. Click on '....'
+        3. Observe error '...'
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity / Operational Impact
+      options:
+        - "Low / Cosmetic"
+        - "Medium / Functional Discrepancy"
+        - "High / Statutory or Lead Integrity Impact"
+        - "Critical / Blocking Checkout or Core Feed"
+    validations:
+      required: true

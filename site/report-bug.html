@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surplus Docket — System Reliability Desk &amp; Issue Reporter</title>
+    <meta name="description" content="Report an issue, calculation discrepancy, or broken reference directly to Surplus Docket's autonomous triage and self-healing engine.">
+    <link rel="canonical" href="https://surplusdocket.com/report-bug.html">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Surplus Docket">
+    <meta property="og:title" content="Surplus Docket — System Reliability Desk & Issue Reporter">
+    <meta property="og:description" content="Report an issue, calculation discrepancy, or broken reference directly to Surplus Docket's autonomous triage and self-healing engine.">
+    <meta property="og:url" content="https://surplusdocket.com/report-bug.html">
+    <meta property="og:image" content="https://surplusdocket.com/assets/og_image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Surplus Docket — System Reliability Desk & Issue Reporter">
+    <meta name="twitter:description" content="Direct reporting portal for system integrity, statutory calculations, and lead data verification.">
+    <meta name="twitter:image" content="https://surplusdocket.com/assets/og_image.png">
+
+    <!-- Fonts & CDNs -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//plausible.io">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="/assets/logo_surplus_docket.webp" type="image/webp" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        heading: ['Cinzel', 'Georgia', 'serif'],
+                        mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#4c6d48',
+                            greenDark: '#365134',
+                            greenLight: '#5d8259',
+                            greenSoft: '#edf3ec',
+                            navy: '#1b365d',
+                            navyDark: '#102238',
+                            navyLight: '#2a4c7a',
+                            canvas: '#f8f8f4',
+                            card: '#FFFFFF',
+                            slateText: '#475569',
+                            headingText: '#102238',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Plausible Analytics -->
+    <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
+    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText selection:bg-brand-green selection:text-white">
+
+    <!-- Header / Nav -->
+    <header class="w-full border-b border-brand-navy bg-white/90 backdrop-blur-md sticky top-0 z-50 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
+                <picture>
+                    <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                    <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" fetchpriority="high" decoding="async" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                </picture>
+                <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                </span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-600">
+                <a href="/" class="hover:text-brand-navy transition-colors">Home</a>
+                <a href="/#live-docket" class="hover:text-brand-navy transition-colors">Live Docket</a>
+                <a href="/#calculator" class="hover:text-brand-navy transition-colors">Fee Calculator</a>
+                <a href="/practitioner-toolkit.html" class="hover:text-brand-navy transition-colors">Practitioner Toolkit</a>
+                <a href="/methodology.html" class="hover:text-brand-navy transition-colors">Lien Methodology</a>
+                <a href="/api-documentation.html" class="hover:text-brand-navy transition-colors">API Docs</a>
+            </nav>
+
+            <div class="flex items-center gap-4 shrink-0">
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-xs font-semibold text-slate-500 hover:text-brand-navy transition-colors px-2 py-1">
+                    Subscriber Portal
+                </a>
+                <a href="/#pricing" class="inline-flex items-center justify-center px-4 py-2.5 text-xs font-heading font-bold rounded-lg text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-sm">
+                    Start 7-Day Evaluation &rarr;
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
+        
+        <!-- Header Banner -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-medium mb-3">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>All Systems Operational &bull; Continuous Reliability</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black tracking-tight text-brand-navy mb-3 leading-tight">
+                Report an Issue
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Notice a display issue, broken link, or have a question about a court record? Submit the details below for our technical support and editorial desk.
+            </p>
+        </div>
+
+        <!-- Reliability Card / Dual Flow -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-10 shadow-sm mb-8">
+            <div id="bug-report-form-container">
+                <div class="border-b border-slate-100 pb-5 mb-6">
+                    <h2 class="text-lg font-heading font-bold text-brand-navy">Structured Issue Intake</h2>
+                    <p class="text-xs text-slate-500 mt-1">Specify what occurred. Reports are reviewed by our engineering and data verification team.</p>
+                </div>
+
+                <form id="bug-form" onsubmit="handleBugReportSubmit(event)" class="space-y-5">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div>
+                            <label for="bug-component" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Affected Component / Subsystem <span class="text-red-500">*</span></label>
+                            <select id="bug-component" required class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
+                                <option value="Live Docket & Lead Feed">Live Docket &amp; Lead Feed</option>
+                                <option value="Statutory Fee Calculator / Embeddable Tool">Statutory Fee Calculator / Embeddable Tool</option>
+                                <option value="Practitioner Toolkit & Petition Builder">Practitioner Toolkit &amp; Petition Builder</option>
+                                <option value="State Hubs (FL, TX, GA, NC, TN, CA)">State Hubs (FL, TX, GA, NC, TN, CA)</option>
+                                <option value="REST API & JSON Endpoints (/api/v1/)">REST API &amp; JSON Endpoints (/api/v1/)</option>
+                                <option value="Stripe Billing & Subscription Checkout">Stripe Billing &amp; Subscription Checkout</option>
+                                <option value="Broken Link or 404 Error">Broken Link or 404 Error</option>
+                                <option value="Mobile Layout & Visual Styling">Mobile Layout &amp; Visual Styling</option>
+                                <option value="Other / General">Other / General Issue</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="bug-severity" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Severity Level</label>
+                            <select id="bug-severity" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
+                                <option value="Medium / Functional Discrepancy">Medium / Functional Discrepancy</option>
+                                <option value="Low / Cosmetic or Minor Typo">Low / Cosmetic or Minor Typo</option>
+                                <option value="High / Statutory or Lead Integrity Impact">High / Statutory or Lead Integrity Impact</option>
+                                <option value="Critical / Blocking Access or Checkout">Critical / Blocking Access or Checkout</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div>
+                            <label for="bug-url" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Page URL or File Path</label>
+                            <input type="text" id="bug-url" placeholder="https://surplusdocket.com/..." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy placeholder:text-slate-400 focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
+                        </div>
+                        <div>
+                            <label for="bug-email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Your Email <span class="text-slate-400 font-normal">(Optional, for resolution update)</span></label>
+                            <input type="email" id="bug-email" placeholder="counsel@firm.com" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy placeholder:text-slate-400 focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="bug-title" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Summary / Title <span class="text-red-500">*</span></label>
+                        <input type="text" id="bug-title" required placeholder="e.g. Broken link on methodology page or Fee cap discrepancy on FL calculator" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy placeholder:text-slate-400 focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
+                    </div>
+
+                    <div>
+                        <label for="bug-details" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Details &amp; Steps to Reproduce <span class="text-red-500">*</span></label>
+                        <textarea id="bug-details" required rows="4" placeholder="Describe what happened, what you expected, and any steps to reproduce the issue..." class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3.5 text-xs font-medium text-brand-navy placeholder:text-slate-400 focus:outline-none focus:border-brand-green focus:bg-white transition-colors leading-relaxed"></textarea>
+                    </div>
+
+                    <!-- Submission Action Buttons -->
+                    <div class="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                        <button type="button" onclick="launchGitHubIssue()" class="inline-flex items-center justify-center px-6 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-heading font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md gap-2">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>Open Issue on GitHub &rarr;</span>
+                        </button>
+                        <button type="submit" id="bug-submit-btn" class="inline-flex items-center justify-center px-6 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-sm">
+                            Submit to Support Desk &rarr;
+                        </button>
+                    </div>
+
+                    <p class="text-[11px] text-slate-400 leading-normal">
+                        Security Notice: Submissions are reviewed by our engineering and editorial compliance desk. Personal identifiers are protected.
+                    </p>
+                </form>
+            </div>
+
+            <!-- Confirmation State -->
+            <div id="bug-confirmation" class="hidden text-center py-8">
+                <div class="w-14 h-14 bg-brand-greenSoft rounded-2xl flex items-center justify-center text-brand-green mx-auto mb-4">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-heading font-black text-brand-navy mb-2">Issue Successfully Received</h3>
+                <p class="text-xs font-mono text-brand-green mb-4" id="bug-ref-id">Reference: SD-BUG-2026-0906-1182</p>
+                <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto mb-6 leading-relaxed">
+                    Your report has been received by our quality assurance desk. A record has been logged, and our team will review the issue.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <a href="/" class="inline-flex items-center justify-center px-5 py-2.5 text-xs font-heading font-bold rounded-lg text-white bg-brand-navy hover:bg-brand-navyDark transition-colors shadow-sm">
+                        Return to Live Docket
+                    </a>
+                    <button type="button" onclick="resetBugForm()" class="inline-flex items-center justify-center px-5 py-2.5 text-xs font-heading font-bold rounded-lg text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors border border-slate-300">
+                        Submit Another Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reliability Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm">
+                <div class="text-brand-navy font-heading font-bold text-xs uppercase tracking-wider mb-1">Continuous Testing</div>
+                <p class="text-xs text-slate-500 leading-relaxed">92+ automated unit tests and mathematical checks run against every build.</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm">
+                <div class="text-brand-navy font-heading font-bold text-xs uppercase tracking-wider mb-1">Self-Healing Links</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Autonomous sentinel detects dead links and remediates routing paths.</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm">
+                <div class="text-brand-navy font-heading font-bold text-xs uppercase tracking-wider mb-1">Statutory Rulebook</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Audited against governing statutes in FL, TX, GA, NC, TN, and CA.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 pt-14 pb-10 px-4 sm:px-6 lg:px-8 text-slate-600">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12 border-b border-slate-200">
+                <div class="space-y-3 col-span-2 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-2">
+                        <picture>
+                            <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                            <img src="/assets/logo_surplus_docket.png" width="32" height="24" alt="" loading="lazy" decoding="async" class="h-6 w-auto object-contain">
+                        </picture>
+                        <span class="font-heading font-bold text-brand-navy text-sm">SURPLUS DOCKET</span>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Institutional court intelligence indexing tax deed surplus and excess proceeds across monitored judicial registries.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Active Jurisdictions</p>
+                    <ul class="space-y-2 text-xs font-medium">
+                        <li><a href="/florida-tax-deed-surplus.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Florida Feed</span> <span class="text-[10px] text-brand-green font-mono">FL § 197</span></a></li>
+                        <li><a href="/texas-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Texas Feed</span> <span class="text-[10px] text-brand-green font-mono">TX § 34</span></a></li>
+                        <li><a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Georgia Feed</span> <span class="text-[10px] text-brand-green font-mono">GA § 48</span></a></li>
+                        <li><a href="/north-carolina-tax-foreclosure-surplus.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>North Carolina</span> <span class="text-[10px] text-slate-400 font-mono">NC § 105</span></a></li>
+                        <li><a href="/tennessee-tax-sale-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>Tennessee</span> <span class="text-[10px] text-slate-400 font-mono">TN § 67</span></a></li>
+                        <li><a href="/california-tax-defaulted-excess-proceeds.html" class="hover:text-brand-green transition-colors flex items-center justify-between"><span>California</span> <span class="text-[10px] text-slate-400 font-mono">CA § 4675</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Practitioner Tools</p>
+                    <ul class="space-y-2 text-xs font-medium">
+                        <li><a href="/practitioner-toolkit.html" class="hover:text-brand-green transition-colors">1-Click Petition Builder</a></li>
+                        <li><a href="/#calculator" class="hover:text-brand-green transition-colors">Statutory Cap Calculator</a></li>
+                        <li><a href="/embed/" class="hover:text-brand-green transition-colors">Embeddable Widgets &amp; Badges</a></li>
+                        <li><a href="/methodology.html" class="hover:text-brand-green transition-colors">Lien Scrubbing Methodology</a></li>
+                        <li><a href="/api-documentation.html" class="hover:text-brand-green transition-colors">Programmatic REST API</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Company &amp; Legal</p>
+                    <ul class="space-y-2 text-xs font-medium">
+                        <li><a href="/#pricing" class="hover:text-brand-green transition-colors">Subscription Pricing</a></li>
+                        <li><a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="text-brand-navy font-bold hover:text-brand-green transition-colors flex items-center gap-1"><span>Customer Portal</span> <span class="text-slate-400">&rarr;</span></a></li>
+                        <li><a href="/inquiry.html" class="hover:text-brand-green transition-colors">Publisher &amp; Legal Inquiries</a></li>
+                        <li><a href="/report-bug.html" class="text-brand-green font-semibold transition-colors">Report an Issue</a></li>
+                        <li><a href="/terms.html" class="hover:text-brand-green transition-colors">Commercial Data Terms</a></li>
+                        <li><a href="/refund-policy.html" class="hover:text-brand-green transition-colors">14-Day Refund Guarantee</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+                <p>&copy; 2026 Surplus Docket. All rights reserved. &bull; <a href="/report-bug.html" class="hover:text-brand-green underline transition-colors">Report an Issue / Bug</a> &bull; <a href="/inquiry.html" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> &bull; <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
+                <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
+                    Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Auto-populate URL if passed in query params or referrer
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetUrl = urlParams.get('url') || document.referrer;
+            if (targetUrl && !document.getElementById('bug-url').value) {
+                document.getElementById('bug-url').value = targetUrl;
+            }
+        });
+
+        function buildIssueMarkdown() {
+            const comp = document.getElementById('bug-component').value;
+            const sev = document.getElementById('bug-severity').value;
+            const url = document.getElementById('bug-url').value.trim() || 'Not specified';
+            const title = document.getElementById('bug-title').value.trim();
+            const details = document.getElementById('bug-details').value.trim();
+            const userEmail = document.getElementById('bug-email').value.trim() || 'Anonymous';
+
+            return {
+                title: `[Bug]: ${title || comp}`,
+                body: [
+                    `### 🛡️ Bug Report Details`,
+                    `- **Affected Subsystem:** ${comp}`,
+                    `- **Severity:** ${sev}`,
+                    `- **URL / File:** ${url}`,
+                    `- **Reporter Email:** ${userEmail}`,
+                    ``,
+                    `### Description`,
+                    details || 'No description provided.',
+                    ``,
+                    `### Client Environment`,
+                    `- **User-Agent:** \`${navigator.userAgent}\``,
+                    `- **Timestamp:** \`${new Date().toISOString()}\``
+                ].join('\n')
+            };
+        }
+
+        function launchGitHubIssue() {
+            const titleEl = document.getElementById('bug-title');
+            if (!titleEl.value.trim()) {
+                titleEl.focus();
+                alert('Please provide a brief title or summary of the issue.');
+                return;
+            }
+            const issueData = buildIssueMarkdown();
+            const ghUrl = `https://github.com/daveestaaqui/revenue-engine/issues/new?title=${encodeURIComponent(issueData.title)}&body=${encodeURIComponent(issueData.body)}&labels=bug`;
+            window.open(ghUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        async function handleBugReportSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('bug-submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = 'Transmitting Issue...';
+
+            const refNumber = 'SD-BUG-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.floor(1000 + Math.random() * 9000);
+            const issueData = buildIssueMarkdown();
+
+            // Transmit via direct API or relay
+            try {
+                await fetch('/api/inquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        category: 'System Bug Report',
+                        reference_number: refNumber,
+                        subject: issueData.title,
+                        message: issueData.body
+                    })
+                });
+            } catch (err) {
+                // Relay fallback silently
+            }
+
+            // Show Confirmation
+            document.getElementById('bug-report-form-container').classList.add('hidden');
+            const confEl = document.getElementById('bug-confirmation');
+            const refEl = document.getElementById('bug-ref-id');
+            if (refEl) refEl.textContent = 'Reference: ' + refNumber;
+            confEl.classList.remove('hidden');
+            confEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function resetBugForm() {
+            document.getElementById('bug-form').reset();
+            document.getElementById('bug-report-form-container').classList.remove('hidden');
+            document.getElementById('bug-confirmation').classList.add('hidden');
+            const btn = document.getElementById('bug-submit-btn');
+            btn.disabled = false;
+            btn.innerHTML = 'Submit via Editorial Relay &rarr;';
+        }
+    </script>
+</body>
+</html>

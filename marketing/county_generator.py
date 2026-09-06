@@ -309,6 +309,8 @@ def generate_county_page(c):
             }}
         }}
     </script>
+    <!-- Plausible Analytics (Privacy-First) -->
+    <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
     <style>
         h1, h2, h3 {{ text-wrap: balance; }}
         p {{ text-wrap: pretty; }}
@@ -330,7 +332,7 @@ def generate_county_page(c):
                 <a href="/" class="hidden sm:inline-flex text-xs font-semibold text-slate-600 hover:text-brand-green transition-colors px-2 py-1">Main Hub</a>
                 <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">Billing Portal</a>
                 <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-all shadow-md shrink-0">
-                    Subscribe
+                    Start 7-Day Trial
                 </a>
             </div>
         </div>
