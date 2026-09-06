@@ -26,9 +26,9 @@ import sys
 import time
 import urllib.parse
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timezone
 from email.mime.text import MIMEText
-from email.utils import formatdate, make_msgid, parseaddr
+from email.utils import formatdate, make_msgid, parseaddr, parsedate_to_datetime
 from pathlib import Path
 
 # Paths
@@ -65,6 +65,11 @@ REPLY_TO = os.getenv("REPLY_TO", "dockets@surplusdocket.com")
 REPORT_RECIPIENT = os.getenv("REPORT_RECIPIENT", "sandwichfitness@gmail.com")
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+
+# Human Turnaround Pacing (Policy SD-POL-PACING-2026-V1)
+# Ensures enough time elapses to simulate realistic coordinator review & docket lookup
+MIN_HUMAN_RESPONSE_DELAY_SECONDS = int(os.getenv("MIN_HUMAN_RESPONSE_DELAY_SECONDS", "360"))  # 6 min base
+MAX_HUMAN_RESPONSE_DELAY_SECONDS = int(os.getenv("MAX_HUMAN_RESPONSE_DELAY_SECONDS", "600"))  # 10 min max
 
 STATE_NAMES = {
     "FL": "Florida", "TX": "Texas", "GA": "Georgia",
@@ -338,6 +343,38 @@ def save_created_draft(draft_key):
             json.dump(list(drafts), f, indent=2)
     except Exception:
         pass
+
+
+_last_pacing_logged = {}
+
+
+def get_required_human_delay(message_id, sender_email, text_body):
+    """
+    Calculates an authentic human turnaround delay (default 6 to 10 minutes)
+    with natural deterministic jitter based on message metadata.
+    Deterministic so the delay threshold stays consistent across daemon polling ticks.
+    """
+    seed = f"{message_id}_{sender_email}_{text_body[:40]}"
+    jitter_range = max(1, MAX_HUMAN_RESPONSE_DELAY_SECONDS - MIN_HUMAN_RESPONSE_DELAY_SECONDS)
+    jitter = abs(hash(seed)) % jitter_range
+    return MIN_HUMAN_RESPONSE_DELAY_SECONDS + jitter
+
+
+def get_message_age_seconds(msg):
+    """
+    Computes how many seconds have elapsed since the inbound message was sent.
+    """
+    date_header = msg.get("Date")
+    if not date_header:
+        return 999999.0
+    try:
+        msg_dt = parsedate_to_datetime(date_header)
+        if msg_dt.tzinfo is None:
+            msg_dt = msg_dt.replace(tzinfo=timezone.utc)
+        now_dt = datetime.now(timezone.utc)
+        return max(0.0, (now_dt - msg_dt.astimezone(timezone.utc)).total_seconds())
+    except Exception:
+        return 999999.0
 
 
 def extract_body_parts(msg):
@@ -2246,7 +2283,7 @@ def sync_voicemails_to_inbox(mail):
         log(f"Notice during voicemail inbox sync: {e}")
 
 
-def check_and_create_auto_responses(mail, state_cases):
+def check_and_create_auto_responses(mail, state_cases, enforce_delay=True):
     """
     Scans INBOX:
     1. Automatically detects and executes unsubscriptions for marketing/newsletters.
@@ -2377,6 +2414,23 @@ def check_and_create_auto_responses(mail, state_cases):
             continue
 
         # -------------------------------------------------------------
+        # 2.5 HUMAN PACING WINDOW (Policy SD-POL-PACING-2026-V1)
+        # -------------------------------------------------------------
+        # Ensure realistic time has elapsed since inbound message arrival
+        # to simulate professional coordinator review and docket compilation.
+        if enforce_delay:
+            age_secs = get_message_age_seconds(msg)
+            required_delay = get_required_human_delay(message_id, sender_email, text_body)
+            if age_secs < required_delay:
+                remaining_secs = required_delay - age_secs
+                pacing_key = f"{sender_email}_{message_id}"
+                now_ts = time.time()
+                if now_ts - _last_pacing_logged.get(pacing_key, 0) >= 60:
+                    _last_pacing_logged[pacing_key] = now_ts
+                    log(f"  ⏳ Human Pacing: Inbound inquiry from {sender_email} is {age_secs/60.0:.1f}m old. Holding draft creation for {remaining_secs/60.0:.1f}m more (total {required_delay/60.0:.1f}m window) to maintain authentic human turnaround.")
+                continue
+
+        # -------------------------------------------------------------
         # 3. STATUTORY WEBSITE INQUIRY & VOICEMAIL HANDLING
         # -------------------------------------------------------------
         if inquiry_info:
@@ -2461,7 +2515,7 @@ def check_and_create_auto_responses(mail, state_cases):
             log(f"  🎉 Contextual [{intent}] follow-up draft created in Gmail for {sender_email}!")
 
 
-def run_single_check():
+def run_single_check(enforce_delay=True):
     """Runs a single check across Apple Mail and Gmail."""
     clean_apple_mail_drafts()
     state_cases = load_feed_data()
@@ -2473,25 +2527,26 @@ def run_single_check():
         mail.login(GMAIL_USER, GMAIL_APP_PASS)
         sync_voicemails_to_inbox(mail)
         clean_imap_drafts(mail)
-        check_and_create_auto_responses(mail, state_cases)
+        check_and_create_auto_responses(mail, state_cases, enforce_delay=enforce_delay)
         mail.logout()
     except Exception as e:
         log(f"IMAP connection error: {e}")
 
 
 def daemon_loop():
-    log("🚀 Surplus Docket Continuous Daemon Started (Running every 15s)...")
+    log("🚀 Surplus Docket Continuous Daemon Started (Running every 15s with human-paced turnaround)...")
     while True:
         try:
-            run_single_check()
+            run_single_check(enforce_delay=True)
         except Exception as e:
             log(f"Unexpected error in daemon loop: {e}")
         time.sleep(15)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] in ["--once", "--single-pass"]:
-        run_single_check()
+    force = any(arg in sys.argv for arg in ["--force", "--force-now", "--now", "--immediate"])
+    if len(sys.argv) > 1 and any(arg in sys.argv for arg in ["--once", "--single-pass"]):
+        run_single_check(enforce_delay=not force)
     else:
         daemon_loop()
 

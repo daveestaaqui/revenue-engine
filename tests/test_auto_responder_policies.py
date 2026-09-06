@@ -30,6 +30,10 @@ from outreach.auto_responder_and_draft_cleaner import (
     is_prospect_eligible,
     analyze_prospect_intent,
     compose_elena_response,
+    get_required_human_delay,
+    get_message_age_seconds,
+    MIN_HUMAN_RESPONSE_DELAY_SECONDS,
+    MAX_HUMAN_RESPONSE_DELAY_SECONDS,
     LEGAL_DISCLAIMER,
     FROM_NAME,
     SENDER_EMAIL
@@ -427,6 +431,41 @@ class TestAutoResponderPolicies(unittest.TestCase):
         self.assertNotIn("Attorney at Law", body)
         self.assertNotIn("I am an attorney", body)
         self.assertIn("Senior Docket Specialist | Surplus Docket", body)
+
+    def test_human_pacing_delay_calculation(self):
+        """Verifies deterministic human response delay window (6 to 10 minutes)."""
+        msg_id = "<CAL-2026-99@google.com>"
+        sender = "voice-noreply@google.com"
+        body = "Hi this is Dave Miller calling about Georgia records"
+
+        delay = get_required_human_delay(msg_id, sender, body)
+        self.assertGreaterEqual(delay, MIN_HUMAN_RESPONSE_DELAY_SECONDS)
+        self.assertLessEqual(delay, MAX_HUMAN_RESPONSE_DELAY_SECONDS)
+
+        # Deterministic consistency
+        delay2 = get_required_human_delay(msg_id, sender, body)
+        self.assertEqual(delay, delay2)
+
+    def test_human_pacing_message_age_evaluation(self):
+        """Verifies that recent messages are held and aged messages pass human delay window."""
+        from datetime import datetime, timezone, timedelta
+        from email.utils import format_datetime
+
+        # 1. Very recent message (1 minute ago) -> age ~60s < 360s
+        msg_recent = Message()
+        msg_recent["Date"] = format_datetime(datetime.now(timezone.utc) - timedelta(minutes=1))
+        age_recent = get_message_age_seconds(msg_recent)
+        self.assertAlmostEqual(age_recent, 60.0, delta=10.0)
+
+        # 2. Aged message (12 minutes ago) -> age ~720s > 600s
+        msg_aged = Message()
+        msg_aged["Date"] = format_datetime(datetime.now(timezone.utc) - timedelta(minutes=12))
+        age_aged = get_message_age_seconds(msg_aged)
+        self.assertAlmostEqual(age_aged, 720.0, delta=15.0)
+
+        # 3. Missing date fallback -> returns large number so it doesn't block forever
+        msg_nodate = Message()
+        self.assertEqual(get_message_age_seconds(msg_nodate), 999999.0)
 
 
 if __name__ == "__main__":
