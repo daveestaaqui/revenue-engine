@@ -863,49 +863,193 @@ def format_sample_records(cases):
     return "\n".join(lines)
 
 
+DEPARTMENT_PERSONAS = {
+    "ONBOARDING": {
+        "name": "Elena Brooks",
+        "title": "Practitioner Onboarding Specialist",
+        "full_title": "Practitioner Onboarding Specialist | Surplus Docket",
+        "email": "elena.brooks@surplusdocket.com",
+        "department": "7-Day Institutional Practice Evaluation",
+    },
+    "ENTERPRISE": {
+        "name": "Julian Vance",
+        "title": "Director of Practice Relations & Licensing",
+        "full_title": "Director of Practice Relations & Licensing | Surplus Docket",
+        "email": "julian.vance@surplusdocket.com",
+        "department": "Enterprise Feed Licensing",
+    },
+    "TECHNICAL": {
+        "name": "Marcus Chen",
+        "title": "Lead Technical Specialist & API Integrations",
+        "full_title": "Lead Technical Specialist & API Integrations | Surplus Docket",
+        "email": "marcus.chen@surplusdocket.com",
+        "department": "Law Practice API Integration",
+    },
+    "REGISTRY": {
+        "name": "Rachel Holloway",
+        "title": "County Registry Operations Liaison",
+        "full_title": "County Registry Operations Liaison | Surplus Docket",
+        "email": "rachel.holloway@surplusdocket.com",
+        "department": "Clerk Docket Correction / Notice",
+    },
+    "COMPLIANCE": {
+        "name": "Arthur Miller",
+        "title": "Senior Compliance & Research Specialist",
+        "full_title": "Senior Compliance & Research Specialist | Surplus Docket",
+        "email": "arthur.miller@surplusdocket.com",
+        "department": "Statutory Compliance Verification",
+    },
+    "RESEARCH": {
+        "name": "Claire Montgomery",
+        "title": "Public Information Liaison",
+        "full_title": "Public Information Liaison | Surplus Docket",
+        "email": "claire.montgomery@surplusdocket.com",
+        "department": "Press / Academic Research",
+    },
+    "GENERAL": {
+        "name": "Elena Brooks",
+        "title": "Senior Docket Specialist",
+        "full_title": "Senior Docket Specialist | Surplus Docket",
+        "email": "elena.brooks@surplusdocket.com",
+        "department": "General Publisher Inquiry",
+    },
+}
+
+
+def get_department_persona(role=None, department=None, intent=None):
+    """
+    Resolves the specialized institutional employee persona based on role, department, or intent.
+    """
+    if role:
+        r = role.strip().lower()
+        if r in ["enterprise", "licensing"]:
+            return DEPARTMENT_PERSONAS["ENTERPRISE"]
+        if r in ["api", "technical", "integrations"]:
+            return DEPARTMENT_PERSONAS["TECHNICAL"]
+        if r in ["clerk", "registry", "correction", "notice"]:
+            return DEPARTMENT_PERSONAS["REGISTRY"]
+        if r in ["compliance", "statutory", "research", "title"]:
+            return DEPARTMENT_PERSONAS["COMPLIANCE"]
+        if r in ["press", "media", "academic"]:
+            return DEPARTMENT_PERSONAS["RESEARCH"]
+        if r in ["onboarding", "evaluation", "trial"]:
+            return DEPARTMENT_PERSONAS["ONBOARDING"]
+        if r in ["general", "docket"]:
+            return DEPARTMENT_PERSONAS["GENERAL"]
+
+    dept_lower = (department or "").lower()
+    if any(k in dept_lower for k in ["evaluation", "7-day", "trial", "intake", "onboarding"]):
+        return DEPARTMENT_PERSONAS["ONBOARDING"]
+    if any(k in dept_lower for k in ["enterprise", "licensing", "custom feed", "multi-jurisdiction"]):
+        return DEPARTMENT_PERSONAS["ENTERPRISE"]
+    if any(k in dept_lower for k in ["api", "integration", "developer", "technical", "rest", "webhook"]):
+        return DEPARTMENT_PERSONAS["TECHNICAL"]
+    if any(k in dept_lower for k in ["clerk", "correction", "notice", "registry", "court reporter"]):
+        return DEPARTMENT_PERSONAS["REGISTRY"]
+    if any(k in dept_lower for k in ["compliance", "statutory", "senior lien", "title", "encumbrance"]):
+        return DEPARTMENT_PERSONAS["COMPLIANCE"]
+    if any(k in dept_lower for k in ["press", "academic", "media", "journalist", "research"]):
+        return DEPARTMENT_PERSONAS["RESEARCH"]
+
+    intent_upper = (intent or "").upper()
+    if intent_upper in ["TITLE_LIEN_SCRUBBING", "TYLER_V_HENNEPIN", "SKIP_TRACING_CONTACT"]:
+        return DEPARTMENT_PERSONAS["COMPLIANCE"]
+    if intent_upper in ["DATA_FORMAT", "API_INTEGRATION"]:
+        return DEPARTMENT_PERSONAS["TECHNICAL"]
+    if intent_upper in ["PRICING", "ENTERPRISE_LICENSING"]:
+        return DEPARTMENT_PERSONAS["ENTERPRISE"]
+
+    return DEPARTMENT_PERSONAS["GENERAL"]
+
+
+def get_employee_signature(persona=None, role=None, department=None, intent=None):
+    """
+    Generates an authentic institutional signature for the assigned specialized employee.
+    """
+    if not persona:
+        persona = get_department_persona(role=role, department=department, intent=intent)
+    return f"""Best regards,
+
+{persona['name']}
+{persona['full_title']}
+surplusdocket.com
+{persona['email']}"""
+
+
+def extract_thread_history(text_body):
+    """
+    Extracts the complete conversational thread context from an inbound email.
+    Separates the latest response from prior turns, tracks turn count, and preserves
+    mentioned counties, dockets, and counsel identity across the conversation.
+    """
+    if not text_body:
+        return {
+            "latest_message": "",
+            "prior_history": "",
+            "thread_turn_count": 0,
+            "mentioned_counties": [],
+            "is_follow_up": False,
+        }
+
+    split_patterns = [
+        r"\n\s*(?:On\s+[A-Za-z]+,?\s+[A-Za-z0-9\s,:]+wrote:)",
+        r"\n\s*[-_]{2,}\s*Original Message\s*[-_]{2,}",
+        r"\n\s*From:\s*[^\n]+\s*Sent:\s*[^\n]+",
+        r"\n\s*Begin forwarded message:",
+        r"\n\s*>+\s*",
+    ]
+
+    combined_split = "|".join(split_patterns)
+    parts = re.split(combined_split, text_body, maxsplit=1, flags=re.IGNORECASE)
+
+    latest_message = parts[0].strip() if len(parts) > 0 else text_body.strip()
+    prior_history = parts[1].strip() if len(parts) > 1 else ""
+
+    turn_markers = len(re.findall(r"(?:On\s+.+wrote:|Original Message|From:\s*)", text_body, re.IGNORECASE))
+
+    full_text = text_body.lower()
+    mentioned_counties = []
+    for county, (c_state, c_name, c_circuit) in COUNTY_CIRCUIT_MAP.items():
+        if county in full_text:
+            mentioned_counties.append((c_state, c_name, c_circuit))
+
+    return {
+        "latest_message": latest_message,
+        "prior_history": prior_history,
+        "thread_turn_count": turn_markers,
+        "mentioned_counties": mentioned_counties,
+        "is_follow_up": turn_markers > 0 or len(prior_history) > 0,
+    }
+
+
+def get_gmail_drafts_mailbox(mail):
+    """
+    Dynamically identifies the exact Drafts folder on Gmail IMAP.
+    Ensures drafts are deposited directly into the user's primary Drafts view.
+    """
+    try:
+        typ, folders = mail.list()
+        if typ == "OK" and folders:
+            for f in folders:
+                dec = f.decode("utf-8", errors="ignore")
+                if r"\Drafts" in dec:
+                    parts = dec.split(' "/" ')
+                    if len(parts) > 1:
+                        return parts[1].strip()
+    except Exception:
+        pass
+    return '"[Gmail]/Drafts"'
+
+
 def get_elena_role_title(role=None, department=None, intent=None):
     """
     Returns the dynamic institutional role title for Elena Brooks based on
     explicit role, inquiry department, or intent context.
+    Defaults to Senior Docket Specialist for general outreach follow-ups.
     """
-    if role:
-        r = role.strip()
-        role_map = {
-            "onboarding": "Practitioner Onboarding Specialist",
-            "evaluation": "Practitioner Onboarding Specialist",
-            "licensing": "Director of Practice Relations & Licensing",
-            "enterprise": "Director of Practice Relations & Licensing",
-            "api": "Lead Technical Specialist & API Integrations",
-            "technical": "Lead Technical Specialist & API Integrations",
-            "clerk": "County Registry Operations Liaison",
-            "registry": "County Registry Operations Liaison",
-            "compliance": "Senior Compliance & Research Specialist",
-            "research": "Senior Compliance & Research Specialist",
-            "press": "Public Information Liaison",
-            "media": "Public Information Liaison",
-            "general": "Senior Docket Specialist",
-            "docket": "Senior Docket Specialist",
-        }
-        if r.lower() in role_map:
-            return f"{role_map[r.lower()]} | Surplus Docket"
-        if "|" not in r:
-            return f"{r} | Surplus Docket"
-        return r
-
-    dept_lower = (department or "").lower()
-    if any(k in dept_lower for k in ["evaluation", "7-day", "trial", "intake", "onboarding"]):
-        return "Practitioner Onboarding Specialist | Surplus Docket"
-    if any(k in dept_lower for k in ["enterprise", "licensing", "custom feed", "multi-jurisdiction"]):
-        return "Director of Practice Relations & Licensing | Surplus Docket"
-    if any(k in dept_lower for k in ["api", "integration", "developer", "technical", "rest", "webhook"]):
-        return "Lead Technical Specialist & API Integrations | Surplus Docket"
-    if any(k in dept_lower for k in ["clerk", "correction", "notice", "registry", "court reporter"]):
-        return "County Registry Operations Liaison | Surplus Docket"
-    if any(k in dept_lower for k in ["compliance", "statutory", "senior lien", "title", "encumbrance"]):
-        return "Senior Compliance & Research Specialist | Surplus Docket"
-    if any(k in dept_lower for k in ["press", "academic", "media", "journalist", "research"]):
-        return "Public Information Liaison | Surplus Docket"
-
+    if role or department:
+        persona = get_department_persona(role=role, department=department)
+        return persona["full_title"]
     return "Senior Docket Specialist | Surplus Docket"
 
 
@@ -927,6 +1071,9 @@ def compose_elena_response(intent, target_info, sender_name, sender_email, subje
     Drafts an authentic, context-aware legal correspondence adhering strictly to
     Elena Brooks' persona voice. Completely free of AI tells, buzzwords, or formulaic templates.
     """
+    # 0. Thread History Context
+    thread_ctx = extract_thread_history(text_body)
+
     # 1. Resolve Name and Greeting
     raw_name = target_info.get("name") if target_info else sender_name
     first_name = ""
@@ -950,6 +1097,13 @@ def compose_elena_response(intent, target_info, sender_name, sender_email, subje
     detected_state, county_name, circuit_name = extract_jurisdiction_context(
         subject_raw, text_body, default_state=default_state
     )
+
+    # Preserve county and jurisdiction from prior thread turns if omitted in latest reply
+    if not county_name and thread_ctx["mentioned_counties"]:
+        c_st, c_nm, c_circ = thread_ctx["mentioned_counties"][0]
+        detected_state = c_st
+        county_name = c_nm
+        circuit_name = c_circ
 
     state_name = STATE_NAMES.get(detected_state, "Florida")
     statute_cite = STATE_STATUTES.get(detected_state, (state_name, "applicable state civil code"))[1]
@@ -1448,8 +1602,9 @@ def compose_elena_inquiry_response(inquiry_info, state_cases):
     user_message = inquiry_info.get("message", "").strip()
     docket_ref = inquiry_info.get("docket", "").strip()
 
-    role_title = get_elena_role_title(department=department)
-    signature = get_elena_signature(department=department)
+    persona = get_department_persona(department=department)
+    role_title = persona["full_title"]
+    signature = get_employee_signature(persona=persona)
 
     # Contextual additions based on user inquiry queries
     bar_note = ""
@@ -1646,17 +1801,20 @@ def build_inquiry_draft_email(inquiry_info, state_cases, message_id=None):
     """
     prospect_name = inquiry_info.get("name", "").strip()
     prospect_email = inquiry_info.get("email", "").strip()
+    department = inquiry_info.get("department", "General Publisher Inquiry").strip()
+    persona = get_department_persona(department=department)
     reply_subject, reply_body, role_title = compose_elena_inquiry_response(inquiry_info, state_cases)
 
+    now_epoch = time.time()
     draft_msg = MIMEText(reply_body, "plain", "utf-8")
-    draft_msg["From"] = f"Elena Brooks <{SENDER_EMAIL}>"
+    draft_msg["From"] = f"{persona['name']} <{SENDER_EMAIL}>"
     draft_msg["To"] = f"{prospect_name} <{prospect_email}>" if prospect_name else prospect_email
     draft_msg["Subject"] = reply_subject
-    draft_msg["Reply-To"] = f"Elena Brooks <{REPLY_TO}>"
+    draft_msg["Reply-To"] = f"{persona['name']} <{persona['email']}>"
     if message_id:
         draft_msg["In-Reply-To"] = message_id
         draft_msg["References"] = message_id
-    draft_msg["Date"] = formatdate(localtime=True)
+    draft_msg["Date"] = formatdate(now_epoch, localtime=True)
     draft_msg["Message-ID"] = make_msgid()
 
     return draft_msg, reply_subject, reply_body, role_title
@@ -1772,7 +1930,8 @@ def clean_imap_drafts(mail):
         return
 
     # 2. Select Drafts and purge matches
-    status, count = mail.select('"[Gmail]/Drafts"')
+    drafts_box = get_gmail_drafts_mailbox(mail)
+    status, count = mail.select(drafts_box)
     if status != "OK":
         return
 
@@ -1908,15 +2067,17 @@ def check_and_create_auto_responses(mail, state_cases):
                 inquiry_info, state_cases, message_id=message_id
             )
 
-            mail.select('"[Gmail]/Drafts"')
+            drafts_box = get_gmail_drafts_mailbox(mail)
+            mail.select(drafts_box)
             now_epoch = time.time()
             internal_date = imaplib.Time2Internaldate(now_epoch)
-            append_status, res = mail.append('"[Gmail]/Drafts"', r"(\Draft)", internal_date, draft_msg.as_bytes())
+            append_status, res = mail.append(drafts_box, r"(\Draft)", internal_date, draft_msg.as_bytes())
             mail.select("INBOX")
             if append_status == "OK":
                 save_created_draft(draft_key)
                 mail.store(mid, "+FLAGS", r"(\Seen)")
-                log(f"  🎉 Elena Brooks ({role_title}) statutory inquiry draft created in Gmail for {prospect_email}!")
+                persona = get_department_persona(department=department)
+                log(f"  🎉 {persona['name']} ({role_title}) statutory inquiry draft created in Gmail for {prospect_email}!")
             continue
 
         # -------------------------------------------------------------
@@ -1949,13 +2110,14 @@ def check_and_create_auto_responses(mail, state_cases):
         if message_id:
             draft_msg["In-Reply-To"] = message_id
             draft_msg["References"] = message_id
-        draft_msg["Date"] = formatdate(localtime=True)
+        now_epoch = time.time()
+        draft_msg["Date"] = formatdate(now_epoch, localtime=True)
         draft_msg["Message-ID"] = make_msgid()
 
-        mail.select('"[Gmail]/Drafts"')
-        now_epoch = time.time()
+        drafts_box = get_gmail_drafts_mailbox(mail)
+        mail.select(drafts_box)
         internal_date = imaplib.Time2Internaldate(now_epoch)
-        append_status, res = mail.append('"[Gmail]/Drafts"', r"(\Draft)", internal_date, draft_msg.as_bytes())
+        append_status, res = mail.append(drafts_box, r"(\Draft)", internal_date, draft_msg.as_bytes())
         mail.select("INBOX")
         if append_status == "OK":
             save_created_draft(draft_key)

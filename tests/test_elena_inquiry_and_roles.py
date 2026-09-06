@@ -25,6 +25,9 @@ from outreach.auto_responder_and_draft_cleaner import (
     parse_statutory_inquiry,
     get_elena_role_title,
     get_elena_signature,
+    get_department_persona,
+    get_employee_signature,
+    extract_thread_history,
     compose_elena_inquiry_response,
     compose_elena_response,
     build_inquiry_draft_email,
@@ -318,14 +321,64 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
             "message": "Looking to integrate via API."
         }
         draft_msg, subj, body, role = build_inquiry_draft_email(inquiry_info, self.mock_state_cases)
-        self.assertIn("Elena Brooks", draft_msg["From"])
+        self.assertIn("Marcus Chen", draft_msg["From"])
         self.assertIn("Victoria Reed", draft_msg["To"])
         self.assertIn("vreed@reedpropertylaw.com", draft_msg["To"])
-        self.assertIn("Elena Brooks", draft_msg["Reply-To"])
+        self.assertIn("Marcus Chen", draft_msg["Reply-To"])
+        self.assertIn("marcus.chen@surplusdocket.com", draft_msg["Reply-To"])
         self.assertIn("REST API & Practice Management Integration", draft_msg["Subject"])
         self.assertIsNotNone(draft_msg["Message-ID"])
         self.assertIsNotNone(draft_msg["Date"])
         self.assertEqual(role, "Lead Technical Specialist & API Integrations | Surplus Docket")
+
+    def test_build_inquiry_draft_email_personas(self):
+        """Tests that drafts for different departments route to distinct employees."""
+        scenarios = [
+            ("7-Day Institutional Practice Evaluation", "Elena Brooks", "elena.brooks@surplusdocket.com"),
+            ("Enterprise Feed Licensing", "Julian Vance", "julian.vance@surplusdocket.com"),
+            ("Law Practice API Integration", "Marcus Chen", "marcus.chen@surplusdocket.com"),
+            ("Clerk Docket Correction / Notice", "Rachel Holloway", "rachel.holloway@surplusdocket.com"),
+            ("Statutory Compliance Verification", "Arthur Miller", "arthur.miller@surplusdocket.com"),
+            ("Press / Academic Research", "Claire Montgomery", "claire.montgomery@surplusdocket.com"),
+            ("General Publisher Inquiry", "Elena Brooks", "elena.brooks@surplusdocket.com"),
+        ]
+        for dept, exp_name, exp_email in scenarios:
+            inq = {
+                "name": "Test Counsel",
+                "email": "counsel@testlaw.com",
+                "department": dept,
+                "state_code": "FL",
+                "message": f"Testing {dept} routing."
+            }
+            draft_msg, subj, body, role = build_inquiry_draft_email(inq, self.mock_state_cases)
+            self.assertIn(exp_name, draft_msg["From"])
+            self.assertIn(exp_name, draft_msg["Reply-To"])
+            self.assertIn(exp_email, draft_msg["Reply-To"])
+            self.assertIn(exp_name, body)
+            self.assertIn(exp_email, body)
+
+    def test_extract_thread_history_and_context_continuity(self):
+        """Tests thread context extraction across multi-turn email history."""
+        # Turn 1: Original message inquiring about Orange County
+        # Turn 2: Follow-up asking about pricing without repeating Orange County
+        thread_email = """Can you confirm the cost and whether you offer invoicing for our accounting department?
+
+On Sun, Sep 6, 2026 at 2:15 PM, Elena Brooks <elena.brooks@surplusdocket.com> wrote:
+> Hi Counsel,
+> Yes, we actively monitor Orange County (9th Judicial Circuit) as part of our statewide Florida feed.
+>
+> Best regards,
+> Elena Brooks
+"""
+        ctx = extract_thread_history(thread_email)
+        self.assertTrue(ctx["is_follow_up"])
+        self.assertGreaterEqual(ctx["thread_turn_count"], 1)
+        self.assertIn("Can you confirm the cost", ctx["latest_message"])
+        self.assertNotIn("actively monitor Orange County", ctx["latest_message"])
+        self.assertIn("Orange County", ctx["prior_history"])
+        # Verify mentioned counties list detected Orange
+        county_names = [c[1] for c in ctx["mentioned_counties"]]
+        self.assertIn("Orange", county_names)
 
     def test_prospect_eligibility_accepts_statutory_inquiry(self):
         msg = Message()

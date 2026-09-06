@@ -156,8 +156,8 @@ export async function onRequestPost(context) {
 
         // If RESEND_API_KEY is configured in Cloudflare Pages environment variables, deliver directly via Resend
         if (env && env.RESEND_API_KEY) {
-            const recipient = env.INQUIRY_RECIPIENT || 'elena.brooks@surplusdocket.com';
-            const fromSender = env.RESEND_FROM || 'Surplus Docket Inquiries <inquiries@surplusdocket.com>';
+            const recipient = env.INQUIRY_RECIPIENT || 'inquiries@surplusdocket.com';
+            const fromSender = env.RESEND_FROM || 'Surplus Docket Intake Desk <inquiries@surplusdocket.com>';
 
             const resendRes = await fetch('https://api.resend.com/emails', {
                 method: 'POST',
