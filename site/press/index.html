@@ -21,6 +21,12 @@
     <!-- Plausible Analytics (Privacy-First) -->
     <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
     
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="/assets/logo_surplus_docket.webp" type="image/webp" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -29,146 +35,47 @@
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#0f172a',
-                            navyLight: '#1e293b',
-                            green: '#059669',
-                            greenDark: '#047857',
-                            greenSoft: '#d1fae5',
+                            navy: '#1b365d',
+                            navyLight: '#2a4c7a',
+                            green: '#4c6d48',
+                            greenDark: '#365134',
+                            greenSoft: '#edf3ec',
                             canvas: '#f8fafc'
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-                        heading: ['Cabinet Grotesk', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        heading: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'Menlo', 'monospace']
                     }
                 }
             }
         }
     </script>
+    <style>
+        h1, h2, h3, h4, h5 {
+            text-wrap: balance;
+            letter-spacing: -0.015em;
+        }
+        p, li {
+            text-wrap: pretty;
+        }
+    </style>
 </head>
 <body class="bg-brand-canvas text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- Header Navigation -->
     <header class="w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
-            <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
-                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
-                <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none shrink-0">
-                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
-                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
-                </div>
-            </a>
-            <div class="flex items-center gap-3 sm:gap-5 text-xs sm:text-sm font-semibold text-slate-600">
-                <a href="/" class="hover:text-brand-green transition-colors">Home</a>
-                <a href="/press/" class="text-brand-navy font-bold hover:text-brand-green transition-colors">Newsroom</a>
-                <a href="/blog/" class="hover:text-brand-green transition-colors hidden sm:inline">Articles</a>
-                <a href="/api-documentation.html" class="hover:text-brand-green transition-colors hidden sm:inline">API</a>
-                <a href="/#pricing" class="px-3.5 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg transition-all shadow-sm">Get Feed</a>
-            </div>
-        </div>
-    </header>
-
-    <main class="py-12 sm:py-16 px-4 sm:px-6 max-w-5xl mx-auto flex-grow">
-        <!-- Hero Section -->
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-3">
-                Newsroom &amp; Media Relations
-            </div>
-            <h1 class="text-3xl sm:text-4xl font-heading font-black text-brand-navy mb-3">
-                Official Press Releases &amp; Media Hub
-            </h1>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                Official corporate announcements, product releases, legal-tech datasets, and media resources from Surplus Docket.
-            </p>
-            <div class="flex items-center justify-center gap-3 text-xs">
-                <a href="/press/feed.xml" class="inline-flex items-center gap-1.5 font-bold text-amber-600 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full hover:bg-amber-100 transition-colors">
-                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
-                    Press RSS Feed
-                </a>
-            </div>
-        </div>
-
-        <!-- Press Releases List -->
-        <div class="space-y-6 mb-16">
-            
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                <span class="text-brand-green">Press Release</span>
-                <span>•</span>
-                <span>August 23, 2026</span>
-            </div>
-            <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy mb-2.5">
-                <a href="/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html" class="hover:text-brand-green transition-colors">
-                    Surplus Docket Unveils Programmatic REST JSON API for Law Firm Practice Management and AI Intake Automation
-                </a>
-            </h2>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                Surplus Docket introduced its programmatic REST JSON API endpoint (/api/v1/feed.json), allowing legal-tech practices to stream live court surplus records directly into their CRM intake pipelines without manual data entry.
-            </p>
-            <a href="/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html" class="text-xs font-bold text-brand-green hover:text-brand-greenDark inline-flex items-center gap-1">
-                Read Full Release &rarr;
-            </a>
-        </div>
-        
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                <span class="text-brand-green">Press Release</span>
-                <span>•</span>
-                <span>August 18, 2026</span>
-            </div>
-            <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy mb-2.5">
-                <a href="/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html" class="hover:text-brand-green transition-colors">
-                    Surplus Docket Launches Autonomous Public Records Intelligence Platform for Asset Recovery Counsel Across Florida, Texas, and Georgia
-                </a>
-            </h2>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                Surplus Docket officially announced the launch of its autonomous public records intelligence platform, providing structured, case-verified tax deed surplus and excess proceeds data to asset recovery attorneys, title counsel, and real estate practitioners.
-            </p>
-            <a href="/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html" class="text-xs font-bold text-brand-green hover:text-brand-greenDark inline-flex items-center gap-1">
-                Read Full Release &rarr;
-            </a>
-        </div>
-        
-        </div>
-
-        <!-- Media Kit & Press Inquiries Card -->
-        <div class="bg-brand-navy text-white rounded-2xl p-6 sm:p-8 shadow-xl border border-slate-700 grid md:grid-cols-2 gap-6 items-center">
-            <div>
-                <div class="text-xs uppercase font-bold text-emerald-300 tracking-wider mb-1">Journalist &amp; Media Inquiries</div>
-                <h3 class="text-xl font-heading font-bold text-white mb-2">Covering Surplus Docket?</h3>
-                <p class="text-xs text-slate-300 leading-relaxed mb-4">
-                    Our team provides journalists, legal analysts, and real estate publications with ground-truth court registry data, county surplus statistics, and expert commentary on statutory excess proceeds.
-                </p>
-                <a href="/inquiry.html" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-lg transition-colors shadow">
-                    Submit Media Inquiry &rarr;
-                </a>
-            </div>
-            <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 text-xs space-y-2">
-                <div class="font-bold text-emerald-300 uppercase tracking-wider">Fast Facts &amp; Boilerplate:</div>
-                <p class="text-slate-300 leading-relaxed">
-                    <strong>Founded:</strong> 2026<br>
-                    <strong>Primary Coverage:</strong> 6 States (FL § 197, TX § 34, GA § 48, NC § 105, TN § 67, CA § 4675)<br>
-                    <strong>Platform:</strong> Automated daily public records feed &amp; REST JSON API<br>
-                    <strong>Media Inquiries:</strong> <a href="/inquiry.html" class="text-emerald-300 hover:underline">Editorial &amp; Media Desk (/inquiry.html)</a>
-                </p>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer (Institutional Multi-Column Grid) -->
-    <footer class="bg-white border-t border-slate-200 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-600">
-        <div class="max-w-7xl mx-auto">
-            <!-- Main Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-slate-200 text-left">
-                <!-- Col 1: Brand & Overview (Spans 2 cols on lg) -->
-                <div class="lg:col-span-2 space-y-4">
-                    <a href="/" class="flex items-center gap-3 group shrink-0">
-                        <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+                                            <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
+                        <picture>
+                            <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
+                            <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                        </picture>
+                        <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                             <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                             <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
-                        </div>
+                        </span>
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
                         Structured daily public records intelligence indexing tax deed surplus and excess proceeds filings across county court registries for asset recovery law practices.

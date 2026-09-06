@@ -320,45 +320,42 @@
 
     <main class="flex-grow">
         <!-- 1. Hero Section (Elevated, Clean & Atmospheric) -->
-        <section id="overview" class="relative pt-16 sm:pt-24 pb-14 sm:pb-20 px-4 sm:px-6 max-w-5xl mx-auto text-center overflow-hidden">
-            <!-- Subtle Ambient Light Glow -->
-            <div class="absolute inset-x-0 -top-24 -z-10 flex justify-center pointer-events-none opacity-40 blur-3xl" aria-hidden="true">
-                <div class="w-[36rem] h-[18rem] bg-gradient-to-tr from-brand-green/20 via-brand-navy/15 to-emerald-400/20 rounded-full"></div>
-            </div>
-            
-            <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight text-brand-navy mb-4 leading-[1.15] max-w-4xl mx-auto">
+        <section id="overview" class="relative pt-16 sm:pt-20 pb-14 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto text-center">
+            <h1 class="text-2xl sm:text-4xl md:text-5xl font-heading font-black tracking-tight text-brand-navy mb-4 leading-tight max-w-4xl mx-auto">
                 Daily Tax Deed Surplus &amp; <br class="hidden sm:block" />
                 <span class="text-brand-green">Excess Proceeds Feed</span>
             </h1>
             
-            <p class="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
-                Structured public records intelligence indexing unencumbered surplus funds across active judicial circuits and county registries.
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
+                Verified court surplus funds across 6 states. Delivered daily at 7:00 AM EST.
             </p>
             
-            <div class="flex flex-col sm:flex-row justify-center items-center sm:items-start gap-3 sm:gap-4 max-w-lg mx-auto">
-                <div class="flex flex-col items-center w-full sm:w-auto">
-                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 plausible-event-name=Hero-Checkout-Click">
-                        Start 7-Day Practice Evaluation
+            <div class="max-w-xl mx-auto flex flex-col items-center">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full mb-4">
+                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 plausible-event-name=Hero-Checkout-Click">
+                        Start 7-Day Trial
                     </a>
-                    <div class="mt-3 text-center text-xs sm:text-sm leading-snug">
-                        <span class="block font-semibold text-slate-700">$0 due today &bull; 7-day docket evaluation</span>
-                        <span class="block text-slate-500 font-medium mt-1">Cancel anytime via Stripe portal &bull; $249/mo Day 8</span>
-                    </div>
+                    <a href="#live-docket" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-brand-navy bg-white hover:bg-slate-50 transition-all border border-slate-300/80 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0">
+                        View Live Docket &darr;
+                    </a>
                 </div>
-                <a href="#live-docket" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-brand-navy bg-white hover:bg-slate-50 transition-all border border-slate-300/80 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0">
-                    Inspect Sample Docket &darr;
-                </a>
+                
+                <div class="text-center text-xs sm:text-sm text-slate-600">
+                    <p class="font-semibold text-slate-800">$0 due today &bull; 7-day docket evaluation</p>
+                    <p class="text-slate-500 mt-0.5">Cancel anytime via Stripe portal &bull; $249/mo Day 8</p>
+                </div>
             </div>
 
-            <!-- Clickable Jurisdiction Pills (Quick State Filters) -->
-            <div class="mt-8 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
-                <span class="text-xs font-bold text-slate-500 mr-1 hidden sm:inline">6-State Scope:</span>
-                <button type="button" onclick="filterByHeroState('FL')" class="px-3 py-1 rounded-lg text-xs font-bold bg-white/90 hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Florida Dockets">FL (Fla. Stat. § 197)</button>
-                <button type="button" onclick="filterByHeroState('TX')" class="px-3 py-1 rounded-lg text-xs font-bold bg-white/90 hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Texas Dockets">TX (Tex. Tax Code § 34)</button>
-                <button type="button" onclick="filterByHeroState('GA')" class="px-3 py-1 rounded-lg text-xs font-bold bg-white/90 hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Georgia Dockets">GA (O.C.G.A. § 48)</button>
-                <button type="button" onclick="filterByHeroState('NC')" class="px-3 py-1 rounded-lg text-xs font-bold bg-white/90 hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter North Carolina Dockets">NC (N.C.G.S. § 105)</button>
-                <button type="button" onclick="filterByHeroState('TN')" class="px-3 py-1 rounded-lg text-xs font-bold bg-white/90 hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Tennessee Dockets">TN (T.C.A. § 67)</button>
-                <button type="button" onclick="filterByHeroState('CA')" class="px-3 py-1 rounded-lg text-xs font-bold bg-white/90 hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter California Dockets">CA (Rev. &amp; Tax § 4675)</button>
+            <!-- Clickable Jurisdiction Filters (Balanced 6-State Grid: 6 on desktop, 3x2 on mobile) -->
+            <div class="mt-8 pt-5 border-t border-slate-200/70 max-w-2xl mx-auto">
+                <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                    <button type="button" onclick="filterByHeroState('FL')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Florida Dockets">Florida</button>
+                    <button type="button" onclick="filterByHeroState('TX')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Texas Dockets">Texas</button>
+                    <button type="button" onclick="filterByHeroState('GA')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Georgia Dockets">Georgia</button>
+                    <button type="button" onclick="filterByHeroState('NC')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter North Carolina Dockets">N. Carolina</button>
+                    <button type="button" onclick="filterByHeroState('TN')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Tennessee Dockets">Tennessee</button>
+                    <button type="button" onclick="filterByHeroState('CA')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter California Dockets">California</button>
+                </div>
             </div>
         </section>
 
