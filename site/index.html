@@ -212,8 +212,8 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText selection:bg-brand-green selection:text-white">
 
-    <!-- Header / Nav (Spacious & Clean) -->
-    <header id="main-header" class="w-full border-b border-brand-navy bg-white/90 backdrop-blur-md sticky top-0 z-50 transition-all">
+    <!-- Header / Nav (Spacious, Minimalist & Icon-Free) -->
+    <header id="main-header" class="w-full border-b border-slate-200/80 bg-white/85 backdrop-blur-xl sticky top-0 z-50 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 h-20 flex items-center justify-between">
             <!-- Brand Logo Lockup -->
             <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
@@ -227,96 +227,54 @@
                 </span>
             </a>
 
-            <!-- Spacious Primary Navigation Links with Dynamic Active States -->
-            <nav class="hidden lg:flex items-center gap-7 xl:gap-9 text-sm font-semibold text-slate-600">
-                <a href="#live-docket" id="nav-data" class="nav-link py-1 border-b-2 border-transparent hover:text-brand-navy hover:border-brand-navy/30 transition-all">Live Docket</a>
+            <!-- Refined Primary Navigation Links (Uncluttered & Less Intimidating) -->
+            <nav class="hidden lg:flex items-center gap-7 xl:gap-8 text-sm font-semibold text-slate-600">
+                <a href="#live-docket" id="nav-data" class="nav-link py-1 border-b-2 border-transparent hover:text-brand-navy hover:border-brand-navy/30 transition-all">Docket</a>
                 <a href="#calculator" id="nav-calculator" class="nav-link py-1 border-b-2 border-transparent hover:text-brand-navy hover:border-brand-navy/30 transition-all">Calculator</a>
                 <a href="/practitioner-toolkit.html" id="nav-toolkit" class="nav-link py-1 border-b-2 border-transparent hover:text-brand-navy hover:border-brand-navy/30 transition-all">Toolkit</a>
                 <a href="#pricing" id="nav-pricing" class="nav-link py-1 border-b-2 border-transparent hover:text-brand-navy hover:border-brand-navy/30 transition-all">Pricing</a>
 
-                <!-- Accessible Resources Dropdown (Hover + Tap & Keyboard Navigable) -->
+                <!-- Resources Dropdown (Zero-Icon, 2-Column, Uncluttered) -->
                 <div class="relative group" id="resources-container">
                     <button id="resources-btn" onclick="toggleResourcesDropdown(event)" aria-haspopup="true" aria-expanded="false" class="flex items-center gap-1.5 hover:text-brand-navy transition-colors py-2 focus:outline-none font-semibold">
                         <span>Resources</span>
                         <svg id="resources-chevron" class="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-navy group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="resources-dropdown" class="absolute right-0 top-full pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 transform group-hover:translate-y-0 translate-y-1 z-50">
-                        <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl p-3 space-y-1 text-xs max-h-[80vh] overflow-y-auto">
-                            <!-- Section 1: Core State Coverage -->
-                            <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-navy">Tri-State Core Feed (FL, TX, GA)</div>
-                            <a href="/florida-tax-deed-surplus.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                <span>Florida Tax Deed Feed</span>
-                                <span class="text-[10px] text-brand-green font-mono">FL § 197</span>
-                            </a>
-                            <a href="/texas-tax-sale-excess-proceeds.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                <span>Texas Excess Proceeds</span>
-                                <span class="text-[10px] text-brand-green font-mono">TX § 34</span>
-                            </a>
-                            <a href="/georgia-tax-sale-excess-funds.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                <span>Georgia Excess Funds</span>
-                                <span class="text-[10px] text-brand-green font-mono">GA § 48</span>
-                            </a>
+                    <div id="resources-dropdown" class="absolute right-0 top-full pt-2 w-96 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 transform group-hover:translate-y-0 translate-y-1 z-50">
+                        <div class="bg-white rounded-2xl border border-slate-200/90 shadow-2xl p-4 grid grid-cols-2 gap-3 text-xs">
+                            <!-- Column 1: Jurisdictions -->
+                            <div class="space-y-1">
+                                <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">States</div>
+                                <a href="/florida-tax-deed-surplus.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Florida</a>
+                                <a href="/texas-tax-sale-excess-proceeds.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Texas</a>
+                                <a href="/georgia-tax-sale-excess-funds.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Georgia</a>
+                                <a href="/north-carolina-tax-foreclosure-surplus.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">North Carolina</a>
+                                <a href="/tennessee-tax-sale-excess-proceeds.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Tennessee</a>
+                                <a href="/california-tax-defaulted-excess-proceeds.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">California</a>
+                            </div>
 
-                            <div class="border-t border-slate-100 my-1"></div>
-                            <!-- Section 2: Expansion Feeds -->
-                            <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Expansion States (National Tier)</div>
-                            <a href="/north-carolina-tax-foreclosure-surplus.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                <span>North Carolina Foreclosures</span>
-                                <span class="text-[10px] text-slate-500 font-mono">NC § 105</span>
-                            </a>
-                            <a href="/tennessee-tax-sale-excess-proceeds.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                <span>Tennessee Chancery Sales</span>
-                                <span class="text-[10px] text-slate-500 font-mono">TN § 67</span>
-                            </a>
-                            <a href="/california-tax-defaulted-excess-proceeds.html" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                <span>California Tax-Defaulted</span>
-                                <span class="text-[10px] text-slate-500 font-mono">CA § 4675</span>
-                            </a>
-
-                            <div class="border-t border-slate-100 my-1"></div>
-                            <!-- Section 3: Legal Research & Case Law -->
-                            <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Legal Research &amp; Case Law</div>
-                            <a href="/blog/" class="flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                <span>📚 Legal Research Articles</span>
-                                <span class="text-[10px] text-brand-green font-mono font-bold">Blog</span>
-                            </a>
-                            <a href="/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                ⚖ Tyler v. Hennepin County (SCOTUS 9-0)
-                            </a>
-                            <a href="/methodology.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                🛡 Senior Lien Scrubbing Methodology
-                            </a>
-                            <a href="/#faq" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                📋 Lien Priority &amp; Claim FAQs
-                            </a>
-
-                            <div class="border-t border-slate-100 my-1"></div>
-                            <!-- Section 4: Practice Automation -->
-                            <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Practice Automation</div>
-                            <a href="/practitioner-toolkit.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                ⚡ Court Petitions &amp; Retainers
-                            </a>
-                            <a href="/api-documentation.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                🔌 REST API v1 Documentation
-                            </a>
-                            <a href="/comparison.html" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                📊 Provider Comparison Matrix
-                            </a>
-                            <a href="/embed/" class="block px-3 py-1.5 rounded-lg hover:bg-slate-50 font-semibold text-slate-700 hover:text-brand-navy">
-                                🧩 Embeddable Widgets &amp; Badges
-                            </a>
+                            <!-- Column 2: Platform & Research -->
+                            <div class="space-y-1 border-l border-slate-100 pl-3">
+                                <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Platform</div>
+                                <a href="/blog/" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Research Blog</a>
+                                <a href="/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Case Precedent</a>
+                                <a href="/methodology.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Lien Methodology</a>
+                                <a href="/api-documentation.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">REST API</a>
+                                <a href="/comparison.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Comparison</a>
+                                <a href="/#faq" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">FAQs</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </nav>
 
             <!-- Clean Right Action & Mobile Trigger -->
-            <div class="flex items-center gap-4 shrink-0">
-                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden xl:inline-flex text-xs font-semibold text-slate-500 hover:text-brand-navy transition-colors px-2 py-1">
-                    Portal
+            <div class="flex items-center gap-3 sm:gap-4 shrink-0">
+                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden xl:inline-flex text-xs font-semibold text-slate-500 hover:text-brand-navy transition-colors px-2.5 py-1.5 rounded-lg hover:bg-slate-100">
+                    Billing Portal
                 </a>
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 sm:px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md plausible-event-name=Stripe-Checkout-Click">
-                    Start 7-Day Evaluation
+                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-4 sm:px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 plausible-event-name=Stripe-Checkout-Click">
+                    Start 7-Day Trial
                 </a>
                 <!-- Mobile Menu Button -->
                 <button onclick="toggleMobileMenu()" id="mobile-menu-btn" class="lg:hidden p-2 text-slate-600 hover:text-brand-navy hover:bg-slate-100 rounded-xl transition-colors" aria-label="Toggle Menu">
@@ -326,20 +284,32 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation Drawer -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-6 pt-5 pb-8 shadow-xl space-y-4 max-h-[calc(100vh-5rem)] overflow-y-auto">
-            <div class="grid grid-cols-2 gap-2.5 text-xs font-semibold">
-                <a href="#live-docket" onclick="toggleMobileMenu()" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Live Docket</a>
-                <a href="#calculator" onclick="toggleMobileMenu()" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Calculator</a>
-                <a href="/practitioner-toolkit.html" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Toolkit</a>
-                <a href="/methodology.html" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Methodology</a>
-                <a href="/blog/" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Research Blog</a>
-                <a href="/comparison.html" class="p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green">Comparison</a>
-                <a href="#pricing" onclick="toggleMobileMenu()" class="col-span-2 p-3 bg-slate-50 rounded-xl text-slate-800 hover:text-brand-green text-center">Pricing</a>
+        <!-- Mobile Navigation Drawer (Clean, Unintimidating Vertical List) -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200/80 bg-white/95 backdrop-blur-xl px-5 pt-4 pb-6 shadow-xl space-y-4 max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div class="space-y-1 text-sm font-semibold">
+                <a href="#live-docket" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-brand-navy transition-colors">Docket</a>
+                <a href="#calculator" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-brand-navy transition-colors">Calculator</a>
+                <a href="/practitioner-toolkit.html" class="block px-3 py-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-brand-navy transition-colors">Toolkit</a>
+                <a href="#pricing" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-brand-navy transition-colors">Pricing</a>
+                <div class="pt-2 pb-1 px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400">Coverage &amp; Resources</div>
+                <div class="grid grid-cols-2 gap-1 px-1">
+                    <a href="/florida-tax-deed-surplus.html" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Florida</a>
+                    <a href="/texas-tax-sale-excess-proceeds.html" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Texas</a>
+                    <a href="/georgia-tax-sale-excess-funds.html" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Georgia</a>
+                    <a href="/north-carolina-tax-foreclosure-surplus.html" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">North Carolina</a>
+                    <a href="/tennessee-tax-sale-excess-proceeds.html" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Tennessee</a>
+                    <a href="/california-tax-defaulted-excess-proceeds.html" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">California</a>
+                </div>
+                <div class="pt-2 px-1 grid grid-cols-2 gap-1 border-t border-slate-100 mt-2">
+                    <a href="/blog/" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Research Blog</a>
+                    <a href="/methodology.html" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Methodology</a>
+                    <a href="/comparison.html" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">Comparison</a>
+                    <a href="/api-documentation.html" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50">REST API</a>
+                </div>
             </div>
             <div class="border-t border-slate-100 pt-3 space-y-2">
                 <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="block w-full py-3 text-center text-sm font-heading font-bold text-white bg-brand-green hover:bg-brand-greenDark rounded-xl shadow-md plausible-event-name=Stripe-Checkout-Click">
-                    Start 7-Day Evaluation ($0 Today)
+                    Start 7-Day Trial ($0 Today)
                 </a>
                 <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 text-center text-xs font-semibold text-slate-600 bg-slate-50 border border-slate-200 rounded-xl">
                     Customer Billing Portal
@@ -349,8 +319,12 @@
     </header>
 
     <main class="flex-grow">
-        <!-- 1. Hero Section (Clean & Minimalist) -->
-        <section id="overview" class="pt-14 sm:pt-20 pb-12 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto text-center">
+        <!-- 1. Hero Section (Elevated, Clean & Atmospheric) -->
+        <section id="overview" class="relative pt-16 sm:pt-24 pb-14 sm:pb-20 px-4 sm:px-6 max-w-5xl mx-auto text-center overflow-hidden">
+            <!-- Subtle Ambient Light Glow -->
+            <div class="absolute inset-x-0 -top-24 -z-10 flex justify-center pointer-events-none opacity-40 blur-3xl" aria-hidden="true">
+                <div class="w-[36rem] h-[18rem] bg-gradient-to-tr from-brand-green/20 via-brand-navy/15 to-emerald-400/20 rounded-full"></div>
+            </div>
             
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight text-brand-navy mb-4 leading-[1.15] max-w-4xl mx-auto">
                 Daily Tax Deed Surplus &amp; <br class="hidden sm:block" />
@@ -363,7 +337,7 @@
             
             <div class="flex flex-col sm:flex-row justify-center items-center sm:items-start gap-3 sm:gap-4 max-w-lg mx-auto">
                 <div class="flex flex-col items-center w-full sm:w-auto">
-                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-md hover:shadow-lg plausible-event-name=Hero-Checkout-Click">
+                    <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 plausible-event-name=Hero-Checkout-Click">
                         Start 7-Day Practice Evaluation
                     </a>
                     <div class="mt-3 text-center text-xs sm:text-sm leading-snug">
@@ -371,31 +345,31 @@
                         <span class="block text-slate-500 font-medium mt-1">Cancel anytime via Stripe portal &bull; $249/mo Day 8</span>
                     </div>
                 </div>
-                <a href="#live-docket" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-brand-navy bg-white hover:bg-slate-50 transition-colors border border-slate-300 shadow-sm">
+                <a href="#live-docket" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-brand-navy bg-white hover:bg-slate-50 transition-all border border-slate-300/80 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0">
                     Inspect Sample Docket &darr;
                 </a>
             </div>
         </section>
 
-        <!-- 2. Data Pipeline Specifications Bar -->
-        <section class="border-y border-slate-200 bg-white py-6 sm:py-8 shadow-sm">
+        <!-- 2. Data Pipeline Specifications Bar (Integrated Institutional Metric Strip) -->
+        <section class="border-y border-slate-200/80 bg-white/75 backdrop-blur-sm py-6 sm:py-7 shadow-sm">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 text-center">
-                    <div class="p-3 sm:p-3.5 bg-slate-50 sm:bg-transparent rounded-xl border sm:border-0 border-slate-200 flex flex-col justify-center">
-                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-green mb-0.5 truncate">7:00 AM EST</div>
-                        <div class="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">Daily Scheduled Delivery</div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center divide-y sm:divide-y-0 lg:divide-x divide-slate-200/70">
+                    <div class="p-2 sm:p-3 flex flex-col justify-center">
+                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-green mb-0.5 truncate tracking-tight">7:00 AM EST</div>
+                        <div class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Daily Scheduled Delivery</div>
                     </div>
-                    <div class="p-3 sm:p-3.5 bg-slate-50 sm:bg-transparent rounded-xl border sm:border-0 border-slate-200 flex flex-col justify-center">
-                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-0.5 truncate">6-State Suite</div>
-                        <div class="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">FL, TX, GA (Core) • NC, TN, CA (Nat'l)</div>
+                    <div class="p-2 sm:p-3 flex flex-col justify-center pt-4 sm:pt-2">
+                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-0.5 truncate tracking-tight">6-State Suite</div>
+                        <div class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">FL, TX, GA &bull; NC, TN, CA</div>
                     </div>
-                    <div class="p-3 sm:p-3.5 bg-slate-50 sm:bg-transparent rounded-xl border sm:border-0 border-slate-200 flex flex-col justify-center">
-                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-green mb-0.5 truncate">CSV &amp; Excel</div>
-                        <div class="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">Multi-Format + REST API</div>
+                    <div class="p-2 sm:p-3 flex flex-col justify-center pt-4 sm:pt-2">
+                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-green mb-0.5 truncate tracking-tight">CSV &amp; Excel</div>
+                        <div class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Multi-Format + REST API</div>
                     </div>
-                    <div class="p-3 sm:p-3.5 bg-slate-50 sm:bg-transparent rounded-xl border sm:border-0 border-slate-200 flex flex-col justify-center">
-                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-0.5 truncate">100% Public</div>
-                        <div class="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">Clerk &amp; Court Records</div>
+                    <div class="p-2 sm:p-3 flex flex-col justify-center pt-4 sm:pt-2">
+                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-0.5 truncate tracking-tight">100% Public</div>
+                        <div class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Clerk &amp; Court Records</div>
                     </div>
                 </div>
             </div>
@@ -412,13 +386,13 @@
             </div>
 
             <!-- Interactive Live Search & Filter Bar -->
-            <div class="mb-4 bg-white border border-slate-200 rounded-xl p-3 sm:p-4 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-3">
+            <div class="mb-4 bg-white border border-slate-200/80 rounded-2xl p-3.5 sm:p-4 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-3">
                 <div class="flex flex-wrap items-center gap-2.5 w-full lg:w-auto">
                     <div class="relative flex-grow sm:flex-grow-0 sm:w-60">
-                        <input type="text" id="docket-search" placeholder="Search county, docket #..." class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all" oninput="handleSearchInput()">
+                        <input type="text" id="docket-search" placeholder="Search county, docket #..." class="w-full pl-9 pr-3 py-2 bg-slate-50/80 border border-slate-200 rounded-xl text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white focus:ring-2 focus:ring-brand-green/20 transition-all" oninput="handleSearchInput()">
                         <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
-                    <select id="state-filter" class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-all shrink-0" onchange="filterSampleTable()">
+                    <select id="state-filter" class="bg-slate-50/80 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white focus:ring-2 focus:ring-brand-green/20 transition-all shrink-0" onchange="filterSampleTable()">
                         <option value="ALL">All States (FL, TX, GA, NC, TN, CA)</option>
                         <optgroup label="Core States (Tri-State Core Feed)">
                             <option value="FL">Florida (FL)</option>
@@ -431,7 +405,7 @@
                             <option value="CA">California (CA)</option>
                         </optgroup>
                     </select>
-                    <select id="min-amount-filter" class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold text-brand-green focus:outline-none focus:border-brand-green focus:bg-white transition-all shrink-0" onchange="filterSampleTable()">
+                    <select id="min-amount-filter" class="bg-slate-50/80 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-brand-green focus:outline-none focus:border-brand-green focus:bg-white focus:ring-2 focus:ring-brand-green/20 transition-all shrink-0" onchange="filterSampleTable()">
                         <option value="0">All Balances ($0+)</option>
                         <option value="50000">$50k+ High Yield</option>
                         <option value="100000">$100k+ Tier 1 Priority</option>
@@ -439,7 +413,7 @@
                 </div>
                 <div class="flex items-center gap-2 sm:gap-3 w-full lg:w-auto justify-between lg:justify-end">
                     <span id="docket-count" class="text-xs font-bold text-slate-500">Showing 10 Verified Dockets</span>
-                    <button type="button" onclick="downloadSampleCSV(event)" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-brand-navy border border-slate-300 rounded-lg text-xs font-bold transition-all shadow-sm plausible-event-name=Sample-CSV-Download">
+                    <button type="button" onclick="downloadSampleCSV(event)" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-100/90 hover:bg-slate-200/90 text-brand-navy border border-slate-300/80 rounded-xl text-xs font-bold transition-all shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0 plausible-event-name=Sample-CSV-Download">
                         <svg class="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Sample CSV
                     </button>
@@ -521,7 +495,7 @@
                     </div>
                     <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
                         <span class="text-brand-green font-bold">2026-GA-003810</span>
-                        <span>Aug 15, 2026</span>
+                        <span>Aug 16, 2026</span>
                     </div>
                     <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
                         <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
@@ -529,13 +503,13 @@
                             <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">M. &amp; E. J███████</span></div>
+                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">D. &amp; M. J██████</span></div>
                             <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$26,800.00 (20%)</span></div>
                         </div>
                     </details>
                     <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
                         <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="GA" data-county="Fulton County" data-docket="2026-GA-003810" data-date="Aug 15, 2026" data-record="M. &amp; E. J███████" data-amount="$134,000.00" data-cap="$26,800.00 (20%)" data-url="https://www.fultonclerk.org/search?q=2026-GA-003810">
+                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="GA" data-county="Fulton County" data-docket="2026-GA-003810" data-date="Aug 16, 2026" data-record="D. &amp; M. J██████" data-amount="$134,000.00" data-cap="$26,800.00 (20%)" data-url="https://www.fultoncourt.org/case-search?case=2026-GA-003810">
                             Verify ↗
                         </button>
                     </div>
@@ -546,13 +520,13 @@
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
                             <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Harris County</span>
+                            <span class="font-heading font-bold text-sm text-brand-navy">Dallas County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$128,500.00</div>
                     </div>
                     <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-TX-04812</span>
-                        <span>Aug 12, 2026</span>
+                        <span class="text-brand-green font-bold">2026-TX-09142</span>
+                        <span>Aug 14, 2026</span>
                     </div>
                     <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
                         <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
@@ -560,30 +534,30 @@
                             <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">W. &amp; M. H██████</span></div>
+                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">Est. of W. K█████</span></div>
                             <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$32,125.00 (25%)</span></div>
                         </div>
                     </details>
                     <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
                         <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="TX" data-county="Harris County" data-docket="2026-TX-04812" data-date="Aug 12, 2026" data-record="W. &amp; M. H██████" data-amount="$128,500.00" data-cap="$32,125.00 (25%)" data-url="https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04812">
+                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="TX" data-county="Dallas County" data-docket="2026-TX-09142" data-date="Aug 14, 2026" data-record="Est. of W. K█████" data-amount="$128,500.00" data-cap="$32,125.00 (25%)" data-url="https://www.dallascounty.org/services/record-search?case=2026-TX-09142">
                             Verify ↗
                         </button>
                     </div>
                 </div>
 
                 <!-- Card 5 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="TN" data-amount="126000">
+                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="TN" data-amount="122000">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
                             <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TN</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Davidson County</span>
+                            <span class="font-heading font-bold text-sm text-brand-navy">Shelby County</span>
                         </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$126,000.00</div>
+                        <div class="text-right font-heading font-black text-brand-navy text-sm">$122,000.00</div>
                     </div>
                     <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-TN-002190</span>
-                        <span>Aug 10, 2026</span>
+                        <span class="text-brand-green font-bold">2026-TN-002319</span>
+                        <span>Aug 11, 2026</span>
                     </div>
                     <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
                         <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
@@ -591,13 +565,13 @@
                             <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">F. &amp; J. M██████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$25,200.00 (20%)</span></div>
+                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">T. &amp; S. M██████</span></div>
+                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$24,400.00 (20%)</span></div>
                         </div>
                     </details>
                     <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
                         <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="TN" data-county="Davidson County" data-docket="2026-TN-002190" data-date="Aug 10, 2026" data-record="F. &amp; J. M██████" data-amount="$126,000.00" data-cap="$25,200.00 (20%)" data-url="https://chanceryclerkandmaster.nashville.gov/case-search?case=2026-TN-002190">
+                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="TN" data-county="Shelby County" data-docket="2026-TN-002319" data-date="Aug 11, 2026" data-record="T. &amp; S. M██████" data-amount="$122,000.00" data-cap="$24,400.00 (20%)" data-url="https://www.shelbycountytn.gov/chancery-court/dockets?docket=2026-TN-002319">
                             Verify ↗
                         </button>
                     </div>
@@ -684,13 +658,13 @@
                             <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">L. &amp; M. H████████</span></div>
+                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">L. &amp; T. M██████</span></div>
                             <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$22,400.00 (20%)</span></div>
                         </div>
                     </details>
                     <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
                         <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="FL" data-county="Miami-Dade County" data-docket="2026-TD-004812" data-date="Aug 05, 2026" data-record="L. &amp; M. H████████" data-amount="$112,000.00" data-cap="$22,400.00 (20%)" data-url="https://www2.miamidadeclerk.gov/ocs/Search.aspx?caseid=2026-TD-004812">
+                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="FL" data-county="Miami-Dade County" data-docket="2026-TD-004812" data-date="Aug 05, 2026" data-record="L. &amp; T. M██████" data-amount="$112,000.00" data-cap="$22,400.00 (20%)" data-url="https://www.miamidadeclerk.gov/clerk/tax-deeds.page?docket=2026-TD-004812">
                             Verify ↗
                         </button>
                     </div>
@@ -760,19 +734,19 @@
             </div>
 
             <!-- Desktop & Tablet Tabular View (Sticky Columns & Responsive Scroll) -->
-            <div class="hidden md:block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-lg">
+            <div class="hidden md:block bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-xs md:text-sm min-w-[750px]">
                         <thead>
-                            <tr class="bg-brand-navy text-white font-semibold">
-                                <th class="py-3 px-4 sm:px-5">State</th>
-                                <th class="py-3 px-4 sm:px-5">Jurisdiction</th>
-                                <th class="py-3 px-4 sm:px-5 sticky left-0 z-10 bg-brand-navy">Official Docket #</th>
-                                <th class="py-3 px-4 sm:px-5">Auction Confirmed</th>
-                                <th class="py-3 px-4 sm:px-5">Indexed Record</th>
-                                <th class="py-3 px-4 sm:px-5 text-right font-bold">Surplus Balance</th>
-                                <th class="py-3 px-4 sm:px-5 text-right text-emerald-300">Statutory Cap Ref.*</th>
-                                <th class="py-3 px-3 text-center">Clerk Portal</th>
+                            <tr class="bg-slate-50/80 text-slate-700 font-semibold border-b border-slate-200/80 text-[11px] uppercase tracking-wider">
+                                <th class="py-3.5 px-4 sm:px-5">State</th>
+                                <th class="py-3.5 px-4 sm:px-5">Jurisdiction</th>
+                                <th class="py-3.5 px-4 sm:px-5 sticky left-0 z-10 bg-slate-50/95 shadow-[1px_0_0_0_#e2e8f0]">Official Docket #</th>
+                                <th class="py-3.5 px-4 sm:px-5">Auction Confirmed</th>
+                                <th class="py-3.5 px-4 sm:px-5">Indexed Record</th>
+                                <th class="py-3.5 px-4 sm:px-5 text-right font-bold text-slate-800">Surplus Balance</th>
+                                <th class="py-3.5 px-4 sm:px-5 text-right text-brand-green font-bold">Statutory Cap Ref.*</th>
+                                <th class="py-3.5 px-3 text-center">Clerk Portal</th>
                             </tr>
                         </thead>
                         <tbody id="sample-table-body" class="divide-y divide-slate-200 font-mono text-slate-700">
@@ -988,19 +962,19 @@
                                 <input type="number" id="lien-junior" value="0" min="0" placeholder="$0" class="w-24 text-right bg-slate-50 border border-slate-300 rounded px-2 py-1 text-xs font-semibold text-brand-navy focus:outline-none focus:border-brand-green" oninput="calculateStatutoryBenchmark()">
                             </label>
                         </div>
-                        <div class="bg-brand-navy text-white p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="bg-gradient-to-br from-[#102238] via-[#1b365d] to-[#0c1827] text-white p-5 sm:p-6 rounded-2xl shadow-xl border border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">
                             <div class="w-full sm:w-auto">
-                                <span class="text-xs uppercase font-bold text-emerald-300 tracking-wider block">Estimated Net Equity:</span>
+                                <span class="text-xs uppercase font-bold text-emerald-400 tracking-wider block">Estimated Net Equity:</span>
                                 <div id="calc-net-equity" class="text-xl sm:text-2xl font-heading font-black text-white whitespace-nowrap">$85,000.00</div>
                             </div>
                             <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-between sm:justify-end">
-                                <button type="button" onclick="exportDossierTxtDirect()" class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-lg transition-all shadow-md">
+                                <button type="button" onclick="exportDossierTxtDirect()" class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                     </svg>
                                     Export Filing Dossier (.txt)
                                 </button>
-                                <button type="button" onclick="openDossierModal()" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-heading font-bold text-xs rounded-lg border border-white/20 transition-all">
+                                <button type="button" onclick="openDossierModal()" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-heading font-bold text-xs rounded-xl border border-white/20 transition-all hover:-translate-y-0.5 active:translate-y-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
@@ -1460,7 +1434,7 @@
                                 <span>Statutory fee &amp; deadline calculations included</span>
                             </li>
                         </ul>
-                        <a id="card1-cta" href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3 px-6 border-2 border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white font-heading font-bold transition-all rounded-lg shadow-sm text-sm plausible-event-name=Core-Plan-Selected">
+                        <a id="card1-cta" href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3.5 px-6 border-2 border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white font-heading font-bold transition-all rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 text-sm plausible-event-name=Core-Plan-Selected">
                             Start 7-Day Practice Evaluation ($0 Today)
                         </a>
                         <div class="mt-3 text-center text-xs sm:text-sm leading-snug">
@@ -1504,7 +1478,7 @@
                                 <span>Priority 6:00 AM EST delivery dispatch</span>
                             </li>
                         </ul>
-                        <a id="card2-cta" href="https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3 px-6 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold transition-all rounded-lg shadow-lg text-sm plausible-event-name=Enterprise-Plan-Selected">
+                        <a id="card2-cta" href="https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-3.5 px-6 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold transition-all rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 text-sm plausible-event-name=Enterprise-Plan-Selected">
                             Subscribe Now — $449/mo
                         </a>
                         <div class="mt-2.5 text-center text-[11px] leading-tight text-slate-300">
