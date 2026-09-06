@@ -3,7 +3,7 @@
 **To:** Special Proceedings Division Administrator  
 **Agency:** Clerk of Superior Court, Mecklenburg County, NC  
 **Department:** Special Proceedings & Foreclosure Division  
-**Date:** September 05, 2026  
+**Date:** September 06, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Mecklenburg County Web Portal)
 
 ---
