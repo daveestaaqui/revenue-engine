@@ -309,6 +309,45 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         self.assertIn("https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y", body)
         self.assertNotIn("$249/month starting on Day 8", body)
 
+    def test_intake_ropes_in_elena_when_justified_with_docket(self):
+        """Inquiries with specific dockets/cases must rope in Elena Brooks on the research desk."""
+        inquiry_info = {
+            "name": "Thomas Sterling",
+            "email": "tsterling@sterlinglegal.com",
+            "firm": "Sterling Legal",
+            "department": "Inquiries & Intake Desk",
+            "state_code": "FL",
+            "docket": "2024-TD-001955",
+            "message": "We need to verify the registry balance and claim window on docket 2024-TD-001955."
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("Docket Research & Intake [2024-TD-001955]", subj)
+        self.assertIn("Executive Intake Coordinator", role)
+        self.assertIn("Aubrey Hayes", body)
+        self.assertIn("forwarded your request to Elena Brooks on our docket research desk", body)
+        self.assertIn("Elena will review your file and follow up directly", body)
+
+    def test_intake_handles_general_pricing_without_roping_in_elena(self):
+        """General questions (pricing, delivery schedule) are answered directly by Aubrey without roping in Elena."""
+        inquiry_info = {
+            "name": "Laura Jenkins",
+            "email": "ljenkins@jenkinslaw.com",
+            "firm": "Jenkins Law Group",
+            "department": "Inquiries & Intake Desk",
+            "state_code": "FL",
+            "docket": "",
+            "message": "What time are the morning CSV feeds delivered and how much is the subscription?"
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("Court Surplus Feeds [Florida]", subj)
+        self.assertIn("Executive Intake Coordinator", role)
+        self.assertIn("Aubrey Hayes", body)
+        self.assertNotIn("forwarded your request to Elena Brooks", body)
+        self.assertNotIn("I have logged your inquiry and roped in Elena Brooks", body)
+        self.assertIn("Elena Brooks on our docket research desk will review the records", body)
+        self.assertIn("7:00 AM EST", body)
+        self.assertIn("$249/mo", body)
+
     # -------------------------------------------------------------
     # 5. MIME Draft Message Building & IMAP Compatibility
     # -------------------------------------------------------------

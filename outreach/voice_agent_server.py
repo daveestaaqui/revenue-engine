@@ -50,8 +50,7 @@ VOICE_NAME = "Polly.Joanna-Neural"  # Professional, articulate, natural female p
 FALLBACK_VOICE = "Polly.Joanna"
 
 VOICE_GREETING = (
-    "Thank you for calling Surplus Docket. This is Audrey Hayes, assistant to Elena Brooks "
-    "and our docket research desk. Are you calling regarding our morning surplus feeds, "
+    "Thank you for calling Surplus Docket. Are you calling regarding our morning surplus feeds, "
     "a 7-day practice evaluation, or coverage for a specific county?"
 )
 
@@ -113,10 +112,10 @@ def generate_voice_response(speech_text):
 
     if intent == "SPEAK_WITH_ELENA":
         return (
-            "Elena is currently reviewing today's court certificates and docket distributions for our partner firms. "
-            "As her executive assistant, I have full access to our docket indexes, pricing, and county coverage, "
-            "or I would be glad to take down your details and have Elena follow up directly with your office. "
-            "Can I answer a question about our feeds, or would you like to leave a message for Elena?",
+            "Elena Brooks coordinates docket research and registry filings for our subscribing practices. "
+            "I can log your case number, county, and contact details for Elena to review, "
+            "or assist you directly with subscription terms and county coverage. "
+            "Can I answer a question about our feeds, or would you like to leave your details for docket research?",
             False,
             False,
         )

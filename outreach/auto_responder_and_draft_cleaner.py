@@ -490,6 +490,26 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
     if gv_inquiry:
         return True, "Verified Google Voice voicemail inquiry", None, gv_inquiry
 
+    # 1.6 Check if email was sent directly to inquiries@surplusdocket.com or aubrey.hayes@surplusdocket.com
+    msg_to = (msg.get("To", "") + " " + msg.get("Delivered-To", "") + " " + msg.get("X-Forwarded-To", "")).lower()
+    if any(addr in msg_to for addr in ["inquiries@surplusdocket.com", "aubrey.hayes@surplusdocket.com", "contact@surplusdocket.com"]):
+        s_email = sender_email.lower().strip()
+        det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, text_body, default_state="FL")
+        state_name = STATE_NAMES.get(det_state, "Florida")
+        direct_inquiry = {
+            "name": sender_name or "",
+            "email": s_email,
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": state_name,
+            "state_code": det_state,
+            "docket": "",
+            "ref": f"DIRECT-INQ-{hash(s_email + text_body[:40]) % 10000000}",
+            "message": text_body.strip(),
+            "is_direct_inbound": True,
+        }
+        return True, "Verified direct inbound inquiry to inquiries@surplusdocket.com", None, direct_inquiry
+
     s_email = sender_email.lower().strip()
     s_dom = clean_domain_str(s_email)
 
@@ -1707,7 +1727,7 @@ def compose_elena_inquiry_response(inquiry_info, state_cases):
     dept_lower = department.lower()
 
     # 1. 7-Day Institutional Practice Evaluation
-    if any(k in dept_lower for k in ["evaluation", "7-day", "trial", "intake"]):
+    if any(k in dept_lower for k in ["evaluation", "7-day", "trial", "onboarding"]):
         is_expansion = state_code in ["NC", "TN", "CA"]
         if is_expansion:
             tier_note = f"Records for {state_name} are compiled and delivered under our National Feed + REST API Tier ($449/month, covering FL, TX, GA, NC, TN, and CA with priority 6:00 AM EST dispatch and live REST API Bearer tokens)."
@@ -1849,16 +1869,52 @@ Please reply with the specific scope, academic institution, or research paramete
 
 {LEGAL_DISCLAIMER}"""
 
-    # 7. Inquiries & Intake Desk (Aubrey Hayes initial intake with Elena roped in)
-    elif any(k in dept_lower for k in ["intake", "aubrey", "voicemail"]):
-        reply_subject = f"Re: Surplus Docket — Intake Coordination [{state_name}]"
+    # 7. Inquiries & Intake Desk (Aubrey Hayes Executive Intake)
+    elif any(k in dept_lower for k in ["intake", "aubrey", "voicemail", "inquiries"]):
+        # Conditionally rope in Elena Brooks ONLY if the inquiry content justifies it:
+        # Justified when:
+        # 1. Specific court docket, case number, or parcel ID is provided.
+        # 2. Inquirer asks about specific case evaluations, county filings, registry balances,
+        #    statutory claim windows, lien priorities, or surplus petitions.
+        has_specific_docket = bool(docket_ref) or bool(
+            re.search(r"\b(\d{2,4}[-\s][A-Za-z]{1,4}[-\s]\d{3,}|\d{4,}[-\s]\d{2,}|\b[A-Za-z]{1,3}\d{6,}\b|\bF-\d{4,}\b)\b", user_message)
+        )
+        statutory_keywords = [
+            "docket", "case number", "case no", "evaluation", "statute", "lien priority", "mortgage",
+            "circuit court", "county registry", "court registry", "registry balance", "proceeds", "petition",
+            "certificate of disbursement", "unclaimed funds", "escheatment", "encumbrance", "lis pendens",
+            "county", "circuit"
+        ]
+        has_statutory_need = any(k in user_message.lower() for k in statutory_keywords)
+        justifies_elena = has_specific_docket or has_statutory_need
+
+        if justifies_elena:
+            reply_subject = f"Re: Surplus Docket — Docket Research & Intake [{docket_ref or state_name}]"
+            docket_clause = f" regarding docket {docket_ref}" if docket_ref else ""
+            status_paragraph = (
+                f"Because your inquiry involves specific county court filings{docket_clause}, "
+                f"I have forwarded your request to Elena Brooks on our docket research desk to review active registry balances in {state_name}."
+            )
+            followup_clause = (
+                f"Elena will review your file and follow up directly regarding the specific court records for {state_name}. "
+                f"If you have additional docket numbers or parcel references, please feel free to reply directly to this email."
+            )
+        else:
+            reply_subject = f"Re: Surplus Docket — Court Surplus Feeds [{state_name}]"
+            status_paragraph = (
+                f"Surplus Docket indexes and delivers verified court surplus records every business morning at 7:00 AM EST "
+                f"in CSV and Excel formats, with senior institutional mortgages scrubbed upstream under {statute_cite}."
+            )
+            followup_clause = (
+                f"If your practice requires coverage for a specific county or if you would like our research desk to pull active filings "
+                f"for a specific docket or parcel ID, please reply with the case reference and Elena Brooks on our docket research desk will review the records."
+            )
+
         reply_body = f"""{greeting}
 
 Thank you for reaching out to the Surplus Docket intake desk regarding {state_name} public record excess proceeds.
 
-I have logged your inquiry and roped in Elena Brooks and our docket research desk to review active filings and unencumbered equity balances in {state_name}.
-
-Surplus Docket indexes and delivers verified court surplus records every business morning at 7:00 AM EST in CSV and Excel formats, with senior institutional mortgages scrubbed upstream under {statute_cite}.
+{status_paragraph}
 
 Here is an excerpt of active, verified files from our current {state_name} index:
 
@@ -1871,7 +1927,7 @@ We offer two transparent subscriptions:
    https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y
 {bar_note}{tyler_note}{upl_note}
 
-Elena or one of our research specialists will follow up directly if your practice requires specific county-level coverage or sample dossiers for {state_name}.
+{followup_clause}
 
 {signature}
 
