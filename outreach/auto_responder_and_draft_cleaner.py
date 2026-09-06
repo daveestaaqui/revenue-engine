@@ -918,6 +918,13 @@ DEPARTMENT_PERSONAS = {
         "email": "elena.brooks@surplusdocket.com",
         "department": "General Publisher Inquiry",
     },
+    "INTAKE": {
+        "name": "Aubrey Hayes",
+        "title": "Executive Intake Coordinator",
+        "full_title": "Executive Intake Coordinator | Surplus Docket",
+        "email": "aubrey.hayes@surplusdocket.com",
+        "department": "Inquiries & Intake Desk",
+    },
 }
 
 
@@ -927,6 +934,8 @@ def get_department_persona(role=None, department=None, intent=None):
     """
     if role:
         r = role.strip().lower()
+        if r in ["intake", "aubrey", "reception"]:
+            return DEPARTMENT_PERSONAS["INTAKE"]
         if r in ["enterprise", "licensing"]:
             return DEPARTMENT_PERSONAS["ENTERPRISE"]
         if r in ["api", "technical", "integrations"]:
@@ -943,7 +952,9 @@ def get_department_persona(role=None, department=None, intent=None):
             return DEPARTMENT_PERSONAS["GENERAL"]
 
     dept_lower = (department or "").lower()
-    if any(k in dept_lower for k in ["evaluation", "7-day", "trial", "intake", "onboarding"]):
+    if any(k in dept_lower for k in ["intake", "aubrey", "voicemail", "phone inquiry"]):
+        return DEPARTMENT_PERSONAS["INTAKE"]
+    if any(k in dept_lower for k in ["evaluation", "7-day", "trial", "onboarding"]):
         return DEPARTMENT_PERSONAS["ONBOARDING"]
     if any(k in dept_lower for k in ["enterprise", "licensing", "custom feed", "multi-jurisdiction"]):
         return DEPARTMENT_PERSONAS["ENTERPRISE"]
@@ -1633,7 +1644,7 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
         "email": caller_email,
         "phone": caller_phone,
         "firm": "",
-        "department": "General Publisher Inquiry",
+        "department": "Inquiries & Intake Desk",
         "jurisdiction": state_name,
         "state_code": det_state,
         "docket": "",
@@ -1838,7 +1849,35 @@ Please reply with the specific scope, academic institution, or research paramete
 
 {LEGAL_DISCLAIMER}"""
 
-    # 7. General Publisher Inquiry / Default
+    # 7. Inquiries & Intake Desk (Aubrey Hayes initial intake with Elena roped in)
+    elif any(k in dept_lower for k in ["intake", "aubrey", "voicemail"]):
+        reply_subject = f"Re: Surplus Docket — Intake Coordination [{state_name}]"
+        reply_body = f"""{greeting}
+
+Thank you for reaching out to the Surplus Docket intake desk regarding {state_name} public record excess proceeds.
+
+I have logged your inquiry and roped in Elena Brooks and our docket research desk to review active filings and unencumbered equity balances in {state_name}.
+
+Surplus Docket indexes and delivers verified court surplus records every business morning at 7:00 AM EST in CSV and Excel formats, with senior institutional mortgages scrubbed upstream under {statute_cite}.
+
+Here is an excerpt of active, verified files from our current {state_name} index:
+
+{sample_lines}
+
+We offer two transparent subscriptions:
+1. Tri-State Core Feed ($249/mo flat with 7-day evaluation $0 due today): Florida, Texas, and Georgia morning CSV & Excel delivery.
+   {STRIPE_LINK}
+2. National Feed + REST API ($449/mo): Full 6-state coverage (FL, TX, GA + NC, TN, CA) with priority 6:00 AM EST dispatch and live REST API Bearer tokens.
+   https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y
+{bar_note}{tyler_note}{upl_note}
+
+Elena or one of our research specialists will follow up directly if your practice requires specific county-level coverage or sample dossiers for {state_name}.
+
+{signature}
+
+{LEGAL_DISCLAIMER}"""
+
+    # 8. General Publisher Inquiry / Default
     else:
         is_expansion = state_code in ["NC", "TN", "CA"]
         reply_subject = f"Re: Surplus Docket — Public Record Docket Inquiry [{state_name}]"
