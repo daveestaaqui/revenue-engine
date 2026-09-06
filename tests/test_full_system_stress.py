@@ -277,7 +277,7 @@ class TestSiteAssetsIntegrity(unittest.TestCase):
             ep_file = api_dir / ep
             self.assertTrue(ep_file.exists(), f"API endpoint file {ep} must exist")
             data = json.loads(ep_file.read_text(encoding="utf-8"))
-            self.assertTrue(data.get("status") in ["success", "healthy"], f"API endpoint {ep} status not success/healthy")
+            self.assertTrue(data.get("status") in ["success", "healthy", "subscription_required"], f"API endpoint {ep} status not success/healthy/subscription_required")
 
     def test_statutory_rules_integrity(self):
         rules_path = BASE_DIR / "compliance" / "statutory_rules.json"

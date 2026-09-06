@@ -129,20 +129,55 @@ def generate_b2b_exports():
             except Exception:
                 pass
 
-    # Generate Live Web API Endpoints in site/api/v1/
+    def redact_lead_for_public_sandbox(lead: dict) -> dict:
+        redacted = lead.copy()
+        raw_name = str(lead.get("Owner_Name", "")).strip()
+        parts = raw_name.split()
+        if len(parts) >= 2:
+            initials = " & ".join([p[0] + "." for p in parts if p not in ("&", "AND", "OF", "THE", "ESTATE", "EST.")][:2])
+            last_name = parts[-1]
+            masked_last = last_name[0] + "█" * max(4, len(last_name) - 1)
+            redacted["Owner_Name"] = f"{initials} {masked_last} [SUBSCRIBER KEY REQUIRED]"
+        else:
+            redacted["Owner_Name"] = "[REDACTED — SUBSCRIBER KEY REQUIRED]"
+
+        addr = str(lead.get("Property_Address", "")).strip()
+        addr_parts = addr.split()
+        if len(addr_parts) >= 3:
+            redacted["Property_Address"] = f"{addr_parts[0]} {addr_parts[1]} [REDACTED — SUBSCRIBER ACCESS ONLY]"
+        else:
+            redacted["Property_Address"] = "[REDACTED — SUBSCRIBER ACCESS ONLY]"
+
+        redacted["Access_Status"] = "REDACTED_PREVIEW"
+        return redacted
+
+    # Generate Secure Subscription-Gated Sandbox Web API Endpoints in site/api/v1/
     API_V1_DIR = BASE_DIR / "site" / "api" / "v1"
     API_V1_DIR.mkdir(parents=True, exist_ok=True)
 
     api_master_path = API_V1_DIR / "feed.json"
     api_health_path = API_V1_DIR / "health.json"
 
+    redacted_leads = [redact_lead_for_public_sandbox(l) for l in all_leads]
+
     api_payload = {
-        "status": "success",
+        "status": "subscription_required",
+        "authenticated": False,
+        "access_tier": "Enterprise Programmatic Feed ($449/mo)",
+        "message": (
+            "Full unredacted REST API access requires an active Surplus Docket Enterprise subscription "
+            "with a valid Bearer API token. Production feeds deliver unredacted claimant identities, "
+            "verified property situs, and court docket links every business morning (Mon–Fri) at 7:00 AM EST."
+        ),
         "api_version": "v1.0",
+        "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
         "generated_at": datetime.now().isoformat(),
+        "subscription_portal": "https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00",
+        "subscribe_url": "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y",
         "meta": {
-            "total_records": len(all_leads),
+            "total_records_indexed": len(all_leads),
             "total_surplus_volume_usd": round(float(df_all["Surplus_Balance_USD"].sum()), 2),
+            "preview_mode": "REDACTED_EVALUATION_SANDBOX",
             "jurisdictions_monitored": ["FL", "TX", "GA", "NC", "TN", "CA"],
             "statutes": [
                 "Fla. Stat. § 197.582",
@@ -153,27 +188,35 @@ def generate_b2b_exports():
                 "Cal. Rev. & Tax Code § 4675"
             ]
         },
-        "records": all_leads
+        "records": redacted_leads
     }
 
     with open(api_master_path, "w", encoding="utf-8") as f:
         json.dump(api_payload, f, indent=2)
 
     for state_code, (df_state, file_base, statute, api_file) in state_dfs.items():
+        state_records = [redact_lead_for_public_sandbox(r) for r in df_state.to_dict(orient="records")]
         with open(API_V1_DIR / api_file, "w", encoding="utf-8") as f:
             json.dump({
-                "status": "success",
+                "status": "subscription_required",
+                "authenticated": False,
                 "jurisdiction": state_code,
                 "statute": statute,
-                "total_records": len(df_state),
-                "records": df_state.to_dict(orient="records")
+                "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
+                "message": f"Full unredacted {state_code} tax deed surplus records require an active subscription.",
+                "subscribe_url": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
+                "total_records": len(state_records),
+                "preview_mode": "REDACTED_EVALUATION_SANDBOX",
+                "records": state_records
             }, f, indent=2)
 
     with open(api_health_path, "w", encoding="utf-8") as f:
         json.dump({
             "status": "healthy",
-            "service": "Surplus Docket REST API",
+            "service": "Surplus Docket REST API Gateway",
             "version": "1.0.0",
+            "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
+            "authentication": "Bearer <sd_live_api_key>",
             "timestamp": datetime.now().isoformat(),
             "uptime": "99.99%",
             "endpoints": [

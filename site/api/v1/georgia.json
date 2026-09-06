@@ -1,18 +1,23 @@
 {
-  "status": "success",
+  "status": "subscription_required",
+  "authenticated": false,
   "jurisdiction": "GA",
   "statute": "O.C.G.A. \u00a7 48-4-5",
+  "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
+  "message": "Full unredacted GA tax deed surplus records require an active subscription.",
+  "subscribe_url": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
   "total_records": 5,
+  "preview_mode": "REDACTED_EVALUATION_SANDBOX",
   "records": [
     {
       "State": "GA",
       "County": "Fulton",
       "Case_or_TaxDeed_No": "2024-GA-003810",
-      "Owner_Name": "MARCUS & ELEANOR JENKINS",
+      "Owner_Name": "M. & E. J\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "1420 PEACHTREE ST NE ATLANTA GA 30309",
+      "Property_Address": "1420 PEACHTREE [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 134000.0,
       "Statutory_Fee_Rate": "20%",
@@ -24,17 +29,18 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "GA",
       "County": "Cobb",
       "Case_or_TaxDeed_No": "2024-GA-001550",
-      "Owner_Name": "ESTATE OF RAYMOND VAUGHN",
+      "Owner_Name": "R. & V. V\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "1205 ROSWELL RD MARIETTA GA 30062",
+      "Property_Address": "1205 ROSWELL [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 118000.0,
       "Statutory_Fee_Rate": "20%",
@@ -46,17 +52,18 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "GA",
       "County": "Fulton",
       "Case_or_TaxDeed_No": "2024-GA-004120",
-      "Owner_Name": "ESTATE OF HAROLD CRAWFORD",
+      "Owner_Name": "H. & C. C\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "892 CASCADE AVE SW ATLANTA GA 30310",
+      "Property_Address": "892 CASCADE [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 96500.0,
       "Statutory_Fee_Rate": "20%",
@@ -68,17 +75,18 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "GA",
       "County": "DeKalb",
       "Case_or_TaxDeed_No": "2024-GA-002490",
-      "Owner_Name": "TERRENCE & MONICA BRADLEY",
+      "Owner_Name": "T. & M. B\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "2340 LAVISTA RD DECATUR GA 30033",
+      "Property_Address": "2340 LAVISTA [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 82400.0,
       "Statutory_Fee_Rate": "20%",
@@ -90,17 +98,18 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "GA",
       "County": "Gwinnett",
       "Case_or_TaxDeed_No": "2024-GA-001920",
-      "Owner_Name": "VICTORIA STRICKLAND",
+      "Owner_Name": "V. & S. S\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "4510 LAWRENCEVILLE HWY LILBURN GA 30047",
+      "Property_Address": "4510 LAWRENCEVILLE [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 67800.0,
       "Statutory_Fee_Rate": "20%",
@@ -112,7 +121,8 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     }
   ]
 }

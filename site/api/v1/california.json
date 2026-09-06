@@ -1,18 +1,23 @@
 {
-  "status": "success",
+  "status": "subscription_required",
+  "authenticated": false,
   "jurisdiction": "CA",
   "statute": "Cal. Rev. & Tax Code \u00a7 4675",
+  "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
+  "message": "Full unredacted CA tax deed surplus records require an active subscription.",
+  "subscribe_url": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
   "total_records": 4,
+  "preview_mode": "REDACTED_EVALUATION_SANDBOX",
   "records": [
     {
       "State": "CA",
       "County": "Los Angeles",
       "Case_or_TaxDeed_No": "2024-CA-008120",
-      "Owner_Name": "GREGORY & EVELYN THATCHER",
+      "Owner_Name": "G. & E. T\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "1420 WILSHIRE BLVD LOS ANGELES CA 90017",
+      "Property_Address": "1420 WILSHIRE [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 215000.0,
       "Statutory_Fee_Rate": "20%",
@@ -24,17 +29,18 @@
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "CA",
       "County": "San Diego",
       "Case_or_TaxDeed_No": "2024-CA-005210",
-      "Owner_Name": "VICTOR & MONICA REYES",
+      "Owner_Name": "V. & M. R\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "4910 LA JOLLA BLVD SAN DIEGO CA 92037",
+      "Property_Address": "4910 LA [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 184000.0,
       "Statutory_Fee_Rate": "20%",
@@ -46,17 +52,18 @@
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "CA",
       "County": "Los Angeles",
       "Case_or_TaxDeed_No": "2024-CA-008640",
-      "Owner_Name": "ESTATE OF CAROLINE DELGADO",
+      "Owner_Name": "C. & D. D\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "3820 SUNSET BLVD LOS ANGELES CA 90026",
+      "Property_Address": "3820 SUNSET [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 168000.0,
       "Statutory_Fee_Rate": "20%",
@@ -68,17 +75,18 @@
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "CA",
       "County": "San Diego",
       "Case_or_TaxDeed_No": "2024-CA-005780",
-      "Owner_Name": "ESTATE OF DOUGLAS WINSLOW",
+      "Owner_Name": "D. & W. W\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "2104 CORONADO AVE SAN DIEGO CA 92154",
+      "Property_Address": "2104 CORONADO [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 119500.0,
       "Statutory_Fee_Rate": "20%",
@@ -90,7 +98,8 @@
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     }
   ]
 }

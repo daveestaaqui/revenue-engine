@@ -1,18 +1,23 @@
 {
-  "status": "success",
+  "status": "subscription_required",
+  "authenticated": false,
   "jurisdiction": "TX",
   "statute": "Tex. Tax Code \u00a7 34.04",
+  "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
+  "message": "Full unredacted TX tax deed surplus records require an active subscription.",
+  "subscribe_url": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
   "total_records": 5,
+  "preview_mode": "REDACTED_EVALUATION_SANDBOX",
   "records": [
     {
       "State": "TX",
       "County": "Harris",
       "Case_or_TaxDeed_No": "2024-TX-04812",
-      "Owner_Name": "WILLIAM & MARY HOLLOWAY",
+      "Owner_Name": "W. & M. H\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "5402 BRAESVALLEY DR HOUSTON TX 77096",
+      "Property_Address": "5402 BRAESVALLEY [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 128500.0,
       "Statutory_Fee_Rate": "25%",
@@ -24,17 +29,18 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TX",
       "County": "Harris",
       "Case_or_TaxDeed_No": "2024-TX-04950",
-      "Owner_Name": "ESTATE OF CHARLES BEAUMONT",
+      "Owner_Name": "C. & B. B\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "1802 HEIGHTS BLVD HOUSTON TX 77008",
+      "Property_Address": "1802 HEIGHTS [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 86200.0,
       "Statutory_Fee_Rate": "25%",
@@ -46,17 +52,18 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TX",
       "County": "Dallas",
       "Case_or_TaxDeed_No": "2024-TX-02044",
-      "Owner_Name": "ESTATE OF MARGARET THORNTON",
+      "Owner_Name": "M. & T. T\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "6412 ABRAMS RD DALLAS TX 75231",
+      "Property_Address": "6412 ABRAMS [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 77800.0,
       "Statutory_Fee_Rate": "25%",
@@ -68,17 +75,18 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TX",
       "County": "Dallas",
       "Case_or_TaxDeed_No": "2024-TX-01928",
-      "Owner_Name": "GEORGE & DOROTHY WASHINGTON",
+      "Owner_Name": "G. & D. W\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "3819 COLONIAL AVE DALLAS TX 75215",
+      "Property_Address": "3819 COLONIAL [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 59400.0,
       "Statutory_Fee_Rate": "25%",
@@ -90,17 +98,18 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TX",
       "County": "Harris",
       "Case_or_TaxDeed_No": "2024-TX-05110",
-      "Owner_Name": "RAFAEL GUERRERO",
+      "Owner_Name": "R. & G. G\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "7120 NAVIGATION BLVD HOUSTON TX 77011",
+      "Property_Address": "7120 NAVIGATION [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Commercial / Mixed Use",
       "Surplus_Balance_USD": 41300.0,
       "Statutory_Fee_Rate": "25%",
@@ -112,7 +121,8 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     }
   ]
 }

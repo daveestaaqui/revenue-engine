@@ -176,16 +176,32 @@
           </p>
         </div>
 
-        <!-- Base URL -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
-            <h2 class="font-heading font-bold text-base text-brand-navy mb-2">Base Endpoint URL</h2>
-            <div class="bg-slate-900 text-emerald-400 font-mono text-sm p-4 rounded-lg flex items-center justify-between overflow-x-auto">
-                <code>https://surplusdocket.com/api/v1</code>
-                <span class="text-xs text-slate-400 uppercase font-sans font-semibold">HTTPS / JSON</span>
+        <!-- Base URL & Authentication -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <h2 class="font-heading font-bold text-base text-brand-navy mb-2">Base Endpoint URL</h2>
+                <div class="bg-slate-900 text-emerald-400 font-mono text-xs sm:text-sm p-3.5 rounded-lg flex items-center justify-between overflow-x-auto mb-3">
+                    <code>https://surplusdocket.com/api/v1</code>
+                    <span class="text-[10px] text-slate-400 uppercase font-sans font-semibold">HTTPS / JSON</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Standard HTTPS GET requests returning UTF-8 JSON. Cross-Origin Resource Sharing (CORS) is enabled on all routes.
+                </p>
             </div>
-            <p class="text-xs text-slate-500 mt-2">
-                All requests use standard HTTPS GET requests and return structured UTF-8 JSON. Cross-Origin Resource Sharing (CORS) is enabled on all endpoints.
-            </p>
+
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="font-heading font-bold text-base text-brand-navy">Authentication &amp; Delivery Schedule</h2>
+                    <span class="px-2 py-0.5 bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[10px] rounded uppercase">Bearer Auth</span>
+                </div>
+                <div class="bg-slate-900 text-emerald-400 font-mono text-xs p-3.5 rounded-lg overflow-x-auto mb-3">
+                    <code>Authorization: Bearer &lt;sd_live_api_key&gt;</code>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    <strong>Schedule:</strong> Mon–Fri (Court Business Days) at 7:00 AM EST.<br>
+                    <strong>Security:</strong> Full unredacted legal names and property situs addresses require an active API subscriber key. Public/unauthenticated calls receive the redacted evaluation sandbox payload.
+                </p>
+            </div>
         </div>
 
         <!-- Interactive Live API Console -->
@@ -193,12 +209,12 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-slate-200">
                 <div>
                     <div class="flex items-center gap-2 mb-1">
-                        <span class="px-2.5 py-0.5 bg-emerald-100 text-brand-green font-mono font-bold text-[11px] rounded-full uppercase tracking-wider">Live Sandbox</span>
+                        <span class="px-2.5 py-0.5 bg-emerald-100 text-brand-green font-mono font-bold text-[11px] rounded-full uppercase tracking-wider">Evaluation Sandbox</span>
                         <span class="text-xs font-semibold text-slate-500">CORS Enabled</span>
                     </div>
                     <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">Interactive Live API Console</h2>
                     <p class="text-xs sm:text-sm text-slate-600 mt-1">
-                        Execute real HTTP GET requests directly against production endpoints and inspect structured JSON responses.
+                        Test live HTTP GET requests to inspect API response structure and schema. Active subscription keys receive full unredacted records via morning court business day feeds.
                     </p>
                 </div>
                 <div class="flex items-center gap-2">
@@ -267,7 +283,7 @@
                     Returns the master consolidated multi-state public records dataset across all 6 monitored jurisdictions (Florida, Texas, Georgia, North Carolina, Tennessee, and California).
                 </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
-<pre><code>curl -s "https://surplusdocket.com/api/v1/feed.json"</code></pre>
+<pre><code>curl -s -H "Authorization: Bearer YOUR_API_TOKEN" "https://surplusdocket.com/api/v1/feed.json"</code></pre>
                 </div>
             </div>
 
@@ -281,7 +297,7 @@
                     Returns filtered Florida clerk of court tax deed surplus records governed by Fla. Stat. § 197.582.
                 </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
-<pre><code>curl -s "https://surplusdocket.com/api/v1/florida.json"</code></pre>
+<pre><code>curl -s -H "Authorization: Bearer YOUR_API_TOKEN" "https://surplusdocket.com/api/v1/florida.json"</code></pre>
                 </div>
             </div>
 
@@ -295,7 +311,7 @@
                     Returns filtered Texas district court registry excess proceeds records governed by Tex. Tax Code § 34.04.
                 </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
-<pre><code>curl -s "https://surplusdocket.com/api/v1/texas.json"</code></pre>
+<pre><code>curl -s -H "Authorization: Bearer YOUR_API_TOKEN" "https://surplusdocket.com/api/v1/texas.json"</code></pre>
                 </div>
             </div>
 
@@ -309,7 +325,7 @@
                     Returns filtered Georgia county tax commissioner excess funds records governed by O.C.G.A. § 48-4-5.
                 </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
-<pre><code>curl -s "https://surplusdocket.com/api/v1/georgia.json"</code></pre>
+<pre><code>curl -s -H "Authorization: Bearer YOUR_API_TOKEN" "https://surplusdocket.com/api/v1/georgia.json"</code></pre>
                 </div>
             </div>
 
@@ -323,7 +339,7 @@
                     Returns filtered North Carolina judicial tax foreclosure surplus records governed by N.C.G.S. § 105-374 (including 10-day upset bid tracking).
                 </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
-<pre><code>curl -s "https://surplusdocket.com/api/v1/north-carolina.json"</code></pre>
+<pre><code>curl -s -H "Authorization: Bearer YOUR_API_TOKEN" "https://surplusdocket.com/api/v1/north-carolina.json"</code></pre>
                 </div>
             </div>
 
@@ -337,7 +353,7 @@
                     Returns filtered Tennessee chancery court tax sale surplus proceeds records governed by T.C.A. § 67-5-2501.
                 </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
-<pre><code>curl -s "https://surplusdocket.com/api/v1/tennessee.json"</code></pre>
+<pre><code>curl -s -H "Authorization: Bearer YOUR_API_TOKEN" "https://surplusdocket.com/api/v1/tennessee.json"</code></pre>
                 </div>
             </div>
 
@@ -351,7 +367,7 @@
                     Returns filtered California county tax collector defaulted excess proceeds records governed by Cal. Rev. &amp; Tax Code § 4675.
                 </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
-<pre><code>curl -s "https://surplusdocket.com/api/v1/california.json"</code></pre>
+<pre><code>curl -s -H "Authorization: Bearer YOUR_API_TOKEN" "https://surplusdocket.com/api/v1/california.json"</code></pre>
                 </div>
             </div>
 
@@ -493,9 +509,11 @@
 <pre><code>import requests
 import json
 
-# Ingest Daily 7:00 AM EST Normalized Court Feed
+# Ingest Mon–Fri 7:00 AM EST Court Business Day Feed
 FEED_URL = "https://surplusdocket.com/api/v1/feed.json"
-response = requests.get(FEED_URL, timeout=10)
+HEADERS = {"Authorization": "Bearer YOUR_API_TOKEN"}
+
+response = requests.get(FEED_URL, headers=HEADERS, timeout=10)
 docket_data = response.json()
 
 # Filter High-Value Individual Claims (> $50,000 with institutional liens removed)
@@ -504,7 +522,7 @@ actionable_claims = [
     if c.get("Est_Finder_Fee_USD", 0) >= 10000
 ]
 
-print(f"[✓] Successfully ingested {len(actionable_claims)} priority recovery dockets.")
+print(f"[✓] Ingested {len(actionable_claims)} priority recovery dockets for court session.")
 # Pass records to CRM or local database...</code></pre>
                 </div>
             </div>
@@ -515,7 +533,10 @@ print(f"[✓] Successfully ingested {len(actionable_claims)} priority recovery d
                     <span class="font-mono font-bold text-xs text-slate-700">Node.js (Fetch & Webhook Dispatch)</span>
                 </div>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-6 overflow-x-auto leading-relaxed">
-<pre><code>const res = await fetch('https://surplusdocket.com/api/v1/feed.json');
+<pre><code>// Ingest Mon–Fri 7:00 AM EST Court Business Day Feed
+const res = await fetch('https://surplusdocket.com/api/v1/feed.json', {
+    headers: { 'Authorization': 'Bearer YOUR_API_TOKEN' }
+});
 const { generated_at, meta, records } = await res.json();
 
 console.log(`Ingested ${records.length} records generated at ${generated_at}`);
@@ -530,7 +551,7 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
                     <h3 class="font-heading font-bold text-base text-brand-navy">Zapier, Clio, PracticePanther & Airtable Sync</h3>
                 </div>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                    National + API subscribers can ingest daily records without code using Zapier's <strong>"Webhooks by Zapier (GET)"</strong> action or Airtable's <strong>"Data Fetcher"</strong> extension. Poll <code>https://surplusdocket.com/api/v1/feed.json</code> at 7:05 AM EST to automatically populate new matter leads and assign intake tasks to your staff.
+                    National + API subscribers can ingest court records without code using Zapier's <strong>"Webhooks by Zapier (GET)"</strong> action (with your <code>Authorization: Bearer &lt;key&gt;</code> header) or Airtable's <strong>"Data Fetcher"</strong> extension. Poll <code>https://surplusdocket.com/api/v1/feed.json</code> every business morning (Mon–Fri) at 7:05 AM EST to automatically populate new matter leads and assign intake tasks to your staff.
               </p>
                 <div class="flex flex-wrap gap-2 text-xs font-mono text-slate-600 font-bold">
                     <span class="px-2.5 py-1 bg-white rounded-lg border border-brand-green/20">Clio Manage</span>
@@ -567,7 +588,7 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
-                            Daily 7:00 AM EST Dispatch
+                            Mon–Fri 7:00 AM EST Dispatch
                         </span>
                         <a href="/api-documentation.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors">
                             REST API v1
@@ -661,62 +682,77 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
         // Mock fallback payloads if operating strictly offline / file:// sandbox
         const FALLBACK_PAYLOADS = {
             "/api/v1/feed.json": {
-                "status": "success",
+                "status": "subscription_required",
+                "authenticated": false,
+                "message": "Full unredacted REST API access requires an active Surplus Docket Enterprise subscription with a valid Bearer API token. Production feeds deliver unredacted claimant identities, verified property situs, and court docket links every business morning (Mon–Fri) at 7:00 AM EST.",
+                "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
                 "api_version": "v1.0",
                 "generated_at": "2026-09-05T07:00:00Z",
                 "meta": { "total_records": 35, "total_surplus_volume_usd": 3244600.0, "jurisdictions": ["FL", "TX", "GA", "NC", "TN", "CA"] },
                 "records": [
-                    { "docket_id": "2026-TD-004501", "state": "FL", "county": "Palm Beach", "sale_date": "2026-08-18", "surplus_amount": 145000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2026-12-16", "lien_scrub_status": "CLEARED_INDIVIDUAL", "clerk_portal_url": "https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501" },
-                    { "docket_id": "2026-TX-04812", "state": "TX", "county": "Harris", "sale_date": "2026-08-04", "surplus_amount": 128500.0, "statutory_fee_cap_pct": "25%", "filing_deadline": "2028-08-04", "lien_scrub_status": "CLEARED_INDIVIDUAL", "clerk_portal_url": "https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04812" },
-                    { "docket_id": "2026-GA-003810", "state": "GA", "county": "Fulton", "sale_date": "2026-08-05", "surplus_amount": 134000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2031-08-05", "lien_scrub_status": "CLEARED_INDIVIDUAL", "clerk_portal_url": "https://www.fultonclerk.org/search?q=2026-GA-003810" }
+                    { "docket_id": "2026-TD-004501", "state": "FL", "county": "Palm Beach", "sale_date": "2026-08-18", "surplus_amount": 145000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2026-12-16", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "A. & V. T███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "720 S OCEAN BLVD [REDACTED — SUBSCRIBER ACCESS ONLY], PALM BEACH, FL 33480", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" },
+                    { "docket_id": "2026-TX-04812", "state": "TX", "county": "Harris", "sale_date": "2026-08-04", "surplus_amount": 128500.0, "statutory_fee_cap_pct": "25%", "filing_deadline": "2028-08-04", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "W. & H. M████████ [SUBSCRIBER KEY REQUIRED]", "property_address": "5402 BRAESVALLEY DR [REDACTED — SUBSCRIBER ACCESS ONLY], HOUSTON, TX 77096", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" },
+                    { "docket_id": "2026-GA-003810", "state": "GA", "county": "Fulton", "sale_date": "2026-08-05", "surplus_amount": 134000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2031-08-05", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "M. & J. K███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "1420 PEACHTREE ST NE [REDACTED — SUBSCRIBER ACCESS ONLY], ATLANTA, GA 30309", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
                 ]
             },
             "/api/v1/florida.json": {
-                "status": "success",
+                "status": "subscription_required",
+                "authenticated": false,
+                "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
                 "jurisdiction": "Florida",
                 "statute": "Fla. Stat. § 197.582",
                 "records": [
-                    { "docket_id": "2026-TD-004501", "state": "FL", "county": "Palm Beach", "sale_date": "2026-08-18", "surplus_amount": 145000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2026-12-16", "lien_scrub_status": "CLEARED_INDIVIDUAL", "clerk_portal_url": "https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501" }
+                    { "docket_id": "2026-TD-004501", "state": "FL", "county": "Palm Beach", "sale_date": "2026-08-18", "surplus_amount": 145000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2026-12-16", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "A. & V. T███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "720 S OCEAN BLVD [REDACTED — SUBSCRIBER ACCESS ONLY], PALM BEACH, FL 33480", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
                 ]
             },
             "/api/v1/texas.json": {
-                "status": "success",
+                "status": "subscription_required",
+                "authenticated": false,
+                "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
                 "jurisdiction": "Texas",
                 "statute": "Tex. Tax Code § 34.04",
                 "records": [
-                    { "docket_id": "2026-TX-04812", "state": "TX", "county": "Harris", "sale_date": "2026-08-04", "surplus_amount": 128500.0, "statutory_fee_cap_pct": "25%", "filing_deadline": "2028-08-04", "lien_scrub_status": "CLEARED_INDIVIDUAL", "clerk_portal_url": "https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04812" }
+                    { "docket_id": "2026-TX-04812", "state": "TX", "county": "Harris", "sale_date": "2026-08-04", "surplus_amount": 128500.0, "statutory_fee_cap_pct": "25%", "filing_deadline": "2028-08-04", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "W. & H. M████████ [SUBSCRIBER KEY REQUIRED]", "property_address": "5402 BRAESVALLEY DR [REDACTED — SUBSCRIBER ACCESS ONLY], HOUSTON, TX 77096", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
                 ]
             },
             "/api/v1/georgia.json": {
-                "status": "success",
+                "status": "subscription_required",
+                "authenticated": false,
+                "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
                 "jurisdiction": "Georgia",
                 "statute": "O.C.G.A. § 48-4-5",
                 "records": [
-                    { "docket_id": "2026-GA-003810", "state": "GA", "county": "Fulton", "sale_date": "2026-08-05", "surplus_amount": 134000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2031-08-05", "lien_scrub_status": "CLEARED_INDIVIDUAL", "clerk_portal_url": "https://www.fultonclerk.org/search?q=2026-GA-003810" }
+                    { "docket_id": "2026-GA-003810", "state": "GA", "county": "Fulton", "sale_date": "2026-08-05", "surplus_amount": 134000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2031-08-05", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "M. & J. K███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "1420 PEACHTREE ST NE [REDACTED — SUBSCRIBER ACCESS ONLY], ATLANTA, GA 30309", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
                 ]
             },
             "/api/v1/north-carolina.json": {
-                "status": "success",
+                "status": "subscription_required",
+                "authenticated": false,
+                "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
                 "jurisdiction": "North Carolina",
                 "statute": "N.C.G.S. § 105-374",
                 "records": [
-                    { "docket_id": "2026-NC-003110", "state": "NC", "county": "Mecklenburg", "sale_date": "2026-08-11", "surplus_amount": 138000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2027-08-11", "lien_scrub_status": "CLEARED_INDIVIDUAL", "clerk_portal_url": "https://www.nccourts.gov/locations/mecklenburg" }
+                    { "docket_id": "2026-NC-003110", "state": "NC", "county": "Mecklenburg", "sale_date": "2026-08-11", "surplus_amount": 138000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2027-08-11", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "D. & M. S██████ [SUBSCRIBER KEY REQUIRED]", "property_address": "5820 SHARON RD [REDACTED — SUBSCRIBER ACCESS ONLY], CHARLOTTE, NC 28210", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
                 ]
             },
             "/api/v1/tennessee.json": {
-                "status": "success",
+                "status": "subscription_required",
+                "authenticated": false,
+                "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
                 "jurisdiction": "Tennessee",
                 "statute": "T.C.A. § 67-5-2501",
                 "records": [
-                    { "docket_id": "2026-TN-002190", "state": "TN", "county": "Davidson", "sale_date": "2026-08-14", "surplus_amount": 126000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2027-08-14", "lien_scrub_status": "CLEARED_INDIVIDUAL", "clerk_portal_url": "https://chanceryclerkandmaster.nashville.gov/" }
+                    { "docket_id": "2026-TN-002190", "state": "TN", "county": "Davidson", "sale_date": "2026-08-14", "surplus_amount": 126000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2027-08-14", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "F. & M. P██████ [SUBSCRIBER KEY REQUIRED]", "property_address": "2418 WEST END AVE [REDACTED — SUBSCRIBER ACCESS ONLY], NASHVILLE, TN 37203", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
                 ]
             },
             "/api/v1/california.json": {
-                "status": "success",
+                "status": "subscription_required",
+                "authenticated": false,
+                "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
                 "jurisdiction": "California",
                 "statute": "Cal. Rev. & Tax Code § 4675",
                 "records": [
-                    { "docket_id": "2026-CA-008120", "state": "CA", "county": "Los Angeles", "sale_date": "2026-07-09", "surplus_amount": 215000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2027-07-09", "lien_scrub_status": "CLEARED_INDIVIDUAL", "clerk_portal_url": "https://ttc.lacounty.gov/" }
+                    { "docket_id": "2026-CA-008120", "state": "CA", "county": "Los Angeles", "sale_date": "2026-07-09", "surplus_amount": 215000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2027-07-09", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "G. & E. T███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "1420 WILSHIRE BLVD [REDACTED — SUBSCRIBER ACCESS ONLY], LOS ANGELES, CA 90017", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
                 ]
             },
             "/api/v1/health.json": {
@@ -785,11 +821,14 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
 
                 lastApiResponse = JSON.stringify(data, null, 2);
                 
-                if (statusText) statusText.textContent = `200 OK`;
+                const isSandbox = data.status === 'subscription_required';
+                if (statusText) statusText.textContent = isSandbox ? `200 OK (Sandbox)` : `200 OK`;
                 if (statusBadge) {
-                    statusBadge.className = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-brand-green font-mono text-xs font-bold";
+                    statusBadge.className = isSandbox 
+                        ? "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-brand-green font-mono text-xs font-bold"
+                        : "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-brand-green font-mono text-xs font-bold";
                 }
-                if (summaryEl) summaryEl.textContent = `Response Payload: 200 OK (${endpoint})`;
+                if (summaryEl) summaryEl.textContent = isSandbox ? `Response: 200 OK (Sandbox Redacted — ${endpoint})` : `Response Payload: 200 OK (${endpoint})`;
                 
                 const recCount = (data.records && Array.isArray(data.records)) ? data.records.length : (data.meta && data.meta.total_records ? data.meta.total_records : (data.endpoints_active ? data.endpoints_active : 1));
                 if (countEl) countEl.textContent = `Records: ${recCount}`;

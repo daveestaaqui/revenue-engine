@@ -1,18 +1,23 @@
 {
-  "status": "success",
+  "status": "subscription_required",
+  "authenticated": false,
   "jurisdiction": "TN",
   "statute": "T.C.A. \u00a7 67-5-2501",
+  "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
+  "message": "Full unredacted TN tax deed surplus records require an active subscription.",
+  "subscribe_url": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
   "total_records": 4,
+  "preview_mode": "REDACTED_EVALUATION_SANDBOX",
   "records": [
     {
       "State": "TN",
       "County": "Davidson",
       "Case_or_TaxDeed_No": "2024-TN-002190",
-      "Owner_Name": "FRANKLIN & JUDITH MERCER",
+      "Owner_Name": "F. & J. M\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "2418 WEST END AVE NASHVILLE TN 37203",
+      "Property_Address": "2418 WEST [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 126000.0,
       "Statutory_Fee_Rate": "20%",
@@ -24,17 +29,18 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TN",
       "County": "Shelby",
       "Case_or_TaxDeed_No": "2024-TN-004110",
-      "Owner_Name": "LAWRENCE & TINA BENNETT",
+      "Owner_Name": "L. & T. B\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "1720 POPLAR AVE MEMPHIS TN 38104",
+      "Property_Address": "1720 POPLAR [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 102000.0,
       "Statutory_Fee_Rate": "20%",
@@ -46,17 +52,18 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TN",
       "County": "Davidson",
       "Case_or_TaxDeed_No": "2024-TN-002840",
-      "Owner_Name": "ESTATE OF GLORIA CHANDLER",
+      "Owner_Name": "G. & C. C\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "3904 GALLATIN PIKE NASHVILLE TN 37216",
+      "Property_Address": "3904 GALLATIN [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 84500.0,
       "Statutory_Fee_Rate": "20%",
@@ -68,17 +75,18 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TN",
       "County": "Shelby",
       "Case_or_TaxDeed_No": "2024-TN-004550",
-      "Owner_Name": "ESTATE OF BERNARD HAYES",
+      "Owner_Name": "B. & H. H\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "4810 PARK AVE MEMPHIS TN 38117",
+      "Property_Address": "4810 PARK [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 71800.0,
       "Statutory_Fee_Rate": "20%",
@@ -90,7 +98,8 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     }
   ]
 }

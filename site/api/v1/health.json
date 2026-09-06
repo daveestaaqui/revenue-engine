@@ -1,8 +1,10 @@
 {
   "status": "healthy",
-  "service": "Surplus Docket REST API",
+  "service": "Surplus Docket REST API Gateway",
   "version": "1.0.0",
-  "timestamp": "2026-09-06T10:02:43.588690",
+  "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
+  "authentication": "Bearer <sd_live_api_key>",
+  "timestamp": "2026-09-06T15:15:11.772145",
   "uptime": "99.99%",
   "endpoints": [
     "/api/v1/feed.json",

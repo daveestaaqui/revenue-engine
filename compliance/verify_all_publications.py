@@ -303,7 +303,7 @@ def validate_all_feeds() -> dict:
                     errs = validate_single_record(r, source_label=f"{st}_CSV_Row_{idx+1}")
                     feed_errors.extend(errs)
 
-    # 4. Audit Live REST API Endpoints in site/api/v1/
+    # 4. Audit Live REST API Endpoints in site/api/v1/ (Public Sandbox with Subscription Gating)
     api_feed_json = API_V1_DIR / "feed.json"
     if not api_feed_json.exists():
         feed_errors.append(f"Live REST API endpoint missing at {api_feed_json}")
@@ -311,12 +311,22 @@ def validate_all_feeds() -> dict:
         try:
             with open(api_feed_json, "r", encoding="utf-8") as f:
                 apidata = json.load(f)
-                if apidata.get("status") != "success":
-                    feed_errors.append(f"API feed.json status is '{apidata.get('status')}', expected 'success'")
+                if apidata.get("status") != "subscription_required":
+                    feed_errors.append(f"API feed.json status is '{apidata.get('status')}', expected 'subscription_required'")
+                if apidata.get("authenticated") is not False:
+                    feed_errors.append(f"API feed.json authenticated flag is {apidata.get('authenticated')}, expected False")
+                if "Monday through Friday" not in apidata.get("delivery_schedule", ""):
+                    feed_errors.append(f"API feed.json missing explicit Monday through Friday delivery schedule")
+                
                 api_records = apidata.get("records", [])
                 for idx, r in enumerate(api_records):
-                    errs = validate_single_record(r, source_label=f"API_Feed_Row_{idx+1}")
-                    feed_errors.extend(errs)
+                    # Data security check: verify owner name and address are redacted in public feed
+                    owner = r.get("Owner_Name", "")
+                    addr = r.get("Property_Address", "")
+                    if "█" not in owner and "[" not in owner:
+                        feed_errors.append(f"[API_Feed_Row_{idx+1}] Unredacted claimant name exposed in public sandbox: '{owner}'")
+                    if "[" not in addr and "REDACTED" not in addr.upper():
+                        feed_errors.append(f"[API_Feed_Row_{idx+1}] Unredacted property address exposed in public sandbox: '{addr}'")
         except Exception as e:
             feed_errors.append(f"Failed parsing API feed.json: {e}")
 
@@ -333,10 +343,21 @@ def validate_all_feeds() -> dict:
             try:
                 with open(st_api, "r", encoding="utf-8") as f:
                     sdata = json.load(f)
-                    if sdata.get("status") != "success":
-                        feed_errors.append(f"{fname} status is not success")
+                    if sdata.get("status") != "subscription_required":
+                        feed_errors.append(f"{fname} status is '{sdata.get('status')}', expected 'subscription_required'")
+                    if sdata.get("authenticated") is not False:
+                        feed_errors.append(f"{fname} authenticated flag is not False")
                     if sdata.get("jurisdiction") != st:
                         feed_errors.append(f"{fname} jurisdiction mismatch: {sdata.get('jurisdiction')} vs {st}")
+                    
+                    st_records = sdata.get("records", [])
+                    for idx, r in enumerate(st_records):
+                        owner = r.get("Owner_Name", "")
+                        addr = r.get("Property_Address", "")
+                        if "█" not in owner and "[" not in owner:
+                            feed_errors.append(f"[{fname}_Row_{idx+1}] Unredacted owner name in public sandbox: '{owner}'")
+                        if "[" not in addr and "REDACTED" not in addr.upper():
+                            feed_errors.append(f"[{fname}_Row_{idx+1}] Unredacted address in public sandbox: '{addr}'")
             except Exception as e:
                 feed_errors.append(f"Failed parsing {fname}: {e}")
 

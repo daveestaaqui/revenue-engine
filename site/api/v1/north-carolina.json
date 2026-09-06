@@ -1,18 +1,23 @@
 {
-  "status": "success",
+  "status": "subscription_required",
+  "authenticated": false,
   "jurisdiction": "NC",
   "statute": "N.C.G.S. \u00a7 105-374",
+  "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
+  "message": "Full unredacted NC tax deed surplus records require an active subscription.",
+  "subscribe_url": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
   "total_records": 5,
+  "preview_mode": "REDACTED_EVALUATION_SANDBOX",
   "records": [
     {
       "State": "NC",
       "County": "Mecklenburg",
       "Case_or_TaxDeed_No": "2024-NC-003110",
-      "Owner_Name": "DERRICK & ANGELA MORGAN",
+      "Owner_Name": "D. & A. M\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "5820 SHARON RD CHARLOTTE NC 28210",
+      "Property_Address": "5820 SHARON [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Vacant Land / Acreage",
       "Surplus_Balance_USD": 138000.0,
       "Statutory_Fee_Rate": "20%",
@@ -24,17 +29,18 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "NC",
       "County": "Wake",
       "Case_or_TaxDeed_No": "2024-NC-001420",
-      "Owner_Name": "HARRISON & CAROLINE VANCE",
+      "Owner_Name": "H. & C. V\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "4210 GLENWOOD AVE RALEIGH NC 27612",
+      "Property_Address": "4210 GLENWOOD [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 114500.0,
       "Statutory_Fee_Rate": "20%",
@@ -46,17 +52,18 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "NC",
       "County": "Mecklenburg",
       "Case_or_TaxDeed_No": "2024-NC-003450",
-      "Owner_Name": "ESTATE OF WALTER STERLING",
+      "Owner_Name": "W. & S. S\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "2910 PROVIDENCE RD CHARLOTTE NC 28211",
+      "Property_Address": "2910 PROVIDENCE [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Vacant Land / Acreage",
       "Surplus_Balance_USD": 96400.0,
       "Statutory_Fee_Rate": "20%",
@@ -68,17 +75,18 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "NC",
       "County": "Wake",
       "Case_or_TaxDeed_No": "2024-NC-001890",
-      "Owner_Name": "ESTATE OF SAMUEL KAUFMAN",
+      "Owner_Name": "S. & K. K\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
       "Is_Individual": true,
       "Heir_Search_Recommended": true,
-      "Property_Address": "1804 FALLS OF NEUSE RD RALEIGH NC 27609",
+      "Property_Address": "1804 FALLS [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 88200.0,
       "Statutory_Fee_Rate": "20%",
@@ -90,17 +98,18 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "NC",
       "County": "Durham",
       "Case_or_TaxDeed_No": "2024-NC-002100",
-      "Owner_Name": "PATRICIA HOLLOWAY",
+      "Owner_Name": "P. & H. H\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
       "Is_Individual": true,
       "Heir_Search_Recommended": false,
-      "Property_Address": "1408 DUKE UNIVERSITY RD DURHAM NC 27701",
+      "Property_Address": "1408 DUKE [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
       "Property_Type": "Single Family Residential",
       "Surplus_Balance_USD": 64500.0,
       "Statutory_Fee_Rate": "20%",
@@ -112,7 +121,8 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/durham",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 10:02:43"
+      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Access_Status": "REDACTED_PREVIEW"
     }
   ]
 }
