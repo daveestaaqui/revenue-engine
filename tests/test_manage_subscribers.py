@@ -55,6 +55,21 @@ class TestSubscriberManagement(unittest.TestCase):
         with self.assertRaises(ValueError):
             add_subscriber(email="invalid-email", filepath=self.subs_file)
 
+    def test_jurisdiction_partitioning_by_tier(self):
+        core_sub, _ = add_subscriber(
+            email="core@law.com",
+            tier="Surplus Docket — Tri-State Core Feed (FL, TX, GA)",
+            filepath=self.subs_file
+        )
+        self.assertEqual(core_sub["jurisdictions"], ["FL", "TX", "GA"])
+
+        nat_sub, _ = add_subscriber(
+            email="national@law.com",
+            tier="Surplus Docket — 6-State Suite + REST API (FL, TX, GA, NC, TN, CA)",
+            filepath=self.subs_file
+        )
+        self.assertEqual(nat_sub["jurisdictions"], ["FL", "TX", "GA", "NC", "TN", "CA"])
+
 
 if __name__ == "__main__":
     unittest.main()

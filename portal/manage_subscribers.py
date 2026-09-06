@@ -15,7 +15,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SUBSCRIBERS_FILE = BASE_DIR / "portal" / "subscribers.json"
 
-DEFAULT_JURISDICTIONS = ["FL", "TX", "GA", "NC", "TN", "CA"]
+CORE_JURISDICTIONS = ["FL", "TX", "GA"]
+NATIONAL_JURISDICTIONS = ["FL", "TX", "GA", "NC", "TN", "CA"]
+DEFAULT_JURISDICTIONS = NATIONAL_JURISDICTIONS
 DEFAULT_FORMATS = ["CSV", "Excel"]
 
 
@@ -35,6 +37,13 @@ def save_subscribers(subscribers, filepath=SUBSCRIBERS_FILE):
         json.dump(subscribers, f, indent=2)
 
 
+def get_jurisdictions_for_tier(tier):
+    tier_lower = tier.lower()
+    if any(k in tier_lower for k in ("national", "6-state", "master", "api", "enterprise")):
+        return NATIONAL_JURISDICTIONS.copy()
+    return CORE_JURISDICTIONS.copy()
+
+
 def add_subscriber(email, name="Counsel", firm="Legal Practice", tier="Core Plan (7-Day Evaluation)",
                    jurisdictions=None, delivery_format=None, filepath=SUBSCRIBERS_FILE):
     email = email.strip().lower()
@@ -43,6 +52,8 @@ def add_subscriber(email, name="Counsel", firm="Legal Practice", tier="Core Plan
 
     subscribers = load_subscribers(filepath)
     
+    assigned_jurisdictions = jurisdictions or get_jurisdictions_for_tier(tier)
+
     # Check if subscriber already exists
     for sub in subscribers:
         if sub.get("email", "").strip().lower() == email:
@@ -50,6 +61,7 @@ def add_subscriber(email, name="Counsel", firm="Legal Practice", tier="Core Plan
             sub["name"] = name
             sub["firm"] = firm
             sub["tier"] = tier
+            sub["jurisdictions"] = assigned_jurisdictions
             sub["updated_at"] = datetime.now(timezone.utc).isoformat()
             save_subscribers(subscribers, filepath)
             return sub, False  # updated, not created new
@@ -62,7 +74,7 @@ def add_subscriber(email, name="Counsel", firm="Legal Practice", tier="Core Plan
         "name": name,
         "firm": firm,
         "tier": tier,
-        "jurisdictions": jurisdictions or DEFAULT_JURISDICTIONS,
+        "jurisdictions": assigned_jurisdictions,
         "delivery_format": delivery_format or DEFAULT_FORMATS,
         "status": "ACTIVE",
         "subscribed_at": datetime.now(timezone.utc).isoformat()

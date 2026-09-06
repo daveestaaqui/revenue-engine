@@ -74,7 +74,7 @@ def save_processed_events(data):
 def sync_via_stripe_api(api_key):
     """Directly query Stripe API for active and trialing subscriptions."""
     print("🔌 Querying Stripe REST API for active subscriptions...")
-    url = "https://api.stripe.com/v1/subscriptions?status=all&limit=100&expand[]=data.customer"
+    url = "https://api.stripe.com/v1/subscriptions?status=all&limit=100&expand[]=data.customer&expand[]=data.items.data.price.product"
     req = urllib.request.Request(url)
     req.add_header("Authorization", f"Bearer {api_key}")
 
@@ -100,12 +100,17 @@ def sync_via_stripe_api(api_key):
                     continue
 
                 if status in ("active", "trialing"):
-                    plan_name = "Core Plan (7-Day Evaluation)"
+                    plan_name = "Surplus Docket — Tri-State Core Feed (FL, TX, GA)"
                     items = s.get("items", {}).get("data", [])
                     if items:
-                        plan_desc = items[0].get("price", {}).get("nickname") or items[0].get("plan", {}).get("nickname")
-                        if plan_desc:
-                            plan_name = plan_desc
+                        price_obj = items[0].get("price", {})
+                        prod_obj = price_obj.get("product")
+                        if isinstance(prod_obj, dict) and prod_obj.get("name"):
+                            plan_name = prod_obj.get("name")
+                        elif price_obj.get("nickname"):
+                            plan_name = price_obj.get("nickname")
+                        elif items[0].get("plan", {}).get("nickname"):
+                            plan_name = items[0].get("plan", {}).get("nickname")
 
                     sub_obj, is_new = add_subscriber(
                         email=cust_email,
@@ -114,7 +119,7 @@ def sync_via_stripe_api(api_key):
                         tier=plan_name
                     )
                     if is_new:
-                        print(f"  ✨ [Stripe API] Added new subscriber: {cust_email} ({status})")
+                        print(f"  ✨ [Stripe API] Added new subscriber: {cust_email} ({status}) [{plan_name}]")
                         changes += 1
                         try:
                             dispatch_activation_starter_kit(sub_obj)
@@ -212,9 +217,17 @@ def parse_stripe_email(subject, body):
     name_match = re.search(r'(?:Customer Name|Name)[\s\:\-]+([A-Za-z0-9\s,\.\'\-]+?)(?:\n|\r|<br|$)', body, re.IGNORECASE)
     customer_name = name_match.group(1).strip() if name_match else "Counsel"
 
+    # Determine Plan Tier if mentioned in email
+    tier = "Surplus Docket — Tri-State Core Feed (FL, TX, GA)"
+    if any(w in sub_lower or w in body_lower for w in ["national", "6-state", "449", "4,188", "4188", "suite"]):
+        tier = "Surplus Docket — 6-State Suite + REST API (FL, TX, GA, NC, TN, CA)"
+    elif any(w in sub_lower or w in body_lower for w in ["core", "tri-state", "249", "2,388", "2388"]):
+        tier = "Surplus Docket — Tri-State Core Feed (FL, TX, GA)"
+
     return {
         "email": target_email,
         "name": customer_name,
+        "tier": tier,
         "is_cancellation": is_cancellation
     }
 
@@ -275,11 +288,12 @@ def sync_via_imap(user, password):
                         print(f"  🛑 [Stripe Email] Deactivated cancelled subscriber: {cust_email}")
                         changes += 1
                 else:
+                    sub_tier = parsed.get("tier", "Surplus Docket — Tri-State Core Feed (FL, TX, GA)")
                     sub_obj, is_new = add_subscriber(
                         email=cust_email,
                         name=cust_name,
                         firm="Legal Practice",
-                        tier="Core Plan (7-Day Evaluation)"
+                        tier=sub_tier
                     )
                     if is_new:
                         print(f"  ✨ [Stripe Email] Auto-enrolled new trial subscriber: {cust_name} <{cust_email}>")
