@@ -1,10 +1,11 @@
 {
   "status": "subscription_required",
   "authenticated": false,
+  "access_tier": "Tri-State Core Feed ($249/mo) or National Feed ($449/mo)",
   "jurisdiction": "FL",
   "statute": "Fla. Stat. \u00a7 197.582",
   "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
-  "message": "Full unredacted FL tax deed surplus records require an active subscription.",
+  "message": "Full unredacted FL tax deed surplus records require an active Tri-State Core Feed ($249/mo) or National Feed ($449/mo) subscription.",
   "subscribe_url": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
   "total_records": 12,
   "preview_mode": "REDACTED_EVALUATION_SANDBOX",
@@ -29,7 +30,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -52,7 +53,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -75,7 +76,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -98,7 +99,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -121,7 +122,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -144,7 +145,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -167,7 +168,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -190,7 +191,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -213,7 +214,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -236,7 +237,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -259,7 +260,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -282,7 +283,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

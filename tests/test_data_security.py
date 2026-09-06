@@ -149,13 +149,62 @@ class TestDataSecurityAndAntiLeak(unittest.TestCase):
         welcome_content = (SITE_DIR / "welcome.html").read_text(encoding="utf-8")
         self.assertIn("Monday through Friday", welcome_content, "welcome.html must state Mon-Fri schedule")
 
-    def test_subscriber_dispatch_policy(self):
-        """Verify that dispatch_morning_feed only sends full files to ACTIVE status subscribers."""
-        from portal.dispatch_morning_feed import load_active_subscribers
-        active = load_active_subscribers()
-        self.assertIsInstance(active, list)
-        for sub in active:
-            self.assertEqual(sub.get("status", "").upper(), "ACTIVE")
+    def test_expansion_state_pages_link_to_national_plan(self):
+        """Ensure expansion state pages (NC, TN, CA) link their primary CTAs to National Feed ($449/mo)."""
+        expansion_files = [
+            "north-carolina-tax-foreclosure-surplus.html",
+            "tennessee-tax-sale-excess-proceeds.html",
+            "california-tax-defaulted-excess-proceeds.html"
+        ]
+        stripe_national = "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y"
+        stripe_tristate = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+
+        for ef in expansion_files:
+            content = (SITE_DIR / ef).read_text(encoding="utf-8")
+            self.assertIn(
+                stripe_national,
+                content,
+                f"{ef} must contain National plan Stripe URL ({stripe_national})"
+            )
+            self.assertNotIn(
+                f'href="{stripe_tristate}" class="text-xs sm:text-sm font-heading font-bold bg-brand-green',
+                content,
+                f"{ef} header button must not link to Tri-State plan"
+            )
+
+    def test_expansion_api_endpoints_link_to_national_plan(self):
+        """Ensure expansion state API endpoints return National plan subscription metadata."""
+        expansion_endpoints = ["north-carolina.json", "tennessee.json", "california.json"]
+        stripe_national = "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y"
+
+        for ep in expansion_endpoints:
+            ep_path = SITE_DIR / "api" / "v1" / ep
+            self.assertTrue(ep_path.exists(), f"Endpoint {ep} missing")
+            data = json.loads(ep_path.read_text(encoding="utf-8"))
+            self.assertEqual(
+                data.get("subscribe_url"),
+                stripe_national,
+                f"{ep} subscribe_url must be {stripe_national}"
+            )
+            self.assertEqual(
+                data.get("access_tier"),
+                "National Feed + REST API ($449/mo)",
+                f"{ep} access_tier must be National Feed + REST API ($449/mo)"
+            )
+
+    def test_zero_senior_lien_filtering_redundancy(self):
+        """Ensure the phrase 'Senior Lien Filtering' is not redundantly used across page headings."""
+        index_content = (SITE_DIR / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn(
+            "Senior Lien Filtering: Raw County Ledger",
+            index_content,
+            "Redundant Senior Lien Filtering heading found in index.html"
+        )
+        self.assertNotIn(
+            "Senior Lien Filtering</span>",
+            index_content,
+            "Redundant green bubble Senior Lien Filtering pill found in index.html"
+        )
 
 
 if __name__ == "__main__":

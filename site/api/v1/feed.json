@@ -5,7 +5,7 @@
   "message": "Full unredacted REST API access requires an active Surplus Docket Enterprise subscription with a valid Bearer API token. Production feeds deliver unredacted claimant identities, verified property situs, and court docket links every business morning (Mon\u2013Fri) at 7:00 AM EST.",
   "api_version": "v1.0",
   "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
-  "generated_at": "2026-09-06T15:15:11.768567",
+  "generated_at": "2026-09-06T15:36:31.689461",
   "subscription_portal": "https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00",
   "subscribe_url": "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y",
   "meta": {
@@ -50,7 +50,7 @@
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -73,7 +73,7 @@
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -96,7 +96,7 @@
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -119,7 +119,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -142,7 +142,7 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -165,7 +165,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -188,7 +188,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -211,7 +211,7 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -234,7 +234,7 @@
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -257,7 +257,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -280,7 +280,7 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -303,7 +303,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -326,7 +326,7 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -349,7 +349,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -372,7 +372,7 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -395,7 +395,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -418,7 +418,7 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -441,7 +441,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -464,7 +464,7 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -487,7 +487,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -510,7 +510,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -533,7 +533,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -556,7 +556,7 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -579,7 +579,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -602,7 +602,7 @@
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -625,7 +625,7 @@
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/durham",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -648,7 +648,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -671,7 +671,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -694,7 +694,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -717,7 +717,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -740,7 +740,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -763,7 +763,7 @@
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -786,7 +786,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -809,7 +809,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -832,7 +832,7 @@
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

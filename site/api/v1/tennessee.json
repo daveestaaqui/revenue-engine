@@ -1,11 +1,12 @@
 {
   "status": "subscription_required",
   "authenticated": false,
+  "access_tier": "National Feed + REST API ($449/mo)",
   "jurisdiction": "TN",
   "statute": "T.C.A. \u00a7 67-5-2501",
   "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
-  "message": "Full unredacted TN tax deed surplus records require an active subscription.",
-  "subscribe_url": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
+  "message": "Full unredacted TN tax deed surplus records require an active National Feed + REST API ($449/mo) subscription.",
+  "subscribe_url": "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y",
   "total_records": 4,
   "preview_mode": "REDACTED_EVALUATION_SANDBOX",
   "records": [
@@ -29,7 +30,7 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -52,7 +53,7 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -75,7 +76,7 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -98,7 +99,7 @@
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-06 15:15:11",
+      "Enriched_Timestamp": "2026-09-06 15:36:31",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

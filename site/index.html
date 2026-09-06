@@ -331,7 +331,7 @@
             </p>
             
             <div class="max-w-xl mx-auto flex flex-col items-center">
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full mb-4">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full mb-3">
                     <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 plausible-event-name=Hero-Checkout-Click">
                         Start 7-Day Trial
                     </a>
@@ -340,14 +340,18 @@
                     </a>
                 </div>
                 
-                <div class="text-center text-xs sm:text-sm text-slate-600">
-                    <p class="font-semibold text-slate-800">$0 due today &bull; 7-day docket evaluation</p>
-                    <p class="text-slate-500 mt-0.5">Cancel anytime via Stripe portal &bull; $249/mo Day 8</p>
+                <div class="text-center text-xs sm:text-sm text-slate-600 space-y-1">
+                    <p class="font-semibold text-slate-800">Tri-State Core Feed (FL, TX, GA) &bull; $0 due today &bull; $249/mo Day 8</p>
+                    <p class="text-slate-500">Need NC, TN, CA or REST API? <a href="#pricing" class="font-bold text-brand-green hover:underline">Explore National Feed ($449/mo) &rarr;</a></p>
                 </div>
             </div>
 
             <!-- Clickable Jurisdiction Filters (Balanced 6-State Grid: 6 on desktop, 3x2 on mobile) -->
             <div class="mt-8 pt-5 border-t border-slate-200/70 max-w-2xl mx-auto">
+                <div class="flex items-center justify-between text-[11px] font-semibold text-slate-500 mb-2 px-1">
+                    <span>Core Feed (FL, TX, GA)</span>
+                    <span>National Expansion (NC, TN, CA)</span>
+                </div>
                 <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
                     <button type="button" onclick="filterByHeroState('FL')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Florida Dockets">Florida</button>
                     <button type="button" onclick="filterByHeroState('TX')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200/90 transition-all shadow-xs" title="Filter Texas Dockets">Texas</button>
@@ -393,6 +397,15 @@
               </p>
             </div>
 
+            <!-- Subscription Tier Context Callout -->
+            <div class="mb-4 p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-xs text-xs text-slate-600 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
+                <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded-md font-bold text-[10px] uppercase tracking-wider bg-brand-greenSoft text-brand-greenDark border border-brand-green/20">Plan Scope</span>
+                    <span><strong>Tri-State Core Feed ($249/mo)</strong> covers Florida, Texas, and Georgia. <strong>National Feed ($449/mo)</strong> adds North Carolina, Tennessee, California, and the REST API.</span>
+                </div>
+                <a href="#pricing" class="shrink-0 font-bold text-brand-green hover:text-brand-greenDark transition-colors">Compare Tiers &rarr;</a>
+            </div>
+
             <!-- Interactive Live Search & Filter Bar -->
             <div class="mb-4 bg-white border border-slate-200/80 rounded-2xl p-3.5 sm:p-4 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-3">
                 <div class="flex flex-wrap items-center gap-2.5 w-full lg:w-auto">
@@ -434,7 +447,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="CA" data-amount="215000">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">CA</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">CA</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60">National Tier</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Los Angeles County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$215,000.00</div>
@@ -465,7 +478,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="FL" data-amount="145000">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Palm Beach County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$145,000.00</div>
@@ -496,7 +509,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="GA" data-amount="134000">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Fulton County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$134,000.00</div>
@@ -527,7 +540,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="TX" data-amount="128500">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Dallas County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$128,500.00</div>
@@ -558,7 +571,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="TN" data-amount="122000">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TN</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TN</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60">National Tier</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Shelby County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$122,000.00</div>
@@ -589,7 +602,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="GA" data-amount="118000">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Cobb County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$118,000.00</div>
@@ -620,7 +633,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="NC" data-amount="114500">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">NC</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">NC</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60">National Tier</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Wake County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$114,500.00</div>
@@ -651,7 +664,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="FL" data-amount="112000">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Miami-Dade County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$112,000.00</div>
@@ -682,7 +695,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="FL" data-amount="92400">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Hillsborough County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$92,400.00</div>
@@ -713,7 +726,7 @@
                 <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="TX" data-amount="86200">
                     <div class="flex items-center justify-between mb-1.5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
                             <span class="font-heading font-bold text-sm text-brand-navy">Harris County</span>
                         </div>
                         <div class="text-right font-heading font-black text-brand-navy text-sm">$86,200.00</div>
@@ -759,7 +772,7 @@
                         </thead>
                         <tbody id="sample-table-body" class="divide-y divide-slate-200 font-mono text-slate-700">
                             <tr data-state="CA" data-amount="215000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">CA</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">CA</span> <span class="text-[10px] font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200/60 px-1.5 py-0.5 rounded">National</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Los Angeles</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-CA-008120</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 20, 2026</td>
@@ -771,7 +784,7 @@
                                 </td>
                             </tr>
                             <tr data-state="FL" data-amount="145000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Palm Beach</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TD-004501</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 18, 2026</td>
@@ -783,7 +796,7 @@
                                 </td>
                             </tr>
                             <tr data-state="GA" data-amount="134000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Fulton</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-GA-003810</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 15, 2026</td>
@@ -795,7 +808,7 @@
                                 </td>
                             </tr>
                             <tr data-state="TX" data-amount="128500" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TX-04812</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 12, 2026</td>
@@ -807,7 +820,7 @@
                                 </td>
                             </tr>
                             <tr data-state="TN" data-amount="126000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TN</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TN</span> <span class="text-[10px] font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200/60 px-1.5 py-0.5 rounded">National</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Davidson</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TN-002190</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 10, 2026</td>
@@ -819,7 +832,7 @@
                                 </td>
                             </tr>
                             <tr data-state="GA" data-amount="118000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Cobb</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-GA-001550</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 08, 2026</td>
@@ -831,7 +844,7 @@
                                 </td>
                             </tr>
                             <tr data-state="NC" data-amount="114500" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">NC</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">NC</span> <span class="text-[10px] font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200/60 px-1.5 py-0.5 rounded">National</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Wake</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-NC-001420</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 06, 2026</td>
@@ -843,7 +856,7 @@
                                 </td>
                             </tr>
                             <tr data-state="FL" data-amount="112000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Miami-Dade</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TD-004812</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 05, 2026</td>
@@ -855,7 +868,7 @@
                                 </td>
                             </tr>
                             <tr data-state="FL" data-amount="92400" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Hillsborough</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TD-008912</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Jul 29, 2026</td>
@@ -867,7 +880,7 @@
                                 </td>
                             </tr>
                             <tr data-state="TX" data-amount="86200" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span></td>
+                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
                                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Harris</td>
                                 <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TX-04950</td>
                                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Jul 22, 2026</td>
@@ -887,8 +900,7 @@
         <section class="py-12 sm:py-16 bg-slate-50 border-t border-slate-200">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-8 max-w-2xl mx-auto">
-                    <span class="text-[11px] font-bold uppercase tracking-widest text-brand-green bg-emerald-100/70 border border-emerald-300/60 px-3 py-1 rounded-full">Senior Lien Filtering</span>
-                    <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mt-2.5 mb-2">Senior Lien Filtering: Raw County Ledger vs. Verified Equity</h2>
+                    <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-2">Raw County Ledger vs. Verified Equity</h2>
                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                         Raw clerk lists often show large surplus balances on properties where senior mortgages absorb all proceeds. Surplus Docket filters out senior liens before records enter the feed.
                     </p>
@@ -1129,7 +1141,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                             </svg>
                         </div>
-                        <h3 class="text-base font-heading font-bold text-brand-navy mb-1.5">Senior Lien Filtering</h3>
+                        <h3 class="text-base font-heading font-bold text-brand-navy mb-1.5">Lien &amp; Mortgage Scrubbing</h3>
                         <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                             Automated screening removes senior bank mortgages and tax encumbrances, surfacing claims with recoverable equity.
                       </p>
@@ -1343,8 +1355,8 @@
                             </thead>
                             <tbody class="divide-y divide-slate-200 text-slate-700">
                                 <tr class="hover:bg-slate-50">
-                                    <td class="py-3.5 px-5 font-semibold text-brand-navy">Senior Lien Filtering</td>
-                                    <td class="py-3.5 px-5 text-center font-bold text-brand-green bg-emerald-50/50">✓ Pre-Filtered (Senior Liens Removed)</td>
+                                    <td class="py-3.5 px-5 font-semibold text-brand-navy">Institutional Lien Scrubbing</td>
+                                    <td class="py-3.5 px-5 text-center font-bold text-brand-green bg-emerald-50/50">✓ Pre-Filtered (Clean Equity)</td>
                                     <td class="py-3.5 px-5 text-center text-red-500 font-semibold">✗ Senior Mortgages Not Screened</td>
                                     <td class="py-3.5 px-5 text-center text-slate-400">✗ None (Pre-Foreclosure Only)</td>
                                 </tr>

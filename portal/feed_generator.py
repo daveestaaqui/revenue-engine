@@ -196,15 +196,20 @@ def generate_b2b_exports():
 
     for state_code, (df_state, file_base, statute, api_file) in state_dfs.items():
         state_records = [redact_lead_for_public_sandbox(r) for r in df_state.to_dict(orient="records")]
+        is_expansion = state_code in ["NC", "TN", "CA"]
+        sub_url = "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y" if is_expansion else "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+        tier_label = "National Feed + REST API ($449/mo)" if is_expansion else "Tri-State Core Feed ($249/mo) or National Feed ($449/mo)"
+        
         with open(API_V1_DIR / api_file, "w", encoding="utf-8") as f:
             json.dump({
                 "status": "subscription_required",
                 "authenticated": False,
+                "access_tier": tier_label,
                 "jurisdiction": state_code,
                 "statute": statute,
                 "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
-                "message": f"Full unredacted {state_code} tax deed surplus records require an active subscription.",
-                "subscribe_url": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
+                "message": f"Full unredacted {state_code} tax deed surplus records require an active {tier_label} subscription.",
+                "subscribe_url": sub_url,
                 "total_records": len(state_records),
                 "preview_mode": "REDACTED_EVALUATION_SANDBOX",
                 "records": state_records
