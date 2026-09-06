@@ -485,6 +485,11 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
         if inq_dom not in SYSTEM_BLOCKLIST_DOMAINS and inq_email != "sandwichfitness@gmail.com":
             return True, "Verified statutory website inquiry", None, inquiry_data
 
+    # 1.5 Check if it is a Google Voice voicemail notification for (508) 419-3178
+    gv_inquiry = parse_google_voice_voicemail(sender_email, subject_raw, text_body)
+    if gv_inquiry:
+        return True, "Verified Google Voice voicemail inquiry", None, gv_inquiry
+
     s_email = sender_email.lower().strip()
     s_dom = clean_domain_str(s_email)
 
@@ -1569,6 +1574,75 @@ def parse_statutory_inquiry(subject_raw, text_body):
     }
 
 
+def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
+    """
+    Parses Google Voice voicemail notification emails forwarding to sandwichfitness@gmail.com
+    originating from Surplus Docket's inbound line (508) 419-3178.
+    Extracts caller phone, transcript, mentioned jurisdiction, and intent.
+    """
+    s_lower = (sender_email or "").lower().strip()
+    subj_lower = (subject_raw or "").lower().strip()
+
+    is_gv = (
+        "voice-noreply@google.com" in s_lower or
+        "google voice" in s_lower or
+        "new voicemail from" in subj_lower or
+        "voicemail from" in subj_lower
+    )
+    if not is_gv:
+        return None
+
+    # 1. Extract phone number
+    phone_match = re.search(r"(\+?1?[\s\.-]?\(?\d{3}\)?[\s\.-]?\d{3}[\s\.-]?\d{4})", f"{subject_raw} {text_body}")
+    caller_phone = phone_match.group(1).strip() if phone_match else "Unknown Caller"
+
+    # 2. Extract transcript
+    lines = text_body.splitlines()
+    capturing = False
+    captured = []
+    for line in lines:
+        l = line.strip()
+        if any(k in l.lower() for k in ["new voicemail from", "voicemail from"]):
+            capturing = True
+            continue
+        if capturing:
+            if any(k in l.lower() for k in ["play message", "call back", "google voice", "play audio", "help center"]):
+                break
+            if l:
+                captured.append(l)
+
+    transcript = " ".join(captured).strip() if captured else text_body.strip()
+
+    # 3. Detect attorney email if spoken or present
+    email_match = re.search(r"[\w\.-]+@[\w\.-]+\.\w+", transcript)
+    caller_email = email_match.group(0).lower().strip() if email_match else ""
+
+    # 4. Extract jurisdiction
+    det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, transcript, default_state="FL")
+    state_name = STATE_NAMES.get(det_state, "Florida")
+
+    # 5. Extract name if stated
+    name_match = re.search(
+        r"(?:this is|my name is|i'm|im|calling is)\s+([A-Za-z\s]+?)(?:from|with|calling|\.|\,)",
+        transcript, re.IGNORECASE
+    )
+    caller_name = name_match.group(1).strip().title() if name_match else f"Inquiring Counsel ({caller_phone})"
+
+    return {
+        "name": caller_name,
+        "email": caller_email,
+        "phone": caller_phone,
+        "firm": "",
+        "department": "General Publisher Inquiry",
+        "jurisdiction": state_name,
+        "state_code": det_state,
+        "docket": "",
+        "ref": f"GV-VM-{caller_phone}",
+        "message": f"[Phone Inquiry via Google Voice (508) 419-3178]: {transcript}",
+        "is_voicemail": True,
+    }
+
+
 def compose_elena_inquiry_response(inquiry_info, state_cases):
     """
     Drafts an authoritative, tailored response to a statutory website inquiry
@@ -2057,8 +2131,13 @@ def check_and_create_auto_responses(mail, state_cases):
             prospect_email = inquiry_info["email"] or reply_to_email
             state_code = inquiry_info.get("state_code", "FL")
             department = inquiry_info.get("department", "General Publisher Inquiry")
+            is_vm = inquiry_info.get("is_voicemail", False)
 
-            draft_key = f"inquiry:{prospect_email}:{state_code}:{department}"
+            if is_vm and not prospect_email:
+                prospect_email = REPORT_RECIPIENT
+                inquiry_info["email"] = prospect_email
+
+            draft_key = f"inquiry:{prospect_email}:{state_code}:{department}:{inquiry_info.get('ref', '')}"
             if draft_key in already_drafted:
                 mail.store(mid, "+FLAGS", r"(\Seen)")
                 continue
@@ -2066,6 +2145,9 @@ def check_and_create_auto_responses(mail, state_cases):
             draft_msg, reply_subject, reply_body, role_title = build_inquiry_draft_email(
                 inquiry_info, state_cases, message_id=message_id
             )
+            if is_vm:
+                phone_num = inquiry_info.get("phone", "")
+                draft_msg["Subject"] = f"[Phone Inquiry Dossier — {phone_num}] {reply_subject}"
 
             drafts_box = get_gmail_drafts_mailbox(mail)
             mail.select(drafts_box)

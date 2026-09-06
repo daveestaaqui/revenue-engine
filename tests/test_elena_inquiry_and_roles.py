@@ -23,6 +23,7 @@ sys.path.insert(0, str(BASE_DIR / "outreach"))
 
 from outreach.auto_responder_and_draft_cleaner import (
     parse_statutory_inquiry,
+    parse_google_voice_voicemail,
     get_elena_role_title,
     get_elena_signature,
     get_department_persona,
@@ -401,6 +402,33 @@ We would like to review sample excess funds records in Fulton County."""
         self.assertEqual(inq_info["email"], "arthur@morganlaw.com")
         self.assertEqual(inq_info["name"], "Arthur Morgan")
         self.assertEqual(inq_info["state_code"], "GA")
+
+
+    def test_parse_google_voice_voicemail(self):
+        sender_email = "voice-noreply@google.com"
+        subject = "New voicemail from (508) 419-3178 at 4:15 PM"
+        body = """New voicemail from (508) 419-3178:
+
+"Hi, this is Marcus Davis with Davis Property Law. We are reviewing foreclosure surplus records in Orange County Florida. Can you follow up with pricing for our office?"
+
+Play message: https://voice.google.com/message/12345"""
+
+        inq = parse_google_voice_voicemail(sender_email, subject, body)
+        self.assertIsNotNone(inq)
+        self.assertEqual(inq["phone"], "(508) 419-3178")
+        self.assertEqual(inq["state_code"], "FL")
+        self.assertIn("Marcus Davis", inq["name"])
+        self.assertTrue(inq["is_voicemail"])
+        self.assertIn("Orange County Florida", inq["message"])
+
+        # Test eligibility accepts it
+        msg = Message()
+        eligible, reason, target_info, inq_info = is_prospect_eligible(
+            msg, sender_email, "Google Voice", subject, body,
+            self.directory, self.email_directory, self.domains
+        )
+        self.assertTrue(eligible)
+        self.assertEqual(inq_info["phone"], "(508) 419-3178")
 
 
 if __name__ == "__main__":
