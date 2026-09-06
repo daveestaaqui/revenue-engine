@@ -28,6 +28,17 @@ from outreach.voice_agent_server import (
 
 class TestVoiceAgent(unittest.TestCase):
 
+    def test_greeting_persona(self):
+        self.assertIn("Audrey Hayes", VOICE_GREETING)
+        self.assertIn("assistant to Elena Brooks", VOICE_GREETING)
+        self.assertIn("Surplus Docket", VOICE_GREETING)
+
+    def test_speak_with_elena_intent(self):
+        reply, offer_sms, record_vm = generate_voice_response("Can I speak with Elena Brooks?")
+        self.assertIn("Elena is currently reviewing", reply)
+        self.assertIn("executive assistant", reply)
+        self.assertIn("leave a message for Elena", reply)
+
     def test_pricing_intent(self):
         reply, offer_sms, record_vm = generate_voice_response("How much does the monthly subscription cost?")
         self.assertIn("249 dollars per month", reply)

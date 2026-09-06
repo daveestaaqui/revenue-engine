@@ -45,14 +45,14 @@ from outreach.auto_responder_and_draft_cleaner import (
     STRIPE_LINK,
 )
 
+BUSINESS_PHONE_NUMBER = "(508) 419-3178"
 VOICE_NAME = "Polly.Joanna-Neural"  # Professional, articulate, natural female persona
 FALLBACK_VOICE = "Polly.Joanna"
 
 VOICE_GREETING = (
-    "Thank you for calling Surplus Docket, the court records intelligence service "
-    "for tax deed and foreclosure excess proceeds. I am Elena Brooks. "
-    "Are you calling regarding our morning surplus feeds, a 7-day practice evaluation, "
-    "or coverage for a specific county?"
+    "Thank you for calling Surplus Docket. This is Audrey Hayes, assistant to Elena Brooks "
+    "and our docket research desk. Are you calling regarding our morning surplus feeds, "
+    "a 7-day practice evaluation, or coverage for a specific county?"
 )
 
 
@@ -77,7 +77,8 @@ def classify_speech_intent(speech_text):
                 detected_state = s_code
                 break
 
-    # 2. Semantic Intent Classification
+    if any(k in st for k in ["elena", "elena brooks", "speak to elena", "talk to elena", "is elena there", "ask elena"]):
+        return "SPEAK_WITH_ELENA", detected_county, detected_state
     if any(k in st for k in ["price", "cost", "how much", "rate", "fee", "month", "subscription", "pricing", "plan"]):
         return "PRICING", detected_county, detected_state
     if any(k in st for k in ["trial", "evaluate", "test", "evaluation", "free", "demo", "sample"]):
@@ -109,6 +110,16 @@ def generate_voice_response(speech_text):
     Returns: (spoken_reply: str, should_offer_sms: bool, should_record_voicemail: bool)
     """
     intent, county_info, state_code = classify_speech_intent(speech_text)
+
+    if intent == "SPEAK_WITH_ELENA":
+        return (
+            "Elena is currently reviewing today's court certificates and docket distributions for our partner firms. "
+            "As her executive assistant, I have full access to our docket indexes, pricing, and county coverage, "
+            "or I would be glad to take down your details and have Elena follow up directly with your office. "
+            "Can I answer a question about our feeds, or would you like to leave a message for Elena?",
+            False,
+            False,
+        )
 
     if intent == "PRICING":
         return (
@@ -273,7 +284,8 @@ class VoiceAgentHTTPHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps({
                 "status": "online",
                 "service": "Surplus Docket AI Voice Customer Service",
-                "persona": "Elena Brooks (Senior Docket Specialist)",
+                "persona": "Audrey Hayes (Executive Assistant to Elena Brooks)",
+                "phone": BUSINESS_PHONE_NUMBER,
                 "voice": VOICE_NAME,
             }).encode("utf-8"))
             return
