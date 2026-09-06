@@ -1,1292 +1,8 @@
 {
   "version": "1.0",
   "created_at": "2026-09-05T17:57:36.206796+00:00",
-  "total_submissions": 2191,
+  "total_submissions": 2647,
   "runs": [
-    {
-      "timestamp": "2026-09-06T15:42:01.626523+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T15:51:20.858277+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T16:24:31.478328+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T16:26:45.600630+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T16:28:42.806059+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T16:28:46.683920+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T16:28:53.737341+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T16:33:02.576015+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T16:36:39.211710+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T16:36:42.130663+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T16:36:53.195224+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
-    {
-      "timestamp": "2026-09-06T19:16:27.387653+00:00",
-      "mode": "dry_run",
-      "urls_indexed_count": 38,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 38,
-        "status": "dry_run_success",
-        "status_code": 200,
-        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        },
-        "bing": {
-          "status": "dry_run_success",
-          "status_code": 200,
-          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "legaltech",
-              "ai",
-              "titleresearch",
-              "propertyrights"
-            ],
-            "body_length": 2554
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "legaltech",
-              "foreclosure",
-              "realestatelaw",
-              "litigation"
-            ],
-            "body_length": 3610
-          }
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "dry_run_success",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "dry_run_success",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
     {
       "timestamp": "2026-09-06T19:20:12.035438+00:00",
       "mode": "dry_run",
@@ -3212,7 +1928,1291 @@
         "articles_queued": 4,
         "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
       }
+    },
+    {
+      "timestamp": "2026-09-06T20:58:48.508758+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T21:06:55.620173+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T21:09:07.730753+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T22:03:33.779808+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T22:05:19.169589+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T22:05:51.136377+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T22:25:46.158463+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T22:25:57.658191+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T22:29:24.502204+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T22:31:00.383325+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T22:31:18.120914+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
+    },
+    {
+      "timestamp": "2026-09-06T22:31:24.351316+00:00",
+      "mode": "dry_run",
+      "urls_indexed_count": 38,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 38,
+        "status": "dry_run_success",
+        "status_code": 200,
+        "response": "[DRY RUN] 38 URLs queued for IndexNow submission."
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        },
+        "bing": {
+          "status": "dry_run_success",
+          "status_code": 200,
+          "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsurplusdocket.com%2Fsitemap.xml"
+        }
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "legaltech",
+              "ai",
+              "titleresearch",
+              "propertyrights"
+            ],
+            "body_length": 2554
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set DEV_TO_API_KEY secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "legaltech",
+              "foreclosure",
+              "realestatelaw",
+              "litigation"
+            ],
+            "body_length": 3610
+          }
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+          "status": "dry_run_success",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "dry_run_success",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
     }
   ],
-  "last_run_timestamp": "2026-09-06T20:56:37.385997+00:00"
+  "last_run_timestamp": "2026-09-06T22:31:24.351316+00:00"
 }

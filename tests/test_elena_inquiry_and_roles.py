@@ -25,6 +25,7 @@ from outreach.auto_responder_and_draft_cleaner import (
     parse_statutory_inquiry,
     parse_google_voice_voicemail,
     extract_spoken_email,
+    format_sample_records,
     get_elena_role_title,
     get_elena_signature,
     get_department_persona,
@@ -582,6 +583,101 @@ Play message: https://voice.google.com/message/4956"""
         self.assertIn("Docket Research & Intake [2024-TD-001955]", subj)
         self.assertIn("Elena Brooks on our docket research desk", body)
         self.assertIn("Elena will review your file and follow up directly", body)
+
+    def test_format_sample_records_prioritizes_target_county(self):
+        """Verifies that format_sample_records prioritizes the specified target_county at the top."""
+        cases = [
+            {"case_no": "2024-TD-100", "county": "Miami-Dade", "balance": 99000.0},
+            {"case_no": "2024-TD-200", "county": "Orange", "balance": 85000.0},
+            {"case_no": "2024-TD-300", "county": "Broward", "balance": 60000.0},
+        ]
+        # Without target_county: highest balance first
+        formatted_default = format_sample_records(cases)
+        self.assertTrue(formatted_default.startswith("- Miami-Dade Co."))
+
+        # With target_county="Broward": Broward prioritized first
+        formatted_broward = format_sample_records(cases, target_county="Broward")
+        self.assertTrue(formatted_broward.startswith("- Broward Co."))
+        self.assertIn("Orange Co.", formatted_broward)
+        self.assertIn("Miami-Dade Co.", formatted_broward)
+
+    def test_intake_nuanced_county_and_title_scrubbing_response(self):
+        """Tests that inquiring about Orange County and mortgage title scrubbing generates tailored paragraphs."""
+        inq = {
+            "name": "Alexander Hayes",
+            "email": "ahayes@hayeslitigation.com",
+            "firm": "Hayes Litigation",
+            "department": "Inquiries & Intake Desk",
+            "state_code": "FL",
+            "docket": "",
+            "message": "We represent claimants in Orange County, Florida. How do you handle senior mortgages and title encumbrances?",
+        }
+        subj, body, role = compose_elena_inquiry_response(inq, self.mock_state_cases)
+        self.assertIn("Court Surplus Feeds [Florida]", subj)
+        self.assertIn("Executive Intake Coordinator", role)
+        self.assertIn("Aubrey Hayes", body)
+        self.assertNotIn("Elena Brooks", body)
+        # Nuanced county context
+        self.assertIn("Regarding Orange County (9th Judicial Circuit)", body)
+        self.assertIn("120-day statutory notice window", body)
+        self.assertIn("before escheatment", body)
+        # Nuanced title scrubbing context
+        self.assertIn("Regarding senior mortgage and encumbrance scrubbing", body)
+        self.assertIn("unreleased senior institutional liens", body)
+        self.assertIn("true unencumbered equity", body)
+        # Core standards & pricing
+        self.assertIn("7:00 AM EST", body)
+        self.assertIn("$249/mo", body)
+
+    def test_intake_nuanced_delivery_and_probate_response(self):
+        """Tests that inquiring about delivery times and probate/heir files receives specific substantive answers."""
+        inq = {
+            "name": "Sarah Jenkins",
+            "email": "sjenkins@estatefirm.com",
+            "firm": "Jenkins Estate Law",
+            "department": "Inquiries & Intake Desk",
+            "state_code": "GA",
+            "docket": "",
+            "message": "What time are files delivered in the morning, and do your dockets include probate or deceased owner files?",
+        }
+        subj, body, role = compose_elena_inquiry_response(inq, self.mock_state_cases)
+        self.assertIn("Court Surplus Feeds [Georgia]", subj)
+        self.assertIn("Executive Intake Coordinator", role)
+        self.assertIn("Aubrey Hayes", body)
+        self.assertNotIn("Elena Brooks", body)
+        # Delivery specifics
+        self.assertIn("Regarding delivery schedule and file formats: feeds are dispatched every business morning at 7:00 AM EST", body)
+        self.assertIn("structured CSV and formatted Excel (.xlsx) workbooks", body)
+        # Probate specifics
+        self.assertIn("Regarding probate and heir recovery", body)
+        self.assertIn("heirship and letters of administration", body)
+        # General intake desk followup
+        self.assertIn("our intake desk will pull the records for your review", body)
+
+    def test_voicemail_nuanced_county_overview(self):
+        """Tests that a voicemail inquiring about Fulton County yields a tailored opening and Georgia circuit context."""
+        vm = {
+            "name": "Marcus Vance",
+            "email": "mvance@vancelegal.com",
+            "phone": "(404) 555-0199",
+            "firm": "Vance Law",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "Georgia",
+            "state_code": "GA",
+            "docket": "",
+            "message": "[Phone Inquiry via Google Voice (508) 419-3178]: Hi this is Marcus Vance. Can you give me an overview of what you cover in Fulton County Georgia?",
+            "is_voicemail": True,
+        }
+        subj, body, role = compose_elena_inquiry_response(vm, self.mock_state_cases)
+        self.assertIn("Court Surplus Feeds [Georgia]", subj)
+        self.assertIn("Executive Intake Coordinator", role)
+        self.assertIn("Aubrey Hayes", body)
+        self.assertNotIn("Elena Brooks", body)
+        # Opening acknowledges voicemail & Fulton County
+        self.assertIn("Thank you for your voicemail earlier today requesting an overview of our surplus feeds and coverage for Fulton County and across Georgia", body)
+        # County & statutory specifics
+        self.assertIn("Regarding Fulton County (Fulton County Superior Court)", body)
+        self.assertIn("O.C.G.A. § 48-4-5", body)
 
 
 if __name__ == "__main__":

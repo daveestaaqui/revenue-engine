@@ -916,12 +916,21 @@ def analyze_prospect_intent(subject_raw, text_body):
     return "GENERAL"
 
 
-def format_sample_records(cases):
+def format_sample_records(cases, target_county=None):
     """Formats sample docket cases cleanly without promotional bullet decks."""
     if not cases:
         return "- Verified individual & estate records indexed daily across all judicial circuits"
+    sorted_cases = list(cases)
+    if target_county:
+        target_lower = str(target_county).strip().lower()
+        sorted_cases.sort(
+            key=lambda c: (
+                0 if str(c.get("county", "")).strip().lower() == target_lower else 1,
+                -float(c.get("balance", 0))
+            )
+        )
     lines = []
-    for c in cases[:3]:
+    for c in sorted_cases[:3]:
         lines.append(f"- {c['county']} Co. (Docket {c['case_no']}): ${c['balance']:,.0f} surplus balance")
     return "\n".join(lines)
 
@@ -1826,10 +1835,13 @@ def compose_elena_inquiry_response(inquiry_info, state_cases):
     stat_entry = JURISDICTION_STATUTORY_KNOWLEDGE.get(state_code, JURISDICTION_STATUTORY_KNOWLEDGE["FL"])
     claim_window = stat_entry.get("claim_window", "designated statutory claim window")
     custodian = stat_entry.get("custodian", "court or county registry")
-    cases = state_cases.get(state_code, state_cases.get("FL", []))[:3]
-    sample_lines = format_sample_records(cases)
     user_message = inquiry_info.get("message", "").strip()
     docket_ref = inquiry_info.get("docket", "").strip()
+    _, detected_county, circuit_name = extract_jurisdiction_context(
+        subject_raw=docket_ref, text_body=user_message, default_state=state_code
+    )
+    cases = state_cases.get(state_code, state_cases.get("FL", []))
+    sample_lines = format_sample_records(cases, target_county=detected_county)
 
     persona = get_department_persona(department=department)
     role_title = persona["full_title"]
@@ -2009,11 +2021,97 @@ Please reply with the specific scope, academic institution, or research paramete
             "petition for distribution", "certificate of disbursement", "interpleader", "registry deposit",
             "escheatment search", "case status", "docket status"
         ]
-        has_statutory_need = any(k in user_message.lower() for k in statutory_keywords)
+        msg_lower = user_message.lower()
+        has_statutory_need = any(k in msg_lower for k in statutory_keywords)
         justifies_elena = has_specific_docket or has_statutory_need
+
+        is_vm = bool(inquiry_info.get("is_voicemail"))
+        is_overview = any(k in msg_lower for k in [
+            "overview", "what you offer", "what do you offer", "different places",
+            "services", "how does it work", "tell me about", "what is surplus docket",
+            "explain your service", "coverage"
+        ])
+        is_pricing = any(k in msg_lower for k in [
+            "pricing", "price", "cost", "how much", "rate", "fee", "subscription",
+            "how much is", "what does it cost", "plan", "trial", "evaluation"
+        ])
+        is_delivery = any(k in msg_lower for k in [
+            "what time", "delivery", "when do you send", "csv", "excel", "spreadsheet",
+            "schedule", "format", "ingest", "filevine", "clio", "crm"
+        ])
+        is_title = any(k in msg_lower for k in [
+            "mortgage", "senior lien", "bank lien", "scrub", "encumbrance",
+            "clean equity", "first mortgage", "deed of trust", "title"
+        ])
+        is_probate = any(k in msg_lower for k in [
+            "probate", "heir", "deceased", "estate", "intestate", "heirs", "heirship"
+        ])
 
         if justifies_elena:
             reply_subject = f"Re: Surplus Docket — Docket Research & Intake [{docket_ref or state_name}]"
+        else:
+            reply_subject = f"Re: Surplus Docket — Court Surplus Feeds [{state_name}]"
+
+        # Context-aware opening tailored to channel and user inquiry
+        if is_vm:
+            if is_overview:
+                if detected_county:
+                    opening_paragraph = (
+                        f"Thank you for your voicemail earlier today requesting an overview of our surplus feeds "
+                        f"and coverage for {detected_county} County and across {state_name}."
+                    )
+                elif state_name:
+                    opening_paragraph = (
+                        f"Thank you for your voicemail earlier today requesting an overview of what we offer "
+                        f"across different jurisdictions in {state_name}."
+                    )
+                else:
+                    opening_paragraph = (
+                        "Thank you for your voicemail earlier today requesting an overview of our court surplus feeds and coverage."
+                    )
+            elif is_pricing or is_delivery:
+                opening_paragraph = (
+                    f"Thank you for your voicemail earlier today regarding delivery schedules and subscription pricing "
+                    f"for our {state_name} court surplus feeds."
+                )
+            elif has_specific_docket:
+                docket_label = docket_ref or "your referenced case"
+                opening_paragraph = (
+                    f"Thank you for your voicemail earlier today regarding court records and filing details "
+                    f"for docket {docket_label} in {state_name}."
+                )
+            else:
+                opening_paragraph = (
+                    f"Thank you for your voicemail earlier today regarding {state_name} public record excess proceeds."
+                )
+        else:
+            if is_overview:
+                if detected_county:
+                    opening_paragraph = (
+                        f"Thank you for reaching out to the Surplus Docket intake desk regarding our coverage "
+                        f"in {detected_county} County and across {state_name}."
+                    )
+                else:
+                    opening_paragraph = (
+                        f"Thank you for reaching out to the Surplus Docket intake desk regarding an overview of our "
+                        f"{state_name} public record excess proceeds feeds."
+                    )
+            elif is_pricing or is_delivery:
+                opening_paragraph = (
+                    f"Thank you for contacting our intake desk with your questions regarding delivery schedule "
+                    f"and subscription details for {state_name}."
+                )
+            elif has_specific_docket:
+                docket_label = docket_ref or "your referenced case"
+                opening_paragraph = (
+                    f"Thank you for contacting the Surplus Docket intake desk regarding docket {docket_label} in {state_name}."
+                )
+            else:
+                opening_paragraph = (
+                    f"Thank you for reaching out to the Surplus Docket intake desk regarding {state_name} public record excess proceeds."
+                )
+
+        if justifies_elena:
             docket_clause = f" regarding docket {docket_ref}" if docket_ref else ""
             status_paragraph = (
                 f"Because your inquiry involves specific county court filings{docket_clause}, "
@@ -2024,7 +2122,6 @@ Please reply with the specific scope, academic institution, or research paramete
                 f"If you have additional docket numbers or parcel references, please feel free to reply directly to this email."
             )
         else:
-            reply_subject = f"Re: Surplus Docket — Court Surplus Feeds [{state_name}]"
             status_paragraph = (
                 f"Surplus Docket indexes and delivers verified court surplus records every business morning at 7:00 AM EST "
                 f"in CSV and Excel formats, with senior institutional mortgages scrubbed upstream under {statute_cite}."
@@ -2034,28 +2131,87 @@ Please reply with the specific scope, academic institution, or research paramete
                 f"for a specific docket or parcel ID, please reply with the case reference and our intake desk will pull the records for your review."
             )
 
-        reply_body = f"""{greeting}
+        contextual_paragraphs = []
 
-Thank you for reaching out to the Surplus Docket intake desk regarding {state_name} public record excess proceeds.
+        if detected_county:
+            county_context = (
+                f"Regarding {detected_county} County ({circuit_name or 'local court registry'}): our compiler desk actively "
+                f"monitors the {detected_county} County registry and court filings under {statute_cite}. In {state_name}, "
+                f"surplus funds deposited with the {custodian} must be petitioned within {claim_window} before escheatment. "
+                f"We have prioritized active records from {detected_county} County in the excerpt below so your practice can "
+                f"evaluate current balances."
+            )
+            contextual_paragraphs.append(county_context)
+        elif is_overview and not justifies_elena:
+            jurisdiction_overview = (
+                f"Across {state_name}, our operations desk monitors county clerk ledgers and court registries daily under "
+                f"{statute_cite}, capturing excess proceeds from tax deed sales and foreclosure auctions. By reconciling "
+                f"certificate disbursements against land records and cross-referencing recorded liens, we isolate actionable "
+                f"files before the statutory claim window ({claim_window}) expires."
+            )
+            contextual_paragraphs.append(jurisdiction_overview)
 
-{status_paragraph}
+        if is_delivery:
+            delivery_context = (
+                f"Regarding delivery schedule and file formats: feeds are dispatched every business morning at 7:00 AM EST "
+                f"directly to your inbox. Each transmission includes both structured CSV and formatted Excel (.xlsx) workbooks "
+                f"containing docket numbers, parcel IDs, auction dates, deposited amounts, and property situs addresses—ready "
+                f"for immediate review or import into case management software like Clio, Filevine, or internal databases."
+            )
+            contextual_paragraphs.append(delivery_context)
 
-Here is an excerpt of active, verified files from our current {state_name} index:
+        if is_title:
+            title_context = (
+                f"Regarding senior mortgage and encumbrance scrubbing: raw county ledgers frequently list gross surplus "
+                f"amounts without accounting for first mortgages that would wipe out the recovery. Our compiler desk runs "
+                f"upstream deed and lis pendens title checks to filter out unreleased senior institutional liens, ensuring our "
+                f"daily feed contains only files with true unencumbered equity."
+            )
+            contextual_paragraphs.append(title_context)
 
-{sample_lines}
+        if is_probate:
+            probate_context = (
+                f"Regarding probate and heir recovery: our data indexing flags files where property ownership was held in "
+                f"an estate, deceased individual, or intestate succession. When available, we include probate docket cross-references "
+                f"to assist counsel in filing petitions for determination of heirship and letters of administration."
+            )
+            contextual_paragraphs.append(probate_context)
 
-We offer two transparent subscriptions:
-1. Tri-State Core Feed ($249/mo flat with 7-day evaluation $0 due today): Florida, Texas, and Georgia morning CSV & Excel delivery.
-   {STRIPE_LINK}
-2. National Feed + REST API ($449/mo): Full 6-state coverage (FL, TX, GA + NC, TN, CA) with priority 6:00 AM EST dispatch and live REST API Bearer tokens.
-   https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y
-{bar_note}{tyler_note}{upl_note}
+        if state_code in ["NC", "TN", "CA"]:
+            pricing_clause = (
+                f"For {state_name}, records are compiled under our National Feed + REST API Tier ($449/mo), covering FL, TX, GA, NC, TN, and CA "
+                f"with priority 6:00 AM EST dispatch and live REST API Bearer tokens:\n"
+                f"https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y"
+            )
+        else:
+            pricing_clause = (
+                f"We offer two transparent subscriptions:\n"
+                f"1. Tri-State Core Feed ($249/mo flat with 7-day evaluation $0 due today): Florida, Texas, and Georgia morning CSV & Excel delivery.\n"
+                f"   {STRIPE_LINK}\n"
+                f"2. National Feed + REST API ($449/mo): Full 6-state coverage (FL, TX, GA + NC, TN, CA) with priority 6:00 AM EST dispatch and live REST API Bearer tokens.\n"
+                f"   https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y"
+            )
 
-{followup_clause}
+        body_sections = [
+            greeting,
+            opening_paragraph,
+            status_paragraph,
+        ]
+        if contextual_paragraphs:
+            body_sections.extend(contextual_paragraphs)
 
-{signature}
+        body_sections.append(f"Here is an excerpt of active, verified files from our current {state_name} index:\n\n{sample_lines}")
+        body_sections.append(pricing_clause)
 
-{LEGAL_DISCLAIMER}"""
+        extra_notes = "".join(filter(None, [bar_note, tyler_note, upl_note])).strip()
+        if extra_notes:
+            body_sections.append(extra_notes)
+
+        body_sections.append(followup_clause)
+        body_sections.append(signature)
+        body_sections.append(LEGAL_DISCLAIMER)
+
+        reply_body = "\n\n".join(body_sections)
 
     # 8. General Publisher Inquiry / Default
     else:
