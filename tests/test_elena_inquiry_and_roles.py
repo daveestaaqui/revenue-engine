@@ -1,0 +1,354 @@
+#!/usr/bin/env python3
+"""
+Unit Test Suite: Elena Brooks Inquiry Handling, Dynamic Role Signatures & Auto-Drafting
+======================================================================================
+Tests:
+1. Parsing of all statutory website inquiries (Cloudflare Pages API memo, FormSubmit fallback, Modal)
+2. Dynamic signature and role generation based on department, role, or context
+3. Department-specific inquiry responses (Trial Onboarding, Enterprise Licensing, REST API,
+   Clerk Notice, Statutory Compliance, Press / Academic, General)
+4. Contextual keyword handling (Bar rule phone restrictions, Tyler v. Hennepin, Non-lawyer UPL disclaimer)
+5. Expansion state (NC, TN, CA) pricing alignment to National Feed ($449/mo)
+6. Construction of full MIME email drafts for Gmail [Gmail]/Drafts
+"""
+
+import unittest
+from email.message import Message
+from pathlib import Path
+import sys
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+sys.path.insert(0, str(BASE_DIR / "outreach"))
+
+from outreach.auto_responder_and_draft_cleaner import (
+    parse_statutory_inquiry,
+    get_elena_role_title,
+    get_elena_signature,
+    compose_elena_inquiry_response,
+    compose_elena_response,
+    build_inquiry_draft_email,
+    is_prospect_eligible,
+    load_target_directory,
+    LEGAL_DISCLAIMER,
+    STRIPE_LINK,
+)
+
+
+class TestElenaInquiryAndRoles(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.directory, cls.email_directory, cls.domains = load_target_directory()
+        cls.mock_state_cases = {
+            "FL": [
+                {"case_no": "2024-TD-001955", "county": "Orange", "balance": 74300.0, "sale_date": "2024-05-15"},
+                {"case_no": "2024-TD-001501", "county": "Orange", "balance": 61800.0, "sale_date": "2024-06-01"},
+            ],
+            "TX": [
+                {"case_no": "TX-2024-8841", "county": "Harris", "balance": 92500.0, "sale_date": "2024-06-15"}
+            ],
+            "NC": [
+                {"case_no": "24-CVD-1044", "county": "Mecklenburg", "balance": 48200.0, "sale_date": "2024-07-10"}
+            ],
+            "CA": [
+                {"case_no": "2024-TC-8891", "county": "Los Angeles", "balance": 185000.0, "sale_date": "2024-08-01"}
+            ],
+        }
+
+    # -------------------------------------------------------------
+    # 1. Parsing Statutory Website Inquiries
+    # -------------------------------------------------------------
+    def test_parse_cloudflare_pages_memo_format(self):
+        subject = "[Surplus Docket Inquiry] Law Practice API Integration — Holloway Legal (Marcus Holloway)"
+        body = """================================================================================
+SURPLUS DOCKET — LEGAL & STATUTORY CORRESPONDENCE MEMORANDUM
+Tracking Ref:    SD-INQ-1788723456
+Filed:           September 6, 2026 at 03:45 PM EDT
+================================================================================
+
+TRANSMITTING PRACTITIONER / PARTY:
+--------------------------------------------------------------------------------
+Name / Counsel:  Marcus Holloway, Esq.
+Direct Email:    mholloway@hollowaylegal.com
+Firm / Org:      Holloway Legal Group, P.A.
+Jurisdiction:    Florida (Fla. Stat. § 197.582)
+Department:      Law Practice API Integration
+Docket / Parcel: 2024-TD-001955
+
+STATEMENT OF INQUIRY:
+--------------------------------------------------------------------------------
+Can our engineering team connect this directly to our Filevine CRM via webhook?
+--------------------------------------------------------------------------------
+Surplus Docket Legal & Regulatory Inquiries Desk • https://surplusdocket.com"""
+
+        inq = parse_statutory_inquiry(subject, body)
+        self.assertIsNotNone(inq)
+        self.assertEqual(inq["name"], "Marcus Holloway, Esq.")
+        self.assertEqual(inq["email"], "mholloway@hollowaylegal.com")
+        self.assertEqual(inq["firm"], "Holloway Legal Group, P.A.")
+        self.assertEqual(inq["department"], "Law Practice API Integration")
+        self.assertEqual(inq["state_code"], "FL")
+        self.assertEqual(inq["docket"], "2024-TD-001955")
+        self.assertEqual(inq["ref"], "SD-INQ-1788723456")
+        self.assertIn("Filevine CRM via webhook", inq["message"])
+
+    def test_parse_formsubmit_box_relay_format(self):
+        subject = "[Surplus Docket Inquiry] Enterprise Feed Licensing — Vance Law (Robert Vance)"
+        body = """OFFICIAL RECORD: SD-INQ-998877
+PRACTITIONER NAME: Robert Vance
+WORK EMAIL: robert@vancelaw.com
+LAW FIRM / ENTITY: Vance Law Firm
+JURISDICTION: Multi-Jurisdiction / National
+DEPARTMENT: Enterprise Feed Licensing
+DOCKET / PARCEL: None Specified
+
+INQUIRY MEMORANDUM:
+We are litigating surplus claims across Florida, Texas, and North Carolina. We need multi-state feed licensing.
+--------------------------------------------------------------------------------"""
+
+        inq = parse_statutory_inquiry(subject, body)
+        self.assertIsNotNone(inq)
+        self.assertEqual(inq["name"], "Robert Vance")
+        self.assertEqual(inq["email"], "robert@vancelaw.com")
+        self.assertEqual(inq["firm"], "Vance Law Firm")
+        self.assertEqual(inq["department"], "Enterprise Feed Licensing")
+        self.assertEqual(inq["ref"], "SD-INQ-998877")
+        self.assertIn("multi-state feed licensing", inq["message"])
+
+    def test_parse_modal_inquiry_format(self):
+        subject = "[Surplus Docket Modal Inquiry] Florida Docket Request"
+        body = """OFFICIAL STATUTORY INQUIRY RECORD
+Inquiring Entity Name: Jessica Miller
+Inquiring Entity Email: jessica@millerrecovery.com
+Practice Jurisdiction: Texas
+Message: We are evaluating tax sale excess proceeds in Harris and Dallas counties."""
+
+        inq = parse_statutory_inquiry(subject, body)
+        self.assertIsNotNone(inq)
+        self.assertEqual(inq["name"], "Jessica Miller")
+        self.assertEqual(inq["email"], "jessica@millerrecovery.com")
+        self.assertEqual(inq["state_code"], "TX")
+        self.assertIn("Harris and Dallas counties", inq["message"])
+
+    # -------------------------------------------------------------
+    # 2. Dynamic Role Titles and Signatures
+    # -------------------------------------------------------------
+    def test_dynamic_roles_by_department(self):
+        test_cases = [
+            ("7-Day Institutional Practice Evaluation", "Practitioner Onboarding Specialist"),
+            ("Enterprise Feed Licensing", "Director of Practice Relations & Licensing"),
+            ("Law Practice API Integration", "Lead Technical Specialist & API Integrations"),
+            ("Clerk Docket Correction / Notice", "County Registry Operations Liaison"),
+            ("Statutory Compliance Verification", "Senior Compliance & Research Specialist"),
+            ("Press / Academic Research", "Public Information Liaison"),
+            ("General Publisher Inquiry", "Senior Docket Specialist"),
+        ]
+
+        for dept, expected_role in test_cases:
+            role_title = get_elena_role_title(department=dept)
+            self.assertIn(expected_role, role_title)
+            self.assertIn("Surplus Docket", role_title)
+
+            sig = get_elena_signature(department=dept)
+            self.assertIn("Elena Brooks", sig)
+            self.assertIn(expected_role, sig)
+            self.assertIn("elena.brooks@surplusdocket.com", sig)
+            self.assertIn("surplusdocket.com", sig)
+            self.assertNotIn("David Mahler", sig)
+            self.assertNotIn("Esq.", sig)
+
+    def test_explicit_role_overrides(self):
+        sig_api = get_elena_signature(role="api")
+        self.assertIn("Lead Technical Specialist & API Integrations", sig_api)
+
+        sig_clerk = get_elena_signature(role="clerk")
+        self.assertIn("County Registry Operations Liaison", sig_clerk)
+
+        sig_compliance = get_elena_signature(role="compliance")
+        self.assertIn("Senior Compliance & Research Specialist", sig_compliance)
+
+        sig_general = get_elena_signature(role="general")
+        self.assertIn("Senior Docket Specialist", sig_general)
+
+    # -------------------------------------------------------------
+    # 3. Department-Specific Responses & Offerings
+    # -------------------------------------------------------------
+    def test_7_day_evaluation_response(self):
+        inquiry_info = {
+            "name": "David Thorne",
+            "email": "thorne@thornelaw.com",
+            "firm": "Thorne Real Estate Law",
+            "department": "7-Day Institutional Practice Evaluation",
+            "state_code": "FL",
+            "message": "We want to test your morning Florida docket."
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("7-Day Practice Evaluation", subj)
+        self.assertIn("Hi David,", body)
+        self.assertIn("$0 due today", body)
+        self.assertIn("$249/month", body)
+        self.assertIn("7:00 AM EST", body)
+        self.assertIn(STRIPE_LINK, body)
+        self.assertIn("Practitioner Onboarding Specialist", body)
+        self.assertIn("Fla. Stat. § 197.582", body)
+
+    def test_enterprise_licensing_response(self):
+        inquiry_info = {
+            "name": "Eleanor Sterling",
+            "email": "esterling@nationalrecovery.com",
+            "firm": "Sterling National Title",
+            "department": "Enterprise Feed Licensing",
+            "state_code": "FL",
+            "message": "We need access across all available states."
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("Enterprise & Multi-Jurisdiction Feed Licensing", subj)
+        self.assertIn("National Feed + REST API Tier ($449/month)", body)
+        self.assertIn("Full 6-State Coverage: Florida, Texas, Georgia, North Carolina, Tennessee, and California", body)
+        self.assertIn("6:00 AM EST", body)
+        self.assertIn("Director of Practice Relations & Licensing", body)
+        self.assertIn("https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y", body)
+
+    def test_api_integration_response(self):
+        inquiry_info = {
+            "name": "Marcus Holloway",
+            "email": "mholloway@hollowaylegal.com",
+            "firm": "Holloway Legal",
+            "department": "Law Practice API Integration",
+            "state_code": "FL",
+            "message": "Can we ingest feeds via REST API into Filevine?"
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("REST API & Practice Management Integration", subj)
+        self.assertIn("/api/v1/*.json", body)
+        self.assertIn("Authorization: Bearer <API_TOKEN>", body)
+        self.assertIn("https://surplusdocket.com/api-documentation.html", body)
+        self.assertIn("Lead Technical Specialist & API Integrations", body)
+        self.assertIn("https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y", body)
+
+    def test_clerk_correction_notice_response(self):
+        inquiry_info = {
+            "name": "Patricia Adams",
+            "email": "clerk@orangecountyfl.gov",
+            "firm": "Orange County Clerk of Court",
+            "department": "Clerk Docket Correction / Notice",
+            "state_code": "FL",
+            "docket": "2024-TD-001955",
+            "message": "Certificate of disbursement amended on case 2024-TD-001955."
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("County Registry Record Verification & Notice", subj)
+        self.assertIn("2024-TD-001955", subj)
+        self.assertIn("County Registry Operations Liaison", body)
+        self.assertIn("certificate of disbursement", body)
+        self.assertIn("highest judicial deference", body)
+
+    def test_statutory_compliance_response(self):
+        inquiry_info = {
+            "name": "Gregory Stone",
+            "email": "gstone@stonelitigation.com",
+            "firm": "Stone Litigation Group",
+            "department": "Statutory Compliance Verification",
+            "state_code": "TX",
+            "message": "How do you handle senior deed of trust filtering under Texas law?"
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("Statutory Compliance & Title Verification [Texas]", subj)
+        self.assertIn("Senior Compliance & Research Specialist", body)
+        self.assertIn("Tex. Tax Code § 34.04", body)
+        self.assertIn("Senior Institutional Encumbrances", body)
+        self.assertIn("does not provide formal legal opinions", body)
+
+    def test_press_academic_research_response(self):
+        inquiry_info = {
+            "name": "Sarah Koenig",
+            "email": "skoenig@lawreview.org",
+            "firm": "Florida Law Review",
+            "department": "Press / Academic Research",
+            "state_code": "FL",
+            "message": "We are examining county surplus forfeiture post-Tyler v. Hennepin."
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("Public Records & Academic Research Inquiry", subj)
+        self.assertIn("Public Information Liaison", body)
+        self.assertIn("Tyler v. Hennepin County, 598 U.S. 631", body)
+
+    # -------------------------------------------------------------
+    # 4. Contextual Query Handling & Bar Ethics
+    # -------------------------------------------------------------
+    def test_phone_skip_trace_query_explains_bar_solicitation_rules(self):
+        inquiry_info = {
+            "name": "Mark Alvarez",
+            "email": "malvarez@alvarezlaw.com",
+            "firm": "Alvarez Law",
+            "department": "7-Day Institutional Practice Evaluation",
+            "state_code": "FL",
+            "message": "Do you provide phone numbers or skip tracing to call property owners directly?"
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("intentionally do not provide consumer phone numbers", body)
+        self.assertIn("Florida Bar Rule 4-7.18", body)
+        self.assertIn("compliant direct written correspondence", body)
+
+    def test_expansion_state_quotes_national_feed(self):
+        inquiry_info = {
+            "name": "Brian Cole",
+            "email": "bcole@colelawfirm.com",
+            "firm": "Cole Legal Group",
+            "department": "7-Day Institutional Practice Evaluation",
+            "state_code": "NC",
+            "message": "Interested in North Carolina tax foreclosure overages."
+        }
+        subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
+        self.assertIn("National Feed + REST API Tier ($449/month", body)
+        self.assertIn("https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y", body)
+        self.assertNotIn("$249/month starting on Day 8", body)
+
+    # -------------------------------------------------------------
+    # 5. MIME Draft Message Building & IMAP Compatibility
+    # -------------------------------------------------------------
+    def test_build_inquiry_draft_email(self):
+        inquiry_info = {
+            "name": "Victoria Reed",
+            "email": "vreed@reedpropertylaw.com",
+            "firm": "Reed Law Firm",
+            "department": "Law Practice API Integration",
+            "state_code": "FL",
+            "message": "Looking to integrate via API."
+        }
+        draft_msg, subj, body, role = build_inquiry_draft_email(inquiry_info, self.mock_state_cases)
+        self.assertIn("Elena Brooks", draft_msg["From"])
+        self.assertIn("Victoria Reed", draft_msg["To"])
+        self.assertIn("vreed@reedpropertylaw.com", draft_msg["To"])
+        self.assertIn("Elena Brooks", draft_msg["Reply-To"])
+        self.assertIn("REST API & Practice Management Integration", draft_msg["Subject"])
+        self.assertIsNotNone(draft_msg["Message-ID"])
+        self.assertIsNotNone(draft_msg["Date"])
+        self.assertEqual(role, "Lead Technical Specialist & API Integrations | Surplus Docket")
+
+    def test_prospect_eligibility_accepts_statutory_inquiry(self):
+        msg = Message()
+        sender_email = "relay@formsubmit.co"
+        subject = "[Surplus Docket Inquiry] General Publisher Inquiry — Direct (Arthur Morgan)"
+        body = """SURPLUS DOCKET — LEGAL & STATUTORY CORRESPONDENCE MEMORANDUM
+Name / Counsel: Arthur Morgan
+Direct Email: arthur@morganlaw.com
+Jurisdiction: Georgia
+Department: General Publisher Inquiry
+STATEMENT OF INQUIRY:
+We would like to review sample excess funds records in Fulton County."""
+
+        eligible, reason, target_info, inq_info = is_prospect_eligible(
+            msg, sender_email, "FormSubmit", subject, body,
+            self.directory, self.email_directory, self.domains
+        )
+        self.assertTrue(eligible, "Statutory inquiries must always be eligible")
+        self.assertIsNotNone(inq_info)
+        self.assertEqual(inq_info["email"], "arthur@morganlaw.com")
+        self.assertEqual(inq_info["name"], "Arthur Morgan")
+        self.assertEqual(inq_info["state_code"], "GA")
+
+
+if __name__ == "__main__":
+    unittest.main()

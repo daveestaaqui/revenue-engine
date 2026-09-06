@@ -863,7 +863,66 @@ def format_sample_records(cases):
     return "\n".join(lines)
 
 
-def compose_elena_response(intent, target_info, sender_name, sender_email, subject_raw, text_body, state_cases):
+def get_elena_role_title(role=None, department=None, intent=None):
+    """
+    Returns the dynamic institutional role title for Elena Brooks based on
+    explicit role, inquiry department, or intent context.
+    """
+    if role:
+        r = role.strip()
+        role_map = {
+            "onboarding": "Practitioner Onboarding Specialist",
+            "evaluation": "Practitioner Onboarding Specialist",
+            "licensing": "Director of Practice Relations & Licensing",
+            "enterprise": "Director of Practice Relations & Licensing",
+            "api": "Lead Technical Specialist & API Integrations",
+            "technical": "Lead Technical Specialist & API Integrations",
+            "clerk": "County Registry Operations Liaison",
+            "registry": "County Registry Operations Liaison",
+            "compliance": "Senior Compliance & Research Specialist",
+            "research": "Senior Compliance & Research Specialist",
+            "press": "Public Information Liaison",
+            "media": "Public Information Liaison",
+            "general": "Senior Docket Specialist",
+            "docket": "Senior Docket Specialist",
+        }
+        if r.lower() in role_map:
+            return f"{role_map[r.lower()]} | Surplus Docket"
+        if "|" not in r:
+            return f"{r} | Surplus Docket"
+        return r
+
+    dept_lower = (department or "").lower()
+    if any(k in dept_lower for k in ["evaluation", "7-day", "trial", "intake", "onboarding"]):
+        return "Practitioner Onboarding Specialist | Surplus Docket"
+    if any(k in dept_lower for k in ["enterprise", "licensing", "custom feed", "multi-jurisdiction"]):
+        return "Director of Practice Relations & Licensing | Surplus Docket"
+    if any(k in dept_lower for k in ["api", "integration", "developer", "technical", "rest", "webhook"]):
+        return "Lead Technical Specialist & API Integrations | Surplus Docket"
+    if any(k in dept_lower for k in ["clerk", "correction", "notice", "registry", "court reporter"]):
+        return "County Registry Operations Liaison | Surplus Docket"
+    if any(k in dept_lower for k in ["compliance", "statutory", "senior lien", "title", "encumbrance"]):
+        return "Senior Compliance & Research Specialist | Surplus Docket"
+    if any(k in dept_lower for k in ["press", "academic", "media", "journalist", "research"]):
+        return "Public Information Liaison | Surplus Docket"
+
+    return "Senior Docket Specialist | Surplus Docket"
+
+
+def get_elena_signature(role=None, department=None, intent=None):
+    """
+    Generates an authentic Elena Brooks signature reflecting her dynamic institutional role.
+    """
+    role_title = get_elena_role_title(role=role, department=department, intent=intent)
+    return f"""Best regards,
+
+Elena Brooks
+{role_title}
+surplusdocket.com
+elena.brooks@surplusdocket.com"""
+
+
+def compose_elena_response(intent, target_info, sender_name, sender_email, subject_raw, text_body, state_cases, role=None, department=None):
     """
     Drafts an authentic, context-aware legal correspondence adhering strictly to
     Elena Brooks' persona voice. Completely free of AI tells, buzzwords, or formulaic templates.
@@ -903,12 +962,7 @@ def compose_elena_response(intent, target_info, sender_name, sender_email, subje
     # Resolve benchmark cases
     cases = state_cases.get(detected_state, state_cases.get("FL", []))
 
-    signature = f"""Best regards,
-
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
-surplusdocket.com
-elena.brooks@surplusdocket.com"""
+    signature = get_elena_signature(role=role, department=department, intent=intent)
 
     # 3. Intent-Specific Authentic Legal Prose
     if intent == "OPT_OUT":
@@ -1196,57 +1250,416 @@ Let me know if you have questions about specific circuits or if you'd like to re
 
 def parse_statutory_inquiry(subject_raw, text_body):
     """
-    Parses inquiry form submissions originating from surplusdocket.com/inquiry.html
-    or modal inquiry forms.
+    Parses statutory inquiry form submissions originating from surplusdocket.com/inquiry.html,
+    modal inquiry forms, or forwarded email inquiries.
     """
     subj = subject_raw.strip()
     is_inquiry = any(k in subj for k in [
         "STATUTORY INQUIRY RECORD",
         "[Surplus Docket Inquiry]",
         "[Surplus Docket Modal Inquiry]",
-        "Surplus Docket Public Record Request"
-    ]) or "OFFICIAL STATUTORY INQUIRY RECORD" in text_body
+        "Surplus Docket Public Record Request",
+        "Surplus Docket Inquiry",
+        "Surplus Docket Legal & Regulatory Inquiries",
+    ]) or any(k in text_body for k in [
+        "OFFICIAL STATUTORY INQUIRY RECORD",
+        "SURPLUS DOCKET — LEGAL & STATUTORY CORRESPONDENCE MEMORANDUM",
+        "TRANSMITTING PRACTITIONER / PARTY",
+        "STATEMENT OF INQUIRY",
+        "INQUIRY MEMORANDUM"
+    ])
 
     if not is_inquiry:
         return None
 
+    # 1. Extract Practitioner / Requester Name
     name = ""
-    name_m = re.search(r"Inquiring Entity Name:\s*([^\r\n]+)", text_body)
-    if name_m:
-        name = name_m.group(1).strip()
-    else:
-        name_m2 = re.search(r"\bName:\s*([^\r\n]+)", text_body)
-        if name_m2:
-            name = name_m2.group(1).strip()
+    name_patterns = [
+        r"(?:Name\s*/\s*Counsel|PRACTITIONER\s+NAME|Inquiring\s+Entity\s+Name|Counsel\s+Name|Requester\s+Name|Counsel|Name):\s*([^\r\n]+)",
+        r"(?:^|\n)\s*Name:\s*([^\r\n]+)",
+    ]
+    for pat in name_patterns:
+        m = re.search(pat, text_body, re.IGNORECASE)
+        if m and m.group(1).strip():
+            name = m.group(1).strip()
+            break
+    if not name:
+        m_subj_name = re.search(r"\(([^)]+)\)\s*$", subj)
+        if m_subj_name:
+            name = m_subj_name.group(1).strip()
 
+    # 2. Extract Direct Email
     email_addr = ""
-    email_m = re.search(r"Inquiring Entity Email:\s*([^\s\r\n]+)", text_body)
-    if email_m:
-        email_addr = email_m.group(1).strip()
-    else:
-        email_m2 = re.search(r"\bEmail:\s*([^\s\r\n]+)", text_body)
-        if email_m2:
-            email_addr = email_m2.group(1).strip()
-
-    state_code = "FL"
-    jur_m = re.search(r"Practice Jurisdiction:\s*([^\r\n]+)", text_body)
-    jur_text = jur_m.group(1).strip().lower() if jur_m else text_body.lower()
-    for code, s_name in STATE_NAMES.items():
-        if s_name.lower() in jur_text or code.lower() == jur_text:
-            state_code = code
+    email_patterns = [
+        r"(?:Direct\s+Email|WORK\s+EMAIL|Inquiring\s+Entity\s+Email|Work\s+Email|Counsel\s+Email|Requester\s+Email|Email(?:\s+Address)?):\s*([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)",
+        r"(?:^|\n)\s*Email:\s*([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)",
+    ]
+    for pat in email_patterns:
+        m = re.search(pat, text_body, re.IGNORECASE)
+        if m and m.group(1).strip():
+            email_addr = m.group(1).strip()
             break
 
+    # 3. Extract Law Firm / Organization
+    firm = ""
+    firm_patterns = [
+        r"(?:Firm\s*/\s*Org(?:anization)?|LAW\s+FIRM\s*/\s*ENTITY|Law\s+Firm|Organization|Company|Firm):\s*([^\r\n]+)",
+    ]
+    for pat in firm_patterns:
+        m = re.search(pat, text_body, re.IGNORECASE)
+        if m and m.group(1).strip():
+            cand = m.group(1).strip()
+            if cand.lower() not in ["none specified", "not specified", "independent practice", "n/a", "none"]:
+                firm = cand
+            break
+    if not firm:
+        m_subj_firm = re.search(r"—\s*([^—(\n]+)\s*\([^)]+\)\s*$", subj)
+        if m_subj_firm:
+            cand = m_subj_firm.group(1).strip()
+            if cand.lower() not in ["direct", "independent practice", "n/a", "none"]:
+                firm = cand
+
+    # 4. Extract Department / Inquiry Category
+    department = "General Publisher Inquiry"
+    dept_patterns = [
+        r"(?:Inquiry\s+Category|Department|DEPARTMENT|Category):\s*([^\r\n]+)",
+    ]
+    for pat in dept_patterns:
+        m = re.search(pat, text_body, re.IGNORECASE)
+        if m and m.group(1).strip():
+            department = m.group(1).strip()
+            break
+    if department == "General Publisher Inquiry":
+        m_subj_dept = re.search(r"\[Surplus Docket Inquiry\]\s*([^—–\(\n]+)", subj)
+        if m_subj_dept:
+            department = m_subj_dept.group(1).strip()
+
+    # 5. Extract Jurisdiction and State Code
+    jurisdiction = "Multi-Jurisdiction / National"
+    jur_patterns = [
+        r"(?:Practice\s+Jurisdiction|Jurisdiction|JURISDICTION|State):\s*([^\r\n]+)",
+    ]
+    for pat in jur_patterns:
+        m = re.search(pat, text_body, re.IGNORECASE)
+        if m and m.group(1).strip():
+            jurisdiction = m.group(1).strip()
+            break
+
+    state_code = ""
+    if jurisdiction and jurisdiction.lower() not in ["multi-jurisdiction / national", "other jurisdiction / agency", "all jurisdictions"]:
+        for code, s_name in STATE_NAMES.items():
+            if s_name.lower() in jurisdiction.lower() or f"({code.lower()}" in jurisdiction.lower() or code.lower() == jurisdiction.strip().lower():
+                state_code = code
+                break
+
+    if not state_code:
+        jur_text = (subj + " " + text_body).lower()
+        for code, s_name in STATE_NAMES.items():
+            if s_name.lower() in jur_text or f"({code.lower()}" in jur_text or f"[{code.lower()}" in jur_text:
+                state_code = code
+                break
+
+    if not state_code:
+        state_code = "FL"
+
+    # 6. Extract Docket / Parcel ID
+    docket = ""
+    docket_patterns = [
+        r"(?:Docket\s*/\s*Parcel(?:\s+ID)?|DOCKET\s*/\s*PARCEL|Docket(?:\s+Number)?|Parcel\s+ID):\s*([^\r\n]+)",
+    ]
+    for pat in docket_patterns:
+        m = re.search(pat, text_body, re.IGNORECASE)
+        if m and m.group(1).strip():
+            cand = m.group(1).strip()
+            if cand.lower() not in ["not specified", "none specified", "n/a", "none"]:
+                docket = cand
+            break
+
+    # 7. Extract Tracking / Reference Number
+    ref_num = ""
+    ref_patterns = [
+        r"(?:Tracking\s+Ref|OFFICIAL\s+RECORD|Reference(?:\s+Number)?):\s*([^\r\n]+)",
+    ]
+    for pat in ref_patterns:
+        m = re.search(pat, text_body, re.IGNORECASE)
+        if m and m.group(1).strip():
+            ref_num = m.group(1).strip()
+            break
+
+    # 8. Extract Message / Statement of Inquiry
     msg_text = ""
-    msg_m = re.search(r"Message:\s*(.+)", text_body, re.DOTALL)
-    if msg_m:
-        msg_text = msg_m.group(1).strip()
+    msg_patterns = [
+        r"(?:STATEMENT\s+OF\s+INQUIRY|Statement\s+of\s+Inquiry|INQUIRY\s+MEMORANDUM):\s*[\r\n]+([\s\S]+?)(?:\n[-=]{10,}|\nSurplus Docket Legal|\Z)",
+        r"(?:^|\n)\s*Message:\s*([\s\S]+?)(?:\n[-=]{10,}|\nSurplus Docket Legal|\Z)",
+    ]
+    for pat in msg_patterns:
+        m = re.search(pat, text_body, re.IGNORECASE)
+        if m and m.group(1).strip():
+            msg_text = m.group(1).strip()
+            break
+    if not msg_text:
+        m_fallback = re.search(r"Message:\s*(.+)", text_body, re.DOTALL)
+        if m_fallback:
+            msg_text = m_fallback.group(1).strip()
 
     return {
         "name": name,
         "email": email_addr,
+        "firm": firm,
+        "department": department,
+        "jurisdiction": jurisdiction,
         "state_code": state_code,
+        "docket": docket,
+        "ref": ref_num,
         "message": msg_text,
     }
+
+
+def compose_elena_inquiry_response(inquiry_info, state_cases):
+    """
+    Drafts an authoritative, tailored response to a statutory website inquiry
+    originating from surplusdocket.com/inquiry.html or incoming email inquiry.
+    Dynamically adjusts role, greeting, citations, benchmarks, and answers.
+    """
+    raw_name = inquiry_info.get("name", "").strip()
+    first_name = ""
+    if raw_name:
+        parts = [p.strip() for p in raw_name.split() if p.strip()]
+        if parts and parts[0].title().lower() not in BANNED_FIRST_NAMES:
+            first_name = parts[0].title()
+
+    firm = inquiry_info.get("firm", "").strip()
+    if first_name:
+        greeting = f"Hi {first_name},"
+    elif firm:
+        greeting = f"Hello {firm} team,"
+    else:
+        greeting = "Hello,"
+
+    department = inquiry_info.get("department", "General Publisher Inquiry").strip()
+    state_code = inquiry_info.get("state_code", "FL").strip().upper()
+    state_name = STATE_NAMES.get(state_code, "Florida")
+    statute_cite = STATE_STATUTES.get(state_code, (state_name, "applicable state civil code"))[1]
+    stat_entry = JURISDICTION_STATUTORY_KNOWLEDGE.get(state_code, JURISDICTION_STATUTORY_KNOWLEDGE["FL"])
+    claim_window = stat_entry.get("claim_window", "designated statutory claim window")
+    custodian = stat_entry.get("custodian", "court or county registry")
+    cases = state_cases.get(state_code, state_cases.get("FL", []))[:3]
+    sample_lines = format_sample_records(cases)
+    user_message = inquiry_info.get("message", "").strip()
+    docket_ref = inquiry_info.get("docket", "").strip()
+
+    role_title = get_elena_role_title(department=department)
+    signature = get_elena_signature(department=department)
+
+    # Contextual additions based on user inquiry queries
+    bar_note = ""
+    if any(k in user_message.lower() for k in ["phone", "skip trace", "cold call", "contact info", "call the owner"]):
+        bar_note = f"\n\nRegarding owner contact information: we intentionally do not provide consumer phone numbers or cold-call lists. Most state bar associations—including Florida Bar Rule 4-7.18 and equivalent rules across {state_name}—strictly regulate direct telephone solicitation of distressed property owners and surplus claimants. Instead, our feed delivers verified record owner and estate names, property situs addresses, parcel IDs, and recorded deed history so counsel can utilize compliant direct written correspondence."
+
+    tyler_note = ""
+    if any(k in user_message.lower() for k in ["tyler", "hennepin", "supreme court", "scotus", "takings clause"]):
+        tyler_note = f"\n\nRegarding Tyler v. Hennepin County (598 U.S. 631): the Supreme Court's unanimous ruling established that county governments cannot retain property equity exceeding delinquent tax debt under the Fifth Amendment. In {state_name}, this has established clearer court registry deposit procedures under {statute_cite}, requiring former owners and lienholders to petition for surplus funds within {claim_window}."
+
+    upl_note = ""
+    if any(k in user_message.lower() for k in ["represent me", "my case", "hire you", "file my claim", "need a lawyer", "need an attorney"]):
+        upl_note = f"\n\nImportant Notice: Surplus Docket is an independent court records compiler and technology provider for licensed counsel and recovery professionals—we are not a law firm and do not provide legal representation or file petitions on behalf of property owners. All formal recovery claims must be evaluated and filed by licensed legal counsel admitted to practice in {state_name}."
+
+    dept_lower = department.lower()
+
+    # 1. 7-Day Institutional Practice Evaluation
+    if any(k in dept_lower for k in ["evaluation", "7-day", "trial", "intake"]):
+        is_expansion = state_code in ["NC", "TN", "CA"]
+        if is_expansion:
+            tier_note = f"Records for {state_name} are compiled and delivered under our National Feed + REST API Tier ($449/month, covering FL, TX, GA, NC, TN, and CA with priority 6:00 AM EST dispatch and live REST API Bearer tokens)."
+            checkout_url = "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y"
+        else:
+            tier_note = f"Under our Tri-State Core Feed plan, coverage includes Florida, Texas, and Georgia for a flat $249/month starting on Day 8. There are no per-claim charges, no long-term contracts, and you can cancel anytime with one click through your self-service Stripe billing portal."
+            checkout_url = STRIPE_LINK
+
+        reply_subject = f"Re: Surplus Docket — 7-Day Practice Evaluation [{state_name}]"
+        reply_body = f"""{greeting}
+
+Thank you for requesting an institutional practice evaluation of Surplus Docket for {state_name}.
+
+Your 7-day evaluation is activated with $0 due today. During the evaluation, your practice receives our full morning feed delivered directly to your inbox every business morning at 7:00 AM EST in both CSV and Excel formats.
+
+Here are verified, active records from our current {state_name} index (with senior institutional mortgages scrubbed upstream):
+
+{sample_lines}
+
+{tier_note}
+
+You can initialize your evaluation directly here:
+{checkout_url}
+{bar_note}{tyler_note}{upl_note}
+
+Please let me know if your team needs specific judicial circuit filtering, statutory guidelines under {statute_cite}, or sample dossiers for {state_name}.
+
+{signature}
+
+{LEGAL_DISCLAIMER}"""
+
+    # 2. Enterprise Feed Licensing
+    elif any(k in dept_lower for k in ["enterprise", "licensing", "custom feed", "multi-jurisdiction"]):
+        reply_subject = f"Re: Surplus Docket — Enterprise & Multi-Jurisdiction Feed Licensing"
+        reply_body = f"""{greeting}
+
+Thank you for your inquiry regarding enterprise and multi-jurisdiction feed licensing with Surplus Docket.
+
+For practices requiring comprehensive multi-state coverage and direct data ingestion, we offer our National Feed + REST API Tier ($449/month):
+- Full 6-State Coverage: Florida, Texas, Georgia, North Carolina, Tennessee, and California.
+- Priority Morning Dispatch: Feeds delivered at 6:00 AM EST (one hour ahead of standard distribution).
+- Direct REST API Access: Bearer-token authenticated endpoints (/api/v1/*.json) for automated pipeline and CRM ingestion.
+- Enterprise Multi-Seat Access: Unlimited distribution across your firm's attorneys and paralegals.
+
+Here is a verified sample from our current {state_name} docket index:
+
+{sample_lines}
+
+You can activate the National Feed + REST API tier directly here:
+https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y
+{bar_note}{tyler_note}{upl_note}
+
+If your firm requires custom high-surplus thresholding (e.g., filtering exclusively for files exceeding $50k or $100k) or specialized billing arrangements, I would be glad to set that up for your file.
+
+{signature}
+
+{LEGAL_DISCLAIMER}"""
+
+    # 3. Law Practice API Integration
+    elif any(k in dept_lower for k in ["api", "integration", "developer", "technical", "rest", "webhook"]):
+        reply_subject = f"Re: Surplus Docket — REST API & Practice Management Integration"
+        reply_body = f"""{greeting}
+
+Thank you for reaching out regarding REST API and practice management integration with Surplus Docket.
+
+Our Developer REST API is designed for programmatic legal practice management integration (including Clio, Filevine, Smokeball, or internal SQL databases):
+- Standard Endpoints: Available in JSON format at /api/v1/*.json (including state-specific feeds for FL, TX, GA, NC, TN, CA and consolidated master feed).
+- Authentication: Secure HTTP header authentication using standard Bearer tokens (Authorization: Bearer <API_TOKEN>).
+- Daily Data Pipeline: Feeds update automatically every business morning by 6:00 AM EST with complete court docket references, parcel IDs, clean equity calculations, and county registry links.
+- Interactive Documentation: Complete schema specifications and endpoint parameters are published at https://surplusdocket.com/api-documentation.html.
+
+API access is provisioned under our National Feed + REST API Tier ($449/month):
+https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y
+{bar_note}{tyler_note}{upl_note}
+
+Let me know what system your practice is currently integrating with, and I can provide sample JSON schemas or webhook recommendations for your developers.
+
+{signature}
+
+{LEGAL_DISCLAIMER}"""
+
+    # 4. Clerk Docket Correction / Notice
+    elif any(k in dept_lower for k in ["clerk", "correction", "notice", "registry", "court reporter"]):
+        docket_clause = f"regarding file/docket {docket_ref}" if docket_ref else f"for {state_name}"
+        reply_subject = f"Re: Surplus Docket — County Registry Record Verification & Notice [{docket_ref or state_name}]"
+        reply_body = f"""{greeting}
+
+Thank you for contacting Surplus Docket {docket_clause}.
+
+We take county registry accuracy, certificate reconciliation, and statutory notice requirements with highest judicial deference and priority. Our operations desk cross-references clerk disbursement ledgers, court registry certificates, and subsequent claim petitions every business morning to maintain 100% fidelity with official public records.
+
+If your notice concerns a specific certificate of disbursement, an amended surplus balance, or an entered order of distribution, please reply with the certificate number or docket reference so our compiler desk can update and reconcile the file across our daily index immediately.
+
+We greatly appreciate the collaboration of county clerk offices and court administrators in ensuring public records integrity.
+
+{signature}
+
+{LEGAL_DISCLAIMER}"""
+
+    # 5. Statutory Compliance Verification
+    elif any(k in dept_lower for k in ["compliance", "statutory", "senior lien", "title", "encumbrance"]):
+        reply_subject = f"Re: Surplus Docket — Statutory Compliance & Title Verification [{state_name}]"
+        reply_body = f"""{greeting}
+
+Thank you for reaching out regarding statutory compliance and title verification standards for {state_name}.
+
+Raw county surplus ledgers often list gross excess proceeds without accounting for superior encumbrances. Our data compiler desk applies multi-layered title and institutional lien scrubbing upstream:
+- Senior Institutional Encumbrances: We cross-reference county deed records and lis pendens filings to purge files encumbered by unreleased senior institutional mortgages or senior deeds of trust.
+- Verified Clean Equity: Feeds isolate unencumbered equity balances where the surplus deposited with the {custodian} exceeds recorded senior claims.
+- Statutory Deadlines: Files are tracked against state limitation periods ({statute_cite} designated {claim_window}) before escheatment.
+
+Here is an excerpt of active, verified files currently indexed in {state_name}:
+
+{sample_lines}
+
+Surplus Docket operates strictly as an independent court records compiler and does not provide formal legal opinions or legal representation; all formal surplus distribution petitions must be verified and filed by licensed counsel.
+{bar_note}{tyler_note}{upl_note}
+
+Please let me know if you would like to review our title scrubbing methodology for specific judicial circuits in {state_name}.
+
+{signature}
+
+{LEGAL_DISCLAIMER}"""
+
+    # 6. Press / Academic Research
+    elif any(k in dept_lower for k in ["press", "academic", "media", "journalist", "research"]):
+        reply_subject = f"Re: Surplus Docket — Public Records & Academic Research Inquiry"
+        reply_body = f"""{greeting}
+
+Thank you for contacting Surplus Docket regarding your research inquiry.
+
+Surplus Docket compiles and monitors public record excess proceeds across judicial circuits and county clerk registries. Our indexing focuses on post-foreclosure property equity and statutory claim windows under state codes and constitutional standards established by the Supreme Court in Tyler v. Hennepin County, 598 U.S. 631 (2023).
+
+We frequently assist academic researchers, journalists, and legal scholars by providing aggregated public data sets, statutory timeline comparisons, and municipal surplus retention analytics across our covered jurisdictions.
+
+Please reply with the specific scope, academic institution, or research parameters you are examining, and our research desk will be glad to compile relevant non-confidential public record data for your analysis.
+
+{signature}
+
+{LEGAL_DISCLAIMER}"""
+
+    # 7. General Publisher Inquiry / Default
+    else:
+        is_expansion = state_code in ["NC", "TN", "CA"]
+        reply_subject = f"Re: Surplus Docket — Public Record Docket Inquiry [{state_name}]"
+        reply_body = f"""{greeting}
+
+Thank you for reaching out to Surplus Docket regarding {state_name} public record excess proceeds intelligence.
+
+Surplus Docket indexes active, unencumbered surplus funds across county registries every business morning. We scrub raw county ledgers to purge senior bank mortgages and dead leads, delivering verified equity balances directly to counsel at 7:00 AM EST every Monday through Friday.
+
+Here are sample active records from our current {state_name} index:
+
+{sample_lines}
+
+We offer two transparent subscriptions:
+1. Tri-State Core Feed ($249/mo with 7-day trial $0 due today): Florida, Texas, and Georgia morning CSV & Excel delivery.
+   {STRIPE_LINK}
+2. National Feed + REST API ($449/mo): Complete 6-state coverage (FL, TX, GA + NC, TN, CA) with priority 6:00 AM EST dispatch and full REST API Bearer token access.
+   https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y
+{bar_note}{tyler_note}{upl_note}
+
+Please let me know if your practice requires specific county-level coverage or if you have questions about statutory procedures under {statute_cite}.
+
+{signature}
+
+{LEGAL_DISCLAIMER}"""
+
+    return reply_subject, reply_body, role_title
+
+
+def build_inquiry_draft_email(inquiry_info, state_cases, message_id=None):
+    """
+    Constructs a full MIMEText email draft response for a statutory inquiry.
+    Returns: (draft_msg: MIMEText, reply_subject: str, reply_body: str, role_title: str)
+    """
+    prospect_name = inquiry_info.get("name", "").strip()
+    prospect_email = inquiry_info.get("email", "").strip()
+    reply_subject, reply_body, role_title = compose_elena_inquiry_response(inquiry_info, state_cases)
+
+    draft_msg = MIMEText(reply_body, "plain", "utf-8")
+    draft_msg["From"] = f"Elena Brooks <{SENDER_EMAIL}>"
+    draft_msg["To"] = f"{prospect_name} <{prospect_email}>" if prospect_name else prospect_email
+    draft_msg["Subject"] = reply_subject
+    draft_msg["Reply-To"] = f"Elena Brooks <{REPLY_TO}>"
+    if message_id:
+        draft_msg["In-Reply-To"] = message_id
+        draft_msg["References"] = message_id
+    draft_msg["Date"] = formatdate(localtime=True)
+    draft_msg["Message-ID"] = make_msgid()
+
+    return draft_msg, reply_subject, reply_body, role_title
 
 
 def load_feed_data():
@@ -1483,61 +1896,17 @@ def check_and_create_auto_responses(mail, state_cases):
         if inquiry_info:
             prospect_name = inquiry_info["name"]
             prospect_email = inquiry_info["email"] or reply_to_email
-            state_code = inquiry_info["state_code"]
-            state_name = STATE_NAMES.get(state_code, "Florida")
-            statute_cite = STATE_STATUTES.get(state_code, (state_name, "applicable state civil code"))[1]
-            cases = state_cases.get(state_code, state_cases.get("FL", []))[:3]
+            state_code = inquiry_info.get("state_code", "FL")
+            department = inquiry_info.get("department", "General Publisher Inquiry")
 
-            draft_key = f"inquiry:{prospect_email}:{state_code}"
+            draft_key = f"inquiry:{prospect_email}:{state_code}:{department}"
             if draft_key in already_drafted:
                 mail.store(mid, "+FLAGS", r"(\Seen)")
                 continue
 
-            first_name = ""
-            if prospect_name:
-                parts = [p.strip() for p in prospect_name.split() if p.strip()]
-                if parts and parts[0].title().lower() not in BANNED_FIRST_NAMES:
-                    first_name = parts[0].title()
-
-            greeting = f"Hi {first_name}," if first_name else "Hello,"
-
-            sample_lines = format_sample_records(cases)
-
-            reply_body = f"""{greeting}
-
-Thank you for reaching out to Surplus Docket regarding {state_name} public record excess proceeds data.
-
-Here are a few verified, active records from our current {state_name} docket index (with senior bank encumbrances filtered out upstream):
-
-{sample_lines}
-
-We compile and deliver the complete morning feed at 7:00 AM EST every business day in CSV, Excel, and JSON formats ($249/month flat, cancel anytime).
-
-You can activate daily feed delivery for your practice directly here:
-{STRIPE_LINK}
-
-Please let me know if you would like custom county-level filtering or have specific questions about statutory filing windows under {statute_cite}.
-
-Best regards,
-
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
-surplusdocket.com
-elena.brooks@surplusdocket.com
-
-{LEGAL_DISCLAIMER}"""
-
-            reply_subject = f"Re: Surplus Docket — Statutory Public Record Inquiry [{state_name}]"
-            draft_msg = MIMEText(reply_body, "plain", "utf-8")
-            draft_msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
-            draft_msg["To"] = f"{prospect_name} <{prospect_email}>" if prospect_name else prospect_email
-            draft_msg["Subject"] = reply_subject
-            draft_msg["Reply-To"] = f"{FROM_NAME} <{REPLY_TO}>"
-            if message_id:
-                draft_msg["In-Reply-To"] = message_id
-                draft_msg["References"] = message_id
-            draft_msg["Date"] = formatdate(localtime=True)
-            draft_msg["Message-ID"] = make_msgid()
+            draft_msg, reply_subject, reply_body, role_title = build_inquiry_draft_email(
+                inquiry_info, state_cases, message_id=message_id
+            )
 
             mail.select('"[Gmail]/Drafts"')
             now_epoch = time.time()
@@ -1547,7 +1916,7 @@ elena.brooks@surplusdocket.com
             if append_status == "OK":
                 save_created_draft(draft_key)
                 mail.store(mid, "+FLAGS", r"(\Seen)")
-                log(f"  🎉 Statutory inquiry draft created in Gmail for {prospect_email}!")
+                log(f"  🎉 Elena Brooks ({role_title}) statutory inquiry draft created in Gmail for {prospect_email}!")
             continue
 
         # -------------------------------------------------------------
