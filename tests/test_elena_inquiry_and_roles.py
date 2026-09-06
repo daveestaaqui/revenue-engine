@@ -24,6 +24,7 @@ sys.path.insert(0, str(BASE_DIR / "outreach"))
 from outreach.auto_responder_and_draft_cleaner import (
     parse_statutory_inquiry,
     parse_google_voice_voicemail,
+    extract_spoken_email,
     get_elena_role_title,
     get_elena_signature,
     get_department_persona,
@@ -344,7 +345,8 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         self.assertIn("Aubrey Hayes", body)
         self.assertNotIn("forwarded your request to Elena Brooks", body)
         self.assertNotIn("I have logged your inquiry and roped in Elena Brooks", body)
-        self.assertIn("Elena Brooks on our docket research desk will review the records", body)
+        self.assertNotIn("Elena Brooks", body)
+        self.assertIn("our intake desk will pull the records for your review", body)
         self.assertIn("7:00 AM EST", body)
         self.assertIn("$249/mo", body)
 
@@ -468,6 +470,118 @@ Play message: https://voice.google.com/message/12345"""
         )
         self.assertTrue(eligible)
         self.assertEqual(inq_info["phone"], "(508) 419-3178")
+
+    def test_extract_spoken_email_varieties(self):
+        """Validates normalization of spoken emails and Google Voice STT transcriptions."""
+        # STT merged format
+        self.assertEqual(
+            extract_spoken_email("my number I mean my email is the sandwich fitnessgmailcom If you can do that"),
+            "sandwichfitness@gmail.com"
+        )
+        self.assertEqual(
+            extract_spoken_email("My email address is sandwich fitnessgmailcom Just give me a general overview"),
+            "sandwichfitness@gmail.com"
+        )
+        # Spoken spaces
+        self.assertEqual(
+            extract_spoken_email("Call me back or email me at dave miller gmail com"),
+            "davemiller@gmail.com"
+        )
+        # Spoken dot and at
+        self.assertEqual(
+            extract_spoken_email("Hi this is John Doe my email is john dot doe at legalfirm dot com"),
+            "john.doe@legalfirm.com"
+        )
+        # Literal email
+        self.assertEqual(
+            extract_spoken_email("Please send to sandwichfitness@gmail.com right away"),
+            "sandwichfitness@gmail.com"
+        )
+
+    def test_parse_google_voice_voicemail_david_mahler_and_dave_miller(self):
+        """Verifies parsing of actual user voicemails from Google Voice."""
+        sender_email = "voice-noreply@google.com"
+
+        # Message 1: Dave Miller
+        sub1 = "New voicemail from (508) 517-8981 at 5:02 PM"
+        body1 = """New voicemail from (508) 517-8981:
+
+"Hi this is Dave Miller Can you just give me a general overview of your services my number I mean my email is the sandwich fitnessgmailcom If you can do that thank you"
+
+Play message: https://voice.google.com/message/4955"""
+
+        vm1 = parse_google_voice_voicemail(sender_email, sub1, body1)
+        self.assertIsNotNone(vm1)
+        self.assertEqual(vm1["name"], "Dave Miller")
+        self.assertEqual(vm1["email"], "sandwichfitness@gmail.com")
+        self.assertEqual(vm1["phone"], "(508) 517-8981")
+        self.assertTrue(vm1["is_voicemail"])
+
+        # Message 2: David Mahler
+        sub2 = "New voicemail from (508) 517-8981 at 5:06 PM"
+        body2 = """New voicemail from (508) 517-8981:
+
+"My name my name is David Mahler My email address is sandwich fitnessgmailcom Just give me a general overview of what you offer For the you know different places in Georgia"
+
+Play message: https://voice.google.com/message/4956"""
+
+        vm2 = parse_google_voice_voicemail(sender_email, sub2, body2)
+        self.assertIsNotNone(vm2)
+        self.assertEqual(vm2["name"], "David Mahler")
+        self.assertEqual(vm2["email"], "sandwichfitness@gmail.com")
+        self.assertEqual(vm2["phone"], "(508) 517-8981")
+        self.assertEqual(vm2["state_code"], "GA")
+        self.assertEqual(vm2["jurisdiction"], "Georgia")
+        self.assertTrue(vm2["is_voicemail"])
+
+    def test_voicemail_general_overview_does_not_rope_in_elena(self):
+        """
+        Inbound voicemail requesting general overview of services / Georgia
+        must be handled 100% by Aubrey Hayes without roping in Elena Brooks.
+        """
+        vm_inquiry = {
+            "name": "David Mahler",
+            "email": "sandwichfitness@gmail.com",
+            "phone": "(508) 517-8981",
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "Georgia",
+            "state_code": "GA",
+            "docket": "",
+            "ref": "GV-VM-5085178981",
+            "message": "[Phone Inquiry via Google Voice (508) 419-3178]: My name my name is David Mahler My email address is sandwich fitnessgmailcom Just give me a general overview of what you offer For the you know different places in Georgia",
+            "is_voicemail": True,
+        }
+        subj, body, role = compose_elena_inquiry_response(vm_inquiry, self.mock_state_cases)
+        self.assertIn("Court Surplus Feeds [Georgia]", subj)
+        self.assertIn("Executive Intake Coordinator", role)
+        self.assertIn("Aubrey Hayes", body)
+        self.assertIn("O.C.G.A. § 48-4-5", body)
+        self.assertNotIn("forwarded your request to Elena Brooks", body)
+        self.assertNotIn("Elena Brooks", body, "Elena Brooks must NOT be mentioned when inquiry is general overview")
+        self.assertIn("our intake desk will pull the records for your review", body)
+        self.assertIn("Hi David,", body)
+
+    def test_voicemail_specific_docket_ropes_in_elena(self):
+        """
+        Inbound voicemail with specific docket number DOES rope in Elena Brooks.
+        """
+        vm_inquiry = {
+            "name": "David Mahler",
+            "email": "sandwichfitness@gmail.com",
+            "phone": "(508) 517-8981",
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "Florida",
+            "state_code": "FL",
+            "docket": "2024-TD-001955",
+            "message": "[Phone Inquiry via Google Voice (508) 419-3178]: Can you check docket 2024-TD-001955 in Orange County?",
+            "is_voicemail": True,
+        }
+        subj, body, role = compose_elena_inquiry_response(vm_inquiry, self.mock_state_cases)
+        self.assertIn("Docket Research & Intake [2024-TD-001955]", subj)
+        self.assertIn("Elena Brooks on our docket research desk", body)
+        self.assertIn("Elena will review your file and follow up directly", body)
 
 
 if __name__ == "__main__":

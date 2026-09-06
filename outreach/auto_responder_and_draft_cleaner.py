@@ -62,6 +62,7 @@ GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
 FROM_NAME = os.getenv("FROM_NAME", "Surplus Docket Intelligence")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL", "dockets@surplusdocket.com")
 REPLY_TO = os.getenv("REPLY_TO", "dockets@surplusdocket.com")
+REPORT_RECIPIENT = os.getenv("REPORT_RECIPIENT", "sandwichfitness@gmail.com")
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
 
@@ -1605,6 +1606,80 @@ def parse_statutory_inquiry(subject_raw, text_body):
     }
 
 
+def extract_spoken_email(text):
+    """
+    Extracts and normalizes email addresses from spoken audio transcripts
+    and Google Voice speech-to-text outputs.
+    Handles:
+    - Standard literal email: 'john@example.com'
+    - Spoken cues with provider: 'my email address is sandwich fitnessgmailcom' -> sandwichfitness@gmail.com
+    - Spoken with spaces: 'sandwich fitness gmail com' -> sandwichfitness@gmail.com
+    - Spoken 'at' and 'dot': 'john dot doe at legalfirm dot com' -> john.doe@legalfirm.com
+    """
+    if not text:
+        return ""
+    text = text.strip()
+
+    # 1. Standard literal email address regex
+    m = re.search(r"\b[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\b", text)
+    if m:
+        return m.group(0).lower().strip()
+
+    known_tlds = r"(?:com|org|net|edu|gov|io|co|us)"
+    known_providers = r"(?:gmail|yahoo|outlook|hotmail|icloud|aol|proton|protonmail|comcast|sbcglobal|att|verizon|zoho)"
+
+    # 2. Spoken with explicit email cue: "email is ...", "email address is ...", "email me at ..."
+    cue_pattern = re.search(
+        rf"(?:my\s+)?email(?:\s+address)?(?:\s+is|\s*:|\s+me\s+at|\s+at|\s+to)?\s+(?:the\s+)?([a-zA-Z0-9\s._-]+?)(?:\s*(?:@|at)\s*|\s+)?({known_providers})\s*(?:dot|\.|\s*)?({known_tlds})\b",
+        text,
+        re.IGNORECASE
+    )
+    if cue_pattern:
+        raw_user = cue_pattern.group(1).strip()
+        provider = cue_pattern.group(2).strip().lower()
+        tld = cue_pattern.group(3).strip().lower()
+        stopwords = {"the", "is", "my", "a", "an", "me", "to", "at", "it", "its", "address"}
+        words = [w for w in re.split(r"[\s_]+", raw_user) if w and w.lower() not in stopwords]
+        user_clean = "".join(words).lower()
+        if user_clean:
+            return f"{user_clean}@{provider}.{tld}"
+
+    # 3. Merged format without explicit cue: "sandwich fitnessgmailcom" or "sandwichfitnessgmailcom"
+    merged_pattern = re.search(
+        rf"\b([a-zA-Z0-9]+(?:\s+[a-zA-Z0-9]+){{0,2}})\s*({known_providers})({known_tlds})\b",
+        text,
+        re.IGNORECASE
+    )
+    if merged_pattern:
+        raw_user = merged_pattern.group(1).strip()
+        provider = merged_pattern.group(2).strip().lower()
+        tld = merged_pattern.group(3).strip().lower()
+        stopwords = {"the", "is", "my", "email", "address", "to", "at", "me", "for", "in"}
+        words = [w for w in re.split(r"[\s_]+", raw_user) if w and w.lower() not in stopwords]
+        user_clean = "".join(words).lower()
+        if user_clean:
+            return f"{user_clean}@{provider}.{tld}"
+
+    # 4. Spoken with "dot" and "at" (custom domain, e.g. "john dot doe at lawfirm dot com")
+    at_dot_pattern = re.search(
+        r"(?:my\s+)?email(?:\s+address)?(?:\s+is|\s*:|\s+me\s+at|\s+at|\s+to)?\s*(?:the\s+)?([a-zA-Z0-9]+(?:\s*(?:dot|\.)\s*[a-zA-Z0-9]+)*)\s+(?:at|@)\s+([a-zA-Z0-9-]+)\s+(?:dot|\.)\s+([a-zA-Z]{2,})\b",
+        text,
+        re.IGNORECASE
+    )
+    if at_dot_pattern:
+        raw_user = at_dot_pattern.group(1).strip()
+        domain = at_dot_pattern.group(2).strip().lower()
+        tld = at_dot_pattern.group(3).strip().lower()
+        user_clean = re.sub(r"\s*dot\s*", ".", raw_user, flags=re.IGNORECASE)
+        stopwords = {"the", "is", "my", "a", "an", "me", "to", "at", "address"}
+        words = [w for w in re.split(r"[\s_]+", user_clean) if w and w.lower() not in stopwords]
+        clean_name = "".join(words).lower()
+        if clean_name:
+            return f"{clean_name}@{domain}.{tld}"
+
+    return ""
+
+
 def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
     """
     Parses Google Voice voicemail notification emails forwarding to sandwichfitness@gmail.com
@@ -1645,20 +1720,32 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
     transcript = " ".join(captured).strip() if captured else text_body.strip()
 
     # 3. Detect attorney email if spoken or present
-    email_match = re.search(r"[\w\.-]+@[\w\.-]+\.\w+", transcript)
-    caller_email = email_match.group(0).lower().strip() if email_match else ""
+    caller_email = extract_spoken_email(transcript)
 
     # 4. Extract jurisdiction
     det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, transcript, default_state="FL")
     state_name = STATE_NAMES.get(det_state, "Florida")
 
-    # 5. Extract name if stated
+    # 5. Extract caller name if stated
+    clean_text = re.sub(r"\bmy name\s+my name is\b", "my name is", transcript, flags=re.IGNORECASE)
+    stopwords = r"(?!my\b|our\b|can\b|could\b|just\b|email\b|phone\b|with\b|from\b|and\b|the\b|at\b)"
+    delims = r"(?:\s+(?:can\s+you|can|could|my|our|email|phone|number|just|calling|from|with|regarding|about|at)\b|[.,;!?\n]|$)"
     name_match = re.search(
-        r"(?:this is|my name is|i'm|im|calling is)\s+([A-Za-z\s]+?)(?:from|with|calling|\.|\,)",
-        transcript, re.IGNORECASE
+        rf"(?:this is|my name is|i\x27m|im|i am|calling is)\s+({stopwords}[A-Za-z]+(?:\s+{stopwords}[A-Za-z]+){{0,2}}){delims}",
+        clean_text,
+        re.IGNORECASE
     )
-    caller_name = name_match.group(1).strip().title() if name_match else f"Inquiring Counsel ({caller_phone})"
+    if name_match:
+        cand = name_match.group(1).strip().title()
+        stop = {"a", "an", "the", "someone", "unknown", "calling", "just"}
+        if cand.lower() not in stop and len(cand.split()) <= 3:
+            caller_name = cand
+        else:
+            caller_name = f"Inquiring Counsel ({caller_phone})"
+    else:
+        caller_name = f"Inquiring Counsel ({caller_phone})"
 
+    ref_hash = abs(hash(transcript[:60])) % 1000000
     return {
         "name": caller_name,
         "email": caller_email,
@@ -1668,7 +1755,7 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
         "jurisdiction": state_name,
         "state_code": det_state,
         "docket": "",
-        "ref": f"GV-VM-{caller_phone}",
+        "ref": f"GV-VM-{caller_phone}-{ref_hash}",
         "message": f"[Phone Inquiry via Google Voice (508) 419-3178]: {transcript}",
         "is_voicemail": True,
     }
@@ -1872,18 +1959,18 @@ Please reply with the specific scope, academic institution, or research paramete
     # 7. Inquiries & Intake Desk (Aubrey Hayes Executive Intake)
     elif any(k in dept_lower for k in ["intake", "aubrey", "voicemail", "inquiries"]):
         # Conditionally rope in Elena Brooks ONLY if the inquiry content justifies it:
-        # Justified when:
+        # Justified strictly when:
         # 1. Specific court docket, case number, or parcel ID is provided.
-        # 2. Inquirer asks about specific case evaluations, county filings, registry balances,
-        #    statutory claim windows, lien priorities, or surplus petitions.
+        # 2. Inquirer explicitly asks for docket lookup, case evaluation, lien/mortgage priority,
+        #    court registry deposit research, or statutory petition filings.
         has_specific_docket = bool(docket_ref) or bool(
-            re.search(r"\b(\d{2,4}[-\s][A-Za-z]{1,4}[-\s]\d{3,}|\d{4,}[-\s]\d{2,}|\b[A-Za-z]{1,3}\d{6,}\b|\bF-\d{4,}\b)\b", user_message)
+            re.search(r"\b(\d{2,4}[-\s][A-Za-z]{1,4}[-\s]\d{3,}|\d{4,}[-\s]\d{2,}|\b[A-Za-z]{1,3}\d{6,}\b|\bF-\d{4,}\b|\b\d{2,4}-CA-\d+|\b\d{2,4}-CC-\d+)\b", user_message)
         )
         statutory_keywords = [
-            "docket", "case number", "case no", "evaluation", "statute", "lien priority", "mortgage",
-            "circuit court", "county registry", "court registry", "registry balance", "proceeds", "petition",
-            "certificate of disbursement", "unclaimed funds", "escheatment", "encumbrance", "lis pendens",
-            "county", "circuit"
+            "docket search", "case search", "case lookup", "docket lookup", "look up docket",
+            "pull filing", "pull the filing", "lien search", "mortgage priority", "title search",
+            "petition for distribution", "certificate of disbursement", "interpleader", "registry deposit",
+            "escheatment search", "case status", "docket status"
         ]
         has_statutory_need = any(k in user_message.lower() for k in statutory_keywords)
         justifies_elena = has_specific_docket or has_statutory_need
@@ -1907,7 +1994,7 @@ Please reply with the specific scope, academic institution, or research paramete
             )
             followup_clause = (
                 f"If your practice requires coverage for a specific county or if you would like our research desk to pull active filings "
-                f"for a specific docket or parcel ID, please reply with the case reference and Elena Brooks on our docket research desk will review the records."
+                f"for a specific docket or parcel ID, please reply with the case reference and our intake desk will pull the records for your review."
             )
 
         reply_body = f"""{greeting}
@@ -1973,6 +2060,11 @@ def build_inquiry_draft_email(inquiry_info, state_cases, message_id=None):
     department = inquiry_info.get("department", "General Publisher Inquiry").strip()
     persona = get_department_persona(department=department)
     reply_subject, reply_body, role_title = compose_elena_inquiry_response(inquiry_info, state_cases)
+
+    if inquiry_info.get("is_voicemail"):
+        phone_num = inquiry_info.get("phone", "")
+        if phone_num:
+            reply_subject = f"[Phone Inquiry Dossier — {phone_num}] {reply_subject}"
 
     now_epoch = time.time()
     draft_msg = MIMEText(reply_body, "plain", "utf-8")
@@ -2129,27 +2221,91 @@ def clean_imap_drafts(mail):
         log(f"✓ Expunged {removed_count} sent draft(s) from [Gmail]/Drafts.")
 
 
+def sync_voicemails_to_inbox(mail):
+    """
+    Ensures any Google Voice voicemail notifications in [Gmail]/All Mail
+    are present in INBOX so the user never misses an inbound voicemail.
+    """
+    try:
+        status, _ = mail.select('"[Gmail]/All Mail"')
+        if status != "OK":
+            return
+        status, messages = mail.search(None, '(FROM "voice-noreply@google.com")')
+        if status != "OK" or not messages[0]:
+            return
+        gv_ids = messages[0].split()
+        for mid in gv_ids[-10:]:
+            res, data = mail.fetch(mid, "(X-GM-LABELS)")
+            if res == "OK" and data and isinstance(data[0], tuple):
+                raw_labels = data[0][0] if isinstance(data[0][0], (bytes, str)) else data[0][1]
+                labels_str = raw_labels.decode("utf-8", errors="ignore") if isinstance(raw_labels, bytes) else str(raw_labels)
+                if "\\Inbox" not in labels_str and "Inbox" not in labels_str:
+                    mail.copy(mid, "INBOX")
+                    log(f"  📥 Auto-routed Google Voice voicemail {mid} from All Mail into INBOX.")
+    except Exception as e:
+        log(f"Notice during voicemail inbox sync: {e}")
+
+
 def check_and_create_auto_responses(mail, state_cases):
     """
     Scans INBOX:
     1. Automatically detects and executes unsubscriptions for marketing/newsletters.
-    2. Detects prospect replies from law firms and inquiries from surplusdocket.com.
+    2. Detects prospect replies from law firms and inquiries from surplusdocket.com or Google Voice.
     3. Creates personalized response drafts in [Gmail]/Drafts for David's review.
     """
     status, count = mail.select("INBOX")
     if status != "OK":
         return
 
-    status, messages = mail.search(None, "UNSEEN")
-    if status != "OK" or not messages[0]:
+    # Gather UNSEEN messages plus recent INBOX messages (last 25)
+    candidate_ids = []
+    seen_ids = set()
+
+    status, unseen = mail.search(None, "UNSEEN")
+    if status == "OK" and unseen[0]:
+        for mid in unseen[0].split():
+            if mid not in seen_ids:
+                candidate_ids.append((mid, False))  # (mid, is_already_seen=False)
+                seen_ids.add(mid)
+
+    status, all_msgs = mail.search(None, "ALL")
+    if status == "OK" and all_msgs[0]:
+        all_ids = all_msgs[0].split()
+        for mid in reversed(all_ids[-25:]):
+            if mid not in seen_ids:
+                candidate_ids.append((mid, True))  # (mid, is_already_seen=True)
+                seen_ids.add(mid)
+
+    if not candidate_ids:
         return
 
-    msg_ids = messages[0].split()
     directory, email_directory, target_domains = load_target_directory()
     already_unsubscribed = load_unsubscribed_urls()
     already_drafted = load_created_drafts()
 
-    for mid in msg_ids:
+    for mid, is_already_seen in candidate_ids:
+        # Optimization: for messages already seen, quickly check header first to avoid unnecessary processing
+        if is_already_seen:
+            h_res, h_data = mail.fetch(mid, "(BODY[HEADER.FIELDS (FROM SUBJECT TO)])")
+            if h_res != "OK" or not h_data or not isinstance(h_data[0], tuple):
+                continue
+            h_msg = email.message_from_bytes(h_data[0][1])
+            h_from = decode_str(h_msg.get("From", "")).lower()
+            h_subj = decode_str(h_msg.get("Subject", "")).lower()
+            h_to = decode_str(h_msg.get("To", "")).lower()
+
+            is_candidate = (
+                "voice-noreply@google.com" in h_from or
+                "google voice" in h_from or
+                "formsubmit.co" in h_from or
+                "surplusdocket.com" in h_to or
+                "voicemail" in h_subj or
+                "inquiry" in h_subj or
+                "surplus docket" in h_subj
+            )
+            if not is_candidate:
+                continue
+
         res, data = mail.fetch(mid, "(RFC822)")
         if res != "OK" or not data or not isinstance(data[0], tuple):
             continue
@@ -2165,45 +2321,46 @@ def check_and_create_auto_responses(mail, state_cases):
         text_body, html_body = extract_body_parts(msg)
 
         # -------------------------------------------------------------
-        # 1. AUTO-UNSUBSCRIBE MODULE
+        # 1. AUTO-UNSUBSCRIBE MODULE (Only for unread messages)
         # -------------------------------------------------------------
-        unsub_details = extract_unsubscribe_details(msg, text_body, html_body)
-        has_unsub = unsub_details["one_click_post"] or unsub_details["http_urls"] or unsub_details["mailto"]
-        
-        is_newsletter_or_drip = (
-            bool(msg.get("List-Unsubscribe")) or
-            (msg.get("Precedence") or "").lower() in ["bulk", "list"] or
-            "newsletter" in subject_raw.lower() or
-            "digest" in subject_raw.lower() or
-            "subscribed" in subject_raw.lower() or
-            "marketing" in subject_raw.lower() or
-            "update from" in subject_raw.lower() or
-            "lawmatics" in (text_body + html_body).lower() or
-            "hubspot" in (text_body + html_body).lower() or
-            "mailchimp" in (text_body + html_body).lower() or
-            "activecampaign" in (text_body + html_body).lower()
-        )
+        if not is_already_seen:
+            unsub_details = extract_unsubscribe_details(msg, text_body, html_body)
+            has_unsub = unsub_details["one_click_post"] or unsub_details["http_urls"] or unsub_details["mailto"]
 
-        if has_unsub and is_newsletter_or_drip:
-            unsub_done = False
-            if unsub_details["one_click_post"] and unsub_details["one_click_post"] not in already_unsubscribed:
-                ok, detail = execute_unsubscribe(unsub_details["one_click_post"], is_one_click=True)
-                log_unsubscribe(f"🛑 RFC 8058 One-Click Unsubscribe for {sender_email} ({unsub_details['one_click_post']}): {detail}")
-                unsub_done = True
-            
-            if not unsub_done:
-                for u in unsub_details["http_urls"]:
-                    if u not in already_unsubscribed:
-                        ok, detail = execute_unsubscribe(u, is_one_click=False)
-                        log_unsubscribe(f"🛑 Web GET Unsubscribe for {sender_email} ({u}): {detail}")
-                        unsub_done = True
-                        break
+            is_newsletter_or_drip = (
+                bool(msg.get("List-Unsubscribe")) or
+                (msg.get("Precedence") or "").lower() in ["bulk", "list"] or
+                "newsletter" in subject_raw.lower() or
+                "digest" in subject_raw.lower() or
+                "subscribed" in subject_raw.lower() or
+                "marketing" in subject_raw.lower() or
+                "update from" in subject_raw.lower() or
+                "lawmatics" in (text_body + html_body).lower() or
+                "hubspot" in (text_body + html_body).lower() or
+                "mailchimp" in (text_body + html_body).lower() or
+                "activecampaign" in (text_body + html_body).lower()
+            )
 
-            if unsub_done:
-                mail.store(mid, "+FLAGS", r"(\Seen \Deleted)")
-                mail.expunge()
-                log(f"  🧹 Auto-unsubscribed and cleared marketing email from {sender_email}")
-                continue
+            if has_unsub and is_newsletter_or_drip:
+                unsub_done = False
+                if unsub_details["one_click_post"] and unsub_details["one_click_post"] not in already_unsubscribed:
+                    ok, detail = execute_unsubscribe(unsub_details["one_click_post"], is_one_click=True)
+                    log_unsubscribe(f"🛑 RFC 8058 One-Click Unsubscribe for {sender_email} ({unsub_details['one_click_post']}): {detail}")
+                    unsub_done = True
+
+                if not unsub_done:
+                    for u in unsub_details["http_urls"]:
+                        if u not in already_unsubscribed:
+                            ok, detail = execute_unsubscribe(u, is_one_click=False)
+                            log_unsubscribe(f"🛑 Web GET Unsubscribe for {sender_email} ({u}): {detail}")
+                            unsub_done = True
+                            break
+
+                if unsub_done:
+                    mail.store(mid, "+FLAGS", r"(\Seen \Deleted)")
+                    mail.expunge()
+                    log(f"  🧹 Auto-unsubscribed and cleared marketing email from {sender_email}")
+                    continue
 
         # -------------------------------------------------------------
         # 2. ELIGIBILITY & POLICY ENFORCEMENT (SD-POL-OUTREACH-2026-V1)
@@ -2214,12 +2371,13 @@ def check_and_create_auto_responses(mail, state_cases):
         )
 
         if not is_eligible:
-            log(f"  ⏭️ Skipped non-prospect from {sender_email} (Sub: '{subject_raw[:40]}'): {reason}")
-            mail.store(mid, "+FLAGS", r"(\Seen)")
+            if not is_already_seen:
+                log(f"  ⏭️ Skipped non-prospect from {sender_email} (Sub: '{subject_raw[:40]}'): {reason}")
+                mail.store(mid, "+FLAGS", r"(\Seen)")
             continue
 
         # -------------------------------------------------------------
-        # 3. STATUTORY WEBSITE INQUIRY HANDLING
+        # 3. STATUTORY WEBSITE INQUIRY & VOICEMAIL HANDLING
         # -------------------------------------------------------------
         if inquiry_info:
             prospect_name = inquiry_info["name"]
@@ -2234,15 +2392,13 @@ def check_and_create_auto_responses(mail, state_cases):
 
             draft_key = f"inquiry:{prospect_email}:{state_code}:{department}:{inquiry_info.get('ref', '')}"
             if draft_key in already_drafted:
-                mail.store(mid, "+FLAGS", r"(\Seen)")
+                if not is_already_seen:
+                    mail.store(mid, "+FLAGS", r"(\Seen)")
                 continue
 
             draft_msg, reply_subject, reply_body, role_title = build_inquiry_draft_email(
                 inquiry_info, state_cases, message_id=message_id
             )
-            if is_vm:
-                phone_num = inquiry_info.get("phone", "")
-                draft_msg["Subject"] = f"[Phone Inquiry Dossier — {phone_num}] {reply_subject}"
 
             drafts_box = get_gmail_drafts_mailbox(mail)
             mail.select(drafts_box)
@@ -2252,6 +2408,7 @@ def check_and_create_auto_responses(mail, state_cases):
             mail.select("INBOX")
             if append_status == "OK":
                 save_created_draft(draft_key)
+                already_drafted.add(draft_key)
                 mail.store(mid, "+FLAGS", r"(\Seen)")
                 persona = get_department_persona(department=department)
                 log(f"  🎉 {persona['name']} ({role_title}) statutory inquiry draft created in Gmail for {prospect_email}!")
@@ -2263,7 +2420,8 @@ def check_and_create_auto_responses(mail, state_cases):
         msg_uid = re.sub(r"[^a-zA-Z0-9_\-]", "", message_id) if message_id else f"{sender_email}_{hash(text_body[:80])}"
         draft_key = f"reply:{sender_email}:{msg_uid}"
         if draft_key in already_drafted:
-            mail.store(mid, "+FLAGS", r"(\Seen)")
+            if not is_already_seen:
+                mail.store(mid, "+FLAGS", r"(\Seen)")
             continue
 
         intent = analyze_prospect_intent(subject_raw, text_body)
@@ -2298,6 +2456,7 @@ def check_and_create_auto_responses(mail, state_cases):
         mail.select("INBOX")
         if append_status == "OK":
             save_created_draft(draft_key)
+            already_drafted.add(draft_key)
             mail.store(mid, "+FLAGS", r"(\Seen)")
             log(f"  🎉 Contextual [{intent}] follow-up draft created in Gmail for {sender_email}!")
 
@@ -2312,6 +2471,7 @@ def run_single_check():
     try:
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
         mail.login(GMAIL_USER, GMAIL_APP_PASS)
+        sync_voicemails_to_inbox(mail)
         clean_imap_drafts(mail)
         check_and_create_auto_responses(mail, state_cases)
         mail.logout()
