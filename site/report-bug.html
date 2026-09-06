@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surplus Docket — System Reliability Desk &amp; Issue Reporter</title>
-    <meta name="description" content="Report an issue, calculation discrepancy, or broken reference directly to Surplus Docket's autonomous triage and self-healing engine.">
+    <title>Report an Issue — Surplus Docket</title>
+    <meta name="description" content="Report a display issue, broken link, or record discrepancy directly to the Surplus Docket support team.">
     <link rel="canonical" href="https://surplusdocket.com/report-bug.html">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -13,8 +13,8 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Surplus Docket">
-    <meta property="og:title" content="Surplus Docket — System Reliability Desk & Issue Reporter">
-    <meta property="og:description" content="Report an issue, calculation discrepancy, or broken reference directly to Surplus Docket's autonomous triage and self-healing engine.">
+    <meta property="og:title" content="Report an Issue — Surplus Docket">
+    <meta property="og:description" content="Report a display issue, broken link, or record discrepancy directly to the Surplus Docket support team.">
     <meta property="og:url" content="https://surplusdocket.com/report-bug.html">
     <meta property="og:image" content="https://surplusdocket.com/assets/og_image.png">
     <meta property="og:image:width" content="1200">
@@ -22,8 +22,8 @@
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Surplus Docket — System Reliability Desk & Issue Reporter">
-    <meta name="twitter:description" content="Direct reporting portal for system integrity, statutory calculations, and lead data verification.">
+    <meta name="twitter:title" content="Report an Issue — Surplus Docket">
+    <meta name="twitter:description" content="Report a display issue, broken link, or record discrepancy directly to the Surplus Docket support team.">
     <meta name="twitter:image" content="https://surplusdocket.com/assets/og_image.png">
 
     <!-- Fonts & CDNs -->
@@ -180,10 +180,6 @@
         
         <!-- Header Banner -->
         <div class="text-center mb-8">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-medium mb-3">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>All Systems Operational &bull; Continuous Reliability</span>
-            </div>
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black tracking-tight text-brand-navy mb-3 leading-tight">
                 Report an Issue
             </h1>
@@ -192,11 +188,11 @@
             </p>
         </div>
 
-        <!-- Reliability Card / Dual Flow -->
+        <!-- Issue Report Form -->
         <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-10 shadow-sm mb-8">
             <div id="bug-report-form-container">
                 <div class="border-b border-slate-100 pb-5 mb-6">
-                    <h2 class="text-lg font-heading font-bold text-brand-navy">Structured Issue Intake</h2>
+                    <h2 class="text-lg font-heading font-bold text-brand-navy">Issue Details</h2>
                     <p class="text-xs text-slate-500 mt-1">Specify what occurred. Reports are reviewed by our engineering and data verification team.</p>
                 </div>
 
@@ -204,9 +200,9 @@
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
-                            <label for="bug-component" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Affected Component / Subsystem <span class="text-red-500">*</span></label>
+                            <label for="bug-component" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Page or Feature <span class="text-red-500">*</span></label>
                             <select id="bug-component" required class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
-                                <option value="Live Docket & Lead Feed">Live Docket &amp; Lead Feed</option>
+                                <option value="Live Docket & Lead Feed">Live Docket &amp; Public Records Feed</option>
                                 <option value="Statutory Fee Calculator / Embeddable Tool">Statutory Fee Calculator / Embeddable Tool</option>
                                 <option value="Practitioner Toolkit & Petition Builder">Practitioner Toolkit &amp; Petition Builder</option>
                                 <option value="State Hubs (FL, TX, GA, NC, TN, CA)">State Hubs (FL, TX, GA, NC, TN, CA)</option>
@@ -218,11 +214,11 @@
                             </select>
                         </div>
                         <div>
-                            <label for="bug-severity" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Severity Level</label>
+                            <label for="bug-severity" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Severity</label>
                             <select id="bug-severity" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
                                 <option value="Medium / Functional Discrepancy">Medium / Functional Discrepancy</option>
                                 <option value="Low / Cosmetic or Minor Typo">Low / Cosmetic or Minor Typo</option>
-                                <option value="High / Statutory or Lead Integrity Impact">High / Statutory or Lead Integrity Impact</option>
+                                <option value="High / Statutory or Lead Integrity Impact">High / Statutory or Data Impact</option>
                                 <option value="Critical / Blocking Access or Checkout">Critical / Blocking Access or Checkout</option>
                             </select>
                         </div>
@@ -286,22 +282,6 @@
                         Submit Another Report
                     </button>
                 </div>
-            </div>
-        </div>
-
-        <!-- Reliability Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm">
-                <div class="text-brand-navy font-heading font-bold text-xs uppercase tracking-wider mb-1">Continuous Testing</div>
-                <p class="text-xs text-slate-500 leading-relaxed">92+ automated unit tests and mathematical checks run against every build.</p>
-            </div>
-            <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm">
-                <div class="text-brand-navy font-heading font-bold text-xs uppercase tracking-wider mb-1">Self-Healing Links</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Autonomous sentinel detects dead links and remediates routing paths.</p>
-            </div>
-            <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm">
-                <div class="text-brand-navy font-heading font-bold text-xs uppercase tracking-wider mb-1">Statutory Rulebook</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Audited against governing statutes in FL, TX, GA, NC, TN, and CA.</p>
             </div>
         </div>
 

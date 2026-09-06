@@ -649,8 +649,8 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
                     <!-- Footer -->
                     <tr>
                         <td style="background-color: #f8fafc; padding: 20px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center;">
-                            Surplus Docket Autonomous Quality Assurance Sentinel &bull; Continuous Reliability Engine<br>
-                            This is an automated executive notification dispatched via secure production SMTP.
+                            Surplus Docket Quality Assurance Desk<br>
+                            This is an automated notification dispatched via secure production SMTP.
                         </td>
                     </tr>
                 </table>

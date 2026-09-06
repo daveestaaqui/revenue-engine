@@ -480,15 +480,14 @@
         <!-- Code Integration Examples -->
         <div class="mt-14 space-y-8">
             <div>
-                <h2 class="text-2xl font-heading font-black text-brand-navy mb-2">Integration Snippets & AI-Agent Pipelines</h2>
-                <p class="text-xs sm:text-sm text-slate-600">Standardized JSON schemas ready for automated Python scripts, Zapier webhooks, and autonomous AI agents.</p>
+                <h2 class="text-2xl font-heading font-black text-brand-navy mb-2">Code Integration Examples</h2>
+                <p class="text-xs sm:text-sm text-slate-600">Standardized JSON endpoints for Python scripts, webhooks, and practice management workflows.</p>
             </div>
             
-            <!-- Python / AI Agent Pipeline -->
+            <!-- Python Pipeline -->
             <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
                 <div class="bg-slate-100 px-6 py-3 border-b border-slate-200 flex items-center justify-between">
-                    <span class="font-mono font-bold text-xs text-slate-700">Python 3 (Autonomous Ingestion & Agent Hook)</span>
-                    <span class="text-xs font-bold text-brand-green bg-brand-greenSoft px-2 py-0.5 rounded">AI Ready</span>
+                    <span class="font-mono font-bold text-xs text-slate-700">Python 3</span>
                 </div>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-6 overflow-x-auto leading-relaxed">
 <pre><code>import requests
@@ -499,14 +498,14 @@ FEED_URL = "https://surplusdocket.com/api/v1/feed.json"
 response = requests.get(FEED_URL, timeout=10)
 docket_data = response.json()
 
-# Filter High-Value Individual Claims (> $50,000 with institutional noise removed)
+# Filter High-Value Individual Claims (> $50,000 with institutional liens removed)
 actionable_claims = [
     c for c in docket_data.get("records", [])
     if c.get("Est_Finder_Fee_USD", 0) >= 10000
 ]
 
 print(f"[✓] Successfully ingested {len(actionable_claims)} priority recovery dockets.")
-# Direct payload to downstream AI drafting agent or Clio CRM webhook...</code></pre>
+# Pass records to CRM or local database...</code></pre>
                 </div>
             </div>
 

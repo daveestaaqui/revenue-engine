@@ -1,7 +1,7 @@
 {
   "manifest_version": "1.0.0",
   "publisher": "Surplus Docket \u2014 Autonomous Public Records Intelligence",
-  "generated_at": "2026-09-06T16:28:53.628802+00:00",
+  "generated_at": "2026-09-06T16:36:53.084033+00:00",
   "audit_status": "PASSED_100_PERCENT",
   "jurisdictions_verified": [
     "FL",
@@ -89,7 +89,7 @@
     "site/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html": "9111e044a6ae0488f39af5dcd1d2854d0c5a45f10b3f0013c4c71461ade134f6",
     "site/blog/posts/institutional-lien-filtering-asset-recovery.html": "25fb17082d9d029e846a8d5231e1b11f6552a54846ea812982192e4ce680b54c",
     "site/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html": "eef0b1625a5a0006a4ee9ddc4db65214b50cd4a034b67290183e19073b6611ec",
-    "site/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html": "0f9e464936396dcbd6f415c5db698d9a17e7ed31fb9382d8116072f9c2c785c9",
+    "site/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html": "079a18255573b32ad8c6d33de3f833b217dc57d60c75b8f6f2ff2574c6f9bed2",
     "site/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html": "b085b3a1a3cdefa1a0c793f4cf35326c8a7ababb155747544bfc5cfbfe391a3c"
   }
 }

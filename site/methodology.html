@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surplus Docket — Data Provenance &amp; Upstream Lien Scrubbing Methodology</title>
-    <meta name="description" content="Technical whitepaper detailing Surplus Docket's 4-stage autonomous public records ingestion, institutional lien scrubbing, and statutory compliance architecture.">
+    <meta name="description" content="Technical methodology detailing Surplus Docket's 4-stage public records ingestion, senior lien filtering, and statutory compliance architecture.">
     <link rel="canonical" href="https://surplusdocket.com/methodology.html">
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <meta name="robots" content="index, follow">
@@ -163,7 +163,7 @@
           </p>
         </div>
 
-        <!-- 1. The Core Problem: The Dead Bank Lead Crisis -->
+        <!-- 1. The Core Problem: Senior Lien Filtering -->
         <section class="mb-12">
             <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy mb-3">
                 1. The Operational Bottleneck in Public Records Scraping
@@ -172,8 +172,8 @@
                 Following real estate tax deed foreclosure auctions, county clerks and district court civil registries hold surplus funds created when winning auction bids exceed the opening statutory bid. While this information is public, raw court lists present severe operational hazards for legal practitioners:
           </p>
             <div class="bg-red-50 border border-red-200 rounded-xl p-5 mb-4 text-xs sm:text-sm text-red-900 leading-relaxed space-y-2">
-                <p><strong>The "Dead Bank Lead" Dilemma:</strong> Over 70% of raw unscrubbed clerk rows represent properties with active senior mortgages (e.g. Wells Fargo, Bank of America, Fannie Mae) or municipal tax assessment liens. Under state statutory priority schemes, these institutional lienholders possess legal priority over the former titleholder.</p>
-                <p>When asset recovery firms rely on raw scraper lists, paralegals spend dozens of hours skip-tracing and contacting former owners, only to discover during title examination that 100% of the funds must be disbursed to a senior mortgage servicer.</p>
+                <p><strong>Unfiltered Senior Liens:</strong> Many raw clerk rows represent properties with active senior mortgages (such as commercial banks or loan servicers) or municipal tax assessment liens. Under state statutory priority schemes, these institutional lienholders possess legal priority over the former titleholder.</p>
+                <p>When recovery firms rely on raw scraper lists, staff spend significant time contacting former owners, only to discover during title examination that the funds must be disbursed entirely to a senior mortgage servicer.</p>
             </div>
         </section>
 
@@ -183,7 +183,7 @@
                 2. Surplus Docket's 4-Stage Cleansing Pipeline
             </h2>
             <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-6">
-                Surplus Docket executes an autonomous daily pipeline that purges corporate encumbrances before records enter the subscriber feed:
+                Surplus Docket runs an automated daily pipeline to filter out corporate and senior encumbrances before records enter the feed:
             </p>
 
             <div class="space-y-4">
@@ -290,8 +290,8 @@
                     <p class="leading-relaxed">Surplus Docket compiles public court records and does not act as a Consumer Reporting Agency under FCRA (15 U.S.C. § 1681).</p>
                 </div>
                 <div>
-                    <div class="font-bold text-emerald-300 mb-1">Continuous Statutory Audit</div>
-                    <p class="leading-relaxed">Daily statutory sentinels audit fee cap formulas and claim windows against live legislative statute portals.</p>
+                    <div class="font-bold text-emerald-300 mb-1">Statutory Rule Checks</div>
+                    <p class="leading-relaxed">Fee cap formulas and claim windows are regularly verified against official state legislative codes.</p>
                 </div>
             </div>
         </section>
