@@ -574,7 +574,7 @@ COUNTY_CIRCUIT_MAP = {
     # California (CA)
     "los angeles": ("CA", "Los Angeles", "Los Angeles County Superior Court"),
     "san diego": ("CA", "San Diego", "San Diego County Superior Court"),
-    "orange": ("CA", "Orange", "Orange County Superior Court"),
+    "orange, ca": ("CA", "Orange", "Orange County Superior Court"),
     "riverside": ("CA", "Riverside", "Riverside County Superior Court"),
     "san bernardino": ("CA", "San Bernardino", "San Bernardino County Superior Court"),
     "santa clara": ("CA", "Santa Clara", "Santa Clara County Superior Court"),
