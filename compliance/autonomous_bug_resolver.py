@@ -54,6 +54,90 @@ def load_event_payload():
     return {}
 
 
+def check_payload_security(title: str, body: str, reporter: str = "") -> dict:
+    """
+    Evaluate issue payload against prompt injection, remote code execution,
+    secret exfiltration, database tampering, and arbitrary command vectors.
+    Strictly protects the platform from untrusted external issue inputs.
+    """
+    combined = f"{title}\n{body}\n{reporter}".lower()
+    raw_combined = f"{title}\n{body}\n{reporter}"
+    threats = []
+
+    # 1. Prompt Injection & AI Agent Manipulation Patterns
+    prompt_injection_patterns = [
+        (r'ignore\s+(all\s+)?(previous|prior)\s+instructions?', "Prompt Injection: Ignore Previous Instructions"),
+        (r'disregard\s+(all\s+)?(previous|prior|system)\s+instructions?', "Prompt Injection: Disregard Instructions"),
+        (r'you\s+are\s+now\s+(a|an)?\s*(new|different|rogue|unrestricted|developer|admin)', "Prompt Injection: Persona Hijacking"),
+        (r'\b(system\s*prompt|developer\s*mode|jailbreak|dan\s*mode)\b', "Prompt Injection: Jailbreak / Mode Switch"),
+        (r'override\s+(all\s+)?(rules|safeguards|instructions|policies)', "Prompt Injection: Policy Override"),
+        (r'forget\s+everything\s+you\s+(know|were\s+told)', "Prompt Injection: Memory Wipe / Reset Attempt"),
+        (r'(output|print|display|reveal)\s+(your\s+)?(system\s+prompt|initial\s+instructions)', "Prompt Injection: System Prompt Exfiltration"),
+        (r'<\s*system\s*>', "Prompt Injection: Fake System Tag Injection"),
+        (r'```json\s*\{.*"toolaction"', "Prompt Injection: Fake Tool Call Simulation"),
+    ]
+
+    for pattern, desc in prompt_injection_patterns:
+        if re.search(pattern, combined, re.IGNORECASE):
+            threats.append(desc)
+
+    # 2. Command Execution & Script Injection Tokens
+    code_injection_patterns = [
+        (r'<\s*script[^>]*>', "Code Injection: HTML Script Tag"),
+        (r'javascript\s*:', "Code Injection: Javascript Protocol URI"),
+        (r'data\s*:\s*text\/html', "Code Injection: Data URI HTML Payload"),
+        (r'<\s*iframe[^>]*>', "Code Injection: HTML IFrame Tag"),
+        (r'\bon(error|load|click|mouseover|submit)\s*=', "Code Injection: Inline DOM Event Handler"),
+        (r'\b(eval|exec|__import__)\s*\(', "Code Injection: Dynamic Python Code Execution"),
+        (r'\b(subprocess\.|os\.system|os\.popen|pty\.spawn)', "Command Injection: Python Process Execution"),
+        (r'\b(rm\s+-rf|rmdir\s+\/s|del\s+\/f)\b', "Command Injection: Destructive File System Command"),
+        (r'\b(curl|wget)\s+.*(https?:\/\/|ftp:\/\/).*(\|\s*(ba)?sh)?', "Command Injection: Remote Payload Download & Pipe"),
+        (r'\b(nc|ncat|netcat)\s+(-[a-z]*e|.*\/bin\/)', "Command Injection: Reverse Shell Utility"),
+        (r'\/dev\/tcp\/\d', "Command Injection: Bash Raw TCP Socket"),
+        (r'\b(powershell|cmd\.exe|bash\s+-i|sh\s+-i)\b', "Command Injection: Interactive Shell Invocation"),
+    ]
+
+    for pattern, desc in code_injection_patterns:
+        if re.search(pattern, raw_combined, re.IGNORECASE):
+            threats.append(desc)
+
+    # 3. Database Tampering Tokens
+    db_patterns = [
+        (r'\b(drop\s+table|drop\s+database|truncate\s+table)\b', "Database Attack: Destructive DDL Statement"),
+        (r'\b(union\s+select|insert\s+into.*values|update\s+users\s+set)\b', "Database Attack: SQL Injection / Data Tampering"),
+        (r'(\'|\")\s*or\s*(\'|\")?1(\'|\")?\s*=\s*(\'|\")?1', "Database Attack: SQL Auth Bypass Pattern"),
+    ]
+
+    for pattern, desc in db_patterns:
+        if re.search(pattern, combined):
+            threats.append(desc)
+
+    # 4. Secret / Credential Exfiltration Patterns
+    secret_patterns = [
+        (r'\b(STRIPE_SECRET_KEY|STRIPE_WEBHOOK_SECRET|GMAIL_APP_PASS|GITHUB_TOKEN|RESEND_API_KEY)\b', "Secret Exfiltration: Production Secret Reference"),
+        (r'\b(cat\s+~?\/\.ssh|cat\s+\/etc\/passwd|\.bash_history|\.env)\b', "Secret Exfiltration: Sensitive File Access Attempt"),
+        (r'\b(printenv|export\s+-p|env\s*\|\s*grep)\b', "Secret Exfiltration: Environment Variable Dump Attempt"),
+    ]
+
+    for pattern, desc in secret_patterns:
+        if re.search(pattern, raw_combined):
+            threats.append(desc)
+
+    # 5. Path Traversal
+    if "../" in raw_combined or "..\\" in raw_combined or "/etc/" in raw_combined:
+        threats.append("Path Traversal: Directory Traversal Pattern")
+
+    is_safe = len(threats) == 0
+    threat_level = "CRITICAL" if any("Injection" in t or "Execution" in t or "Secret" in t for t in threats) else ("MEDIUM" if threats else "CLEAN")
+
+    return {
+        "is_safe": is_safe,
+        "threat_level": threat_level,
+        "detected_threats": threats,
+        "rejection_reason": "; ".join(threats) if threats else None
+    }
+
+
 def classify_issue(title: str, body: str) -> dict:
     """Classify the bug report by category and extract affected routes/files."""
     combined_text = f"{title}\n{body}".lower()
@@ -338,13 +422,26 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
     python_health = triage_data.get("python_health", {})
     timestamp = datetime.now(timezone.utc).strftime("%B %d, %Y at %H:%M:%S UTC")
 
-    status_color = "#10b981" if status in ("RESOLVED", "VERIFIED CLEAN") else "#f59e0b"
-    status_badge_bg = "#ecfdf5" if status in ("RESOLVED", "VERIFIED CLEAN") else "#fef3c7"
+    is_security_alert = "SECURITY_ALERT" in status or "SUSPICIOUS" in status
+    is_pending_human = "PENDING HUMAN" in status or "AWAITING HUMAN" in status
+
+    if is_security_alert:
+        status_color = "#dc2626"
+        status_badge_bg = "#fef2f2"
+    elif is_pending_human:
+        status_color = "#2563eb"
+        status_badge_bg = "#eff6ff"
+    elif status in ("RESOLVED", "VERIFIED CLEAN"):
+        status_color = "#10b981"
+        status_badge_bg = "#ecfdf5"
+    else:
+        status_color = "#f59e0b"
+        status_badge_bg = "#fef3c7"
 
     # Plain text version
     text_lines = [
         "================================================================================",
-        "SURPLUS DOCKET — AUTONOMOUS BUG RESOLUTION REPORT",
+        "SURPLUS DOCKET — AUTONOMOUS BUG RESOLUTION & SENTINEL REPORT",
         f"Status: {status}",
         f"Timestamp: {timestamp}",
         "================================================================================",
@@ -353,6 +450,29 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
         f"Reported By:     {reporter}",
         f"Classification:  {categories}",
         "",
+    ]
+
+    if is_security_alert:
+        text_lines.extend([
+            "🚨 SECURITY GUARDRAILS TRIGGERED / ADVERSARIAL PAYLOAD BLOCKED:",
+            "--------------------------------------------------------------------------------",
+            "• Suspicious command, script injection, or prompt manipulation detected in issue.",
+            f"• Reason: {triage_data.get('security_reason', 'Untrusted instruction pattern')}",
+            "• ALL automated file edits, self-healing, and git operations were STRICTLY BLOCKED.",
+            "• Issue preserved in quarantine for administrative security inspection.",
+            ""
+        ])
+    elif is_pending_human:
+        text_lines.extend([
+            "HUMAN VERIFICATION REQUIRED (PLATFORM INTEGRITY POLICY):",
+            "--------------------------------------------------------------------------------",
+            "• Automated diagnostics verified 100% sound (all tests pass, 0 broken links).",
+            "• User-submitted bug report preserved in OPEN state for maintainer verification.",
+            "• System policy: Automated resolvers never blindly apply external code changes.",
+            ""
+        ])
+
+    text_lines.extend([
         "DIAGNOSTIC AUDIT RESULTS:",
         "--------------------------------------------------------------------------------",
         f"• Test Suite:           {'✓ PASSED' if tests.get('passed') else '✗ FAILED'} ({tests.get('test_count', 0)} tests in {tests.get('elapsed_seconds', 0)}s)",
@@ -363,9 +483,11 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
         "",
         "REMEDIATION & HEALING ACTIONS:",
         "--------------------------------------------------------------------------------",
-    ]
+    ])
 
-    if healed:
+    if is_security_alert:
+        text_lines.append("  • Zero modifications applied. Automated changes BLOCKED per security policy.")
+    elif healed:
         for h in healed:
             text_lines.append(f"  ✓ [{h['file']}] {h['issue']} -> {h['action']}")
     else:
@@ -375,7 +497,7 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
     text_lines.extend([
         "",
         "--------------------------------------------------------------------------------",
-        "Surplus Docket Autonomous Quality Assurance & Sentinel Engine",
+        "Surplus Docket Autonomous Quality Assurance & Security Sentinel Engine",
         "Confidential Executive Notification • https://surplusdocket.com",
         "================================================================================"
     ])
@@ -383,7 +505,32 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
 
     # HTML version
     healed_html = ""
-    if healed:
+    if is_security_alert:
+        threat_items = "".join([f"<li style='margin-bottom: 4px;'><code>{t}</code></li>" for t in triage_data.get('security_threats', [])])
+        healed_html = f"""
+        <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 16px; margin-top: 16px;">
+            <h4 style="margin: 0 0 8px 0; color: #991b1b; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">🚨 Security Guardrails Triggered</h4>
+            <p style="margin: 0 0 10px 0; font-size: 13px; color: #b91c1c;">
+                <b>Adversarial Input Quarantined:</b> The issue body or title contained suspicious tokens, prompt injection, or disallowed commands:
+            </p>
+            <ul style="margin: 0 0 10px 0; padding-left: 20px; font-size: 12px; color: #7f1d1d;">
+                {threat_items}
+            </ul>
+            <p style="margin: 0; font-size: 12px; color: #166534; background-color: #f0fdf4; padding: 8px 12px; border-radius: 6px; border: 1px solid #bbf7d0;">
+                🛡️ <b>Protection Confirmed:</b> All automated self-healing, file edits, and git commits were strictly blocked. The production codebase remains 100% intact.
+            </p>
+        </div>
+        """
+    elif is_pending_human:
+        healed_html = """
+        <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 16px; margin-top: 16px;">
+            <h4 style="margin: 0 0 8px 0; color: #1e40af; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Human Verification Required</h4>
+            <p style="margin: 0; font-size: 13px; color: #1e3a8a; line-height: 1.5;">
+                <b>Automated Audits 100% Clean:</b> Unit tests and site links passed with zero defects. In accordance with platform security policy, external bug suggestions are <b>never blindly committed</b>. This issue remains open for human maintainer evaluation to verify real-world merit before taking action.
+            </p>
+        </div>
+        """
+    elif healed:
         healed_items = "".join([
             f"""<li style="margin-bottom: 8px; color: #1e293b;">
                 <span style="color: #10b981; font-weight: bold;">✓ Fixed:</span>
@@ -537,11 +684,15 @@ def dispatch_email_report(
         print("[i] GMAIL_APP_PASS not detected in environment. Saved local preview HTML and skipping SMTP transmission.")
         return True
 
+    target_recipients = [r.strip() for r in (os.getenv("REPORT_RECIPIENT") or recipient).split(",") if r.strip()]
+    if not target_recipients:
+        target_recipients = [DEFAULT_GMAIL_USER]
+
     try:
         msg = MIMEMultipart("alternative")
         msg["Subject"] = subject
         msg["From"] = f"Surplus Docket Sentinel <{gmail_user}>"
-        msg["To"] = recipient
+        msg["To"] = ", ".join(target_recipients)
         msg["Date"] = email.utils.formatdate(localtime=True)
 
         msg.attach(MIMEText(text_content, "plain", "utf-8"))
@@ -551,9 +702,9 @@ def dispatch_email_report(
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=20) as server:
             server.starttls()
             server.login(gmail_user, gmail_app_pass)
-            server.sendmail(gmail_user, [recipient], msg.as_string())
+            server.sendmail(gmail_user, target_recipients, msg.as_string())
 
-        print(f"✓ Executive resolution email successfully sent to {recipient}")
+        print(f"✓ Executive resolution email successfully sent to {', '.join(target_recipients)}")
         return True
     except Exception as e:
         print(f"[!] Failed to dispatch email via SMTP: {e}", file=sys.stderr)
@@ -609,11 +760,75 @@ def main():
     print(f"[*] Ingested Issue #{issue_number}: {issue_title}")
     print(f"[*] Reporter: {reporter}")
 
-    # 2. Triage & Classify
+    # 2. Security Screening & Anti-Hacking Guardrails
+    print("[*] Performing Security & Anti-Hacking Screening...")
+    security_eval = check_payload_security(issue_title, issue_body, str(reporter))
+    if not security_eval["is_safe"]:
+        print(f"[!] 🚨 SECURITY ALERT: Untrusted adversarial payload detected ({security_eval['threat_level']}):")
+        for t in security_eval["detected_threats"]:
+            print(f"    - {t}")
+
+        resolution_status = "SECURITY_ALERT / SUSPICIOUS_PAYLOAD"
+        resolution_summary = (
+            f"REJECTED: Untrusted payload triggered platform security guardrails ({security_eval['rejection_reason']}). "
+            "Zero automated code modifications or self-healing actions permitted. Issue quarantined for administrative review."
+        )
+        triage_data = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "issue_number": issue_number,
+            "issue_title": issue_title,
+            "issue_body": issue_body,
+            "issue_url": issue_url,
+            "reporter": reporter,
+            "categories": ["security_threat"],
+            "resolution_status": resolution_status,
+            "resolution_summary": resolution_summary,
+            "security_reason": security_eval["rejection_reason"],
+            "security_threats": security_eval["detected_threats"],
+            "healed_actions": [],
+            "test_results": {"passed": False, "test_count": 0, "elapsed_seconds": 0.0, "output": "Execution blocked by security guardrails."},
+            "link_results": {"html_pages_scanned": 0, "total_links_checked": 0, "broken_links": [], "broken_assets": []},
+            "python_health": {"files_checked": 0, "errors": [], "is_healthy": False},
+            "statutory_health": {"status": "blocked", "is_healthy": False}
+        }
+
+        # Post GitHub warning comment (never close!)
+        if issue_number and github_token and not args.dry_run:
+            comment_markdown = f"""### 🚨 Surplus Docket Security Alert: Untrusted Payload Blocked
+
+**Status:** `{resolution_status}`  
+**Security Assessment:** {resolution_summary}
+
+#### 🛡️ Guardrails Enacted:
+- **Autonomous Modifications:** Completely Disabled
+- **Codebase Access:** 100% Protected (No files altered)
+- **Flagged Threats:**
+{"".join([f"- `{t}`\\n" for t in security_eval["detected_threats"]])}
+
+*This report has been quarantined by the Surplus Docket Autonomous Security Sentinel. The repository maintainer has been alerted.*
+"""
+            post_github_issue_comment_and_close(repo, int(issue_number), github_token, comment_markdown, close_issue=False)
+
+        # Dispatch Security Alert Email
+        text_report, html_report = build_email_content(triage_data)
+        email_subject = f"[SECURITY ALERT] Surplus Docket Issue #{issue_number}: {issue_title} (BLOCKED)"
+        dispatch_email_report(
+            subject=email_subject,
+            text_content=text_report,
+            html_content=html_report,
+            recipient=args.recipient
+        )
+        record_resolution_log(triage_data)
+        print("\n" + "=" * 70)
+        print(" 🚨 ADVERSARIAL PAYLOAD BLOCKED — AUDIT RECORDED")
+        print("=" * 70)
+        return
+
+    # 3. Triage & Classify
     classification = classify_issue(issue_title, issue_body)
     print(f"[*] Classified categories: {classification['categories']}")
 
-    # 3. Execute Diagnostic Audits
+    # 4. Execute Diagnostic Audits
     print("[*] Running Site Link and Asset Audit...")
     link_results = audit_site_links_and_assets()
     print(f"    - Scanned {link_results['html_pages_scanned']} HTML pages, {link_results['total_links_checked']} links.")
@@ -627,7 +842,7 @@ def main():
     statutory_health = audit_statutory_rules()
     print(f"    - Status: {statutory_health['status']} ({statutory_health.get('jurisdictions_count', 0)} jurisdictions verified)")
 
-    # 4. Run Unit Tests (unless skipped)
+    # 5. Run Unit Tests (unless skipped)
     if args.skip_tests:
         test_results = {"passed": True, "test_count": 92, "elapsed_seconds": 0.0, "output": "Skipped per flag"}
     else:
@@ -635,7 +850,7 @@ def main():
         test_results = run_unit_tests()
         print(f"    - Passed: {test_results['passed']} ({test_results['test_count']} tests in {test_results['elapsed_seconds']}s)")
 
-    # 5. Autonomous Self-Healing
+    # 6. Autonomous Self-Healing (Strictly restricted to verified broken links)
     healed_actions = []
     if link_results["broken_links"] and not args.dry_run:
         print("[*] Attempting autonomous self-healing on broken links...")
@@ -645,7 +860,7 @@ def main():
             # Re-audit links to confirm resolution
             link_results = audit_site_links_and_assets()
 
-    # Determine overall status
+    # Determine overall status & human review requirements
     is_fully_clean = (
         test_results.get("passed", False)
         and link_results.get("is_healthy", False)
@@ -653,15 +868,35 @@ def main():
         and statutory_health.get("is_healthy", False)
     )
 
+    AUTOMATED_REPORTERS = {
+        "autonomous sentinel",
+        "automated sentinel",
+        "github-actions[bot]",
+        "sentinel@surplusdocket.com",
+        "system sentinel"
+    }
+    is_automated_reporter = str(reporter).strip().lower() in AUTOMATED_REPORTERS
+
     if healed_actions:
         resolution_status = "RESOLVED"
         resolution_summary = f"Auto-repaired {len(healed_actions)} broken references. Full test suite ({test_results['test_count']} tests) passing 100%."
+        should_close = True
     elif is_fully_clean:
-        resolution_status = "VERIFIED CLEAN"
-        resolution_summary = f"No automated regressions detected. All {link_results['html_pages_scanned']} site pages, statutory rules, and {test_results['test_count']} unit tests verified healthy."
+        if is_automated_reporter:
+            resolution_status = "VERIFIED CLEAN"
+            resolution_summary = f"No automated regressions detected. All {link_results['html_pages_scanned']} site pages, statutory rules, and {test_results['test_count']} unit tests verified healthy."
+            should_close = True
+        else:
+            resolution_status = "VERIFIED CLEAN (PENDING HUMAN REVIEW)"
+            resolution_summary = (
+                f"Automated test suite verified 100% sound ({test_results['test_count']} tests pass, 0 broken links). "
+                "Per platform security policy, user-reported issues remain OPEN for maintainer verification."
+            )
+            should_close = False
     else:
         resolution_status = "TRIAGED / ATTENTION REQUIRED"
         resolution_summary = "Anomalies detected requiring manual review. Full diagnostic log attached below."
+        should_close = False
 
     triage_data = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -680,7 +915,7 @@ def main():
         "statutory_health": statutory_health
     }
 
-    # 6. Post GitHub Comment & Auto-Close Issue
+    # 7. Post GitHub Comment & Optionally Close Issue
     if issue_number and github_token and not args.dry_run:
         comment_markdown = f"""### 🛡️ Surplus Docket Autonomous Bug Resolver Report
 
@@ -695,13 +930,11 @@ def main():
 - **Statutory Rules:** FL, TX, GA, NC, TN, CA caps and deadlines verified
 
 {f"#### 🔧 Self-Healing Actions Applied:\\n" + "".join([f"- **Fixed:** `{h['file']}` &mdash; {h['action']}\\n" for h in healed_actions]) if healed_actions else ""}
-
 *An executive notification has been dispatched to the repository maintainer. This issue has been processed by the Autonomous Sentinel.*
 """
-        should_close = (resolution_status in ("RESOLVED", "VERIFIED CLEAN"))
         post_github_issue_comment_and_close(repo, int(issue_number), github_token, comment_markdown, close_issue=should_close)
 
-    # 7. Generate & Dispatch Email Report
+    # 8. Generate & Dispatch Email Report
     text_report, html_report = build_email_content(triage_data)
     email_subject = f"[Surplus Docket Auto-Resolver] Issue #{issue_number}: {issue_title} ({resolution_status})"
     
@@ -712,7 +945,7 @@ def main():
         recipient=args.recipient
     )
 
-    # 8. Record to persistent audit log
+    # 9. Record to persistent audit log
     record_resolution_log(triage_data)
 
     print("\n" + "=" * 70)

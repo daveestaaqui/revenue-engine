@@ -424,23 +424,74 @@
             btn.disabled = true;
             btn.innerHTML = 'Transmitting Issue...';
 
+            const comp = document.getElementById('bug-component').value;
+            const sev = document.getElementById('bug-severity').value;
+            const url = document.getElementById('bug-url').value.trim() || 'Not specified';
+            const userEmail = document.getElementById('bug-email').value.trim() || 'inquiries@surplusdocket.com';
+            const title = document.getElementById('bug-title').value.trim();
+            const details = document.getElementById('bug-details').value.trim();
+
             const refNumber = 'SD-BUG-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.floor(1000 + Math.random() * 9000);
             const issueData = buildIssueMarkdown();
 
-            // Transmit via direct API or relay
+            let transmitted = false;
+
+            // 1. Primary Attempt: Serverless /api/inquiry with complete schema
             try {
-                await fetch('/api/inquiry', {
+                const apiRes = await fetch('/api/inquiry', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify({
-                        category: 'System Bug Report',
-                        reference_number: refNumber,
-                        subject: issueData.title,
-                        message: issueData.body
+                        name: userEmail !== 'inquiries@surplusdocket.com' ? userEmail : 'Platform Bug Reporter',
+                        email: userEmail,
+                        firm: comp,
+                        jurisdiction: 'Platform Issue Intake',
+                        department: `System Bug Report [${sev}]`,
+                        docket_or_parcel: url,
+                        message: issueData.body,
+                        reference_number: refNumber
                     })
                 });
+                if (apiRes.ok) {
+                    const data = await apiRes.json();
+                    if (data.success && data.channel === 'direct') {
+                        transmitted = true;
+                    }
+                }
             } catch (err) {
-                // Relay fallback silently
+                // Serverless route unavailable or unconfigured; proceed to fallback
+            }
+
+            // 2. Reliable Direct Relay Fallback: FormSubmit to maintainer inbox
+            if (!transmitted) {
+                const payload = {
+                    "OFFICIAL RECORD": refNumber,
+                    "ISSUE TITLE": title,
+                    "AFFECTED COMPONENT": comp,
+                    "SEVERITY": sev,
+                    "PAGE URL / PATH": url,
+                    "REPORTER EMAIL": userEmail,
+                    "DETAILS & REPRODUCTION": details,
+                    "FULL STRUCTURED REPORT": issueData.body,
+                    "_subject": `[Surplus Docket Bug Report] ${comp} — ${title} (${sev})`,
+                    "_replyto": userEmail !== 'inquiries@surplusdocket.com' ? userEmail : 'inquiries@surplusdocket.com',
+                    "_captcha": 'false',
+                    "_template": 'box'
+                };
+
+                try {
+                    const dest = atob('ZGF2aWRAc3VycGx1c2RvY2tldC5jb20=');
+                    await fetch('https://formsubmit.co/ajax/' + dest, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (err) {
+                    console.warn('Relay transmission note:', err);
+                }
             }
 
             // Show Confirmation

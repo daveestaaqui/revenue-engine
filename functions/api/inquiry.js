@@ -17,8 +17,12 @@ export async function onRequestPost(context) {
             reference_number = `SD-INQ-${Date.now()}`
         } = body;
 
+        const isBugReport = department.toLowerCase().includes('bug') || body.category === 'System Bug Report';
+        const safeName = (name || (isBugReport ? 'Platform Bug Reporter' : '')).trim();
+        const safeEmail = (email || (isBugReport ? 'inquiries@surplusdocket.com' : '')).trim();
+
         // Verify required fields
-        if (!name || !email || !message) {
+        if (!safeName || !safeEmail || !message) {
             return new Response(JSON.stringify({ error: 'Missing required inquiry parameters.' }), {
                 status: 400,
                 headers: { 'Content-Type': 'application/json' }
@@ -49,8 +53,8 @@ export async function onRequestPost(context) {
             ``,
             `TRANSMITTING PRACTITIONER / PARTY:`,
             `--------------------------------------------------------------------------------`,
-            `Name / Counsel:  ${name}`,
-            `Direct Email:    ${email}`,
+            `Name / Counsel:  ${safeName}`,
+            `Direct Email:    ${safeEmail}`,
             `Firm / Org:      ${firm}`,
             `Jurisdiction:    ${jurisdiction}`,
             `Department:      ${department}`,
@@ -65,6 +69,8 @@ export async function onRequestPost(context) {
             `Confidential Practitioner Transmission — Attorney-Client / Regulatory Privilege`,
             `================================================================================`
         ].join('\n');
+
+        const escapeHtml = (str) => String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
         // Executive HTML layout
         const htmlMemo = `
@@ -106,39 +112,39 @@ export async function onRequestPost(context) {
         </div>
         <div class="content">
             <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-                <span class="ref-pill">${reference_number}</span>
+                <span class="ref-pill">${escapeHtml(reference_number)}</span>
                 <span style="font-size: 12px; color: #64748b;">${dateStr}</span>
             </div>
             <table class="meta-grid">
                 <tr>
                     <td class="label">Counsel / Name</td>
-                    <td class="value">${name}</td>
+                    <td class="value">${escapeHtml(safeName)}</td>
                 </tr>
                 <tr>
                     <td class="label">Direct Email</td>
-                    <td class="value"><a href="mailto:${email}" style="color: #1b365d; text-decoration: underline;">${email}</a></td>
+                    <td class="value"><a href="mailto:${escapeHtml(safeEmail)}" style="color: #1b365d; text-decoration: underline;">${escapeHtml(safeEmail)}</a></td>
                 </tr>
                 <tr>
                     <td class="label">Firm / Organization</td>
-                    <td class="value">${firm || 'None Specified'}</td>
+                    <td class="value">${escapeHtml(firm || 'None Specified')}</td>
                 </tr>
                 <tr>
                     <td class="label">Jurisdiction</td>
-                    <td class="value">${jurisdiction}</td>
+                    <td class="value">${escapeHtml(jurisdiction)}</td>
                 </tr>
                 <tr>
                     <td class="label">Inquiry Category</td>
-                    <td class="value">${department}</td>
+                    <td class="value">${escapeHtml(department)}</td>
                 </tr>
                 <tr>
                     <td class="label">Docket / Parcel ID</td>
-                    <td class="value font-mono">${docket_or_parcel}</td>
+                    <td class="value font-mono">${escapeHtml(docket_or_parcel)}</td>
                 </tr>
             </table>
 
             <div class="memo-box">
                 <h3>Statement of Inquiry</h3>
-                <p>${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+                <p>${escapeHtml(message)}</p>
             </div>
         </div>
         <div class="footer">
@@ -162,8 +168,8 @@ export async function onRequestPost(context) {
                 body: JSON.stringify({
                     from: fromSender,
                     to: [recipient],
-                    reply_to: email,
-                    subject: `[Surplus Docket Inquiry] ${department} — ${firm || 'Direct'} (${name})`,
+                    reply_to: safeEmail,
+                    subject: `[Surplus Docket Inquiry] ${department} — ${firm || 'Direct'} (${safeName})`,
                     text: textMemo,
                     html: htmlMemo
                 })
