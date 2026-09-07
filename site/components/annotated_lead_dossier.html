@@ -1,0 +1,234 @@
+<!--
+  Requires the site's compiled Tailwind CSS. No runtime CDN dependency.
+
+  IMPORTANT:
+  - All record data below is synthetic.
+  - Do not publish actual leads in public marketing HTML.
+  - Replace sample values with server-rendered, HTML-escaped values.
+  - Evidence links must reference authorized, reviewed records.
+  - "Verified" must be assigned by the evidence-review workflow, not by
+    an actionability score or the presence of a source URL.
+-->
+<section
+  aria-labelledby="lead-dossier-heading"
+  class="rounded-2xl border border-slate-200 bg-white shadow-sm"
+>
+  <header class="rounded-t-2xl bg-[#0B1F33] px-6 py-7 text-white sm:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-emerald-300">
+          Surplus Docket · Evidence Intelligence
+        </p>
+        <h2
+          id="lead-dossier-heading"
+          class="mt-2 text-2xl font-semibold tracking-tight"
+        >
+          Annotated Evidence-Backed Lead Dossier
+        </h2>
+      </div>
+
+      <span
+        class="rounded-full border border-amber-300 bg-amber-50 px-3 py-1
+               text-xs font-semibold text-amber-950"
+      >
+        Demonstration · Not verified
+      </span>
+    </div>
+
+    <p class="mt-4 max-w-3xl text-sm leading-6 text-slate-200">
+      Trace the reported surplus to its originating record, distinguish gross
+      proceeds from recoverable funds, and review the legal basis before intake.
+    </p>
+  </header>
+
+  <div class="space-y-6 p-6 sm:p-8">
+    <aside
+      aria-label="Demonstration data notice"
+      class="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm
+             leading-6 text-amber-950"
+    >
+      <strong>Synthetic example—not an available lead.</strong>
+      The amount and identifiers illustrate the dossier format. No court record,
+      title report, claimant entitlement, or filing deadline has been verified.
+    </aside>
+
+    <div class="grid gap-6 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+        <h3 class="text-base font-semibold text-[#0B1F33]">
+          Record and evidence chain
+        </h3>
+
+        <dl class="mt-3 divide-y divide-slate-200">
+          <div class="grid gap-2 py-4 sm:grid-cols-3">
+            <dt class="text-sm font-medium text-slate-600">
+              Court / official record
+              <a
+                href="#dossier-note-1"
+                aria-label="Read evidence annotation 1"
+                class="ml-1 font-semibold text-emerald-800 underline
+                       focus-visible:outline focus-visible:outline-2
+                       focus-visible:outline-offset-4"
+              >[1]</a>
+            </dt>
+            <dd class="text-sm text-slate-900 sm:col-span-2">
+              Official surplus record not attached
+              <span class="mt-1 block text-xs text-slate-600">
+                Record custodian and source type must match the sale proceeding.
+              </span>
+            </dd>
+          </div>
+
+          <div class="grid gap-2 py-4 sm:grid-cols-3">
+            <dt class="text-sm font-medium text-slate-600">Docket number</dt>
+            <dd class="break-all font-mono text-sm text-slate-900 sm:col-span-2">
+              DEMO-NOT-A-REAL-DOCKET
+            </dd>
+          </div>
+
+          <div class="grid gap-2 py-4 sm:grid-cols-3">
+            <dt class="text-sm font-medium text-slate-600">Evidence reference</dt>
+            <dd class="text-sm text-slate-900 sm:col-span-2">
+              <span class="font-mono">DEMO-EVIDENCE-001</span>
+              <span class="mt-1 block text-xs text-slate-600">
+                Source URL, retrieved timestamp, document hash, page, and
+                extracted passage: not supplied.
+              </span>
+            </dd>
+          </div>
+
+          <div class="grid gap-2 py-4 sm:grid-cols-3">
+            <dt class="text-sm font-medium text-slate-600">
+              Gross surplus
+              <a
+                href="#dossier-note-2"
+                aria-label="Read evidence annotation 2"
+                class="ml-1 font-semibold text-emerald-800 underline"
+              >[2]</a>
+            </dt>
+            <dd class="sm:col-span-2">
+              <span class="text-2xl font-semibold tabular-nums text-[#0B1F33]">
+                $84,250.00
+              </span>
+              <span class="mt-1 block text-xs text-slate-600">
+                Illustrative USD amount · Net recoverable amount unknown
+              </span>
+            </dd>
+          </div>
+
+          <div class="grid gap-2 py-4 sm:grid-cols-3">
+            <dt class="text-sm font-medium text-slate-600">
+              Title / senior lien scrubbing
+              <a
+                href="#dossier-note-3"
+                aria-label="Read evidence annotation 3"
+                class="ml-1 font-semibold text-emerald-800 underline"
+              >[3]</a>
+            </dt>
+            <dd class="space-y-1 text-sm text-slate-900 sm:col-span-2">
+              <p>Title and ownership review: <strong>Pending</strong></p>
+              <p>Senior lien review: <strong>Pending</strong></p>
+              <p class="text-xs text-slate-600">
+                No representation that the funds are lien-free.
+              </p>
+            </dd>
+          </div>
+
+          <div class="grid gap-2 py-4 sm:grid-cols-3">
+            <dt class="text-sm font-medium text-slate-600">
+              Governing statute citation
+            </dt>
+            <dd class="text-sm text-slate-900 sm:col-span-2">
+              <a
+                href="https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&amp;URL=0100-0199/0197/Sections/0197.582.html"
+                class="font-medium text-emerald-800 underline underline-offset-2"
+              >
+                Fla. Stat. § 197.582
+              </a>
+              <span class="mt-1 block text-xs text-slate-600">
+                Florida tax-deed surplus reference—not a universal rule for
+                mortgage-foreclosure surplus.
+              </span>
+            </dd>
+          </div>
+
+          <div class="grid gap-2 py-4 sm:grid-cols-3">
+            <dt class="text-sm font-medium text-slate-600">
+              Statutory window
+              <a
+                href="#dossier-note-4"
+                aria-label="Read evidence annotation 4"
+                class="ml-1 font-semibold text-emerald-800 underline"
+              >[4]</a>
+            </dt>
+            <dd class="text-sm text-slate-900 sm:col-span-2">
+              Not calculated · Counsel review required
+              <span class="mt-1 block text-xs text-slate-600">
+                Triggering event, event date, applicable subsection, and
+                deadline calculation must be recorded before use.
+              </span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <aside
+        aria-label="Lead review status"
+        class="self-start rounded-xl border border-slate-200 bg-slate-50 p-5"
+      >
+        <h3 class="font-semibold text-[#0B1F33]">Actionability assessment</h3>
+
+        <p class="mt-5 text-3xl font-semibold text-[#0B1F33]">Not scored</p>
+        <p class="mt-2 text-sm leading-6 text-slate-600">
+          A 0–100 operational prioritization score may be shown only with its
+          model version, calculation date, and contributing factors. It is not
+          a probability of recovery or a legal conclusion.
+        </p>
+
+        <dl class="mt-5 space-y-4 border-t border-slate-200 pt-5 text-sm">
+          <div>
+            <dt class="font-medium text-slate-600">Verified status</dt>
+            <dd class="mt-1 font-semibold text-amber-900">Unverified</dd>
+          </div>
+          <div>
+            <dt class="font-medium text-slate-600">Evidence reviewer</dt>
+            <dd class="mt-1 text-slate-900">Not assigned</dd>
+          </div>
+          <div>
+            <dt class="font-medium text-slate-600">Last verified</dt>
+            <dd class="mt-1 text-slate-900">Never</dd>
+          </div>
+          <div>
+            <dt class="font-medium text-slate-600">Intake readiness</dt>
+            <dd class="mt-1 text-slate-900">Blocked pending review</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+
+    <footer class="border-t border-slate-200 pt-5">
+      <h3 class="text-sm font-semibold text-[#0B1F33]">Evidence annotations</h3>
+      <ol class="mt-3 space-y-3 text-sm leading-6 text-slate-600">
+        <li id="dossier-note-1" class="scroll-mt-6">
+          <strong>[1] Source provenance:</strong> Retain the original document,
+          official source URL, custodian, retrieval time, SHA-256 hash, and
+          page-level support. A docket identifier alone is not proof.
+        </li>
+        <li id="dossier-note-2" class="scroll-mt-6">
+          <strong>[2] Amount provenance:</strong> Identify the ledger or court
+          entry supporting the gross amount. Account separately for
+          distributions, competing claims, fees, and later adjustments.
+        </li>
+        <li id="dossier-note-3" class="scroll-mt-6">
+          <strong>[3] Review scope:</strong> Retain title/lien search sources,
+          search-through dates, findings, unresolved exceptions, and reviewer.
+          “Clear” does not establish claimant entitlement.
+        </li>
+        <li id="dossier-note-4" class="scroll-mt-6">
+          <strong>[4] Deadline provenance:</strong> Confirm current law, sale
+          type, claimant class, notice/service facts, orders, and local
+          procedure. Do not infer a deadline from the state alone.
+        </li>
+      </ol>
+    </footer>
+  </div>
+</section>

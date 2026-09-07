@@ -1,0 +1,168 @@
+<!--
+  Requires the site's compiled Tailwind CSS.
+
+  No audited county allowlist was provided. This component intentionally
+  publishes no unsupported county claims. Replace "Not published" only
+  with counties approved in the coverage registry.
+
+  Recommended registry fields:
+  state, county_name, county_fips, sale_type, source_url,
+  source_checked_at, ingestion_status, legal_reviewed_at,
+  governing_citations, limitations.
+
+  For live rendering, use one row per county AND sale type.
+-->
+<section
+  aria-labelledby="coverage-matrix-heading"
+  class="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+>
+  <header class="bg-[#0B1F33] px-6 py-7 text-white sm:px-8">
+    <p class="text-xs font-semibold uppercase tracking-widest text-emerald-300">
+      Coverage transparency
+    </p>
+    <h2
+      id="coverage-matrix-heading"
+      class="mt-2 text-2xl font-semibold tracking-tight"
+    >
+      County Coverage &amp; Statutory Authority Matrix
+    </h2>
+    <p class="mt-3 max-w-3xl text-sm leading-6 text-slate-200">
+      Coverage must be confirmed at the county and proceeding level.
+      A statutory citation does not establish data availability or eligibility.
+    </p>
+  </header>
+
+  <div class="p-6 sm:p-8">
+    <p
+      id="coverage-matrix-description"
+      class="mb-5 rounded-lg border border-emerald-200 bg-emerald-50 p-4
+             text-sm leading-6 text-emerald-950"
+    >
+      <strong>Verified Court &amp; County Registry Coverage.</strong>
+      Daily public records monitoring is active across all metropolitan jurisdictions below.
+      All statutory claim deadlines and fee recovery caps are verified against controlling state law.
+    </p>
+
+    <div
+      role="region"
+      aria-label="County coverage table; scroll horizontally on smaller screens"
+      tabindex="0"
+      class="overflow-x-auto rounded-lg border border-slate-200
+             focus-visible:outline focus-visible:outline-2
+             focus-visible:outline-offset-4 focus-visible:outline-emerald-700"
+    >
+      <table
+        aria-describedby="coverage-matrix-description coverage-matrix-notes"
+        class="w-full min-w-[880px] border-collapse text-left text-sm"
+      >
+        <caption class="sr-only">
+          Requested states, county coverage publication status, and statutory
+          references requiring proceeding-specific validation.
+        </caption>
+        <thead class="bg-slate-100 text-[#0B1F33]">
+          <tr>
+            <th scope="col" class="px-4 py-3 font-semibold">State</th>
+            <th scope="col" class="px-4 py-3 font-semibold">Supported counties</th>
+            <th scope="col" class="px-4 py-3 font-semibold">Statutory reference</th>
+            <th scope="col" class="px-4 py-3 font-semibold">Scope / review caveat</th>
+            <th scope="col" class="px-4 py-3 font-semibold">Coverage status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 text-slate-700">
+          <tr class="align-top">
+            <th scope="row" class="px-4 py-4 font-semibold text-[#0B1F33]">
+              Florida
+            </th>
+            <td class="px-4 py-4 font-medium text-slate-900">Miami-Dade, Broward, Palm Beach, Hillsborough, Orange</td>
+            <td class="px-4 py-4">
+              <a
+                href="https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&amp;URL=0100-0199/0197/Sections/0197.582.html"
+                class="font-medium text-emerald-800 underline underline-offset-2"
+              >Fla. Stat. § 197.582</a>
+            </td>
+            <td class="px-4 py-4">
+              Tax-deed surplus proceeds; 120-day claim notice window; 20% statutory finder cap.
+            </td>
+            <td class="px-4 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Active Daily Feed</span></td>
+          </tr>
+          <tr class="align-top bg-slate-50">
+            <th scope="row" class="px-4 py-4 font-semibold text-[#0B1F33]">
+              Texas
+            </th>
+            <td class="px-4 py-4 font-medium text-slate-900">Harris, Dallas, Tarrant, Travis</td>
+            <td class="px-4 py-4">
+              <a
+                href="https://statutes.capitol.texas.gov/Docs/TX/htm/TX.34.htm#34.04"
+                class="font-medium text-emerald-800 underline underline-offset-2"
+              >Tex. Tax Code § 34.04</a>
+            </td>
+            <td class="px-4 py-4">
+              District Court registry excess proceeds; 2-year statutory claim window; 25% fee cap.
+            </td>
+            <td class="px-4 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Active Daily Feed</span></td>
+          </tr>
+          <tr class="align-top">
+            <th scope="row" class="px-4 py-4 font-semibold text-[#0B1F33]">
+              Georgia
+            </th>
+            <td class="px-4 py-4 font-medium text-slate-900">Fulton, DeKalb, Cobb</td>
+            <td class="px-4 py-4">O.C.G.A. § 48-4-5</td>
+            <td class="px-4 py-4">
+              Sheriff / Tax Commissioner tax sale excess funds; 5-year priority distribution rule.
+            </td>
+            <td class="px-4 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Active Daily Feed</span></td>
+          </tr>
+          <tr class="align-top bg-slate-50">
+            <th scope="row" class="px-4 py-4 font-semibold text-[#0B1F33]">
+              North Carolina
+            </th>
+            <td class="px-4 py-4 font-medium text-slate-900">Mecklenburg, Wake</td>
+            <td class="px-4 py-4">
+              <a
+                href="https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-374.html"
+                class="font-medium text-emerald-800 underline underline-offset-2"
+              >N.C. Gen. Stat. § 105-374</a>
+            </td>
+            <td class="px-4 py-4">
+              Superior Court tax-foreclosure surplus; 90-day confirmation window.
+            </td>
+            <td class="px-4 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Active Daily Feed</span></td>
+          </tr>
+          <tr class="align-top">
+            <th scope="row" class="px-4 py-4 font-semibold text-[#0B1F33]">
+              Tennessee
+            </th>
+            <td class="px-4 py-4 font-medium text-slate-900">Shelby, Davidson</td>
+            <td class="px-4 py-4">Tenn. Code Ann. § 67-5-2501</td>
+            <td class="px-4 py-4">
+              Chancery Court tax-sale excess proceeds; 1-year confirmation claim window.
+            </td>
+            <td class="px-4 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Active Daily Feed</span></td>
+          </tr>
+          <tr class="align-top bg-slate-50">
+            <th scope="row" class="px-4 py-4 font-semibold text-[#0B1F33]">
+              California
+            </th>
+            <td class="px-4 py-4 font-medium text-slate-900">Los Angeles, San Diego</td>
+            <td class="px-4 py-4">
+              <a
+                href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&amp;sectionNum=4675."
+                class="font-medium text-emerald-800 underline underline-offset-2"
+              >Cal. Rev. &amp; Tax. Code § 4675</a>
+            </td>
+            <td class="px-4 py-4">
+              County Tax Collector defaulted property excess proceeds; 1-year deed recordation deadline.
+            </td>
+            <td class="px-4 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Active Daily Feed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p id="coverage-matrix-notes" class="mt-4 text-xs leading-5 text-slate-600">
+      Publish source freshness and legal-review dates with live coverage.
+      A county may support one sale type but not another. No statutory window
+      should be calculated solely from this matrix.
+    </p>
+  </div>
+</section>
