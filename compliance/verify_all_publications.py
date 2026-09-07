@@ -435,10 +435,10 @@ def validate_html_file(filepath: Path) -> list:
     if raw_emails:
         errors.append(f"[{rel_path}] Exposed raw email address detected: {raw_emails}. Route through /inquiry.html instead.")
 
-    # 4. Mandatory EST Timezone Enforcement
-    time_mentions = re.findall(r'\b[0-9]{1,2}:[0-9]{2}\s*(?:AM|PM)\b(?!\s*EST)', content)
+    # 4. Mandatory Timezone Enforcement (EST, ET, or Eastern Time)
+    time_mentions = re.findall(r'\b[0-9]{1,2}:[0-9]{2}\s*(?:AM|PM)\b(?!\s*(?:EST|ET\b|Eastern\s+Time))', content)
     if time_mentions:
-        errors.append(f"[{rel_path}] Time mentioned without mandatory EST designation: {time_mentions}")
+        errors.append(f"[{rel_path}] Time mentioned without mandatory timezone designation: {time_mentions}")
 
     # 5. Stripe Checkout URL Integrity
     stripe_links = re.findall(r'href=[\"\'](https://buy\.stripe\.com/[^\"\'#?]+)[\"\']', content)

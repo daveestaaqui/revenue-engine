@@ -125,10 +125,10 @@ def verify_content_integrity(title: str, content_text: str, pub_date_str: str, c
     if raw_emails:
         errors.append(f"Exposed raw email address detected: {raw_emails}. Route through /inquiry.html instead.")
 
-    # 6. EST Timezone Sentinel
-    time_matches = re.findall(r'\b[0-9]{1,2}:[0-9]{2}\s*(?:AM|PM)\b(?!\s*EST)', content_text)
+    # 6. Timezone Sentinel (EST, ET, or Eastern Time)
+    time_matches = re.findall(r'\b[0-9]{1,2}:[0-9]{2}\s*(?:AM|PM)\b(?!\s*(?:EST|ET\b|Eastern\s+Time))', content_text)
     if time_matches:
-        errors.append(f"Time specified without mandatory EST designation: {time_matches}")
+        errors.append(f"Time specified without mandatory timezone designation: {time_matches}")
 
     if errors:
         error_msg = f"Fact-Checking Validation FAILED for '{title}':\n" + "\n".join(f"  ❌ {e}" for e in errors)
