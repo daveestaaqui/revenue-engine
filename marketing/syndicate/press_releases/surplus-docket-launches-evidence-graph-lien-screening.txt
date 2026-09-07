@@ -1,0 +1,25 @@
+FOR IMMEDIATE RELEASE
+
+SURPLUS DOCKET DEPLOYS UPSTREAM LIEN PRIORITY SCREENING AND CHRONOLOGICAL EVIDENCE GRAPH ENGINE FOR ASSET RECOVERY LITIGATORS
+New intelligence engine parses recorded mortgages, HOA judgments, and county satisfactions to calculate net recoverable equity before counsel engagement.
+
+WEST PALM BEACH, Fla. — Surplus Docket today deployed an upstream lien priority screening and chronological evidence graph engine, marking an industry-first milestone in legal intelligence for tax deed and court excess proceeds litigation.
+
+In tax deed and judicial foreclosure surplus recovery, determining whether equity remains for the record titleholder historically required extensive manual title examinations across county land records. When competitive bidding produces excess registry funds, subordinate mortgagees, judgment creditors, and homeowners associations frequently dispute priority over deposited funds.
+
+Surplus Docket's new Evidence Graph Engine automatically cross-references recorded instruments—including primary mortgages, secondary home equity lines of credit, homeowners association assessment liens, and satisfaction documents—against county court registries. The platform maps recorded encumbrances chronologically, verifies instrument cancellations, and categorizes dockets into actionable equity tiers prior to daily morning delivery.
+
+"Attorneys should not spend billable hours pursuing surplus matters only to discover an unrecorded satisfaction or a senior mortgage that exhausts the proceeds," stated the Systems Architecture Team at Surplus Docket. "Our chronological screening delivers an evidence-grounded summary of title observations directly to counsel, ensuring that practices focus their litigation resources on clean, high-probability client recoveries."
+
+The preliminary lien screening system operates across all six monitored state jurisdictions—Florida (Fla. Stat. § 197.582), Texas (Tex. Tax Code § 34.04), Georgia (O.C.G.A. § 48-4-5), California (Cal. Rev. & Tax Code § 4675), North Carolina (N.C.G.S. § 105-374), and Tennessee (T.C.A. § 67-5-2501)—with complete evidentiary trails accessible through daily subscriber feeds and the programmatic REST API.
+
+###
+
+About Surplus Docket
+Surplus Docket is an autonomous public records intelligence and legal data compiler that aggregates, case-verifies, and standardizes tax deed surplus and excess proceeds records across judicial registries in Florida, Texas, Georgia, North Carolina, Tennessee, and California. Purpose-built for asset recovery attorneys, title searchers, and probate investors, Surplus Docket delivers clean, institutional-lien-scrubbed datasets via daily automated CSV/Excel exports and programmatic REST APIs. For more information, visit https://surplusdocket.com.
+
+Media Relations:
+Surplus Docket Editorial & Compliance Desk
+Publisher Inquiries: https://surplusdocket.com/inquiry.html
+Website: https://surplusdocket.com/press/
+Digital Media Kit: https://surplusdocket.com/press/

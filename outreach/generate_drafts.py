@@ -52,6 +52,22 @@ STATE_NAMES = {
 STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 SITE_URL = "https://surplusdocket.com"
 
+PRACTICE_URLS = {
+    "tax_sale": "https://surplusdocket.com/for/tax-sale-litigation.html",
+    "probate": "https://surplusdocket.com/for/probate-estate-surplus.html",
+    "foreclosure": "https://surplusdocket.com/for/mortgage-foreclosure.html",
+}
+
+
+def get_target_practice_group(specialty, practice_details=""):
+    combined = f"{specialty} {practice_details}".lower()
+    if any(k in combined for k in ["probate", "estate", "heir", "trust", "administration", "decedent"]):
+        return "probate", PRACTICE_URLS["probate"]
+    elif any(k in combined for k in ["foreclosure", "mortgage", "heloc", "junior lien", "lien"]):
+        return "foreclosure", PRACTICE_URLS["foreclosure"]
+    else:
+        return "tax_sale", PRACTICE_URLS["tax_sale"]
+
 # State-specific statutory references
 STATE_STATUTES = {
     "FL": "Fla. Stat. § 197.582",
@@ -255,11 +271,15 @@ def compose_email(target, state_cases):
             f"might be relevant for {firm}."
         )
 
-    # Build subject — specific, non-spammy
-    subject = (
-        f"Scrubbed {state_full} surplus leads for {firm} "
-        f"(verified court docket data)"
-    )
+    practice_group, practice_url = get_target_practice_group(specialty, practice_details)
+
+    # Build subject — practice-aligned, non-spammy
+    if practice_group == "probate":
+        subject = f"{state_full} surplus records involving estate & heir matters — {firm}"
+    elif practice_group == "foreclosure":
+        subject = f"{state_full} foreclosure surplus & junior lien docket intelligence — {firm}"
+    else:
+        subject = f"Scrubbed {state_full} tax sale surplus records for {firm} (verified court docket data)"
 
     # Compose body
     body = f"""{greeting} {first_name},
@@ -276,9 +296,10 @@ A few live cases from this week's feed:
 
 Every record is verified against official clerk dockets{(' under ' + statute + ' (' + window + ')') if statute else ''}.
 
-Daily delivery at 7 AM EST — CSV, Excel, and JSON. Flat $249/mo, cancel anytime, no contracts.
+Daily delivery at 7:00 AM EST — CSV, Excel, and JSON. Flat $249/mo, cancel anytime, no contracts.
 
-Full methodology and sample feed: {SITE_URL}
+Dedicated practice workflow: {practice_url}
+Technical methodology: {SITE_URL}/methodology.html
 Subscribe directly: {STRIPE_LINK}
 
 Happy to send a free sample extract if you want to see the data first — just reply here.
@@ -289,7 +310,7 @@ Senior Docket Specialist | Surplus Docket
 {SITE_URL}
 
 ---
-Legal Notice & Regulatory Disclaimer: Surplus Docket is a specialized legal technology and court records intelligence service, not a law firm. Surplus Docket does not provide legal advice, legal counsel, or legal representation, and no attorney-client relationship is formed by this correspondence. All docket records, statutory references, and procedural timelines are compiled exclusively for informational and intelligence purposes for licensed attorneys and recovery professionals."""
+Legal Notice & Regulatory Disclaimer: Surplus Docket is a specialized legal technology and court records intelligence service, not a law firm. Surplus Docket provides research and workflow software, not legal advice, title opinions, or representation. Records may be incomplete or change after retrieval. Counsel must independently verify balances, ownership, standing, priority, and deadlines."""
 
     return subject, body
 
@@ -308,6 +329,12 @@ def create_eml_file(to_email, to_name, subject, body, output_path):
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Generate personalized attorney outreach drafts")
+    parser.add_argument("--limit", type=int, default=50, help="Maximum number of drafts to generate (default: 50, use 0 for all)")
+    parser.add_argument("--state", type=str, default="", help="Filter by state abbreviation (e.g. FL, TX, GA, CA, NC, TN)")
+    args = parser.parse_args()
+
     print("=" * 70)
     print("  SURPLUS DOCKET — PERSONALIZED DRAFT EMAIL GENERATOR")
     print("=" * 70)
@@ -327,6 +354,11 @@ def main():
         print("  No targets found.")
         return
 
+    # Filter by state if specified
+    if args.state:
+        targets = [t for t in targets if t.get("State", "").strip().upper() == args.state.upper()]
+        print(f"  Filtered to {len(targets)} targets in state: {args.state.upper()}")
+
     # 3. Check already-contacted
     print("\n  Checking for previously contacted emails...")
     already_contacted = get_already_contacted()
@@ -344,8 +376,14 @@ def main():
 
     if skipped:
         print(f"  Skipping {len(skipped)} already-contacted addresses:")
-        for s in skipped:
+        for s in skipped[:10]:
             print(f"    - {s}")
+        if len(skipped) > 10:
+            print(f"    ... and {len(skipped) - 10} more")
+
+    if args.limit > 0 and len(new_targets) > args.limit:
+        print(f"\n  Limiting draft generation to first {args.limit} candidates (use --limit 0 for all)")
+        new_targets = new_targets[:args.limit]
 
     print(f"\n  {len(new_targets)} new drafts to generate")
 

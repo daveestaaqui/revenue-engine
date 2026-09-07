@@ -198,6 +198,170 @@ ARTICLES = [
             </a>
         </div>
         """
+    },
+    {
+        "slug": "georgia-tax-sale-excess-funds-guide-ocga-48-4-5",
+        "title": "Georgia Tax Sale Excess Funds: A Practitioner's Guide to O.C.G.A. § 48-4-5 and Superior Court Interpleader",
+        "excerpt": "A practitioner's guide to Georgia's 5-year surplus claim period, county tax commissioner claim procedures, sheriff tax sales, and lien priority distribution.",
+        "category": "Georgia Legal Framework",
+        "date": "2026-08-28",
+        "read_time": "6 min read",
+        "keywords": "Georgia tax sale excess funds, O.C.G.A. 48-4-5, Fulton County tax surplus, Georgia sheriff sale excess funds attorney",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            In Georgia judicial and non-judicial tax sales conducted under Title 48 of the Official Code of Georgia Annotated, competitive public auction bidding often produces substantial excess proceeds over delinquent tax liabilities. Pursuant to <strong>O.C.G.A. § 48-4-5</strong>, these excess funds must be paid over to the county tax commissioner or sheriff and held in trust for distribution to entitled parties of record.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. The Five-Year Statutory Claim Horizon</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Unlike jurisdictions with compressed 120-day windows, Georgia provides a robust <strong>5-year statutory period</strong> from the date of the tax sale for record titleholders and subordinate lienholders to assert claims for excess proceeds. If funds remain unclaimed following the expiration of the statutory period, the custodian must remit the remaining funds to the state treasury as unclaimed property.
+        </p>
+
+        <div class="bg-brand-canvas border-l-4 border-brand-green p-6 my-6 rounded-r-xl">
+            <p class="text-sm font-semibold text-brand-navy mb-1">Notice to Interested Parties:</p>
+            <p class="text-xs text-slate-600">
+                Under O.C.G.A. § 48-4-5(b), the officer conducting the sale is required to send notice of the excess funds to the record owner and any lienholders of record identified in a title search within 30 days of the sale.
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. Priority of Distribution and Superior Court Interpleader</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            When multiple adverse claims are asserted against the excess funds—such as competing mortgagees, municipal assessment liens, or judgment creditors—county tax commissioners will not resolve priority administratively. Instead, the county files an <strong>interpleader action in the Superior Court</strong> pursuant to O.C.G.A. § 9-11-22, depositing the funds into the registry of the court for judicial determination of priority.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Automate Your Georgia Excess Proceeds Pipeline</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Receive case-verified excess proceeds dockets across Fulton, DeKalb, Cobb, and Gwinnett counties with senior mortgage liens pre-scrubbed. Delivered daily at 7:00 AM EST.
+            </p>
+            <a href="https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Subscribe to Tri-State Feed ($249/mo) — Instant Setup
+            </a>
+        </div>
+        """
+    },
+    {
+        "slug": "california-tax-defaulted-excess-proceeds-guide-rtc-4675",
+        "title": "California Excess Proceeds from Tax-Defaulted Property Sales: Cal. Rev. & Tax Code § 4675",
+        "excerpt": "Detailed legal analysis of California's strict 1-year statute of limitations from deed recording, Board of Supervisors claim procedures, and statutory assignment restrictions.",
+        "category": "California Legal Framework",
+        "date": "2026-08-30",
+        "read_time": "7 min read",
+        "keywords": "California excess proceeds, Cal. Rev. & Tax Code 4675, tax-defaulted property sale surplus, California surplus asset recovery",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            In California, when real property is sold at public auction by the county tax collector due to unpaid property taxes, any proceeds remaining after the satisfaction of delinquent taxes and statutory sale fees constitute <strong>excess proceeds</strong> governed by <strong>California Revenue and Taxation Code § 4675</strong>.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. Strict One-Year Filing Deadline</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            A critical procedural trap in California practice is the strict <strong>one-year limitation period</strong>. Claims for excess proceeds must be filed with the county treasurer-tax collector or Board of Supervisors within exactly one year from the date the tax collector's deed to the purchaser is recorded. Unlike civil lawsuits where equitable tolling may apply, California courts strictly enforce this jurisdictional cutoff.
+        </p>
+
+        <div class="bg-brand-canvas border-l-4 border-brand-green p-6 my-6 rounded-r-xl">
+            <p class="text-sm font-semibold text-brand-navy mb-1">Two-Tiered Statutory Distribution Priority:</p>
+            <p class="text-xs text-slate-600">
+                Under Cal. Rev. &amp; Tax Code § 4675(e), proceeds are distributed strictly in order: first, to recorded lienholders in order of their priority on the date of sale; second, to any person with title of record immediately prior to the recordation of the tax deed.
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. Statutory Assignment Regulations (§ 4675(e))</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            California imposes stringent statutory consumer protections on third-party assignments of excess proceeds. Under subsection (e), any assignment of rights must be executed via formal written agreement with full statutory disclosures of the exact surplus balance known to the county, and cannot be executed prior to the date of sale. Licensed attorneys representing claimants directly on a retainer avoid these third-party assignment complications.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Track California County Surplus Dockets Programmatically</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Direct access to audited excess proceeds across Los Angeles, San Diego, Orange, and Riverside counties with verified recorded deed dates and calculated claim deadlines. Delivered daily at 7:00 AM EST.
+            </p>
+            <a href="https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Activate National 6-State Master Suite ($449/mo)
+            </a>
+        </div>
+        """
+    },
+    {
+        "slug": "probate-surplus-recovery-estate-administration-guide",
+        "title": "Probate Surplus Recovery: How Letters of Administration and Summary Administration Unlock Court Registry Funds",
+        "excerpt": "Strategic blueprint for probate counsel navigating deceased-owner tax deed dockets, summary administration petitions, and heirship claims in court registries.",
+        "category": "Probate & Estate Litigation",
+        "date": "2026-09-03",
+        "read_time": "6 min read",
+        "keywords": "probate surplus recovery, deceased owner tax deed surplus, intestate estate excess proceeds, letters of administration surplus funds",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Across county court registries, a substantial percentage of unclaimed tax deed surplus funds belong to deceased record titleholders. When an owner dies intestate or without formal probate administration prior to a tax foreclosure auction, county clerks cannot disburse registry funds without certified probate court authority.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. The Non-Lawyer Barrier to Entry</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Unlicensed third-party surplus finders are statutorily prohibited from drafting probate pleadings or representing heirs in court under unauthorized practice of law (UPL) statutes. Consequently, deceased-owner surplus files represent a protected, highly lucrative niche reserved exclusively for licensed estate and probate litigation counsel.
+        </p>
+
+        <div class="bg-brand-canvas border-l-4 border-brand-green p-6 my-6 rounded-r-xl">
+            <p class="text-sm font-semibold text-brand-navy mb-1">Procedural Pathways for Recovery:</p>
+            <p class="text-xs text-slate-600">
+                Depending on the surplus amount and elapsed time since the decedent's passing, counsel may utilize: (1) Formal Administration with Letters of Administration, (2) Summary Administration for estates under statutory dollar limits ($75,000 in Florida), or (3) Affidavits of Heirship in jurisdictions like Texas.
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. Cross-Referencing Death Notices with Court Dockets</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Surplus Docket's ingestion rules automatically cross-reference county tax deed dockets against recorded death certificates and probate indexes, flagging deceased titleholder files immediately upon auction confirmation so estate counsel can initiate probate proceedings well before statutory claim windows lapse.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Automate Deceased-Owner Surplus Identification</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Receive daily verified estate surplus opportunities with parcel legal descriptions, recorded death indicators, and statutory claim countdowns. Delivered daily at 7:00 AM EST.
+            </p>
+            <a href="https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Subscribe to Tri-State Feed ($249/mo) — Self-Serve Setup
+            </a>
+        </div>
+        """
+    },
+    {
+        "slug": "mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions",
+        "title": "Mortgage Foreclosure Surplus vs. Tax Deed Surplus: Procedural Differences, 60-Day Deadlines, and Priority",
+        "excerpt": "Comparative legal analysis of judicial foreclosure surplus proceedings versus administrative tax deed auctions, detailing distinct statutory timelines and lienholder standing.",
+        "category": "Litigation & Lien Priority",
+        "date": "2026-09-06",
+        "read_time": "7 min read",
+        "keywords": "mortgage foreclosure surplus, Fla. Stat. 45.032, tax deed surplus differences, 60 day surplus claim window, junior lienholder surplus priority",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            While both tax deed sales and mortgage foreclosure auctions can generate substantial excess funds, real estate litigators must recognize that they operate under entirely distinct statutory frameworks, procedural rules, and jurisdictional deadlines.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. Judicial Foreclosure Surplus (Fla. Stat. § 45.032)</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            In mortgage foreclosure proceedings, excess proceeds are generated when a third-party bidder bids more than the foreclosing plaintiff's final judgment amount. Under Florida Statute § 45.032, subordinate lienholders must file a claim within <strong>60 days after the clerk issues the Certificate of Disbursements</strong>. If no subordinate lienholders file timely claims within this 60-day period, the remaining surplus belongs to the owner of record.
+        </p>
+
+        <div class="bg-brand-canvas border-l-4 border-brand-green p-6 my-6 rounded-r-xl">
+            <p class="text-sm font-semibold text-brand-navy mb-1">Key Procedural Distinctions:</p>
+            <p class="text-xs text-slate-600">
+                Administrative tax deed sales (Fla. Stat. § 197.582) provide a 120-day claim window triggered by the clerk's statutory notice, whereas judicial foreclosure surplus (Fla. Stat. § 45.032) provides a strict 60-day window triggered by the Certificate of Disbursements and requires a judicial motion rather than an administrative claim form.
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. Junior Encumbrance Priority Analysis</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            In judicial foreclosure surplus matters, senior mortgage liens are typically satisfied by the sale proceeds or survive if junior interests foreclosed. Conversely, in tax deed auctions, all pre-existing mortgage liens are wiped out by the super-priority of the tax deed, and lienholders must seek recovery exclusively from the surplus registry fund in order of recording priority.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Streamline Foreclosure and Tax Surplus Docket Management</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Monitor judicial foreclosure surplus deposits and tax deed sales side-by-side with automated lien screening and statutory claim countdowns. Delivered daily at 7:00 AM EST.
+            </p>
+            <a href="https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Subscribe to Master Suite ($449/mo) — Complete Access
+            </a>
+        </div>
+        """
     }
 ]
 

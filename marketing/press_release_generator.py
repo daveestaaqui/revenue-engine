@@ -30,6 +30,40 @@ SYNDICATE_DIR.mkdir(parents=True, exist_ok=True)
 
 PRESS_RELEASES = [
     {
+        "slug": "surplus-docket-launches-evidence-graph-lien-screening",
+        "date": "September 07, 2026",
+        "iso_date": "2026-09-07T07:00:00-04:00",
+        "rfc822_date": "Mon, 07 Sep 2026 07:00:00 -0400",
+        "headline": "Surplus Docket Deploys Upstream Lien Priority Screening and Chronological Evidence Graph Engine for Asset Recovery Litigators",
+        "subheadline": "New intelligence engine parses recorded mortgages, HOA judgments, and county satisfactions to calculate net recoverable equity before counsel engagement.",
+        "location": "WEST PALM BEACH, Fla.",
+        "summary": "Surplus Docket unveiled its automated preliminary lien screening and evidence graph engine, enabling legal counsel to evaluate recorded junior encumbrances and title priority tiers across Florida, Texas, and multi-state registries.",
+        "body_paragraphs": [
+            "Surplus Docket today deployed an upstream lien priority screening and chronological evidence graph engine, marking an industry-first milestone in legal intelligence for tax deed and court excess proceeds litigation.",
+            "In tax deed and judicial foreclosure surplus recovery, determining whether equity remains for the record titleholder historically required extensive manual title examinations across county land records. When competitive bidding produces excess registry funds, subordinate mortgagees, judgment creditors, and homeowners associations frequently dispute priority over deposited funds.",
+            "Surplus Docket's new Evidence Graph Engine automatically cross-references recorded instruments—including primary mortgages, secondary home equity lines of credit, homeowners association assessment liens, and satisfaction documents—against county court registries. The platform maps recorded encumbrances chronologically, verifies instrument cancellations, and categorizes dockets into actionable equity tiers prior to daily morning delivery.",
+            "\"Attorneys should not spend billable hours pursuing surplus matters only to discover an unrecorded satisfaction or a senior mortgage that exhausts the proceeds,\" stated the Systems Architecture Team at Surplus Docket. \"Our chronological screening delivers an evidence-grounded summary of title observations directly to counsel, ensuring that practices focus their litigation resources on clean, high-probability client recoveries.\"",
+            "The preliminary lien screening system operates across all six monitored state jurisdictions—Florida (Fla. Stat. § 197.582), Texas (Tex. Tax Code § 34.04), Georgia (O.C.G.A. § 48-4-5), California (Cal. Rev. & Tax Code § 4675), North Carolina (N.C.G.S. § 105-374), and Tennessee (T.C.A. § 67-5-2501)—with complete evidentiary trails accessible through daily subscriber feeds and the programmatic REST API."
+        ]
+    },
+    {
+        "slug": "surplus-docket-expands-six-state-registry-monitoring",
+        "date": "September 04, 2026",
+        "iso_date": "2026-09-04T07:00:00-04:00",
+        "rfc822_date": "Fri, 04 Sep 2026 07:00:00 -0400",
+        "headline": "Surplus Docket Expands Autonomous Registry Monitoring Across Six Jurisdictions, Surpassing $3.2 Million in Audited Excess Proceeds",
+        "subheadline": "Multi-jurisdiction expansion covers 100+ county registries across Florida, Texas, Georgia, California, North Carolina, and Tennessee with strict Tyler v. Hennepin compliance.",
+        "location": "ORLANDO, Fla. & DALLAS, Tex.",
+        "summary": "Surplus Docket announced the expansion of its court registry monitoring infrastructure to encompass six key judicial jurisdictions, indexing more than $3.2 million in pre-cleared, unencumbered surplus funds for licensed recovery practitioners.",
+        "body_paragraphs": [
+            "Surplus Docket today announced a major multi-jurisdictional expansion of its court registry monitoring network, extending continuous coverage across more than 100 high-volume county court registries in Florida, Texas, Georgia, California, North Carolina, and Tennessee.",
+            "With this expansion, Surplus Docket has indexed and verified more than $3.2 million in active court excess proceeds, representing over $668,000 in potential statutory representative fees for licensed recovery counsel. Every opportunity in the expanded feed is mathematically audited against statutory fee caps (20% in Florida, Georgia, California, North Carolina, and Tennessee; 25% in Texas) and screened against official court verification portals.",
+            "The expanded monitoring infrastructure addresses surging demand following the Supreme Court's unanimous ruling in Tyler v. Hennepin County, which affirmed that property owners retain a constitutional property right to excess equity remaining after delinquent property tax debts are satisfied.",
+            "\"Counties across the nation are processing unprecedented auction volumes, yet fragmented clerk portals make timely identification challenging for litigators,\" said the Expansion Lead at Surplus Docket. \"By providing standardized multi-state feeds delivered every business morning at 7:00 AM EST, we empower regional and national practices to scale their asset recovery dockets with zero data-entry overhead.\"",
+            "Subscribers can access the new multi-state registries through the regional Tri-State feed ($249/mo) or the National 6-State Master Suite ($449/mo), which includes complete REST JSON API integration for automated practice management systems."
+        ]
+    },
+    {
         "slug": "surplus-docket-unveils-rest-api-for-law-practice-management",
         "date": "August 23, 2026",
         "iso_date": "2026-08-23T07:00:00-04:00",

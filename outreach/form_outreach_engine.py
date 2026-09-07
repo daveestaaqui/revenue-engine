@@ -81,11 +81,22 @@ COUNTY_URLS = {
 }
 
 
-def get_recommended_link(state_code, practice_details):
+def get_recommended_link(state_code, practice_details, specialty=""):
+    spec_lower = (specialty or "").lower()
     details_lower = (practice_details or "").lower()
+
+    # Specialty-specific practice landing pages
+    if any(k in spec_lower or k in details_lower for k in ["probate", "estate", "heir", "trust", "administration"]):
+        return "https://surplusdocket.com/for/probate-estate-surplus.html"
+    if any(k in spec_lower or k in details_lower for k in ["foreclosure", "mortgage", "heloc", "junior lien", "lien"]):
+        return "https://surplusdocket.com/for/mortgage-foreclosure.html"
+
+    # County deep links
     for county_kw, url in COUNTY_URLS.items():
         if county_kw in details_lower:
             return url
+
+    # State deep links
     if state_code in STATE_URLS:
         return STATE_URLS[state_code]
     return SITE_URL
@@ -103,9 +114,10 @@ def compose_message(target):
     state_code = target.get("State", "FL").strip().upper()
     state_name = STATE_NAMES.get(state_code, state_code)
     practice_details = target.get("Practice_Details", "")
+    specialty = target.get("Specialty", "")
 
     greeting = f"Hi {first_name}," if first_name else f"Hello {firm} team,"
-    recommended_link = get_recommended_link(state_code, practice_details)
+    recommended_link = get_recommended_link(state_code, practice_details, specialty)
 
     if target.get("is_refresh"):
         quarter_num = ((datetime.now().month - 1) // 3) + 1
@@ -176,15 +188,15 @@ Court Registry Ingestion Desk | Surplus Docket
 surplusdocket.com
 dockets@surplusdocket.com"""
 
-    else:  # Variant C
-        subject = f"{state_name} surplus claims — daily ROI feed"
+    else:  # Variant C — Astrid Procedural & Encumbrance Screening Angle
+        subject = f"{state_name} court registry surplus & encumbrance screening"
         body = f"""{greeting}
 
-Quick math for your recovery practice: the average {state_name} surplus balance in our current index is roughly $45,000. At a standard 25% statutory fee, that's $11,250 per successful claim — and our automated court monitors index new filings every morning.
+Surplus Docket organizes surplus records from covered {state_name} court registries so legal teams can review source documents, reported amounts, and preliminary lien flags without confusing raw listings with established claims.
 
-Our team compiles tax deed surplus and court registry excess proceeds dockets across {state_name} daily. We filter out senior mortgages and institutional liens upstream, so your attorneys are only working actionable, pure-equity files.
+Our daily feed distinguishes between administrative tax deed overages and judicial foreclosure funds, helping your attorneys inspect the evidence trail, verify claimant standing, and track statutory response deadlines.
 
-Live feed and sample docket data:
+Inspect our source-linked workflow and sample dockets here:
 {recommended_link}
 
 Your office can evaluate live morning filings with a 7-day complimentary practice evaluation ($0 due today, $249/mo flat thereafter, cancel anytime via Stripe portal):

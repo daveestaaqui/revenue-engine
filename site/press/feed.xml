@@ -5,8 +5,26 @@
     <link>https://surplusdocket.com/press/</link>
     <description>Official press releases and legal intelligence announcements from Surplus Docket.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Sep 2026 16:12:11 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2026 20:48:37 GMT</lastBuildDate>
     <atom:link href="https://surplusdocket.com/press/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title><![CDATA[Surplus Docket Deploys Upstream Lien Priority Screening and Chronological Evidence Graph Engine for Asset Recovery Litigators]]></title>
+      <link>https://surplusdocket.com/press/releases/surplus-docket-launches-evidence-graph-lien-screening.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/press/releases/surplus-docket-launches-evidence-graph-lien-screening.html</guid>
+      <pubDate>Mon, 07 Sep 2026 07:00:00 -0400</pubDate>
+      <description><![CDATA[Surplus Docket unveiled its automated preliminary lien screening and evidence graph engine, enabling legal counsel to evaluate recorded junior encumbrances and title priority tiers across Florida, Texas, and multi-state registries.]]></description>
+      <author>press@surplusdocket.com (Surplus Docket Newsroom)</author>
+      <category>Legal Technology / Public Records</category>
+    </item>
+    <item>
+      <title><![CDATA[Surplus Docket Expands Autonomous Registry Monitoring Across Six Jurisdictions, Surpassing $3.2 Million in Audited Excess Proceeds]]></title>
+      <link>https://surplusdocket.com/press/releases/surplus-docket-expands-six-state-registry-monitoring.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/press/releases/surplus-docket-expands-six-state-registry-monitoring.html</guid>
+      <pubDate>Fri, 04 Sep 2026 07:00:00 -0400</pubDate>
+      <description><![CDATA[Surplus Docket announced the expansion of its court registry monitoring infrastructure to encompass six key judicial jurisdictions, indexing more than $3.2 million in pre-cleared, unencumbered surplus funds for licensed recovery practitioners.]]></description>
+      <author>press@surplusdocket.com (Surplus Docket Newsroom)</author>
+      <category>Legal Technology / Public Records</category>
+    </item>
     <item>
       <title><![CDATA[Surplus Docket Unveils Programmatic REST JSON API for Law Firm Practice Management and AI Intake Automation]]></title>
       <link>https://surplusdocket.com/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html</link>

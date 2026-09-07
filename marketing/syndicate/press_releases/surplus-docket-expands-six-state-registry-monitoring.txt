@@ -1,0 +1,25 @@
+FOR IMMEDIATE RELEASE
+
+SURPLUS DOCKET EXPANDS AUTONOMOUS REGISTRY MONITORING ACROSS SIX JURISDICTIONS, SURPASSING $3.2 MILLION IN AUDITED EXCESS PROCEEDS
+Multi-jurisdiction expansion covers 100+ county registries across Florida, Texas, Georgia, California, North Carolina, and Tennessee with strict Tyler v. Hennepin compliance.
+
+ORLANDO, Fla. & DALLAS, Tex. — Surplus Docket today announced a major multi-jurisdictional expansion of its court registry monitoring network, extending continuous coverage across more than 100 high-volume county court registries in Florida, Texas, Georgia, California, North Carolina, and Tennessee.
+
+With this expansion, Surplus Docket has indexed and verified more than $3.2 million in active court excess proceeds, representing over $668,000 in potential statutory representative fees for licensed recovery counsel. Every opportunity in the expanded feed is mathematically audited against statutory fee caps (20% in Florida, Georgia, California, North Carolina, and Tennessee; 25% in Texas) and screened against official court verification portals.
+
+The expanded monitoring infrastructure addresses surging demand following the Supreme Court's unanimous ruling in Tyler v. Hennepin County, which affirmed that property owners retain a constitutional property right to excess equity remaining after delinquent property tax debts are satisfied.
+
+"Counties across the nation are processing unprecedented auction volumes, yet fragmented clerk portals make timely identification challenging for litigators," said the Expansion Lead at Surplus Docket. "By providing standardized multi-state feeds delivered every business morning at 7:00 AM EST, we empower regional and national practices to scale their asset recovery dockets with zero data-entry overhead."
+
+Subscribers can access the new multi-state registries through the regional Tri-State feed ($249/mo) or the National 6-State Master Suite ($449/mo), which includes complete REST JSON API integration for automated practice management systems.
+
+###
+
+About Surplus Docket
+Surplus Docket is an autonomous public records intelligence and legal data compiler that aggregates, case-verifies, and standardizes tax deed surplus and excess proceeds records across judicial registries in Florida, Texas, Georgia, North Carolina, Tennessee, and California. Purpose-built for asset recovery attorneys, title searchers, and probate investors, Surplus Docket delivers clean, institutional-lien-scrubbed datasets via daily automated CSV/Excel exports and programmatic REST APIs. For more information, visit https://surplusdocket.com.
+
+Media Relations:
+Surplus Docket Editorial & Compliance Desk
+Publisher Inquiries: https://surplusdocket.com/inquiry.html
+Website: https://surplusdocket.com/press/
+Digital Media Kit: https://surplusdocket.com/press/

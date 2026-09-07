@@ -1,7 +1,7 @@
 {
   "manifest_version": "1.0.0",
   "publisher": "Surplus Docket \u2014 Autonomous Public Records Intelligence",
-  "generated_at": "2026-09-07T20:16:33.550999+00:00",
+  "generated_at": "2026-09-07T20:56:55.476880+00:00",
   "audit_status": "PASSED_100_PERCENT",
   "jurisdictions_verified": [
     "FL",
@@ -18,7 +18,7 @@
     "mathematical_discrepancies": 0,
     "statutory_violations": 0,
     "institutional_bank_violations": 0,
-    "publications_audited": 17,
+    "publications_audited": 23,
     "banned_phrase_violations": 0,
     "duplicate_paragraph_violations": 0,
     "exposed_email_violations": 0
@@ -85,14 +85,20 @@
     "site/api/v1/tennessee.json": "af130dd63928474d368e20edc4a4924b8dd5ee93941d7c32d0fe8c492727635f",
     "site/api/v1/north-carolina.json": "37ccd5e1e2cd886acda05c3f8ae4c8cb28d49257478b857288918c29756d2efb",
     "site/api/v1/feed.json": "1c6929336bff5dc824a9dd64011c8cb3b7f44f19516a13cf48e6dbabe7530e59",
+    "site/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html": "ecc6692f143b68556de6be318beed541bb92e153846989a69d75f99abfa3cefe",
     "site/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html": "f1c908444339651f564d84b4564e1f69eea97b7fb374613a674c52b2fbe4a757",
+    "site/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html": "4e8660ee87b24a43998914f0463ace78622f28cf0b4a106465819d1ae062e92e",
+    "site/blog/posts/probate-surplus-recovery-estate-administration-guide.html": "8b48bbfadb7cbc8ee14e256020d6566accc3dffd3f98233c9b06a55bd381151e",
+    "site/blog/posts/mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions.html": "712d5b8cea430198a2e25f247c851105ce0278ca0178a9a4df4c33e8bcc51361",
     "site/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html": "20966a6b9bab7d97bf4d37187a869a337fdc1eaf6c8bc6981f946b8748464cad",
     "site/blog/posts/institutional-lien-filtering-asset-recovery.html": "bc9d12dfb6a9d0edc6af372c1b85782a790ff79531b43370eae6d621cc09ce97",
     "site/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html": "75b7d20d7f1cbcc312cbaa796d6aa89f3432eb9dd7d3c965ffbf1f71e0fabe2f",
     "site/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html": "f51f1844a6a19b936287ef76e6bde03126c8931a436588cf6f170a09bab339ee",
+    "site/press/releases/surplus-docket-expands-six-state-registry-monitoring.html": "23949796d77c58877d8a8bda9f720333c1f85ac0b74599313c118917e6cd8825",
     "site/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html": "441a62b3096711d1849471b5dd50c16f6b02e1dad3f0bcc9ad8ff06a08cc3520",
+    "site/press/releases/surplus-docket-launches-evidence-graph-lien-screening.html": "0e3bf39579b9aaa5e9d86495727929d727e5dd23172897a93aaf4019d76d48a0",
     "site/for/tax-sale-litigation.html": "97cc48c443607b45150c9470f3aec32cb4ef6d80b84b4093a6f4e617e16299ce",
-    "site/for/mortgage-foreclosure.html": "9d04ce8635b739c2b228c1217f7aaa2be8b643681450cc692db41a7d1e6e4d23",
+    "site/for/mortgage-foreclosure.html": "0112ca66b8f1bd100d1376582403564be72711939884e24eb64a7339c7afbbc4",
     "site/for/probate-estate-surplus.html": "e0c9f24b1643859457fe80c4aeac4d908893ad09f0a5fdef127093956ed2e47d"
   }
 }
