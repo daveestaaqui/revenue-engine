@@ -113,3 +113,5 @@
 [2026-09-07 15:24:56]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
 [2026-09-07 15:25:11]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
 [2026-09-07 15:25:11]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
+[2026-09-07 15:35:43]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-09-07 15:35:43]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com

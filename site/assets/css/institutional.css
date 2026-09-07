@@ -1,0 +1,331 @@
+/**
+ * Surplus Docket — Institutional Design System
+ * Engineered by Astrid (GPT-6 Astra)
+ * Theme: Sober, authoritative, Bloomberg/Lexis-grade legal research terminal.
+ */
+
+:root {
+  --sd-navy: #1b365d;
+  --sd-navy-deep: #102238;
+  --sd-ink: #0c1827;
+  --sd-olive: #4c6d48;
+  --sd-olive-deep: #365134;
+  --sd-olive-soft: #edf3ec;
+  --sd-paper: #f8f8f4;
+  --sd-gold: #f59e0b;
+  --sd-white: #ffffff;
+  --sd-muted: #526174;
+
+  --sd-line: rgb(27 54 93 / 14%);
+  --sd-line-strong: rgb(27 54 93 / 26%);
+  --sd-radius: 12px;
+
+  /* Contact occlusion + directional ambient shadow */
+  --sd-shadow:
+    0 1px 2px rgb(12 24 39 / 5%),
+    0 8px 24px -12px rgb(12 24 39 / 16%);
+  --sd-shadow-raised:
+    0 2px 4px rgb(12 24 39 / 6%),
+    0 14px 30px -12px rgb(12 24 39 / 22%);
+
+  --sd-ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* Typography & Numerals */
+.tabular-nums {
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: 0;
+}
+
+.sd-amount {
+  color: var(--sd-navy-deep);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.sd-case-id {
+  font-size: .875rem;
+  font-family: 'JetBrains Mono', monospace, ui-monospace;
+  overflow-wrap: anywhere;
+}
+
+.sd-eyebrow {
+  color: var(--sd-muted);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Institutional Cards */
+.card-institutional {
+  background: var(--sd-white);
+  border: 1px solid var(--sd-line);
+  border-radius: var(--sd-radius);
+  box-shadow: var(--sd-shadow);
+  transition:
+    transform 160ms var(--sd-ease),
+    box-shadow 160ms var(--sd-ease),
+    border-color 160ms var(--sd-ease);
+}
+
+.card-interactive {
+  cursor: pointer;
+}
+
+.card-interactive:focus-within {
+  border-color: var(--sd-line-strong);
+  box-shadow: var(--sd-shadow-raised);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-interactive:hover {
+    transform: translateY(-1px);
+    border-color: var(--sd-line-strong);
+    box-shadow: var(--sd-shadow-raised);
+  }
+}
+
+/* Statutory Pill Badges */
+.badge-statutory {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  width: fit-content;
+  padding: .25rem .625rem;
+  border: 1px solid rgb(76 109 72 / 25%);
+  border-radius: 999px;
+  background: var(--sd-olive-soft);
+  color: var(--sd-olive-deep);
+  font-size: .75rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.badge-statutory__dot {
+  flex: 0 0 .375rem;
+  width: .375rem;
+  height: .375rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-statutory--navy {
+  border-color: rgb(27 54 93 / 20%);
+  background: #f0f4f9;
+  color: var(--sd-navy);
+}
+
+.badge-statutory--gold {
+  border-color: rgb(245 158 11 / 30%);
+  background: #fef8eb;
+  color: #92400e;
+}
+
+.badge-statutory--active .badge-statutory__dot {
+  animation: sd-status 2s ease-in-out infinite;
+}
+
+@keyframes sd-status {
+  50% { opacity: .4; }
+}
+
+/* Institutional Buttons */
+.sd-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  min-height: 44px;
+  padding: .625rem 1.25rem;
+  border: 1px solid var(--sd-navy);
+  border-radius: 8px;
+  background: var(--sd-navy);
+  color: #ffffff !important;
+  font: inherit;
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 140ms var(--sd-ease),
+    border-color 140ms var(--sd-ease),
+    transform 140ms var(--sd-ease),
+    box-shadow 140ms var(--sd-ease);
+}
+
+.sd-button:hover {
+  background: var(--sd-navy-deep);
+  border-color: var(--sd-navy-deep);
+  box-shadow: 0 2px 8px -2px rgba(16, 34, 56, 0.3);
+}
+
+.sd-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.sd-button--secondary {
+  background: #ffffff;
+  color: var(--sd-navy) !important;
+  border-color: var(--sd-line-strong);
+}
+
+.sd-button--secondary:hover {
+  background: var(--sd-paper);
+  border-color: var(--sd-navy);
+}
+
+/* Frosted Navigation Header */
+.sd-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(248, 248, 244, 0.94);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--sd-line);
+  box-shadow: 0 1px 3px rgba(12, 24, 39, 0.04), 0 6px 16px -8px rgba(12, 24, 39, 0.08);
+}
+
+/* Terminal Docket Scroll & Table */
+.docket-scroll {
+  max-height: 34rem;
+  overflow: auto;
+  isolation: isolate;
+  border: 1px solid var(--sd-line);
+  border-radius: 10px;
+  background: #ffffff;
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 var(--sd-paper);
+  scrollbar-gutter: stable;
+}
+
+.docket-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.docket-scroll::-webkit-scrollbar-track {
+  background: var(--sd-paper);
+}
+
+.docket-scroll::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border: 2px solid var(--sd-paper);
+  border-radius: 999px;
+}
+
+.docket-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--sd-muted);
+}
+
+.table-terminal {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: .875rem;
+  line-height: 1.4;
+}
+
+.table-terminal caption {
+  padding: .75rem 1rem;
+  color: var(--sd-muted);
+  text-align: left;
+  font-size: .8125rem;
+}
+
+.table-terminal :where(th, td) {
+  padding: .875rem 1rem;
+  border-bottom: 1px solid var(--sd-line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table-terminal thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f1f4f8;
+  color: var(--sd-navy-deep);
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 0 var(--sd-line);
+}
+
+.table-terminal tbody th {
+  font-weight: 600;
+}
+
+.table-terminal tbody tr:nth-child(even) {
+  background: #fbfbf9;
+}
+
+.table-terminal tbody tr:hover {
+  background: #f1f6f0;
+}
+
+.table-terminal tbody tr:focus-within {
+  background: #f1f6f0;
+}
+
+.table-terminal tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.table-terminal .numeric {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.table-terminal .suite-column {
+  background: var(--sd-olive-soft);
+  color: var(--sd-olive-deep);
+}
+
+/* Pricing Cards */
+.sd-pricing-card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: var(--sd-radius);
+  border: 1px solid var(--sd-line);
+  background: #ffffff;
+  box-shadow: var(--sd-shadow);
+  transition: transform 160ms var(--sd-ease), box-shadow 160ms var(--sd-ease), border-color 160ms var(--sd-ease);
+}
+
+.sd-pricing-card--suite {
+  border-color: rgb(76 109 72 / 45%);
+  box-shadow: inset 0 3px 0 var(--sd-olive), var(--sd-shadow);
+}
+
+/* Practitioner Toolkit Callout */
+.sd-toolkit {
+  border-inline-start: 4px solid var(--sd-olive);
+  background: linear-gradient(115deg, #ffffff 0%, #f4f7f2 100%);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .card-institutional,
+  .badge-statutory,
+  .docket-scroll,
+  .sd-button {
+    border-color: CanvasText;
+  }
+}

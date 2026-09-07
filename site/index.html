@@ -177,11 +177,19 @@
                             slateText: '#475569',
                             headingText: '#102238',
                         }
+                    },
+                    boxShadow: {
+                        institutional: "var(--sd-shadow)",
+                        "institutional-raised": "var(--sd-shadow-raised)",
+                    },
+                    transitionTimingFunction: {
+                        institutional: "cubic-bezier(.2,.7,.2,1)",
                     }
                 }
             }
         }
     </script>
+    <link rel="stylesheet" href="/assets/css/institutional.css">
     <style>
         html {
             scroll-behavior: smooth;
@@ -1528,11 +1536,11 @@
 
                 <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                     <!-- Core Plan -->
-                    <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 flex flex-col shadow-sm hover:shadow-md transition-shadow relative">
+                    <div class="card-institutional card-interactive bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 flex flex-col shadow-sm hover:shadow-md transition-all relative">
                         <div class="text-xs uppercase font-bold tracking-widest text-brand-green mb-1">Tri-State Core Feed</div>
                         <h3 class="text-xl sm:text-2xl font-heading font-bold text-brand-navy mb-2">Tri-State Public Records Feed</h3>
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span id="card1-price" class="text-3xl sm:text-4xl font-heading font-black text-brand-navy transition-all">$249</span>
+                            <span id="card1-price" class="text-3xl sm:text-4xl font-heading font-black text-brand-navy tabular-nums transition-all">$249</span>
                             <span class="text-slate-500 text-sm">/ month</span>
                         </div>
                         <div id="card1-subtext" class="text-xs font-semibold text-slate-500 mb-5">$0 billed today • 7-Day Practice Evaluation • Cancel anytime</div>
@@ -1572,14 +1580,14 @@
                     </div>
 
                     <!-- Pro Plan -->
-                    <div class="bg-gradient-to-b from-[#1b365d] to-[#102238] rounded-2xl p-6 sm:p-8 flex flex-col shadow-xl hover:shadow-2xl relative text-white border-2 border-brand-green transition-all">
+                    <div class="card-interactive bg-gradient-to-b from-[#1b365d] to-[#102238] rounded-2xl p-6 sm:p-8 flex flex-col shadow-xl hover:shadow-2xl relative text-white border-2 border-brand-green transition-all">
                         <div class="absolute top-0 right-6 transform -translate-y-1/2 bg-brand-green text-white font-heading font-extrabold px-3 py-0.5 rounded-full text-[11px] uppercase tracking-wide shadow-md">
                             National &amp; API
                         </div>
                         <div class="text-xs uppercase font-bold tracking-widest text-emerald-300 mb-1">Enterprise Tier</div>
                         <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mb-2">National Feed + REST API</h3>
                         <div class="flex items-baseline gap-2 mb-1">
-                            <span id="card2-price" class="text-3xl sm:text-4xl font-heading font-black text-white transition-all">$449</span>
+                            <span id="card2-price" class="text-3xl sm:text-4xl font-heading font-black text-white tabular-nums transition-all">$449</span>
                             <span class="text-slate-300 text-sm">/ month</span>
                         </div>
                         <div id="card2-subtext" class="text-xs font-semibold text-slate-300 mb-5">Billed month-to-month • Cancel anytime</div>
