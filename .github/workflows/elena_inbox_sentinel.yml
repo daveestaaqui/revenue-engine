@@ -1,13 +1,13 @@
-name: Elena Brooks Inbound Inbox Sentinel & Draft Engine
+name: Surplus Docket Inbound Sentinel & Auto-Responder Engine
 
 on:
   schedule:
-    # Every 30 minutes during US business hours (9:00 AM - 6:00 PM EST / 13:00 - 22:00 UTC, Mon-Fri)
-    - cron: '*/30 13-22 * * 1-5'
+    # Runs every 15 minutes 24/7 in GitHub Actions
+    - cron: '*/15 * * * *'
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Dry run check without creating drafts'
+        description: 'Dry run check without creating drafts or auto-sending'
         type: boolean
         default: false
 
@@ -34,7 +34,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Execute Elena Inbox Scan & Draft Generation Pass
+      - name: Execute Inbound Inbox Scan & Auto-Responder Pass
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
@@ -53,8 +53,8 @@ jobs:
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          for f in outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log portal/subscribers.json portal/processed_stripe_events.json; do if [ -f "$f" ]; then git add "$f"; fi; done
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(inbox): updated auto-responses & Stripe subscribers [skip ci]" && git pull --rebase origin main && git push)
+          for f in data/notable_email_activity.json outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log portal/subscribers.json portal/processed_stripe_events.json; do if [ -f "$f" ]; then git add "$f"; fi; done
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(inbox): updated auto-responses & notable activity [skip ci]" && git pull --rebase origin main && git push)
 
       - name: Archive Sentinel Logs Artifact
         uses: actions/upload-artifact@v4
