@@ -1946,23 +1946,39 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body, msg=None)
     phone_match = re.search(r"(\+?1?[\s\.-]?\(?\d{3}\)?[\s\.-]?\d{3}[\s\.-]?\d{4})", f"{subject_raw} {text_body}")
     caller_phone = phone_match.group(1).strip() if phone_match else "Unknown Caller"
 
-    # 2. Extract transcript — Audio-First via Whisper if available, falling back to email text
+    # 2. Extract transcript — Audio-First via Google Gemini (primary) or Whisper (secondary fallback)
     audio_reviewed = False
     audio_filename = ""
-    whisper_transcript = ""
+    audio_transcript = ""
+    gemini_meta = None
 
     if msg:
         audio_attachments = extract_audio_attachments(msg)
         if audio_attachments:
-            fname, abytes, _ = audio_attachments[0]
+            fname, abytes, ctype = audio_attachments[0]
             audio_filename = fname
-            whisper_transcript = transcribe_voicemail_audio(abytes, filename=fname)
-            if whisper_transcript:
-                audio_reviewed = True
-                log(f"  🎙️ Audio-First: Successfully transcribed voicemail audio '{fname}' via OpenAI Whisper.")
+            # Try Google Gemini Multimodal Audio first (Primary under user's Google AI account)
+            try:
+                from portal.ai_provider import transcribe_audio_with_gemini
+                g_res = transcribe_audio_with_gemini(abytes, mime_type=ctype)
+                if g_res and g_res.get("transcript"):
+                    gemini_meta = g_res
+                    audio_transcript = g_res["transcript"]
+                    audio_reviewed = True
+                    log(f"  🎙️ Audio-First: Successfully transcribed voicemail audio '{fname}' via Google Gemini (Google AI).")
+            except Exception:
+                pass
 
-    if whisper_transcript:
-        transcript = whisper_transcript
+            # Fallback to OpenAI Whisper if Gemini not configured or produced no output
+            if not audio_transcript:
+                whisper_transcript = transcribe_voicemail_audio(abytes, filename=fname)
+                if whisper_transcript:
+                    audio_transcript = whisper_transcript
+                    audio_reviewed = True
+                    log(f"  🎙️ Audio-First: Transcribed voicemail audio '{fname}' via OpenAI Whisper fallback.")
+
+    if audio_transcript:
+        transcript = audio_transcript
     else:
         # Fallback to Google Voice email text transcript
         lines = (text_body or "").splitlines()
@@ -1988,30 +2004,40 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body, msg=None)
         transcript = " ".join(captured).strip()
 
     # 3. Detect attorney email if spoken or present
-    caller_email = extract_spoken_email(transcript)
+    caller_email = (gemini_meta.get("email") if gemini_meta else None) or extract_spoken_email(transcript)
 
     # 4. Extract jurisdiction (Do NOT default to FL; only assign if mentioned)
     det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, transcript, default_state=None)
+    if gemini_meta:
+        if gemini_meta.get("state_code") and gemini_meta["state_code"].upper() in STATE_NAMES:
+            det_state = gemini_meta["state_code"].upper()
+        if gemini_meta.get("county"):
+            c_name = gemini_meta["county"]
     state_name = STATE_NAMES.get(det_state) if det_state else ""
 
     # 5. Extract caller name if stated
-    clean_text = re.sub(r"\bmy name\s+my name is\b", "my name is", transcript, flags=re.IGNORECASE)
-    stopwords = r"(?!my\b|our\b|can\b|could\b|just\b|email\b|phone\b|with\b|from\b|and\b|the\b|at\b)"
-    delims = r"(?:\s+(?:can\s+you|can|could|my|our|email|phone|number|just|calling|from|with|regarding|about|at)\b|[.,;!?\n]|$)"
-    name_match = re.search(
-        rf"(?:this is|my name is|i\x27m|im|i am|calling is)\s+({stopwords}[A-Za-z]+(?:\s+{stopwords}[A-Za-z]+){{0,2}}){delims}",
-        clean_text,
-        re.IGNORECASE
-    )
-    if name_match:
-        cand = name_match.group(1).strip().title()
-        stop = {"a", "an", "the", "someone", "unknown", "calling", "just"}
-        if cand.lower() not in stop and len(cand.split()) <= 3:
-            caller_name = cand
+    caller_name = None
+    if gemini_meta and gemini_meta.get("name") and gemini_meta["name"].lower() not in ["unknown", "unknown caller", ""]:
+        caller_name = gemini_meta["name"].strip()
+
+    if not caller_name:
+        clean_text = re.sub(r"\bmy name\s+my name is\b", "my name is", transcript, flags=re.IGNORECASE)
+        stopwords = r"(?!my\b|our\b|can\b|could\b|just\b|email\b|phone\b|with\b|from\b|and\b|the\b|at\b)"
+        delims = r"(?:\s+(?:can\s+you|can|could|my|our|email|phone|number|just|calling|from|with|regarding|about|at)\b|[.,;!?\n]|$)"
+        name_match = re.search(
+            rf"(?:this is|my name is|i\x27m|im|i am|calling is)\s+({stopwords}[A-Za-z]+(?:\s+{stopwords}[A-Za-z]+){{0,2}}){delims}",
+            clean_text,
+            re.IGNORECASE
+        )
+        if name_match:
+            cand = name_match.group(1).strip().title()
+            stop = {"a", "an", "the", "someone", "unknown", "calling", "just"}
+            if cand.lower() not in stop and len(cand.split()) <= 3:
+                caller_name = cand
+            else:
+                caller_name = f"Inquiring Counsel ({caller_phone})"
         else:
             caller_name = f"Inquiring Counsel ({caller_phone})"
-    else:
-        caller_name = f"Inquiring Counsel ({caller_phone})"
 
     ref_hash = abs(hash(transcript[:60])) % 1000000
     return {

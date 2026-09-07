@@ -38,6 +38,7 @@ API_V1_DIR = SITE_DIR / "api" / "v1"
 BLOG_DIR = SITE_DIR / "blog"
 PRESS_DIR = SITE_DIR / "press"
 SYNDICATE_DIR = BASE_DIR / "marketing" / "syndicate" / "press_releases"
+FOR_DIR = SITE_DIR / "for"
 WELL_KNOWN_DIR = SITE_DIR / ".well-known"
 MANIFEST_PATH = WELL_KNOWN_DIR / "verification-manifest.json"
 
@@ -509,6 +510,13 @@ def validate_all_publications() -> dict:
             errs = validate_html_file(sp)
             pub_errors.extend(errs)
 
+    # 5. Practice Group Landing Pages (site/for/)
+    if FOR_DIR.exists():
+        for fp in FOR_DIR.glob("*.html"):
+            audited_files.append(fp)
+            errs = validate_html_file(fp)
+            pub_errors.extend(errs)
+
     return {
         "pub_errors": pub_errors,
         "audited_count": len(audited_files)
@@ -546,6 +554,13 @@ def generate_verification_manifest(feed_stats: dict, pub_stats: dict) -> Path:
         if f.is_file():
             rel_path = f"site/press/releases/{f.name}"
             file_digests[rel_path] = sha256_file(f)
+
+    # Hash Practice Pages
+    if FOR_DIR.exists():
+        for f in FOR_DIR.glob("*.html"):
+            if f.is_file():
+                rel_path = f"site/for/{f.name}"
+                file_digests[rel_path] = sha256_file(f)
 
     manifest_payload = {
         "manifest_version": "1.0.0",
