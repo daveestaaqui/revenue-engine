@@ -40,10 +40,9 @@ def run_audit():
     payload = {
         "model": MODEL,
         "messages": [
-            {"role": "system", "content": "You are a Principal LegalTech Systems Architect."},
-            {"role": "user", "content": AUDIT_PROMPT}
+            {"role": "user", "content": "You are a Principal LegalTech Systems Architect and SaaS Systems Auditor.\n\n" + AUDIT_PROMPT}
         ],
-        "temperature": 0.2
+        "stream": True
     }
 
     req = urllib.request.Request(
@@ -55,15 +54,34 @@ def run_audit():
         }
     )
 
+    out_path = os.path.join(os.path.dirname(__file__), "..", "output", "gpt6_audit_report.md")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+    print("\n" + "=" * 60)
+    print(" 🌟 STREAMING GPT-6 ASTRA ARCHITECTURAL AUDIT REPORT")
+    print("=" * 60 + "\n")
+
     try:
-        with urllib.request.urlopen(req, timeout=60) as response:
-            res = json.loads(response.read().decode("utf-8"))
-            content = res["choices"][0]["message"]["content"]
-            print("\n" + "=" * 60)
-            print(" 🌟 GPT-6 ASTRA ARCHITECTURAL AUDIT REPORT")
-            print("=" * 60 + "\n")
-            print(content)
-            print("\n" + "=" * 60)
+        with urllib.request.urlopen(req, timeout=120) as response, open(out_path, "w", encoding="utf-8") as f_out:
+            for line in response:
+                line_str = line.decode("utf-8").strip()
+                if not line_str.startswith("data: "):
+                    continue
+                data_str = line_str[6:]
+                if data_str == "[DONE]":
+                    break
+                try:
+                    chunk = json.loads(data_str)
+                    delta = chunk.get("choices", [{}])[0].get("delta", {}).get("content", "")
+                    if delta:
+                        sys.stdout.write(delta)
+                        sys.stdout.flush()
+                        f_out.write(delta)
+                except json.JSONDecodeError:
+                    continue
+        print("\n\n" + "=" * 60)
+        print(f" Audit report saved to: {out_path}")
+        print("=" * 60)
     except urllib.error.HTTPError as e:
         error_body = e.read().decode("utf-8")
         print(f"[!] HTTP Error {e.code}: {error_body}")
