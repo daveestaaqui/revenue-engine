@@ -422,7 +422,7 @@ def render_html_report(metrics):
     # Build notable inbound activity cards / rows
     notable_html = ""
     if m.get("notable_email_activities"):
-        for act in m["notable_email_activities"][:6]:
+        for act in m["notable_email_activities"][:15]:
             ch = act.get("channel", "EMAIL")
             badge_color = "#2563eb" if ch == "VOICEMAIL" else ("#16a34a" if ch == "WEB_FORM" else "#7c3aed")
             ts_str = act.get("timestamp", "")
@@ -751,7 +751,7 @@ def render_plaintext_report(metrics):
 
     if m.get("notable_email_activities"):
         lines.append("  Recent Notable Events:")
-        for act in m["notable_email_activities"][:5]:
+        for act in m["notable_email_activities"][:15]:
             ch = act.get("channel", "EMAIL")
             sender = act.get("sender_name", "Unknown")
             phone = f" ({act['phone']})" if act.get("phone") else ""
@@ -813,7 +813,7 @@ def write_github_step_summary(metrics):
 | :--- | :--- | :--- | :--- | :--- |
 """
     if m.get("notable_email_activities"):
-        for act in m["notable_email_activities"][:5]:
+        for act in m["notable_email_activities"][:15]:
             ch = act.get("channel", "EMAIL")
             contact = act.get("sender_name", "")
             if act.get("phone"):

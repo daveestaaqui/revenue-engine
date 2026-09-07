@@ -679,6 +679,200 @@ Play message: https://voice.google.com/message/4956"""
         self.assertIn("Regarding Fulton County (Fulton County Superior Court)", body)
         self.assertIn("O.C.G.A. § 48-4-5", body)
 
+    def test_voicemail_why_service_and_discount_no_florida(self):
+        """
+        Tests Dave's voicemail 1:
+        'Hi my name is Dave Can you tell me You know were just concisely what you know
+        Why do I want the service and my email is a sandwich Fitness at gmailcom And if you get off of me at discount'
+        Must:
+        1. NOT assume Florida (no 'Florida', no 'Fla. Stat.', no Florida Bar rules, no Florida sample records).
+        2. Subject must be 'Re: Surplus Docket — Inbound Voicemail Follow-up' (no '[Florida]', no '[Phone Inquiry Dossier]').
+        3. Greet as 'Hi Dave,'.
+        4. Concisely answer why practices use Surplus Docket (upstream senior mortgage scrubbing, 7:00 AM EST dispatch).
+        5. Provide $0-down 7-day evaluation link.
+        6. Be concise (< 180 words).
+        """
+        vm = {
+            "name": "Dave",
+            "email": "sandwichfitness@gmail.com",
+            "phone": "(508) 517-8981",
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "",
+            "state_code": "",
+            "county": "",
+            "docket": "",
+            "message": "[Phone Inquiry via Google Voice (508) 419-3178]: Hi my name is Dave Can you tell me You know were just concisely what you know Why do I want the service and my email is a sandwich Fitness at gmailcom And if you get off of me at discount",
+            "transcript": "Hi my name is Dave Can you tell me You know were just concisely what you know Why do I want the service and my email is a sandwich Fitness at gmailcom And if you get off of me at discount",
+            "is_voicemail": True,
+        }
+        subj, body, role = compose_elena_inquiry_response(vm, self.mock_state_cases)
+
+        # Subject verification
+        self.assertEqual(subj, "Re: Surplus Docket — Inbound Voicemail Follow-up")
+        self.assertNotIn("Florida", subj)
+        self.assertNotIn("[Florida]", subj)
+        self.assertNotIn("Phone Inquiry Dossier", subj)
+
+        # Greeting & Persona
+        self.assertTrue(body.startswith("Hi Dave,"))
+        self.assertIn("Aubrey Hayes", body)
+        self.assertIn("Executive Intake Coordinator", role)
+
+        # Direct, tailored answers
+        self.assertIn("asking why practices use Surplus Docket", body)
+        self.assertIn("inquiring about a discount", body)
+        self.assertIn("senior institutional mortgages", body)
+        self.assertIn("7:00 AM EST", body)
+        self.assertIn("7-day evaluation with $0 due today", body)
+        self.assertIn(STRIPE_LINK, body)
+
+        # Zero unsolicited Florida assumptions & zero Bar Rule lectures
+        self.assertNotIn("Florida", body)
+        self.assertNotIn("Fla. Stat.", body)
+        self.assertNotIn("Florida Bar Rule 4-7.18", body)
+        self.assertNotIn("Palm Beach", body)
+        self.assertNotIn("Miami-Dade", body)
+        self.assertNotIn("Hillsborough", body)
+
+        # Word count check: concise, not overly wordy (under 120 words of prose)
+        prose_word_count = len(body.split("---")[0].split())
+        self.assertLess(prose_word_count, 175, f"Prose should be concise, but got {prose_word_count} words")
+
+    def test_voicemail_talk_to_someone_direct_answer(self):
+        """
+        Tests Dave's voicemail 2:
+        'Hi my name is Dave Can you email me and let me know If I can get ahold of someone Who I can talk to My email is sandwich fitnessgmailcom'
+        Must:
+        1. Directly clarify that all communications and support are handled via email rather than phone.
+        2. Invite direct email reply with whatever questions they have.
+        3. NEVER offer a phone callback or schedule a phone call.
+        4. Zero fake phone hours (no '8:00 AM to 6:30 PM EST' phone hours).
+        5. NOT dump sample cases or unsolicited pricing tiers.
+        6. Zero Florida mentions.
+        7. Be very concise (< 60 words of prose).
+        """
+        vm = {
+            "name": "Dave",
+            "email": "sandwichfitness@gmail.com",
+            "phone": "(508) 517-8981",
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "",
+            "state_code": "",
+            "county": "",
+            "docket": "",
+            "message": "[Phone Inquiry via Google Voice (508) 419-3178]: Hi my name is Dave Can you email me and let me know If I can get ahold of someone Who I can talk to My email is sandwich fitnessgmailcom",
+            "transcript": "Hi my name is Dave Can you email me and let me know If I can get ahold of someone Who I can talk to My email is sandwich fitnessgmailcom",
+            "is_voicemail": True,
+        }
+        subj, body, role = compose_elena_inquiry_response(vm, self.mock_state_cases)
+
+        self.assertEqual(subj, "Re: Surplus Docket — Inbound Voicemail Follow-up")
+        self.assertTrue(body.startswith("Hi Dave,"))
+        self.assertIn("asking if you can speak with someone on our team", body)
+        self.assertIn("We handle all communications and support directly via email rather than by phone.", body)
+        self.assertIn("Please feel free to reply directly to this email with any questions you have", body)
+
+        # NEVER offer a callback or phone conversation
+        self.assertNotIn("call you", body)
+        self.assertNotIn("callback", body)
+        self.assertNotIn("call back", body)
+        self.assertNotIn("quick phone call", body)
+        self.assertNotIn("8:00 AM to 6:30 PM EST", body)
+        self.assertNotIn("speak with someone directly", body)
+
+        # No Florida, no case dump, no pricing dump
+        self.assertNotIn("Florida", body)
+        self.assertNotIn("Fla. Stat.", body)
+        self.assertNotIn("Florida Bar Rule 4-7.18", body)
+        self.assertNotIn("Orange Co.", body)
+        self.assertNotIn("$249/mo", body)
+        self.assertNotIn(STRIPE_LINK, body)
+
+        prose_word_count = len(body.split("---")[0].split())
+        self.assertLess(prose_word_count, 85, f"Prose should be concise, but got {prose_word_count} words")
+
+    def test_voicemail_why_only_no_pricing_dump(self):
+        """Tests that a voicemail asking only 'why use service' without pricing does not dump pricing."""
+        vm = {
+            "name": "Dave",
+            "email": "sandwichfitness@gmail.com",
+            "phone": "(508) 517-8981",
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "",
+            "state_code": "",
+            "county": "",
+            "docket": "",
+            "message": "[Phone Inquiry via Google Voice (508) 419-3178]: Why do I want the service?",
+            "transcript": "Why do I want the service?",
+            "is_voicemail": True,
+        }
+        subj, body, role = compose_elena_inquiry_response(vm, self.mock_state_cases)
+        self.assertIn("asking why practices use Surplus Docket", body)
+        self.assertIn("raw county court surplus ledgers are filled with dead files", body)
+        self.assertNotIn("$249/mo", body)
+        self.assertNotIn(STRIPE_LINK, body)
+        self.assertNotIn("Florida", body)
+
+    def test_google_voice_empty_voicemail_parses_cleanly(self):
+        """Tests that a Google Voice voicemail with no spoken words does not extract footer links as email."""
+        from outreach.auto_responder_and_draft_cleaner import parse_google_voice_voicemail
+        raw_body = (
+            "<https://voice.google.com>\n"
+            "play message\n"
+            "<https://accounts.google.com/AccountChooser?Email=sandwichfitness@gmail.com&continue=https://voice.google.com/voicemail>\n"
+            "YOUR ACCOUNT <https://voice.google.com> HELP CENTER\n"
+        )
+        info = parse_google_voice_voicemail("voice-noreply@google.com", "New voicemail from (508) 517-8981", raw_body)
+        self.assertIsNotNone(info)
+        self.assertEqual(info["transcript"], "")
+        self.assertEqual(info["email"], "")
+
+    def test_voicemail_unknown_caller_does_not_say_hi_inquiring(self):
+        """Tests that unknown caller name does not produce 'Hi Inquiring,' greeting."""
+        vm = {
+            "name": "Inquiring Counsel ((508) 517-8981)",
+            "email": "sandwichfitness@gmail.com",
+            "phone": "(508) 517-8981",
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "",
+            "state_code": "",
+            "county": "",
+            "docket": "",
+            "message": "[Phone Inquiry via Google Voice (508) 419-3178]: Hello, please call me back.",
+            "transcript": "Hello, please call me back.",
+            "is_voicemail": True,
+        }
+        subj, body, role = compose_elena_inquiry_response(vm, self.mock_state_cases)
+        self.assertTrue(body.startswith("Hello,"))
+        self.assertNotIn("Hi Inquiring", body)
+        self.assertNotIn("Hi Counsel", body)
+
+    def test_build_inquiry_draft_email_subject_clean(self):
+        """Tests that build_inquiry_draft_email does not prefix subjects with [Phone Inquiry Dossier]."""
+        from outreach.auto_responder_and_draft_cleaner import build_inquiry_draft_email
+        vm = {
+            "name": "Dave",
+            "email": "sandwichfitness@gmail.com",
+            "phone": "(508) 517-8981",
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "",
+            "state_code": "",
+            "county": "",
+            "docket": "",
+            "message": "Can someone call me?",
+            "transcript": "Can someone call me?",
+            "is_voicemail": True,
+        }
+        draft_msg, reply_subject, reply_body, role_title = build_inquiry_draft_email(vm, self.mock_state_cases)
+        self.assertNotIn("Phone Inquiry Dossier", reply_subject)
+        self.assertNotIn("Phone Inquiry Dossier", draft_msg["Subject"])
+        self.assertEqual(reply_subject, "Re: Surplus Docket — Inbound Voicemail Follow-up")
+
 
 if __name__ == "__main__":
     unittest.main()

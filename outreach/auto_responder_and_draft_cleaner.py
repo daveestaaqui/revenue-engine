@@ -208,7 +208,8 @@ SYSTEM_SUBJECT_BLOCKLIST = [
 
 BANNED_FIRST_NAMES = {
     "gmail", "google", "noreply", "no-reply", "team", "support", "info",
-    "admin", "intake", "mailer", "daemon", "service", "customer", "billing"
+    "admin", "intake", "mailer", "daemon", "service", "customer", "billing",
+    "inquiring", "counsel", "attorney", "unknown", "caller", "someone"
 }
 
 
@@ -632,15 +633,15 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
     msg_to = (msg.get("To", "") + " " + msg.get("Delivered-To", "") + " " + msg.get("X-Forwarded-To", "")).lower()
     if any(addr in msg_to for addr in ["inquiries@surplusdocket.com", "aubrey.hayes@surplusdocket.com", "contact@surplusdocket.com"]):
         s_email = sender_email.lower().strip()
-        det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, text_body, default_state="FL")
-        state_name = STATE_NAMES.get(det_state, "Florida")
+        det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, text_body, default_state=None)
+        state_name = STATE_NAMES.get(det_state, "") if det_state else ""
         direct_inquiry = {
             "name": sender_name or "",
             "email": s_email,
             "firm": "",
             "department": "Inquiries & Intake Desk",
             "jurisdiction": state_name,
-            "state_code": det_state,
+            "state_code": det_state or "",
             "docket": "",
             "ref": f"DIRECT-INQ-{hash(s_email + text_body[:40]) % 10000000}",
             "message": text_body.strip(),
@@ -747,7 +748,7 @@ COUNTY_CIRCUIT_MAP = {
 }
 
 
-def extract_jurisdiction_context(subject_raw, text_body, default_state="FL"):
+def extract_jurisdiction_context(subject_raw, text_body, default_state=None):
     """
     Identifies specific counties and judicial circuits mentioned in the correspondence.
     Returns: (detected_state, county_name, circuit_name)
@@ -1697,7 +1698,7 @@ def parse_statutory_inquiry(subject_raw, text_body):
                 break
 
     if not state_code:
-        state_code = "FL"
+        state_code = ""
 
     # 6. Extract Docket / Parcel ID
     docket = ""
@@ -1850,27 +1851,33 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
 
     # 2. Extract transcript
     lines = text_body.splitlines()
-    capturing = False
     captured = []
+    ignoring_header = True
     for line in lines:
         l = line.strip()
-        if any(k in l.lower() for k in ["new voicemail from", "voicemail from"]):
-            capturing = True
+        if not l:
             continue
-        if capturing:
-            if any(k in l.lower() for k in ["play message", "call back", "google voice", "play audio", "help center"]):
-                break
-            if l:
-                captured.append(l)
+        if ignoring_header and (
+            l.startswith("<https://voice.google.com>") or
+            "new voicemail from" in l.lower() or
+            "voicemail from" in l.lower()
+        ):
+            continue
+        ignoring_header = False
+        if any(k in l.lower() for k in ["play message", "google voice", "play audio", "help center", "your account", "this email was sent to you", "help forum"]):
+            break
+        if l.startswith("<https://") or l.startswith("http://") or l.startswith("https://"):
+            continue
+        captured.append(l)
 
-    transcript = " ".join(captured).strip() if captured else text_body.strip()
+    transcript = " ".join(captured).strip()
 
     # 3. Detect attorney email if spoken or present
     caller_email = extract_spoken_email(transcript)
 
-    # 4. Extract jurisdiction
-    det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, transcript, default_state="FL")
-    state_name = STATE_NAMES.get(det_state, "Florida")
+    # 4. Extract jurisdiction (Do NOT default to FL; only assign if mentioned)
+    det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, transcript, default_state=None)
+    state_name = STATE_NAMES.get(det_state) if det_state else ""
 
     # 5. Extract caller name if stated
     clean_text = re.sub(r"\bmy name\s+my name is\b", "my name is", transcript, flags=re.IGNORECASE)
@@ -1898,11 +1905,13 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
         "phone": caller_phone,
         "firm": "",
         "department": "Inquiries & Intake Desk",
-        "jurisdiction": state_name,
-        "state_code": det_state,
+        "jurisdiction": state_name or "",
+        "state_code": det_state or "",
+        "county": c_name or "",
         "docket": "",
         "ref": f"GV-VM-{caller_phone}-{ref_hash}",
         "message": f"[Phone Inquiry via Google Voice (508) 419-3178]: {transcript}",
+        "transcript": transcript,
         "is_voicemail": True,
     }
 
@@ -1929,19 +1938,21 @@ def compose_elena_inquiry_response(inquiry_info, state_cases):
         greeting = "Hello,"
 
     department = inquiry_info.get("department", "General Publisher Inquiry").strip()
-    state_code = inquiry_info.get("state_code", "FL").strip().upper()
-    state_name = STATE_NAMES.get(state_code, "Florida")
-    statute_cite = STATE_STATUTES.get(state_code, (state_name, "applicable state civil code"))[1]
-    stat_entry = JURISDICTION_STATUTORY_KNOWLEDGE.get(state_code, JURISDICTION_STATUTORY_KNOWLEDGE["FL"])
+    raw_state_code = inquiry_info.get("state_code", "").strip().upper()
+    has_specific_jurisdiction = bool(raw_state_code and raw_state_code in STATE_NAMES)
+    state_code = raw_state_code if has_specific_jurisdiction else ""
+    state_name = STATE_NAMES.get(state_code, "")
+    statute_cite = STATE_STATUTES.get(state_code, (state_name, "applicable state civil code"))[1] if state_code else "applicable state civil code"
+    stat_entry = JURISDICTION_STATUTORY_KNOWLEDGE.get(state_code, {})
     claim_window = stat_entry.get("claim_window", "designated statutory claim window")
     custodian = stat_entry.get("custodian", "court or county registry")
     user_message = inquiry_info.get("message", "").strip()
     docket_ref = inquiry_info.get("docket", "").strip()
     _, detected_county, circuit_name = extract_jurisdiction_context(
-        subject_raw=docket_ref, text_body=user_message, default_state=state_code
+        subject_raw=docket_ref, text_body=user_message, default_state=state_code or None
     )
-    cases = state_cases.get(state_code, state_cases.get("FL", []))
-    sample_lines = format_sample_records(cases, target_county=detected_county)
+    cases = state_cases.get(state_code, []) if state_code else []
+    sample_lines = format_sample_records(cases, target_county=detected_county) if cases else ""
 
     persona = get_department_persona(department=department)
     role_title = persona["full_title"]
@@ -1949,16 +1960,30 @@ def compose_elena_inquiry_response(inquiry_info, state_cases):
 
     # Contextual additions based on user inquiry queries
     bar_note = ""
-    if any(k in user_message.lower() for k in ["phone", "skip trace", "cold call", "contact info", "call the owner"]):
-        bar_note = f"\n\nRegarding owner contact information: we intentionally do not provide consumer phone numbers or cold-call lists. Most state bar associations—including Florida Bar Rule 4-7.18 and equivalent rules across {state_name}—strictly regulate direct telephone solicitation of distressed property owners and surplus claimants. Instead, our feed delivers verified record owner and estate names, property situs addresses, parcel IDs, and recorded deed history so counsel can utilize compliant direct written correspondence."
+    solicitation_keywords = [
+        "skip trace", "skip tracing", "skip-trace", "skip-tracing", "cold call", "cold calling",
+        "cold-call", "call the owner", "call property owners", "owner phone", "contact the owner",
+        "phone numbers or skip", "phone numbers to call", "provide phone numbers", "phone numbers of",
+        "phone numbers for owners", "owner contact info", "owner contact numbers", "distressed owner phone"
+    ]
+    if any(k in user_message.lower() for k in solicitation_keywords):
+        if state_name:
+            bar_jurisdiction = f"state bar associations across {state_name}"
+            bar_spec = f"—including Florida Bar Rule 4-7.18 and equivalent rules across {state_name}—" if state_code == "FL" else f"—including applicable rules across {state_name}—"
+        else:
+            bar_jurisdiction = "state bar associations"
+            bar_spec = "—"
+        bar_note = f"\n\nRegarding owner contact information: we intentionally do not provide consumer phone numbers or cold-call lists. Most {bar_jurisdiction} {bar_spec} strictly regulate direct telephone solicitation of distressed property owners and surplus claimants. Instead, our feed delivers verified record owner and estate names, property situs addresses, parcel IDs, and recorded deed history so counsel can utilize compliant direct written correspondence."
 
     tyler_note = ""
     if any(k in user_message.lower() for k in ["tyler", "hennepin", "supreme court", "scotus", "takings clause"]):
-        tyler_note = f"\n\nRegarding Tyler v. Hennepin County (598 U.S. 631): the Supreme Court's unanimous ruling established that county governments cannot retain property equity exceeding delinquent tax debt under the Fifth Amendment. In {state_name}, this has established clearer court registry deposit procedures under {statute_cite}, requiring former owners and lienholders to petition for surplus funds within {claim_window}."
+        tyler_jurisdiction = f"In {state_name}, this" if state_name else "This"
+        tyler_note = f"\n\nRegarding Tyler v. Hennepin County (598 U.S. 631): the Supreme Court's unanimous ruling established that county governments cannot retain property equity exceeding delinquent tax debt under the Fifth Amendment. {tyler_jurisdiction} has established clearer court registry deposit procedures under {statute_cite}, requiring former owners and lienholders to petition for surplus funds within {claim_window}."
 
     upl_note = ""
     if any(k in user_message.lower() for k in ["represent me", "my case", "hire you", "file my claim", "need a lawyer", "need an attorney"]):
-        upl_note = f"\n\nImportant Notice: Surplus Docket is an independent court records compiler and technology provider for licensed counsel and recovery professionals—we are not a law firm and do not provide legal representation or file petitions on behalf of property owners. All formal recovery claims must be evaluated and filed by licensed legal counsel admitted to practice in {state_name}."
+        upl_jurisdiction = f"admitted to practice in {state_name}" if state_name else "admitted to practice in the applicable jurisdiction"
+        upl_note = f"\n\nImportant Notice: Surplus Docket is an independent court records compiler and technology provider for licensed counsel and recovery professionals—we are not a law firm and do not provide legal representation or file petitions on behalf of property owners. All formal recovery claims must be evaluated and filed by licensed legal counsel {upl_jurisdiction}."
 
     dept_lower = department.lower()
 
@@ -1972,24 +1997,24 @@ def compose_elena_inquiry_response(inquiry_info, state_cases):
             tier_note = f"Under our Tri-State Core Feed plan, coverage includes Florida, Texas, and Georgia for a flat $249/month starting on Day 8. There are no per-claim charges, no long-term contracts, and you can cancel anytime with one click through your self-service Stripe billing portal."
             checkout_url = STRIPE_LINK
 
-        reply_subject = f"Re: Surplus Docket — 7-Day Practice Evaluation [{state_name}]"
+        state_clause = f" [{state_name}]" if state_name else ""
+        reply_subject = f"Re: Surplus Docket — 7-Day Practice Evaluation{state_clause}"
+        state_for_clause = f" for {state_name}" if state_name else ""
+        sample_intro = f"Here are verified, active records from our current {state_name} index (with senior institutional mortgages scrubbed upstream):\n\n{sample_lines}\n\n" if sample_lines else ""
+        guidelines_clause = f"for {state_name}" if state_name else "for your jurisdictions of interest"
         reply_body = f"""{greeting}
 
-Thank you for requesting an institutional practice evaluation of Surplus Docket for {state_name}.
+Thank you for requesting an institutional practice evaluation of Surplus Docket{state_for_clause}.
 
 Your 7-day evaluation is activated with $0 due today. During the evaluation, your practice receives our full morning feed delivered directly to your inbox every business morning at 7:00 AM EST in both CSV and Excel formats.
 
-Here are verified, active records from our current {state_name} index (with senior institutional mortgages scrubbed upstream):
-
-{sample_lines}
-
-{tier_note}
+{sample_intro}{tier_note}
 
 You can initialize your evaluation directly here:
 {checkout_url}
 {bar_note}{tyler_note}{upl_note}
 
-Please let me know if your team needs specific judicial circuit filtering, statutory guidelines under {statute_cite}, or sample dossiers for {state_name}.
+Please let me know if your team needs specific judicial circuit filtering, statutory guidelines under {statute_cite}, or sample dossiers {guidelines_clause}.
 
 {signature}
 
@@ -1998,6 +2023,7 @@ Please let me know if your team needs specific judicial circuit filtering, statu
     # 2. Enterprise Feed Licensing
     elif any(k in dept_lower for k in ["enterprise", "licensing", "custom feed", "multi-jurisdiction"]):
         reply_subject = f"Re: Surplus Docket — Enterprise & Multi-Jurisdiction Feed Licensing"
+        sample_intro = f"Here is a verified sample from our current {state_name} docket index:\n\n{sample_lines}\n\n" if sample_lines else ""
         reply_body = f"""{greeting}
 
 Thank you for your inquiry regarding enterprise and multi-jurisdiction feed licensing with Surplus Docket.
@@ -2008,11 +2034,7 @@ For practices requiring comprehensive multi-state coverage and direct data inges
 - Direct REST API Access: Bearer-token authenticated endpoints (/api/v1/*.json) for automated pipeline and CRM ingestion.
 - Enterprise Multi-Seat Access: Unlimited distribution across your firm's attorneys and paralegals.
 
-Here is a verified sample from our current {state_name} docket index:
-
-{sample_lines}
-
-You can activate the National Feed + REST API tier directly here:
+{sample_intro}You can activate the National Feed + REST API tier directly here:
 https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y
 {bar_note}{tyler_note}{upl_note}
 
@@ -2047,8 +2069,9 @@ Let me know what system your practice is currently integrating with, and I can p
 
     # 4. Clerk Docket Correction / Notice
     elif any(k in dept_lower for k in ["clerk", "correction", "notice", "registry", "court reporter"]):
-        docket_clause = f"regarding file/docket {docket_ref}" if docket_ref else f"for {state_name}"
-        reply_subject = f"Re: Surplus Docket — County Registry Record Verification & Notice [{docket_ref or state_name}]"
+        docket_clause = f"regarding file/docket {docket_ref}" if docket_ref else (f"for {state_name}" if state_name else "regarding public court records")
+        subj_tag = f" [{docket_ref or state_name}]" if (docket_ref or state_name) else ""
+        reply_subject = f"Re: Surplus Docket — County Registry Record Verification & Notice{subj_tag}"
         reply_body = f"""{greeting}
 
 Thank you for contacting Surplus Docket {docket_clause}.
@@ -2065,24 +2088,23 @@ We greatly appreciate the collaboration of county clerk offices and court admini
 
     # 5. Statutory Compliance Verification
     elif any(k in dept_lower for k in ["compliance", "statutory", "senior lien", "title", "encumbrance"]):
-        reply_subject = f"Re: Surplus Docket — Statutory Compliance & Title Verification [{state_name}]"
+        subj_tag = f" [{state_name}]" if state_name else ""
+        state_clause = f" for {state_name}" if state_name else ""
+        sample_block = f"Here is an excerpt of active, verified files currently indexed in {state_name}:\n\n{sample_lines}\n\n" if sample_lines else ""
+        reply_subject = f"Re: Surplus Docket — Statutory Compliance & Title Verification{subj_tag}"
         reply_body = f"""{greeting}
 
-Thank you for reaching out regarding statutory compliance and title verification standards for {state_name}.
+Thank you for reaching out regarding statutory compliance and title verification standards{state_clause}.
 
 Raw county surplus ledgers often list gross excess proceeds without accounting for superior encumbrances. Our data compiler desk applies multi-layered title and institutional lien scrubbing upstream:
 - Senior Institutional Encumbrances: We cross-reference county deed records and lis pendens filings to purge files encumbered by unreleased senior institutional mortgages or senior deeds of trust.
 - Verified Clean Equity: Feeds isolate unencumbered equity balances where the surplus deposited with the {custodian} exceeds recorded senior claims.
 - Statutory Deadlines: Files are tracked against state limitation periods ({statute_cite} designated {claim_window}) before escheatment.
 
-Here is an excerpt of active, verified files currently indexed in {state_name}:
-
-{sample_lines}
-
-Surplus Docket operates strictly as an independent court records compiler and does not provide formal legal opinions or legal representation; all formal surplus distribution petitions must be verified and filed by licensed counsel.
+{sample_block}Surplus Docket operates strictly as an independent court records compiler and does not provide formal legal opinions or legal representation; all formal surplus distribution petitions must be verified and filed by licensed counsel.
 {bar_note}{tyler_note}{upl_note}
 
-Please let me know if you would like to review our title scrubbing methodology for specific judicial circuits in {state_name}.
+Please let me know if you would like to review our title scrubbing methodology for specific judicial circuits.
 
 {signature}
 
@@ -2107,11 +2129,6 @@ Please reply with the specific scope, academic institution, or research paramete
 
     # 7. Inquiries & Intake Desk (Aubrey Hayes Executive Intake)
     elif any(k in dept_lower for k in ["intake", "aubrey", "voicemail", "inquiries"]):
-        # Conditionally rope in Elena Brooks ONLY if the inquiry content justifies it:
-        # Justified strictly when:
-        # 1. Specific court docket, case number, or parcel ID is provided.
-        # 2. Inquirer explicitly asks for docket lookup, case evaluation, lien/mortgage priority,
-        #    court registry deposit research, or statutory petition filings.
         has_specific_docket = bool(docket_ref) or bool(
             re.search(r"\b(\d{2,4}[-\s][A-Za-z]{1,4}[-\s]\d{3,}|\d{4,}[-\s]\d{2,}|\b[A-Za-z]{1,3}\d{6,}\b|\bF-\d{4,}\b|\b\d{2,4}-CA-\d+|\b\d{2,4}-CC-\d+)\b", user_message)
         )
@@ -2121,17 +2138,28 @@ Please reply with the specific scope, academic institution, or research paramete
             "petition for distribution", "certificate of disbursement", "interpleader", "registry deposit",
             "escheatment search", "case status", "docket status"
         ]
-        msg_lower = user_message.lower()
+        msg_lower = (inquiry_info.get("transcript") or user_message).lower()
         has_statutory_need = any(k in msg_lower for k in statutory_keywords)
         justifies_elena = has_specific_docket or has_statutory_need
 
         is_vm = bool(inquiry_info.get("is_voicemail"))
+        wants_why = any(k in msg_lower for k in [
+            "why do i want", "why would i want", "why use", "what is the benefit",
+            "why surplus docket", "why do we need", "concisely what", "concisely why", "why do i need"
+        ])
+        wants_talk = any(k in msg_lower for k in [
+            "talk to", "speak with", "get ahold of", "get a hold of", "someone who i can talk to",
+            "someone to talk to", "call me back", "call back", "on the phone", "reach someone", "speak to"
+        ])
+        wants_discount = any(k in msg_lower for k in [
+            "discount", "deal", "special offer", "promo", "coupon", "off of me at discount", "off of me a discount"
+        ])
         is_overview = any(k in msg_lower for k in [
             "overview", "what you offer", "what do you offer", "different places",
             "services", "how does it work", "tell me about", "what is surplus docket",
             "explain your service", "coverage"
         ])
-        is_pricing = any(k in msg_lower for k in [
+        is_pricing = wants_discount or any(k in msg_lower for k in [
             "pricing", "price", "cost", "how much", "rate", "fee", "subscription",
             "how much is", "what does it cost", "plan", "trial", "evaluation"
         ])
@@ -2148,92 +2176,171 @@ Please reply with the specific scope, academic institution, or research paramete
         ])
 
         if justifies_elena:
-            reply_subject = f"Re: Surplus Docket — Docket Research & Intake [{docket_ref or state_name}]"
-        else:
+            reply_subject = f"Re: Surplus Docket — Docket Research & Intake [{docket_ref or state_name or 'Case Review'}]"
+        elif state_name:
             reply_subject = f"Re: Surplus Docket — Court Surplus Feeds [{state_name}]"
+        elif is_vm:
+            reply_subject = "Re: Surplus Docket — Inbound Voicemail Follow-up"
+        else:
+            reply_subject = "Re: Surplus Docket — Court Surplus Records & Intake"
 
         # Context-aware opening tailored to channel and user inquiry
         if is_vm:
-            if is_overview:
-                if detected_county:
+            if wants_why and wants_discount:
+                opening_paragraph = (
+                    "Thank you for your voicemail earlier today asking why practices use Surplus Docket "
+                    "and inquiring about a discount."
+                )
+            elif wants_why:
+                opening_paragraph = (
+                    "Thank you for your voicemail earlier today asking why practices use Surplus Docket."
+                )
+            elif wants_talk:
+                opening_paragraph = (
+                    "Thank you for your voicemail earlier today asking if you can speak with someone on our team."
+                )
+            elif detected_county and state_name:
+                opening_paragraph = (
+                    f"Thank you for your voicemail earlier today requesting an overview of our surplus feeds "
+                    f"and coverage for {detected_county} County and across {state_name}."
+                )
+            elif is_overview and state_name:
+                opening_paragraph = (
+                    f"Thank you for your voicemail earlier today requesting an overview of what we offer "
+                    f"across different jurisdictions in {state_name}."
+                )
+            elif is_overview:
+                opening_paragraph = (
+                    "Thank you for your voicemail earlier today requesting an overview of our court surplus feeds and coverage."
+                )
+            elif is_pricing or is_delivery:
+                if state_name:
                     opening_paragraph = (
-                        f"Thank you for your voicemail earlier today requesting an overview of our surplus feeds "
-                        f"and coverage for {detected_county} County and across {state_name}."
-                    )
-                elif state_name:
-                    opening_paragraph = (
-                        f"Thank you for your voicemail earlier today requesting an overview of what we offer "
-                        f"across different jurisdictions in {state_name}."
+                        f"Thank you for your voicemail earlier today regarding delivery schedules and subscription pricing "
+                        f"for our {state_name} court surplus feeds."
                     )
                 else:
                     opening_paragraph = (
-                        "Thank you for your voicemail earlier today requesting an overview of our court surplus feeds and coverage."
+                        "Thank you for your voicemail earlier today regarding delivery schedules and subscription pricing "
+                        "for our court surplus feeds."
                     )
-            elif is_pricing or is_delivery:
-                opening_paragraph = (
-                    f"Thank you for your voicemail earlier today regarding delivery schedules and subscription pricing "
-                    f"for our {state_name} court surplus feeds."
-                )
             elif has_specific_docket:
                 docket_label = docket_ref or "your referenced case"
+                jur_str = f" in {state_name}" if state_name else ""
                 opening_paragraph = (
                     f"Thank you for your voicemail earlier today regarding court records and filing details "
-                    f"for docket {docket_label} in {state_name}."
+                    f"for docket {docket_label}{jur_str}."
                 )
             else:
-                opening_paragraph = (
-                    f"Thank you for your voicemail earlier today regarding {state_name} public record excess proceeds."
-                )
+                if state_name:
+                    opening_paragraph = (
+                        f"Thank you for your voicemail earlier today regarding {state_name} public record excess proceeds."
+                    )
+                else:
+                    opening_paragraph = (
+                        "Thank you for your voicemail earlier today regarding Surplus Docket court surplus feeds."
+                    )
         else:
-            if is_overview:
-                if detected_county:
+            if wants_talk:
+                opening_paragraph = (
+                    "Thank you for contacting Surplus Docket regarding speaking with our team."
+                )
+            elif wants_why and wants_discount:
+                opening_paragraph = (
+                    "Thank you for reaching out to Surplus Docket regarding why practices use our service and inquiring about a discount."
+                )
+            elif wants_why:
+                opening_paragraph = (
+                    "Thank you for reaching out to Surplus Docket regarding why practices use our service."
+                )
+            elif is_overview:
+                if detected_county and state_name:
                     opening_paragraph = (
                         f"Thank you for reaching out to the Surplus Docket intake desk regarding our coverage "
                         f"in {detected_county} County and across {state_name}."
                     )
-                else:
+                elif state_name:
                     opening_paragraph = (
                         f"Thank you for reaching out to the Surplus Docket intake desk regarding an overview of our "
                         f"{state_name} public record excess proceeds feeds."
                     )
+                else:
+                    opening_paragraph = (
+                        "Thank you for reaching out to the Surplus Docket intake desk regarding an overview of our "
+                        "court surplus feeds and coverage."
+                    )
             elif is_pricing or is_delivery:
-                opening_paragraph = (
-                    f"Thank you for contacting our intake desk with your questions regarding delivery schedule "
-                    f"and subscription details for {state_name}."
-                )
+                if state_name:
+                    opening_paragraph = (
+                        f"Thank you for contacting our intake desk with your questions regarding delivery schedule "
+                        f"and subscription details for {state_name}."
+                    )
+                else:
+                    opening_paragraph = (
+                        "Thank you for contacting our intake desk with your questions regarding delivery schedule "
+                        "and subscription details."
+                    )
             elif has_specific_docket:
                 docket_label = docket_ref or "your referenced case"
+                jur_str = f" in {state_name}" if state_name else ""
                 opening_paragraph = (
-                    f"Thank you for contacting the Surplus Docket intake desk regarding docket {docket_label} in {state_name}."
+                    f"Thank you for contacting the Surplus Docket intake desk regarding docket {docket_label}{jur_str}."
                 )
             else:
-                opening_paragraph = (
-                    f"Thank you for reaching out to the Surplus Docket intake desk regarding {state_name} public record excess proceeds."
-                )
+                if state_name:
+                    opening_paragraph = (
+                        f"Thank you for reaching out to the Surplus Docket intake desk regarding {state_name} public record excess proceeds."
+                    )
+                else:
+                    opening_paragraph = (
+                        "Thank you for reaching out to the Surplus Docket intake desk regarding court surplus feeds."
+                    )
 
         if justifies_elena:
             docket_clause = f" regarding docket {docket_ref}" if docket_ref else ""
+            jur_clause = f" in {state_name}" if state_name else ""
             status_paragraph = (
                 f"Because your inquiry involves specific county court filings{docket_clause}, "
-                f"I have forwarded your request to Elena Brooks on our docket research desk to review active registry balances in {state_name}."
+                f"I have forwarded your request to Elena Brooks on our docket research desk to review active registry balances{jur_clause}."
             )
             followup_clause = (
-                f"Elena will review your file and follow up directly regarding the specific court records for {state_name}. "
+                f"Elena will review your file and follow up directly regarding the specific court records{jur_clause}. "
                 f"If you have additional docket numbers or parcel references, please feel free to reply directly to this email."
             )
-        else:
+        elif wants_talk:
             status_paragraph = (
-                f"Surplus Docket indexes and delivers verified court surplus records every business morning at 7:00 AM EST "
-                f"in CSV and Excel formats, with senior institutional mortgages scrubbed upstream under {statute_cite}."
+                "We handle all communications and support directly via email rather than by phone. "
+                "Please feel free to reply directly to this email with any questions you have or details on what you're looking for, "
+                "and we will be glad to assist."
+            )
+            followup_clause = ""
+        elif wants_why:
+            status_paragraph = (
+                "To answer your question directly on why practices use our service: raw county court surplus ledgers are filled with dead files already encumbered by senior institutional mortgages. We scrub and verify court registries daily so your firm only receives actionable, unencumbered equity—delivered to your inbox every business morning at 7:00 AM EST in both CSV and Excel formats."
             )
             followup_clause = (
-                f"If your practice requires coverage for a specific county or if you would like our research desk to pull active filings "
-                f"for a specific docket or parcel ID, please reply with the case reference and our intake desk will pull the records for your review."
+                "Please let me know if you have any questions or if you would like more details."
             )
+        else:
+            cite_clause = f" under {statute_cite}" if (state_name and statute_cite) else ""
+            status_paragraph = (
+                f"Surplus Docket indexes and delivers verified court surplus records every business morning at 7:00 AM EST "
+                f"in CSV and Excel formats, with senior institutional mortgages scrubbed upstream{cite_clause}."
+            )
+            if state_name:
+                followup_clause = (
+                    f"If your practice requires coverage for a specific county or if you would like our research desk to pull active filings "
+                    f"for a specific docket or parcel ID, please reply with the case reference and our intake desk will pull the records for your review."
+                )
+            else:
+                followup_clause = (
+                    "If your practice requires coverage for a specific county or if you would like our research desk to pull active filings "
+                    "for a specific docket or parcel ID, please reply with the case reference and our intake desk will pull the records for your review."
+                )
 
         contextual_paragraphs = []
 
-        if detected_county:
+        if detected_county and state_name:
             county_context = (
                 f"Regarding {detected_county} County ({circuit_name or 'local court registry'}): our compiler desk actively "
                 f"monitors the {detected_county} County registry and court filings under {statute_cite}. In {state_name}, "
@@ -2242,7 +2349,7 @@ Please reply with the specific scope, academic institution, or research paramete
                 f"evaluate current balances."
             )
             contextual_paragraphs.append(county_context)
-        elif is_overview and not justifies_elena:
+        elif is_overview and not justifies_elena and state_name:
             jurisdiction_overview = (
                 f"Across {state_name}, our operations desk monitors county clerk ledgers and court registries daily under "
                 f"{statute_cite}, capturing excess proceeds from tax deed sales and foreclosure auctions. By reconciling "
@@ -2251,33 +2358,44 @@ Please reply with the specific scope, academic institution, or research paramete
             )
             contextual_paragraphs.append(jurisdiction_overview)
 
-        if is_delivery:
+        if is_delivery and not wants_why:
             delivery_context = (
-                f"Regarding delivery schedule and file formats: feeds are dispatched every business morning at 7:00 AM EST "
-                f"directly to your inbox. Each transmission includes both structured CSV and formatted Excel (.xlsx) workbooks "
-                f"containing docket numbers, parcel IDs, auction dates, deposited amounts, and property situs addresses—ready "
-                f"for immediate review or import into case management software like Clio, Filevine, or internal databases."
+                "Regarding delivery schedule and file formats: feeds are dispatched every business morning at 7:00 AM EST "
+                "directly to your inbox. Each transmission includes both structured CSV and formatted Excel (.xlsx) workbooks "
+                "containing docket numbers, parcel IDs, auction dates, deposited amounts, and property situs addresses—ready "
+                "for immediate review or import into case management software like Clio, Filevine, or internal databases."
             )
             contextual_paragraphs.append(delivery_context)
 
-        if is_title:
+        if is_title and not wants_why:
             title_context = (
-                f"Regarding senior mortgage and encumbrance scrubbing: raw county ledgers frequently list gross surplus "
-                f"amounts without accounting for first mortgages that would wipe out the recovery. Our compiler desk runs "
-                f"upstream deed and lis pendens title checks to filter out unreleased senior institutional liens, ensuring our "
-                f"daily feed contains only files with true unencumbered equity."
+                "Regarding senior mortgage and encumbrance scrubbing: raw county ledgers frequently list gross surplus "
+                "amounts without accounting for first mortgages that would wipe out the recovery. Our compiler desk runs "
+                "upstream deed and lis pendens title checks to filter out unreleased senior institutional liens, ensuring our "
+                "daily feed contains only files with true unencumbered equity."
             )
             contextual_paragraphs.append(title_context)
 
         if is_probate:
             probate_context = (
-                f"Regarding probate and heir recovery: our data indexing flags files where property ownership was held in "
-                f"an estate, deceased individual, or intestate succession. When available, we include probate docket cross-references "
-                f"to assist counsel in filing petitions for determination of heirship and letters of administration."
+                "Regarding probate and heir recovery: our data indexing flags files where property ownership was held in "
+                "an estate, deceased individual, or intestate succession. When available, we include probate docket cross-references "
+                "to assist counsel in filing petitions for determination of heirship and letters of administration."
             )
             contextual_paragraphs.append(probate_context)
 
-        if state_code in ["NC", "TN", "CA"]:
+        # Pricing clause formatting
+        if wants_talk and not (wants_discount or is_pricing or is_overview):
+            pricing_clause = ""
+        elif wants_why and not (wants_discount or is_pricing or is_overview):
+            pricing_clause = ""
+        elif wants_discount:
+            cov_note = f" (covering {state_name})" if state_name else ""
+            pricing_clause = (
+                f"Regarding discounts: we do not offer discount codes, but we provide a 7-day evaluation with $0 due today so you can review live morning feeds with zero upfront cost. After the evaluation, our core feed{cov_note} is a flat $249/month with no per-claim fees or contracts:\n"
+                f"{STRIPE_LINK}"
+            )
+        elif state_code in ["NC", "TN", "CA"]:
             pricing_clause = (
                 f"For {state_name}, records are compiled under our National Feed + REST API Tier ($449/mo), covering FL, TX, GA, NC, TN, and CA "
                 f"with priority 6:00 AM EST dispatch and live REST API Bearer tokens:\n"
@@ -2300,14 +2418,25 @@ Please reply with the specific scope, academic institution, or research paramete
         if contextual_paragraphs:
             body_sections.extend(contextual_paragraphs)
 
-        body_sections.append(f"Here is an excerpt of active, verified files from our current {state_name} index:\n\n{sample_lines}")
-        body_sections.append(pricing_clause)
+        # Only include sample records if jurisdiction is specifically identified and not just a talk or why request
+        include_samples = bool(
+            has_specific_jurisdiction and sample_lines and
+            not (wants_talk and not is_overview) and
+            not (wants_why and not is_overview)
+        )
+        if include_samples:
+            body_sections.append(f"Here is an excerpt of active, verified files from our current {state_name} index:\n\n{sample_lines}")
+
+        if pricing_clause:
+            body_sections.append(pricing_clause)
 
         extra_notes = "".join(filter(None, [bar_note, tyler_note, upl_note])).strip()
         if extra_notes:
             body_sections.append(extra_notes)
 
-        body_sections.append(followup_clause)
+        if followup_clause:
+            body_sections.append(followup_clause)
+
         body_sections.append(signature)
         body_sections.append(LEGAL_DISCLAIMER)
 
@@ -2316,25 +2445,31 @@ Please reply with the specific scope, academic institution, or research paramete
     # 8. General Publisher Inquiry / Default
     else:
         is_expansion = state_code in ["NC", "TN", "CA"]
-        reply_subject = f"Re: Surplus Docket — Public Record Docket Inquiry [{state_name}]"
+        if state_name:
+            reply_subject = f"Re: Surplus Docket — Public Record Docket Inquiry [{state_name}]"
+            opening_line = f"Thank you for reaching out to Surplus Docket regarding {state_name} public record excess proceeds intelligence."
+            sample_block = f"Here are sample active records from our current {state_name} index:\n\n{sample_lines}\n\n" if sample_lines else ""
+            close_line = f"Please let me know if your practice requires specific county-level coverage or if you have questions about statutory procedures under {statute_cite}."
+        else:
+            reply_subject = "Re: Surplus Docket — Public Record Docket Inquiry"
+            opening_line = "Thank you for reaching out to Surplus Docket regarding public record excess proceeds intelligence."
+            sample_block = ""
+            close_line = "Please let me know if your practice requires coverage for a specific state or county."
+
         reply_body = f"""{greeting}
 
-Thank you for reaching out to Surplus Docket regarding {state_name} public record excess proceeds intelligence.
+{opening_line}
 
 Surplus Docket indexes active, unencumbered surplus funds across county registries every business morning. We scrub raw county ledgers to purge senior bank mortgages and dead leads, delivering verified equity balances directly to counsel at 7:00 AM EST every Monday through Friday.
 
-Here are sample active records from our current {state_name} index:
-
-{sample_lines}
-
-We offer two transparent subscriptions:
+{sample_block}We offer two transparent subscriptions:
 1. Tri-State Core Feed ($249/mo with 7-day trial $0 due today): Florida, Texas, and Georgia morning CSV & Excel delivery.
    {STRIPE_LINK}
 2. National Feed + REST API ($449/mo): Complete 6-state coverage (FL, TX, GA + NC, TN, CA) with priority 6:00 AM EST dispatch and full REST API Bearer token access.
    https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y
 {bar_note}{tyler_note}{upl_note}
 
-Please let me know if your practice requires specific county-level coverage or if you have questions about statutory procedures under {statute_cite}.
+{close_line}
 
 {signature}
 
@@ -2353,11 +2488,6 @@ def build_inquiry_draft_email(inquiry_info, state_cases, message_id=None):
     department = inquiry_info.get("department", "General Publisher Inquiry").strip()
     persona = get_department_persona(department=department)
     reply_subject, reply_body, role_title = compose_elena_inquiry_response(inquiry_info, state_cases)
-
-    if inquiry_info.get("is_voicemail"):
-        phone_num = inquiry_info.get("phone", "")
-        if phone_num:
-            reply_subject = f"[Phone Inquiry Dossier — {phone_num}] {reply_subject}"
 
     now_epoch = time.time()
     draft_msg = MIMEText(reply_body, "plain", "utf-8")
@@ -2529,12 +2659,11 @@ def sync_voicemails_to_inbox(mail):
         gv_ids = messages[0].split()
         for mid in gv_ids[-15:]:
             res, data = mail.fetch(mid, "(X-GM-LABELS)")
-            if res == "OK" and data and isinstance(data[0], tuple):
-                raw_labels = data[0][0] if isinstance(data[0][0], (bytes, str)) else data[0][1]
+            if res == "OK" and data and data[0]:
+                raw_labels = data[0][0] if isinstance(data[0], tuple) else data[0]
                 labels_str = raw_labels.decode("utf-8", errors="ignore") if isinstance(raw_labels, bytes) else str(raw_labels)
                 if "\\Inbox" not in labels_str and "Inbox" not in labels_str:
-                    mail.store(mid, "+X-GM-LABELS", r"(\Inbox)")
-                    mail.copy(mid, "INBOX")
+                    mail.store(mid, "+X-GM-LABELS", "\\Inbox")
                     log(f"  📥 Auto-routed Google Voice voicemail {mid.decode() if isinstance(mid, bytes) else mid} from All Mail into INBOX.")
     except Exception as e:
         log(f"Notice during voicemail inbox sync: {e}")
@@ -2716,7 +2845,7 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         if inquiry_info:
             prospect_name = inquiry_info["name"]
             prospect_email = inquiry_info["email"] or reply_to_email
-            state_code = inquiry_info.get("state_code", "FL")
+            state_code = inquiry_info.get("state_code", "")
             department = inquiry_info.get("department", "General Publisher Inquiry")
             is_vm = inquiry_info.get("is_voicemail", False)
 
@@ -2747,10 +2876,16 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                     # Record notable activity for Weekly Executive Report
                     channel = "VOICEMAIL" if is_vm else ("WEB_FORM" if "SD-INQ" in str(inquiry_info.get("ref", "")) else "DIRECT_EMAIL")
                     snippet = text_body[:160].replace("\n", " ").strip()
-                    summary_text = (
-                        f"Inbound {channel.lower()} from {prospect_name} regarding {state_code} excess proceeds. "
-                        f"{persona['name']} auto-dispatched tailored response with active records and subscription terms."
-                    )
+                    if state_code:
+                        summary_text = (
+                            f"Inbound {channel.lower()} from {prospect_name} regarding {STATE_NAMES.get(state_code, state_code)} excess proceeds. "
+                            f"{persona['name']} auto-dispatched tailored response."
+                        )
+                    else:
+                        summary_text = (
+                            f"Inbound {channel.lower()} from {prospect_name}. "
+                            f"{persona['name']} auto-dispatched concise follow-up addressing inquiry directly."
+                        )
                     record_notable_email_activity({
                         "id": f"ACT-{abs(hash(draft_key)) % 10000000}",
                         "timestamp": datetime.now().isoformat(),
@@ -2758,7 +2893,7 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                         "sender_email": prospect_email,
                         "phone": inquiry_info.get("phone", ""),
                         "channel": channel,
-                        "jurisdiction": STATE_NAMES.get(state_code, state_code),
+                        "jurisdiction": STATE_NAMES.get(state_code, "Multi-State / General") if state_code else "General Inbound",
                         "county": inquiry_info.get("county", ""),
                         "docket": inquiry_info.get("docket", ""),
                         "category": "INQUIRY",
