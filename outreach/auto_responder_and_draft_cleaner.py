@@ -20,6 +20,7 @@ import imaplib
 import json
 import os
 import re
+import smtplib
 import ssl
 import subprocess
 import sys
@@ -33,6 +34,7 @@ from pathlib import Path
 
 # Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
 OUTREACH_DIR = BASE_DIR / "outreach"
 FEED_CSV = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
 TARGETS_CSV = OUTREACH_DIR / "verified_attorney_targets.csv"
@@ -42,6 +44,7 @@ LOG_FILE = OUTREACH_DIR / "auto_responder.log"
 UNSUBSCRIBE_LOG = OUTREACH_DIR / "unsubscribed.log"
 UNSUBSCRIBED_URLS_FILE = OUTREACH_DIR / "unsubscribed_urls.json"
 CREATED_DRAFTS_LOG = OUTREACH_DIR / "created_drafts_log.json"
+NOTABLE_ACTIVITY_FILE = DATA_DIR / "notable_email_activity.json"
 
 # Optional local .env loading
 ENV_FILE = BASE_DIR / ".env"
@@ -59,6 +62,9 @@ if ENV_FILE.exists():
 # Credentials & Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
+SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+AUTO_SEND = os.getenv("AUTO_SEND", "true").lower() in ["true", "1", "yes"]
 FROM_NAME = os.getenv("FROM_NAME", "Surplus Docket Intelligence")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL", "dockets@surplusdocket.com")
 REPLY_TO = os.getenv("REPLY_TO", "dockets@surplusdocket.com")
@@ -70,6 +76,12 @@ STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
 # Ensures enough time elapses to simulate realistic coordinator review & docket lookup
 MIN_HUMAN_RESPONSE_DELAY_SECONDS = int(os.getenv("MIN_HUMAN_RESPONSE_DELAY_SECONDS", "360"))  # 6 min base
 MAX_HUMAN_RESPONSE_DELAY_SECONDS = int(os.getenv("MAX_HUMAN_RESPONSE_DELAY_SECONDS", "600"))  # 10 min max
+
+# Operational Hours for Automated Dispatch (Policy SD-POL-HOURS-2026-V1)
+# Ensures auto-responses are sent during legal operations hours (Mon-Fri 8:00 AM - 6:30 PM EST)
+SENDING_START_HOUR_EST = int(os.getenv("SENDING_START_HOUR_EST", "8"))     # 8:00 AM EST
+SENDING_END_HOUR_EST = int(os.getenv("SENDING_END_HOUR_EST", "18"))       # 6:00 PM EST
+SENDING_END_MINUTE_EST = int(os.getenv("SENDING_END_MINUTE_EST", "30"))   # 6:30 PM EST
 
 STATE_NAMES = {
     "FL": "Florida", "TX": "Texas", "GA": "Georgia",
@@ -375,6 +387,94 @@ def get_message_age_seconds(msg):
         return max(0.0, (now_dt - msg_dt.astimezone(timezone.utc)).total_seconds())
     except Exception:
         return 999999.0
+
+
+def is_within_sending_hours(now_dt=None, start_hour=SENDING_START_HOUR_EST, end_hour=SENDING_END_HOUR_EST, end_minute=SENDING_END_MINUTE_EST):
+    """
+    Checks if current time in America/New_York (Eastern Time) falls within
+    standard legal operations business hours:
+    Monday through Friday: 8:00 AM to 6:30 PM EST.
+    Returns: (is_valid: bool, reason: str)
+    """
+    if now_dt is None:
+        try:
+            from zoneinfo import ZoneInfo
+            now_dt = datetime.now(ZoneInfo("America/New_York"))
+        except Exception:
+            now_dt = datetime.now()
+
+    # weekday: 0 = Monday, 4 = Friday, 5 = Saturday, 6 = Sunday
+    if now_dt.weekday() >= 5:
+        day_name = "Saturday" if now_dt.weekday() == 5 else "Sunday"
+        return False, f"Weekend hold ({day_name} outside Mon-Fri business hours)"
+
+    current_minute_of_day = now_dt.hour * 60 + now_dt.minute
+    start_minute_of_day = start_hour * 60
+    end_minute_of_day = end_hour * 60 + end_minute
+
+    if current_minute_of_day < start_minute_of_day:
+        return False, f"Early morning hold (Current time {now_dt.strftime('%I:%M %p')} is before {start_hour}:00 AM EST)"
+
+    if current_minute_of_day > end_minute_of_day:
+        return False, f"Evening hold (Current time {now_dt.strftime('%I:%M %p')} is after {end_hour}:{end_minute:02d} EST)"
+
+    return True, f"Within business hours ({now_dt.strftime('%A %I:%M %p EST')})"
+
+
+def send_response_email(msg_obj, from_email, recipient_email, dry_run=False):
+    """
+    Directly dispatches an authoritative, persona-aligned response via Gmail SMTP.
+    When sent via smtp.gmail.com, Google automatically archives a copy to [Gmail]/Sent Mail.
+    Returns: (success: bool, detail: str)
+    """
+    if dry_run:
+        log(f"  [DRY RUN] Would auto-send email to {recipient_email} from {from_email}")
+        return True, "Dry-run successful"
+
+    if not GMAIL_APP_PASS:
+        return False, "GMAIL_APP_PASS not configured in environment or .env"
+
+    try:
+        context = ssl.create_default_context()
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=30) as server:
+            server.starttls(context=context)
+            server.login(GMAIL_USER, GMAIL_APP_PASS)
+            server.send_message(msg_obj, from_addr=from_email, to_addrs=[recipient_email])
+        return True, "Dispatched successfully via SMTP"
+    except Exception as e:
+        err_msg = f"SMTP transmission error: {e}"
+        log(f"  ❌ {err_msg}")
+        return False, err_msg
+
+
+def record_notable_email_activity(activity):
+    """
+    Records notable inbound/outbound email and voicemail interactions in
+    data/notable_email_activity.json for inclusion in the Weekly Executive Report.
+    """
+    try:
+        NOTABLE_ACTIVITY_FILE.parent.mkdir(parents=True, exist_ok=True)
+        activities = []
+        if NOTABLE_ACTIVITY_FILE.exists():
+            try:
+                with open(NOTABLE_ACTIVITY_FILE, "r", encoding="utf-8") as f:
+                    activities = json.load(f)
+            except Exception:
+                activities = []
+
+        # Avoid duplicate entries by id
+        act_id = activity.get("id", "")
+        existing_ids = {a.get("id") for a in activities if a.get("id")}
+        if act_id and act_id in existing_ids:
+            return
+
+        activities.insert(0, activity)  # Newest first
+        activities = activities[:200]    # Keep up to 200 most recent activities
+
+        with open(NOTABLE_ACTIVITY_FILE, "w", encoding="utf-8") as f:
+            json.dump(activities, f, indent=2)
+    except Exception as e:
+        log(f"Warning: could not record notable email activity: {e}")
 
 
 def extract_body_parts(msg):
@@ -2439,12 +2539,13 @@ def sync_voicemails_to_inbox(mail):
         log(f"Notice during voicemail inbox sync: {e}")
 
 
-def check_and_create_auto_responses(mail, state_cases, enforce_delay=True):
+def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enforce_hours=True):
     """
     Scans INBOX:
     1. Automatically detects and executes unsubscriptions for marketing/newsletters.
     2. Detects prospect replies from law firms and inquiries from surplusdocket.com or Google Voice.
-    3. Creates personalized response drafts in [Gmail]/Drafts for David's review.
+    3. Auto-dispatches personalized responses via SMTP during business hours with human delay pacing.
+    4. Records notable email/voicemail interactions for the Weekly Executive Report.
     """
     status, count = mail.select("INBOX")
     if status != "OK":
@@ -2570,6 +2671,20 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True):
             continue
 
         # -------------------------------------------------------------
+        # 2.4 BUSINESS SENDING HOURS (Policy SD-POL-HOURS-2026-V1)
+        # -------------------------------------------------------------
+        # Restricts automated dispatch strictly to Mon-Fri 8:00 AM - 6:30 PM EST
+        if enforce_hours:
+            is_open, hours_reason = is_within_sending_hours()
+            if not is_open:
+                pacing_key = f"hours_hold_{sender_email}"
+                now_ts = time.time()
+                if now_ts - _last_pacing_logged.get(pacing_key, 0) >= 120:
+                    _last_pacing_logged[pacing_key] = now_ts
+                    log(f"  🌙 Operational Hours: {hours_reason}. Holding auto-send until legal business hours resume (Mon-Fri 8:00 AM EST).")
+                continue
+
+        # -------------------------------------------------------------
         # 2.5 HUMAN PACING WINDOW (Policy SD-POL-PACING-2026-V1)
         # -------------------------------------------------------------
         # Ensure realistic time has elapsed since inbound message arrival
@@ -2583,7 +2698,7 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True):
                 now_ts = time.time()
                 if now_ts - _last_pacing_logged.get(pacing_key, 0) >= 60:
                     _last_pacing_logged[pacing_key] = now_ts
-                    log(f"  ⏳ Human Pacing: Inbound inquiry from {sender_email} is {age_secs/60.0:.1f}m old. Holding draft creation for {remaining_secs/60.0:.1f}m more (total {required_delay/60.0:.1f}m window) to maintain authentic human turnaround.")
+                    log(f"  ⏳ Human Pacing: Inbound inquiry from {sender_email} is {age_secs/60.0:.1f}m old. Holding auto-send for {remaining_secs/60.0:.1f}m more (total {required_delay/60.0:.1f}m window) to maintain authentic human turnaround.")
                 continue
 
         # -------------------------------------------------------------
@@ -2609,19 +2724,66 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True):
             draft_msg, reply_subject, reply_body, role_title = build_inquiry_draft_email(
                 inquiry_info, state_cases, message_id=message_id
             )
+            persona = get_department_persona(department=department)
+            from_addr = persona["email"]
 
-            drafts_box = get_gmail_drafts_mailbox(mail)
-            mail.select(drafts_box)
-            now_epoch = time.time()
-            internal_date = imaplib.Time2Internaldate(now_epoch)
-            append_status, res = mail.append(drafts_box, r"(\Draft)", internal_date, draft_msg.as_bytes())
-            mail.select("INBOX")
-            if append_status == "OK":
-                save_created_draft(draft_key)
-                already_drafted.add(draft_key)
-                mail.store(mid, "+FLAGS", r"(\Seen)")
-                persona = get_department_persona(department=department)
-                log(f"  🎉 {persona['name']} ({role_title}) statutory inquiry draft created in Gmail for {prospect_email}!")
+            if AUTO_SEND:
+                sent_ok, send_detail = send_response_email(draft_msg, from_addr, prospect_email)
+                if sent_ok:
+                    save_created_draft(draft_key)
+                    already_drafted.add(draft_key)
+                    mail.store(mid, "+FLAGS", r"(\Seen)")
+                    log(f"  🚀 {persona['name']} ({role_title}) response AUTO-SENT to {prospect_email} via SMTP!")
+
+                    # Record notable activity for Weekly Executive Report
+                    channel = "VOICEMAIL" if is_vm else ("WEB_FORM" if "SD-INQ" in str(inquiry_info.get("ref", "")) else "DIRECT_EMAIL")
+                    snippet = text_body[:160].replace("\n", " ").strip()
+                    summary_text = (
+                        f"Inbound {channel.lower()} from {prospect_name} regarding {state_code} excess proceeds. "
+                        f"{persona['name']} auto-dispatched tailored response with active records and subscription terms."
+                    )
+                    record_notable_email_activity({
+                        "id": f"ACT-{abs(hash(draft_key)) % 10000000}",
+                        "timestamp": datetime.now().isoformat(),
+                        "sender_name": prospect_name,
+                        "sender_email": prospect_email,
+                        "phone": inquiry_info.get("phone", ""),
+                        "channel": channel,
+                        "jurisdiction": STATE_NAMES.get(state_code, state_code),
+                        "county": inquiry_info.get("county", ""),
+                        "docket": inquiry_info.get("docket", ""),
+                        "category": "INQUIRY",
+                        "subject": reply_subject,
+                        "inbound_snippet": snippet,
+                        "summary": summary_text,
+                        "action_taken": "AUTO_SENT_REPLY",
+                        "persona": f"{persona['name']} ({role_title})",
+                        "notable": True,
+                    })
+                else:
+                    log(f"  ⚠️ Auto-send failed ({send_detail}); falling back to [Gmail]/Drafts creation.")
+                    drafts_box = get_gmail_drafts_mailbox(mail)
+                    mail.select(drafts_box)
+                    now_epoch = time.time()
+                    internal_date = imaplib.Time2Internaldate(now_epoch)
+                    append_status, res = mail.append(drafts_box, r"(\Draft)", internal_date, draft_msg.as_bytes())
+                    mail.select("INBOX")
+                    if append_status == "OK":
+                        save_created_draft(draft_key)
+                        already_drafted.add(draft_key)
+                        mail.store(mid, "+FLAGS", r"(\Seen)")
+            else:
+                drafts_box = get_gmail_drafts_mailbox(mail)
+                mail.select(drafts_box)
+                now_epoch = time.time()
+                internal_date = imaplib.Time2Internaldate(now_epoch)
+                append_status, res = mail.append(drafts_box, r"(\Draft)", internal_date, draft_msg.as_bytes())
+                mail.select("INBOX")
+                if append_status == "OK":
+                    save_created_draft(draft_key)
+                    already_drafted.add(draft_key)
+                    mail.store(mid, "+FLAGS", r"(\Seen)")
+                    log(f"  🎉 {persona['name']} ({role_title}) statutory inquiry draft created in Gmail for {prospect_email}!")
             continue
 
         # -------------------------------------------------------------
@@ -2659,19 +2821,61 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True):
         draft_msg["Date"] = formatdate(now_epoch, localtime=True)
         draft_msg["Message-ID"] = make_msgid()
 
-        drafts_box = get_gmail_drafts_mailbox(mail)
-        mail.select(drafts_box)
-        internal_date = imaplib.Time2Internaldate(now_epoch)
-        append_status, res = mail.append(drafts_box, r"(\Draft)", internal_date, draft_msg.as_bytes())
-        mail.select("INBOX")
-        if append_status == "OK":
-            save_created_draft(draft_key)
-            already_drafted.add(draft_key)
-            mail.store(mid, "+FLAGS", r"(\Seen)")
-            log(f"  🎉 Contextual [{intent}] follow-up draft created in Gmail for {sender_email}!")
+        if AUTO_SEND:
+            sent_ok, send_detail = send_response_email(draft_msg, SENDER_EMAIL, sender_email)
+            if sent_ok:
+                save_created_draft(draft_key)
+                already_drafted.add(draft_key)
+                mail.store(mid, "+FLAGS", r"(\Seen)")
+                log(f"  🚀 Elena Brooks response AUTO-SENT to {sender_email} (Intent: {intent}) via SMTP!")
+
+                summary_text = (
+                    f"Law firm reply from {sender_name} ({target_info.get('firm', sender_email) if target_info else sender_email}). "
+                    f"Intent: {intent}. Elena Brooks auto-responded with tailored statutory analysis."
+                )
+                record_notable_email_activity({
+                    "id": f"ACT-{abs(hash(draft_key)) % 10000000}",
+                    "timestamp": datetime.now().isoformat(),
+                    "sender_name": sender_name,
+                    "sender_email": sender_email,
+                    "phone": "",
+                    "channel": "DIRECT_EMAIL",
+                    "jurisdiction": target_info.get("state", "FL") if target_info else "FL",
+                    "county": "",
+                    "docket": "",
+                    "category": intent,
+                    "subject": reply_subject,
+                    "inbound_snippet": text_body[:160].replace("\n", " ").strip(),
+                    "summary": summary_text,
+                    "action_taken": "AUTO_SENT_REPLY",
+                    "persona": "Elena Brooks (Senior Docket Specialist)",
+                    "notable": True,
+                })
+            else:
+                log(f"  ⚠️ Auto-send failed ({send_detail}); falling back to [Gmail]/Drafts creation.")
+                drafts_box = get_gmail_drafts_mailbox(mail)
+                mail.select(drafts_box)
+                internal_date = imaplib.Time2Internaldate(now_epoch)
+                append_status, res = mail.append(drafts_box, r"(\Draft)", internal_date, draft_msg.as_bytes())
+                mail.select("INBOX")
+                if append_status == "OK":
+                    save_created_draft(draft_key)
+                    already_drafted.add(draft_key)
+                    mail.store(mid, "+FLAGS", r"(\Seen)")
+        else:
+            drafts_box = get_gmail_drafts_mailbox(mail)
+            mail.select(drafts_box)
+            internal_date = imaplib.Time2Internaldate(now_epoch)
+            append_status, res = mail.append(drafts_box, r"(\Draft)", internal_date, draft_msg.as_bytes())
+            mail.select("INBOX")
+            if append_status == "OK":
+                save_created_draft(draft_key)
+                already_drafted.add(draft_key)
+                mail.store(mid, "+FLAGS", r"(\Seen)")
+                log(f"  🎉 Contextual [{intent}] follow-up draft created in Gmail for {sender_email}!")
 
 
-def run_single_check(enforce_delay=True):
+def run_single_check(enforce_delay=True, enforce_hours=True):
     """Runs a single check across Apple Mail and Gmail."""
     clean_apple_mail_drafts()
     state_cases = load_feed_data()
@@ -2683,17 +2887,17 @@ def run_single_check(enforce_delay=True):
         mail.login(GMAIL_USER, GMAIL_APP_PASS)
         sync_voicemails_to_inbox(mail)
         clean_imap_drafts(mail)
-        check_and_create_auto_responses(mail, state_cases, enforce_delay=enforce_delay)
+        check_and_create_auto_responses(mail, state_cases, enforce_delay=enforce_delay, enforce_hours=enforce_hours)
         mail.logout()
     except Exception as e:
         log(f"IMAP connection error: {e}")
 
 
 def daemon_loop():
-    log("🚀 Surplus Docket Continuous Daemon Started (Running every 15s with human-paced turnaround)...")
+    log("🚀 Surplus Docket Continuous Daemon Started (Auto-send active with Mon-Fri 8am-6:30pm EST sending window & human pacing)...")
     while True:
         try:
-            run_single_check(enforce_delay=True)
+            run_single_check(enforce_delay=True, enforce_hours=True)
         except Exception as e:
             log(f"Unexpected error in daemon loop: {e}")
         time.sleep(15)
@@ -2702,7 +2906,7 @@ def daemon_loop():
 if __name__ == "__main__":
     force = any(arg in sys.argv for arg in ["--force", "--force-now", "--now", "--immediate"])
     if len(sys.argv) > 1 and any(arg in sys.argv for arg in ["--once", "--single-pass"]):
-        run_single_check(enforce_delay=not force)
+        run_single_check(enforce_delay=not force, enforce_hours=not force)
     else:
         daemon_loop()
 

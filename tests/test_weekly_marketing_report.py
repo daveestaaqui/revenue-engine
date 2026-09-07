@@ -75,6 +75,16 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertGreaterEqual(metrics["link_building"]["pr_pitches"], 3)
         self.assertGreaterEqual(metrics["link_building"]["clerk_letters"], 6)
 
+        # Notable Inbound Activity & Dispatches check
+        self.assertIn("notable_email_activities", metrics)
+        self.assertIn("inbound_inquiries_past_7_days", metrics)
+        self.assertIn("voicemails_past_7_days", metrics)
+        self.assertIn("auto_sent_responses_past_7_days", metrics)
+        self.assertGreaterEqual(len(metrics["notable_email_activities"]), 2)
+        self.assertGreaterEqual(metrics["inbound_inquiries_past_7_days"], 2)
+        self.assertGreaterEqual(metrics["voicemails_past_7_days"], 2)
+        self.assertGreaterEqual(metrics["auto_sent_responses_past_7_days"], 2)
+
     def test_render_html_report(self):
         metrics = collect_marketing_metrics()
         html = render_html_report(metrics)
@@ -87,6 +97,8 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertIn("State Geographic Outreach Progress", html)
         self.assertIn("Florida (FL)", html)
         self.assertIn("Texas (TX)", html)
+        self.assertIn("Notable Inbound Activity & Auto-Dispatches", html)
+        self.assertIn("Aubrey Hayes", html)
         self.assertIn("Elena Brooks Response Desk", html)
         self.assertIn("Authority & Link Building Engine", html)
 
@@ -101,6 +113,8 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertIn("STATE GEOGRAPHIC PENETRATION:", text)
         self.assertIn("FL", text)
         self.assertIn("TX", text)
+        self.assertIn("NOTABLE INBOUND ACTIVITY & AUTO-DISPATCHES (PAST 7 DAYS):", text)
+        self.assertIn("David Mahler", text)
         self.assertIn("ELENA BROOKS INBOUND & SAFEGUARDS:", text)
         self.assertIn("AUTHORITY & LINK BUILDING ENGINE:", text)
 

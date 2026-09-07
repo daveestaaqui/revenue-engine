@@ -35,6 +35,7 @@ MASTER_TARGETS_CSV = OUTREACH_DIR / "master_ranked_attorney_targets.csv"
 FEED_CSV = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
 CREATED_DRAFTS_LOG = OUTREACH_DIR / "created_drafts_log.json"
 AUTO_RESPONDER_LOG = OUTREACH_DIR / "auto_responder.log"
+NOTABLE_ACTIVITY_FILE = BASE_DIR / "data" / "notable_email_activity.json"
 SITE_DIR = BASE_DIR / "site"
 
 # Optional local .env loading
@@ -69,14 +70,19 @@ def parse_iso_datetime(ts_str):
     if not ts_str:
         return None
     try:
-        # Handle ISO strings like 2026-09-04T20:41:03.844631 or 2026-08-26T11:37:29.172830
+        cleaned = ts_str.strip().replace("Z", "+00:00")
+        dt = datetime.fromisoformat(cleaned)
+        if dt.tzinfo is not None:
+            dt = dt.replace(tzinfo=None)
+        return dt
+    except Exception:
+        pass
+    try:
         cleaned = ts_str.strip()
         if "T" in cleaned:
-            base_part = cleaned.split(".")[0]
-            return datetime.strptime(base_part, "%Y-%m-%dT%H:%M:%S")
+            return datetime.strptime(cleaned[:19], "%Y-%m-%dT%H:%M:%S")
         elif " " in cleaned:
-            base_part = cleaned.split(".")[0]
-            return datetime.strptime(base_part, "%Y-%m-%d %H:%M:%S")
+            return datetime.strptime(cleaned[:19], "%Y-%m-%d %H:%M:%S")
     except Exception:
         pass
     return None
@@ -262,6 +268,27 @@ def collect_marketing_metrics(now=None):
         except Exception:
             pass
 
+    # 4.5 Ingest Notable Email Activity (Voicemails, Inquiries, Auto-Dispatches)
+    metrics["notable_email_activities"] = []
+    metrics["inbound_inquiries_past_7_days"] = 0
+    metrics["voicemails_past_7_days"] = 0
+    metrics["auto_sent_responses_past_7_days"] = 0
+    if NOTABLE_ACTIVITY_FILE.exists():
+        try:
+            with open(NOTABLE_ACTIVITY_FILE, "r", encoding="utf-8") as f:
+                activities = json.load(f)
+                for act in activities:
+                    ts = parse_iso_datetime(act.get("timestamp"))
+                    if ts and ts >= seven_days_ago:
+                        metrics["notable_email_activities"].append(act)
+                        metrics["inbound_inquiries_past_7_days"] += 1
+                        if act.get("channel") == "VOICEMAIL":
+                            metrics["voicemails_past_7_days"] += 1
+                        if act.get("action_taken") == "AUTO_SENT_REPLY":
+                            metrics["auto_sent_responses_past_7_days"] += 1
+        except Exception:
+            pass
+
     # 5. Ingest Active Feed Records
     if FEED_CSV.exists():
         with open(FEED_CSV, "r", encoding="utf-8") as f:
@@ -392,6 +419,65 @@ def render_html_report(metrics):
         </tr>
         """
 
+    # Build notable inbound activity cards / rows
+    notable_html = ""
+    if m.get("notable_email_activities"):
+        for act in m["notable_email_activities"][:6]:
+            ch = act.get("channel", "EMAIL")
+            badge_color = "#2563eb" if ch == "VOICEMAIL" else ("#16a34a" if ch == "WEB_FORM" else "#7c3aed")
+            ts_str = act.get("timestamp", "")
+            date_display = ts_str[:10] if len(ts_str) >= 10 else "Recent"
+            try:
+                dt_obj = parse_iso_datetime(ts_str)
+                if dt_obj:
+                    date_display = dt_obj.strftime("%b %d, %I:%M %p")
+            except Exception:
+                pass
+
+            sender_name = act.get("sender_name", "Inquiring Party")
+            sender_email = act.get("sender_email", "")
+            phone = act.get("phone", "")
+            contact_info = f"{sender_name}"
+            if phone:
+                contact_info += f" ({phone})"
+            if sender_email:
+                contact_info += f" &bull; {sender_email}"
+
+            notable_html += f"""
+            <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px;">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <span style="display: inline-block; background-color: {badge_color}; color: #ffffff; font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; margin-right: 6px;">{ch}</span>
+                            <span style="font-weight: 600; color: #0f172a; font-size: 13px;">{contact_info}</span>
+                            <span style="font-size: 11px; color: #64748b; float: right;">{date_display}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 6px; font-size: 12px; color: #334155; line-height: 1.5;">
+                            <strong>Inquiry:</strong> {act.get('inbound_snippet', '')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 4px; font-size: 12px; color: #1e293b; line-height: 1.5;">
+                            <strong>Summary & Dispatched Action:</strong> {act.get('summary', '')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 4px; font-size: 11px; color: #64748b;">
+                            <strong>Status:</strong> <span style="color: #16a34a; font-weight: 600;">{act.get('action_taken', 'AUTO_SENT_REPLY')}</span> via {act.get('persona', 'Intake Desk')} | Subject: <em>{act.get('subject', '')}</em>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            """
+    else:
+        notable_html = """
+        <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px 14px; font-size: 12px; color: #64748b;">
+            Zero unhandled or critical inbound inquiries during this reporting period. Auto-responder engine operational with Mon-Fri 8:00 AM &ndash; 6:30 PM EST legal sending hours and 6&ndash;10 min human pacing.
+        </div>
+        """
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -518,6 +604,15 @@ def render_html_report(metrics):
                             </tbody>
                         </table>
 
+                        <!-- Notable Inbound Activity & Auto-Dispatched Communications -->
+                        <h2 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 12px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">📬 Notable Inbound Activity & Auto-Dispatches (Past 7 Days)</h2>
+                        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 28px;">
+                            <div style="margin-bottom: 12px; font-size: 13px; color: #475569;">
+                                <strong>Inbound Velocity:</strong> {m['inbound_inquiries_past_7_days']} inquiries &bull; {m['voicemails_past_7_days']} voicemails &bull; {m['auto_sent_responses_past_7_days']} auto-sent responses during legal business hours.
+                            </div>
+                            {notable_html}
+                        </div>
+
                         <!-- Inbound & Response Desk Status -->
                         <h2 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 12px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">📩 Elena Brooks Response Desk & Safeguards</h2>
                         <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px 20px; margin-bottom: 28px; font-size: 13px; line-height: 1.6;">
@@ -526,11 +621,11 @@ def render_html_report(metrics):
                                     <td width="50%" style="vertical-align: top;">
                                         <div style="margin-bottom: 8px;">• <strong>Auto-Responder Engine:</strong> 16-dimension multi-factor objection classifier active.</div>
                                         <div style="margin-bottom: 8px;">• <strong>Anti-AI Enforced:</strong> 0% bulleted pitch decks, 0% buzzwords.</div>
-                                        <div>• <strong>Drafts Prepared:</strong> {m['created_drafts_count']} total verified prospect follow-up drafts.</div>
+                                        <div>• <strong>Autonomous Auto-Send:</strong> Active (Mon&ndash;Fri 8:00 AM &ndash; 6:30 PM EST legal window, 6&ndash;10 min human pacing).</div>
                                     </td>
                                     <td width="50%" style="vertical-align: top; padding-left: 20px;">
                                         <div style="margin-bottom: 8px;">• <strong>Legal Safety & Disclaimers:</strong> Mandatory Non-Legal-Advice Disclaimers & UPL guardrails active.</div>
-                                        <div style="margin-bottom: 8px;">• <strong>Zero Auto-Dispatch:</strong> 100% human-in-the-loop review in Gmail Drafts.</div>
+                                        <div style="margin-bottom: 8px;">• <strong>Inbound Activity Log:</strong> {m['auto_sent_responses_past_7_days']} auto-sent responses ({m['created_drafts_count']} total logged/drafts).</div>
                                         <div>• <strong>Hard Gatekeeping:</strong> Platform/daemon senders 100% blocked.</div>
                                     </td>
                                 </tr>
@@ -590,7 +685,7 @@ def render_html_report(metrics):
                             <li><strong>Daily Batch Velocity:</strong> 24 law firms contacted per business day (12/batch × 2 runs = 120 contacts/week).</li>
                             <li><strong>Priority Focus:</strong> Expanding Tier 1 Texas & Florida surplus/tax deed litigation boutiques.</li>
                             <li><strong>Upgraded Link Building:</strong> Submitting 45 high-DA directories and pitching legal journalists on post-Tyler v. Hennepin compliance.</li>
-                            <li><strong>Inbound Review:</strong> Elena Brooks response drafts ready for review in <code>[Gmail]/Drafts</code>.</li>
+                            <li><strong>Inbound Management:</strong> Autonomous auto-send engine operational with Mon&ndash;Fri 8:00 AM &ndash; 6:30 PM EST legal window and weekly executive summaries.</li>
                         </ul>
 
                     </td>
@@ -648,12 +743,33 @@ def render_plaintext_report(metrics):
 
     lines.extend([
         "",
+        "📬 NOTABLE INBOUND ACTIVITY & AUTO-DISPATCHES (PAST 7 DAYS):",
+        f"• Inbound Inquiries:             {m['inbound_inquiries_past_7_days']}",
+        f"• Google Voice Voicemails:        {m['voicemails_past_7_days']}",
+        f"• Autonomous Auto-Sent Responses: {m['auto_sent_responses_past_7_days']}",
+    ])
+
+    if m.get("notable_email_activities"):
+        lines.append("  Recent Notable Events:")
+        for act in m["notable_email_activities"][:5]:
+            ch = act.get("channel", "EMAIL")
+            sender = act.get("sender_name", "Unknown")
+            phone = f" ({act['phone']})" if act.get("phone") else ""
+            lines.append(f"  • [{ch}] {sender}{phone}:")
+            lines.append(f"    Inquiry: {act.get('inbound_snippet', '')[:80]}")
+            lines.append(f"    Summary: {act.get('summary', '')[:80]}")
+            lines.append(f"    Action:  {act.get('action_taken', 'AUTO_SENT_REPLY')} via {act.get('persona', 'Elena Brooks')}")
+    else:
+        lines.append("  • Zero unhandled or critical inquiries during this period.")
+
+    lines.extend([
+        "",
         "📩 ELENA BROOKS INBOUND & SAFEGUARDS:",
         f"• Multi-Factor Intent Classifier: 16 legal dimensions active",
         f"• Legal Safety & Disclaimers:   Mandatory Non-Legal-Advice Disclaimers & UPL guardrails",
         f"• Anti-AI Voice Compliance:       100% verified (zero buzzwords, zero pitch decks)",
-        f"• Prospect Follow-up Drafts:      {m['created_drafts_count']} prepared in [Gmail]/Drafts",
-        f"• Human In The Loop:             100% manual click-to-send review",
+        f"• Autonomous Auto-Send:          Mon-Fri 8:00 AM - 6:30 PM EST (6-10 min human pacing)",
+        f"• Verified Prospect Dispatches:   {m['auto_sent_responses_past_7_days']} sent ({m['created_drafts_count']} logged drafts/fallbacks)",
         "",
         "🌐 ORGANIC PRESENCE & SEO:",
         f"• Programmatic County Pages:     {m['published_seo_pages']}",
@@ -689,9 +805,28 @@ def write_github_step_summary(metrics):
 | :--- | :---: | :---: | :---: |
 | **Law Firms Contacted** | **+{m['form_submissions_past_7_days']}** | **{m['unique_firms_contacted']}** | {m['pipeline_penetration_pct']}% of {m['total_targets_in_pipeline']} Target Pipeline |
 | **Submission Success Rate** | **{m['form_success_rate_past_7_days']}%** | **{m['form_success_rate_lifetime']}%** | Clean Headless Playwright Runs |
-| **Inbound Follow-up Drafts** | — | **{m['created_drafts_count']}** | `[Gmail]/Drafts` Manual Review |
+| **Autonomous Auto-Sent Responses** | **+{m['auto_sent_responses_past_7_days']}** | **{m['created_drafts_count']}** | Mon–Fri 8:00 AM – 6:30 PM EST Legal Window |
 | **Verified Surplus Inventory** | — | **${m['total_verified_surplus_usd']:,.0f}** | {m['active_surplus_dockets']} unencumbered files (~${m['total_potential_fees_usd']:,.0f} fees) |
 
+### 📬 Notable Inbound Activity & Autonomous Dispatches
+| Channel | Contact | Summary / Inbound Snippet | Action Taken | Persona |
+| :--- | :--- | :--- | :--- | :--- |
+"""
+    if m.get("notable_email_activities"):
+        for act in m["notable_email_activities"][:5]:
+            ch = act.get("channel", "EMAIL")
+            contact = act.get("sender_name", "")
+            if act.get("phone"):
+                contact += f" ({act.get('phone')})"
+            snippet = act.get("inbound_snippet", "").replace("|", "-")[:60]
+            summary = act.get("summary", "").replace("|", "-")[:70]
+            action = act.get("action_taken", "AUTO_SENT_REPLY")
+            persona = act.get("persona", "Elena Brooks").split(" (")[0]
+            md += f"| **{ch}** | {contact} | {snippet}...<br>_{summary}_ | `{action}` | {persona} |\n"
+    else:
+        md += "| — | None | Zero notable inquiries during period | Routine Monitoring | Auto-Responder Desk |\n"
+
+    md += f"""
 ### 🔗 Authority & Link Building Engine
 | Link Asset Category | Volume | Quality / Status |
 | :--- | :---: | :--- |

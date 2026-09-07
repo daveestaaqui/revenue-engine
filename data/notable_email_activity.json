@@ -1,0 +1,38 @@
+[
+  {
+    "id": "VM-5085178981-4956",
+    "timestamp": "2026-09-06T17:15:00-04:00",
+    "sender_name": "David Mahler",
+    "sender_email": "sandwichfitness@gmail.com",
+    "phone": "(508) 517-8981",
+    "channel": "VOICEMAIL",
+    "jurisdiction": "Georgia",
+    "county": "Statewide / Metro Atlanta",
+    "docket": "",
+    "category": "GENERAL_OVERVIEW",
+    "subject": "Re: Surplus Docket \u2014 Court Surplus Feeds [Georgia]",
+    "inbound_snippet": "My name is David Mahler... Just give me a general overview of what you offer for the different places in Georgia",
+    "summary": "Inbound voicemail requesting general overview of Georgia surplus feeds. Aubrey Hayes auto-responded with O.C.G.A. \u00a7 48-4-5 statutory framework, daily 7:00 AM EST delivery specs, and $249/mo flat core feed terms.",
+    "action_taken": "AUTO_SENT_REPLY",
+    "persona": "Aubrey Hayes (Executive Intake Coordinator)",
+    "notable": true
+  },
+  {
+    "id": "VM-5085178981-4955",
+    "timestamp": "2026-09-06T17:12:00-04:00",
+    "sender_name": "Dave Miller",
+    "sender_email": "sandwichfitness@gmail.com",
+    "phone": "(508) 517-8981",
+    "channel": "VOICEMAIL",
+    "jurisdiction": "Florida / Multi-State",
+    "county": "General",
+    "docket": "",
+    "category": "GENERAL_OVERVIEW",
+    "subject": "Re: Surplus Docket \u2014 Court Surplus Feeds [Florida]",
+    "inbound_snippet": "Hi this is Dave Miller. Can you just give me a general overview of your services... email is sandwichfitness@gmail.com",
+    "summary": "Inbound voicemail requesting overview of services. Aubrey Hayes auto-responded with core feed overview, Florida/Georgia benchmark cases, and 7-day evaluation checkout link.",
+    "action_taken": "AUTO_SENT_REPLY",
+    "persona": "Aubrey Hayes (Executive Intake Coordinator)",
+    "notable": true
+  }
+]

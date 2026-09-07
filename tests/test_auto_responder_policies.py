@@ -32,6 +32,12 @@ from outreach.auto_responder_and_draft_cleaner import (
     compose_elena_response,
     get_required_human_delay,
     get_message_age_seconds,
+    is_within_sending_hours,
+    send_response_email,
+    record_notable_email_activity,
+    SENDING_START_HOUR_EST,
+    SENDING_END_HOUR_EST,
+    SENDING_END_MINUTE_EST,
     MIN_HUMAN_RESPONSE_DELAY_SECONDS,
     MAX_HUMAN_RESPONSE_DELAY_SECONDS,
     LEGAL_DISCLAIMER,
@@ -466,6 +472,102 @@ class TestAutoResponderPolicies(unittest.TestCase):
         # 3. Missing date fallback -> returns large number so it doesn't block forever
         msg_nodate = Message()
         self.assertEqual(get_message_age_seconds(msg_nodate), 999999.0)
+
+    def test_sending_hours_policy_enforcement(self):
+        """Verifies policy SD-POL-HOURS-2026-V1 for legal operations sending hours (Mon-Fri 8:00 AM - 6:30 PM EST)."""
+        from datetime import datetime
+
+        # 1. Tuesday at 10:30 AM -> Should be permitted
+        tue_10am = datetime(2026, 9, 8, 10, 30)  # 2026-09-08 is Tuesday
+        allowed, reason = is_within_sending_hours(tue_10am)
+        self.assertTrue(allowed)
+        self.assertIn("Within business hours", reason)
+
+        # 2. Monday at 8:00 AM sharp -> Should be permitted
+        mon_8am = datetime(2026, 9, 7, 8, 0)  # 2026-09-07 is Monday
+        allowed, reason = is_within_sending_hours(mon_8am)
+        self.assertTrue(allowed)
+
+        # 3. Friday at 6:30 PM sharp -> Should be permitted
+        fri_630pm = datetime(2026, 9, 11, 18, 30)  # 2026-09-11 is Friday
+        allowed, reason = is_within_sending_hours(fri_630pm)
+        self.assertTrue(allowed)
+
+        # 4. Friday at 6:31 PM -> Evening hold
+        fri_631pm = datetime(2026, 9, 11, 18, 31)
+        allowed, reason = is_within_sending_hours(fri_631pm)
+        self.assertFalse(allowed)
+        self.assertIn("Evening hold", reason)
+
+        # 5. Wednesday at 7:59 AM -> Early morning hold
+        wed_759am = datetime(2026, 9, 9, 7, 59)
+        allowed, reason = is_within_sending_hours(wed_759am)
+        self.assertFalse(allowed)
+        self.assertIn("Early morning hold", reason)
+
+        # 6. Saturday at 2:00 PM -> Weekend hold
+        sat_2pm = datetime(2026, 9, 12, 14, 0)  # Saturday
+        allowed, reason = is_within_sending_hours(sat_2pm)
+        self.assertFalse(allowed)
+        self.assertIn("Weekend hold", reason)
+
+        # 7. Sunday at 11:00 AM -> Weekend hold
+        sun_11am = datetime(2026, 9, 13, 11, 0)  # Sunday
+        allowed, reason = is_within_sending_hours(sun_11am)
+        self.assertFalse(allowed)
+        self.assertIn("Weekend hold", reason)
+
+    def test_send_response_email_dry_run(self):
+        """Verifies SMTP auto-send dry-run execution."""
+        from email.message import EmailMessage
+        msg = EmailMessage()
+        msg["From"] = "elena.brooks@surplusdocket.com"
+        msg["To"] = "lawyer@example.com"
+        msg["Subject"] = "Test Response"
+        msg.set_content("Test body")
+
+        success, detail = send_response_email(msg, "elena.brooks@surplusdocket.com", "lawyer@example.com", dry_run=True)
+        self.assertTrue(success)
+        self.assertEqual(detail, "Dry-run successful")
+
+    def test_record_notable_email_activity(self):
+        """Verifies recording and deduplication in persistent activity storage."""
+        import json
+        from outreach.auto_responder_and_draft_cleaner import NOTABLE_ACTIVITY_FILE
+
+        test_act = {
+            "id": "TEST-ACT-9999",
+            "timestamp": "2026-09-06T20:00:00",
+            "sender_name": "Test Attorney",
+            "sender_email": "test@attorneyfirm.com",
+            "channel": "EMAIL",
+            "summary": "Test notable summary for weekly report verification",
+            "action_taken": "AUTO_SENT_REPLY",
+            "persona": "Elena Brooks",
+            "notable": True
+        }
+
+        # Record activity
+        record_notable_email_activity(test_act)
+
+        # Verify it exists in file
+        self.assertTrue(NOTABLE_ACTIVITY_FILE.exists())
+        with open(NOTABLE_ACTIVITY_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            found = any(x.get("id") == "TEST-ACT-9999" for x in data)
+            self.assertTrue(found)
+
+        # Verify idempotency / deduplication
+        initial_count = len(data)
+        record_notable_email_activity(test_act)
+        with open(NOTABLE_ACTIVITY_FILE, "r", encoding="utf-8") as f:
+            data2 = json.load(f)
+            self.assertEqual(len(data2), initial_count)
+
+        # Clean up test entry
+        cleaned_data = [x for x in data2 if x.get("id") != "TEST-ACT-9999"]
+        with open(NOTABLE_ACTIVITY_FILE, "w", encoding="utf-8") as f:
+            json.dump(cleaned_data, f, indent=2)
 
 
 if __name__ == "__main__":
