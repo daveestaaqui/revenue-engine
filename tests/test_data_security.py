@@ -156,8 +156,8 @@ class TestDataSecurityAndAntiLeak(unittest.TestCase):
             "tennessee-tax-sale-excess-proceeds.html",
             "california-tax-defaulted-excess-proceeds.html"
         ]
-        stripe_national = "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y"
-        stripe_tristate = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+        stripe_national = "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22"
+        stripe_tristate = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 
         for ef in expansion_files:
             content = (SITE_DIR / ef).read_text(encoding="utf-8")
@@ -175,7 +175,7 @@ class TestDataSecurityAndAntiLeak(unittest.TestCase):
     def test_expansion_api_endpoints_link_to_national_plan(self):
         """Ensure expansion state API endpoints return National plan subscription metadata."""
         expansion_endpoints = ["north-carolina.json", "tennessee.json", "california.json"]
-        stripe_national = "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y"
+        stripe_national = "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22"
 
         for ep in expansion_endpoints:
             ep_path = SITE_DIR / "api" / "v1" / ep

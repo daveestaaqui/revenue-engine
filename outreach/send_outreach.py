@@ -37,9 +37,9 @@ STATE_NAMES = {
 
 # Stripe checkout links by state / tier
 STRIPE_LINKS = {
-    "FL": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
-    "TX": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
-    "DEFAULT": "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",
+    "FL": "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",
+    "TX": "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",
+    "DEFAULT": "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",
 }
 
 

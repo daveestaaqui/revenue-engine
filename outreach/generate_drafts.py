@@ -49,7 +49,7 @@ STATE_NAMES = {
     "MD": "Maryland",
 }
 
-STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 SITE_URL = "https://surplusdocket.com"
 
 # State-specific statutory references

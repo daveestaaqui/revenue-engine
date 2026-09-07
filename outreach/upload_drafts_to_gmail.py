@@ -53,7 +53,7 @@ GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
 FROM_NAME = "David Mahler"
 REPLY_TO = "david@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
-STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 
 # State data
 STATE_NAMES = {

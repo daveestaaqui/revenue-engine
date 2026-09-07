@@ -51,7 +51,7 @@ FROM_NAME = "David Mahler"
 SENDER_EMAIL = "david@surplusdocket.com"
 REPLY_TO = "david@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
-STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 
 # Blacklist of all confirmed bounced addresses
 BOUNCED_EMAILS = {

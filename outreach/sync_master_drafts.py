@@ -48,7 +48,7 @@ FROM_NAME = "Elena Brooks"
 SENDER_EMAIL = "elena.brooks@surplusdocket.com"
 REPLY_TO = "elena.brooks@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
-STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 
 STATE_NAMES = {
     "FL": "Florida",

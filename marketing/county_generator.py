@@ -331,7 +331,7 @@ def generate_county_page(c):
             <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
                 <a href="/" class="hidden sm:inline-flex text-xs font-semibold text-slate-600 hover:text-brand-green transition-colors px-2 py-1">Main Hub</a>
                 <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex text-xs font-heading font-bold text-slate-600 hover:text-brand-navy border border-slate-300 bg-white px-3 py-2 rounded-lg transition-all shadow-sm">Billing Portal</a>
-                <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-all shadow-md shrink-0">
+                <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-heading font-bold bg-brand-green hover:bg-brand-greenDark text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-all shadow-md shrink-0">
                     Start 7-Day Trial
                 </a>
             </div>
@@ -412,7 +412,7 @@ def generate_county_page(c):
                 </div>
             </div>
 
-            <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-sm rounded-xl shadow-md transition-all">
+            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-sm rounded-xl shadow-md transition-all">
                 Unlock Full {c['county']} Daily Lead Feed — $249/mo
             </a>
         </div>

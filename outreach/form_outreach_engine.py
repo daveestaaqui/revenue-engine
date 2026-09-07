@@ -40,7 +40,7 @@ SENDER_TITLE = "Court Registry Ingestion Desk"
 SENDER_EMAIL = "dockets@surplusdocket.com"
 SENDER_PHONE = "508-888-0000"
 SITE_URL = "https://surplusdocket.com"
-STRIPE_LINK = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 
 STATE_NAMES = {
     "FL": "Florida", "TX": "Texas", "GA": "Georgia",

@@ -41,7 +41,7 @@ SYNDICATE_DIR = BASE_DIR / "marketing" / "syndicate" / "press_releases"
 WELL_KNOWN_DIR = SITE_DIR / ".well-known"
 MANIFEST_PATH = WELL_KNOWN_DIR / "verification-manifest.json"
 
-STRIPE_CHECKOUT_URL = "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X"
+STRIPE_CHECKOUT_URL = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 
 # Canonical Statutory Truth Table
 CANONICAL_STATUTES = {
@@ -383,8 +383,10 @@ def validate_all_feeds() -> dict:
 
 
 VERIFIED_STRIPE_URLS = {
-    "https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X",  # Multi-State Feed ($249/mo)
-    "https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y"   # National + API Feed ($449/mo)
+    "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",  # Multi-State Feed (/mo)
+    "https://buy.stripe.com/6oU6oHg0SgXNce9gkC0ZW1Z",  # Multi-State Feed Annual (,388/yr)
+    "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22",  # National + API Feed (/mo)
+    "https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20"   # National + API Feed Annual (,188/yr)
 }
 
 

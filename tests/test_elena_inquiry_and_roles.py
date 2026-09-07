@@ -214,7 +214,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         self.assertIn("Full 6-State Coverage: Florida, Texas, Georgia, North Carolina, Tennessee, and California", body)
         self.assertIn("6:00 AM EST", body)
         self.assertIn("Director of Practice Relations & Licensing", body)
-        self.assertIn("https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y", body)
+        self.assertIn("https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22", body)
 
     def test_api_integration_response(self):
         inquiry_info = {
@@ -231,7 +231,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         self.assertIn("Authorization: Bearer <API_TOKEN>", body)
         self.assertIn("https://surplusdocket.com/api-documentation.html", body)
         self.assertIn("Lead Technical Specialist & API Integrations", body)
-        self.assertIn("https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y", body)
+        self.assertIn("https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22", body)
 
     def test_clerk_correction_notice_response(self):
         inquiry_info = {
@@ -308,7 +308,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         }
         subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
         self.assertIn("National Feed + REST API Tier ($449/month", body)
-        self.assertIn("https://buy.stripe.com/9B68wP9Cu7ndfqlfgy0ZW1Y", body)
+        self.assertIn("https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22", body)
         self.assertNotIn("$249/month starting on Day 8", body)
 
     def test_intake_ropes_in_elena_when_justified_with_docket(self):
