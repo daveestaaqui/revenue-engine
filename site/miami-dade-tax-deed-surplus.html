@@ -38,20 +38,17 @@
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="/assets/logo_surplus_docket.webp" type="image/webp" fetchpriority="high">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-                        heading: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['Cinzel', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     colors: {
                         brand: {
@@ -78,17 +75,14 @@
 <body class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText">
 
     <!-- Top Header -->
-    <header class="w-full border-b-2 border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-[0_4px_20px_-4px_rgba(27,54,93,0.08)] transition-all">
+    <header class="w-full border-b border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
-                        <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
-                <picture>
-                    <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
-                    <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" fetchpriority="high" decoding="async" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                </picture>
-                <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+            <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none shrink-0">
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                     <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
-                </span>
+                </div>
             </a>
             <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
                 <a href="/" class="hidden sm:inline-flex text-xs font-semibold text-slate-600 hover:text-brand-green transition-colors px-2 py-1">Main Hub</a>
@@ -113,14 +107,14 @@
 
         <!-- County Title Badge & Hero -->
         <div class="mb-8">
-            <p class="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider mb-2">
+            <span class="text-xs font-mono font-bold text-brand-green uppercase tracking-widest bg-brand-greenSoft px-3 py-1 rounded-full border border-brand-green/30">
                 Fla. Stat. § 197.582 • Miami-Dade County
-            </p>
-            <h1 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-navy mb-3 tracking-tight">
+            </span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-brand-navy mt-4 mb-3 tracking-tight">
                 Miami-Dade County Tax Deed Surplus & Excess Proceeds Feed
             </h1>
             <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
-                Automated daily intelligence for Miami-Dade County (Miami, FL). Our pipeline ingests official filings from the Miami-Dade County Clerk of Courts (Tax Deed Unit), filters out institutional entities, and delivers verified individual owner surplus claims every business morning (Mon–Fri) at 7:00 AM EST.
+                Automated daily intelligence for Miami-Dade County (Miami, FL). Our pipeline ingests official filings from the Miami-Dade County Clerk of Courts (Tax Deed Unit), filters out institutional entities, and delivers verified individual owner surplus claims every morning at 7:00 AM EST.
             </p>
         </div>
 
@@ -175,7 +169,7 @@
             </div>
 
             <a href="https://buy.stripe.com/bJe9AT15Yazp2Dz7O60ZW1X" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-sm rounded-xl shadow-md transition-all">
-                Access Complete Miami-Dade County Daily Feed — $249/mo
+                Unlock Full Miami-Dade County Daily Lead Feed — $249/mo
             </a>
         </div>
 
@@ -213,15 +207,12 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-slate-200 text-left">
                 <!-- Col 1: Brand & Overview (Spans 2 cols on lg) -->
                 <div class="lg:col-span-2 space-y-4">
-                                        <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
-                        <picture>
-                            <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
-                            <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                        </picture>
-                        <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+                    <a href="/" class="flex items-center gap-3 group shrink-0">
+                        <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                             <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                             <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
-                        </span>
+                        </div>
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
                         Structured daily public records intelligence indexing tax deed surplus and excess proceeds filings across county court registries for asset recovery law practices.
@@ -229,7 +220,7 @@
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
-                            Mon–Fri 7:00 AM EST Dispatch
+                            Daily 7:00 AM EST Dispatch
                         </span>
                         <a href="/api-documentation.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors">
                             REST API v1
@@ -271,7 +262,6 @@
                         <li><a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="text-brand-navy font-bold hover:text-brand-green transition-colors flex items-center gap-1"><span>Customer Portal</span> <span class="text-slate-400">&rarr;</span></a></li>
                         <li><a href="/blog/" class="hover:text-brand-green transition-colors">Legal Research Articles</a></li>
                         <li><a href="/press/" class="hover:text-brand-green transition-colors">Press & Newsroom</a></li>
-                        <li><a href="/report-bug.html" class="hover:text-brand-green transition-colors">Report an Issue</a></li>
                         <li><a href="/terms.html" class="hover:text-brand-green transition-colors">Commercial Data Terms</a></li>
                         <li><a href="/refund-policy.html" class="hover:text-brand-green transition-colors">14-Day Refund Guarantee</a></li>
                     </ul>
@@ -280,7 +270,7 @@
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/report-bug.html" class="hover:text-brand-green underline transition-colors">Report an Issue</a> • <a href="/inquiry.html" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved.</p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
                 </p>

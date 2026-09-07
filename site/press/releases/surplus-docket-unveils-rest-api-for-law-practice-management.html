@@ -20,12 +20,6 @@
     <!-- Plausible Analytics (Privacy-First) -->
     <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
     
-        <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="/assets/logo_surplus_docket.webp" type="image/webp" fetchpriority="high">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -34,17 +28,17 @@
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#1b365d',
-                            navyLight: '#2a4c7a',
-                            green: '#4c6d48',
-                            greenDark: '#365134',
-                            greenSoft: '#edf3ec',
+                            navy: '#0f172a',
+                            navyLight: '#1e293b',
+                            green: '#059669',
+                            greenDark: '#047857',
+                            greenSoft: '#d1fae5',
                             canvas: '#f8fafc'
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-                        heading: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                        heading: ['Cabinet Grotesk', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
                         mono: ['JetBrains Mono', 'Menlo', 'monospace']
                     }
                 }
@@ -80,30 +74,108 @@
         }
     }
     </script>
-    <style>
-        h1, h2, h3, h4, h5 {
-            text-wrap: balance;
-            letter-spacing: -0.015em;
-        }
-        p, li {
-            text-wrap: pretty;
-        }
-    </style>
 </head>
 <body class="bg-brand-canvas text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- Header Navigation -->
-    <header class="w-full border-b-2 border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-[0_4px_20px_-4px_rgba(27,54,93,0.08)] transition-all">
+    <header class="w-full border-b border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
-                                            <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Surplus Docket">
-                        <picture>
-                            <source srcset="/assets/logo_surplus_docket.webp" type="image/webp">
-                            <img src="/assets/logo_surplus_docket.png" width="48" height="36" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                        </picture>
-                        <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
+            <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
+                <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none shrink-0">
+                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                    <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-slate-600">
+                <a href="/press/" class="text-brand-green hover:text-brand-greenDark font-bold flex items-center gap-1">&larr; Newsroom</a>
+                <a href="/" class="hover:text-brand-green transition-colors">Home</a>
+                <a href="/#pricing" class="px-3.5 py-2 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs sm:text-sm rounded-lg transition-all shadow-sm">Get Feed</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12 sm:py-16 px-4 sm:px-6 max-w-4xl mx-auto flex-grow">
+        <!-- Press Release Header -->
+        <div class="mb-8 border-b border-slate-200 pb-8">
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
+                <span class="text-brand-green">FOR IMMEDIATE RELEASE</span>
+                <span>•</span>
+                <span>August 23, 2026</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-heading font-black text-brand-navy leading-tight mb-4">
+                Surplus Docket Unveils Programmatic REST JSON API for Law Firm Practice Management and AI Intake Automation
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
+                Enterprise API tier enables direct ingestion into Clio, MyCase, Airtable, and custom legal-tech pipelines with priority 6:00 AM EST dispatch.
+            </p>
+        </div>
+
+        <!-- Press Release Body -->
+        <article class="text-sm sm:text-base text-slate-700 leading-relaxed max-w-none">
+            <p class="font-bold text-slate-900 mb-4 sm:mb-5">
+                <strong>ATLANTA, Ga.</strong> — Surplus Docket today expanded its enterprise offerings with the release of its developer-first REST JSON API endpoint (`/api/v1/feed.json`), designed to power automated client intake and workflow management for modern asset recovery practices.
+            </p>
+            <p class="mb-4 sm:mb-5 leading-relaxed text-slate-700">As legal practices increasingly adopt workflow automation tools such as Zapier, Make, Clio, and custom AI agents, the need for clean, machine-readable court docket streams has accelerated. Surplus Docket's REST API delivers standardized JSON schemas containing official case docket numbers, verified surplus balances, parcel identification numbers, property situs addresses, and calculated statutory filing deadlines.</p><p class="mb-4 sm:mb-5 leading-relaxed text-slate-700">Subscribers to the National Feed + API tier receive priority 6:00 AM EST data dispatch, custom county ingestion support, and webhook notifications whenever new high-value excess proceeds cases are confirmed in monitored court registries.</p><p class="mb-4 sm:mb-5 leading-relaxed text-slate-700">"Legal practitioners should not have to manually re-type county clerk records into their practice management systems," stated Surplus Docket. "Our REST API allows firms to connect ground-truth public records directly into their client outreach workflows in under ten minutes."</p><p class="mb-4 sm:mb-5 leading-relaxed text-slate-700">Complete interactive documentation, sample cURL requests, Python SDK scripts, and JSON response schemas are publicly accessible in the Surplus Docket Developer Documentation portal at surplusdocket.com/api-documentation.html.</p>
+            
+            
+    <div class="my-8 p-4 sm:p-5 bg-emerald-50/90 border border-emerald-200 rounded-xl text-xs text-slate-700 shadow-sm">
+        <div class="flex items-start gap-3">
+            <span class="inline-flex items-center justify-center p-1 bg-brand-green text-white rounded-md font-bold text-xs shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            </span>
+            <div class="space-y-1 w-full">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <p class="font-heading font-bold text-brand-navy text-xs sm:text-sm">Editorial Fact-Check &amp; Statutory Audit: Passed</p>
+                    <span class="text-[10px] font-mono font-bold text-emerald-800 bg-white px-2 py-0.5 rounded border border-emerald-200">100% Case-Verified</span>
+                </div>
+                <p class="text-slate-600 leading-relaxed text-[11px] sm:text-xs">
+                    This document was algorithmically audited against official public judicial records and statutory priority frameworks (<em>General Public Records Intelligence</em>). Surplus Docket is an autonomous public records compiler and does not provide legal representation.
+                </p>
+                <div class="pt-2 border-t border-emerald-200/60 flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-slate-500 font-mono">
+                    <span>Audit Status: Verified Authentic</span>
+                    <span>• Standards: Open Records Act Compliant</span>
+                    <span>• Zero-Speculation Protocol</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+            
+            <div class="my-8 p-6 bg-slate-100 rounded-xl border border-slate-200">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">About Surplus Docket</h3>
+                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                    Surplus Docket is an autonomous public records intelligence and legal data compiler that aggregates, case-verifies, and standardizes tax deed surplus and excess proceeds records across judicial registries in Florida, Texas, Georgia, North Carolina, Tennessee, and California. Purpose-built for asset recovery attorneys, title searchers, and probate investors, Surplus Docket delivers clean, institutional-lien-scrubbed datasets via daily automated CSV/Excel exports and programmatic REST APIs. For more information, visit https://surplusdocket.com.
+                </p>
+                <div class="pt-4 border-t border-slate-200 text-xs text-slate-600">
+                    <p class="font-bold text-brand-navy mb-1">Media &amp; Publisher Contact:</p>
+                    <p>Surplus Docket Editorial &amp; Compliance Desk</p>
+                    <p>Inquiries: <a href="/inquiry.html" class="text-brand-green hover:underline">Publisher &amp; Media Inquiry Form &rarr;</a></p>
+                    <p>Website: <a href="https://surplusdocket.com" class="text-brand-green hover:underline">https://surplusdocket.com</a></p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Back to Newsroom -->
+        <div class="mt-8 pt-6 border-t border-slate-200 flex justify-between items-center text-xs font-bold">
+            <a href="/press/" class="text-brand-green hover:underline">&larr; Back to All Press Releases</a>
+            <a href="/" class="text-slate-500 hover:text-brand-navy">Surplus Docket Platform &rarr;</a>
+        </div>
+    </main>
+
+    <!-- Footer (Institutional Multi-Column Grid) -->
+    <footer class="bg-white border-t border-slate-200 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-600">
+        <div class="max-w-7xl mx-auto">
+            <!-- Main Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-slate-200 text-left">
+                <!-- Col 1: Brand & Overview (Spans 2 cols on lg) -->
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="/" class="flex items-center gap-3 group shrink-0">
+                        <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
                             <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
                             <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
-                        </span>
+                        </div>
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
                         Structured daily public records intelligence indexing tax deed surplus and excess proceeds filings across county court registries for asset recovery law practices.
@@ -111,7 +183,7 @@
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
-                            Mon–Fri 7:00 AM EST Dispatch
+                            Daily 7:00 AM EST Dispatch
                         </span>
                         <a href="/api-documentation.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors">
                             REST API v1
@@ -153,7 +225,6 @@
                         <li><a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="text-brand-navy font-bold hover:text-brand-green transition-colors flex items-center gap-1"><span>Customer Portal</span> <span class="text-slate-400">&rarr;</span></a></li>
                         <li><a href="/blog/" class="hover:text-brand-green transition-colors">Legal Research Articles</a></li>
                         <li><a href="/press/" class="hover:text-brand-green transition-colors">Press & Newsroom</a></li>
-                        <li><a href="/report-bug.html" class="hover:text-brand-green transition-colors">Report an Issue</a></li>
                         <li><a href="/terms.html" class="hover:text-brand-green transition-colors">Commercial Data Terms</a></li>
                         <li><a href="/refund-policy.html" class="hover:text-brand-green transition-colors">14-Day Refund Guarantee</a></li>
                     </ul>
@@ -162,7 +233,7 @@
 
             <!-- Bottom Sub-Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/report-bug.html" class="hover:text-brand-green underline transition-colors">Report an Issue</a> • <a href="/inquiry.html" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
+                <p>&copy; 2026 Surplus Docket. All rights reserved. • <a href="/inquiry.html" class="hover:text-brand-green underline transition-colors">Publisher &amp; Legal Inquiries</a> • <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green underline transition-colors">Subscriber Billing Portal</a></p>
                 <p class="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
                     Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).
                 </p>

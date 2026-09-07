@@ -2,7 +2,7 @@
 PLATFORM: SUBSTACK
 TITLE: Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis
 CANONICAL_URL: https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus
-DATE: September 06, 2026
+DATE: September 07, 2026
 TAGS: LegalTech, Foreclosure, RealEstateLaw, Litigation, CourtDocket
 -->
 
