@@ -2361,7 +2361,7 @@ def build_inquiry_draft_email(inquiry_info, state_cases, message_id=None):
 
     now_epoch = time.time()
     draft_msg = MIMEText(reply_body, "plain", "utf-8")
-    draft_msg["From"] = f"{persona['name']} <{SENDER_EMAIL}>"
+    draft_msg["From"] = f"{persona['name']} <{persona['email']}>"
     draft_msg["To"] = f"{prospect_name} <{prospect_email}>" if prospect_name else prospect_email
     draft_msg["Subject"] = reply_subject
     draft_msg["Reply-To"] = f"{persona['name']} <{persona['email']}>"
@@ -2527,14 +2527,15 @@ def sync_voicemails_to_inbox(mail):
         if status != "OK" or not messages[0]:
             return
         gv_ids = messages[0].split()
-        for mid in gv_ids[-10:]:
+        for mid in gv_ids[-15:]:
             res, data = mail.fetch(mid, "(X-GM-LABELS)")
             if res == "OK" and data and isinstance(data[0], tuple):
                 raw_labels = data[0][0] if isinstance(data[0][0], (bytes, str)) else data[0][1]
                 labels_str = raw_labels.decode("utf-8", errors="ignore") if isinstance(raw_labels, bytes) else str(raw_labels)
                 if "\\Inbox" not in labels_str and "Inbox" not in labels_str:
+                    mail.store(mid, "+X-GM-LABELS", r"(\Inbox)")
                     mail.copy(mid, "INBOX")
-                    log(f"  📥 Auto-routed Google Voice voicemail {mid} from All Mail into INBOX.")
+                    log(f"  📥 Auto-routed Google Voice voicemail {mid.decode() if isinstance(mid, bytes) else mid} from All Mail into INBOX.")
     except Exception as e:
         log(f"Notice during voicemail inbox sync: {e}")
 
@@ -2675,14 +2676,22 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         # -------------------------------------------------------------
         # Restricts automated dispatch strictly to Mon-Fri 8:00 AM - 6:30 PM EST
         if enforce_hours:
-            is_open, hours_reason = is_within_sending_hours()
-            if not is_open:
-                pacing_key = f"hours_hold_{sender_email}"
-                now_ts = time.time()
-                if now_ts - _last_pacing_logged.get(pacing_key, 0) >= 120:
-                    _last_pacing_logged[pacing_key] = now_ts
-                    log(f"  🌙 Operational Hours: {hours_reason}. Holding auto-send until legal business hours resume (Mon-Fri 8:00 AM EST).")
-                continue
+            target_prospect_email = (inquiry_info.get("email") if inquiry_info else sender_email) or ""
+            is_tester = target_prospect_email.lower() in [
+                GMAIL_USER.lower(),
+                "sandwichfitness@gmail.com",
+                "david@surplusdocket.com",
+                "dave@surplusdocket.com"
+            ]
+            if not is_tester:
+                is_open, hours_reason = is_within_sending_hours()
+                if not is_open:
+                    pacing_key = f"hours_hold_{sender_email}"
+                    now_ts = time.time()
+                    if now_ts - _last_pacing_logged.get(pacing_key, 0) >= 120:
+                        _last_pacing_logged[pacing_key] = now_ts
+                        log(f"  🌙 Operational Hours: {hours_reason}. Holding auto-send until legal business hours resume (Mon-Fri 8:00 AM EST).")
+                    continue
 
         # -------------------------------------------------------------
         # 2.5 HUMAN PACING WINDOW (Policy SD-POL-PACING-2026-V1)
