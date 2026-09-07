@@ -35,6 +35,9 @@ from outreach.auto_responder_and_draft_cleaner import (
     compose_elena_response,
     build_inquiry_draft_email,
     is_prospect_eligible,
+    extract_audio_attachments,
+    transcribe_voicemail_audio,
+    build_voicemail_action_memo,
     load_target_directory,
     LEGAL_DISCLAIMER,
     STRIPE_LINK,
@@ -872,6 +875,186 @@ Play message: https://voice.google.com/message/4956"""
         self.assertNotIn("Phone Inquiry Dossier", reply_subject)
         self.assertNotIn("Phone Inquiry Dossier", draft_msg["Subject"])
         self.assertEqual(reply_subject, "Re: Surplus Docket — Inbound Voicemail Follow-up")
+
+    def test_extract_audio_attachments(self):
+        """Tests that extract_audio_attachments extracts MP3/WAV files and ignores non-audio attachments."""
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.base import MIMEBase
+        from email.mime.text import MIMEText
+
+        msg = MIMEMultipart()
+        msg.attach(MIMEText("Voicemail notification body", "plain"))
+
+        audio_part = MIMEBase("audio", "mpeg")
+        audio_part.set_payload(b"FAKE_AUDIO_BYTES_MP3")
+        audio_part.add_header("Content-Disposition", "attachment", filename="voicemail.mp3")
+        msg.attach(audio_part)
+
+        pdf_part = MIMEBase("application", "pdf")
+        pdf_part.set_payload(b"FAKE_PDF_BYTES")
+        pdf_part.add_header("Content-Disposition", "attachment", filename="document.pdf")
+        msg.attach(pdf_part)
+
+        attachments = extract_audio_attachments(msg)
+        self.assertEqual(len(attachments), 1)
+        self.assertEqual(attachments[0][0], "voicemail.mp3")
+        self.assertEqual(attachments[0][1], b"FAKE_AUDIO_BYTES_MP3")
+
+    def test_transcribe_voicemail_audio_mocked_and_fallback(self):
+        """Tests transcribe_voicemail_audio under success and missing API key scenarios."""
+        import json
+        import os
+        from unittest.mock import patch, MagicMock
+
+        # 1. Successful transcription with mock API
+        mock_resp = MagicMock()
+        mock_resp.read.return_value = json.dumps({"text": "Hello this is attorney John Doe"}).encode("utf-8")
+        mock_resp.__enter__.return_value = mock_resp
+
+        with patch("urllib.request.urlopen", return_value=mock_resp):
+            text = transcribe_voicemail_audio(b"fake_audio_bytes", filename="call.mp3", api_key="sk-test-key")
+            self.assertEqual(text, "Hello this is attorney John Doe")
+
+        # 2. Missing key returns empty string gracefully
+        with patch.dict(os.environ, {}, clear=True):
+            text = transcribe_voicemail_audio(b"fake_audio_bytes", filename="call.mp3", api_key="")
+            self.assertEqual(text, "")
+
+    def test_parse_google_voice_voicemail_with_audio_attachment(self):
+        """Tests that parse_google_voice_voicemail transcribes audio when attachment is present."""
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.base import MIMEBase
+        from email.mime.text import MIMEText
+        from unittest.mock import patch
+
+        sender = "voice-noreply@google.com"
+        subject = "New voicemail from (508) 555-1212 at 2:30 PM"
+        body = "Google Voice automated transcript: garbled text Play message: https://voice.google.com"
+
+        msg = MIMEMultipart()
+        msg["From"] = sender
+        msg["Subject"] = subject
+        msg.attach(MIMEText(body, "plain"))
+
+        audio_part = MIMEBase("audio", "mpeg")
+        audio_part.set_payload(b"RECORDING_AUDIO_BYTES")
+        audio_part.add_header("Content-Disposition", "attachment", filename="call.mp3")
+        msg.attach(audio_part)
+
+        whisper_output = "Hi, this is Sarah Jenkins with Jenkins Property Law in Fulton County Georgia. My email is sarah at jenkins law dot com. Please send your surplus feed."
+        with patch("outreach.auto_responder_and_draft_cleaner.transcribe_voicemail_audio", return_value=whisper_output):
+            inq = parse_google_voice_voicemail(sender, subject, body, msg=msg)
+            self.assertIsNotNone(inq)
+            self.assertTrue(inq["audio_reviewed"])
+            self.assertEqual(inq["name"], "Sarah Jenkins")
+            self.assertEqual(inq["email"], "sarah@jenkinslaw.com")
+            self.assertEqual(inq["state_code"], "GA")
+            self.assertEqual(inq["jurisdiction"], "Georgia")
+            self.assertEqual(inq["county"], "Fulton")
+            self.assertIn("Sarah Jenkins", inq["message"])
+
+    def test_compose_response_audio_reviewed_acknowledgment(self):
+        """Tests that Elena/Aubrey acknowledge reviewing the recording when audio_reviewed is True."""
+        vm_audio = {
+            "name": "Sarah Jenkins",
+            "email": "sarah@jenkinslaw.com",
+            "phone": "(508) 555-1212",
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "Georgia",
+            "state_code": "GA",
+            "county": "Fulton",
+            "docket": "",
+            "message": "Overview of surplus feeds",
+            "transcript": "Overview of surplus feeds",
+            "is_voicemail": True,
+            "audio_reviewed": True,
+        }
+        subj, body, role = compose_elena_inquiry_response(vm_audio, self.mock_state_cases)
+        self.assertIn("I reviewed your voicemail recording earlier today requesting an overview of our surplus feeds and coverage for Fulton County and across Georgia", body)
+
+    def test_build_voicemail_action_memo(self):
+        """Tests that build_voicemail_action_memo generates an actionable memo for the operator."""
+        vm_no_email = {
+            "name": "David Mahler",
+            "email": "",
+            "phone": "(508) 517-8981",
+            "firm": "",
+            "department": "Inquiries & Intake Desk",
+            "jurisdiction": "Georgia",
+            "state_code": "GA",
+            "county": "Fulton",
+            "docket": "",
+            "ref": "GV-VM-(508) 517-8981-998877",
+            "message": "Interested in Georgia court dockets",
+            "transcript": "Interested in Georgia court dockets",
+            "is_voicemail": True,
+            "audio_reviewed": True,
+        }
+        memo_msg, subj, body = build_voicemail_action_memo(vm_no_email, self.mock_state_cases)
+        self.assertIn("[VOICEMAIL ACTION MEMO]", subj)
+        self.assertIn("(508) 517-8981", subj)
+        self.assertIn("David Mahler", subj)
+        self.assertEqual(memo_msg["To"], "sandwichfitness@gmail.com")
+        self.assertIn("SURPLUS DOCKET — INBOUND VOICEMAIL ACTION MEMORANDUM", body)
+        self.assertIn("Audio-First (Transcribed via OpenAI Whisper-1)", body)
+        self.assertIn("Interested in Georgia court dockets", body)
+        self.assertIn("SUGGESTED IMMEDIATE CALLBACK SCRIPT", body)
+        self.assertIn("SUGGESTED SMS FOLLOW-UP", body)
+        self.assertIn("O.C.G.A. § 48-4-5", body)
+
+    def test_check_and_create_auto_responses_voicemail_memo_immediate_send(self):
+        """
+        Verifies that an inbound Google Voice voicemail without caller email
+        is recognized as an internal operator memo and dispatched immediately
+        to REPORT_RECIPIENT, bypassing business hours and human delay.
+        """
+        from unittest.mock import MagicMock, patch
+        from outreach.auto_responder_and_draft_cleaner import (
+            check_and_create_auto_responses,
+            REPORT_RECIPIENT,
+        )
+
+        mock_mail = MagicMock()
+        mock_mail.select.return_value = ("OK", [b"1"])
+        mock_mail.search.side_effect = [
+            ("OK", [b"1"]),  # UNSEEN
+            ("OK", [b"1"]),  # ALL
+        ]
+
+        raw_vm_email = (
+            b"From: voice-noreply@google.com\r\n"
+            b"To: sandwichfitness@gmail.com\r\n"
+            b"Subject: New voicemail from (508) 517-8981 at 11:30 PM\r\n"
+            b"Message-ID: <vm-msg-12345@google.com>\r\n"
+            b"Date: Mon, 7 Sep 2026 23:30:00 -0400\r\n"
+            b"\r\n"
+            b"New voicemail from (508) 517-8981:\r\n"
+            b"\r\n"
+            b"\"Hello this is Attorney Davis calling about Fulton County Georgia surplus records. Please call me back at 508-517-8981.\"\r\n"
+            b"\r\n"
+            b"Play message: https://voice.google.com/message/54321\r\n"
+        )
+        mock_mail.fetch.return_value = ("OK", [(b"1 (RFC822 {250})", raw_vm_email)])
+
+        with patch("outreach.auto_responder_and_draft_cleaner.send_response_email") as mock_send, \
+             patch("outreach.auto_responder_and_draft_cleaner.is_within_sending_hours", return_value=(False, "Closed")), \
+             patch("outreach.auto_responder_and_draft_cleaner.AUTO_SEND", True):
+            mock_send.return_value = (True, "Delivered")
+            check_and_create_auto_responses(
+                mock_mail, self.mock_state_cases, enforce_delay=True, enforce_hours=True
+            )
+            # Must send the action memo to REPORT_RECIPIENT despite outside sending hours
+            mock_send.assert_called_once()
+            args = mock_send.call_args[0]
+            draft_msg = args[0]
+            to_email = args[2]
+            self.assertEqual(to_email, REPORT_RECIPIENT)
+            self.assertIn("[VOICEMAIL ACTION MEMO]", draft_msg["Subject"])
+            self.assertIn("(508) 517-8981", draft_msg["Subject"])
+            self.assertIn("Attorney Davis", draft_msg["Subject"])
+            payload_text = draft_msg.get_payload(decode=True).decode("utf-8")
+            self.assertIn("SURPLUS DOCKET — INBOUND VOICEMAIL ACTION MEMORANDUM", payload_text)
 
 
 if __name__ == "__main__":

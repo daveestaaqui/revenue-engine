@@ -28,6 +28,7 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+import uuid
 from datetime import datetime, timezone
 from email.mime.text import MIMEText
 from email.utils import formatdate, make_msgid, parseaddr, parsedate_to_datetime
@@ -511,6 +512,88 @@ def extract_body_parts(msg):
     return text_body, html_body
 
 
+def extract_audio_attachments(msg):
+    """
+    Extracts audio attachments from an email message (e.g. Google Voice voicemail mp3/wav).
+    Returns a list of tuples: (filename: str, audio_bytes: bytes, content_type: str)
+    """
+    if not msg:
+        return []
+    audio_files = []
+    if msg.is_multipart():
+        for part in msg.walk():
+            ctype = (part.get_content_type() or "").lower()
+            fname = part.get_filename() or ""
+            cdispo = str(part.get("Content-Disposition") or "").lower()
+            is_audio = (
+                ctype.startswith("audio/") or
+                fname.lower().endswith((".mp3", ".wav", ".m4a", ".ogg", ".aac")) or
+                ("attachment" in cdispo and any(fname.lower().endswith(ext) for ext in [".mp3", ".wav", ".m4a", ".ogg"]))
+            )
+            if is_audio:
+                payload = part.get_payload(decode=True)
+                if payload:
+                    clean_fname = fname or "voicemail.mp3"
+                    audio_files.append((clean_fname, payload, ctype or "audio/mpeg"))
+    else:
+        ctype = (msg.get_content_type() or "").lower()
+        if ctype.startswith("audio/"):
+            payload = msg.get_payload(decode=True)
+            if payload:
+                audio_files.append(("voicemail.mp3", payload, ctype))
+    return audio_files
+
+
+def transcribe_voicemail_audio(audio_bytes, filename="voicemail.mp3", api_key=None):
+    """
+    Transcribes voicemail audio using OpenAI Whisper API (`whisper-1`).
+    Provides audio-first transcription of caller speech, names,
+    phone numbers, email addresses, and case/docket numbers.
+    Returns transcript string if successful, or empty string on failure.
+    """
+    key = api_key or os.environ.get("OPENAI_API_KEY")
+    if not key or not audio_bytes:
+        return ""
+
+    try:
+        boundary = f"----WebKitFormBoundary{uuid.uuid4().hex}"
+        body = bytearray()
+
+        def add_field(name, value):
+            body.extend(f"--{boundary}\r\n".encode("utf-8"))
+            body.extend(f'Content-Disposition: form-data; name="{name}"\r\n\r\n'.encode("utf-8"))
+            body.extend(f"{value}\r\n".encode("utf-8"))
+
+        def add_file(name, fname, fbytes, ctype="audio/mpeg"):
+            body.extend(f"--{boundary}\r\n".encode("utf-8"))
+            body.extend(f'Content-Disposition: form-data; name="{name}"; filename="{fname}"\r\n'.encode("utf-8"))
+            body.extend(f"Content-Type: {ctype}\r\n\r\n".encode("utf-8"))
+            body.extend(fbytes)
+            body.extend(b"\r\n")
+
+        add_field("model", "whisper-1")
+        add_field("prompt", "Surplus Docket legal voicemail. Excess proceeds, tax deed surplus, court registry, docket case number, attorney name, spoken email address, callback phone.")
+        add_file("file", filename, audio_bytes, "audio/mpeg" if filename.endswith(".mp3") else "audio/wav")
+        body.extend(f"--{boundary}--\r\n".encode("utf-8"))
+
+        req = urllib.request.Request(
+            "https://api.openai.com/v1/audio/transcriptions",
+            data=bytes(body),
+            headers={
+                "Authorization": f"Bearer {key}",
+                "Content-Type": f"multipart/form-data; boundary={boundary}",
+                "User-Agent": "SurplusDocket-AudioEngine/2026.1"
+            },
+            method="POST"
+        )
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            return data.get("text", "").strip()
+    except Exception as e:
+        log(f"  ⚠️ Whisper audio transcription failed: {e}")
+        return ""
+
+
 def extract_unsubscribe_details(msg, text_body, html_body):
     """
     Extracts RFC 8058 One-Click, RFC 2369 header URLs, and body unsubscribe URLs.
@@ -635,7 +718,7 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
             return True, "Verified statutory website inquiry", None, inquiry_data
 
     # 1.5 Check if it is a Google Voice voicemail notification for (508) 419-3178
-    gv_inquiry = parse_google_voice_voicemail(sender_email, subject_raw, text_body)
+    gv_inquiry = parse_google_voice_voicemail(sender_email, subject_raw, text_body, msg=msg)
     if gv_inquiry:
         return True, "Verified Google Voice voicemail inquiry", None, gv_inquiry
 
@@ -1817,30 +1900,34 @@ def extract_spoken_email(text):
         if user_clean:
             return f"{user_clean}@{provider}.{tld}"
 
-    # 4. Spoken with "dot" and "at" (custom domain, e.g. "john dot doe at lawfirm dot com")
+    # 4. Spoken with "dot" and "at" (custom domain, e.g. "john dot doe at lawfirm dot com" or "sarah at jenkins law dot com")
     at_dot_pattern = re.search(
-        r"(?:my\s+)?email(?:\s+address)?(?:\s+is|\s*:|\s+me\s+at|\s+at|\s+to)?\s*(?:the\s+)?([a-zA-Z0-9]+(?:\s*(?:dot|\.)\s*[a-zA-Z0-9]+)*)\s+(?:at|@)\s+([a-zA-Z0-9-]+)\s+(?:dot|\.)\s+([a-zA-Z]{2,})\b",
+        r"(?:my\s+)?email(?:\s+address)?(?:\s+is|\s*:|\s+me\s+at|\s+at|\s+to)?\s*(?:the\s+)?([a-zA-Z0-9]+(?:\s*(?:dot|\.)\s*[a-zA-Z0-9]+)*)\s+(?:at|@)\s+([a-zA-Z0-9]+(?:\s+[a-zA-Z0-9]+)*)\s+(?:dot|\.)\s+([a-zA-Z]{2,})\b",
         text,
         re.IGNORECASE
     )
     if at_dot_pattern:
         raw_user = at_dot_pattern.group(1).strip()
-        domain = at_dot_pattern.group(2).strip().lower()
+        raw_domain = at_dot_pattern.group(2).strip()
         tld = at_dot_pattern.group(3).strip().lower()
         user_clean = re.sub(r"\s*dot\s*", ".", raw_user, flags=re.IGNORECASE)
         stopwords = {"the", "is", "my", "a", "an", "me", "to", "at", "address"}
         words = [w for w in re.split(r"[\s_]+", user_clean) if w and w.lower() not in stopwords]
         clean_name = "".join(words).lower()
-        if clean_name:
-            return f"{clean_name}@{domain}.{tld}"
+        domain_words = [w for w in re.split(r"[\s_]+", raw_domain) if w and w.lower() not in stopwords]
+        clean_domain = "".join(domain_words).lower()
+        if clean_name and clean_domain:
+            return f"{clean_name}@{clean_domain}.{tld}"
 
     return ""
 
 
-def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
+def parse_google_voice_voicemail(sender_email, subject_raw, text_body, msg=None):
     """
     Parses Google Voice voicemail notification emails forwarding to sandwichfitness@gmail.com
     originating from Surplus Docket's inbound line (508) 419-3178.
+    Audio-first: If msg contains an audio attachment (.mp3/.wav), transcribes it directly
+    via OpenAI Whisper-1 rather than relying solely on Google Voice's automated transcript.
     Extracts caller phone, transcript, mentioned jurisdiction, and intent.
     """
     s_lower = (sender_email or "").lower().strip()
@@ -1859,28 +1946,46 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
     phone_match = re.search(r"(\+?1?[\s\.-]?\(?\d{3}\)?[\s\.-]?\d{3}[\s\.-]?\d{4})", f"{subject_raw} {text_body}")
     caller_phone = phone_match.group(1).strip() if phone_match else "Unknown Caller"
 
-    # 2. Extract transcript
-    lines = text_body.splitlines()
-    captured = []
-    ignoring_header = True
-    for line in lines:
-        l = line.strip()
-        if not l:
-            continue
-        if ignoring_header and (
-            l.startswith("<https://voice.google.com>") or
-            "new voicemail from" in l.lower() or
-            "voicemail from" in l.lower()
-        ):
-            continue
-        ignoring_header = False
-        if any(k in l.lower() for k in ["play message", "google voice", "play audio", "help center", "your account", "this email was sent to you", "help forum"]):
-            break
-        if l.startswith("<https://") or l.startswith("http://") or l.startswith("https://"):
-            continue
-        captured.append(l)
+    # 2. Extract transcript — Audio-First via Whisper if available, falling back to email text
+    audio_reviewed = False
+    audio_filename = ""
+    whisper_transcript = ""
 
-    transcript = " ".join(captured).strip()
+    if msg:
+        audio_attachments = extract_audio_attachments(msg)
+        if audio_attachments:
+            fname, abytes, _ = audio_attachments[0]
+            audio_filename = fname
+            whisper_transcript = transcribe_voicemail_audio(abytes, filename=fname)
+            if whisper_transcript:
+                audio_reviewed = True
+                log(f"  🎙️ Audio-First: Successfully transcribed voicemail audio '{fname}' via OpenAI Whisper.")
+
+    if whisper_transcript:
+        transcript = whisper_transcript
+    else:
+        # Fallback to Google Voice email text transcript
+        lines = (text_body or "").splitlines()
+        captured = []
+        ignoring_header = True
+        for line in lines:
+            l = line.strip()
+            if not l:
+                continue
+            if ignoring_header and (
+                l.startswith("<https://voice.google.com>") or
+                "new voicemail from" in l.lower() or
+                "voicemail from" in l.lower()
+            ):
+                continue
+            ignoring_header = False
+            if any(k in l.lower() for k in ["play message", "google voice", "play audio", "help center", "your account", "this email was sent to you", "help forum"]):
+                break
+            if l.startswith("<https://") or l.startswith("http://") or l.startswith("https://"):
+                continue
+            captured.append(l)
+
+        transcript = " ".join(captured).strip()
 
     # 3. Detect attorney email if spoken or present
     caller_email = extract_spoken_email(transcript)
@@ -1923,6 +2028,8 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body):
         "message": f"[Phone Inquiry via Google Voice (508) 419-3178]: {transcript}",
         "transcript": transcript,
         "is_voicemail": True,
+        "audio_reviewed": audio_reviewed,
+        "audio_filename": audio_filename,
     }
 
 
@@ -1961,6 +2068,8 @@ def compose_elena_inquiry_response(inquiry_info, state_cases):
     _, detected_county, circuit_name = extract_jurisdiction_context(
         subject_raw=docket_ref, text_body=user_message, default_state=state_code or None
     )
+    if not detected_county and inquiry_info.get("county"):
+        detected_county = inquiry_info.get("county", "").strip()
     cases = state_cases.get(state_code, []) if state_code else []
     sample_lines = format_sample_records(cases, target_county=detected_county) if cases else ""
 
@@ -2012,9 +2121,17 @@ def compose_elena_inquiry_response(inquiry_info, state_cases):
         state_for_clause = f" for {state_name}" if state_name else ""
         sample_intro = f"Here are verified, active records from our current {state_name} index (with senior institutional mortgages scrubbed upstream):\n\n{sample_lines}\n\n" if sample_lines else ""
         guidelines_clause = f"for {state_name}" if state_name else "for your jurisdictions of interest"
+        if inquiry_info.get("is_voicemail"):
+            if inquiry_info.get("audio_reviewed"):
+                opening_ack = f"I reviewed your voicemail recording earlier today regarding our {state_name or 'court surplus'} docket feeds and 7-day practice evaluation."
+            else:
+                opening_ack = f"Thank you for your voicemail earlier today regarding our {state_name or 'court surplus'} docket feeds and 7-day practice evaluation."
+        else:
+            opening_ack = f"Thank you for requesting an institutional practice evaluation of Surplus Docket{state_for_clause}."
+
         reply_body = f"""{greeting}
 
-Thank you for requesting an institutional practice evaluation of Surplus Docket{state_for_clause}.
+{opening_ack}
 
 Your 7-day evaluation is activated with $0 due today. During the evaluation, your practice receives our full morning feed delivered directly to your inbox every business morning at 7:00 AM EST in both CSV and Excel formats.
 
@@ -2195,60 +2312,63 @@ Please reply with the specific scope, academic institution, or research paramete
             reply_subject = "Re: Surplus Docket — Court Surplus Records & Intake"
 
         # Context-aware opening tailored to channel and user inquiry
+        audio_reviewed = bool(inquiry_info.get("audio_reviewed"))
+        vm_prefix = "I reviewed your voicemail recording earlier today" if audio_reviewed else "Thank you for your voicemail earlier today"
+
         if is_vm:
             if wants_why and wants_discount:
                 opening_paragraph = (
-                    "Thank you for your voicemail earlier today asking why practices use Surplus Docket "
+                    f"{vm_prefix} asking why practices use Surplus Docket "
                     "and inquiring about a discount."
                 )
             elif wants_why:
                 opening_paragraph = (
-                    "Thank you for your voicemail earlier today asking why practices use Surplus Docket."
+                    f"{vm_prefix} asking why practices use Surplus Docket."
                 )
             elif wants_talk:
                 opening_paragraph = (
-                    "Thank you for your voicemail earlier today asking if you can speak with someone on our team."
+                    f"{vm_prefix} asking if you can speak with someone on our team."
                 )
             elif detected_county and state_name:
                 opening_paragraph = (
-                    f"Thank you for your voicemail earlier today requesting an overview of our surplus feeds "
+                    f"{vm_prefix} requesting an overview of our surplus feeds "
                     f"and coverage for {detected_county} County and across {state_name}."
                 )
             elif is_overview and state_name:
                 opening_paragraph = (
-                    f"Thank you for your voicemail earlier today requesting an overview of what we offer "
+                    f"{vm_prefix} requesting an overview of what we offer "
                     f"across different jurisdictions in {state_name}."
                 )
             elif is_overview:
                 opening_paragraph = (
-                    "Thank you for your voicemail earlier today requesting an overview of our court surplus feeds and coverage."
+                    f"{vm_prefix} requesting an overview of our court surplus feeds and coverage."
                 )
             elif is_pricing or is_delivery:
                 if state_name:
                     opening_paragraph = (
-                        f"Thank you for your voicemail earlier today regarding delivery schedules and subscription pricing "
+                        f"{vm_prefix} regarding delivery schedules and subscription pricing "
                         f"for our {state_name} court surplus feeds."
                     )
                 else:
                     opening_paragraph = (
-                        "Thank you for your voicemail earlier today regarding delivery schedules and subscription pricing "
+                        f"{vm_prefix} regarding delivery schedules and subscription pricing "
                         "for our court surplus feeds."
                     )
             elif has_specific_docket:
                 docket_label = docket_ref or "your referenced case"
                 jur_str = f" in {state_name}" if state_name else ""
                 opening_paragraph = (
-                    f"Thank you for your voicemail earlier today regarding court records and filing details "
+                    f"{vm_prefix} regarding court records and filing details "
                     f"for docket {docket_label}{jur_str}."
                 )
             else:
                 if state_name:
                     opening_paragraph = (
-                        f"Thank you for your voicemail earlier today regarding {state_name} public record excess proceeds."
+                        f"{vm_prefix} regarding {state_name} public record excess proceeds."
                     )
                 else:
                     opening_paragraph = (
-                        "Thank you for your voicemail earlier today regarding Surplus Docket court surplus feeds."
+                        f"{vm_prefix} regarding Surplus Docket court surplus feeds."
                     )
         else:
             if wants_talk:
@@ -2512,6 +2632,96 @@ def build_inquiry_draft_email(inquiry_info, state_cases, message_id=None):
     draft_msg["Message-ID"] = make_msgid()
 
     return draft_msg, reply_subject, reply_body, role_title
+
+
+def build_voicemail_action_memo(inquiry_info, state_cases, message_id=None):
+    """
+    Constructs a structured internal Voicemail Action Memorandum for REPORT_RECIPIENT
+    when a caller leaves a voicemail without providing an email address, or as an
+    internal executive notice when an inbound call is received.
+    """
+    caller_phone = inquiry_info.get("phone", "Unknown Phone")
+    caller_name = inquiry_info.get("name", "Inquiring Counsel")
+    ref = inquiry_info.get("ref", "GV-VM")
+    state_code = inquiry_info.get("state_code", "")
+    state_name = STATE_NAMES.get(state_code, "") if state_code else "Unspecified"
+    county = inquiry_info.get("county", "")
+    transcript = inquiry_info.get("transcript", "").strip()
+    audio_reviewed = inquiry_info.get("audio_reviewed", False)
+
+    cases = state_cases.get(state_code, []) if state_code else []
+    sample_records = format_sample_records(cases, target_county=county) if (cases and county) else ""
+
+    review_status = "Audio-First (Transcribed via OpenAI Whisper-1)" if audio_reviewed else "Google Voice Automated Transcript"
+    stat_cite = STATE_STATUTES.get(state_code, ("", ""))[1] if state_code else ""
+    stat_info = f"\n- Relevant Statute: {stat_cite}" if stat_cite else ""
+
+    memo_subject = f"[VOICEMAIL ACTION MEMO] Inbound Call from {caller_phone} ({caller_name})"
+    if state_code:
+        memo_subject += f" [{state_code}]"
+
+    first_tok = caller_name.split()[0] if caller_name and not caller_name.startswith("Inquiring") else "there"
+    sms_script = (
+        f"Hi {first_tok}, this is Surplus Docket returning your call regarding our "
+        f"{state_name if state_name != 'Unspecified' else 'court surplus'} docket feed. "
+        f"What is the best email address to send our daily morning index and evaluation dossier to?"
+    )
+
+    memo_body = f"""SURPLUS DOCKET — INBOUND VOICEMAIL ACTION MEMORANDUM
+======================================================================
+Voicemail Reference : {ref}
+Received Via        : Google Voice Inbound Line (508) 419-3178
+Caller Phone        : {caller_phone}
+Caller Identified   : {caller_name}
+Audio Review Status : {review_status}
+Jurisdiction        : {state_name}{f' ({county} County)' if county else ''}{stat_info}
+Email Status        : [NOT STATED IN RECORDING] — External reply blocked pending callback.
+======================================================================
+
+VERIFIED TRANSCRIPT:
+----------------------------------------------------------------------
+"{transcript}"
+----------------------------------------------------------------------
+
+OPERATIONAL FINDINGS:
+- Caller did not provide an email address during the call.
+- Automated email reply to caller withheld until contact email is confirmed.
+- Suggested intake routing: Aubrey Hayes (Intake) / Elena Brooks (Docket Research).
+
+SUGGESTED IMMEDIATE CALLBACK SCRIPT:
+"Hello, this is Aubrey Hayes with Surplus Docket returning your call to our intake desk regarding our {state_name if state_name != 'Unspecified' else 'court'} excess proceeds feeds. I reviewed your voicemail recording from earlier today. What is the best email address to send over our trial docket dossier for your practice?"
+
+SUGGESTED SMS FOLLOW-UP (if phone accepts SMS):
+"{sms_script}"
+"""
+
+    if sample_records:
+        memo_body += f"""
+MATCHING ACTIVE DOCKET RECORDS IN {county.upper()} COUNTY ({state_code}):
+----------------------------------------------------------------------
+{sample_records}
+----------------------------------------------------------------------
+"""
+
+    memo_body += f"""
+======================================================================
+Internal Operations Memo — Surplus Docket (surplusdocket.com)
+"""
+
+    now_epoch = time.time()
+    memo_msg = MIMEText(memo_body, "plain", "utf-8")
+    memo_msg["From"] = "Aubrey Hayes <inquiries@surplusdocket.com>"
+    memo_msg["To"] = REPORT_RECIPIENT
+    memo_msg["Subject"] = memo_subject
+    memo_msg["Reply-To"] = "inquiries@surplusdocket.com"
+    if message_id:
+        memo_msg["In-Reply-To"] = message_id
+        memo_msg["References"] = message_id
+    memo_msg["Date"] = formatdate(now_epoch, localtime=True)
+    memo_msg["Message-ID"] = make_msgid()
+    memo_msg["X-Voicemail-Memo"] = ref
+
+    return memo_msg, memo_subject, memo_body
 
 
 def load_feed_data():
@@ -2848,7 +3058,10 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         # 2.4 BUSINESS SENDING HOURS (Policy SD-POL-HOURS-2026-V1)
         # -------------------------------------------------------------
         # Restricts automated dispatch strictly to Mon-Fri 8:00 AM - 6:30 PM EST
-        if enforce_hours:
+        # (Internal voicemail alerts to operator are dispatched immediately)
+        is_internal_voicemail_memo = bool(inquiry_info and inquiry_info.get("is_voicemail") and not inquiry_info.get("email"))
+
+        if enforce_hours and not is_internal_voicemail_memo:
             target_prospect_email = (inquiry_info.get("email") if inquiry_info else sender_email) or ""
             is_tester = target_prospect_email.lower() in [
                 GMAIL_USER.lower(),
@@ -2871,7 +3084,8 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         # -------------------------------------------------------------
         # Ensure realistic time has elapsed since inbound message arrival
         # to simulate professional coordinator review and docket compilation.
-        if enforce_delay:
+        # (Internal operator voicemail alerts bypass pacing)
+        if enforce_delay and not is_internal_voicemail_memo:
             age_secs = get_message_age_seconds(msg)
             required_delay = get_required_human_delay(message_id, sender_email, text_body)
             if age_secs < required_delay:
@@ -2888,26 +3102,39 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         # -------------------------------------------------------------
         if inquiry_info:
             prospect_name = inquiry_info["name"]
-            prospect_email = inquiry_info["email"] or reply_to_email
+            prospect_email = inquiry_info.get("email") or reply_to_email
             state_code = inquiry_info.get("state_code", "")
             department = inquiry_info.get("department", "General Publisher Inquiry")
             is_vm = inquiry_info.get("is_voicemail", False)
 
-            if is_vm and not prospect_email:
+            if is_vm and not inquiry_info.get("email"):
+                # Internal Voicemail Action Memorandum for operator (REPORT_RECIPIENT)
                 prospect_email = REPORT_RECIPIENT
                 inquiry_info["email"] = prospect_email
+                draft_key = f"voicemail_memo:{inquiry_info.get('ref', '')}:{inquiry_info.get('phone', '')}"
+                if draft_key in already_drafted:
+                    if not is_already_seen:
+                        mail.store(mid, "+FLAGS", r"(\Seen)")
+                    continue
 
-            draft_key = f"inquiry:{prospect_email}:{state_code}:{department}:{inquiry_info.get('ref', '')}"
-            if draft_key in already_drafted:
-                if not is_already_seen:
-                    mail.store(mid, "+FLAGS", r"(\Seen)")
-                continue
+                draft_msg, reply_subject, reply_body = build_voicemail_action_memo(
+                    inquiry_info, state_cases, message_id=message_id
+                )
+                from_addr = "Aubrey Hayes <inquiries@surplusdocket.com>"
+                role_title = "Executive Intake Coordinator"
+                persona = {"name": "Aubrey Hayes", "email": "inquiries@surplusdocket.com"}
+            else:
+                draft_key = f"inquiry:{prospect_email}:{state_code}:{department}:{inquiry_info.get('ref', '')}"
+                if draft_key in already_drafted:
+                    if not is_already_seen:
+                        mail.store(mid, "+FLAGS", r"(\Seen)")
+                    continue
 
-            draft_msg, reply_subject, reply_body, role_title = build_inquiry_draft_email(
-                inquiry_info, state_cases, message_id=message_id
-            )
-            persona = get_department_persona(department=department)
-            from_addr = persona["email"]
+                draft_msg, reply_subject, reply_body, role_title = build_inquiry_draft_email(
+                    inquiry_info, state_cases, message_id=message_id
+                )
+                persona = get_department_persona(department=department)
+                from_addr = persona["email"]
 
             if AUTO_SEND:
                 sent_ok, send_detail = send_response_email(draft_msg, from_addr, prospect_email)
@@ -2916,6 +3143,14 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                     already_drafted.add(draft_key)
                     mail.store(mid, "+FLAGS", r"(\Seen)")
                     log(f"  🚀 {persona['name']} ({role_title}) response AUTO-SENT to {prospect_email} via SMTP!")
+
+                    # If voicemail where caller DID provide an email, also dispatch action memo to operator
+                    if is_vm and inquiry_info.get("email") and prospect_email != REPORT_RECIPIENT:
+                        memo_msg, m_subj, m_body = build_voicemail_action_memo(
+                            inquiry_info, state_cases, message_id=message_id
+                        )
+                        send_response_email(memo_msg, "Aubrey Hayes <inquiries@surplusdocket.com>", REPORT_RECIPIENT)
+                        log(f"  📋 Voicemail Action Memorandum sent to operator {REPORT_RECIPIENT} for inbound call from {inquiry_info.get('phone')}")
 
                     # Record notable activity for Weekly Executive Report
                     channel = "VOICEMAIL" if is_vm else ("WEB_FORM" if "SD-INQ" in str(inquiry_info.get("ref", "")) else "DIRECT_EMAIL")
