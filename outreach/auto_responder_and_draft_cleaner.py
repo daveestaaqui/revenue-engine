@@ -17,6 +17,7 @@ import csv
 import email
 from email.header import decode_header
 import imaplib
+import hashlib
 import json
 import os
 import re
@@ -31,6 +32,15 @@ from datetime import datetime, timezone
 from email.mime.text import MIMEText
 from email.utils import formatdate, make_msgid, parseaddr, parsedate_to_datetime
 from pathlib import Path
+
+# Security & Rules Integration
+try:
+    from outreach.email_sentinel_firewall import sanitize_inbound_message
+except ImportError:
+    try:
+        from email_sentinel_firewall import sanitize_inbound_message
+    except ImportError:
+        sanitize_inbound_message = None
 
 # Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -2799,6 +2809,40 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                 log(f"  ⏭️ Skipped non-prospect from {sender_email} (Sub: '{subject_raw[:40]}'): {reason}")
                 mail.store(mid, "+FLAGS", r"(\Seen)")
             continue
+
+        # -------------------------------------------------------------
+        # 2.1 SENTINEL EMAIL SECURITY FIREWALL (GPT-6 Astra Defense)
+        # -------------------------------------------------------------
+        # Screen against prompt injection, unauthorized representation,
+        # dangerous payloads, credential scraping, and mail loops.
+        if sanitize_inbound_message and sender_email:
+            body_to_check = (inquiry_info.get("message") if inquiry_info else None) or text_body or html_body or ""
+            if body_to_check.strip():
+                is_safe, cat, clean_body, sentinel_reason = sanitize_inbound_message(
+                    sender=sender_email,
+                    subject=subject_raw or "Inquiry",
+                    body=body_to_check
+                )
+                if not is_safe:
+                    log(f"  🛡️ Sentinel Firewall Quarantined inbound message from {sender_email} [{cat}]: {sentinel_reason}")
+                    record_notable_email_activity({
+                        "id": f"sentinel_{hashlib.sha256((message_id or sender_email + subject_raw).encode()).hexdigest()[:16]}",
+                        "type": "security_quarantine",
+                        "category": cat,
+                        "sender": sender_email,
+                        "sender_name": sender_name,
+                        "subject": subject_raw,
+                        "reason": sentinel_reason,
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                        "status": "quarantined_by_sentinel"
+                    })
+                    if not is_already_seen:
+                        mail.store(mid, "+FLAGS", r"(\Seen)")
+                    continue
+                if clean_body and inquiry_info and "message" in inquiry_info:
+                    inquiry_info["message"] = clean_body
+                elif clean_body:
+                    text_body = clean_body
 
         # -------------------------------------------------------------
         # 2.4 BUSINESS SENDING HOURS (Policy SD-POL-HOURS-2026-V1)
