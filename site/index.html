@@ -327,109 +327,67 @@
     </header>
 
     <main class="flex-grow">
-        <!-- 1. Hero Section (Elevated, Clean & Atmospheric) -->
-        <section id="overview" class="relative pt-16 sm:pt-20 pb-14 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto text-center">
-            <h1 class="text-2xl sm:text-4xl md:text-5xl font-heading font-black tracking-tight text-brand-navy mb-4 leading-tight max-w-4xl mx-auto">
-                Public-Record Intelligence for <br class="hidden sm:block" />
-                <span class="text-brand-green">Surplus Proceeds Counsel</span>
+        <!-- 1. Hero Section (Minimal, Clean & High-Converting per Astrid) -->
+        <section id="overview" class="relative pt-16 sm:pt-20 pb-12 sm:pb-14 px-4 sm:px-6 max-w-4xl mx-auto text-center">
+            <p class="text-xs font-bold uppercase tracking-widest text-brand-green mb-3">Surplus Docket for Attorneys</p>
+            <h1 class="text-3xl sm:text-5xl font-heading font-black tracking-tight text-brand-navy mb-4 leading-tight max-w-3xl mx-auto">
+                Find your next surplus recovery opportunity.
             </h1>
             
-            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
-                Review source-linked tax-sale and foreclosure surplus records from supported jurisdictions in six states. See record details, source references, and review limitations before evaluating a potential matter.
+            <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto mb-8 leading-relaxed font-normal">
+                Explore surplus opportunities by state. Review the docket. Decide what deserves a closer look.
             </p>
             
-            <div class="max-w-xl mx-auto flex flex-col items-center">
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full mb-3">
-                    <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 plausible-event-name=Hero-Checkout-Click">
-                        Start 7-Day Trial
+            <div class="max-w-md mx-auto flex flex-col items-center">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full mb-2">
+                    <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-white bg-brand-green hover:bg-brand-greenDark transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 plausible-event-name=Hero-Checkout-Click">
+                        Start 7-Day Free Trial
                     </a>
-                    <a href="#live-docket" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-brand-navy bg-white hover:bg-slate-50 transition-all border border-slate-300/80 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0">
-                        View Docket Preview &darr;
+                    <a href="#live-docket" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-heading font-bold rounded-xl text-brand-navy bg-white hover:bg-slate-50 transition-all border border-slate-300 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0">
+                        Preview Docket &darr;
                     </a>
                 </div>
-                
-                <div class="text-center text-xs sm:text-sm text-slate-600 space-y-1">
-                    <p id="hero-trial-terms" class="font-semibold text-slate-800">
-                        $0 today. Then $249/month starting on day 8 unless you cancel before the trial ends.
-                    </p>
-                    <p id="hero-plan-scope" class="text-slate-600 text-xs">
-                        Core covers supported jurisdictions in FL, TX, and GA.
-                    </p>
-                    <p class="text-slate-500">
-                        Need NC, TN, CA, or API access?
-                        <a href="#pricing" class="font-bold text-brand-green hover:underline">
-                            Compare Six-State + API — $449/month &rarr;
-                        </a>
-                    </p>
-                </div>
+                <p class="text-xs text-slate-500 font-medium">$0 Today &bull; Instant Access</p>
             </div>
 
-            <!-- Filter Docket Preview by Plan State Groups -->
-            <div class="mt-8 pt-5 border-t border-slate-200/70 max-w-2xl mx-auto text-left">
-                <p class="text-xs text-slate-600 mb-3 text-center sm:text-left">
-                    Filter the docket preview by state. Coverage varies by jurisdiction and record type.
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div role="group" aria-labelledby="core-state-label" class="bg-white/80 p-3 rounded-xl border border-slate-200/80">
-                        <p id="core-state-label" class="text-[11px] font-bold text-slate-600 mb-2 uppercase tracking-wider flex items-center justify-between">
-                            <span>Core Feed</span>
-                            <span class="text-[10px] text-brand-green font-normal">FL, TX, GA</span>
-                        </p>
-                        <div class="grid grid-cols-3 gap-2">
-                            <button type="button" onclick="filterByHeroState('FL')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-xs text-center" title="Filter Florida Dockets">Florida</button>
-                            <button type="button" onclick="filterByHeroState('TX')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-xs text-center" title="Filter Texas Dockets">Texas</button>
-                            <button type="button" onclick="filterByHeroState('GA')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-xs text-center" title="Filter Georgia Dockets">Georgia</button>
-                        </div>
-                    </div>
-                    <div role="group" aria-labelledby="expanded-state-label" class="bg-white/80 p-3 rounded-xl border border-slate-200/80">
-                        <p id="expanded-state-label" class="text-[11px] font-bold text-slate-600 mb-2 uppercase tracking-wider flex items-center justify-between">
-                            <span>Six-State + API</span>
-                            <span class="text-[10px] text-brand-green font-normal">NC, TN, CA</span>
-                        </p>
-                        <div class="grid grid-cols-3 gap-2">
-                            <button type="button" onclick="filterByHeroState('NC')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-xs text-center" title="Filter North Carolina Dockets">N. Carolina</button>
-                            <button type="button" onclick="filterByHeroState('TN')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-xs text-center" title="Filter Tennessee Dockets">Tennessee</button>
-                            <button type="button" onclick="filterByHeroState('CA')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-xs text-center" title="Filter California Dockets">California</button>
-                        </div>
-                    </div>
+            <!-- Single Compact Row of State Pills -->
+            <div class="mt-8 pt-6 border-t border-slate-200/80 max-w-xl mx-auto">
+                <p class="text-xs text-slate-500 mb-2.5 font-medium">Filter sample records by state:</p>
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <button type="button" onclick="filterByHeroState('FL')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-2xs">Florida</button>
+                    <button type="button" onclick="filterByHeroState('TX')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-2xs">Texas</button>
+                    <button type="button" onclick="filterByHeroState('GA')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-2xs">Georgia</button>
+                    <button type="button" onclick="filterByHeroState('NC')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-2xs">North Carolina</button>
+                    <button type="button" onclick="filterByHeroState('TN')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-2xs">Tennessee</button>
+                    <button type="button" onclick="filterByHeroState('CA')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white hover:bg-brand-green hover:text-white text-brand-navy border border-slate-200 transition-all shadow-2xs">California</button>
                 </div>
             </div>
         </section>
 
 
-        <!-- Practice Pathways — Route by Practice Area -->
-        <section class="py-10 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-            <div class="text-center mb-6">
-                <h2 class="text-xl sm:text-2xl font-heading font-black text-brand-navy mb-1.5">Start with your practice.</h2>
-                <p class="text-xs sm:text-sm text-slate-600">Review jurisdiction-specific procedures, governing authorities, and claim considerations for your matter type.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-4 sm:gap-5">
-                <!-- Tax-Sale Litigation -->
-                <a href="/for/tax-sale-litigation.html" class="group bg-white rounded-2xl border border-slate-200 hover:border-brand-green/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all flex flex-col">
-                    <div class="w-10 h-10 rounded-lg bg-brand-greenSoft border border-brand-green/20 flex items-center justify-center mb-3 text-brand-green group-hover:bg-brand-green group-hover:text-white transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        <!-- Practice Pathways — Minimal & Fast -->
+        <section class="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-4">
+                <a href="/for/tax-sale-litigation.html" class="group bg-white rounded-xl border border-slate-200 hover:border-brand-green p-4 sm:p-5 shadow-xs hover:shadow-sm transition-all flex items-center justify-between">
+                    <div>
+                        <h3 class="font-heading font-bold text-sm text-brand-navy group-hover:text-brand-green transition-colors">Tax-Sale Litigation</h3>
+                        <p class="text-xs text-slate-500">Explore surplus procedures &rarr;</p>
                     </div>
-                    <h3 class="font-heading font-bold text-base text-brand-navy mb-1">Tax-Sale Litigation</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed flex-grow">Review tax-sale surplus research considerations, governing authorities, and jurisdiction-specific claim procedures.</p>
-                    <span class="mt-3 text-xs font-bold text-brand-green group-hover:underline inline-flex items-center gap-1">Explore tax-sale practice <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+                    <span class="text-brand-green font-bold text-lg">&rarr;</span>
                 </a>
-                <!-- Probate & Estate Surplus -->
-                <a href="/for/probate-estate-surplus.html" class="group bg-white rounded-2xl border border-slate-200 hover:border-brand-green/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all flex flex-col">
-                    <div class="w-10 h-10 rounded-lg bg-brand-greenSoft border border-brand-green/20 flex items-center justify-center mb-3 text-brand-green group-hover:bg-brand-green group-hover:text-white transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                <a href="/for/probate-estate-surplus.html" class="group bg-white rounded-xl border border-slate-200 hover:border-brand-green p-4 sm:p-5 shadow-xs hover:shadow-sm transition-all flex items-center justify-between">
+                    <div>
+                        <h3 class="font-heading font-bold text-sm text-brand-navy group-hover:text-brand-green transition-colors">Probate &amp; Estate Surplus</h3>
+                        <p class="text-xs text-slate-500">Heirship &amp; estate recovery &rarr;</p>
                     </div>
-                    <h3 class="font-heading font-bold text-base text-brand-navy mb-1">Probate &amp; Estate Surplus</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed flex-grow">Evaluate matters involving deceased owners, estate authority, and potential heirship documentation.</p>
-                    <span class="mt-3 text-xs font-bold text-brand-green group-hover:underline inline-flex items-center gap-1">Explore estate matters <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+                    <span class="text-brand-green font-bold text-lg">&rarr;</span>
                 </a>
-                <!-- Mortgage Foreclosure -->
-                <a href="/for/mortgage-foreclosure.html" class="group bg-white rounded-2xl border border-slate-200 hover:border-brand-green/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all flex flex-col">
-                    <div class="w-10 h-10 rounded-lg bg-brand-greenSoft border border-brand-green/20 flex items-center justify-center mb-3 text-brand-green group-hover:bg-brand-green group-hover:text-white transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                <a href="/for/mortgage-foreclosure.html" class="group bg-white rounded-xl border border-slate-200 hover:border-brand-green p-4 sm:p-5 shadow-xs hover:shadow-sm transition-all flex items-center justify-between">
+                    <div>
+                        <h3 class="font-heading font-bold text-sm text-brand-navy group-hover:text-brand-green transition-colors">Mortgage Foreclosure</h3>
+                        <p class="text-xs text-slate-500">Judicial surplus proceedings &rarr;</p>
                     </div>
-                    <h3 class="font-heading font-bold text-base text-brand-navy mb-1">Mortgage Foreclosure</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed flex-grow">Review judicial foreclosure surplus issues, claimant standing, and competing lien interests.</p>
-                    <span class="mt-3 text-xs font-bold text-brand-green group-hover:underline inline-flex items-center gap-1">Explore foreclosure practice <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
+                    <span class="text-brand-green font-bold text-lg">&rarr;</span>
                 </a>
             </div>
         </section>
@@ -967,130 +925,37 @@
                 </div>
         </section>
 
-        <!-- 3. Senior Lien Scrubbing Specimen (Comparative Benchmark) -->
-        <section class="py-12 sm:py-16 bg-slate-50 border-t border-slate-200">
+        <!-- 3. Methodology — Crisp 3-Step Review Flow per Astrid -->
+        <section class="py-12 sm:py-14 bg-slate-50 border-t border-slate-200">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-8 max-w-2xl mx-auto">
-                    <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-2">See What Has Been Organized. Know What Still Needs Review.</h2>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        The source record is the starting point—not the legal conclusion. Compare the raw county ledger entry against the organized attorney-review view to understand what the platform surfaces and what remains for your independent review.
-                    </p>
+                <div class="text-center mb-8 max-w-xl mx-auto">
+                    <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-navy mb-2">A clearer starting point.</h2>
+                    <p class="text-xs sm:text-sm text-slate-600">From court docket discovery to your firm's review.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6 items-stretch">
-                    <!-- Left: Raw Unscrubbed County Record -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-slate-600 text-white font-heading font-bold text-[10px] uppercase tracking-wider px-3.5 py-1 rounded-bl-xl">
-                            Source Record View
-                        </div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm">#</span>
-                            <div>
-                                <h3 class="font-heading font-bold text-base text-brand-navy">County Surplus Ledger — Illustrative</h3>
-                                <p class="text-[11px] text-slate-500 font-mono">Hypothetical entry for demonstration</p>
-                            </div>
-                        </div>
-
-                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-4">
-                            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-3">
-                                Illustrative example — not a live record
-                            </p>
-                            <dl class="space-y-3 text-xs">
-                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
-                                    <dt class="text-slate-600 font-semibold">Surplus stated in example ledger</dt>
-                                    <dd class="font-mono font-bold text-sm text-brand-navy">$142,500.00</dd>
-                                </div>
-                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 pt-3 border-t border-slate-200">
-                                    <dt class="text-slate-600 font-semibold">Additional records requiring review</dt>
-                                    <dd class="text-slate-700 sm:text-right">Mortgage and code-enforcement entries</dd>
-                                </div>
-                                <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 pt-3 border-t border-slate-200">
-                                    <dt class="text-slate-600 font-semibold">Amount available to a particular claimant</dt>
-                                    <dd class="font-semibold text-brand-navy sm:text-right">Not determined</dd>
-                                </div>
-                            </dl>
-                            <p class="mt-4 text-xs text-slate-600 leading-relaxed">
-                                Recorded entries do not establish current balances, claim priority, or entitlement to payment. Those questions require independent review.
-                            </p>
-                        </div>
-
-                        <div class="mt-auto pt-3 border-t border-slate-100 text-xs text-slate-500 space-y-1.5">
-                            <div class="flex items-center gap-2 text-rose-700 font-semibold">
-                                <svg class="w-4 h-4 shrink-0 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                                <span>Outcome: Unresolved Encumbrances Flagged</span>
-                            </div>
-                            <p class="text-[11px] text-slate-500 leading-relaxed">
-                                Recorded entries indicate active senior encumbrance documents. Further investigation required to determine balances and legal effect.
-                            </p>
-                        </div>
+                <div class="grid md:grid-cols-3 gap-5">
+                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-green mb-2 block">01 / Collect</span>
+                        <h3 class="font-heading font-bold text-base text-brand-navy mb-1.5">Public Source Records</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Official clerk dockets, tax deed sales, and court registries indexed daily with original source links.</p>
                     </div>
-
-                    <!-- Right: Surplus Docket Scrubbed Equity Record -->
-                    <div class="bg-white border-2 border-brand-green rounded-2xl p-6 sm:p-7 shadow-md flex flex-col relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-brand-green text-white font-heading font-bold text-[10px] uppercase tracking-wider px-3.5 py-1 rounded-bl-xl">
-                            Organized Record
-                        </div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="w-7 h-7 rounded-full bg-emerald-100 text-brand-green flex items-center justify-center font-bold text-sm">✓</span>
-                            <div>
-                                <h3 class="font-heading font-bold text-base text-brand-navy">Surplus Docket Intelligence Feed</h3>
-                                <p class="text-[11px] text-brand-green font-mono font-bold">Organized Docket 2026-TD-001955</p>
-                            </div>
-                        </div>
-
-                        <div class="bg-emerald-50/60 border border-emerald-100 rounded-xl p-4 mb-4">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <span class="text-xs text-slate-600 font-semibold">Reported Surplus (After Screening):</span>
-                                <span class="font-mono font-bold text-base text-brand-navy">$128,400.00</span>
-                            </div>
-                            <div class="space-y-1.5 pt-2 border-t border-emerald-200/60 text-xs">
-                                <div class="flex justify-between text-slate-700 font-medium">
-                                    <span>Senior Bank Mortgages:</span>
-                                    <span class="font-mono font-bold text-brand-green">No recorded mortgage found in checked sources</span>
-                                </div>
-                                <div class="flex justify-between text-slate-700 font-medium">
-                                    <span>Municipal Liens / Assessments:</span>
-                                    <span class="font-mono font-bold text-brand-green">Indicated as satisfied per clerk record</span>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-baseline pt-2 mt-2 border-t border-emerald-200/80 font-bold text-xs">
-                                <span class="text-brand-navy">Est. Legal Fee Recovery (20% FL § 197.582):</span>
-                                <span class="font-mono text-base text-brand-green">$25,680.00</span>
-                            </div>
-                        </div>
-
-                        <div class="mt-auto pt-3 border-t border-slate-100 text-xs text-slate-500 space-y-1.5">
-                            <div class="flex items-center gap-2 text-brand-green font-semibold">
-                                <svg class="w-4 h-4 shrink-0 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span>Outcome: Record Organized for Attorney Review</span>
-                            </div>
-                            <p class="text-[11px] text-slate-500 leading-relaxed">
-                                Recorded liens checked against available public sources. Surplus balance and screening observations organized for attorney review. Independent verification required.
-                            </p>
-                        </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-green mb-2 block">02 / Screen</span>
+                        <h3 class="font-heading font-bold text-base text-brand-navy mb-1.5">Recorded Liens &amp; Encumbrances</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Automated checks surface recorded mortgages and municipal liens so your team focuses on actionable equity.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-green mb-2 block">03 / Review</span>
+                        <h3 class="font-heading font-bold text-base text-brand-navy mb-1.5">Attorney Evaluation</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Your firm evaluates the record, confirms claimant standing, and files according to local court rules.</p>
                     </div>
                 </div>
 
-                <!-- Legal Context: Tyler v. Hennepin County -->
-                <div class="mt-8 bg-slate-50 border border-slate-200 rounded-xl p-5 sm:p-6">
-                    <div class="flex items-start gap-3">
-                        <div class="shrink-0 w-8 h-8 rounded-lg bg-amber-100 border border-amber-200/60 flex items-center justify-center">
-                            <svg class="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
-                        </div>
-                        <div>
-                            <h4 class="text-sm font-heading font-bold text-brand-navy mb-1">Legal context: retained tax-sale equity</h4>
-                            <p class="text-xs text-slate-600 leading-relaxed mb-2">
-                                In <em class="font-serif font-semibold text-brand-navy">Tyler v. Hennepin County</em>, 598 U.S. 631 (2023), the Supreme Court unanimously held that the owner stated a Takings Clause claim concerning the county's retention of value beyond her tax debt. The decision does not establish eligibility for every surplus claim or replace jurisdiction-specific procedures and deadline analysis.
-                            </p>
-                            <div class="flex flex-wrap items-center gap-2">
-                                <a href="https://www.supremecourt.gov/opinions/22pdf/22-166_8n59.pdf" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-1">Official opinion <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
-                                <span class="text-slate-300">·</span>
-                                <a href="/for/tax-sale-litigation.html" class="text-xs font-bold text-brand-green hover:underline">Tax-sale practice guide →</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="mt-6 text-center">
+                    <a href="/methodology.html" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-1">
+                        Read complete research methodology &rarr;
+                    </a>
                 </div>
-
             </div>
         </section>
 
@@ -1457,7 +1322,7 @@
                             <span id="card1-price" class="text-3xl sm:text-4xl font-heading font-black text-brand-navy tabular-nums transition-all">$249</span>
                             <span class="text-slate-500 text-sm">/ month</span>
                         </div>
-                        <div id="card1-subtext" class="text-xs font-semibold text-slate-600 mb-5">7-day trial. $0 today; then $249/month unless canceled before the trial ends.</div>
+                        <div id="card1-subtext" class="text-xs font-semibold text-slate-500 mb-5">$0 Today &bull; 7-Day Free Trial</div>
                         
                         <ul class="space-y-3 mb-6 flex-grow text-xs sm:text-sm text-slate-700">
                             <li class="flex gap-2.5 font-semibold text-brand-navy">
