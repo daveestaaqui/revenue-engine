@@ -3,7 +3,7 @@
 **To:** Tax Deed Department Supervisor / Public Information Officer  
 **Agency:** Clerk of the Court and Comptroller, Miami-Dade County, FL  
 **Department:** Tax Deed / Foreclosure Registry Services  
-**Date:** September 07, 2026  
+**Date:** September 08, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Miami-Dade County Web Portal)
 
 ---
