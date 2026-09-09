@@ -1,7 +1,7 @@
 # PRESS PITCH: Post-Tyler v. Hennepin County: The $2.4B State Compliance Gap in Tax Deed Surplus Recovery
 **Category:** Constitutional Property Rights & Foreclosure Law
 **Suggested Outlets:** Law360, Bloomberg Law, National Law Journal, ABA Journal
-**Date:** September 08, 2026
+**Date:** September 09, 2026
 
 ---
 

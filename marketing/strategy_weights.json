@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-09-08T14:49:56.601769+00:00",
+  "updated_at": "2026-09-09T14:54:56.912469+00:00",
   "state_weights_pct": {
-    "FL": 17.8,
-    "TX": 16.7,
-    "CA": 28.5,
-    "GA": 37.0,
+    "FL": 19.2,
+    "TX": 18.1,
+    "CA": 22.5,
+    "GA": 40.1,
     "NC": 0.0,
     "TN": 0.0
   },
@@ -32,7 +32,7 @@
       "lead_count": 12,
       "attempts": 128,
       "successes": 23,
-      "allocated_weight_pct": 17.8
+      "allocated_weight_pct": 19.2
     },
     "TX": {
       "score": 0.0677,
@@ -42,17 +42,17 @@
       "lead_count": 5,
       "attempts": 65,
       "successes": 11,
-      "allocated_weight_pct": 16.7
+      "allocated_weight_pct": 18.1
     },
     "CA": {
-      "score": 0.1154,
-      "win_rate": 28.8,
+      "score": 0.0842,
+      "win_rate": 21.1,
       "surplus_pool": 0.0,
       "fee_pool": 0.0,
       "lead_count": 4,
-      "attempts": 52,
-      "successes": 15,
-      "allocated_weight_pct": 28.5
+      "attempts": 76,
+      "successes": 16,
+      "allocated_weight_pct": 22.5
     },
     "GA": {
       "score": 0.15,
@@ -62,7 +62,7 @@
       "lead_count": 5,
       "attempts": 8,
       "successes": 3,
-      "allocated_weight_pct": 37.0
+      "allocated_weight_pct": 40.1
     },
     "NC": {
       "score": 0.0,

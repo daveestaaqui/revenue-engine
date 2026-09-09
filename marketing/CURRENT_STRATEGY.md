@@ -1,23 +1,23 @@
 # 📊 Surplus Docket — Autonomous Marketing Strategy & Optimization Briefing
-**Last Updated:** September 08, 2026 at 14:49 UTC  
+**Last Updated:** September 09, 2026 at 14:54 UTC  
 **Optimization Mode:** Real-Time Data-Driven (Outreach + Public Registry Equity)
 
 ---
 
 ## 🚀 1. Executive Directive: Double Down on Highest Yield
 
-Based on automated analysis of **268 firm outreach attempts** and **$1.00 monitored surplus inventory**, the engine has automatically recalibrated priority weights:
+Based on automated analysis of **292 firm outreach attempts** and **$1.00 monitored surplus inventory**, the engine has automatically recalibrated priority weights:
 
-1. **PRIMARY POWERHOUSE: GA (37.0% Resource Allocation)**
+1. **PRIMARY POWERHOUSE: GA (40.1% Resource Allocation)**
    - **Active Surplus Pool:** $0.00 across 5 verified dockets.
    - **Est. Legal Recovery Fees:** $0.00 available to counsel.
    - **Submission Win Rate:** 37.5% deliverability.
    - **Action:** Increase automated daily firm touches and syndicate jurisdiction-specific analysis.
 
-2. **SECONDARY DRIVER: CA (28.5% Resource Allocation)**
+2. **SECONDARY DRIVER: CA (22.5% Resource Allocation)**
    - **Active Surplus Pool:** $0.00 across 4 verified dockets.
    - **Est. Legal Recovery Fees:** $0.00.
-   - **Submission Win Rate:** 28.8%.
+   - **Submission Win Rate:** 21.1%.
 
 ---
 
@@ -25,10 +25,10 @@ Based on automated analysis of **268 firm outreach attempts** and **$1.00 monito
 
 | State | Priority Weight | Win Rate | Active Surplus | Legal Fees Available | Strategy Focus |
 | :---: | :---: | :---: | :---: | :---: | :--- |
-| **GA** | **37.0%** | 37.5% | $0 | $0 | Core Outbound & PR |
-| **CA** | **28.5%** | 28.8% | $0 | $0 | Core Outbound & PR |
-| **FL** | **17.8%** | 18.0% | $0 | $0 | Syndication & SEO Hub |
-| **TX** | **16.7%** | 16.9% | $0 | $0 | Syndication & SEO Hub |
+| **GA** | **40.1%** | 37.5% | $0 | $0 | Core Outbound & PR |
+| **CA** | **22.5%** | 21.1% | $0 | $0 | Syndication & SEO Hub |
+| **FL** | **19.2%** | 18.0% | $0 | $0 | Syndication & SEO Hub |
+| **TX** | **18.1%** | 16.9% | $0 | $0 | Syndication & SEO Hub |
 | **NC** | **0.0%** | 0.0% | $0 | $0 | Syndication & SEO Hub |
 | **TN** | **0.0%** | 0.0% | $0 | $0 | Syndication & SEO Hub |
 
