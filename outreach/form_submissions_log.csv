@@ -545,3 +545,41 @@ Call log:
     - retrying click action
       - waiting 500ms
 ",
+2026-09-10T17:36:55.200893,Coblentz Patch Duffy & Bass LLP,Richard R. Patch,CA,https://coblentzlaw.com,https://www.coblentzlaw.com/,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-10T17:37:10.017582,Ervin Cohen & Jessup LLP,Barry MacNaughton,CA,https://ecjlaw.com,https://www.ecjlaw.com/contact,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-10T17:37:56.567004,Kobre & Kim LLP (CA),Michael S. Kim,CA,https://kobrekim.com,https://kobrekim.com/locations,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-10T17:38:34.526785,Latham & Watkins LLP (CA),Richard M. Trobman,CA,https://lw.com,https://www.lw.com/en/404,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-10T17:38:53.517799,"Luce, Forward, Hamilton & Scripps / Dentons (CA)",Charles A. Bird,CA,https://dentons.com,https://www.dentons.com/en/global-presence/latin-america-and-the-caribbean/turks-and-caicos-islands/providenciales,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-10T17:39:08.546839,"McCarthy & Holthus, LLP",Thomas Holthus,CA,https://mccarthyholthus.com,chrome-error://chromewebdata/,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-10T17:39:39.151829,O'Melveny & Myers LLP (CA),Bradley J. Butwin,CA,https://omm.com,https://omm.com/locations,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-10T17:44:27.983631,"Reicker, Pfau, Pyle & McRoy LLP",Michael Pfau,CA,https://rppmh.com,chrome-error://chromewebdata/,FAILED,Could not find compatible contact form fields on page.,B
+2026-09-10T17:45:03.170677,Ropers Majeski PC,Michael J. Brady,CA,https://ropers.com,https://www.ropers.com/locations,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-10T17:45:20.080266,Severson & Werson,Mark J. Kenney,CA,https://severson.com,https://www.stinson.com/,FAILED,Could not find compatible contact form fields on page.,A
+2026-09-10T17:45:34.708627,"Shore, McKinley, Conger & Jolley, LLP",John McKinley,CA,https://smcjlendinglaw.com,chrome-error://chromewebdata/,FAILED,Could not find compatible contact form fields on page.,C
+2026-09-10T17:45:59.448987,Snell & Wilmer L.L.P. (CA),Matthew P. Kanny,CA,https://swlaw.com,,ERROR,"Locator.click: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator(""button:has-text('Submit')"").first
+    - locator resolved to <button aria-label=""Submit"">…</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <p>Anything submitted regarding matters is acknowled…</p> from <main id=""content"" class=""site-content "">…</main> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <p>Anything submitted regarding matters is acknowled…</p> from <main id=""content"" class=""site-content "">…</main> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    6 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <p>Anything submitted regarding matters is acknowled…</p> from <main id=""content"" class=""site-content "">…</main> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+",
