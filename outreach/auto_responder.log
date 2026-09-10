@@ -153,3 +153,5 @@
 [2026-09-10 18:58:31]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
 [2026-09-10 21:33:17]   ⏭️ Skipped non-prospect from support@breathefum.com (Sub: 'Return Request and Subscription Cancella'): Message identified as automated notification, bounce, or system alert
 [2026-09-10 21:33:17]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
+[2026-09-10 23:24:41]   ⏭️ Skipped non-prospect from no-reply@accounts.google.com (Sub: 'Security alert for avamahler2017@gmail.c'): Message identified as automated notification, bounce, or system alert
+[2026-09-10 23:24:43]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
