@@ -151,3 +151,5 @@
 [2026-09-10 18:58:30]   ⏭️ Skipped non-prospect from xfinity@account.xfinity.com (Sub: 'Your bill is available to view online'): Sender 'xfinity@account.xfinity.com' is not in verified target database and not a statutory inquiry
 [2026-09-10 18:58:30]   ⏭️ Skipped non-prospect from citicards@info15.citi.com (Sub: 'Action Recommended: Lena, this is regard'): Sender 'citicards@info15.citi.com' is not in verified target database and not a statutory inquiry
 [2026-09-10 18:58:31]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
+[2026-09-10 21:33:17]   ⏭️ Skipped non-prospect from support@breathefum.com (Sub: 'Return Request and Subscription Cancella'): Message identified as automated notification, bounce, or system alert
+[2026-09-10 21:33:17]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
