@@ -145,3 +145,4 @@
 [2026-09-09 23:32:05]   ⏭️ Skipped non-prospect from automated@airbnb.com (Sub: 'Account activity: New login from Chrome '): Message identified as automated notification, bounce, or system alert
 [2026-09-09 23:32:09]   🧹 Auto-unsubscribed and cleared marketing email from noreply-accounts@google.com
 [2026-09-10 06:35:34]   ⏭️ Skipped non-prospect from discover@services.discover.com (Sub: 'Discover Card Privacy Statement Now Avai'): Message identified as automated notification, bounce, or system alert
+[2026-09-10 11:50:57]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
