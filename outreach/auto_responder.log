@@ -147,3 +147,7 @@
 [2026-09-10 06:35:34]   ⏭️ Skipped non-prospect from discover@services.discover.com (Sub: 'Discover Card Privacy Statement Now Avai'): Message identified as automated notification, bounce, or system alert
 [2026-09-10 11:50:57]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
 [2026-09-10 15:55:19]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
+[2026-09-10 18:58:30]   ⏭️ Skipped non-prospect from noreply@tm.openai.com (Sub: 'API Organization Spend Alert'): Message identified as automated notification, bounce, or system alert
+[2026-09-10 18:58:30]   ⏭️ Skipped non-prospect from xfinity@account.xfinity.com (Sub: 'Your bill is available to view online'): Sender 'xfinity@account.xfinity.com' is not in verified target database and not a statutory inquiry
+[2026-09-10 18:58:30]   ⏭️ Skipped non-prospect from citicards@info15.citi.com (Sub: 'Action Recommended: Lena, this is regard'): Sender 'citicards@info15.citi.com' is not in verified target database and not a statutory inquiry
+[2026-09-10 18:58:31]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
