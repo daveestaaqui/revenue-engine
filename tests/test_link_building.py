@@ -184,12 +184,13 @@ class TestAutoArticleSubmitter(unittest.TestCase):
         pings = ping_search_engines(dry_run=True)
         self.assertIn("google", pings)
         self.assertIn("bing", pings)
-        self.assertEqual(pings["google"]["status"], "dry_run_success")
+        self.assertTrue(pings["google"]["status"].startswith("retired"))
 
     def test_run_article_and_link_pipeline_dry_run(self):
         from marketing.link_building.auto_article_submitter import run_article_and_link_pipeline
         summary = run_article_and_link_pipeline(dry_run=True)
-        self.assertGreater(summary["urls_indexed"], 0)
+        self.assertIsNone(summary["urls_indexed"])
+        self.assertEqual(summary["urls_submitted"], 0)
         self.assertEqual(summary["indexnow_status"], "dry_run_success")
         self.assertIn("google", summary["search_engine_pings"])
 

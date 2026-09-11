@@ -102,9 +102,16 @@ def get_feed_statistics():
     }
 
 
+def format_firm_suffix(subscriber):
+    raw_firm = (subscriber.get("firm") or "").strip()
+    if raw_firm and raw_firm not in ("Surplus Docket Compliance & Research Desk", "Practice", "Legal Practice", "Firm"):
+        return f" ({raw_firm})"
+    return ""
+
+
 def compose_email_content(subscriber, stats, date_str):
     name = subscriber.get("name", "Counsel")
-    firm = subscriber.get("firm", "Practice")
+    firm_suffix = format_firm_suffix(subscriber)
     total_bal_fmt = f"${stats['total_surplus']:,.2f}"
     rec_count = stats["total_records"]
 
@@ -254,7 +261,7 @@ surplusdocket.com • dockets@surplusdocket.com
                     <!-- Main Content Body -->
                     <tr>
                         <td class="content-cell" style="padding: 30px 32px; background-color: #ffffff;">
-                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Good morning <b>{name}</b> ({firm}),</p>
+                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Good morning <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
                                 Here is your verified daily Surplus Docket intelligence briefing for <b>{date_str}</b>. All filings have been cross-referenced against official county court registries with senior mortgages, institutional bank liens, and junior municipal encumbrances filtered upstream.
                             </p>
@@ -428,7 +435,8 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
                     msg.attach(part)
 
             server.sendmail(GMAIL_USER, [dest], msg.as_string())
-            print(f"  ✉️ Dispatched morning feed to {sub.get('name', 'Subscriber')} <{dest}> ({sub.get('firm', 'Firm')})")
+            firm_log = format_firm_suffix(sub)
+            print(f"  ✉️ Dispatched morning feed to {sub.get('name', 'Subscriber')} <{dest}>{firm_log}")
             sent_count += 1
 
         print(f"\n🎉 Successfully dispatched morning feeds to {sent_count} subscriber(s).")
@@ -446,7 +454,7 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
 
 def compose_activation_email(subscriber, stats, date_str):
     name = subscriber.get("name", "Counsel")
-    firm = subscriber.get("firm", "Practice")
+    firm_suffix = format_firm_suffix(subscriber)
     total_bal_fmt = f"${stats['total_surplus']:,.2f}"
     rec_count = stats["total_records"]
 
@@ -539,7 +547,7 @@ surplusdocket.com • dockets@surplusdocket.com
                     <!-- Body -->
                     <tr>
                         <td class="content-cell" style="padding: 30px 32px; background-color: #ffffff;">
-                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Welcome <b>{name}</b> ({firm}),</p>
+                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Welcome <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 18px 0;">
                                 Your 7-day institutional practice evaluation is officially activated. For the next 7 days, your practice has access to verified court registry intelligence across 6 core states with senior mortgages, institutional bank liens, and junior municipal encumbrances filtered upstream.
                             </p>

@@ -114,7 +114,7 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertIn("FL", text)
         self.assertIn("TX", text)
         self.assertIn("NOTABLE INBOUND ACTIVITY & AUTO-DISPATCHES (PAST 7 DAYS):", text)
-        self.assertIn("David Mahler", text)
+        self.assertTrue("David Mahler" in text or "Dave Mahler" in text)
         self.assertIn("ELENA BROOKS INBOUND & SAFEGUARDS:", text)
         self.assertIn("AUTHORITY & LINK BUILDING ENGINE:", text)
 

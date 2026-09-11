@@ -76,9 +76,16 @@ def save_lifecycle_log(log_data):
         json.dump(log_data, f, indent=2)
 
 
+def format_firm_suffix(subscriber):
+    raw_firm = (subscriber.get("firm") or "").strip()
+    if raw_firm and raw_firm not in ("Surplus Docket Compliance & Research Desk", "Practice", "Legal Practice", "Firm"):
+        return f" ({raw_firm})"
+    return ""
+
+
 def compose_day3_email(subscriber):
     name = subscriber.get("name", "Counsel")
-    firm = subscriber.get("firm", "Practice")
+    firm_suffix = format_firm_suffix(subscriber)
     year = datetime.now().year
 
     text_body = f"""Dear {name},
@@ -178,7 +185,7 @@ Subscriber Billing & Seat Portal: {STRIPE_PORTAL_URL}
                     <!-- Body -->
                     <tr>
                         <td class="content-cell" style="padding: 30px 32px; background-color: #ffffff;">
-                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Dear <b>{name}</b> ({firm}),</p>
+                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Dear <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 18px 0;">
                                 As your practice enters Day 3 of your 7-day evaluation with Surplus Docket, we want to highlight how institutional asset recovery counsel utilize the statutory countdown metrics embedded in your morning court feed.
                             </p>
@@ -257,7 +264,7 @@ Subscriber Billing & Seat Portal: {STRIPE_PORTAL_URL}
 
 def compose_day6_email(subscriber):
     name = subscriber.get("name", "Counsel")
-    firm = subscriber.get("firm", "Practice")
+    firm_suffix = format_firm_suffix(subscriber)
     year = datetime.now().year
 
     text_body = f"""Dear {name},
@@ -359,7 +366,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                     <!-- Body -->
                     <tr>
                         <td class="content-cell" style="padding: 30px 32px; background-color: #ffffff;">
-                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Dear <b>{name}</b> ({firm}),</p>
+                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Dear <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 18px 0;">
                                 We are writing with an institutional courtesy notice regarding your 7-day practice evaluation of Surplus Docket. Your trial evaluation period concludes tomorrow.
                             </p>
