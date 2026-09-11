@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
   "authentication": "Bearer <sd_live_api_key>",
-  "timestamp": "2026-09-10T14:42:09.845434",
+  "timestamp": "2026-09-11T14:42:36.959097",
   "uptime": "99.99%",
   "endpoints": [
     "/api/v1/feed.json",

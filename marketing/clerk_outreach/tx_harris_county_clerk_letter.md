@@ -3,7 +3,7 @@
 **To:** District Court Registry Director  
 **Agency:** Office of the District Clerk, Harris County, TX  
 **Department:** Post-Judgment & Excess Proceeds Registry  
-**Date:** September 10, 2026  
+**Date:** September 11, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Harris County Web Portal)
 
 ---
