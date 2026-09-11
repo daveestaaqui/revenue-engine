@@ -1,0 +1,52 @@
+name: Surplus Docket Reliability Checks
+
+on:
+  push:
+    branches: ['astra/surplus-reliability']
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '47 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  website:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check internal links, sitemap, live homepage and crawlability
+        run: python scripts/site_health_check.py --live
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: site-health
+          path: site-health.json
+          retention-days: 7
+  outreach-fixture:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install playwright
+      - run: playwright install --with-deps chromium webkit
+      - name: Offline outcome and registry regressions
+        run: python -m unittest discover -s tests -p test_reliability.py
+      - name: Validate Chromium using an owned fixture without submission
+        env:
+          OUTREACH_BROWSER: chromium
+        run: python outreach/form_outreach_engine.py --dry-run --browser-smoke --limit=2
+      - name: Validate WebKit using an owned fixture without submission
+        env:
+          OUTREACH_BROWSER: webkit
+        run: python outreach/form_outreach_engine.py --dry-run --browser-smoke --limit=2

@@ -17,7 +17,6 @@ import argparse
 import json
 import os
 import re
-import sys
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -131,28 +130,9 @@ def submit_to_indexnow(
 
 
 def ping_search_engines(sitemap_url: str = f"https://{DEFAULT_HOST}/sitemap.xml", dry_run: bool = False) -> Dict[str, Any]:
-    """Pings Google and Bing with updated sitemap location."""
-    endpoints = {
-        "google": f"https://www.google.com/ping?sitemap={urllib.parse.quote(sitemap_url, safe='')}",
-        "bing": f"https://www.bing.com/ping?sitemap={urllib.parse.quote(sitemap_url, safe='')}"
-    }
-
-    results = {}
-    for name, endpoint in endpoints.items():
-        if dry_run:
-            results[name] = {"status": "dry_run_success", "status_code": 200, "url": endpoint}
-            continue
-
-        req = urllib.request.Request(endpoint, headers={"User-Agent": "SurplusDocket-Submitter/1.0"})
-        try:
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                results[name] = {"status": "success", "status_code": resp.getcode()}
-        except urllib.error.HTTPError as e:
-            results[name] = {"status": "http_error", "status_code": e.code}
-        except Exception as ex:
-            results[name] = {"status": "failed", "error": str(ex)}
-
-    return results
+    """Legacy compatibility API: these unauthenticated endpoints were retired."""
+    return {name: {"status": "retired_use_robots_and_webmaster_tools", "sitemap_url": sitemap_url}
+            for name in ("google", "bing")}
 
 
 def parse_markdown_metadata(content: str) -> Dict[str, Any]:
@@ -416,7 +396,7 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
     print(f"    -> IndexNow Status: {indexnow_res.get('status')} (Code: {indexnow_res.get('status_code')})")
 
     # 2. Ping Search Engines
-    print("[*] Pinging Google and Bing sitemap indexes...")
+    print("[*] Sitemap discovery uses robots.txt and webmaster tools; legacy pings are retired.")
     ping_res = ping_search_engines(dry_run=dry_run)
     for name, stat in ping_res.items():
         print(f"    -> {name.capitalize()}: {stat.get('status')} ({stat.get('status_code', 'N/A')})")
@@ -446,7 +426,8 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
     run_entry = {
         "timestamp": start_time,
         "mode": "dry_run" if dry_run else "live",
-        "urls_indexed_count": len(urls),
+        "urls_submitted_count": min(len(urls), 10000) if not dry_run and indexnow_res.get("status") == "success" else 0,
+        "urls_indexed_count": None,
         "indexnow": indexnow_res,
         "search_engine_pings": ping_res,
         "syndications": syndication_results,
@@ -454,18 +435,22 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
     }
     registry["runs"].append(run_entry)
     registry["last_run_timestamp"] = start_time
-    registry["total_submissions"] = registry.get("total_submissions", 0) + len(urls)
+    registry["total_submissions"] = registry.get("total_submissions", 0) + run_entry["urls_submitted_count"]
     # Retain last 30 runs to avoid file bloat
     registry["runs"] = registry["runs"][-30:]
-    save_submission_registry(registry)
+    if not dry_run:
+        save_submission_registry(registry)
 
     summary = {
         "timestamp": start_time,
-        "urls_indexed": len(urls),
+        "urls_indexed": None,
+        "urls_submitted": run_entry["urls_submitted_count"],
         "indexnow_status": indexnow_res.get("status"),
         "search_engine_pings": {k: v.get("status") for k, v in ping_res.items()},
-        "syndicated_articles_count": len(syndication_results),
-        "registry_saved": str(REGISTRY_PATH)
+        "syndicated_articles_count": sum(r.get("status") == "success" for r in syndication_results),
+        "articles_attempted": len(syndication_results),
+        "unconfigured_channels": sorted({r["platform"] for r in syndication_results if r.get("status", "").startswith("simulated_no_")}),
+        "registry_saved": str(REGISTRY_PATH) if not dry_run else None
     }
     return summary
 
@@ -481,3 +466,7 @@ if __name__ == "__main__":
     result = run_article_and_link_pipeline(dry_run=args.dry_run)
     print("\n✅ Execution Summary:")
     print(json.dumps(result, indent=2))
+    if result["unconfigured_channels"]:
+        print("::warning title=Syndication not configured::" + ", ".join(result["unconfigured_channels"]) + " have no publishing credentials; generated drafts are not published backlinks.")
+    if not args.dry_run and result["indexnow_status"] != "success":
+        raise SystemExit(1)

@@ -5,3 +5,7 @@ __pycache__/
 .env
 outreach/drafts/*.eml
 !outreach/drafts/_MANIFEST.csv
+
+outreach/preview_artifacts/
+outreach/form_screenshots/preview/
+site-health.json
