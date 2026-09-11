@@ -158,3 +158,7 @@
 [2026-09-11 01:21:32]   ⏭️ Skipped non-prospect from no-reply@paybyphone.com (Sub: 'Parking Receipt'): Message identified as automated notification, bounce, or system alert
 [2026-09-11 01:21:32]   ⏭️ Skipped non-prospect from no-reply@paybyphone.com (Sub: 'Parking Receipt'): Message identified as automated notification, bounce, or system alert
 [2026-09-11 01:21:34]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
+[2026-09-11 06:26:03]   ⏭️ Skipped non-prospect from PaymentRemittance@careforth.com (Sub: 'Caregiver Homes of Massachusetts dba Car'): Sender 'paymentremittance@careforth.com' is not in verified target database and not a statutory inquiry
+[2026-09-11 06:26:04]   ⏭️ Skipped non-prospect from no.reply.alerts@chase.com (Sub: 'Read our annual U.S. Consumer Privacy No'): Message identified as automated notification, bounce, or system alert
+[2026-09-11 06:26:05]   🧹 Auto-unsubscribed and cleared marketing email from noreply@statements.boemortgage.com
+[2026-09-11 06:26:07]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
