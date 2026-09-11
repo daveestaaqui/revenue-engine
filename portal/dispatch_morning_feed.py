@@ -12,7 +12,11 @@ import sys
 import json
 import smtplib
 import argparse
-import pandas as pd
+import csv
+try:
+    import pandas as pd
+except ImportError:
+    pd = None
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -75,24 +79,60 @@ def get_feed_statistics():
             "top_dockets": [],
             "jurisdiction_counts": {}
         }
-    df = pd.read_csv(MASTER_CSV)
-    total_records = len(df)
-    surplus_col = "Surplus_Balance_USD" if "Surplus_Balance_USD" in df.columns else "AMOUNT"
-    total_surplus = float(df[surplus_col].sum()) if surplus_col in df.columns else 0.0
+    if pd is not None:
+        df = pd.read_csv(MASTER_CSV)
+        total_records = len(df)
+        surplus_col = "Surplus_Balance_USD" if "Surplus_Balance_USD" in df.columns else "AMOUNT"
+        total_surplus = float(df[surplus_col].sum()) if surplus_col in df.columns else 0.0
 
-    state_col = "State" if "State" in df.columns else "COUNTY"
-    jurisdiction_counts = df[state_col].value_counts().to_dict() if state_col in df.columns else {}
+        state_col = "State" if "State" in df.columns else "COUNTY"
+        jurisdiction_counts = df[state_col].value_counts().to_dict() if state_col in df.columns else {}
 
+        top_dockets = []
+        for _, r in df.head(4).iterrows():
+            top_dockets.append({
+                "docket": str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
+                "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
+                "amount": float(r.get(surplus_col, 0.0)),
+                "state": str(r.get("State") or "FL"),
+                "county": str(r.get("County") or r.get("COUNTY") or ""),
+                "statute": str(r.get("Governing_Statute") or "")
+            })
+
+        return {
+            "total_records": total_records,
+            "total_surplus": total_surplus,
+            "top_dockets": top_dockets,
+            "jurisdiction_counts": jurisdiction_counts
+        }
+
+    # Built-in csv fallback when pandas is not installed
+    total_records = 0
+    total_surplus = 0.0
+    jurisdiction_counts = {}
     top_dockets = []
-    for _, r in df.head(4).iterrows():
-        top_dockets.append({
-            "docket": str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
-            "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
-            "amount": float(r.get(surplus_col, 0.0)),
-            "state": str(r.get("State") or "FL"),
-            "county": str(r.get("County") or r.get("COUNTY") or ""),
-            "statute": str(r.get("Governing_Statute") or "")
-        })
+    with open(MASTER_CSV, "r", encoding="utf-8", errors="ignore") as f:
+        reader = csv.DictReader(f)
+        for r in reader:
+            total_records += 1
+            val_str = r.get("Surplus_Balance_USD") or r.get("AMOUNT") or 0.0
+            try:
+                amt = float(val_str)
+            except (ValueError, TypeError):
+                amt = 0.0
+            total_surplus += amt
+            st = str(r.get("State") or r.get("COUNTY") or "").strip().upper()
+            if st:
+                jurisdiction_counts[st] = jurisdiction_counts.get(st, 0) + 1
+            if len(top_dockets) < 4:
+                top_dockets.append({
+                    "docket": str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
+                    "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
+                    "amount": amt,
+                    "state": str(r.get("State") or "FL"),
+                    "county": str(r.get("County") or r.get("COUNTY") or ""),
+                    "statute": str(r.get("Governing_Statute") or "")
+                })
 
     return {
         "total_records": total_records,
