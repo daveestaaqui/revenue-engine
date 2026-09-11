@@ -164,3 +164,6 @@
 [2026-09-11 06:26:07]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
 [2026-09-11 11:42:04]   ⏭️ Skipped non-prospect from no.reply.alerts@chase.com (Sub: 'Read our annual U.S. Consumer Privacy No'): Message identified as automated notification, bounce, or system alert
 [2026-09-11 11:42:06]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
+[2026-09-11 18:37:45]   ⏭️ Skipped non-prospect from support@breathefum.com (Sub: 'Refund notification'): Message identified as automated notification, bounce, or system alert
+[2026-09-11 18:37:46]   ⏭️ Skipped non-prospect from support@breathefum.com (Sub: 'Return Request and Subscription Cancella'): Message identified as automated notification, bounce, or system alert
+[2026-09-11 18:37:47]   🧹 Auto-unsubscribed and cleared marketing email from mail@em.citizensbank.com
