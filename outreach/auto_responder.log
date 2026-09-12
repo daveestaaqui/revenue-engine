@@ -170,3 +170,4 @@
 [2026-09-11 21:19:55]   ⏭️ Skipped non-prospect from discover@card-e.em.discover.com (Sub: 'Reminder - Activation required: Lena, st'): Sender 'discover@card-e.em.discover.com' is not in verified target database and not a statutory inquiry
 [2026-09-11 23:28:51]   ⏭️ Skipped non-prospect from no-reply@mailer.alpaca.markets (Sub: 'Scheduled maintenance on Saturday, Septe'): Message identified as automated notification, bounce, or system alert
 [2026-09-11 23:28:51]   ⏭️ Skipped non-prospect from help@awin.com (Sub: 'Herbal Lab (US) has invited you to join '): Sender 'help@awin.com' is not in verified target database and not a statutory inquiry
+[2026-09-12 06:21:10]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Valencia Cushing paid you $500.00'): Sender 'venmo@venmo.com' is not in verified target database and not a statutory inquiry
