@@ -2,7 +2,7 @@
 PLATFORM: LINKEDIN
 TITLE: Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery
 CANONICAL_URL: https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing
-DATE: September 11, 2026
+DATE: September 12, 2026
 TAGS: LegalTech, AI, TitleResearch, PropertyRights, LegalInnovation
 -->
 
