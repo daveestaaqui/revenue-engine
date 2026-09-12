@@ -38,6 +38,7 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
           FROM_NAME: 'Surplus Docket Intelligence'
           SENDER_EMAIL: 'dockets@surplusdocket.com'
           REPLY_TO: 'dockets@surplusdocket.com'
