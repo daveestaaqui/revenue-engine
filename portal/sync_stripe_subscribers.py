@@ -74,9 +74,10 @@ def save_processed_events(data):
 def sync_via_stripe_api(api_key):
     """Directly query Stripe API for active and trialing subscriptions."""
     print("🔌 Querying Stripe REST API for active subscriptions...")
-    url = "https://api.stripe.com/v1/subscriptions?status=all&limit=100&expand[]=data.customer&expand[]=data.items.data.price.product"
+    # Expand customer object to retrieve email and billing name (max 2 levels)
+    url = "https://api.stripe.com/v1/subscriptions?status=all&limit=100&expand%5B%5D=data.customer"
     req = urllib.request.Request(url)
-    req.add_header("Authorization", f"Bearer {api_key}")
+    req.add_header("Authorization", f"Bearer {api_key.strip()}")
 
     try:
         with urllib.request.urlopen(req) as resp:
@@ -112,10 +113,14 @@ def sync_via_stripe_api(api_key):
                         elif items[0].get("plan", {}).get("nickname"):
                             plan_name = items[0].get("plan", {}).get("nickname")
 
+                    # Do not set placeholder firm names
+                    cust_lower = cust_name.lower()
+                    detected_firm = cust_name if any(term in cust_lower for term in ("law", "llc", "legal", "pc", "pllc", "esq", "attorney", "firm", "associates")) else ""
+
                     sub_obj, is_new = add_subscriber(
                         email=cust_email,
                         name=cust_name,
-                        firm=cust_name if "law" in cust_name.lower() or "llc" in cust_name.lower() else "Legal Practice",
+                        firm=detected_firm,
                         tier=plan_name
                     )
                     if is_new:
@@ -132,6 +137,10 @@ def sync_via_stripe_api(api_key):
 
             return changes
 
+    except urllib.error.HTTPError as e:
+        err_body = e.read().decode("utf-8", errors="ignore")
+        print(f"⚠️ Stripe API HTTPError {e.code}: {err_body}")
+        return 0
     except Exception as e:
         print(f"⚠️ Stripe API Error: {e}")
         return 0
@@ -292,7 +301,7 @@ def sync_via_imap(user, password):
                     sub_obj, is_new = add_subscriber(
                         email=cust_email,
                         name=cust_name,
-                        firm="Legal Practice",
+                        firm="",
                         tier=sub_tier
                     )
                     if is_new:
