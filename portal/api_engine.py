@@ -133,7 +133,7 @@ def generate_api_key_for_subscriber(subscriber_id_or_email: str) -> Dict[str, An
     registry[token_digest] = {
         "subscriber_id": target_sub.get("id"),
         "email": target_sub.get("email"),
-        "firm": target_sub.get("firm", "Legal Practice"),
+        "firm": target_sub.get("firm", ""),
         "tier": target_sub.get("tier"),
         "jurisdictions": target_sub.get("jurisdictions", PLAN_SIX_STATE["allowed_states"]),
         "created_at": datetime.now(timezone.utc).isoformat(),

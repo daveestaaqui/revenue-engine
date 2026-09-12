@@ -603,7 +603,7 @@ def run_trial_sentinel(is_dry_run=False, test_recipient=None, force_day=None):
             "id": "SUB-TEST",
             "email": test_recipient,
             "name": "Counsel",
-            "firm": "Legal Practice",
+            "firm": "",
             "tier": "Core Plan (7-Day Evaluation)",
             "status": "ACTIVE",
             "subscribed_at": now_utc.isoformat()

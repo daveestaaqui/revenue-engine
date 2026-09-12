@@ -501,7 +501,7 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
         subscribers = [{
             "email": recipient_override,
             "name": "Counsel",
-            "firm": "Legal Practice",
+            "firm": "",
             "delivery_format": ["CSV", "Excel"],
             "status": "ACTIVE"
         }]
@@ -906,7 +906,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.welcome:
-        target = {"email": args.recipient or "david@surplusdocket.com", "name": "Counsel", "firm": "Legal Practice"}
+        target = {"email": args.recipient or "david@surplusdocket.com", "name": "Counsel", "firm": ""}
         sys.exit(0 if dispatch_activation_starter_kit(target, is_dry_run=args.dry_run) else 1)
 
     if not args.send and not args.dry_run:

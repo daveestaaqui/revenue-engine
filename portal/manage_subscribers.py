@@ -44,7 +44,7 @@ def get_jurisdictions_for_tier(tier):
     return CORE_JURISDICTIONS.copy()
 
 
-def add_subscriber(email, name="Counsel", firm="Legal Practice", tier="Core Plan (7-Day Evaluation)",
+def add_subscriber(email, name="Counsel", firm="", tier="Core Plan (7-Day Evaluation)",
                    jurisdictions=None, delivery_format=None, filepath=SUBSCRIBERS_FILE):
     email = email.strip().lower()
     if not email or "@" not in email:
@@ -114,7 +114,7 @@ def main():
     add_p = subparsers.add_parser("add", help="Add or reactivate a subscriber")
     add_p.add_argument("--email", required=True, help="Subscriber email address")
     add_p.add_argument("--name", default="Counsel", help="Attorney / Contact Name")
-    add_p.add_argument("--firm", default="Legal Practice", help="Law firm or practice name")
+    add_p.add_argument("--firm", default="", help="Law firm or practice name")
     add_p.add_argument("--tier", default="Core Plan (7-Day Evaluation)", help="Subscription tier")
 
     # Deactivate command
