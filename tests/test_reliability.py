@@ -110,6 +110,44 @@ class ReliabilityTests(unittest.TestCase):
             latest_run = loaded_reg["runs"][-1]
             self.assertEqual(latest_run["syndications"][0]["status"], "already_published")
 
+    def test_drafts_and_outreach_reliability(self):
+        from outreach.generate_drafts import compose_email, get_first_name, create_eml_file
+
+        # 1. First name extraction
+        self.assertEqual(get_first_name("John Doe"), "John")
+        self.assertEqual(get_first_name("Atty. Sarah Jenkins"), "Sarah")
+        self.assertEqual(get_first_name(""), "Counsel")
+
+        # 2. compose_email hygiene
+        target = {
+            "Name": "Sarah Jenkins",
+            "Firm": "Jenkins & Associates, P.A.",
+            "Email": "sarah@jenkinslaw.com",
+            "State": "FL",
+            "Specialty": "tax sale surplus",
+            "Practice_Details": "Statewide surplus funds",
+            "Style_Notes": "professional",
+        }
+        subject, body = compose_email(target, {}, from_name="Surplus Docket Intelligence", from_email="dockets@surplusdocket.com")
+
+        # Must greet target by their name
+        self.assertIn("Hi Sarah,", body)
+        self.assertNotIn("David Mahler", body)
+
+        # Must NOT contain banned desk phrasing
+        self.assertNotIn("Compliance & Research Desk", body)
+        self.assertNotIn("research desk", body)
+        self.assertNotIn("Court Registry Ingestion Desk", body)
+
+        # 3. EML creation
+        with tempfile.TemporaryDirectory() as temp_dir:
+            eml_path = Path(temp_dir) / "test.eml"
+            create_eml_file("sarah@jenkinslaw.com", "Sarah Jenkins", subject, body, eml_path)
+            content = eml_path.read_text(encoding="utf-8")
+            self.assertIn("X-Unsent: 1", content)
+            self.assertIn("sarah@jenkinslaw.com", content)
+
 
 if __name__ == '__main__':
     unittest.main()
+

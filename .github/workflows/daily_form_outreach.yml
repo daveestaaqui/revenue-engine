@@ -1,4 +1,4 @@
-name: Daily Autonomous Legal Form Outreach
+name: Daily Autonomous Legal Outreach
 
 on:
   schedule:
@@ -9,13 +9,22 @@ on:
   workflow_dispatch:
     inputs:
       limit:
-        description: 'Number of law firms to contact per run (12/run x 2 runs = 24 messages/day)'
+        description: 'Number of law firms to contact per run (default: 12)'
         required: false
         default: '12'
       dry_run:
-        description: 'Run in dry-run preview mode (no live submission)'
+        description: 'Run in dry-run preview mode (no live submission/email send)'
         type: boolean
         default: false
+      channel:
+        description: 'Channel to execute: email (SMTP), forms (Playwright), or both'
+        required: false
+        default: 'email'
+        type: choice
+        options:
+          - email
+          - forms
+          - both
 
 concurrency:
   group: outreach-production-ledger
@@ -25,7 +34,7 @@ permissions:
   contents: write
 
 jobs:
-  run-form-outreach:
+  run-outreach:
     runs-on: ubuntu-latest
     timeout-minutes: 35
 
@@ -44,11 +53,32 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install Playwright Headless Chromium
+      - name: Install Playwright Headless Chromium (if forms channel selected)
+        if: inputs.channel == 'forms' || inputs.channel == 'both'
         run: |
           playwright install --with-deps chromium
 
-      - name: Execute Automated Legal Outreach Batch
+      - name: Execute Automated Direct Email Outreach (SMTP Draft Dispatcher)
+        if: github.event_name == 'schedule' || inputs.channel == 'email' || inputs.channel == 'both' || inputs.channel == ''
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          FROM_NAME: ${{ vars.FROM_NAME || 'Surplus Docket Intelligence' }}
+          FROM_EMAIL: ${{ vars.FROM_EMAIL || 'dockets@surplusdocket.com' }}
+          REPLY_TO: ${{ vars.REPLY_TO || 'dockets@surplusdocket.com' }}
+          BATCH_LIMIT: ${{ inputs.limit || '12' }}
+        run: |
+          LIMIT="$BATCH_LIMIT"
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ -z "$GMAIL_APP_PASS" ]; then
+            echo "Running in dry-run draft mode..."
+            python outreach/generate_drafts.py --dry-run --limit="$LIMIT"
+          else
+            echo "Running live SMTP dispatch..."
+            python outreach/generate_drafts.py --send --limit="$LIMIT"
+          fi
+
+      - name: Execute Form Outreach Batch (if selected)
+        if: inputs.channel == 'forms' || inputs.channel == 'both'
         env:
           BATCH_LIMIT: ${{ inputs.limit || '12' }}
         run: |
@@ -59,20 +89,25 @@ jobs:
             python outreach/form_outreach_engine.py --limit="$LIMIT"
           fi
 
-      - name: Commit & Push Updated Submission Logs & Screenshots
+      - name: Commit & Push Updated Submission Logs & Manifests
         if: always() && github.ref == 'refs/heads/main' && inputs.dry_run != true
         run: |
           git config --global user.name "Surplus Docket Outreach Bot"
           git config --global user.email "outreach@surplusdocket.com"
-          for f in outreach/form_submissions_log.csv outreach/form_screenshots/; do if [ -e "$f" ]; then git add "$f"; fi; done
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(outreach): recorded daily law firm contact form submissions [skip ci]" && git pull --rebase origin main && git push)
+          for f in outreach/sent_log.csv outreach/drafts/_MANIFEST.csv outreach/form_submissions_log.csv outreach/form_screenshots/; do
+            if [ -e "$f" ]; then git add "$f"; fi
+          done
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(outreach): recorded daily law firm outreach dispatches and drafts [skip ci]" && git pull --rebase origin main && git push)
 
-      - name: Upload Screenshot Proof Artifacts
+      - name: Upload Screenshot & Draft Artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: outreach-submission-proofs
+          name: outreach-artifacts
           path: |
+            outreach/drafts/
+            outreach/sent_log.csv
             outreach/form_screenshots/
             outreach/preview_artifacts/
           retention-days: 30
+
