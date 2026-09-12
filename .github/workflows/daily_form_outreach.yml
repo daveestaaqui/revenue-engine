@@ -63,9 +63,9 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-          FROM_NAME: ${{ vars.FROM_NAME || 'Surplus Docket Intelligence' }}
-          FROM_EMAIL: ${{ vars.FROM_EMAIL || 'dockets@surplusdocket.com' }}
-          REPLY_TO: ${{ vars.REPLY_TO || 'dockets@surplusdocket.com' }}
+          FROM_NAME: ${{ vars.FROM_NAME || 'Elena Brooks' }}
+          FROM_EMAIL: ${{ vars.FROM_EMAIL || 'elena.brooks@surplusdocket.com' }}
+          REPLY_TO: ${{ vars.REPLY_TO || 'elena.brooks@surplusdocket.com' }}
           BATCH_LIMIT: ${{ inputs.limit || '12' }}
         run: |
           LIMIT="$BATCH_LIMIT"
