@@ -12,7 +12,11 @@ import sys
 import json
 import smtplib
 import argparse
-import pandas as pd
+import csv
+try:
+    import pandas as pd
+except ImportError:
+    pd = None
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -75,24 +79,60 @@ def get_feed_statistics():
             "top_dockets": [],
             "jurisdiction_counts": {}
         }
-    df = pd.read_csv(MASTER_CSV)
-    total_records = len(df)
-    surplus_col = "Surplus_Balance_USD" if "Surplus_Balance_USD" in df.columns else "AMOUNT"
-    total_surplus = float(df[surplus_col].sum()) if surplus_col in df.columns else 0.0
+    if pd is not None:
+        df = pd.read_csv(MASTER_CSV)
+        total_records = len(df)
+        surplus_col = "Surplus_Balance_USD" if "Surplus_Balance_USD" in df.columns else "AMOUNT"
+        total_surplus = float(df[surplus_col].sum()) if surplus_col in df.columns else 0.0
 
-    state_col = "State" if "State" in df.columns else "COUNTY"
-    jurisdiction_counts = df[state_col].value_counts().to_dict() if state_col in df.columns else {}
+        state_col = "State" if "State" in df.columns else "COUNTY"
+        jurisdiction_counts = df[state_col].value_counts().to_dict() if state_col in df.columns else {}
 
+        top_dockets = []
+        for _, r in df.head(4).iterrows():
+            top_dockets.append({
+                "docket": str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
+                "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
+                "amount": float(r.get(surplus_col, 0.0)),
+                "state": str(r.get("State") or "FL"),
+                "county": str(r.get("County") or r.get("COUNTY") or ""),
+                "statute": str(r.get("Governing_Statute") or "")
+            })
+
+        return {
+            "total_records": total_records,
+            "total_surplus": total_surplus,
+            "top_dockets": top_dockets,
+            "jurisdiction_counts": jurisdiction_counts
+        }
+
+    # Built-in csv fallback when pandas is not installed
+    total_records = 0
+    total_surplus = 0.0
+    jurisdiction_counts = {}
     top_dockets = []
-    for _, r in df.head(4).iterrows():
-        top_dockets.append({
-            "docket": str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
-            "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
-            "amount": float(r.get(surplus_col, 0.0)),
-            "state": str(r.get("State") or "FL"),
-            "county": str(r.get("County") or r.get("COUNTY") or ""),
-            "statute": str(r.get("Governing_Statute") or "")
-        })
+    with open(MASTER_CSV, "r", encoding="utf-8", errors="ignore") as f:
+        reader = csv.DictReader(f)
+        for r in reader:
+            total_records += 1
+            val_str = r.get("Surplus_Balance_USD") or r.get("AMOUNT") or 0.0
+            try:
+                amt = float(val_str)
+            except (ValueError, TypeError):
+                amt = 0.0
+            total_surplus += amt
+            st = str(r.get("State") or r.get("COUNTY") or "").strip().upper()
+            if st:
+                jurisdiction_counts[st] = jurisdiction_counts.get(st, 0) + 1
+            if len(top_dockets) < 4:
+                top_dockets.append({
+                    "docket": str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
+                    "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
+                    "amount": amt,
+                    "state": str(r.get("State") or "FL"),
+                    "county": str(r.get("County") or r.get("COUNTY") or ""),
+                    "statute": str(r.get("Governing_Statute") or "")
+                })
 
     return {
         "total_records": total_records,
@@ -102,9 +142,16 @@ def get_feed_statistics():
     }
 
 
+def format_firm_suffix(subscriber):
+    raw_firm = (subscriber.get("firm") or "").strip()
+    if raw_firm and raw_firm not in ("Surplus Docket Compliance & Research Desk", "Practice", "Legal Practice", "Firm"):
+        return f" ({raw_firm})"
+    return ""
+
+
 def compose_email_content(subscriber, stats, date_str):
     name = subscriber.get("name", "Counsel")
-    firm = subscriber.get("firm", "Practice")
+    firm_suffix = format_firm_suffix(subscriber)
     total_bal_fmt = f"${stats['total_surplus']:,.2f}"
     rec_count = stats["total_records"]
 
@@ -254,7 +301,7 @@ surplusdocket.com • dockets@surplusdocket.com
                     <!-- Main Content Body -->
                     <tr>
                         <td class="content-cell" style="padding: 30px 32px; background-color: #ffffff;">
-                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Good morning <b>{name}</b> ({firm}),</p>
+                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Good morning <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
                                 Here is your verified daily Surplus Docket intelligence briefing for <b>{date_str}</b>. All filings have been cross-referenced against official county court registries with senior mortgages, institutional bank liens, and junior municipal encumbrances filtered upstream.
                             </p>
@@ -428,7 +475,8 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
                     msg.attach(part)
 
             server.sendmail(GMAIL_USER, [dest], msg.as_string())
-            print(f"  ✉️ Dispatched morning feed to {sub.get('name', 'Subscriber')} <{dest}> ({sub.get('firm', 'Firm')})")
+            firm_log = format_firm_suffix(sub)
+            print(f"  ✉️ Dispatched morning feed to {sub.get('name', 'Subscriber')} <{dest}>{firm_log}")
             sent_count += 1
 
         print(f"\n🎉 Successfully dispatched morning feeds to {sent_count} subscriber(s).")
@@ -446,7 +494,7 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
 
 def compose_activation_email(subscriber, stats, date_str):
     name = subscriber.get("name", "Counsel")
-    firm = subscriber.get("firm", "Practice")
+    firm_suffix = format_firm_suffix(subscriber)
     total_bal_fmt = f"${stats['total_surplus']:,.2f}"
     rec_count = stats["total_records"]
 
@@ -539,7 +587,7 @@ surplusdocket.com • dockets@surplusdocket.com
                     <!-- Body -->
                     <tr>
                         <td class="content-cell" style="padding: 30px 32px; background-color: #ffffff;">
-                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Welcome <b>{name}</b> ({firm}),</p>
+                            <p style="font-size: 15px; margin: 0 0 14px 0; color: #1e293b;">Welcome <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 18px 0;">
                                 Your 7-day institutional practice evaluation is officially activated. For the next 7 days, your practice has access to verified court registry intelligence across 6 core states with senior mortgages, institutional bank liens, and junior municipal encumbrances filtered upstream.
                             </p>

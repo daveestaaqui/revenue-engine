@@ -15,6 +15,9 @@ Features:
 
 import asyncio
 import csv
+import json
+import os
+import tempfile
 import random
 import re
 import sys
@@ -925,7 +928,9 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     # Take screenshot of filled form
     safe_firm = re.sub(r"[^a-zA-Z0-9]", "_", firm)[:30]
     SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
-    screenshot_path = SCREENSHOTS_DIR / f"{safe_firm}_{int(time.time())}.png"
+    screenshot_directory = SCREENSHOTS_DIR / "preview" if is_dry_run else SCREENSHOTS_DIR
+    screenshot_directory.mkdir(parents=True, exist_ok=True)
+    screenshot_path = screenshot_directory / f"{safe_firm}_{int(time.time())}.png"
     await page.screenshot(path=str(screenshot_path), full_page=False)
 
     if is_dry_run:
@@ -957,6 +962,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
         "a:has-text('Send Message')",
     ]
     
+    before_submission = (await page.inner_text("body")).lower()
     submitted = False
     for sel in submit_selectors:
         loc = target_context.locator(sel).first
@@ -991,14 +997,18 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     except Exception:
         pass
 
-    return True, f"SUCCESS: Submitted. Proof saved to {screenshot_path.name}", variant
+    confirmations = ("thank you for contacting", "your message has been sent", "we have received your message", "form has been submitted")
+    after_submission = (await page.inner_text("body")).lower()
+    if not any(cue in after_submission and cue not in before_submission for cue in confirmations):
+        return False, "UNCONFIRMED: Submission attempted; delivery requires manual review. Do not retry automatically.", variant
+    await page.screenshot(path=str(screenshot_path), full_page=False)
+    return True, f"SUCCESS: Confirmation detected. Proof saved to {screenshot_path.name}", variant
 
 
 async def process_target(browser, target, is_dry_run=False):
     source_url = target.get("Source_URL", "").strip()
     explicit_form_url = target.get("Form_URL", "").strip()
     firm = target.get("Firm", "")
-    state = target.get("State", "")
     variant = ""
     
     if not source_url or not source_url.startswith("http"):
@@ -1036,7 +1046,7 @@ async def process_target(browser, target, is_dry_run=False):
         elif ok:
             status = "SUCCESS"
         else:
-            status = "FAILED"
+            status = "UNCONFIRMED" if detail.startswith("UNCONFIRMED:") else "FAILED"
         print(f"     [{status}] [Variant {variant}] {detail}")
         return {"status": status, "form_url": form_url, "detail": detail, "variant": variant}
     except Exception as e:
@@ -1134,7 +1144,7 @@ def get_submission_history(cooldown_days=90):
                     continue
 
                 # Live successful submissions
-                if status == "SUCCESS" and "dry_run" not in detail:
+                if status in ("SUCCESS", "UNCONFIRMED") and "dry_run" not in detail:
                     dt = None
                     if timestamp_str:
                         try:
@@ -1172,6 +1182,50 @@ def get_already_submitted(cooldown_days=90):
     return excluded
 
 
+def browser_name():
+    override = os.getenv("OUTREACH_BROWSER")
+    name = override or ("chromium" if os.getenv("CI") == "true" or sys.platform != "darwin" else "webkit")
+    if name not in ("chromium", "webkit"):
+        raise ValueError("OUTREACH_BROWSER must be chromium or webkit")
+    return name
+
+
+async def launch_browser(playwright):
+    name = browser_name()
+    options = {"headless": True}
+    if name == "chromium":
+        options["args"] = CHROMIUM_STEALTH_ARGS
+    return await getattr(playwright, name).launch(**options)
+
+
+def summarize_results(results, dry_run=False):
+    successes = sum(r.get("status") == ("DRY_RUN" if dry_run else "SUCCESS") for r in results)
+    return {"mode": "dry_run" if dry_run else "live", "attempted": len(results),
+            "confirmed_submissions": 0 if dry_run else successes,
+            "previews": successes if dry_run else 0, "unsuccessful": len(results)-successes,
+            "exit_code": 1 if results and not successes else 0}
+
+
+async def browser_smoke():
+    """Exercise real form filling against an owned in-memory fixture only."""
+    global SCREENSHOTS_DIR
+    with tempfile.TemporaryDirectory() as directory:
+        SCREENSHOTS_DIR = Path(directory)
+        async with async_playwright() as playwright:
+            browser = await launch_browser(playwright)
+            context = await browser.new_context()
+            await context.route("**/*", lambda route: route.abort())
+            page = await context.new_page()
+            await page.set_content("""<form onsubmit="window.submitted=true; return false">
+              <input name="name" placeholder="Name"><input name="email" type="email">
+              <textarea name="message"></textarea><button type="submit">Send</button></form>""")
+            ok, detail, _ = await fill_and_submit_form(page, {"Firm": "Owned Test Fixture", "State": "FL"}, is_dry_run=True)
+            assert ok and detail.startswith("DRY_RUN"), detail
+            assert not await page.evaluate("Boolean(window.submitted)"), "Dry run submitted the form"
+            await browser.close()
+    print(json.dumps({"browser": browser_name(), "dry_run_fixture": "passed", "external_submissions": 0}))
+
+
 async def run_engine(is_dry_run=False, limit=35, state_filter=None):
     print("=" * 75)
     print("  🤖 SURPLUS DOCKET — HIGH-PROBABILITY FORM OUTREACH ENGINE")
@@ -1183,7 +1237,7 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
 
     if not TARGETS_CSV.exists():
         print(f"❌ Targets CSV not found at {TARGETS_CSV}")
-        return
+        raise FileNotFoundError(TARGETS_CSV)
 
     dead_domains, latest_success = get_submission_history(cooldown_days=90)
     now = datetime.now()
@@ -1281,7 +1335,7 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
 
     results = []
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True, args=CHROMIUM_STEALTH_ARGS)
+        browser = await launch_browser(p)
         for i, target in enumerate(candidate_list, 1):
             print(f"[{i:02d}/{len(candidate_list):02d}] Processing {target.get('Firm')} ({target.get('State')})...")
             res = await process_target(browser, target, is_dry_run=is_dry_run)
@@ -1300,9 +1354,11 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
                 await asyncio.sleep(1)
         await browser.close()
 
-    # Append to log
-    file_exists = LOG_CSV.exists()
-    with open(LOG_CSV, "a", encoding="utf-8", newline="") as f:
+    # Preview data must never enter the production outreach ledger.
+    log_path = OUTREACH_DIR / "preview_artifacts" / "form_submissions_log.csv" if is_dry_run else LOG_CSV
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    file_exists = log_path.exists()
+    with open(log_path, "a", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["timestamp", "firm", "name", "state", "target_url", "form_url", "status", "detail", "variant"])
         if not file_exists:
             writer.writeheader()
@@ -1319,11 +1375,14 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
                 "variant": r.get("variant", ""),
             })
 
-    success_count = sum(1 for r in results if r["status"] == "SUCCESS")
+    summary = summarize_results(results, is_dry_run)
+    success_count = summary["previews"] if is_dry_run else summary["confirmed_submissions"]
     print("\n" + "=" * 75)
     print(f"  🏁 BATCH COMPLETE: {success_count}/{len(candidate_list)} processed successfully")
-    print(f"  Log saved to: {LOG_CSV}")
+    print(f"  Log saved to: {log_path}")
+    print(json.dumps(summary, sort_keys=True))
     print("=" * 75)
+    return summary["exit_code"]
 
 
 if __name__ == "__main__":
@@ -1333,4 +1392,11 @@ if __name__ == "__main__":
         if arg.startswith("--limit="):
             limit_val = int(arg.split("=")[1])
     
-    asyncio.run(run_engine(is_dry_run=dry_run, limit=limit_val))
+    if limit_val < 1 or limit_val > 100:
+        raise SystemExit("Batch limit must be between 1 and 100")
+    if "--browser-smoke" in sys.argv:
+        if not dry_run:
+            raise SystemExit("--browser-smoke requires --dry-run")
+        asyncio.run(browser_smoke())
+    else:
+        raise SystemExit(asyncio.run(run_engine(is_dry_run=dry_run, limit=limit_val)) or 0)

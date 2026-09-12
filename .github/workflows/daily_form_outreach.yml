@@ -17,6 +17,10 @@ on:
         type: boolean
         default: false
 
+concurrency:
+  group: outreach-production-ledger
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -45,15 +49,18 @@ jobs:
           playwright install --with-deps chromium
 
       - name: Execute Automated Legal Outreach Batch
+        env:
+          BATCH_LIMIT: ${{ inputs.limit || '12' }}
         run: |
-          LIMIT="${{ github.event.inputs.limit || '12' }}"
+          LIMIT="$BATCH_LIMIT"
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-            python outreach/form_outreach_engine.py --dry-run --limit=$LIMIT
+            python outreach/form_outreach_engine.py --dry-run --limit="$LIMIT"
           else
-            python outreach/form_outreach_engine.py --limit=$LIMIT
+            python outreach/form_outreach_engine.py --limit="$LIMIT"
           fi
 
       - name: Commit & Push Updated Submission Logs & Screenshots
+        if: always() && github.ref == 'refs/heads/main' && inputs.dry_run != true
         run: |
           git config --global user.name "Surplus Docket Outreach Bot"
           git config --global user.email "outreach@surplusdocket.com"
@@ -65,5 +72,7 @@ jobs:
         if: always()
         with:
           name: outreach-submission-proofs
-          path: outreach/form_screenshots/
+          path: |
+            outreach/form_screenshots/
+            outreach/preview_artifacts/
           retention-days: 30

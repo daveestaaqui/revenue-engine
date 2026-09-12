@@ -17,7 +17,6 @@ import argparse
 import json
 import os
 import re
-import sys
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -131,32 +130,13 @@ def submit_to_indexnow(
 
 
 def ping_search_engines(sitemap_url: str = f"https://{DEFAULT_HOST}/sitemap.xml", dry_run: bool = False) -> Dict[str, Any]:
-    """Pings Google and Bing with updated sitemap location."""
-    endpoints = {
-        "google": f"https://www.google.com/ping?sitemap={urllib.parse.quote(sitemap_url, safe='')}",
-        "bing": f"https://www.bing.com/ping?sitemap={urllib.parse.quote(sitemap_url, safe='')}"
-    }
-
-    results = {}
-    for name, endpoint in endpoints.items():
-        if dry_run:
-            results[name] = {"status": "dry_run_success", "status_code": 200, "url": endpoint}
-            continue
-
-        req = urllib.request.Request(endpoint, headers={"User-Agent": "SurplusDocket-Submitter/1.0"})
-        try:
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                results[name] = {"status": "success", "status_code": resp.getcode()}
-        except urllib.error.HTTPError as e:
-            results[name] = {"status": "http_error", "status_code": e.code}
-        except Exception as ex:
-            results[name] = {"status": "failed", "error": str(ex)}
-
-    return results
+    """Legacy compatibility API: these unauthenticated endpoints were retired."""
+    return {name: {"status": "retired_use_robots_and_webmaster_tools", "sitemap_url": sitemap_url}
+            for name in ("google", "bing")}
 
 
 def parse_markdown_metadata(content: str) -> Dict[str, Any]:
-    """Parses header comment metadata from syndication markdown."""
+    """Parses header comment or frontmatter metadata from syndication markdown."""
     meta = {
         "platform": "",
         "title": "",
@@ -164,7 +144,7 @@ def parse_markdown_metadata(content: str) -> Dict[str, Any]:
         "tags": [],
         "body": ""
     }
-    header_match = re.search(r"<!--(.*?)-->", content, re.DOTALL)
+    header_match = re.search(r"<!--(.*?)-->", content, re.DOTALL) or re.search(r"^---\s*\n(.*?)\n---", content, re.DOTALL)
     if header_match:
         lines = header_match.group(1).strip().splitlines()
         for line in lines:
@@ -182,7 +162,8 @@ def parse_markdown_metadata(content: str) -> Dict[str, Any]:
                     meta["tags"] = [t.strip() for t in val.split(",") if t.strip()]
 
     # Extract body without the metadata block
-    body_content = re.sub(r"<!--(.*?)-->", "", content, flags=re.DOTALL).strip()
+    body_content = re.sub(r"<!--(.*?)-->", "", content, flags=re.DOTALL)
+    body_content = re.sub(r"^---\s*\n(.*?)\n---", "", body_content, flags=re.DOTALL).strip()
     meta["body"] = body_content
     return meta
 
@@ -401,12 +382,36 @@ def save_submission_registry(registry_data: Dict[str, Any]) -> None:
     REGISTRY_PATH.write_text(json.dumps(registry_data, indent=2), encoding="utf-8")
 
 
+def get_published_targets(registry: Dict[str, Any]) -> set:
+    """Extract set of (platform, identifier) already successfully published."""
+    published = set()
+    for entry in registry.get("published_articles", []):
+        plat = entry.get("platform", "").lower()
+        key = (entry.get("canonical_url") or entry.get("title", "")).strip().lower()
+        if plat and key:
+            published.add((plat, key))
+    for run in registry.get("runs", []):
+        for item in run.get("syndications", []):
+            if item.get("status") == "success":
+                plat = item.get("platform", "").lower()
+                c_url = item.get("canonical_url", "").strip().lower()
+                title = item.get("title", "").strip().lower()
+                if plat and c_url:
+                    published.add((plat, c_url))
+                elif plat and title:
+                    published.add((plat, title))
+    return published
+
+
 def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
     """
     Master coordinator: runs IndexNow, search engine pings, Dev.to/Medium syndication,
-    and records results in submission_registry.json.
+    and records results in submission_registry.json with deduplication.
     """
     start_time = datetime.now(timezone.utc).isoformat()
+    registry = load_submission_registry()
+    published_targets = get_published_targets(registry)
+
     urls = parse_sitemap_urls()
     print(f"[*] Ingested {len(urls)} URLs from sitemap for search engine indexing.")
 
@@ -416,18 +421,32 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
     print(f"    -> IndexNow Status: {indexnow_res.get('status')} (Code: {indexnow_res.get('status_code')})")
 
     # 2. Ping Search Engines
-    print("[*] Pinging Google and Bing sitemap indexes...")
+    print("[*] Sitemap discovery uses robots.txt and webmaster tools; legacy pings are retired.")
     ping_res = ping_search_engines(dry_run=dry_run)
     for name, stat in ping_res.items():
         print(f"    -> {name.capitalize()}: {stat.get('status')} ({stat.get('status_code', 'N/A')})")
 
-    # 3. Read syndication articles
+    # 3. Read syndication articles with deduplication
     syndication_results = []
     if SYNDICATE_DIR.exists():
         for md_file in sorted(SYNDICATE_DIR.glob("*.md")):
             content = md_file.read_text(encoding="utf-8")
             meta = parse_markdown_metadata(content)
             platform = meta.get("platform", "").lower()
+            canon = meta.get("canonical_url", "").strip().lower()
+            title = meta.get("title", "").strip().lower()
+
+            target_plat = "dev.to" if (platform == "dev_to" or "dev_to" in md_file.name) else ("medium" if (platform == "medium" or "medium" in md_file.name) else platform)
+
+            if not dry_run and ((target_plat, canon) in published_targets or (target_plat, title) in published_targets):
+                syndication_results.append({
+                    "platform": target_plat,
+                    "title": meta.get("title", ""),
+                    "canonical_url": meta.get("canonical_url", ""),
+                    "status": "already_published",
+                    "note": "Skipped submission to prevent duplicate publication on this platform."
+                })
+                continue
 
             if platform == "dev_to" or "dev_to" in md_file.name:
                 dev_res = submit_dev_to_article(meta, dry_run=dry_run)
@@ -442,11 +461,11 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
     webhook_res = dispatch_webhook_syndication(syndication_results, dry_run=dry_run)
 
     # 5. Record run in persistent registry
-    registry = load_submission_registry()
     run_entry = {
         "timestamp": start_time,
         "mode": "dry_run" if dry_run else "live",
-        "urls_indexed_count": len(urls),
+        "urls_submitted_count": min(len(urls), 10000) if not dry_run and indexnow_res.get("status") == "success" else 0,
+        "urls_indexed_count": None,
         "indexnow": indexnow_res,
         "search_engine_pings": ping_res,
         "syndications": syndication_results,
@@ -454,18 +473,33 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
     }
     registry["runs"].append(run_entry)
     registry["last_run_timestamp"] = start_time
-    registry["total_submissions"] = registry.get("total_submissions", 0) + len(urls)
+    registry["total_submissions"] = registry.get("total_submissions", 0) + run_entry["urls_submitted_count"]
+    # Update persistent published_articles list for newly successful publications
+    published_list = registry.setdefault("published_articles", [])
+    for r in syndication_results:
+        if r.get("status") == "success":
+            published_list.append({
+                "platform": r.get("platform", ""),
+                "title": r.get("title", ""),
+                "canonical_url": r.get("canonical_url", ""),
+                "published_at": start_time,
+                "url": r.get("url", "")
+            })
     # Retain last 30 runs to avoid file bloat
     registry["runs"] = registry["runs"][-30:]
-    save_submission_registry(registry)
+    if not dry_run:
+        save_submission_registry(registry)
 
     summary = {
         "timestamp": start_time,
-        "urls_indexed": len(urls),
+        "urls_indexed": None,
+        "urls_submitted": run_entry["urls_submitted_count"],
         "indexnow_status": indexnow_res.get("status"),
         "search_engine_pings": {k: v.get("status") for k, v in ping_res.items()},
-        "syndicated_articles_count": len(syndication_results),
-        "registry_saved": str(REGISTRY_PATH)
+        "syndicated_articles_count": sum(r.get("status") == "success" for r in syndication_results),
+        "articles_attempted": len(syndication_results),
+        "unconfigured_channels": sorted({r["platform"] for r in syndication_results if r.get("status", "").startswith("simulated_no_")}),
+        "registry_saved": str(REGISTRY_PATH) if not dry_run else None
     }
     return summary
 
@@ -481,3 +515,7 @@ if __name__ == "__main__":
     result = run_article_and_link_pipeline(dry_run=args.dry_run)
     print("\n✅ Execution Summary:")
     print(json.dumps(result, indent=2))
+    if result["unconfigured_channels"]:
+        print("::warning title=Syndication not configured::" + ", ".join(result["unconfigured_channels"]) + " have no publishing credentials; generated drafts are not published backlinks.")
+    if not args.dry_run and result["indexnow_status"] != "success":
+        raise SystemExit(1)
