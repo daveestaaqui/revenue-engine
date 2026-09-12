@@ -173,3 +173,4 @@
 [2026-09-12 06:21:10]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Valencia Cushing paid you $500.00'): Sender 'venmo@venmo.com' is not in verified target database and not a statutory inquiry
 [2026-09-12 11:05:59]   ⏭️ Skipped non-prospect from xfinity@account.xfinity.com (Sub: 'Thanks for your payment'): Message identified as automated notification, bounce, or system alert
 [2026-09-12 11:05:59]   ⏭️ Skipped non-prospect from noreply@tm.openai.com (Sub: 'Your OpenAI API account has been funded'): Message identified as automated notification, bounce, or system alert
+[2026-09-12 14:07:59]   🧹 Auto-unsubscribed and cleared marketing email from info@aeternum.site
