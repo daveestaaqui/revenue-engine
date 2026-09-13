@@ -54,7 +54,7 @@ jobs:
 
       - name: 5. Execute Article Submissions, IndexNow & Search Engine Indexing
         env:
-          DEV_TO_API_KEY: ${{ secrets.DEV_TO_API_KEY }}
+          DEV_TO_API_KEY: ${{ secrets.DEV_TO_API_KEY || secrets.DEVTO_API_KEY }}
           MEDIUM_TOKEN: ${{ secrets.MEDIUM_TOKEN }}
           SYNDICATION_WEBHOOK_URL: ${{ secrets.SYNDICATION_WEBHOOK_URL }}
         run: |

@@ -177,7 +177,7 @@ def submit_dev_to_article(
     Submits an article to Dev.to REST API (POST https://dev.to/api/articles).
     Includes canonical_url to preserve SEO link equity and avoid duplicate penalties.
     """
-    key = api_key or os.environ.get("DEV_TO_API_KEY", "")
+    key = api_key or os.environ.get("DEV_TO_API_KEY", "") or os.environ.get("DEVTO_API_KEY", "")
     title = article_meta.get("title", "")
     canonical_url = article_meta.get("canonical_url", "")
     body = article_meta.get("body", "")
