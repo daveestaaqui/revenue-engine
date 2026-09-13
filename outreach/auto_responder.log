@@ -179,3 +179,6 @@
 [2026-09-12 23:24:14]   ⏭️ Skipped non-prospect from no-reply@messaging.peacocktv.com (Sub: 'A new device is signed in to your Peacoc'): Message identified as automated notification, bounce, or system alert
 [2026-09-12 23:24:14]   ⏭️ Skipped non-prospect from no-reply@messaging.peacocktv.com (Sub: 'Your Peacock Password Has Been Updated'): Message identified as automated notification, bounce, or system alert
 [2026-09-13 06:34:25]   ⏭️ Skipped non-prospect from bingwb@microsoft.com (Sub: 'Improve the search presence of surplusdo'): Message identified as automated notification, bounce, or system alert
+[2026-09-13 12:18:24]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
+[2026-09-13 12:18:25]   ⏭️ Skipped non-prospect from NoReply@questdiagnostics.com (Sub: 'Your lab test results are now available'): Message identified as automated notification, bounce, or system alert
+[2026-09-13 12:18:25]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
