@@ -304,7 +304,7 @@ surplusdocket.com • dockets@surplusdocket.com
                                                         </a>
                                                     </div>
                                                     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; font-weight: 700; color: #64748b; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px;">
-                                                        Court Registry Intelligence • Daily B2B Feeds
+                                                        Court Registry Intelligence
                                                     </div>
                                                 </td>
                                             </tr>

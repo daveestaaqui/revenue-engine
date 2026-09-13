@@ -1039,6 +1039,7 @@ Play message: https://voice.google.com/message/4956"""
 
         with patch("outreach.auto_responder_and_draft_cleaner.send_response_email") as mock_send, \
              patch("outreach.auto_responder_and_draft_cleaner.is_within_sending_hours", return_value=(False, "Closed")), \
+             patch("outreach.auto_responder_and_draft_cleaner.record_notable_email_activity"), \
              patch("outreach.auto_responder_and_draft_cleaner.AUTO_SEND", True):
             mock_send.return_value = (True, "Delivered")
             check_and_create_auto_responses(
