@@ -83,7 +83,7 @@ CANDIDATES = [
     ("TN", "Donati Law, PLLC", "donatilaw.com", "Donald A. Donati", "Civil Litigation & Trial Practice", 4, "/contact/"),
     ("TN", "Farris Bobango PLC", "farrisbobango.com", "John Bobango", "Real Estate Litigation & Creditors Rights", 1, "/contact/"),
     ("TN", "The Crone Law Firm, PLC", "cronelawfirmplc.com", "Alan G. Crone", "Commercial Litigation & Property Disputes", 4, "/contact/"),
-    ("TN", "Chancery Court Surplus Practice Group (Davidson)", "carverlawtn.com", "Mark A. Carver", "Chancery Surplus Recovery under 67-5-2510", 1, "/contact/"),
+    ("TN", "Chancery Court Surplus Practice Group (Davidson)", "carverlawtn.com", "Mark A. Carver", "Chancery Surplus Recovery under 67-5-2501", 1, "/contact/"),
     ("TN", "West Tennessee Tax Sale Group (Shelby)", "yoakumlaw.com", "Brian L. Yoakum", "Tax Sale Excess Proceeds Litigation", 1, "/contact/"),
     ("TN", "Brock & Scott, PLLC (TN)", "brockandscott.com", "Thomas Brock", "Foreclosure, Creditors Rights & Real Estate", 1, "/contact/"),
     ("TN", "Marinosci Law Group, P.C. (TN)", "mlg-defaultlaw.com", "Gary Marinosci", "Foreclosure, Title & Creditors Rights", 1, "/contact/"),

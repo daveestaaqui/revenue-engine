@@ -743,8 +743,14 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
     if s_dom == "surplusdocket.com" or s_email == "sandwichfitness@gmail.com":
         return False, "Self-sent or internal domain transmission", None, None
 
-    # 2. Check if it is an official statutory website inquiry from surplusdocket.com/inquiry.html
-    # (Checked first because third-party delivery relays like FormSubmit forward these)
+    # 2. Hard bounce and delivery failure filter immediately (short-circuit before parsing)
+    is_gv = (s_email == "voice-noreply@google.com" and "voicemail" in subject_raw.lower())
+    is_form = any(k in s_dom for k in ("formsubmit.co", "formspree.io"))
+    if not (is_gv or is_form) and is_automated_receipt_or_bounce(msg, s_email, subject_raw):
+        return False, "Message identified as automated notification, bounce, or system alert", None, None
+
+    # 3. Check if it is an official statutory website inquiry from surplusdocket.com/inquiry.html
+    # (Checked first among valid senders because third-party delivery relays forward these)
     inquiry_data = parse_statutory_inquiry(subject_raw, text_body)
     if inquiry_data and inquiry_data.get("email"):
         inq_email = inquiry_data.get("email", "").lower().strip()
@@ -752,14 +758,10 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
         if inq_dom not in SYSTEM_BLOCKLIST_DOMAINS and inq_email != "sandwichfitness@gmail.com" and inq_dom != "surplusdocket.com":
             return True, "Verified statutory website inquiry", None, inquiry_data
 
-    # 3. Check if it is a verified Google Voice voicemail notification for (508) 419-3178
+    # 4. Check if it is a verified Google Voice voicemail notification for (508) 419-3178
     gv_inquiry = parse_google_voice_voicemail(sender_email, subject_raw, text_body, msg=msg)
     if gv_inquiry:
         return True, "Verified Google Voice voicemail inquiry", None, gv_inquiry
-
-    # 4. Filter all automated delivery notices, bounces, and system messages
-    if is_automated_receipt_or_bounce(msg, s_email, subject_raw):
-        return False, "Message identified as automated notification, bounce, or system alert", None, None
 
     # 6. Check if email was sent directly to inquiries@surplusdocket.com or aubrey.hayes@surplusdocket.com
     # (Now safe from bounces and system alerts because steps 4 & 5 ran above)

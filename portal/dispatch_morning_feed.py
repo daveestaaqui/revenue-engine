@@ -175,42 +175,42 @@ def compose_email_content(subscriber, stats, date_str):
         else:
             urgency_badge = '<span style="display: inline-block; background-color: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; font-family: -apple-system, sans-serif; letter-spacing: 0.02em;">Verified Docket</span>'
 
-        statute_markup = f'''<div style="margin-top: 5px;">
-            <span style="color: #64748b; font-size: 11px;">Statute: </span>
-            <span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; font-weight: 600; color: #1b365d; background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 2px 7px; border-radius: 4px;">{d["statute"]}</span>
+        statute_markup = f'''<div style="margin-top: 4px;">
+            <span style="color: #64748b; font-size: 10px; text-transform: uppercase; font-weight: 700;">Statute: </span>
+            <span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; font-weight: 600; color: #1b365d; background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 2px 6px; border-radius: 4px;">{d["statute"]}</span>
         </div>''' if d.get("statute") else ''
 
         dockets_html += f"""
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-bottom: 12px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(12,24,39,0.04);">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="docket-card" style="width: 100%; margin-bottom: 12px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(12,24,39,0.04);">
             <tr>
-                <td style="padding: 13px 18px; background-color: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+                <td class="docket-header-td" style="padding: 11px 16px; background-color: #f8fafc; border-bottom: 1px solid #e2e8f0;">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
-                        <tr>
-                            <td align="left" valign="middle" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-                                <span style="display: inline-block; background-color: #edf3ec; color: #365134; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 4px; border: 1px solid #c2d9c0; margin-right: 8px;">{d['state']}</span>
+                        <tr class="docket-header-row">
+                            <td align="left" valign="middle" class="docket-col-left" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                <span style="display: inline-block; background-color: #edf3ec; color: #365134; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 4px; border: 1px solid #c2d9c0; margin-right: 6px;">{d['state']}</span>
                                 <a href="{d['clerk_url']}" target="_blank" style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; font-weight: 700; color: #1b365d; text-decoration: none; border-bottom: 1px dotted #1b365d;">{d['docket']}</a>
-                                <span style="color: #64748b; font-size: 13px; font-weight: 500; margin-left: 6px;">• {d['county']} County</span>
+                                <span style="color: #64748b; font-size: 12px; font-weight: 500; margin-left: 6px;">• {d['county']} County</span>
                             </td>
-                            <td align="right" valign="middle" style="text-align: right;">
-                                <div style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 17px; font-weight: 900; color: #4c6d48; line-height: 1.2;">${d['amount']:,.2f}</div>
-                                <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; font-family: -apple-system, sans-serif; margin-top: 2px;">Unencumbered Equity</div>
+                            <td align="right" valign="middle" class="docket-col-right" style="text-align: right;">
+                                <span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 16px; font-weight: 900; color: #365134;">${d['amount']:,.2f}</span>
+                                <span style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #94a3b8; font-family: -apple-system, sans-serif; margin-left: 3px;">Unencumbered</span>
                             </td>
                         </tr>
                     </table>
                 </td>
             </tr>
             <tr>
-                <td style="padding: 13px 18px; font-size: 12px; color: #475569; background-color: #ffffff;">
+                <td class="docket-body-td" style="padding: 12px 16px; font-size: 12px; color: #475569; background-color: #ffffff;">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
-                        <tr>
-                            <td align="left" valign="middle" style="line-height: 1.5; font-family: -apple-system, sans-serif;">
-                                <span style="color: #64748b; font-size: 11px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.03em;">Record Titleholder:</span> <strong style="color: #0f172a; font-size: 13px;">{d['owner']}</strong>
+                        <tr class="docket-body-row">
+                            <td align="left" valign="middle" class="docket-body-left" style="line-height: 1.45; font-family: -apple-system, sans-serif;">
+                                <span style="color: #64748b; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.03em;">Record Titleholder:</span> <strong style="color: #0f172a; font-size: 13px;">{d['owner']}</strong>
                                 {statute_markup}
                             </td>
-                            <td align="right" valign="middle" style="text-align: right; white-space: nowrap;">
-                                <div style="margin-bottom: 6px;">{urgency_badge}</div>
+                            <td align="right" valign="middle" class="docket-body-right" style="text-align: right;">
+                                <div style="margin-bottom: 5px;">{urgency_badge}</div>
                                 <div>
-                                    <a href="{d['clerk_url']}" target="_blank" style="font-size: 11px; font-weight: 700; color: #1b365d; text-decoration: none; border-bottom: 1px solid #1b365d;">
+                                    <a href="{d['clerk_url']}" target="_blank" class="docket-cta-btn" style="display: inline-block; font-size: 11px; font-weight: 700; color: #1b365d; text-decoration: none; background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 5px 11px; border-radius: 5px;">
                                         Review Official Registry &rarr;
                                     </a>
                                 </div>
@@ -260,21 +260,128 @@ surplusdocket.com • dockets@surplusdocket.com
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surplus Docket Intelligence Dispatch</title>
     <style type="text/css">
-        @media only screen and (max-width: 680px) {{
-            .email-wrapper {{ width: 100% !important; }}
-            .email-outer-td {{ padding: 8px 4px !important; }}
-            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
-            .content-cell {{ padding: 22px 16px !important; }}
-            .header-cell {{ padding: 18px 16px !important; }}
-            .nav-cell {{ padding: 8px 14px !important; }}
-            .nav-link {{ font-size: 10px !important; }}
-            .nav-date {{ display: none !important; }}
-            .header-tag-cell {{ display: none !important; }}
-            .metrics-table td {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin-bottom: 8px !important; }}
-            .metrics-spacer {{ display: none !important; }}
-            .deliverables-table td {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin-bottom: 8px !important; }}
-            .deliverables-spacer {{ display: none !important; }}
-            .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
+        body, table, td, p, a, li, blockquote {{
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }}
+        table, td {{
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }}
+        img {{
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }}
+        @media only screen and (max-width: 640px) {{
+            body {{
+                padding: 0 !important;
+                margin: 0 !important;
+                background-color: #ffffff !important;
+            }}
+            .email-wrapper {{
+                width: 100% !important;
+                background-color: #ffffff !important;
+            }}
+            .email-outer-td {{
+                padding: 0 !important;
+            }}
+            .email-container {{
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+            }}
+            .content-cell {{
+                padding: 20px 14px !important;
+            }}
+            .header-cell {{
+                padding: 16px 14px !important;
+            }}
+            .nav-cell {{
+                padding: 8px 14px !important;
+            }}
+            .nav-date {{
+                display: none !important;
+            }}
+            .footer-cell {{
+                padding: 22px 14px !important;
+            }}
+            .header-tag-cell {{
+                display: none !important;
+            }}
+            .header-mobile-tag {{
+                display: inline-block !important;
+            }}
+            .docket-col-left {{
+                display: block !important;
+                width: 100% !important;
+                text-align: left !important;
+            }}
+            .docket-col-right {{
+                display: block !important;
+                width: 100% !important;
+                text-align: left !important;
+                margin-top: 6px !important;
+                padding-top: 6px !important;
+                border-top: 1px dashed #e2e8f0 !important;
+            }}
+            .docket-body-left {{
+                display: block !important;
+                width: 100% !important;
+                text-align: left !important;
+            }}
+            .docket-body-right {{
+                display: block !important;
+                width: 100% !important;
+                text-align: left !important;
+                margin-top: 10px !important;
+                padding-top: 8px !important;
+                border-top: 1px dashed #e2e8f0 !important;
+            }}
+            .docket-body-right div {{
+                text-align: left !important;
+            }}
+            .docket-cta-btn {{
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
+                padding: 9px 0 !important;
+                box-sizing: border-box !important;
+            }}
+            .metric-cell {{
+                padding: 10px 8px !important;
+            }}
+            .metric-val {{
+                font-size: 16px !important;
+            }}
+            .metric-label {{
+                font-size: 9px !important;
+            }}
+            .deliverables-table td {{
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                margin-bottom: 8px !important;
+            }}
+            .deliverables-spacer {{
+                display: none !important;
+            }}
+            .btn-cta {{
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                margin: 8px 0 !important;
+                text-align: center !important;
+                padding: 13px 16px !important;
+            }}
+            .btn-cta-secondary {{
+                margin-left: 0 !important;
+            }}
         }}
     </style>
 </head>
@@ -282,12 +389,12 @@ surplusdocket.com • dockets@surplusdocket.com
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
         <tr>
             <td align="center" class="email-outer-td" style="padding: 16px 8px;">
-                <!-- Main Card Container: 680px max for spacious, modern readability -->
+                <!-- Main Card Container: 680px max for desktop, 100% fluid edge-to-edge on mobile -->
                 <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08);">
                     
-                    <!-- Top Brand Header (Slick White Header Matching SurplusDocket.com) -->
+                    <!-- Top Brand Header: High-contrast white backdrop matching website -->
                     <tr>
-                        <td class="header-cell" style="background-color: #ffffff; padding: 22px 32px; border-bottom: 2px solid #1b365d;">
+                        <td class="header-cell" style="background-color: #ffffff; padding: 20px 28px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                                 <tr>
                                     <td align="left" valign="middle" style="padding: 0;">
@@ -295,17 +402,25 @@ surplusdocket.com • dockets@surplusdocket.com
                                             <tr>
                                                 <td valign="middle" style="padding-right: 14px;">
                                                     <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none; display: block;">
-                                                        <img src="https://surplusdocket.com/assets/logo_surplus_docket.png" alt="Surplus Docket Crest" width="46" height="36" style="display: block; width: 46px; height: auto; max-height: 38px; border: 0;" />
+                                                        <!-- White container tile ensures high contrast in all clients and dark mode -->
+                                                        <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 4px 6px; display: inline-block; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+                                                            <img src="https://surplusdocket.com/assets/logo_surplus_docket.png" alt="Surplus Docket Crest" width="46" height="36" style="display: block; width: 46px; height: auto; max-height: 38px; border: 0;" />
+                                                        </div>
                                                     </a>
                                                 </td>
                                                 <td valign="middle" style="line-height: 1.15;">
-                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -0.02em; margin: 0;">
+                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 21px; letter-spacing: -0.02em; margin: 0;">
                                                         <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none;">
                                                             <span style="color: #4c6d48; font-weight: 800;">SURPLUS</span> <span style="color: #1b365d; font-weight: 900;">DOCKET</span>
                                                         </a>
                                                     </div>
                                                     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; font-weight: 700; color: #64748b; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px;">
                                                         Court Registry Intelligence
+                                                    </div>
+                                                    <div class="header-mobile-tag" style="display: none; margin-top: 5px;">
+                                                        <span style="display: inline-block; background-color: #edf3ec; border: 1px solid #c2d9c0; color: #365134; font-family: -apple-system, sans-serif; font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">
+                                                            7:00 AM EST • DAILY BRIEFING
+                                                        </span>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -323,14 +438,14 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Secondary Quick Navigation Bar -->
                     <tr>
-                        <td class="nav-cell" style="background-color: #f8fafc; padding: 8px 32px; border-bottom: 1px solid #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
+                        <td class="nav-cell" style="background-color: #f8fafc; padding: 8px 28px; border-bottom: 1px solid #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td align="left" style="color: #64748b; white-space: nowrap;">
                                         <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" class="nav-link" style="color: #1b365d; text-decoration: none; font-weight: 700;">Practitioner Toolkit</a>
-                                        <span style="color: #cbd5e1; margin: 0 8px;">•</span>
+                                        <span style="color: #cbd5e1; margin: 0 6px;">•</span>
                                         <a href="https://surplusdocket.com/api-documentation.html" target="_blank" class="nav-link" style="color: #526174; text-decoration: none;">API Docs</a>
-                                        <span style="color: #cbd5e1; margin: 0 8px;">•</span>
+                                        <span style="color: #cbd5e1; margin: 0 6px;">•</span>
                                         <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" class="nav-link" style="color: #526174; text-decoration: none;">Billing Portal</a>
                                     </td>
                                     <td align="right" class="nav-date" style="color: #94a3b8; font-size: 11px; font-weight: 500; white-space: nowrap;">
@@ -343,39 +458,41 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Main Content Body -->
                     <tr>
-                        <td class="content-cell" style="padding: 28px 32px; background-color: #ffffff;">
+                        <td class="content-cell" style="padding: 26px 28px; background-color: #ffffff;">
                             <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Good morning <b>{name}</b>{firm_suffix},</p>
-                            <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 22px 0;">
+                            <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
                                 Here is your verified daily court intelligence briefing for <b>{date_str}</b>. Public filings across 6 core states have been audited against official clerk registries, with senior mortgages, institutional liens, and junior municipal encumbrances filtered upstream.
                             </p>
 
-                            <!-- Benchmark Metrics Grid (4 items spanning full width) -->
-                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="metrics-table" style="width: 100%; margin: 18px 0 24px 0;">
+                            <!-- Benchmark Metrics: 2x2 Grid (Flawless Flow on Both Mobile & Desktop) -->
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 16px 0 22px 0;">
                                 <tr>
-                                    <td width="23%" style="padding: 14px 10px; background-color: #edf3ec; border: 1px solid #c2d9c0; border-radius: 8px; text-align: center;">
-                                        <div style="font-size: 18px; font-weight: 900; color: #365134; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{total_bal_fmt}</div>
-                                        <div style="font-size: 10px; text-transform: uppercase; color: #4c6d48; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Unencumbered Equity</div>
+                                    <td width="49%" class="metric-cell" style="padding: 12px 10px; background-color: #edf3ec; border: 1px solid #c2d9c0; border-radius: 8px; text-align: center;">
+                                        <div class="metric-val" style="font-size: 18px; font-weight: 900; color: #365134; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{total_bal_fmt}</div>
+                                        <div class="metric-label" style="font-size: 10px; text-transform: uppercase; color: #4c6d48; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Audited Surplus Pool</div>
                                     </td>
-                                    <td width="2%" class="metrics-spacer" style="width: 8px;"></td>
-                                    <td width="23%" style="padding: 14px 10px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center;">
-                                        <div style="font-size: 18px; font-weight: 900; color: #1b365d; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{rec_count} Files</div>
-                                        <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Audited Dockets</div>
+                                    <td width="2%" style="width: 8px;"></td>
+                                    <td width="49%" class="metric-cell" style="padding: 12px 10px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center;">
+                                        <div class="metric-val" style="font-size: 18px; font-weight: 900; color: #1b365d; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{rec_count} Files</div>
+                                        <div class="metric-label" style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Verified Dockets</div>
                                     </td>
-                                    <td width="2%" class="metrics-spacer" style="width: 8px;"></td>
-                                    <td width="23%" style="padding: 14px 10px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center;">
-                                        <div style="font-size: 18px; font-weight: 900; color: #1b365d; font-family: -apple-system, sans-serif;">6 States</div>
-                                        <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">FL • TX • GA • NC • TN • CA</div>
+                                </tr>
+                                <tr><td colspan="3" style="height: 8px; font-size: 0; line-height: 0;">&nbsp;</td></tr>
+                                <tr>
+                                    <td width="49%" class="metric-cell" style="padding: 12px 10px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center;">
+                                        <div class="metric-val" style="font-size: 17px; font-weight: 900; color: #1b365d; font-family: -apple-system, sans-serif;">6 Core States</div>
+                                        <div class="metric-label" style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">FL • TX • GA • NC • TN • CA</div>
                                     </td>
-                                    <td width="2%" class="metrics-spacer" style="width: 8px;"></td>
-                                    <td width="23%" style="padding: 14px 10px; background-color: #edf3ec; border: 1px solid #c2d9c0; border-radius: 8px; text-align: center;">
-                                        <div style="font-size: 18px; font-weight: 900; color: #365134; font-family: -apple-system, sans-serif;">Zero Liens</div>
-                                        <div style="font-size: 10px; text-transform: uppercase; color: #4c6d48; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Bank Liens Filtered</div>
+                                    <td width="2%" style="width: 8px;"></td>
+                                    <td width="49%" class="metric-cell" style="padding: 12px 10px; background-color: #edf3ec; border: 1px solid #c2d9c0; border-radius: 8px; text-align: center;">
+                                        <div class="metric-val" style="font-size: 17px; font-weight: 900; color: #365134; font-family: -apple-system, sans-serif;">Zero Liens</div>
+                                        <div class="metric-label" style="font-size: 10px; text-transform: uppercase; color: #4c6d48; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Bank Liens Filtered</div>
                                     </td>
                                 </tr>
                             </table>
 
                             <!-- Section Title -->
-                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 26px 0 12px 0;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 24px 0 12px 0;">
                                 <tr>
                                     <td align="left" valign="middle">
                                         <div style="font-size: 12px; font-weight: 800; color: #1b365d; text-transform: uppercase; letter-spacing: 0.06em;">
@@ -390,11 +507,11 @@ surplusdocket.com • dockets@surplusdocket.com
                                 </tr>
                             </table>
 
-                            <!-- Wide Featured Docket Cards -->
+                            <!-- Responsive Docket Cards (No Scrunching on Mobile) -->
                             {dockets_html}
 
                             <!-- Attached Deliverables Card -->
-                            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 18px 20px; margin: 24px 0 20px 0;">
+                            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px 18px; margin: 22px 0 20px 0;">
                                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                                     <tr>
                                         <td style="padding-bottom: 10px;">
@@ -432,11 +549,11 @@ surplusdocket.com • dockets@surplusdocket.com
                             </div>
 
                             <!-- Action Buttons -->
-                            <div style="text-align: center; margin: 28px 0 22px 0;">
-                                <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
+                            <div style="text-align: center; margin: 26px 0 20px 0;">
+                                <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 24px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
                                     Access Practitioner Toolkit &rarr;
                                 </a>
-                                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
+                                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" class="btn-cta btn-cta-secondary" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 11px 20px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
                                     Subscriber Billing &amp; Seats
                                 </a>
                             </div>
@@ -446,7 +563,7 @@ surplusdocket.com • dockets@surplusdocket.com
                             </p>
 
                             <!-- Signature Block -->
-                            <div style="margin-top: 26px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #475569;">
+                            <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #475569;">
                                 <strong style="color: #1b365d; font-size: 13px;">Surplus Docket Intelligence</strong><br>
                                 <span style="font-size: 12px; color: #64748b;">Court Registry Ingestion &amp; Verification Desk</span><br>
                                 <a href="https://surplusdocket.com" target="_blank" style="color: #4c6d48; text-decoration: none; font-weight: 600;">surplusdocket.com</a> • <a href="mailto:dockets@surplusdocket.com" style="color: #1b365d; text-decoration: none;">dockets@surplusdocket.com</a>
@@ -456,7 +573,7 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Institutional Footer -->
                     <tr>
-                        <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
+                        <td class="footer-cell" style="background-color: #f8fafc; padding: 22px 28px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
                                 <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
                                 <a href="https://surplusdocket.com/api-documentation.html" target="_blank" style="color: #526174; text-decoration: none;">REST API Documentation</a> &nbsp;•&nbsp; 
@@ -507,7 +624,11 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
 
     if is_dry_run:
         print("[DRY RUN PREVIEW] For subscriber:", subscribers[0]["email"])
-        text_body, _ = compose_email_content(subscribers[0], stats, date_str)
+        text_body, html_body = compose_email_content(subscribers[0], stats, date_str)
+        preview_path = BASE_DIR / "output" / "daily_email_preview.html"
+        preview_path.parent.mkdir(parents=True, exist_ok=True)
+        preview_path.write_text(html_body, encoding="utf-8")
+        print(f"✓ Saved HTML email preview to: {preview_path}")
         print(f"Subject: {subject}\n")
         print("Body Sample (First 300 chars):")
         print(text_body[:300] + "...\n")

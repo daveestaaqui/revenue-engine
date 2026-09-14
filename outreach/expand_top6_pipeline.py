@@ -35,7 +35,7 @@ STATE_METROS = {
     "GA": "Georgia Superior Court & Tax Registry (§ 48-4-5)",
     "CA": "California County Board of Supervisors (§ 4675)",
     "NC": "North Carolina Superior Court Registry (§ 105-374)",
-    "TN": "Tennessee Chancery Court Registry (§ 67-5-2510)",
+    "TN": "Tennessee Chancery Court Registry (§ 67-5-2501)",
 }
 
 STATE_NAMES = {

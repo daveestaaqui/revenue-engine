@@ -127,7 +127,7 @@ def determine_conversion_rationale(target, score):
         "TX": "Tex. Tax Code § 34.04 (2-Year Court Registry Limit)",
         "GA": "O.C.G.A. § 48-4-5 (5-Year Interpleader Claims)",
         "NC": "N.C. Gen. Stat. § 105-374 (Superior Court Upset Bid Registry)",
-        "TN": "Tenn. Code Ann. § 67-5-2510 (Chancery Court Excess Actions)",
+        "TN": "Tenn. Code Ann. § 67-5-2501 (Chancery Court Excess Actions)",
         "CA": "Cal. Rev. & Tax Code § 4675 (1-Year Statutory Deadline)"
     }
     statute_ref = statutes.get(state, "Statutory Recovery Procedures")

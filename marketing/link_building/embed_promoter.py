@@ -37,7 +37,7 @@ Live Embed Hub: https://surplusdocket.com/embed/
 Direct Calculator Widget: https://surplusdocket.com/embed/surplus-calculator.html
 
 What it does for your site visitors:
-• Calculates statutory claim deadlines and fee caps across 6 states (FL § 197.582, TX § 34.04, CA § 4675, GA § 48-4-5, NC § 105-374, TN § 67-5-2510).
+• Calculates statutory claim deadlines and fee caps across 6 states (FL § 197.582, TX § 34.04, CA § 4675, GA § 48-4-5, NC § 105-374, TN § 67-5-2501).
 • 100% free, zero ads, zero cookies, zero user-registration required.
 • Responsive iframe that drops into any WordPress, Webflow, or custom HTML page in 30 seconds.
 

@@ -9,3 +9,4 @@ outreach/drafts/*.eml
 outreach/preview_artifacts/
 outreach/form_screenshots/
 site-health.json
+output/*.html

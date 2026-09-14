@@ -28,6 +28,10 @@ from outreach.weekly_marketing_report import (
 
 
 class TestWeeklyMarketingReport(unittest.TestCase):
+    def setUp(self):
+        # Deterministic reference timestamp aligned with fixture data
+        self.ref_now = datetime(2026, 9, 14, 12, 0, 0)
+
     def test_parse_iso_datetime(self):
         dt1 = parse_iso_datetime("2026-09-04T20:41:03.844631")
         self.assertIsNotNone(dt1)
@@ -44,7 +48,7 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertIsNone(parse_iso_datetime("invalid-date-format"))
 
     def test_collect_marketing_metrics_live_repo(self):
-        metrics = collect_marketing_metrics()
+        metrics = collect_marketing_metrics(now=self.ref_now)
         self.assertIsInstance(metrics, dict)
 
         # Pipeline targets check (100% verified active real law practices in Top 6 states)
@@ -86,7 +90,7 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertGreaterEqual(metrics["auto_sent_responses_past_7_days"], 2)
 
     def test_render_html_report(self):
-        metrics = collect_marketing_metrics()
+        metrics = collect_marketing_metrics(now=self.ref_now)
         html = render_html_report(metrics)
 
         self.assertIsInstance(html, str)
@@ -103,7 +107,7 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertIn("Authority & Link Building Engine", html)
 
     def test_render_plaintext_report(self):
-        metrics = collect_marketing_metrics()
+        metrics = collect_marketing_metrics(now=self.ref_now)
         text = render_plaintext_report(metrics)
 
         self.assertIsInstance(text, str)
@@ -121,7 +125,7 @@ class TestWeeklyMarketingReport(unittest.TestCase):
         self.assertIn("AUTHORITY & LINK BUILDING ENGINE:", text)
 
     def test_send_report_email_dry_run(self):
-        metrics = collect_marketing_metrics()
+        metrics = collect_marketing_metrics(now=self.ref_now)
         html = render_html_report(metrics)
         text = render_plaintext_report(metrics)
 

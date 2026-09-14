@@ -124,7 +124,7 @@ ARTICLES = [
         "title": "Why Institutional Lien Pre-Filtering Multiplies Recovery Law Firm ROI",
         "excerpt": "How raw county clerk lists waste hundreds of billable hours on mortgage servicers and bank liens, and how automated pre-filtering isolates recoverable owner equity.",
         "category": "Data Intelligence & Workflow",
-        "date": "2026-08-22",
+        "date": "2026-08-24",
         "read_time": "4 min read",
         "keywords": "surplus fund filtering, tax deed lead scrubbing, asset recovery automation, legal CRM surplus feed",
         "content_html": """
@@ -444,6 +444,133 @@ ARTICLES = [
             </a>
         </div>
         """
+    },
+    {
+        "slug": "bankruptcy-automatic-stay-surplus-funds-11-usc-362",
+        "title": "Bankruptcy Automatic Stays and Tax Sale Surplus Funds: 11 U.S.C. § 362 Analysis",
+        "excerpt": "How bankruptcy petitions filed before or after tax deed sales trigger the 11 U.S.C. § 362 automatic stay, impact court registry funds, and require relief from stay motions.",
+        "category": "Bankruptcy & Title Priority",
+        "date": "2026-09-13",
+        "read_time": "7 min read",
+        "keywords": "bankruptcy tax sale surplus, 11 USC 362 automatic stay excess proceeds, Chapter 7 trustee surplus funds, relief from stay tax deed surplus",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            When a property owner files for bankruptcy protection under Title 11 of the United States Code, the intersection between the federal bankruptcy estate and county tax sale surplus funds creates critical jurisdictional and procedural hurdles. Navigating the <strong>automatic stay under 11 U.S.C. § 362</strong> dictates whether excess proceeds belong to the bankruptcy trustee, secured creditors, or the debtor.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. Timing of the Bankruptcy Petition: Pre-Sale vs. Post-Sale</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            The procedural posture depends decisively on whether the debtor filed bankruptcy before or after the auction hammer fell:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-sm text-slate-700 mb-6">
+            <li><strong>Petition Filed Prior to Auction:</strong> Any tax sale conducted after the bankruptcy filing is void ab initio under 11 U.S.C. § 362(a), regardless of whether the county tax collector or clerk received actual notice. No valid surplus exists because the underlying sale is legally ineffective.</li>
+            <li><strong>Petition Filed After Auction, Prior to Disbursement:</strong> If the sale was completed and equitable title passed before the petition date, the former owner's remaining property right is converted into a claim against the surplus registry funds. This monetary claim becomes property of the bankruptcy estate under 11 U.S.C. § 541(a)(1).</li>
+        </ul>
+
+        <div class="bg-brand-canvas border-l-4 border-brand-green p-6 my-6 rounded-r-xl">
+            <p class="text-sm font-semibold text-brand-navy mb-1">Clerk Interpleader and Stay Relief Practice:</p>
+            <p class="text-xs text-slate-600">
+                When county clerks receive notice of an active Chapter 7 or Chapter 13 filing, they will freeze administrative disbursements. Counsel must either file a Motion for Relief from the Automatic Stay under 11 U.S.C. § 362(d) in the bankruptcy court or obtain a formal Notice of Abandonment under 11 U.S.C. § 554 before the state court clerk will release funds.
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. Chapter 7 Trustee Abandonment vs. Exemption Claims</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            In Chapter 7 liquidation proceedings, the panel trustee has first right to administer unencumbered surplus equity for the benefit of general unsecured creditors. However, if state or federal homestead exemptions (or wildcard exemptions under 11 U.S.C. § 522(d)(5)) shield the fund balance, counsel can successfully petition to exempt the funds for the debtor.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Automate Complex Surplus Registry Surveillance</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Filter and track high-equity court registry deposits across six states with pre-screened bankruptcy dockets, lien priority rankings, and statutory claim windows.
+            </p>
+            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Start 7-Day Evaluation — $249/mo
+            </a>
+        </div>
+        """
+    },
+    {
+        "slug": "tyler-v-hennepin-county-post-sale-notice-reforms",
+        "title": "Post-Tyler v. Hennepin County Reforms: State Notice Procedures & Due Process in Surplus Equity",
+        "excerpt": "How the Supreme Court's landmark Fifth Amendment ruling in Tyler v. Hennepin County (598 U.S. 631) is reshaping county clerk post-sale notice requirements and excess proceeds claims nationwide.",
+        "category": "Supreme Court Jurisprudence",
+        "date": "2026-09-14",
+        "read_time": "6 min read",
+        "keywords": "Tyler v Hennepin County surplus, Fifth Amendment takings clause property tax surplus, post-sale surplus notice due process, state excess proceeds statute reforms",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            The Supreme Court's unanimous ruling in <em>Tyler v. Hennepin County</em>, 598 U.S. 631 (2023), established a fundamental constitutional principle: when a government entity forecloses on real property for delinquent taxes and sells it, retaining proceeds beyond the debt, interest, and costs constitutes an unconstitutional taking without just compensation under the <strong>Fifth Amendment</strong>.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. The Shift from Statutory Forfeiture to Notice Requirements</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Prior to <em>Tyler</em>, several jurisdictions operated under strict forfeiture regimes where unclaimed overages automatically lapsed into municipal general funds without proactive notice to former owners. In the wake of the decision, state legislatures and county clerks have enacted statutory notice enhancements:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-sm text-slate-700 mb-6">
+            <li><strong>Affirmative Written Notice:</strong> County clerks must mail formal written notices to all record interest holders within fixed post-sale windows (e.g., Fla. Stat. § 197.582 90-day notice mandate).</li>
+            <li><strong>Published Unclaimed Registries:</strong> Jurisdictions increasingly publish monthly or quarterly online surplus lists to satisfy procedural due process under the Fourteenth Amendment (<em>Mullane v. Central Hanover Bank & Trust Co.</em>).</li>
+            <li><strong>Clear Claim Filing Windows:</strong> Establishing reasonable administrative claim windows (1 to 5 years depending on jurisdiction) before escheat to state treasury departments.</li>
+        </ul>
+
+        <div class="bg-brand-canvas border-l-4 border-brand-green p-6 my-6 rounded-r-xl">
+            <p class="text-sm font-semibold text-brand-navy mb-1">Impact on Private Asset Recovery Practice:</p>
+            <p class="text-xs text-slate-600">
+                While <em>Tyler</em> affirmed the property owner's right to surplus equity, it also underscored that states may impose reasonable procedural requirements—such as timely claim forms, proof of identity, and lien verification hearings—to adjudicate competing claims before disbursing public registry funds.
+            </p>
+        </div>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Track Constitutional Compliance Across 6 States</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Access daily verified surplus feeds with full clerk verification links, statutory deadline timers, and complete audit trails.
+            </p>
+            <a href="https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Subscribe to Master Suite ($449/mo)
+            </a>
+        </div>
+        """
+    },
+    {
+        "slug": "probate-heirship-affidavit-surplus-recovery-guide",
+        "title": "Recovering Deceased Owner Surplus Funds: Affidavits of Heirship & Small Estate Administration",
+        "excerpt": "A practitioner's guide to establishing standing, drafting heirship affidavits, and navigating probate administration when surplus funds originate from deceased record owners.",
+        "category": "Probate & Estate Litigation",
+        "date": "2026-09-14",
+        "read_time": "7 min read",
+        "keywords": "probate surplus recovery, affidavit of heirship excess proceeds, deceased owner tax deed surplus, small estate petition court registry",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            A significant portion of residential tax deed sales occur following the death of an elderly property owner, where taxes lapsed during probate administration or intestate succession. When county clerk registries hold tens of thousands of dollars in surplus funds for a deceased titleholder, asset recovery counsel must establish legal standing to petition the court or clerk.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. Standing: Formal Probate vs. Summary Administration</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            County clerks cannot disburse public funds based on informal kinship claims. Counsel must match the recovery strategy to the value of the surplus and the decedent's estate:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-sm text-slate-700 mb-6">
+            <li><strong>Formal Estate Administration:</strong> Required for larger surplus balances where total estate assets exceed statutory small-estate thresholds. The court appoints a Personal Representative or Administrator holding Letters of Administration.</li>
+            <li><strong>Summary Administration & Small Estate Affidavits:</strong> Available in many jurisdictions (e.g., Florida Summary Administration under Fla. Stat. Chapter 735, Texas Small Estate Affidavit under Tex. Est. Code § 205) when the estate value is under statutory caps and no unpaid debts exist.</li>
+            <li><strong>Recorded Affidavits of Heirship:</strong> In jurisdictions like Texas, recorded affidavits of heirship in public deed records can establish chain of title when intestate succession is uncontested.</li>
+        </ul>
+
+        <div class="bg-brand-canvas border-l-4 border-brand-green p-6 my-6 rounded-r-xl">
+            <p class="text-sm font-semibold text-brand-navy mb-1">Clerk Requirements for Heirship Distributions:</p>
+            <p class="text-xs text-slate-600">
+                When filing claims before the Clerk of Court, petitions must be accompanied by certified death certificates, certified probate orders or Letters of Administration, and formal notarized waivers from all co-heirs if a single representative seeks distribution.
+            </p>
+        </div>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Identify Estate Surplus Files Automatically</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Surplus Docket automatically flags probate indicators ('Est. of', 'Heirs of') across Florida, Texas, California, Georgia, North Carolina, and Tennessee court registries.
+            </p>
+            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Start 7-Day Evaluation — $249/mo
+            </a>
+        </div>
+        """
     }
 ]
 
@@ -683,13 +810,55 @@ def render_article_page(article):
 
 
 def render_blog_index():
-    """Renders the main blog directory hub at site/blog/index.html."""
+    """Renders the main blog directory hub at site/blog/index.html with date descending sorting and category filter buttons."""
     index_file = BLOG_DIR / "index.html"
     
+    # Sort strictly by publication date descending (newest first)
+    sorted_articles = sorted(ARTICLES, key=lambda a: a["date"], reverse=True)
+    
+    # Calculate category counts
+    category_counts = {}
+    for art in sorted_articles:
+        cat = art["category"]
+        category_counts[cat] = category_counts.get(cat, 0) + 1
+        
+    # Defined display order for filter buttons
+    ordered_categories = [
+        "Florida Legal Framework",
+        "Texas Legal Framework",
+        "California Legal Framework",
+        "Georgia Legal Framework",
+        "North Carolina Legal Framework",
+        "Tennessee Legal Framework",
+        "Litigation & Lien Priority",
+        "Probate & Estate Litigation",
+        "Bankruptcy & Title Priority",
+        "Supreme Court Jurisprudence",
+        "Data Intelligence & Workflow",
+    ]
+    # Add any remaining categories not in ordered list
+    for cat in category_counts:
+        if cat not in ordered_categories:
+            ordered_categories.append(cat)
+            
+    # Build filter buttons HTML
+    filter_buttons_html = f"""
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-brand-navy text-white shadow-sm" data-category="all" onclick="filterCategory('all', this)">
+            All Topics <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-white/20 text-white font-mono">{len(sorted_articles)}</span>
+        </button>"""
+        
+    for cat in ordered_categories:
+        count = category_counts.get(cat, 0)
+        if count > 0:
+            filter_buttons_html += f"""
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="{cat}" onclick="filterCategory('{cat}', this)">
+            {cat} <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">{count}</span>
+        </button>"""
+
     cards_html = ""
-    for art in ARTICLES:
+    for art in sorted_articles:
         cards_html += f"""
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="{art['category']}" data-date="{art['date']}">
             <div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
                     {art['category']}
@@ -762,9 +931,12 @@ def render_blog_index():
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 py-3 flex items-center justify-between">
             <a href="/" class="flex items-center gap-3 group">
                 <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
-                <div class="flex items-baseline gap-1.5 leading-none">
-                    <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
-                    <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
+                <div class="flex flex-col">
+                    <div class="flex items-baseline gap-1.5 leading-none">
+                        <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
+                        <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
+                    </div>
+                    <span class="text-[9px] font-mono tracking-widest text-brand-green font-bold uppercase mt-0.5">Court Registry Intelligence</span>
                 </div>
             </a>
             <div class="flex items-center gap-2.5 sm:gap-4">
@@ -779,20 +951,36 @@ def render_blog_index():
     </header>
 
     <main class="flex-grow max-w-6xl mx-auto px-4 py-16 w-full">
-        <div class="text-center mb-16 max-w-3xl mx-auto">
+        <div class="text-center mb-12 max-w-3xl mx-auto">
             <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
                 Public Records Research & Law Guides
             </div>
             <h1 class="text-4xl md:text-5xl font-heading font-black text-brand-navy mb-4">
-                Legal Intelligence & Statutory Guides
+                Legal Intelligence &amp; Statutory Guides
             </h1>
             <p class="text-slate-600 text-base md:text-lg">
                 Practical analysis, statutory timelines, and court registry procedures for asset recovery law firms and property researchers.
             </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Interactive Category Filter Bar -->
+        <div class="mb-10">
+            <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 text-center sm:text-left">Filter by Legal Framework &amp; Practice Area:</div>
+            <div class="flex flex-wrap gap-2 items-center justify-center sm:justify-start" id="blog-category-filters" role="group" aria-label="Blog topic filters">
+                {filter_buttons_html}
+            </div>
+        </div>
+
+        <!-- Blog Cards Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
             {cards_html}
+        </div>
+
+        <!-- Empty State UI -->
+        <div id="filter-empty-state" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 p-8 shadow-sm my-8">
+            <p class="text-base font-heading font-bold text-brand-navy mb-2">No articles found in this category.</p>
+            <p class="text-xs text-slate-500 mb-4">Try selecting another topic or browse all published legal guides.</p>
+            <button type="button" onclick="resetFilter()" class="px-4 py-2 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold rounded-lg transition-all shadow-sm">View All Articles</button>
         </div>
     </main>
 
@@ -805,9 +993,12 @@ def render_blog_index():
                 <div class="lg:col-span-2 space-y-4">
                     <a href="/" class="flex items-center gap-3 group shrink-0">
                         <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
-                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
-                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                        <div class="flex flex-col">
+                            <div class="flex items-baseline gap-1.5 leading-none">
+                                <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                                <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                            </div>
+                            <span class="text-[9px] font-mono tracking-widest text-brand-green font-bold uppercase mt-0.5">Court Registry Intelligence</span>
                         </div>
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
@@ -816,7 +1007,7 @@ def render_blog_index():
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
-                            Daily 7:00 AM EST Dispatch
+                            Daily 7:00 AM ET Dispatch
                         </span>
                         <a href="/api-documentation.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors">
                             REST API v1
@@ -874,17 +1065,60 @@ def render_blog_index():
         </div>
     </footer>
 
-    
-
     <script>
-        
-        
-        
+        function filterCategory(category, buttonEl) {{
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {{
+                btn.classList.remove('bg-brand-navy', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+                const badge = btn.querySelector('span');
+                if (badge) {{
+                    badge.classList.remove('bg-white/20', 'text-white');
+                    badge.classList.add('bg-slate-100', 'text-slate-600');
+                }}
+            }});
+
+            if (buttonEl) {{
+                buttonEl.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+                buttonEl.classList.add('bg-brand-navy', 'text-white', 'shadow-sm');
+                const badge = buttonEl.querySelector('span');
+                if (badge) {{
+                    badge.classList.remove('bg-slate-100', 'text-slate-600');
+                    badge.classList.add('bg-white/20', 'text-white');
+                }}
+            }}
+
+            const cards = document.querySelectorAll('.blog-card');
+            let visibleCount = 0;
+            cards.forEach(card => {{
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {{
+                    card.style.display = 'flex';
+                    visibleCount++;
+                }} else {{
+                    card.style.display = 'none';
+                }}
+            }});
+
+            const emptyState = document.getElementById('filter-empty-state');
+            if (emptyState) {{
+                if (visibleCount === 0) {{
+                    emptyState.classList.remove('hidden');
+                }} else {{
+                    emptyState.classList.add('hidden');
+                }}
+            }}
+        }}
+
+        function resetFilter() {{
+            const allBtn = document.querySelector('.filter-btn[data-category="all"]');
+            filterCategory('all', allBtn);
+        }}
     </script>
 </body>
 </html>"""
     index_file.write_text(html.strip(), encoding="utf-8")
-    print(f"  [✓] Generated Blog Index Hub: {index_file.name}")
+    print(f"  [✓] Generated Blog Index: {index_file.name}")
 
 
 def main():

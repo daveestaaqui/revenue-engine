@@ -32,7 +32,7 @@ In Georgia, the officer conducting the tax sale (Tax Commissioner or Sheriff) di
 #### 5. North Carolina (N.C. Gen. Stat. § 105-374)
 Surplus proceeds are deposited with the Clerk of Superior Court. Parties with an interest in the real estate must file a special proceeding or motion for disbursement within **two years** of the confirmation of the foreclosure sale.
 
-#### 6. Tennessee (Tenn. Code Ann. § 67-5-2510)
+#### 6. Tennessee (Tenn. Code Ann. § 67-5-2501)
 Excess proceeds resulting from a delinquent tax sale are held by the Chancery Court Clerk and Master. Motions for disbursement must be filed within **one year** from the confirmation of the sale, requiring judicial verification of unencumbered title.
 
 ---

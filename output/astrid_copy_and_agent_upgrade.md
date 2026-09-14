@@ -611,7 +611,7 @@ Build six **separate, versioned authority cards**. The cited statutes are starti
 | Georgia | O.C.G.A. § 48-4-5 | Address distribution of tax-sale excess funds, interested parties, and interpleader where applicable. Distinguish the five-year unclaimed-funds transfer mechanism from a blanket statement that all claimant rights expire after five years. |
 | California | Cal. Rev. & Tax. Code § 4675 | Address tax-sale excess-proceeds claims, parties of interest, and the one-year period tied to recordation of the tax collector’s deed—not casually to the auction date. Verify current requirements and county submission procedures. |
 | North Carolina | N.C. Gen. Stat. § 105-374 | Identify the applicable tax-foreclosure process, proceeds-distribution provisions, orders, and related procedural authority. Do not invent one statewide surplus deadline from the section title. |
-| Tennessee | Tenn. Code Ann. § 67-5-2510 | Verify current excess-proceeds provisions, applicable sale/redemption posture, and required court procedure. Do not substitute the property-redemption period for a surplus-claim deadline. |
+| Tennessee | Tenn. Code Ann. § 67-5-2501 | Verify current excess-proceeds provisions, applicable sale/redemption posture, and required court procedure. Do not substitute the property-redemption period for a surplus-claim deadline. |
 
 **These summaries are research instructions, not verified deadline advice.** General court-registry deposits may be governed by different statutes, court rules, and orders.
 

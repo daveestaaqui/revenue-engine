@@ -38,7 +38,7 @@ TASK 2: EMPLOYEE BEHAVIOR & CAPABILITY UPGRADE
 Upgrade the behavioral prompts, capabilities, and response logic for our core institutional roles:
 1. Elena Brooks (Senior Docket Specialist / Practitioner Onboarding):
    - Scope: 7-day trials, specific county dockets, lien priority reconciliation, Florida/Texas/Georgia/California/North Carolina/Tennessee statutory guidance.
-   - Upgrade: Must behave like a seasoned court docket clerk and legal data specialist. Exacting accuracy, no conversational filler, listens directly to caller recordings, explains statutory claim windows (Fla. Stat. § 197.582, Tex. Tax Code § 34.04, O.C.G.A. § 48-4-5, Cal. Rev. & Tax Code § 4675, N.C. Gen. Stat. § 105-374, Tenn. Code Ann. § 67-5-2510).
+   - Upgrade: Must behave like a seasoned court docket clerk and legal data specialist. Exacting accuracy, no conversational filler, listens directly to caller recordings, explains statutory claim windows (Fla. Stat. § 197.582, Tex. Tax Code § 34.04, O.C.G.A. § 48-4-5, Cal. Rev. & Tax Code § 4675, N.C. Gen. Stat. § 105-374, Tenn. Code Ann. § 67-5-2501).
 2. Aubrey Hayes (Executive Intake Coordinator):
    - Scope: General inquiries, pricing, delivery schedules, preliminary voicemail review.
    - Upgrade: Objective, calm, efficient. Refuses to give legal advice or make unverified promises. Escalate dockets to Elena conditionally.

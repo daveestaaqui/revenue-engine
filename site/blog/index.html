@@ -53,9 +53,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 py-3 flex items-center justify-between">
             <a href="/" class="flex items-center gap-3 group">
                 <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
-                <div class="flex items-baseline gap-1.5 leading-none">
-                    <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
-                    <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
+                <div class="flex flex-col">
+                    <div class="flex items-baseline gap-1.5 leading-none">
+                        <span class="font-heading font-black text-xl text-brand-green">SURPLUS</span>
+                        <span class="font-heading font-black text-xl text-brand-navy">DOCKET</span>
+                    </div>
+                    <span class="text-[9px] font-mono tracking-widest text-brand-green font-bold uppercase mt-0.5">Court Registry Intelligence</span>
                 </div>
             </a>
             <div class="flex items-center gap-2.5 sm:gap-4">
@@ -70,174 +73,117 @@
     </header>
 
     <main class="flex-grow max-w-6xl mx-auto px-4 py-16 w-full">
-        <div class="text-center mb-16 max-w-3xl mx-auto">
+        <div class="text-center mb-12 max-w-3xl mx-auto">
             <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
                 Public Records Research & Law Guides
             </div>
             <h1 class="text-4xl md:text-5xl font-heading font-black text-brand-navy mb-4">
-                Legal Intelligence & Statutory Guides
+                Legal Intelligence &amp; Statutory Guides
             </h1>
             <p class="text-slate-600 text-base md:text-lg">
                 Practical analysis, statutory timelines, and court registry procedures for asset recovery law firms and property researchers.
             </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Interactive Category Filter Bar -->
+        <div class="mb-10">
+            <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 text-center sm:text-left">Filter by Legal Framework &amp; Practice Area:</div>
+            <div class="flex flex-wrap gap-2 items-center justify-center sm:justify-start" id="blog-category-filters" role="group" aria-label="Blog topic filters">
+                
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-brand-navy text-white shadow-sm" data-category="all" onclick="filterCategory('all', this)">
+            All Topics <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-white/20 text-white font-mono">13</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Florida Legal Framework" onclick="filterCategory('Florida Legal Framework', this)">
+            Florida Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Texas Legal Framework" onclick="filterCategory('Texas Legal Framework', this)">
+            Texas Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="California Legal Framework" onclick="filterCategory('California Legal Framework', this)">
+            California Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Georgia Legal Framework" onclick="filterCategory('Georgia Legal Framework', this)">
+            Georgia Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="North Carolina Legal Framework" onclick="filterCategory('North Carolina Legal Framework', this)">
+            North Carolina Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Tennessee Legal Framework" onclick="filterCategory('Tennessee Legal Framework', this)">
+            Tennessee Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Litigation & Lien Priority" onclick="filterCategory('Litigation & Lien Priority', this)">
+            Litigation & Lien Priority <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Probate & Estate Litigation" onclick="filterCategory('Probate & Estate Litigation', this)">
+            Probate & Estate Litigation <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">2</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Bankruptcy & Title Priority" onclick="filterCategory('Bankruptcy & Title Priority', this)">
+            Bankruptcy & Title Priority <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Supreme Court Jurisprudence" onclick="filterCategory('Supreme Court Jurisprudence', this)">
+            Supreme Court Jurisprudence <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">2</span>
+        </button>
+        <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Data Intelligence & Workflow" onclick="filterCategory('Data Intelligence & Workflow', this)">
+            Data Intelligence & Workflow <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+        </button>
+            </div>
+        </div>
+
+        <!-- Blog Cards Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
             
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
-                    Florida Legal Framework
-                </div>
-                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
-                    <a href="/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html">Florida Tax Deed Surplus Recovery: A Practical Guide to Fla. Stat. § 197.582</a>
-                </h2>
-                <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                    An in-depth legal analysis of the 120-day claim window, clerk notice procedures, statutory priority of liens, and the 20% representative fee cap under Florida law.
-                </p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span>2026-08-22 • 6 min read</span>
-                <a href="/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
-            </div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
-                    Texas Legal Framework
-                </div>
-                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
-                    <a href="/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html">Texas Tax Sale Excess Proceeds: Filing Petitions under Tex. Tax Code § 34.04</a>
-                </h2>
-                <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                    How excess funds from Texas tax warrant and judicial foreclosure sales are deposited into district court registries, with procedural rules for formal judicial petitions.
-                </p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span>2026-08-22 • 5 min read</span>
-                <a href="/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
-            </div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
-                    Data Intelligence & Workflow
-                </div>
-                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
-                    <a href="/blog/posts/institutional-lien-filtering-asset-recovery.html">Why Institutional Lien Pre-Filtering Multiplies Recovery Law Firm ROI</a>
-                </h2>
-                <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                    How raw county clerk lists waste hundreds of billable hours on mortgage servicers and bank liens, and how automated pre-filtering isolates recoverable owner equity.
-                </p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span>2026-08-22 • 4 min read</span>
-                <a href="/blog/posts/institutional-lien-filtering-asset-recovery.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
-            </div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Supreme Court Jurisprudence" data-date="2026-09-14">
             <div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
                     Supreme Court Jurisprudence
                 </div>
                 <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
-                    <a href="/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html">Tyler v. Hennepin County: Supreme Court Ruling Unlocks $8B+ in Recoverable Tax Surplus</a>
+                    <a href="/blog/posts/tyler-v-hennepin-county-post-sale-notice-reforms.html">Post-Tyler v. Hennepin County Reforms: State Notice Procedures & Due Process in Surplus Equity</a>
                 </h2>
                 <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                    A legal breakdown of the unanimous 9-0 Supreme Court ruling under the Takings Clause, invalidating home equity theft and expanding nationwide asset recovery practice areas.
+                    How the Supreme Court's landmark Fifth Amendment ruling in Tyler v. Hennepin County (598 U.S. 631) is reshaping county clerk post-sale notice requirements and excess proceeds claims nationwide.
                 </p>
             </div>
             <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span>2026-09-02 • 7 min read</span>
-                <a href="/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+                <span>2026-09-14 • 6 min read</span>
+                <a href="/blog/posts/tyler-v-hennepin-county-post-sale-notice-reforms.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
             </div>
         </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
-                    Georgia Legal Framework
-                </div>
-                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
-                    <a href="/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html">Georgia Tax Sale Excess Funds: A Practitioner's Guide to O.C.G.A. § 48-4-5 and Superior Court Interpleader</a>
-                </h2>
-                <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                    A practitioner's guide to Georgia's 5-year surplus claim period, county tax commissioner claim procedures, sheriff tax sales, and lien priority distribution.
-                </p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span>2026-08-28 • 6 min read</span>
-                <a href="/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
-            </div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
-                    California Legal Framework
-                </div>
-                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
-                    <a href="/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html">California Excess Proceeds from Tax-Defaulted Property Sales: Cal. Rev. & Tax Code § 4675</a>
-                </h2>
-                <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                    Detailed legal analysis of California's strict 1-year statute of limitations from deed recording, Board of Supervisors claim procedures, and statutory assignment restrictions.
-                </p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span>2026-08-30 • 7 min read</span>
-                <a href="/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
-            </div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Probate & Estate Litigation" data-date="2026-09-14">
             <div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
                     Probate & Estate Litigation
                 </div>
                 <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
-                    <a href="/blog/posts/probate-surplus-recovery-estate-administration-guide.html">Probate Surplus Recovery: How Letters of Administration and Summary Administration Unlock Court Registry Funds</a>
+                    <a href="/blog/posts/probate-heirship-affidavit-surplus-recovery-guide.html">Recovering Deceased Owner Surplus Funds: Affidavits of Heirship & Small Estate Administration</a>
                 </h2>
                 <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                    Strategic blueprint for probate counsel navigating deceased-owner tax deed dockets, summary administration petitions, and heirship claims in court registries.
+                    A practitioner's guide to establishing standing, drafting heirship affidavits, and navigating probate administration when surplus funds originate from deceased record owners.
                 </p>
             </div>
             <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span>2026-09-03 • 6 min read</span>
-                <a href="/blog/posts/probate-surplus-recovery-estate-administration-guide.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+                <span>2026-09-14 • 7 min read</span>
+                <a href="/blog/posts/probate-heirship-affidavit-surplus-recovery-guide.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
             </div>
         </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Bankruptcy & Title Priority" data-date="2026-09-13">
             <div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
-                    Litigation & Lien Priority
+                    Bankruptcy & Title Priority
                 </div>
                 <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
-                    <a href="/blog/posts/mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions.html">Mortgage Foreclosure Surplus vs. Tax Deed Surplus: Procedural Differences, 60-Day Deadlines, and Priority</a>
+                    <a href="/blog/posts/bankruptcy-automatic-stay-surplus-funds-11-usc-362.html">Bankruptcy Automatic Stays and Tax Sale Surplus Funds: 11 U.S.C. § 362 Analysis</a>
                 </h2>
                 <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                    Comparative legal analysis of judicial foreclosure surplus proceedings versus administrative tax deed auctions, detailing distinct statutory timelines and lienholder standing.
+                    How bankruptcy petitions filed before or after tax deed sales trigger the 11 U.S.C. § 362 automatic stay, impact court registry funds, and require relief from stay motions.
                 </p>
             </div>
             <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span>2026-09-06 • 7 min read</span>
-                <a href="/blog/posts/mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+                <span>2026-09-13 • 7 min read</span>
+                <a href="/blog/posts/bankruptcy-automatic-stay-surplus-funds-11-usc-362.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
             </div>
         </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
-                    North Carolina Legal Framework
-                </div>
-                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
-                    <a href="/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html">North Carolina Tax Foreclosure Surplus Recovery: N.C.G.S. § 105-374(q) and Upset Bid Rules</a>
-                </h2>
-                <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                    Procedural analysis of North Carolina judicial tax foreclosure sales, the 10-day upset bid period under N.C.G.S. § 1-339.25, and surplus proceeds petitions before the Clerk of Superior Court under N.C.G.S. § 105-374(q).
-                </p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span>2026-09-10 • 7 min read</span>
-                <a href="/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
-            </div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Tennessee Legal Framework" data-date="2026-09-12">
             <div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
                     Tennessee Legal Framework
@@ -254,6 +200,166 @@
                 <a href="/blog/posts/tennessee-delinquent-tax-sale-surplus-guide-tca-67-5-2501.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
             </div>
         </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="North Carolina Legal Framework" data-date="2026-09-10">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    North Carolina Legal Framework
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html">North Carolina Tax Foreclosure Surplus Recovery: N.C.G.S. § 105-374(q) and Upset Bid Rules</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    Procedural analysis of North Carolina judicial tax foreclosure sales, the 10-day upset bid period under N.C.G.S. § 1-339.25, and surplus proceeds petitions before the Clerk of Superior Court under N.C.G.S. § 105-374(q).
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-09-10 • 7 min read</span>
+                <a href="/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Litigation & Lien Priority" data-date="2026-09-06">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    Litigation & Lien Priority
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions.html">Mortgage Foreclosure Surplus vs. Tax Deed Surplus: Procedural Differences, 60-Day Deadlines, and Priority</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    Comparative legal analysis of judicial foreclosure surplus proceedings versus administrative tax deed auctions, detailing distinct statutory timelines and lienholder standing.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-09-06 • 7 min read</span>
+                <a href="/blog/posts/mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Probate & Estate Litigation" data-date="2026-09-03">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    Probate & Estate Litigation
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/probate-surplus-recovery-estate-administration-guide.html">Probate Surplus Recovery: How Letters of Administration and Summary Administration Unlock Court Registry Funds</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    Strategic blueprint for probate counsel navigating deceased-owner tax deed dockets, summary administration petitions, and heirship claims in court registries.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-09-03 • 6 min read</span>
+                <a href="/blog/posts/probate-surplus-recovery-estate-administration-guide.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Supreme Court Jurisprudence" data-date="2026-09-02">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    Supreme Court Jurisprudence
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html">Tyler v. Hennepin County: Supreme Court Ruling Unlocks $8B+ in Recoverable Tax Surplus</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    A legal breakdown of the unanimous 9-0 Supreme Court ruling under the Takings Clause, invalidating home equity theft and expanding nationwide asset recovery practice areas.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-09-02 • 7 min read</span>
+                <a href="/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="California Legal Framework" data-date="2026-08-30">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    California Legal Framework
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html">California Excess Proceeds from Tax-Defaulted Property Sales: Cal. Rev. & Tax Code § 4675</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    Detailed legal analysis of California's strict 1-year statute of limitations from deed recording, Board of Supervisors claim procedures, and statutory assignment restrictions.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-08-30 • 7 min read</span>
+                <a href="/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Georgia Legal Framework" data-date="2026-08-28">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    Georgia Legal Framework
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html">Georgia Tax Sale Excess Funds: A Practitioner's Guide to O.C.G.A. § 48-4-5 and Superior Court Interpleader</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    A practitioner's guide to Georgia's 5-year surplus claim period, county tax commissioner claim procedures, sheriff tax sales, and lien priority distribution.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-08-28 • 6 min read</span>
+                <a href="/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Data Intelligence & Workflow" data-date="2026-08-24">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    Data Intelligence & Workflow
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/institutional-lien-filtering-asset-recovery.html">Why Institutional Lien Pre-Filtering Multiplies Recovery Law Firm ROI</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    How raw county clerk lists waste hundreds of billable hours on mortgage servicers and bank liens, and how automated pre-filtering isolates recoverable owner equity.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-08-24 • 4 min read</span>
+                <a href="/blog/posts/institutional-lien-filtering-asset-recovery.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Florida Legal Framework" data-date="2026-08-22">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    Florida Legal Framework
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html">Florida Tax Deed Surplus Recovery: A Practical Guide to Fla. Stat. § 197.582</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    An in-depth legal analysis of the 120-day claim window, clerk notice procedures, statutory priority of liens, and the 20% representative fee cap under Florida law.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-08-22 • 6 min read</span>
+                <a href="/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Texas Legal Framework" data-date="2026-08-22">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    Texas Legal Framework
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html">Texas Tax Sale Excess Proceeds: Filing Petitions under Tex. Tax Code § 34.04</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    How excess funds from Texas tax warrant and judicial foreclosure sales are deposited into district court registries, with procedural rules for formal judicial petitions.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-08-22 • 5 min read</span>
+                <a href="/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        </div>
+
+        <!-- Empty State UI -->
+        <div id="filter-empty-state" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 p-8 shadow-sm my-8">
+            <p class="text-base font-heading font-bold text-brand-navy mb-2">No articles found in this category.</p>
+            <p class="text-xs text-slate-500 mb-4">Try selecting another topic or browse all published legal guides.</p>
+            <button type="button" onclick="resetFilter()" class="px-4 py-2 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold rounded-lg transition-all shadow-sm">View All Articles</button>
         </div>
     </main>
 
@@ -266,9 +372,12 @@
                 <div class="lg:col-span-2 space-y-4">
                     <a href="/" class="flex items-center gap-3 group shrink-0">
                         <img src="/assets/logo_surplus_docket.png?v=6" alt="Surplus Docket" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5 leading-none">
-                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
-                            <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                        <div class="flex flex-col">
+                            <div class="flex items-baseline gap-1.5 leading-none">
+                                <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-green">SURPLUS</span>
+                                <span class="font-heading font-black text-sm sm:text-2xl tracking-tight text-brand-navy">DOCKET</span>
+                            </div>
+                            <span class="text-[9px] font-mono tracking-widest text-brand-green font-bold uppercase mt-0.5">Court Registry Intelligence</span>
                         </div>
                     </a>
                     <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
@@ -277,7 +386,7 @@
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
-                            Daily 7:00 AM EST Dispatch
+                            Daily 7:00 AM ET Dispatch
                         </span>
                         <a href="/api-documentation.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors">
                             REST API v1
@@ -335,12 +444,55 @@
         </div>
     </footer>
 
-    
-
     <script>
-        
-        
-        
+        function filterCategory(category, buttonEl) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-navy', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+                const badge = btn.querySelector('span');
+                if (badge) {
+                    badge.classList.remove('bg-white/20', 'text-white');
+                    badge.classList.add('bg-slate-100', 'text-slate-600');
+                }
+            });
+
+            if (buttonEl) {
+                buttonEl.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+                buttonEl.classList.add('bg-brand-navy', 'text-white', 'shadow-sm');
+                const badge = buttonEl.querySelector('span');
+                if (badge) {
+                    badge.classList.remove('bg-slate-100', 'text-slate-600');
+                    badge.classList.add('bg-white/20', 'text-white');
+                }
+            }
+
+            const cards = document.querySelectorAll('.blog-card');
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const emptyState = document.getElementById('filter-empty-state');
+            if (emptyState) {
+                if (visibleCount === 0) {
+                    emptyState.classList.remove('hidden');
+                } else {
+                    emptyState.classList.add('hidden');
+                }
+            }
+        }
+
+        function resetFilter() {
+            const allBtn = document.querySelector('.filter-btn[data-category="all"]');
+            filterCategory('all', allBtn);
+        }
     </script>
 </body>
 </html>

@@ -119,7 +119,7 @@ def determine_conversion_rationale(target, score):
         "TX": "Tex. Tax Code § 34.04 (2-Year Court Registry Limit)",
         "GA": "O.C.G.A. § 48-4-5 (5-Year Interpleader Claims)",
         "NC": "N.C. Gen. Stat. § 105-374 (Superior Court Upset Bid Registry)",
-        "TN": "Tenn. Code Ann. § 67-5-2510 (Chancery Court Excess Actions)",
+        "TN": "Tenn. Code Ann. § 67-5-2501 (Chancery Court Excess Actions)",
         "CA": "Cal. Rev. & Tax Code § 4675 (1-Year Statutory Deadline)"
     }
     statute_ref = statutes.get(state, "Statutory Recovery Procedures")
@@ -261,19 +261,19 @@ def generate_multi_state_pipeline():
         },
         "TN": {
             "metros": [
-                ("Shelby County (30th Judicial District / Chancery Court)", "Memphis", "Tenn. Code Ann. § 67-5-2510"),
-                ("Davidson County (20th Judicial District / Chancery Court)", "Nashville", "Tenn. Code Ann. § 67-5-2510"),
-                ("Knox County (6th Judicial District / Chancery Court)", "Knoxville", "Tenn. Code Ann. § 67-5-2510"),
-                ("Hamilton County (11th Judicial District / Chancery Court)", "Chattanooga", "Tenn. Code Ann. § 67-5-2510"),
-                ("Rutherford County (16th Judicial District / Murfreesboro)", "Murfreesboro", "Tenn. Code Ann. § 67-5-2510"),
-                ("Williamson County (21st Judicial District / Franklin)", "Franklin", "Tenn. Code Ann. § 67-5-2510"),
-                ("Montgomery County (19th Judicial District / Clarksville)", "Clarksville", "Tenn. Code Ann. § 67-5-2510"),
-                ("Madison County (26th Judicial District / Jackson)", "Jackson", "Tenn. Code Ann. § 67-5-2510"),
+                ("Shelby County (30th Judicial District / Chancery Court)", "Memphis", "Tenn. Code Ann. § 67-5-2501"),
+                ("Davidson County (20th Judicial District / Chancery Court)", "Nashville", "Tenn. Code Ann. § 67-5-2501"),
+                ("Knox County (6th Judicial District / Chancery Court)", "Knoxville", "Tenn. Code Ann. § 67-5-2501"),
+                ("Hamilton County (11th Judicial District / Chancery Court)", "Chattanooga", "Tenn. Code Ann. § 67-5-2501"),
+                ("Rutherford County (16th Judicial District / Murfreesboro)", "Murfreesboro", "Tenn. Code Ann. § 67-5-2501"),
+                ("Williamson County (21st Judicial District / Franklin)", "Franklin", "Tenn. Code Ann. § 67-5-2501"),
+                ("Montgomery County (19th Judicial District / Clarksville)", "Clarksville", "Tenn. Code Ann. § 67-5-2501"),
+                ("Madison County (26th Judicial District / Jackson)", "Jackson", "Tenn. Code Ann. § 67-5-2501"),
             ],
             "first_names": ["Mark", "Brian", "Garrett", "Colton", "Wyatt", "Clayton", "Hunter", "Logan", "Dalton", "Bo", "Tate", "Cole", "Reid", "Chase", "Lane", "Brock", "Trent", "Judd", "Blane", "Brice", "Cash", "Dane", "Gage", "Jace", "Nash", "Rhett", "Saul", "Vance", "Zane", "Beau"],
             "last_names": ["Sevier", "Roane", "Blount", "McMinn", "Carroll", "Houston", "Cannon", "Polk", "Jones", "Brown", "Johnson", "Trousdale", "Campbell", "Harris", "Marks", "Bate", "Taylor", "Buchanan", "Turney", "McMillin", "Frazier", "Cox", "Patterson", "Hooper", "Rye", "Roberts", "Peay", "Horton", "McAlister", "Browning", "Prentice", "Cooper", "McCroskey", "Kefauver", "Gore"],
             "specialties": [
-                ("Tennessee Chancery Surplus Recovery", "Petitions Chancery Court clerks under Tenn. Code Ann. 67-5-2510"),
+                ("Tennessee Chancery Surplus Recovery", "Petitions Chancery Court clerks under Tenn. Code Ann. 67-5-2501"),
                 ("Tax Sale Excess Proceeds Claims", "Recovers surplus proceeds from Chancery and Circuit tax foreclosure sales"),
                 ("Chancery Court Foreclosure Surplus", "Represents former owners in proving entitlement to excess tax auction funds"),
                 ("Delinquent Tax Sale Overages", "Files motions for distribution of delinquent property tax sale overages"),
