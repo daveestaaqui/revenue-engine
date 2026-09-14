@@ -112,7 +112,56 @@ DEAD_DOMAINS = {
     "browardsurplusfundattorneys.com",
     "sinclairassociatespa.com",
     "example.com",
+    "lw.com",  # Latham & Watkins rejects generic info@
 }
+
+# Generic department prefixes that reject cold emails or do not reach counsel
+GENERIC_EMAIL_PREFIXES = (
+    "info@", "contact@", "admin@", "support@", "office@", "reception@",
+    "general@", "mail@", "inquiry@", "inquiries@", "hello@", "team@",
+    "intake@", "help@", "service@", "services@", "frontdesk@", "desk@",
+    "billing@", "accounting@", "sales@", "press@", "media@", "jobs@",
+    "careers@", "marketing@", "legal@"
+)
+
+# Big-law firms that reject unsolicited emails or require web contact forms
+BLOCKED_OUTREACH_DOMAINS = {
+    "lw.com", "omm.com", "paulhastings.com", "dentons.com", "kobrekim.com",
+    "sidley.com", "gibsondunn.com", "kirkland.com", "morganlewis.com",
+    "skadden.com", "dlapiper.com", "greenbergtraurig.com", "reedsmith.com",
+    "gtlaw.com", "bclplaw.com", "hoganlovells.com", "jonesday.com",
+    "mayerbrown.com", "whitecase.com", "ropesgray.com", "cooley.com",
+    "goodwinlaw.com", "foley.com", "alston.com", "hollandknight.com",
+    "klgates.com", "mcguirewoods.com", "perkinscoie.com", "sheppardmullin.com",
+    "wilmerhale.com", "blankrome.com", "cozen.com", "foxrothschild.com",
+    "lockelord.com", "nixonpeabody.com", "polsinelli.com", "seyfarth.com",
+    "troutmansanders.com", "troutman.com", "venable.com", "winston.com"
+}
+
+
+def is_valid_direct_email(email_str: str) -> bool:
+    """
+    Validates that an email is a legitimate individual practitioner address,
+    preventing 550 bounces from dead generic mailboxes (like info@lw.com).
+    """
+    if not email_str or "@" not in email_str:
+        return False
+    e_clean = email_str.strip().lower()
+    local_part, domain = e_clean.split("@", 1)
+
+    # 1. Skip dead/unverified/test domains
+    if domain in DEAD_DOMAINS or domain in BLOCKED_OUTREACH_DOMAINS:
+        return False
+
+    # 2. Skip generic corporate aliases that reject or don't reach attorneys
+    if e_clean.startswith(GENERIC_EMAIL_PREFIXES):
+        return False
+
+    # 3. Skip placeholder local parts
+    if len(local_part) < 2 or local_part in ("test", "example", "user", "lawyer", "attorney"):
+        return False
+
+    return True
 
 STATE_NAMES = {
     "FL": "Florida", "TX": "Texas", "GA": "Georgia",
@@ -210,13 +259,18 @@ def get_already_contacted():
     return contacted
 
 
-def load_targets():
-    """Load verified attorney targets from CSV."""
+def load_targets(allow_generic: bool = False):
+    """
+    Load verified attorney targets from CSV.
+    Strictly filters out generic/department mailboxes (info@, contact@)
+    to prevent delivery failures and bounces.
+    """
     if not TARGETS_CSV.exists():
         print(f"  Target file not found: {TARGETS_CSV}")
         return []
 
     targets = []
+    skipped_generic = 0
     with open(TARGETS_CSV, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -225,12 +279,17 @@ def load_targets():
                 if k:
                     clean[k.strip()] = (v or "").strip()
             email = clean.get("Email", "")
-            # Skip dead domains
-            domain = email.split("@")[1] if "@" in email else ""
-            if domain in DEAD_DOMAINS:
+            if not email:
                 continue
-            if email:
-                targets.append(clean)
+
+            if not allow_generic and not is_valid_direct_email(email):
+                skipped_generic += 1
+                continue
+
+            targets.append(clean)
+
+    if skipped_generic > 0:
+        print(f"  🛡️ Target Quality Gate: Filtered out {skipped_generic} generic/blocked mailboxes (e.g. info@, contact@).")
     return targets
 
 
@@ -258,7 +317,7 @@ def clean_firm_display_name(firm):
 
 
 def get_unsubscribed_domains():
-    """Collect domains or URLs that unsubscribed."""
+    """Collect domains, emails, or URLs that unsubscribed or bounced."""
     unsub = set()
     if UNSUBSCRIBED_FILE.exists():
         try:
@@ -269,6 +328,18 @@ def get_unsubscribed_domains():
                         unsub.add(item.lower())
         except Exception:
             pass
+
+    bounced_file = OUTREACH_DIR / "bounced_emails.json"
+    if bounced_file.exists():
+        try:
+            with open(bounced_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                for item in data:
+                    if isinstance(item, str):
+                        unsub.add(item.lower())
+        except Exception:
+            pass
+
     return unsub
 
 

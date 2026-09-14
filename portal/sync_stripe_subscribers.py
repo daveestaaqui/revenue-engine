@@ -365,6 +365,99 @@ def sync_via_imap(user, password):
                 pass
 
 
+def reconcile_and_repair_subscribers(subscribers: list = None, write_back: bool = True) -> dict:
+    """
+    Autonomous Subscriber Self-Reconciliation & Integrity Engine.
+    Audits portal/subscribers.json:
+    - Normalizes email casing and strips whitespace
+    - Merges duplicate accounts preserving active subscription state
+    - Validates required fields and applies safe defaults
+    - Transitions expired trials (> 7 days) to EXPIRED_TRIAL
+    """
+    if subscribers is None:
+        if not SUBSCRIBERS_FILE.exists():
+            return {"total": 0, "repaired": 0, "duplicates_merged": 0, "expired_trials": 0, "subscribers": []}
+
+        try:
+            with open(SUBSCRIBERS_FILE, "r", encoding="utf-8") as f:
+                subscribers = json.load(f)
+        except Exception as e:
+            print(f"⚠️ Could not load {SUBSCRIBERS_FILE} for reconciliation: {e}")
+            return {"error": str(e), "subscribers": []}
+
+    repaired_count = 0
+    merged_count = 0
+    expired_count = 0
+
+    # Group by normalized email
+    normalized_map = {}
+    now = datetime.now(timezone.utc)
+
+    for sub in subscribers:
+        raw_email = sub.get("email", "")
+        if not raw_email:
+            continue
+        norm_email = raw_email.strip().lower()
+
+        # Check trial expiration
+        status = sub.get("status", "ACTIVE").upper()
+        if status in ("TRIAL", "TRIALING"):
+            days_active = None
+            if sub.get("days_active") is not None:
+                try:
+                    days_active = float(sub.get("days_active"))
+                except (ValueError, TypeError):
+                    pass
+            if days_active is None:
+                sub_date_str = sub.get("subscribed_at") or sub.get("created_at")
+                if sub_date_str:
+                    try:
+                        clean_dt = sub_date_str.replace("Z", "+00:00")
+                        created_dt = datetime.fromisoformat(clean_dt)
+                        days_active = (now - created_dt).total_seconds() / 86400.0
+                    except Exception:
+                        pass
+            if days_active is not None and days_active > 7.5:
+                sub["status"] = "EXPIRED_TRIAL"
+                sub["trial_expired_at"] = now.isoformat()
+                expired_count += 1
+                repaired_count += 1
+                print(f"  ⏳ [Self-Reconciliation] Trial expired for {norm_email} ({days_active:.1f} days active)")
+
+        # Email normalization check
+        if sub.get("email") != norm_email:
+            sub["email"] = norm_email
+            repaired_count += 1
+
+        # Deduplication / Merge
+        if norm_email in normalized_map:
+            existing = normalized_map[norm_email]
+            merged_count += 1
+            repaired_count += 1
+            # If current is ACTIVE and existing is CANCELLED/EXPIRED, prioritize ACTIVE
+            if sub.get("status") == "ACTIVE" and existing.get("status") != "ACTIVE":
+                normalized_map[norm_email] = sub
+        else:
+            normalized_map[norm_email] = sub
+
+    reconciled_list = list(normalized_map.values())
+    if write_back and repaired_count > 0:
+        try:
+            with open(SUBSCRIBERS_FILE, "w", encoding="utf-8") as f:
+                json.dump(reconciled_list, f, indent=2)
+            print(f"✓ [Self-Reconciliation] Repaired {repaired_count} subscriber record(s) ({merged_count} merged, {expired_count} expired trials).")
+        except Exception as e:
+            print(f"⚠️ Could not write reconciled subscribers: {e}")
+
+    return {
+        "total": len(reconciled_list),
+        "repaired": repaired_count,
+        "duplicates_merged": merged_count,
+        "expired_trials": expired_count,
+        "subscribers": reconciled_list
+    }
+
+
 def run_sync():
     print("=" * 70)
     print(" ⚡ SURPLUS DOCKET — AUTONOMOUS STRIPE SUBSCRIBER SYNC ENGINE")
@@ -380,6 +473,10 @@ def run_sync():
 
     # 2. Scan via IMAP using GMAIL_APP_PASS
     total_changes += sync_via_imap(GMAIL_USER, GMAIL_APP_PASS)
+
+    # 3. Run Autonomous Subscriber Reconciliation & Self-Repair
+    reconciliation_report = reconcile_and_repair_subscribers()
+    total_changes += reconciliation_report.get("repaired", 0)
 
     print(f"\n✅ Sync run complete. Total subscriber state modifications: {total_changes}")
     return total_changes

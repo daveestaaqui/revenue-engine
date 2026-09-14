@@ -18,6 +18,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
 from enrichment.processor import process_county_dataset
+from portal.pipeline_self_healer import (
+    self_heal_record,
+    generate_clio_matter_export,
+    generate_filevine_lead_export
+)
 
 DATA_DIR = BASE_DIR / "data"
 EXPORTS_DIR = BASE_DIR / "exports"
@@ -35,8 +40,9 @@ def generate_b2b_exports():
     if fl_csv.exists():
         fl_raw = pd.read_csv(fl_csv).to_dict(orient="records")
         for r in fl_raw:
-            county_meta = {"state": "FL", "county": r.get("COUNTY", "Orange"), "statute": "Fla. Stat. § 197.582"}
-            leads = process_county_dataset([r], county_meta)
+            healed_r = self_heal_record(r, default_state="FL", default_county="Orange")
+            county_meta = {"state": "FL", "county": healed_r.get("County", "Orange"), "statute": "Fla. Stat. § 197.582"}
+            leads = process_county_dataset([healed_r], county_meta)
             all_leads.extend(leads)
 
     # 2. Process Texas Dataset
@@ -44,8 +50,9 @@ def generate_b2b_exports():
     if tx_csv.exists():
         tx_raw = pd.read_csv(tx_csv).to_dict(orient="records")
         for r in tx_raw:
-            county_meta = {"state": "TX", "county": r.get("COUNTY", "Harris"), "statute": "Tex. Tax Code § 34.04"}
-            leads = process_county_dataset([r], county_meta)
+            healed_r = self_heal_record(r, default_state="TX", default_county="Harris")
+            county_meta = {"state": "TX", "county": healed_r.get("County", "Harris"), "statute": "Tex. Tax Code § 34.04"}
+            leads = process_county_dataset([healed_r], county_meta)
             all_leads.extend(leads)
 
     # 3. Process Georgia Dataset
@@ -53,8 +60,9 @@ def generate_b2b_exports():
     if ga_csv.exists():
         ga_raw = pd.read_csv(ga_csv).to_dict(orient="records")
         for r in ga_raw:
-            county_meta = {"state": "GA", "county": r.get("COUNTY", "Fulton"), "statute": "O.C.G.A. § 48-4-5"}
-            leads = process_county_dataset([r], county_meta)
+            healed_r = self_heal_record(r, default_state="GA", default_county="Fulton")
+            county_meta = {"state": "GA", "county": healed_r.get("County", "Fulton"), "statute": "O.C.G.A. § 48-4-5"}
+            leads = process_county_dataset([healed_r], county_meta)
             all_leads.extend(leads)
 
     # 4. Process North Carolina Dataset
@@ -62,8 +70,9 @@ def generate_b2b_exports():
     if nc_csv.exists():
         nc_raw = pd.read_csv(nc_csv).to_dict(orient="records")
         for r in nc_raw:
-            county_meta = {"state": "NC", "county": r.get("COUNTY", "Wake"), "statute": "N.C.G.S. § 105-374"}
-            leads = process_county_dataset([r], county_meta)
+            healed_r = self_heal_record(r, default_state="NC", default_county="Wake")
+            county_meta = {"state": "NC", "county": healed_r.get("County", "Wake"), "statute": "N.C.G.S. § 105-374"}
+            leads = process_county_dataset([healed_r], county_meta)
             all_leads.extend(leads)
 
     # 5. Process Tennessee Dataset
@@ -71,8 +80,9 @@ def generate_b2b_exports():
     if tn_csv.exists():
         tn_raw = pd.read_csv(tn_csv).to_dict(orient="records")
         for r in tn_raw:
-            county_meta = {"state": "TN", "county": r.get("COUNTY", "Davidson"), "statute": "T.C.A. § 67-5-2501"}
-            leads = process_county_dataset([r], county_meta)
+            healed_r = self_heal_record(r, default_state="TN", default_county="Davidson")
+            county_meta = {"state": "TN", "county": healed_r.get("County", "Davidson"), "statute": "T.C.A. § 67-5-2501"}
+            leads = process_county_dataset([healed_r], county_meta)
             all_leads.extend(leads)
 
     # 6. Process California Dataset
@@ -80,8 +90,9 @@ def generate_b2b_exports():
     if ca_csv.exists():
         ca_raw = pd.read_csv(ca_csv).to_dict(orient="records")
         for r in ca_raw:
-            county_meta = {"state": "CA", "county": r.get("COUNTY", "Los Angeles"), "statute": "Cal. Rev. & Tax Code § 4675"}
-            leads = process_county_dataset([r], county_meta)
+            healed_r = self_heal_record(r, default_state="CA", default_county="Los Angeles")
+            county_meta = {"state": "CA", "county": healed_r.get("County", "Los Angeles"), "statute": "Cal. Rev. & Tax Code § 4675"}
+            leads = process_county_dataset([healed_r], county_meta)
             all_leads.extend(leads)
 
     if not all_leads:
@@ -149,6 +160,12 @@ def generate_b2b_exports():
             df_tri_export.to_excel(EXPORTS_DIR / "Tri_State_Core_Surplus_Feed.xlsx", index=False)
         except Exception:
             pass
+
+    # Clio & Filevine Legal Practice Management Matter Imports
+    clio_csv = EXPORTS_DIR / "Clio_Matter_Import.csv"
+    filevine_csv = EXPORTS_DIR / "Filevine_Lead_Import.csv"
+    generate_clio_matter_export(all_leads, clio_csv)
+    generate_filevine_lead_export(all_leads, filevine_csv)
 
     def redact_lead_for_public_sandbox(lead: dict) -> dict:
         redacted = lead.copy()
@@ -284,6 +301,8 @@ def generate_b2b_exports():
     print(f"   - {master_csv.name} (CSV for CRMs)")
     print(f"   - {master_xlsx.name} (Formatted Excel)")
     print(f"   - {master_json.name} (REST API payload)")
+    print(f"   - {clio_csv.name} (Clio Manage 1-Click Matter Import)")
+    print(f"   - {filevine_csv.name} (Filevine Project Intake Import)")
     print(f"🌐 Published Live REST API Endpoints in: {API_V1_DIR}")
     print(f"   - {api_master_path.name}")
     print(f"   - {api_health_path.name}")

@@ -12,6 +12,7 @@ Can be run:
 """
 
 import argparse
+import difflib
 import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -26,6 +27,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -314,8 +316,145 @@ def run_unit_tests() -> dict:
         return {"passed": False, "test_count": 0, "elapsed_seconds": 0.0, "output": f"Test runner execution failure: {e}"}
 
 
-def attempt_self_healing(broken_links: list, broken_assets: list) -> list:
-    """Auto-heal identified broken links if exact or obvious matches exist."""
+def reconcile_and_repair_sitemap(dry_run: bool = False) -> dict:
+    """
+    Reconcile site/sitemap.xml with actual HTML pages in site/.
+    Adds missing valid pages and prunes obsolete entries.
+    """
+    sitemap_path = SITE_DIR / "sitemap.xml"
+    if not sitemap_path.exists():
+        return {"status": "missing_sitemap", "added": [], "removed": []}
+
+    try:
+        content = sitemap_path.read_text(encoding="utf-8")
+        tree = ET.parse(sitemap_path)
+        root = tree.getroot()
+    except Exception as e:
+        return {"status": f"parse_error: {e}", "added": [], "removed": []}
+
+    # Gather existing locs in sitemap
+    existing_urls = set()
+    for loc_el in root.findall(".//{*}loc"):
+        if loc_el.text:
+            existing_urls.add(loc_el.text.strip())
+
+    # Build canonical URLs from actual disk files
+    canonical_map = {}
+    for p in SITE_DIR.rglob("*.html"):
+        rel = p.relative_to(SITE_DIR).as_posix()
+        # Exclude non-indexable files, error pages, site verification tokens, components
+        if rel in ("404.html",) or rel.startswith("googlead") or "components/" in rel:
+            continue
+        if rel == "index.html":
+            u = "https://surplusdocket.com/"
+        elif rel.endswith("/index.html"):
+            u = f"https://surplusdocket.com/{rel[:-len('index.html')] }"
+        else:
+            u = f"https://surplusdocket.com/{rel}"
+        canonical_map[u] = rel
+
+    # Detect missing URLs
+    missing_urls = sorted([u for u in canonical_map if u not in existing_urls])
+
+    # Detect obsolete URLs in sitemap
+    obsolete_urls = []
+    for u in existing_urls:
+        if u == "https://surplusdocket.com/":
+            continue
+        path_part = u.replace("https://surplusdocket.com/", "").strip("/")
+        file_candidates = [
+            SITE_DIR / path_part,
+            SITE_DIR / f"{path_part}.html",
+            SITE_DIR / path_part / "index.html"
+        ]
+        if not any(c.exists() for c in file_candidates):
+            obsolete_urls.append(u)
+
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    if (missing_urls or obsolete_urls) and not dry_run:
+        updated_content = content
+
+        # Remove obsolete blocks if any
+        for obs_u in obsolete_urls:
+            obs_pattern = rf"\s*<url>\s*<loc>{re.escape(obs_u)}</loc>[\s\S]*?</url>"
+            updated_content = re.sub(obs_pattern, "", updated_content)
+
+        # Build new XML blocks for missing pages
+        new_blocks = []
+        for u in missing_urls:
+            prio = "0.9" if "posts/" in u or "press/" in u or "toolkit" in u else "0.8"
+            freq = "daily" if "posts/" in u or "live-docket" in u else "weekly"
+            new_blocks.append(
+                f"  <url>\n"
+                f"    <loc>{u}</loc>\n"
+                f"    <lastmod>{today}</lastmod>\n"
+                f"    <changefreq>{freq}</changefreq>\n"
+                f"    <priority>{prio}</priority>\n"
+                f"  </url>"
+            )
+
+        if new_blocks:
+            insert_pos = updated_content.rfind("</urlset>")
+            if insert_pos != -1:
+                joined_new = "\n".join(new_blocks) + "\n"
+                updated_content = updated_content[:insert_pos] + joined_new + updated_content[insert_pos:]
+
+        sitemap_path.write_text(updated_content, encoding="utf-8")
+
+    return {
+        "status": "reconciled" if (missing_urls or obsolete_urls) else "in_sync",
+        "added": missing_urls,
+        "removed": obsolete_urls,
+        "total_canonical": len(canonical_map),
+        "existing_in_sitemap": len(existing_urls)
+    }
+
+
+def heal_repealed_statutes(dry_run: bool = False) -> list:
+    """
+    Scans repository files and automatically heals references to repealed
+    Tennessee surplus statute T.C.A. § 67-5-2510 to active § 67-5-2501.
+    """
+    repealed_pattern = re.compile(r'T\.C\.A\.\s*§?\s*67-5-2510\b|67-5-2510\b', re.IGNORECASE)
+    active_replacement = "T.C.A. § 67-5-2501"
+    target_dirs = ["site", "compliance", "marketing", "outreach", "portal"]
+    healed = []
+
+    for d in target_dirs:
+        dir_path = REPO_ROOT / d
+        if not dir_path.exists():
+            continue
+        for p in dir_path.rglob("*"):
+            if not p.is_file() or p.suffix not in (".html", ".py", ".md", ".json", ".txt"):
+                continue
+            if p.name in ("autonomous_bug_resolver.py", "statutory_rules.json") or p.name.startswith("test_"):
+                continue
+            try:
+                text = p.read_text(encoding="utf-8", errors="ignore")
+            except Exception:
+                continue
+
+            if "67-5-2510" in text:
+                matches = repealed_pattern.findall(text)
+                if matches:
+                    rel_path = str(p.relative_to(REPO_ROOT))
+                    if not dry_run:
+                        new_text = re.sub(r'T\.C\.A\.\s*§?\s*67-5-2510\b', active_replacement, text)
+                        new_text = re.sub(r'\b67-5-2510\b', '67-5-2501', new_text)
+                        p.write_text(new_text, encoding="utf-8")
+                    healed.append({
+                        "file": rel_path,
+                        "old": "T.C.A. § 67-5-2510",
+                        "new": active_replacement,
+                        "occurrences": len(matches)
+                    })
+
+    return healed
+
+
+def attempt_self_healing(broken_links: list, broken_assets: list, dry_run: bool = False) -> list:
+    """Auto-heal identified broken links, sitemap drift, and statutory citations."""
     healed_actions = []
 
     # Map of common known aliases or renamed files
@@ -326,10 +465,22 @@ def attempt_self_healing(broken_links: list, broken_assets: list) -> list:
         "checklist.html": "/assets/Statutory_Surplus_Filing_Checklist.txt",
     }
 
+    # Index all site HTML files for fuzzy matching
+    all_site_files = {}
+    for p in SITE_DIR.rglob("*.html"):
+        rel = "/" + p.relative_to(SITE_DIR).as_posix()
+        all_site_files[p.name] = rel
+        all_site_files[rel] = rel
+
     for item in broken_links:
         src_file = REPO_ROOT / item["file"]
         href = item["href"]
         cleaned = href.strip().lstrip("/")
+        base_name = Path(cleaned).name
+        if not base_name.endswith(".html") and not Path(cleaned).suffix:
+            base_name_html = base_name + ".html"
+        else:
+            base_name_html = base_name
 
         replacement = None
         if cleaned in known_corrections:
@@ -338,6 +489,12 @@ def attempt_self_healing(broken_links: list, broken_assets: list) -> list:
             replacement = known_corrections[cleaned + ".html"]
         elif (SITE_DIR / (cleaned + ".html")).exists():
             replacement = "/" + cleaned + ".html"
+        elif base_name_html in all_site_files:
+            replacement = all_site_files[base_name_html]
+        else:
+            matches = difflib.get_close_matches(cleaned, list(all_site_files.keys()), n=1, cutoff=0.75)
+            if matches:
+                replacement = all_site_files[matches[0]]
 
         if replacement and src_file.exists():
             try:
@@ -346,8 +503,9 @@ def attempt_self_healing(broken_links: list, broken_assets: list) -> list:
                 old_attr = f'href="{href}"'
                 new_attr = f'href="{replacement}"'
                 if old_attr in content:
-                    new_content = content.replace(old_attr, new_attr)
-                    src_file.write_text(new_content, encoding="utf-8")
+                    if not dry_run:
+                        new_content = content.replace(old_attr, new_attr)
+                        src_file.write_text(new_content, encoding="utf-8")
                     healed_actions.append({
                         "file": item["file"],
                         "issue": f"Broken link: {href}",
@@ -355,6 +513,24 @@ def attempt_self_healing(broken_links: list, broken_assets: list) -> list:
                     })
             except Exception as e:
                 print(f"[!] Error auto-healing {src_file}: {e}")
+
+    # Sitemap Self-Reconciliation
+    sitemap_res = reconcile_and_repair_sitemap(dry_run=dry_run)
+    if sitemap_res.get("added") or sitemap_res.get("removed"):
+        healed_actions.append({
+            "file": "site/sitemap.xml",
+            "issue": f"Sitemap drift ({len(sitemap_res.get('added', []))} missing, {len(sitemap_res.get('removed', []))} obsolete)",
+            "action": f"Reconciled sitemap: added {len(sitemap_res.get('added', []))} pages, removed {len(sitemap_res.get('removed', []))} dead entries"
+        })
+
+    # Statutory Citation Self-Healing
+    statute_fixes = heal_repealed_statutes(dry_run=dry_run)
+    for fix in statute_fixes:
+        healed_actions.append({
+            "file": fix["file"],
+            "issue": f"Repealed statute reference: {fix['old']}",
+            "action": f"Updated to {fix['new']} ({fix['occurrences']} instances)"
+        })
 
     return healed_actions
 
@@ -745,6 +921,7 @@ def main():
     parser.add_argument("--reporter", type=str, default="User Submission", help="Reporter username or email")
     parser.add_argument("--recipient", type=str, default=DEFAULT_GMAIL_USER, help="Email recipient for resolution report")
     parser.add_argument("--skip-tests", action="store_true", help="Skip running full unittest suite")
+    parser.add_argument("--self-repair", action="store_true", help="Run comprehensive pre-flight self-repair on links, sitemap, and statutes")
     args = parser.parse_args()
 
     print("=" * 70)
@@ -856,15 +1033,25 @@ def main():
         test_results = run_unit_tests()
         print(f"    - Passed: {test_results['passed']} ({test_results['test_count']} tests in {test_results['elapsed_seconds']}s)")
 
-    # 6. Autonomous Self-Healing (Strictly restricted to verified broken links)
+    # 6. Autonomous Self-Healing (Broken links, sitemap drift, repealed statute normalization)
     healed_actions = []
-    if link_results["broken_links"] and not args.dry_run:
-        print("[*] Attempting autonomous self-healing on broken links...")
-        healed_actions = attempt_self_healing(link_results["broken_links"], link_results["broken_assets"])
+    should_heal = bool(link_results["broken_links"] or args.self_repair)
+    if should_heal and not args.dry_run:
+        print("[*] Attempting autonomous self-healing on broken links, sitemap, and statutes...")
+        healed_actions = attempt_self_healing(link_results["broken_links"], link_results["broken_assets"], dry_run=False)
         if healed_actions:
-            print(f"✓ Applied {len(healed_actions)} autonomous self-healing fixes.")
+            print(f"✓ Applied {len(healed_actions)} autonomous self-healing fixes:")
+            for h in healed_actions:
+                print(f"    - [{h['file']}] {h['action']}")
             # Re-audit links to confirm resolution
             link_results = audit_site_links_and_assets()
+    elif should_heal and args.dry_run:
+        print("[*] [DRY RUN] Evaluating autonomous self-healing opportunities...")
+        dry_actions = attempt_self_healing(link_results["broken_links"], link_results["broken_assets"], dry_run=True)
+        if dry_actions:
+            print(f"    - [DRY RUN] Detected {len(dry_actions)} self-healing opportunities:")
+            for h in dry_actions:
+                print(f"        * [{h['file']}] {h['action']}")
 
     # Determine overall status & human review requirements
     is_fully_clean = (

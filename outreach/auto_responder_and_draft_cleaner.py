@@ -558,6 +558,13 @@ def transcribe_voicemail_audio(audio_bytes, filename="voicemail.mp3", api_key=No
     if not key or not audio_bytes:
         return ""
 
+    # When running autonomously without an explicitly provided key, protect budget in zero cost mode
+    zero_cost = os.environ.get("ZERO_COST_MODE", "true").lower() in ("true", "1", "yes")
+    allow_paid = os.environ.get("ALLOW_PAID_OPENAI", "false").lower() in ("true", "1", "yes")
+    if not api_key and zero_cost and not allow_paid:
+        log("  ℹ️ Zero-Cost Mode: Preserving OpenAI credits; utilizing Google Voice transcript directly.")
+        return ""
+
     try:
         boundary = f"----WebKitFormBoundary{uuid.uuid4().hex}"
         body = bytearray()
@@ -731,6 +738,51 @@ def is_automated_receipt_or_bounce(msg, sender_email, subject_raw):
     return False
 
 
+def record_bounced_recipient(text_body, msg=None):
+    """Extracts failed recipient from delivery bounce notices and records to blocklist."""
+    content = (text_body or "") + " "
+    if msg:
+        for header_name in ("Final-Recipient", "Original-Recipient", "X-Failed-Recipients"):
+            val = msg.get(header_name)
+            if val:
+                content += f" {val} "
+
+    patterns = [
+        r'final-recipient\s*:\s*rfc822\s*;\s*([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)',
+        r"wasn't delivered to\s+([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)",
+        r'failed to deliver to\s+([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)',
+        r'address rejected[:\s]+.*?\b([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)',
+    ]
+    bounced_emails = set()
+    for pat in patterns:
+        for match in re.findall(pat, content, re.IGNORECASE):
+            bounced_emails.add(match.lower().strip())
+
+    if not bounced_emails:
+        return
+
+    bounced_file = BASE_DIR / "outreach" / "bounced_emails.json"
+    existing = set()
+    if bounced_file.exists():
+        try:
+            with open(bounced_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, list):
+                    existing = set(e.lower() for e in data)
+        except Exception:
+            pass
+
+    new_bounces = bounced_emails - existing
+    if new_bounces:
+        existing.update(new_bounces)
+        try:
+            with open(bounced_file, "w", encoding="utf-8") as f:
+                json.dump(sorted(list(existing)), f, indent=2)
+            log(f"  🛑 Recorded {len(new_bounces)} bounced address(es) to blocklist: {', '.join(new_bounces)}")
+        except Exception as e:
+            log(f"  ⚠️ Could not write to bounced_emails.json: {e}")
+
+
 def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body, directory, email_directory, target_domains):
     """
     Enforces Rule 2.1 & 2.2 of Surplus Docket Inbound Outreach Policy (SD-POL-OUTREACH-2026-V1):
@@ -747,6 +799,7 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
     is_gv = (s_email == "voice-noreply@google.com" and "voicemail" in subject_raw.lower())
     is_form = any(k in s_dom for k in ("formsubmit.co", "formspree.io"))
     if not (is_gv or is_form) and is_automated_receipt_or_bounce(msg, s_email, subject_raw):
+        record_bounced_recipient(text_body, msg)
         return False, "Message identified as automated notification, bounce, or system alert", None, None
 
     # 3. Check if it is an official statutory website inquiry from surplusdocket.com/inquiry.html

@@ -105,8 +105,8 @@ def calculate_days_remaining(sale_date_str, state):
 
 
 def classify_and_enrich_record(row, county_meta):
-    owner_raw = str(row.get("owner_name", row.get("DEFENDANT", row.get("NAME", "UNKNOWN")))).strip()
-    surplus_raw = row.get("surplus_amount", row.get("AMOUNT", row.get("Excess_Funds", row.get("Balance", 0))))
+    owner_raw = str(row.get("Owner_Name", row.get("owner_name", row.get("DEFENDANT", row.get("NAME", "UNKNOWN"))))).strip()
+    surplus_raw = row.get("Surplus_Balance_USD", row.get("surplus_balance_usd", row.get("surplus_amount", row.get("AMOUNT", row.get("Excess_Funds", row.get("Balance", 0))))))
     surplus_amt = clean_currency(surplus_raw)
     
     if surplus_amt < 2500.0:
@@ -125,8 +125,8 @@ def classify_and_enrich_record(row, county_meta):
     else:
         tier = "Tier 3: Standard Value ($2.5k-$10k)"
 
-    state = county_meta.get("state", "FL")
-    county_name = county_meta.get("county", "Unknown")
+    state = county_meta.get("state", row.get("State", "FL"))
+    county_name = county_meta.get("county", row.get("County", "Unknown"))
     
     # State-specific statutory fee rate caps
     if state == "TX":
@@ -138,13 +138,13 @@ def classify_and_enrich_record(row, county_meta):
 
     estimated_fee = round(surplus_amt * fee_rate, 2)
 
-    address = str(row.get("property_address", row.get("SITUS", row.get("Address", "N/A")))).strip()
-    case_no = str(row.get("case_number", row.get("TAX_DEED_NO", row.get("Parcel", "N/A")))).strip()
-    sale_date = str(row.get("sale_date", row.get("DATE", "N/A"))).strip()
+    address = str(row.get("Property_Address", row.get("property_address", row.get("SITUS", row.get("Address", "N/A"))))).strip()
+    case_no = str(row.get("Case_or_TaxDeed_No", row.get("case_number", row.get("TAX_DEED_NO", row.get("Parcel", "N/A"))))).strip()
+    sale_date = str(row.get("Sale_Date", row.get("sale_date", row.get("DATE", "N/A")))).strip()
 
     days_remaining, urgency_tier = calculate_days_remaining(sale_date, state)
     prop_class = infer_property_class(address)
-    clerk_url = CLERK_PORTALS.get(county_name, "https://surplusdocket.com")
+    clerk_url = row.get("Clerk_Verification_URL") or CLERK_PORTALS.get(county_name, "https://surplusdocket.com")
     
     if state == "FL":
         deadline_rule = "120 Days from Notice (Fla. Stat. § 197.582)"

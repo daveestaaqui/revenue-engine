@@ -94,8 +94,8 @@ jobs:
         run: |
           git config --global user.name "Surplus Docket Outreach Bot"
           git config --global user.email "outreach@surplusdocket.com"
-          for f in outreach/sent_log.csv outreach/drafts/_MANIFEST.csv outreach/form_submissions_log.csv outreach/form_screenshots/; do
-            if [ -e "$f" ]; then git add "$f"; fi
+          for f in outreach/sent_log.csv outreach/drafts/_MANIFEST.csv outreach/form_submissions_log.csv; do
+            if [ -f "$f" ]; then git add "$f"; fi
           done
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(outreach): recorded daily law firm outreach dispatches and drafts [skip ci]" && git pull --rebase origin main && git push)
 

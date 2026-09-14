@@ -35,6 +35,11 @@ jobs:
         run: |
           python compliance/statute_monitor.py
 
+      - name: 1b. Run Autonomous Pre-Flight Self-Healer & Site Sentinel
+        run: |
+          python compliance/autonomous_bug_resolver.py --self-repair --dry-run || true
+          python portal/pipeline_self_healer.py --audit-all || true
+
       - name: 2. Generate B2B Surplus Data Feeds (FL, TX & GA)
         run: |
           python portal/feed_generator.py
