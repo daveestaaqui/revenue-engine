@@ -80,62 +80,98 @@ def sync_via_stripe_api(api_key):
     req.add_header("Authorization", f"Bearer {api_key.strip()}")
 
     try:
-        with urllib.request.urlopen(req) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            subs = data.get("data", [])
-            print(f"✓ Retrieved {len(subs)} subscription records from Stripe API.")
-            
-            changes = 0
-            for s in subs:
-                status = s.get("status")
-                customer = s.get("customer", {})
-                if isinstance(customer, str):
-                    # Customer object wasn't expanded
-                    cust_email = None
-                    cust_name = "Counsel"
+        subs = []
+        has_more = True
+        starting_after = None
+        while has_more:
+            url = "https://api.stripe.com/v1/subscriptions?status=all&limit=100&expand%5B%5D=data.customer"
+            if starting_after:
+                url += f"&starting_after={starting_after}"
+            req = urllib.request.Request(url)
+            req.add_header("Authorization", f"Bearer {api_key.strip()}")
+
+            with urllib.request.urlopen(req) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                batch = data.get("data", [])
+                subs.extend(batch)
+                has_more = data.get("has_more", False)
+                if batch and has_more:
+                    starting_after = batch[-1]["id"]
                 else:
-                    cust_email = customer.get("email")
-                    cust_name = customer.get("name") or "Counsel"
+                    break
 
-                if not cust_email:
-                    continue
+        print(f"✓ Retrieved {len(subs)} subscription records from Stripe API.")
+        
+        # Group subscriptions by customer email to avoid deactivating active accounts
+        customer_subs = {}
+        for s in subs:
+            customer = s.get("customer", {})
+            if isinstance(customer, dict):
+                cust_email = customer.get("email")
+                cust_name = customer.get("name") or "Counsel"
+            else:
+                cust_email = None
+                cust_name = "Counsel"
 
-                if status in ("active", "trialing"):
-                    plan_name = "Surplus Docket — Tri-State Core Feed (FL, TX, GA)"
-                    items = s.get("items", {}).get("data", [])
-                    if items:
-                        price_obj = items[0].get("price", {})
-                        prod_obj = price_obj.get("product")
-                        if isinstance(prod_obj, dict) and prod_obj.get("name"):
-                            plan_name = prod_obj.get("name")
-                        elif price_obj.get("nickname"):
-                            plan_name = price_obj.get("nickname")
-                        elif items[0].get("plan", {}).get("nickname"):
-                            plan_name = items[0].get("plan", {}).get("nickname")
+            if not cust_email:
+                continue
 
-                    # Do not set placeholder firm names
-                    cust_lower = cust_name.lower()
-                    detected_firm = cust_name if any(term in cust_lower for term in ("law", "llc", "legal", "pc", "pllc", "esq", "attorney", "firm", "associates")) else ""
+            cust_email_norm = cust_email.strip().lower()
+            if cust_email_norm not in customer_subs:
+                customer_subs[cust_email_norm] = {
+                    "email": cust_email,
+                    "name": cust_name,
+                    "subscriptions": []
+                }
+            customer_subs[cust_email_norm]["subscriptions"].append(s)
 
-                    sub_obj, is_new = add_subscriber(
-                        email=cust_email,
-                        name=cust_name,
-                        firm=detected_firm,
-                        tier=plan_name
-                    )
-                    if is_new:
-                        print(f"  ✨ [Stripe API] Added new subscriber: {cust_email} ({status}) [{plan_name}]")
-                        changes += 1
-                        try:
-                            dispatch_activation_starter_kit(sub_obj)
-                        except Exception as err:
-                            print(f"  ⚠️ Could not dispatch welcome starter kit: {err}")
-                elif status in ("canceled", "unpaid"):
-                    if deactivate_subscriber(cust_email):
-                        print(f"  🛑 [Stripe API] Deactivated subscriber: {cust_email} ({status})")
-                        changes += 1
+        changes = 0
+        for cust_email_norm, cdata in customer_subs.items():
+            cust_email = cdata["email"]
+            cust_name = cdata["name"]
+            c_subs = cdata["subscriptions"]
 
-            return changes
+            # Find active or trialing subscription
+            active_sub = next((s for s in c_subs if s.get("status") in ("active", "trialing")), None)
+
+            if active_sub:
+                status = active_sub.get("status")
+                plan_name = "Surplus Docket — Tri-State Core Feed (FL, TX, GA)"
+                items = active_sub.get("items", {}).get("data", [])
+                if items:
+                    price_obj = items[0].get("price", {})
+                    prod_obj = price_obj.get("product")
+                    if isinstance(prod_obj, dict) and prod_obj.get("name"):
+                        plan_name = prod_obj.get("name")
+                    elif price_obj.get("nickname"):
+                        plan_name = price_obj.get("nickname")
+                    elif items[0].get("plan", {}).get("nickname"):
+                        plan_name = items[0].get("plan", {}).get("nickname")
+
+                # Do not set placeholder firm names
+                cust_lower = cust_name.lower()
+                detected_firm = cust_name if any(term in cust_lower for term in ("law", "llc", "legal", "pc", "pllc", "esq", "attorney", "firm", "associates")) else ""
+
+                sub_obj, is_new = add_subscriber(
+                    email=cust_email,
+                    name=cust_name,
+                    firm=detected_firm,
+                    tier=plan_name
+                )
+                if is_new:
+                    print(f"  ✨ [Stripe API] Added new subscriber: {cust_email} ({status}) [{plan_name}]")
+                    changes += 1
+                    try:
+                        dispatch_activation_starter_kit(sub_obj)
+                    except Exception as err:
+                        print(f"  ⚠️ Could not dispatch welcome starter kit: {err}")
+            else:
+                # All subscriptions for this customer are canceled or unpaid
+                if deactivate_subscriber(cust_email):
+                    print(f"  🛑 [Stripe API] Deactivated subscriber: {cust_email} (all subscriptions canceled)")
+                    changes += 1
+
+        return changes
 
     except urllib.error.HTTPError as e:
         err_body = e.read().decode("utf-8", errors="ignore")

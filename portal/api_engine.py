@@ -37,8 +37,8 @@ PLAN_TRI_STATE = {
     "annual_price_usd": 2490,
     "max_states": 3,
     "rest_api_enabled": False,
-    "checkout_monthly_url": "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22",
-    "checkout_annual_url": "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",
+    "checkout_monthly_url": "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",
+    "checkout_annual_url": "https://buy.stripe.com/6oU6oHg0SgXNce9gkC0ZW1Z",
 }
 
 PLAN_SIX_STATE = {
@@ -51,8 +51,8 @@ PLAN_SIX_STATE = {
     "rest_api_enabled": True,
     "rate_limit_per_minute": 60,
     "monthly_request_quota": 50000,
-    "checkout_monthly_url": "https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20",
-    "checkout_annual_url": "https://buy.stripe.com/6oU6oHg0SgXNce9gkC0ZW1Z",
+    "checkout_monthly_url": "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22",
+    "checkout_annual_url": "https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20",
 }
 
 # Rate limit memory cache: token_hash -> list of unix timestamps

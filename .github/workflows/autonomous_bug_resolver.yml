@@ -31,12 +31,12 @@ permissions:
 
 jobs:
   triage-and-resolve:
-    # Only run on issues with 'bug', 'automated-triage', or all newly opened issues (unless specifically non-bug)
+    # Only run on workflow_dispatch or issues opened/reopened/labeled by repository owners or members
     if: >
       github.event_name == 'workflow_dispatch' ||
-      github.event.action == 'opened' ||
-      github.event.action == 'reopened' ||
-      (github.event.action == 'labeled' && (github.event.label.name == 'bug' || github.event.label.name == 'automated-triage'))
+      ((github.event.issue.author_association == 'OWNER' || github.event.issue.author_association == 'MEMBER' || github.event.issue.author_association == 'COLLABORATOR') &&
+       (github.event.action == 'opened' || github.event.action == 'reopened' ||
+        (github.event.action == 'labeled' && (github.event.label.name == 'bug' || github.event.label.name == 'automated-triage'))))
     runs-on: ubuntu-latest
     timeout-minutes: 10
 

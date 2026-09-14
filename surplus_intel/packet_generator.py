@@ -84,10 +84,10 @@ STATUTE_PROCEDURES = {
         "priority_hierarchy": "Taxing Authorities -> Mortgagees of Record -> Heirs / Titleholders"
     },
     "TN": {
-        "statute": "Tenn. Code Ann. § 67-5-2510",
+        "statute": "T.C.A. § 67-5-2501 & § 67-5-2702",
         "custodian": "Chancery Court Clerk & Master Registry",
         "pleading": "Motion for Excess Sale Proceeds in Chancery Tax Suit",
-        "claim_window": "1-Year Statutory Redemption & Claim Window",
+        "claim_window": "Statutory Chancery Court Distribution Procedure",
         "priority_hierarchy": "Court Costs / Taxes -> Prior Recorded Deeds of Trust -> Former Property Owner"
     },
     "CA": {
@@ -103,7 +103,8 @@ def generate_claim_packet(lead, out_dir=DEFAULT_OUT_DIR):
     """Generates an Attorney Litigation Dossier for the given lead."""
     os.makedirs(out_dir, exist_ok=True)
     clean_name = "".join(c for c in lead["owner_name"] if c.isalnum() or c in " _-").strip().replace(" ", "_")
-    filename = os.path.join(out_dir, f"Attorney_Dossier_{clean_name}_{lead['parcel_or_case']}.md")
+    clean_case = "".join(c if c.isalnum() or c in "_- " else "_" for c in str(lead.get("parcel_or_case", ""))).strip().replace(" ", "_")
+    filename = os.path.join(out_dir, f"Attorney_Dossier_{clean_name}_{clean_case}.md")
 
     st = lead.get("state", "FL").upper()
     proc = STATUTE_PROCEDURES.get(st, {

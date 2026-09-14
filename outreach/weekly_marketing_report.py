@@ -19,6 +19,7 @@ import csv
 from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import html as html_lib
 import json
 import os
 from pathlib import Path
@@ -434,14 +435,20 @@ def render_html_report(metrics):
             except Exception:
                 pass
 
-            sender_name = act.get("sender_name", "Inquiring Party")
-            sender_email = act.get("sender_email", "")
-            phone = act.get("phone", "")
+            sender_name = html_lib.escape(str(act.get("sender_name", "Inquiring Party")))
+            sender_email = html_lib.escape(str(act.get("sender_email", "")))
+            phone = html_lib.escape(str(act.get("phone", "")))
             contact_info = f"{sender_name}"
             if phone:
                 contact_info += f" ({phone})"
             if sender_email:
                 contact_info += f" &bull; {sender_email}"
+
+            inbound_snippet = html_lib.escape(str(act.get('inbound_snippet', '')))
+            action_summary = html_lib.escape(str(act.get('summary', '')))
+            action_taken = html_lib.escape(str(act.get('action_taken', 'AUTO_SENT_REPLY')))
+            persona = html_lib.escape(str(act.get('persona', 'Intake Desk')))
+            subject_str = html_lib.escape(str(act.get('subject', '')))
 
             notable_html += f"""
             <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px;">
@@ -455,17 +462,17 @@ def render_html_report(metrics):
                     </tr>
                     <tr>
                         <td style="padding-top: 6px; font-size: 12px; color: #334155; line-height: 1.5;">
-                            <strong>Inquiry:</strong> {act.get('inbound_snippet', '')}
+                            <strong>Inquiry:</strong> {inbound_snippet}
                         </td>
                     </tr>
                     <tr>
                         <td style="padding-top: 4px; font-size: 12px; color: #1e293b; line-height: 1.5;">
-                            <strong>Summary & Dispatched Action:</strong> {act.get('summary', '')}
+                            <strong>Summary & Dispatched Action:</strong> {action_summary}
                         </td>
                     </tr>
                     <tr>
                         <td style="padding-top: 4px; font-size: 11px; color: #64748b;">
-                            <strong>Status:</strong> <span style="color: #16a34a; font-weight: 600;">{act.get('action_taken', 'AUTO_SENT_REPLY')}</span> via {act.get('persona', 'Intake Desk')} | Subject: <em>{act.get('subject', '')}</em>
+                            <strong>Status:</strong> <span style="color: #16a34a; font-weight: 600;">{action_taken}</span> via {persona} | Subject: <em>{subject_str}</em>
                         </td>
                     </tr>
                 </table>

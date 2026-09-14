@@ -53,7 +53,7 @@ STATE_BAR_RULES = {
         "title": "Solicitation of Clients",
         "phone_solicitation_allowed": False,
         "written_mail_allowed": True,
-        "mandated_disclosure": "Chancery and circuit court excess proceeds index under Tenn. Code Ann. § 67-5-2510.",
+        "mandated_disclosure": "Chancery and circuit court excess proceeds index under T.C.A. § 67-5-2501 & § 67-5-2702.",
     },
 }
 

@@ -11,6 +11,7 @@ import json
 import pandas as pd
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlsplit
 
 # Add root repository directory to sys.path
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,14 +92,23 @@ def generate_b2b_exports():
     all_leads.sort(key=lambda x: x["Surplus_Balance_USD"], reverse=True)
     df_all = pd.DataFrame(all_leads)
 
+    def sanitize_for_spreadsheet(df: pd.DataFrame) -> pd.DataFrame:
+        clean_df = df.copy()
+        for col in clean_df.select_dtypes(include=["object"]):
+            clean_df[col] = clean_df[col].apply(
+                lambda x: f"'{x}" if isinstance(x, str) and x and x[0] in ("=", "+", "-", "@") else x
+            )
+        return clean_df
+
     # Generate Master Exports
     master_csv = EXPORTS_DIR / "Master_Surplus_Lead_Feed.csv"
     master_xlsx = EXPORTS_DIR / "Master_Surplus_Lead_Feed.xlsx"
     master_json = EXPORTS_DIR / "Master_Surplus_Lead_Feed.json"
 
-    df_all.to_csv(master_csv, index=False)
+    df_export = sanitize_for_spreadsheet(df_all)
+    df_export.to_csv(master_csv, index=False)
     try:
-        df_all.to_excel(master_xlsx, index=False)
+        df_export.to_excel(master_xlsx, index=False)
     except Exception:
         pass
     
@@ -123,11 +133,22 @@ def generate_b2b_exports():
 
     for state_code, (df_state, file_base, statute, api_file) in state_dfs.items():
         if len(df_state) > 0:
-            df_state.to_csv(EXPORTS_DIR / f"{file_base}.csv", index=False)
+            df_state_export = sanitize_for_spreadsheet(df_state)
+            df_state_export.to_csv(EXPORTS_DIR / f"{file_base}.csv", index=False)
             try:
-                df_state.to_excel(EXPORTS_DIR / f"{file_base}.xlsx", index=False)
+                df_state_export.to_excel(EXPORTS_DIR / f"{file_base}.xlsx", index=False)
             except Exception:
                 pass
+
+    # Tri-State Core Feed (FL, TX, GA)
+    df_tristate = df_all[df_all["State"].isin(["FL", "TX", "GA"])]
+    if len(df_tristate) > 0:
+        df_tri_export = sanitize_for_spreadsheet(df_tristate)
+        df_tri_export.to_csv(EXPORTS_DIR / "Tri_State_Core_Surplus_Feed.csv", index=False)
+        try:
+            df_tri_export.to_excel(EXPORTS_DIR / "Tri_State_Core_Surplus_Feed.xlsx", index=False)
+        except Exception:
+            pass
 
     def redact_lead_for_public_sandbox(lead: dict) -> dict:
         redacted = lead.copy()
@@ -147,6 +168,21 @@ def generate_b2b_exports():
             redacted["Property_Address"] = f"{addr_parts[0]} {addr_parts[1]} [REDACTED — SUBSCRIBER ACCESS ONLY]"
         else:
             redacted["Property_Address"] = "[REDACTED — SUBSCRIBER ACCESS ONLY]"
+
+        raw_case = str(lead.get("Case_or_TaxDeed_No", "")).strip()
+        if raw_case:
+            if "-" in raw_case:
+                prefix = raw_case.rsplit("-", 1)[0]
+                redacted["Case_or_TaxDeed_No"] = f"{prefix}-████ [SUBSCRIBER KEY REQUIRED]"
+            else:
+                redacted["Case_or_TaxDeed_No"] = raw_case[:4] + "████ [SUBSCRIBER KEY REQUIRED]"
+        else:
+            redacted["Case_or_TaxDeed_No"] = "[REDACTED — SUBSCRIBER KEY REQUIRED]"
+
+        clerk_url = lead.get("Clerk_Verification_URL", "")
+        if clerk_url:
+            parsed = urlsplit(clerk_url)
+            redacted["Clerk_Verification_URL"] = f"{parsed.scheme}://{parsed.netloc}/"
 
         redacted["Access_Status"] = "REDACTED_PREVIEW"
         return redacted

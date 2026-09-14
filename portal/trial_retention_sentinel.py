@@ -617,6 +617,8 @@ def run_trial_sentinel(is_dry_run=False, test_recipient=None, force_day=None):
 
         # Day 3 Evaluation Trigger
         should_send_day3 = False
+        # Day 3 Advisory Trigger
+        should_send_day3 = False
         if force_day == 3:
             should_send_day3 = True
         elif not sub_record.get("day_3_sent") and 2.5 <= days_active < 5.0:
@@ -629,13 +631,16 @@ def run_trial_sentinel(is_dry_run=False, test_recipient=None, force_day=None):
             if send_lifecycle_email(email_addr, subject, t_body, h_body, is_dry_run=is_dry_run):
                 if not is_dry_run:
                     sub_record["day_3_sent"] = now_utc.isoformat()
+                    save_lifecycle_log(lifecycle_log)
                     processed_count += 1
 
-        # Day 6 Evaluation Trigger
+        # Day 6 Evaluation Trigger (Strictly bounded to trial evaluation window 5.5 to 7.5 days)
+        tier_lower = str(sub.get("tier", "")).lower()
+        is_trial_tier = "trial" in tier_lower or "evaluation" in tier_lower or "core" in tier_lower
         should_send_day6 = False
         if force_day == 6:
             should_send_day6 = True
-        elif not sub_record.get("day_6_sent") and days_active >= 5.5:
+        elif not sub_record.get("day_6_sent") and 5.5 <= days_active <= 7.5 and is_trial_tier:
             should_send_day6 = True
 
         if should_send_day6:
@@ -645,11 +650,8 @@ def run_trial_sentinel(is_dry_run=False, test_recipient=None, force_day=None):
             if send_lifecycle_email(email_addr, subject, t_body, h_body, is_dry_run=is_dry_run):
                 if not is_dry_run:
                     sub_record["day_6_sent"] = now_utc.isoformat()
+                    save_lifecycle_log(lifecycle_log)
                     processed_count += 1
-
-    if not is_dry_run and processed_count > 0:
-        save_lifecycle_log(lifecycle_log)
-        print(f"\n💾 Saved lifecycle state for {processed_count} dispatch event(s).")
 
     print(f"\n✅ Sentinel run completed. Dispatches triggered: {processed_count}")
     return 0

@@ -129,7 +129,7 @@ Elena Brooks' knowledge base dynamically reflects all state legal guidelines, st
 | **GA** | `O.C.G.A. § 48-4-5` | 5-Year Interpleader Hold | County Tax Commissioner / Sheriff Registry | Record owner at tax sale -> junior lienholders. Custodian interpleads in Superior Court if disputed. |
 | **CA** | `Cal. Rev. & Tax Code § 4675` | Strict 1-Year Deadline from Deed Recording | County Board of Supervisors / Tax Collector | Recorded liens in priority -> parties of interest (titleholders/heirs). Stringent assignee disclosure rules under § 4675(e). |
 | **NC** | `N.C. Gen. Stat. § 105-374` | 10-Day Upset Bid; Statutory Window | Clerk of Superior Court Registry | Costs and taxes -> mortgagees and judgment creditors -> titleholders. Unclaimed escheat to state Escheat Fund. |
-| **TN** | `Tenn. Code Ann. § 67-5-2510` | 1-Year Statutory Redemption & Claim Window | Chancery Court / Circuit Court Registry | Taxes/costs -> recorded lienholders -> property owner / heirs. Motion for distribution filed in Chancery Court. |
+| **TN** | `T.C.A. § 67-5-2501 & § 67-5-2702` | 1-Year Statutory Claim & Distribution Window | Chancery Court / Circuit Court Registry | Taxes/costs -> recorded lienholders -> property owner / heirs. Motion for distribution filed in Chancery Court. |
 
 ---
 

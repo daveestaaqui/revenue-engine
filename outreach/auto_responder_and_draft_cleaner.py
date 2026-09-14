@@ -17,11 +17,13 @@ import csv
 import email
 from email.header import decode_header
 import imaplib
+import ipaddress
 import hashlib
 import json
 import os
 import re
 import smtplib
+import socket
 import ssl
 import subprocess
 import sys
@@ -108,7 +110,7 @@ STATE_STATUTES = {
     "TX": ("Texas", "Tex. Tax Code § 34.04"),
     "GA": ("Georgia", "O.C.G.A. § 48-4-5"),
     "NC": ("North Carolina", "N.C. Gen. Stat. § 105-374"),
-    "TN": ("Tennessee", "Tenn. Code Ann. § 67-5-2510"),
+    "TN": ("Tennessee", "T.C.A. § 67-5-2501 & § 67-5-2702"),
     "CA": ("California", "Cal. Rev. & Tax Code § 4675"),
 }
 
@@ -166,7 +168,7 @@ JURISDICTION_STATUTORY_KNOWLEDGE = {
     },
     "TN": {
         "state_name": "Tennessee",
-        "statute_cite": "Tenn. Code Ann. § 67-5-2510",
+        "statute_cite": "T.C.A. § 67-5-2501 & § 67-5-2702",
         "claim_window": "1-year statutory redemption and claim period",
         "custodian": "Chancery Court / Circuit Court Registry",
         "procedural_mechanism": "Motion for distribution of excess proceeds filed in Chancery Court",
@@ -640,14 +642,39 @@ def extract_unsubscribe_details(msg, text_body, html_body):
     }
 
 
+def is_safe_external_url(url: str):
+    """Validates URL to protect against SSRF, internal network pivots, and cloud metadata access."""
+    try:
+        parsed = urllib.parse.urlparse(url)
+        if parsed.scheme not in ("http", "https"):
+            return False, f"Invalid URL scheme: {parsed.scheme}"
+        hostname = parsed.hostname
+        if not hostname:
+            return False, "Missing hostname in URL"
+        if hostname.lower() in ("localhost", "127.0.0.1", "::1", "metadata.google.internal", "metadata"):
+            return False, f"Prohibited host: {hostname}"
+        # Resolve all addresses for the host
+        addr_info = socket.getaddrinfo(hostname, None)
+        for item in addr_info:
+            ip_str = item[4][0]
+            ip = ipaddress.ip_address(ip_str)
+            if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved or ip.is_multicast:
+                return False, f"Prohibited IP address: {ip_str}"
+        return True, "Safe URL"
+    except Exception as e:
+        return False, f"URL validation error: {e}"
+
+
 def execute_unsubscribe(url, is_one_click=False):
-    """Executes unsubscription via HTTP POST or GET request."""
+    """Executes unsubscription via HTTP POST or GET request with SSRF & SSL verification."""
+    is_safe, reason = is_safe_external_url(url)
+    if not is_safe:
+        return False, f"Blocked: {reason}"
+
     req_headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
     }
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
 
     try:
         if is_one_click:
@@ -709,24 +736,35 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
     Enforces Rule 2.1 & 2.2 of Surplus Docket Inbound Outreach Policy (SD-POL-OUTREACH-2026-V1):
     Returns: (is_eligible: bool, reason: str, target_info: dict, inquiry_info: dict)
     """
-    # 1. Check if it is an official statutory website inquiry from surplusdocket.com/inquiry.html
-    # (Must check this first because third-party delivery relays like FormSubmit or Cloudflare forward these)
+    s_email = sender_email.lower().strip()
+    s_dom = clean_domain_str(s_email)
+
+    # 1. Filter self-sent or internal domain emails immediately
+    if s_dom == "surplusdocket.com" or s_email == "sandwichfitness@gmail.com":
+        return False, "Self-sent or internal domain transmission", None, None
+
+    # 2. Check if it is an official statutory website inquiry from surplusdocket.com/inquiry.html
+    # (Checked first because third-party delivery relays like FormSubmit forward these)
     inquiry_data = parse_statutory_inquiry(subject_raw, text_body)
     if inquiry_data and inquiry_data.get("email"):
         inq_email = inquiry_data.get("email", "").lower().strip()
         inq_dom = clean_domain_str(inq_email)
-        if inq_dom not in SYSTEM_BLOCKLIST_DOMAINS and inq_email != "sandwichfitness@gmail.com":
+        if inq_dom not in SYSTEM_BLOCKLIST_DOMAINS and inq_email != "sandwichfitness@gmail.com" and inq_dom != "surplusdocket.com":
             return True, "Verified statutory website inquiry", None, inquiry_data
 
-    # 1.5 Check if it is a Google Voice voicemail notification for (508) 419-3178
+    # 3. Check if it is a verified Google Voice voicemail notification for (508) 419-3178
     gv_inquiry = parse_google_voice_voicemail(sender_email, subject_raw, text_body, msg=msg)
     if gv_inquiry:
         return True, "Verified Google Voice voicemail inquiry", None, gv_inquiry
 
-    # 1.6 Check if email was sent directly to inquiries@surplusdocket.com or aubrey.hayes@surplusdocket.com
+    # 4. Filter all automated delivery notices, bounces, and system messages
+    if is_automated_receipt_or_bounce(msg, s_email, subject_raw):
+        return False, "Message identified as automated notification, bounce, or system alert", None, None
+
+    # 6. Check if email was sent directly to inquiries@surplusdocket.com or aubrey.hayes@surplusdocket.com
+    # (Now safe from bounces and system alerts because steps 4 & 5 ran above)
     msg_to = (msg.get("To", "") + " " + msg.get("Delivered-To", "") + " " + msg.get("X-Forwarded-To", "")).lower()
     if any(addr in msg_to for addr in ["inquiries@surplusdocket.com", "aubrey.hayes@surplusdocket.com", "contact@surplusdocket.com"]):
-        s_email = sender_email.lower().strip()
         det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, text_body, default_state=None)
         state_name = STATE_NAMES.get(det_state, "") if det_state else ""
         direct_inquiry = {
@@ -743,18 +781,7 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
         }
         return True, "Verified direct inbound inquiry to inquiries@surplusdocket.com", None, direct_inquiry
 
-    s_email = sender_email.lower().strip()
-    s_dom = clean_domain_str(s_email)
-
-    # 2. Filter all automated, bounce, or system messages
-    if is_automated_receipt_or_bounce(msg, s_email, subject_raw):
-        return False, "Message identified as automated notification, bounce, or system alert", None, None
-
-    # 3. Filter self-sent or internal domain emails
-    if s_dom == "surplusdocket.com" or s_email == "sandwichfitness@gmail.com":
-        return False, "Self-sent or internal domain transmission", None, None
-
-    # 4. Check if sender matches our verified law firm target directory
+    # 7. Check if sender matches our verified law firm target directory
     target_info = email_directory.get(s_email) or directory.get(s_dom)
     if target_info:
         return True, f"Verified target firm match ({target_info.get('firm', s_dom)})", target_info, None
@@ -1934,13 +1961,10 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body, msg=None)
     s_lower = (sender_email or "").lower().strip()
     subj_lower = (subject_raw or "").lower().strip()
 
-    is_gv = (
-        "voice-noreply@google.com" in s_lower or
-        "google voice" in s_lower or
-        "new voicemail from" in subj_lower or
-        "voicemail from" in subj_lower
-    )
-    if not is_gv:
+    # Strictly require sender to be official Google Voice notification address
+    if s_lower != "voice-noreply@google.com":
+        return None
+    if "voicemail" not in subj_lower:
         return None
 
     # 1. Extract phone number

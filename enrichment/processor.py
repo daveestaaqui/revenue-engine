@@ -50,12 +50,12 @@ CLERK_PORTALS = {
 }
 
 def infer_property_class(address):
-    addr_upper = address.upper()
-    if any(k in addr_upper for k in ["LOT", "TRACT", "PARCEL", "ACRE", "VACANT", "BLK"]):
+    street_segment = address.split(",")[0].upper().strip()
+    if re.search(r"\b(LOT|TRACT|PARCEL|ACRE|VACANT|BLK)\b", street_segment):
         return "Vacant Land / Acreage"
-    elif any(k in addr_upper for k in ["UNIT", "APT", "CONDO", "#", "SUITE"]):
+    elif re.search(r"\b(UNIT|APT|CONDO|#|SUITE)\b", address.upper()):
         return "Condo / Multi-Family"
-    elif any(k in addr_upper for k in ["COMMERCIAL", "BLVD", "HWY", "INDUSTRIAL", "PLAZA"]):
+    elif re.search(r"\b(COMMERCIAL|INDUSTRIAL|PLAZA|OFFICE|RETAIL)\b", address.upper()):
         return "Commercial / Mixed Use"
     else:
         return "Single Family Residential"
@@ -70,15 +70,31 @@ def calculate_days_remaining(sale_date_str, state):
         "CA": 365    # Cal. Rev. & Tax Code § 4675 (1 year from deed recording)
     }
     window = window_days_map.get(state, 365)
+    days_rem = None
     try:
-        sale_dt = datetime.strptime(sale_date_str.strip(), "%Y-%m-%d")
+        clean_date_str = sale_date_str.strip()
+        sale_dt = None
+        for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%Y/%m/%d", "%m-%d-%Y"):
+            try:
+                sale_dt = datetime.strptime(clean_date_str, fmt)
+                break
+            except ValueError:
+                continue
+        if not sale_dt:
+            sale_dt = datetime.fromisoformat(clean_date_str.replace("Z", "+00:00")).replace(tzinfo=None)
+        
         now = datetime.now()
         days_elapsed = (now - sale_dt).days
-        days_rem = max(18, window - (days_elapsed % window))
+        days_rem = window - days_elapsed
     except Exception:
-        days_rem = 90
+        days_rem = None
 
-    if days_rem <= 45:
+    if days_rem is None:
+        return 90, "Tier 2: Priority Window (45–120 Days)"
+
+    if days_rem <= 0:
+        return 0, "Expired / Time-Barred"
+    elif days_rem <= 45:
         urgency = "Tier 1: High Urgency (< 45 Days)"
     elif days_rem <= 120:
         urgency = "Tier 2: Priority Window (45–120 Days)"

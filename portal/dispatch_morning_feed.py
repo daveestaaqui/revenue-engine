@@ -98,6 +98,7 @@ def get_feed_statistics():
                 "county": str(r.get("County") or r.get("COUNTY") or ""),
                 "statute": str(r.get("Governing_Statute") or ""),
                 "clerk_url": str(r.get("Clerk_Verification_URL") or "https://surplusdocket.com/practitioner-toolkit.html"),
+                "urgency": str(r.get("Claim_Urgency_Tier") or r.get("Opportunity_Tier") or ""),
             })
 
         return {
@@ -134,6 +135,7 @@ def get_feed_statistics():
                     "county": str(r.get("County") or r.get("COUNTY") or ""),
                     "statute": str(r.get("Governing_Statute") or ""),
                     "clerk_url": str(r.get("Clerk_Verification_URL") or "https://surplusdocket.com/practitioner-toolkit.html"),
+                    "urgency": str(r.get("Claim_Urgency_Tier") or r.get("Opportunity_Tier") or ""),
                 })
 
     return {
@@ -521,54 +523,87 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
 
     server = None
     sent_count = 0
+    server = None
     try:
-        server = smtplib.SMTP(SMTP_HOST, SMTP_PORT)
+        server = smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=30)
         server.starttls()
         server.login(GMAIL_USER, GMAIL_APP_PASS)
         print(f"✓ Connected and authenticated to {SMTP_HOST} as {GMAIL_USER}")
+
+        # Pre-cache attachment bytes for high performance
+        tri_state_csv = EXPORTS_DIR / "Tri_State_Core_Surplus_Feed.csv"
+        tri_state_xlsx = EXPORTS_DIR / "Tri_State_Core_Surplus_Feed.xlsx"
+        
+        feed_cache = {}
+        for fpath in (MASTER_CSV, MASTER_XLSX, tri_state_csv, tri_state_xlsx):
+            if fpath.exists():
+                try:
+                    with open(fpath, "rb") as f:
+                        feed_cache[fpath.name] = f.read()
+                except Exception as e:
+                    print(f"Warning caching {fpath.name}: {e}")
 
         for sub in subscribers:
             dest = sub.get("email")
             if not dest:
                 continue
 
-            msg = MIMEMultipart("mixed")
-            msg["Subject"] = subject
-            msg["From"] = f"{FROM_NAME} <{FROM_EMAIL}>"
-            msg["To"] = dest
-            msg["Reply-To"] = FROM_EMAIL
-            msg["Date"] = email.utils.formatdate(localtime=True)
-            msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
+            try:
+                msg = MIMEMultipart("mixed")
+                msg["Subject"] = subject
+                msg["From"] = f"{FROM_NAME} <{FROM_EMAIL}>"
+                msg["To"] = dest
+                msg["Reply-To"] = REPLY_TO
+                msg["Date"] = email.utils.formatdate(localtime=True)
+                msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
 
-            # Nested alternative container for Plain Text & HTML Body
-            body_container = MIMEMultipart("alternative")
-            text_body, html_body = compose_email_content(sub, stats, date_str)
-            body_container.attach(MIMEText(text_body, "plain", "utf-8"))
-            body_container.attach(MIMEText(html_body, "html", "utf-8"))
-            msg.attach(body_container)
+                # Nested alternative container for Plain Text & HTML Body
+                body_container = MIMEMultipart("alternative")
+                text_body, html_body = compose_email_content(sub, stats, date_str)
+                body_container.attach(MIMEText(text_body, "plain", "utf-8"))
+                body_container.attach(MIMEText(html_body, "html", "utf-8"))
+                msg.attach(body_container)
 
-            # Attachments attached to mixed root
-            formats = sub.get("delivery_format", ["CSV", "Excel"])
-            if "CSV" in formats and MASTER_CSV.exists():
-                with open(MASTER_CSV, "rb") as cf:
-                    part = MIMEBase("text", "csv", name=MASTER_CSV.name)
-                    part.set_payload(cf.read())
+                # Tier entitlement attachment filtering
+                tier_str = str(sub.get("tier", "")).lower()
+                sub_jur = sub.get("jurisdictions") or []
+                is_national = "national" in tier_str or "six" in tier_str or "enterprise" in tier_str or len(sub_jur) > 3
+
+                target_csv = MASTER_CSV if is_national else (tri_state_csv if tri_state_csv.exists() else MASTER_CSV)
+                target_xlsx = MASTER_XLSX if is_national else (tri_state_xlsx if tri_state_xlsx.exists() else MASTER_XLSX)
+
+                formats = sub.get("delivery_format", ["CSV", "Excel"])
+                if "CSV" in formats and target_csv.name in feed_cache:
+                    part = MIMEBase("text", "csv", name=target_csv.name)
+                    part.set_payload(feed_cache[target_csv.name])
                     encoders.encode_base64(part)
-                    part.add_header("Content-Disposition", "attachment", filename=MASTER_CSV.name)
+                    part.add_header("Content-Disposition", "attachment", filename=target_csv.name)
                     msg.attach(part)
 
-            if "Excel" in formats and MASTER_XLSX.exists():
-                with open(MASTER_XLSX, "rb") as xf:
-                    part = MIMEBase("application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet", name=MASTER_XLSX.name)
-                    part.set_payload(xf.read())
+                if "Excel" in formats and target_xlsx.name in feed_cache:
+                    part = MIMEBase("application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet", name=target_xlsx.name)
+                    part.set_payload(feed_cache[target_xlsx.name])
                     encoders.encode_base64(part)
-                    part.add_header("Content-Disposition", "attachment", filename=MASTER_XLSX.name)
+                    part.add_header("Content-Disposition", "attachment", filename=target_xlsx.name)
                     msg.attach(part)
 
-            server.sendmail(GMAIL_USER, [dest], msg.as_string())
-            firm_log = format_firm_suffix(sub)
-            print(f"  ✉️ Dispatched morning feed to {sub.get('name', 'Subscriber')} <{dest}>{firm_log}")
-            sent_count += 1
+                server.sendmail(GMAIL_USER, [dest], msg.as_string())
+                firm_log = format_firm_suffix(sub)
+                print(f"  ✉️ Dispatched morning feed to {sub.get('name', 'Subscriber')} <{dest}>{firm_log}")
+                sent_count += 1
+            except smtplib.SMTPServerDisconnected:
+                print(f"  ⚠️ SMTP Disconnected; attempting reconnect for {dest}...")
+                try:
+                    server = smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=30)
+                    server.starttls()
+                    server.login(GMAIL_USER, GMAIL_APP_PASS)
+                    server.sendmail(GMAIL_USER, [dest], msg.as_string())
+                    sent_count += 1
+                    print(f"  ✉️ Dispatched morning feed after reconnect to <{dest}>")
+                except Exception as rec_err:
+                    print(f"  ❌ Reconnect dispatch failed for {dest}: {rec_err}")
+            except Exception as send_err:
+                print(f"  ❌ Failed to dispatch to {dest}: {send_err}")
 
         print(f"\n🎉 Successfully dispatched morning feeds to {sent_count} subscriber(s).")
         return 0

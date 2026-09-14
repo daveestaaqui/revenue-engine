@@ -1334,9 +1334,34 @@ ATTORNEY SIGNATURE: __________________________________ DATE: ______________</pre
             const docTypeLabel = document.getElementById("gen-doc-type");
             let docText = "";
 
+            const FL_CIRCUITS = {
+                "Alachua": "Eighth", "Baker": "Eighth", "Bradford": "Eighth", "Gilchrist": "Eighth", "Levy": "Eighth", "Union": "Eighth",
+                "Bay": "Fourteenth", "Calhoun": "Fourteenth", "Gulf": "Fourteenth", "Holmes": "Fourteenth", "Jackson": "Fourteenth", "Washington": "Fourteenth",
+                "Brevard": "Eighteenth", "Seminole": "Eighteenth",
+                "Broward": "Seventeenth",
+                "Charlotte": "Twentieth", "Collier": "Twentieth", "Glades": "Twentieth", "Hendry": "Twentieth", "Lee": "Twentieth",
+                "Citrus": "Fifth", "Hernando": "Fifth", "Lake": "Fifth", "Marion": "Fifth", "Sumter": "Fifth",
+                "Clay": "Fourth", "Duval": "Fourth", "Nassau": "Fourth",
+                "Columbia": "Third", "Dixie": "Third", "Hamilton": "Third", "Lafayette": "Third", "Madison": "Third", "Suwannee": "Third", "Taylor": "Third",
+                "DeSoto": "Twelfth", "Manatee": "Twelfth", "Sarasota": "Twelfth",
+                "Escambia": "First", "Okaloosa": "First", "Santa Rosa": "First", "Walton": "First",
+                "Flagler": "Seventh", "Putnam": "Seventh", "St. Johns": "Seventh", "Volusia": "Seventh",
+                "Franklin": "Second", "Gadsden": "Second", "Jefferson": "Second", "Leon": "Second", "Liberty": "Second", "Wakulla": "Second",
+                "Hardee": "Tenth", "Highlands": "Tenth", "Polk": "Tenth",
+                "Hillsborough": "Thirteenth",
+                "Indian River": "Nineteenth", "Martin": "Nineteenth", "Okeechobee": "Nineteenth", "St. Lucie": "Nineteenth",
+                "Miami-Dade": "Eleventh", "Dade": "Eleventh",
+                "Monroe": "Sixteenth",
+                "Orange": "Ninth", "Osceola": "Ninth",
+                "Palm Beach": "Fifteenth",
+                "Pasco": "Sixth", "Pinellas": "Sixth"
+            };
+
             if (state === "FL") {
                 docTypeLabel.innerText = "FLORIDA CIR. CT. MOTION (FLA. STAT. § 197.582)";
-                docText = `IN THE CIRCUIT COURT OF THE FIFTEENTH JUDICIAL CIRCUIT
+                const cleanCo = county.replace(/ County/i, "").trim();
+                const circuitName = FL_CIRCUITS[cleanCo] ? `${FL_CIRCUITS[cleanCo].toUpperCase()} JUDICIAL CIRCUIT` : "JUDICIAL CIRCUIT";
+                docText = `IN THE CIRCUIT COURT OF THE ${circuitName}
 IN AND FOR ${county.toUpperCase()} COUNTY, FLORIDA
 
 IN RE: TAX DEED FILE NO.: ${caseNo}

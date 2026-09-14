@@ -15,6 +15,7 @@ import argparse
 import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import html
 import json
 import os
 import py_compile
@@ -506,7 +507,7 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
     # HTML version
     healed_html = ""
     if is_security_alert:
-        threat_items = "".join([f"<li style='margin-bottom: 4px;'><code>{t}</code></li>" for t in triage_data.get('security_threats', [])])
+        threat_items = "".join([f"<li style='margin-bottom: 4px;'><code>{html.escape(str(t))}</code></li>" for t in triage_data.get('security_threats', [])])
         healed_html = f"""
         <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 16px; margin-top: 16px;">
             <h4 style="margin: 0 0 8px 0; color: #991b1b; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">🚨 Security Guardrails Triggered</h4>
@@ -534,7 +535,7 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
         healed_items = "".join([
             f"""<li style="margin-bottom: 8px; color: #1e293b;">
                 <span style="color: #10b981; font-weight: bold;">✓ Fixed:</span>
-                <code>{h['file']}</code> &mdash; {h['issue']} &rarr; <b>{h['action']}</b>
+                <code>{html.escape(str(h.get('file', '')))}</code> &mdash; {html.escape(str(h.get('issue', '')))} &rarr; <b>{html.escape(str(h.get('action', '')))}</b>
             </li>""" for h in healed
         ])
         healed_html = f"""
@@ -554,6 +555,11 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
         </div>
         """
 
+    safe_issue_num = html.escape(str(issue_num))
+    safe_issue_title = html.escape(str(issue_title))
+    safe_reporter = html.escape(str(reporter))
+    safe_categories = html.escape(str(categories))
+
     html_content = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -572,7 +578,7 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
                         <td style="background-color: #1b365d; padding: 24px 32px; border-bottom: 3px solid #d97706;">
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td>
+                                     <td>
                                         <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #93c5fd; text-transform: uppercase;">
                                             Surplus Docket Intelligence Sentinel
                                         </div>
@@ -598,9 +604,9 @@ def build_email_content(triage_data: dict) -> tuple[str, str]:
                             <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
                                 <tr>
                                     <td style="font-size: 13px; line-height: 1.8; color: #475569;">
-                                        <strong style="color: #1b365d;">Issue:</strong> #{issue_num} &mdash; <b>{issue_title}</b><br>
-                                        <strong style="color: #1b365d;">Reporter:</strong> {reporter}<br>
-                                        <strong style="color: #1b365d;">Category:</strong> <span style="background-color: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 12px; font-weight: 600;">{categories}</span><br>
+                                        <strong style="color: #1b365d;">Issue:</strong> #{safe_issue_num} &mdash; <b>{safe_issue_title}</b><br>
+                                        <strong style="color: #1b365d;">Reporter:</strong> {safe_reporter}<br>
+                                        <strong style="color: #1b365d;">Category:</strong> <span style="background-color: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 12px; font-weight: 600;">{safe_categories}</span><br>
                                         <strong style="color: #1b365d;">Timestamp:</strong> {timestamp}
                                     </td>
                                 </tr>

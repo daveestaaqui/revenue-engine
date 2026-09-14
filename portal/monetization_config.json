@@ -1,33 +1,41 @@
 {
-  "tier_1_florida": {
-    "title": "Florida Tax Deed Surplus Daily Data Feed",
-    "price_monthly": 299,
+  "tri_state_core": {
+    "tier_id": "tri_state_core",
+    "title": "Tri-State Core Feed",
+    "jurisdictions": ["FL", "TX", "GA"],
+    "price_monthly_usd": 249,
+    "price_annual_usd": 2490,
+    "has_trial": true,
+    "trial_days": 7,
+    "rest_api_enabled": false,
+    "checkout_monthly_url": "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",
+    "checkout_annual_url": "https://buy.stripe.com/6oU6oHg0SgXNce9gkC0ZW1Z",
     "features": [
-      "Daily CSV/Excel updates (Orange, Hillsborough, Palm Beach, Miami-Dade, Duval)",
-      "Pre-filtered: 100% Institutional liens (banks/HOAs) removed",
-      "Individual owners & Estates ranked by equity size ($10k - $150k+ balances)",
-      "Estimated statutory fee calculations (FL Statute \u00a7 197.582)"
-    ],
-    "target_audience": "Florida asset recovery attorneys, title companies, real estate wholesalers"
+      "Florida (Fla. Stat. § 197.582), Texas (Tex. Tax Code § 34.04) & Georgia (O.C.G.A. § 48-4-5)",
+      "Mon–Fri 7:00 AM ET CSV & Excel delivery",
+      "100% Institutional lien & senior mortgage pre-scrubbing",
+      "Multi-seat firm inbox delivery (up to 3 inboxes)"
+    ]
   },
-  "tier_2_texas": {
-    "title": "Texas Excess Proceeds Daily Data Feed",
-    "price_monthly": 299,
+  "six_state_national": {
+    "tier_id": "six_state_national",
+    "title": "Six-State Feed + REST API",
+    "jurisdictions": ["FL", "TX", "GA", "NC", "TN", "CA"],
+    "price_monthly_usd": 449,
+    "price_annual_usd": 4490,
+    "has_trial": false,
+    "trial_days": 0,
+    "rest_api_enabled": true,
+    "rate_limit_per_minute": 60,
+    "monthly_request_quota": 50000,
+    "checkout_monthly_url": "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22",
+    "checkout_annual_url": "https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20",
     "features": [
-      "Daily CSV/Excel updates (Harris/Houston, Dallas, Travis)",
-      "Texas Tax Code \u00a7 34.04 statutory equity calculations",
-      "Full property situs & case docket reference IDs"
-    ],
-    "target_audience": "Texas tax deed investors & surplus attorneys"
+      "All 6 States: FL, TX, GA + NC, TN, CA",
+      "Programmatic REST JSON API Endpoint Access",
+      "Priority Tier 1 instant alerts",
+      "Firm-wide multi-seat delivery (up to 5 inboxes)"
+    ]
   },
-  "tier_3_master": {
-    "title": "National All-States Master Surplus Feed (API + CSV)",
-    "price_monthly": 499,
-    "features": [
-      "All Florida + Texas + Georgia county feeds combined",
-      "Direct JSON REST API access + automated daily Excel delivery",
-      "Priority Tier 1 ($25k+ balance) instant deal alerts"
-    ],
-    "target_audience": "High-volume national recovery agencies and equity funds"
-  }
+  "stripe_customer_portal_url": "https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00"
 }

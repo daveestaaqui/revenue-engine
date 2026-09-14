@@ -7,5 +7,5 @@ outreach/drafts/*.eml
 !outreach/drafts/_MANIFEST.csv
 
 outreach/preview_artifacts/
-outreach/form_screenshots/preview/
+outreach/form_screenshots/
 site-health.json

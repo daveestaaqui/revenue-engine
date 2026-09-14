@@ -2,7 +2,7 @@ name: Surplus Docket Reliability Checks
 
 on:
   push:
-    branches: ['astra/surplus-reliability']
+    branches: ['main', 'astra/surplus-reliability']
   pull_request:
     branches: [main]
   schedule:
@@ -40,6 +40,8 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - run: playwright install --with-deps chromium webkit
+      - name: Run full unit test suite
+        run: python -m unittest discover -s tests
       - name: Offline outcome and registry regressions
         run: python -m unittest discover -s tests -p test_reliability.py
       - name: Validate Chromium using an owned fixture without submission

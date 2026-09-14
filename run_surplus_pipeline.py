@@ -22,7 +22,8 @@ def run_pipeline(input_file=DEFAULT_DATA_FILE, state="FL", min_surplus=5000.0, o
     raw_records = parse_tabular_surplus_data(input_file)
     print(f"[*] Raw Records Ingested: {len(raw_records)}")
 
-    processed = process_raw_records(raw_records, state=state, default_fee_rate=0.20)
+    fee_rate = 0.25 if state == "TX" else 0.20
+    processed = process_raw_records(raw_records, state=state, default_fee_rate=fee_rate)
     print(f"[*] Processed Records with Surplus >= $1k: {len(processed)}")
 
     scored = score_leads(processed, min_surplus=min_surplus)
@@ -31,10 +32,10 @@ def run_pipeline(input_file=DEFAULT_DATA_FILE, state="FL", min_surplus=5000.0, o
     output_csv = os.path.join(output_dir, "ranked_surplus_opportunities.csv")
     export_summary(scored, output_csv=output_csv)
 
-    # Clean out any obsolete legacy claim packets from previous runs
-    for legacy_packet in glob.glob(os.path.join(output_dir, "Claim_Packet_*.md")):
+    # Clean out any obsolete dossiers / legacy packets from previous runs
+    for old_file in glob.glob(os.path.join(output_dir, "Attorney_Dossier_*.md")) + glob.glob(os.path.join(output_dir, "Claim_Packet_*.md")):
         try:
-            os.remove(legacy_packet)
+            os.remove(old_file)
         except OSError:
             pass
 
