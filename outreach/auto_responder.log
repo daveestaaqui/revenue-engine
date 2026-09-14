@@ -185,3 +185,7 @@
 [2026-09-14 01:23:51] IMAP connection error: b'[ALERT] Too many simultaneous connections. (Failure)'
 [2026-09-14 06:46:06] IMAP connection error: b'[ALERT] Too many simultaneous connections. (Failure)'
 [2026-09-14 13:41:11]   🛡️ Sentinel Firewall Quarantined inbound message from noreply-dmarc-support@google.com [dangerous_content]: Attachment, execution, or payment risk
+[2026-09-14 15:34:54]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-09-14 15:34:54]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
+[2026-09-14 15:34:54]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-09-14 15:34:54]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
