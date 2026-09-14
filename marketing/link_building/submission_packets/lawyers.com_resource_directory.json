@@ -1,11 +1,11 @@
 {
-  "directory_name": "There is an AI For That",
-  "domain_authority": "71",
-  "category": "AI Tools",
-  "submission_url": "https://theresanaiforthat.com/submit/",
+  "directory_name": "Lawyers.com Resource Directory",
+  "domain_authority": "85",
+  "category": "Legal",
+  "submission_url": "https://www.lawyers.com/resources",
   "company_name": "Surplus Docket",
   "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
-  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery attorneys, with automated title scrubbing and statutory deadline calculations.",
+  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
   "website_url": "https://surplusdocket.com/",
   "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
   "api_docs_url": "https://surplusdocket.com/api-documentation.html",
@@ -17,6 +17,6 @@
     "Court Dockets",
     "Foreclosure Intelligence"
   ],
-  "target_anchor": "Surplus Docket AI Legal Scraper",
+  "target_anchor": "Excess Proceeds Recovery Intelligence",
   "status": "READY_FOR_SUBMISSION"
 }

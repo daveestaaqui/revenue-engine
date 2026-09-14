@@ -800,6 +800,7 @@ def main():
 
         # Post GitHub warning comment (never close!)
         if issue_number and github_token and not args.dry_run:
+            threats_md = "".join([f"- `{t}`\n" for t in security_eval["detected_threats"]])
             comment_markdown = f"""### 🚨 Surplus Docket Security Alert: Untrusted Payload Blocked
 
 **Status:** `{resolution_status}`  
@@ -809,8 +810,7 @@ def main():
 - **Autonomous Modifications:** Completely Disabled
 - **Codebase Access:** 100% Protected (No files altered)
 - **Flagged Threats:**
-{"".join([f"- `{t}`\\n" for t in security_eval["detected_threats"]])}
-
+{threats_md}
 *This report has been quarantined by the Surplus Docket Autonomous Security Sentinel. The repository maintainer has been alerted.*
 """
             post_github_issue_comment_and_close(repo, int(issue_number), github_token, comment_markdown, close_issue=False)
@@ -923,6 +923,9 @@ def main():
 
     # 7. Post GitHub Comment & Optionally Close Issue
     if issue_number and github_token and not args.dry_run:
+        healing_md = ""
+        if healed_actions:
+            healing_md = "#### 🔧 Self-Healing Actions Applied:\n" + "".join([f"- **Fixed:** `{h['file']}` &mdash; {h['action']}\n" for h in healed_actions]) + "\n"
         comment_markdown = f"""### 🛡️ Surplus Docket Autonomous Bug Resolver Report
 
 **Status:** `{resolution_status}`  
@@ -935,8 +938,7 @@ def main():
 - **Python Modules:** {python_health.get('files_checked', 0)} files checked (0 syntax errors)
 - **Statutory Rules:** FL, TX, GA, NC, TN, CA caps and deadlines verified
 
-{f"#### 🔧 Self-Healing Actions Applied:\\n" + "".join([f"- **Fixed:** `{h['file']}` &mdash; {h['action']}\\n" for h in healed_actions]) if healed_actions else ""}
-*An executive notification has been dispatched to the repository maintainer. This issue has been processed by the Autonomous Sentinel.*
+{healing_md}*An executive notification has been dispatched to the repository maintainer. This issue has been processed by the Autonomous Sentinel.*
 """
         post_github_issue_comment_and_close(repo, int(issue_number), github_token, comment_markdown, close_issue=should_close)
 

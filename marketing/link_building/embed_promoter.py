@@ -68,7 +68,7 @@ We built a free, embeddable calculator that your members or readers can use righ
 https://surplusdocket.com/embed/
 
 Key Features:
-- Instant countdown to statutory expiration across Florida (120 days), Texas (2 years), California (1 year), Georgia (5 years), North Carolina (10-day upset bid), and Tennessee.
+- Instant countdown to statutory expiration across Florida (120 days), Texas (2 years), California (1 year), Georgia (5 years), North Carolina (post-confirmation special proceedings), and Tennessee.
 - Real-time statutory non-attorney fee cap benchmark calculations.
 - Clean iframe embed with zero tracking cookies or signups.
 
@@ -81,38 +81,6 @@ Let us know if you have any questions or feature requests for additional jurisdi
 
 Best,
 Surplus Docket Research Desk
-https://surplusdocket.com
-"""
-    },
-    {
-        "target_type": "Asset Recovery Firm Partners (Verification Badge)",
-        "subject": "Official Court Registry Verification Trust Badge for Your Law Firm Website",
-        "file_name": "pitch_law_firm_badge_embed.md",
-        "body": """Dear Counsel,
-
-To distinguish your practice from unregulated, predatory third-party finders following the Supreme Court's Tyler v. Hennepin County precedent, we have released an official Surplus Docket Court Registry Verification Trust Badge.
-
-Asset recovery law firms can embed this official seal in their website footer to display verified court docket indexing credentials:
-
-Light Theme Badge:
-```html
-<a href="https://surplusdocket.com/#live-docket" title="Surplus Docket Court Registry Feeds" target="_blank" rel="noopener">
-  <img src="https://surplusdocket.com/embed/badge.svg" alt="Verified by Surplus Docket" width="280" height="56" style="border: none;">
-</a>
-```
-
-Dark Theme Badge:
-```html
-<a href="https://surplusdocket.com/#live-docket" title="Surplus Docket Court Registry Feeds" target="_blank" rel="noopener">
-  <img src="https://surplusdocket.com/embed/badge-dark.svg" alt="Verified by Surplus Docket" width="280" height="56" style="border: none;">
-</a>
-```
-
-Badge Preview & Documentation:
-https://surplusdocket.com/embed/
-
-Sincerely,
-Surplus Docket Compliance & Institutional Feeds Desk
 https://surplusdocket.com
 """
     }
@@ -153,7 +121,7 @@ def generate_directory_submission_packets():
                 "submission_url": sub_url,
                 "company_name": "Surplus Docket",
                 "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
-                "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery attorneys, with automated title scrubbing and statutory deadline calculations.",
+                "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
                 "website_url": "https://surplusdocket.com/",
                 "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
                 "api_docs_url": "https://surplusdocket.com/api-documentation.html",

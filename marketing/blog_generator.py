@@ -234,7 +234,7 @@ ARTICLES = [
             <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
                 Receive case-verified excess proceeds dockets across Fulton, DeKalb, Cobb, and Gwinnett counties with senior mortgage liens pre-scrubbed. Delivered daily at 7:00 AM EST.
             </p>
-            <a href="https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
                 Subscribe to Tri-State Feed ($249/mo) — Instant Setup
             </a>
         </div>
@@ -275,7 +275,7 @@ ARTICLES = [
             <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
                 Direct access to audited excess proceeds across Los Angeles, San Diego, Orange, and Riverside counties with verified recorded deed dates and calculated claim deadlines. Delivered daily at 7:00 AM EST.
             </p>
-            <a href="https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+            <a href="https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
                 Activate National 6-State Master Suite ($449/mo)
             </a>
         </div>
@@ -316,7 +316,7 @@ ARTICLES = [
             <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
                 Receive daily verified estate surplus opportunities with parcel legal descriptions, recorded death indicators, and statutory claim countdowns. Delivered daily at 7:00 AM EST.
             </p>
-            <a href="https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
                 Subscribe to Tri-State Feed ($249/mo) — Self-Serve Setup
             </a>
         </div>
@@ -357,8 +357,90 @@ ARTICLES = [
             <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
                 Monitor judicial foreclosure surplus deposits and tax deed sales side-by-side with automated lien screening and statutory claim countdowns. Delivered daily at 7:00 AM EST.
             </p>
-            <a href="https://buy.stripe.com/cNidR99Cu5f5ba5c4m0ZW20" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+            <a href="https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
                 Subscribe to Master Suite ($449/mo) — Complete Access
+            </a>
+        </div>
+        """
+    },
+    {
+        "slug": "north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374",
+        "title": "North Carolina Tax Foreclosure Surplus Recovery: N.C.G.S. § 105-374(q) and Upset Bid Rules",
+        "excerpt": "Procedural analysis of North Carolina judicial tax foreclosure sales, the 10-day upset bid period under N.C.G.S. § 1-339.25, and surplus proceeds petitions before the Clerk of Superior Court under N.C.G.S. § 105-374(q).",
+        "category": "North Carolina Legal Framework",
+        "date": "2026-09-10",
+        "read_time": "7 min read",
+        "keywords": "North Carolina tax foreclosure surplus, N.C.G.S. 105-374, Mecklenburg clerk of superior court surplus, upset bid foreclosure North Carolina",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            In North Carolina, county and municipal tax foreclosures proceed primarily through formal judicial action under <strong>N.C.G.S. § 105-374</strong>. When a property is sold by a court-appointed commissioner and competitive bidding generates proceeds in excess of tax judgments, penalties, interest, and commissioner fees, the resulting funds constitute <strong>surplus proceeds</strong> governed by <strong>N.C.G.S. § 105-374(q)</strong>.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. The Pre-Confirmation 10-Day Upset Bid Window</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Unlike administrative sale states, North Carolina judicial foreclosures are subject to the mandatory 10-day upset bid statutory procedure under N.C.G.S. § 1-339.25. Following the report of sale, any qualifying bidder may submit an upset bid with the Clerk of Superior Court within 10 days. The sale is not final and no surplus can be determined until the final 10-day window expires without a subsequent upset bid and the court judicially confirms the commissioner's report.
+        </p>
+
+        <div class="bg-brand-canvas border-l-4 border-brand-green p-6 my-6 rounded-r-xl">
+            <p class="text-sm font-semibold text-brand-navy mb-1">Deposit with Clerk of Superior Court:</p>
+            <p class="text-xs text-slate-600">
+                Under N.C.G.S. § 105-374(q), once the sale is confirmed and deed delivered, the commissioner must pay any excess proceeds into the office of the Clerk of Superior Court of the county where the action was instituted.
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. Special Proceedings and Lien Priorities</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Claimants seeking recovery of surplus proceeds must petition the Clerk of Superior Court in the original foreclosure action. The clerk conducts a judicial hearing to determine the rightful priority of competing encumbrances, including deeds of trust, subordinate judgment liens, and the former property owner's residual equity. If funds remain unclaimed, they may ultimately escheat to the State Escheat Fund pursuant to Chapter 116B.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Automate North Carolina Superior Court Registry Surveillance</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Receive daily verified tax foreclosure surplus records across Mecklenburg, Wake, Guilford, and Forsyth counties with confirmation tracking and subordinate lien screening. Delivered daily at 7:00 AM EST.
+            </p>
+            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Subscribe to Multi-State Feed ($249/mo) — Instant Setup
+            </a>
+        </div>
+        """
+    },
+    {
+        "slug": "tennessee-delinquent-tax-sale-surplus-guide-tca-67-5-2501",
+        "title": "Tennessee Delinquent Tax Sale Surplus Recovery: Chancery Court Petitions under T.C.A. § 67-5-2501",
+        "excerpt": "Strategic guide to recovering excess proceeds from Tennessee Chancery Court tax sales, Clerk & Master registry administration, and statutory claim procedures under T.C.A. § 67-5-2501 et seq.",
+        "category": "Tennessee Legal Framework",
+        "date": "2026-09-12",
+        "read_time": "6 min read",
+        "keywords": "Tennessee tax sale surplus, T.C.A. 67-5-2501, Shelby County Chancery Court surplus, Tennessee excess proceeds Clerk and Master",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            In Tennessee, the collection of delinquent county and municipal property taxes is administered through the Chancery Court or Circuit Court pursuant to <strong>Tennessee Code Annotated § 67-5-2501 et seq.</strong> When competitive auction bids generate funds exceeding the delinquent tax debt, statutory penalties, and court fees, the remaining proceeds are held in trust by the <strong>Clerk &amp; Master</strong> of the Chancery Court.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. Chancery Court Jurisdiction and Clerk &amp; Master Registry</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Excess funds from Tennessee delinquent tax sales do not pass into an administrative county fund; rather, they remain under the direct supervision of the Chancellor. Any party asserting an entitlement to excess proceeds must file a formal motion or petition in the underlying delinquent tax cause of action before the Clerk &amp; Master.
+        </p>
+
+        <div class="bg-brand-canvas border-l-4 border-brand-green p-6 my-6 rounded-r-xl">
+            <p class="text-sm font-semibold text-brand-navy mb-1">Statutory Distribution Hierarchy:</p>
+            <p class="text-xs text-slate-600">
+                Under T.C.A. § 67-5-2501 et seq., the court determines distribution based on established equity principles: first satisfying any subordinate liens or encumbrances of record in order of priority, with remaining balances disbursed to the titled owner of record at the time of sale.
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. Interaction with Statutory Redemption Rules</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            A unique complexity of Tennessee practice is the interaction between surplus distribution and the statutory right of redemption under T.C.A. § 67-5-2701. Counsel representing former owners or junior lienholders must carefully navigate the timing of surplus motions to ensure that claims are properly adjudicated in conjunction with any redemption notices.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Track Tennessee Chancery Court Dockets Automatically</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Gain instant visibility into verified Chancery Court excess funds dockets across Shelby, Davidson, Knox, and Hamilton counties with pre-screened encumbrances. Delivered daily at 7:00 AM EST.
+            </p>
+            <a href="https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Activate National 6-State Master Suite ($449/mo)
             </a>
         </div>
         """

@@ -64,7 +64,30 @@ CLERK_TARGETS = [
 def generate_clerk_outreach_letter(target: Dict[str, str]) -> str:
     """Generates an authoritative, public-service letter proposing resource inclusion."""
     today = datetime.now(timezone.utc).strftime("%B %d, %Y")
-    
+    st = target['state']
+
+    if st == "FL":
+        statute_ref = "under Florida Statute § 197.582, where excess funds are retained in the court registry following tax deed sales"
+        filing_detail = "Instructions explaining how claimants may file directly with the Clerk & Comptroller within the 120-day notice window without third-party finder fees."
+    elif st == "TX":
+        statute_ref = "under Texas Tax Code § 34.03, where excess proceeds are deposited into the District Court civil registry"
+        filing_detail = "Instructions explaining how claimants may petition the District Court directly under Tex. Tax Code § 34.04 without surrendering equity to predatory locators."
+    elif st == "CA":
+        statute_ref = "under California Revenue & Taxation Code § 4675, where excess proceeds are held by the County Treasurer-Tax Collector"
+        filing_detail = "Instructions explaining how claimants may file directly with the County Treasurer-Tax Collector within the strict 1-year window."
+    elif st == "GA":
+        statute_ref = "under O.C.G.A. § 48-4-5, where excess funds are held following tax commissioner / sheriff sales"
+        filing_detail = "Instructions explaining how claimants may apply directly to the Tax Commissioner or participate in Superior Court interpleader."
+    elif st == "NC":
+        statute_ref = "under N.C.G.S. § 105-374(q), where post-upset bid confirmation proceeds are deposited with the Clerk of Superior Court"
+        filing_detail = "Instructions explaining the two-stage process: 10-day upset bid period followed by special proceeding petition with the Clerk of Superior Court."
+    elif st == "TN":
+        statute_ref = "under T.C.A. § 67-5-2501 et seq., where delinquent tax sale proceeds are held in trust by the Chancery Court Clerk & Master"
+        filing_detail = "Instructions explaining how claimants may petition the Chancery Court Clerk & Master directly under T.C.A. § 67-5-2501."
+    else:
+        statute_ref = "under applicable state foreclosure statutes"
+        filing_detail = "Instructions encouraging claimants to file directly with the court registry without incurring finder fees."
+
     return f"""# PUBLIC SERVICE LINK PROPOSAL: CONSUMER SURPLUS PROTECTION RESOURCE
 
 **To:** {target['recipient_title']}  
@@ -77,25 +100,25 @@ def generate_clerk_outreach_letter(target: Dict[str, str]) -> str:
 
 Dear {target['recipient_title']},
 
-We are writing from the Public Legal Research Initiative at Surplus Docket. 
+We are writing from the Research & Regulatory Analysis Desk at Surplus Docket. 
 
 In reviewing the public information provided on the **{target['county']} {target['page_context']}** webpage, we commend your department's ongoing efforts to ensure transparency in post-foreclosure excess proceeds administration.
 
-Across {target['state']}, displaced property owners and probate heirs face an increasing volume of aggressive solicitations from unlicensed third-party "asset recovery finders" demanding 30% to 50% contingency fees. Many vulnerable citizens are unaware that they can file directly with your office, or that state statutes limit predatory recovery practices.
+Across {target['state']}, {statute_ref}, displaced property owners and probate heirs face an increasing volume of aggressive solicitations from unlicensed third-party "asset recovery finders" demanding 30% to 50% contingency fees. Many vulnerable citizens are unaware that funds are securely held in the official registry, or that state statutes strictly regulate recovery practices.
 
-To assist taxpayers and support county clerk public education, our legal research group has published an objective, comprehensive, and non-commercial public guide:
+To assist taxpayers and support public education regarding court registry procedures, our research group maintains an objective, comprehensive, and non-commercial public guide:
 
 **Resource Title:** Homeowner's Guide to Property Tax Auction Surplus Funds & Protecting Your Equity  
-**URL:** [https://surplusdocket.com/resources/homeowner-surplus-guide](https://surplusdocket.com/resources/homeowner-surplus-guide)
+**URL:** [https://surplusdocket.com/resources/homeowner-surplus-guide.html](https://surplusdocket.com/resources/homeowner-surplus-guide.html)
 
 ### Key Public Information Provided in the Guide:
 1. **Constitutional Basis:** Clear explanation of *Tyler v. Hennepin County*, 598 U.S. 631 (2023), confirming homeowners' constitutional rights to excess equity under the Fifth Amendment.
 2. **Scam Avoidance & Fee Caps:** Explicit warnings alerting homeowners to never sign over deeds or blanket powers of attorney to unlicensed finders, highlighting statutory protections and UPL statutes.
-3. **Direct Filing Options:** Instructions encouraging claimants to file directly with the county clerk without incurring finder fees.
+3. **Direct Filing Procedures:** {filing_detail}
 4. **Statutory Filing Deadlines:** Exact statutory windows under {target['state']} law and an open-access statutory deadline calculator ([https://surplusdocket.com/embed/surplus-calculator.html](https://surplusdocket.com/embed/surplus-calculator.html)).
 
 ### Request for Resource Inclusion
-Would your department consider linking to this public guide as a helpful external resource under the **"{target['page_context']}"** section of your official website? 
+Would your department consider linking to this public guide as a helpful external educational resource under the **"{target['page_context']}"** section of your official website? 
 
 The resource contains no advertisements, pop-ups, or commercial solicitations, and is maintained solely to protect consumers and facilitate compliant court registry recovery.
 
@@ -103,10 +126,10 @@ Thank you for your dedicated service to the residents of {target['county']}.
 
 Respectfully submitted,
 
-**Public Legal Education Group**  
+**Research & Regulatory Analysis Desk**  
 Surplus Docket  
 Website: [https://surplusdocket.com](https://surplusdocket.com)  
-Email: public-records@surplusdocket.com  
+Email: public-records@surplusdocket.com
 """
 
 

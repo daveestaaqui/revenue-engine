@@ -1,4 +1,4 @@
-# Daily Tax Deed Surplus & Excess Proceeds Digest — September 13, 2026
+# Daily Tax Deed Surplus & Excess Proceeds Digest — September 14, 2026
 
 ## Legal Overview for Recovery Practitioners
 
@@ -20,6 +20,27 @@ Reference & Daily Data Feed: [Surplus Docket Texas Hub](https://surplusdocket.co
 Georgia tax sales allow 5-year claim windows for excess proceeds distributed by county tax commissioners across Fulton, DeKalb, Gwinnett, and Cobb counties.
 
 Reference & Daily Data Feed: [Surplus Docket Georgia Hub](https://surplusdocket.com/georgia-tax-sale-excess-funds.html)
+
+---
+
+### 4. California Excess Proceeds Update (Cal. Rev. & Tax Code § 4675)
+California enforces a strict one-year limitation period from the recordation of the tax deed for excess proceeds claims filed with county boards of supervisors and treasurer-tax collectors.
+
+Reference & Daily Data Feed: [Surplus Docket California Hub](https://surplusdocket.com/california-tax-defaulted-excess-proceeds.html)
+
+---
+
+### 5. North Carolina Foreclosure Surplus (N.C.G.S. § 105-374(q))
+North Carolina judicial tax foreclosures require monitoring the 10-day upset bid period before sale confirmation, followed by judicial distribution petitions before the Clerk of Superior Court.
+
+Reference & Daily Data Feed: [Surplus Docket North Carolina Hub](https://surplusdocket.com/north-carolina-tax-foreclosure-surplus.html)
+
+---
+
+### 6. Tennessee Chancery Court Surplus (T.C.A. § 67-5-2501 et seq.)
+Tennessee delinquent property tax sales are administered through Chancery Court with excess funds deposited in trust with the Clerk & Master.
+
+Reference & Daily Data Feed: [Surplus Docket Tennessee Hub](https://surplusdocket.com/tennessee-tax-sale-excess-proceeds.html)
 
 ---
 

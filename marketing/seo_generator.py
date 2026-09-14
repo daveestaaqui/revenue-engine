@@ -24,45 +24,25 @@ SYNDICATE_DIR = MARKETING_DIR / "syndicate"
 
 INDEXNOW_KEY = "0a4d3f3acd10f37db48e4681df146902"
 
-ALL_SITE_URLS = [
-    "https://surplusdocket.com/",
-    "https://surplusdocket.com/palm-beach-tax-deed-surplus.html",
-    "https://surplusdocket.com/broward-county-tax-deed-surplus.html",
-    "https://surplusdocket.com/harris-county-excess-proceeds.html",
-    "https://surplusdocket.com/miami-dade-tax-deed-surplus.html",
-    "https://surplusdocket.com/orange-county-tax-deed-surplus.html",
-    "https://surplusdocket.com/hillsborough-tax-deed-surplus.html",
-    "https://surplusdocket.com/dallas-county-excess-proceeds.html",
-    "https://surplusdocket.com/tarrant-county-excess-proceeds.html",
-    "https://surplusdocket.com/travis-county-excess-proceeds.html",
-    "https://surplusdocket.com/fulton-county-excess-funds.html",
-    "https://surplusdocket.com/cobb-county-excess-funds.html",
-    "https://surplusdocket.com/dekalb-county-excess-funds.html",
-    "https://surplusdocket.com/florida-tax-deed-surplus.html",
-    "https://surplusdocket.com/texas-tax-sale-excess-proceeds.html",
-    "https://surplusdocket.com/georgia-tax-sale-excess-funds.html",
-    "https://surplusdocket.com/north-carolina-tax-foreclosure-surplus.html",
-    "https://surplusdocket.com/tennessee-tax-sale-excess-proceeds.html",
-    "https://surplusdocket.com/california-tax-defaulted-excess-proceeds.html",
-    "https://surplusdocket.com/practitioner-toolkit.html",
-    "https://surplusdocket.com/comparison.html",
-    "https://surplusdocket.com/methodology.html",
-    "https://surplusdocket.com/api-documentation.html",
-    "https://surplusdocket.com/blog/",
-    "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
-    "https://surplusdocket.com/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html",
-    "https://surplusdocket.com/blog/posts/institutional-lien-filtering-asset-recovery.html",
-    "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
-    "https://surplusdocket.com/terms.html",
-    "https://surplusdocket.com/refund-policy.html",
-    "https://surplusdocket.com/press/",
-    "https://surplusdocket.com/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html",
-    "https://surplusdocket.com/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html",
-    "https://surplusdocket.com/embed/",
-    "https://surplusdocket.com/embed/surplus-calculator.html",
-    "https://surplusdocket.com/resources/homeowner-surplus-guide.html",
-    "https://surplusdocket.com/inquiry.html",
-]
+
+def get_all_site_urls() -> list[str]:
+    """Dynamically gathers all indexable site HTML pages."""
+    urls = []
+    for p in sorted(SITE_DIR.rglob("*.html")):
+        if p.name in ("404.html", "500.html"):
+            continue
+        rel = p.relative_to(SITE_DIR).as_posix()
+        if rel == "index.html":
+            urls.append("https://surplusdocket.com/")
+        elif rel.endswith("/index.html"):
+            urls.append(f"https://surplusdocket.com/{rel[:-10]}")
+        else:
+            urls.append(f"https://surplusdocket.com/{rel}")
+    return sorted(list(set(urls)))
+
+
+ALL_SITE_URLS = get_all_site_urls()
+
 
 def generate_rss_feed():
     feed_path = SITE_DIR / "feed.xml"
@@ -184,6 +164,27 @@ Reference & Daily Data Feed: [Surplus Docket Texas Hub](https://surplusdocket.co
 Georgia tax sales allow 5-year claim windows for excess proceeds distributed by county tax commissioners across Fulton, DeKalb, Gwinnett, and Cobb counties.
 
 Reference & Daily Data Feed: [Surplus Docket Georgia Hub](https://surplusdocket.com/georgia-tax-sale-excess-funds.html)
+
+---
+
+### 4. California Excess Proceeds Update (Cal. Rev. & Tax Code § 4675)
+California enforces a strict one-year limitation period from the recordation of the tax deed for excess proceeds claims filed with county boards of supervisors and treasurer-tax collectors.
+
+Reference & Daily Data Feed: [Surplus Docket California Hub](https://surplusdocket.com/california-tax-defaulted-excess-proceeds.html)
+
+---
+
+### 5. North Carolina Foreclosure Surplus (N.C.G.S. § 105-374(q))
+North Carolina judicial tax foreclosures require monitoring the 10-day upset bid period before sale confirmation, followed by judicial distribution petitions before the Clerk of Superior Court.
+
+Reference & Daily Data Feed: [Surplus Docket North Carolina Hub](https://surplusdocket.com/north-carolina-tax-foreclosure-surplus.html)
+
+---
+
+### 6. Tennessee Chancery Court Surplus (T.C.A. § 67-5-2501 et seq.)
+Tennessee delinquent property tax sales are administered through Chancery Court with excess funds deposited in trust with the Clerk & Master.
+
+Reference & Daily Data Feed: [Surplus Docket Tennessee Hub](https://surplusdocket.com/tennessee-tax-sale-excess-proceeds.html)
 
 ---
 

@@ -16,12 +16,12 @@ COMPANY_PROFILE = {
     "tagline": "Real-Time Court Registry Intelligence for Foreclosure Surplus Recovery",
     "short_description": (
         "Surplus Docket is a legal intelligence platform delivering automated court registry feeds, "
-        "junior lien title scrubbing, and statutory deadline tracking for surplus funds and tax deed recovery attorneys."
+        "subordinate encumbrance screening, and statutory deadline tracking for surplus funds and tax deed recovery attorneys."
     ),
     "long_description": (
         "Surplus Docket modernizes foreclosure surplus recovery for law firms. The platform ingests real-time "
         "court docket and excess proceeds registry records across Florida, Texas, California, Georgia, North Carolina, "
-        "and Tennessee. By combining automated municipal and mortgage lien scrubbing with statutory deadline calculations "
+        "and Tennessee. By combining automated municipal and mortgage lien screening with statutory deadline calculations "
         "(Florida § 197.582, Texas § 34.04, California § 4675), Surplus Docket empowers attorneys to surface unencumbered "
         "court registry inventory within hours of sale confirmation without manual courthouse ledger research."
     ),

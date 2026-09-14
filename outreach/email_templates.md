@@ -1,80 +1,99 @@
-# Surplus Docket B2B Outreach Email Templates
+# Surplus Docket B2B Practice Outreach Email Templates
 
-This document contains standardized B2B cold email templates for attorney outreach.
-Templates support dynamic merge fields: `{{name}}`, `{{firm}}`, `{{state}}`, `{{stripe_link}}`.
+This document contains standardized B2B outreach email templates for licensed real estate, foreclosure, and probate counsel.
+Templates support dynamic merge fields: `{{name}}`, `{{firm}}`, `{{state}}`, `{{full_name}}`, `{{first_name}}`.
 
 ---
 
-## Template 1: Cold Outreach (Initial)
+## Template 1: Initial Practice Group Outreach
 
-**Subject:** Verified {{state}} surplus leads for {{firm}} (e.g. Case 2024-TD-004501)
+**Subject:** Verified {{state}} court registry surplus inventory ({{firm}} inquiry)
 
-Hi {{name}},
+Dear {{name}},
 
-I run Surplus Docket. We deliver daily, scrubbed county tax deed surplus and excess proceeds leads directly to asset recovery attorneys in {{state}}.
+I direct legal research and court registry integrations at Surplus Docket. Our platform tracks tax deed and foreclosure registry surplus funds across 35 high-volume county court registries, delivering structured docket-level intelligence directly to licensed real estate, probate, and creditor-rights counsel in {{state}}.
 
-Instead of manually checking county portals, our feed isolates high-equity individual owner claims and removes junior/institutional liens. Recent verified cases from our feed include:
+Rather than unstructured scraping or consumer-locator solicitations, our pipeline isolates post-confirmation judicial surpluses, cross-referenced with recorded subordinate encumbrances and statutory bar dates:
 
-- **Case 2024-TD-004501** (Palm Beach): $145,000 surplus balance
-- **Case 2024-TX-04812** (Harris): $128,500 excess proceeds
-- **Case 2024-TD-004812** (Miami-Dade): $112,000 surplus balance
+• Case 2024-TD-004501 (Palm Beach County): $145,000 surplus balance — 120-day claim window
+• Case 2024-TX-04812 (Harris County District Court): $128,500 excess proceeds — Tex. Tax Code § 34.04 petition track
+• Case 2024-TD-004812 (Miami-Dade County): $112,000 surplus balance — owner equity verified
 
-Every record is 100% verifiable against official court dockets and county tax records.
+Every record includes direct clerk docket references, recorded lis pendens / deed of trust instruments, and verified public registry links.
 
-We offer daily CSV/Excel delivery with zero long-term commitment (cancel anytime). You can review our feed tiers and get started here:
-{{stripe_link}}
+We partner exclusively with licensed counsel and offer a dedicated practitioner portal with zero long-term commitments. Would you or your practice group lead be open to reviewing a complimentary 10-case county docket audit for {{state}} this week?
 
-Best regards,
+You can explore our methodology or request evaluation sandbox access here:
+https://surplusdocket.com/practitioner-toolkit.html
 
-Surplus Docket Team
-data@surplusdocket.com
+Respectfully,
+
+Elena Brooks
+Director of Legal Research & Practice Integrations
+Surplus Docket | Court Registry Intelligence
+Website: https://surplusdocket.com
+Direct: elena.brooks@surplusdocket.com
+
+Surplus Docket | 100 S. Biscayne Blvd, Suite 2800, Miami, FL 33131
+Opt-Out: Reply "unsubscribe" to opt out or visit https://surplusdocket.com/opt-out.html
+Compliance Notice: Surplus Docket provides judicial registry data and public record intelligence. Surplus Docket is not a law firm, does not provide legal advice or representation, and does not engage in fee-splitting.
 
 ---
 
 ## Template 2: Follow-up (Day 3)
 
-**Subject:** Re: {{state}} surplus leads for {{firm}} (Case 2024-TD-004812 update)
+**Subject:** Re: {{state}} court registry surplus inventory ({{firm}} sample docket audit)
 
-Hi {{name}},
+Dear {{name}},
 
-Following up on my previous note regarding daily {{state}} surplus and excess proceeds data for {{firm}}.
+Following up on my note regarding {{state}} judicial registry surplus intelligence for {{firm}}.
 
-When tax deeds clear, recovery windows are time-sensitive. We monitor county filings daily so your team can contact rightful owners before competing claimants file.
+When tax deeds clear auction confirmation, statutory claim windows begin immediately (such as Florida's 120-day notice window under Fla. Stat. § 197.582 or North Carolina's post-upset bid deposit under N.C.G.S. § 105-374(q)). We monitor county registries daily so counsel can review verifiable docket filings and notify rightful claimants or lienholder clients before statutory default dates.
 
-For example, Case 2024-TD-004812 ($112,000 balance in Miami-Dade) and Case 2024-TX-04812 ($128,500 balance in Harris) were indexed and delivered to subscribers immediately after auction confirmation.
+For instance, Case 2024-TD-004812 ($112,000 balance in Miami-Dade) and Case 2024-TX-04812 ($128,500 balance in Harris County) were indexed and delivered with statutory equity calculations and verified registry dockets on the morning of deposit.
 
-Every lead includes parcel situs, docket IDs, and statutory equity calculations—backed entirely by verifiable public records.
+Would {{firm}} benefit from a tailored data extract of currently active, unclaimed dockets in your primary practice counties in {{state}}? 
 
-Subscriptions are month-to-month with no commitment—cancel anytime:
-{{stripe_link}}
+I would be glad to share a sanitized CSV sample or set up a 14-day evaluation sandbox for your team:
+https://surplusdocket.com/inquiry.html
 
-Would you like me to send a sample data extract for {{state}}?
+Respectfully,
 
-Best regards,
+Elena Brooks
+Director of Legal Research & Practice Integrations
+Surplus Docket | Court Registry Intelligence
+Website: https://surplusdocket.com
+Direct: elena.brooks@surplusdocket.com
 
-Surplus Docket Team
-data@surplusdocket.com
+Surplus Docket | 100 S. Biscayne Blvd, Suite 2800, Miami, FL 33131
+Opt-Out: Reply "unsubscribe" to opt out or visit https://surplusdocket.com/opt-out.html
+Compliance Notice: Surplus Docket provides judicial registry data and public record intelligence. Surplus Docket is not a law firm, does not provide legal advice or representation, and does not engage in fee-splitting.
 
 ---
 
 ## Template 3: Final Follow-up (Day 7)
 
-**Subject:** Final follow-up: Daily {{state}} surplus lead feed for {{firm}}
+**Subject:** Final note: {{state}} court registry intelligence for {{firm}}
 
-Hi {{name}},
+Dear {{name}},
 
-Closing the loop on whether {{firm}} is taking on new surplus fund or excess proceeds recovery cases in {{state}}.
+Closing the loop on whether {{firm}} is actively expanding its tax sale surplus or excess proceeds recovery practice in {{state}}.
 
-Our automated pipeline monitors county tax sales daily, delivering clean, actionable claims like Case 2024-TD-004501 ($145,000 surplus in Palm Beach) directly to your inbox with junior lienholder checks pre-completed.
+Our automated pipeline provides structured court docket intelligence, senior/junior encumbrance screening, and statutory claim timeline monitoring across {{state}} and major southeastern jurisdictions.
 
-If you'd like to put your firm's case acquisition on autopilot, you can subscribe here:
-{{stripe_link}}
+If your team is not currently seeking additional registry caseload, I completely understand and will not follow up further. 
 
-It's 100% verifiable public record data, flat monthly pricing, and you can cancel anytime with no commitment.
+If you would ever like to benchmark our docket feed against your current county monitoring workflow, you can review our technical methodology and court registry integrations at:
+https://surplusdocket.com/methodology.html
 
-If the timing isn't right, no problem at all.
+Respectfully,
 
-Best regards,
+Elena Brooks
+Director of Legal Research & Practice Integrations
+Surplus Docket | Court Registry Intelligence
+Website: https://surplusdocket.com
+Direct: elena.brooks@surplusdocket.com
 
-Surplus Docket Team
-data@surplusdocket.com
+Surplus Docket | 100 S. Biscayne Blvd, Suite 2800, Miami, FL 33131
+Opt-Out: Reply "unsubscribe" to opt out or visit https://surplusdocket.com/opt-out.html
+Compliance Notice: Surplus Docket provides judicial registry data and public record intelligence. Surplus Docket is not a law firm, does not provide legal advice or representation, and does not engage in fee-splitting.

@@ -1,8 +1,8 @@
 {
-  "directory_name": "AllTopStartups",
-  "domain_authority": "63",
-  "category": "Launch",
-  "submission_url": "https://alltopstartups.com/submit-startup/",
+  "directory_name": "Law.com Legaltech Directory",
+  "domain_authority": "88",
+  "category": "LegalTech",
+  "submission_url": "https://www.law.com/resources",
   "company_name": "Surplus Docket",
   "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
   "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
@@ -17,6 +17,6 @@
     "Court Dockets",
     "Foreclosure Intelligence"
   ],
-  "target_anchor": "Surplus Docket Foreclosure Legal Intelligence",
+  "target_anchor": "Court Docket Surplus Research",
   "status": "READY_FOR_SUBMISSION"
 }

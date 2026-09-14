@@ -1,11 +1,11 @@
 {
-  "directory_name": "Toolify.ai",
-  "domain_authority": "67",
-  "category": "AI Tools",
-  "submission_url": "https://www.toolify.ai/submit",
+  "directory_name": "Martindale-Hubbell Legal Network",
+  "domain_authority": "86",
+  "category": "Legal",
+  "submission_url": "https://www.martindale.com/join",
   "company_name": "Surplus Docket",
   "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
-  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery attorneys, with automated title scrubbing and statutory deadline calculations.",
+  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
   "website_url": "https://surplusdocket.com/",
   "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
   "api_docs_url": "https://surplusdocket.com/api-documentation.html",
@@ -17,6 +17,6 @@
     "Court Dockets",
     "Foreclosure Intelligence"
   ],
-  "target_anchor": "Court Registry Docket Automation",
+  "target_anchor": "Surplus Docket Legal Practice Tools",
   "status": "READY_FOR_SUBMISSION"
 }

@@ -9,7 +9,7 @@
 Following the Supreme Court's unanimous ruling in Tyler v. Hennepin County (598 U.S. 631), equity theft via property tax foreclosure was declared an unconstitutional taking under the Fifth Amendment. Yet across Florida, Texas, California, Georgia, North Carolina, and Tennessee, over $2.4B remains trapped in county registries due to antiquated notice procedures and fractured statutory filing deadlines.
 
 ### EXPERT PERSPECTIVE & QUOTE
-"While the Supreme Court ended statutory equity forfeiture on paper, county court registries remain administrative black boxes. Without specialized bar admission and title scrubbing, junior lienholders and former owners regularly forfeit millions to state general funds simply because statutory windows close unnoticed." — Legal Research Group, Surplus Docket
+"While the Supreme Court ended statutory equity forfeiture on paper, county court registries remain administrative black boxes. Without specialized bar admission and encumbrance screening, junior lienholders and former owners regularly forfeit millions to state general funds simply because statutory windows close unnoticed." — Research & Regulatory Analysis Desk, Surplus Docket
 
 ### VERIFIED STATS & CITEABLE DATA
 - Over $3.24M in verified unencumbered surplus funds identified across 35 major county registries in FL, TX, and CA alone.

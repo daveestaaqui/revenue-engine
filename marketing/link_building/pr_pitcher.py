@@ -24,9 +24,9 @@ PITCH_TEMPLATES = [
         ),
         "expert_quote": (
             "\"While the Supreme Court ended statutory equity forfeiture on paper, county court registries remain administrative "
-            "black boxes. Without specialized bar admission and title scrubbing, junior lienholders and former owners regularly "
+            "black boxes. Without specialized bar admission and encumbrance screening, junior lienholders and former owners regularly "
             "forfeit millions to state general funds simply because statutory windows close unnoticed.\" "
-            "— Legal Research Group, Surplus Docket"
+            "— Research & Regulatory Analysis Desk, Surplus Docket"
         ),
         "citeable_data": [
             "Over $3.24M in verified unencumbered surplus funds identified across 35 major county registries in FL, TX, and CA alone.",
@@ -56,14 +56,14 @@ PITCH_TEMPLATES = [
             "In truth, legitimate surplus recovery requires formal legal pleadings, priority determination under statutory recording acts, "
             "and court orders. The legal community is actively mobilizing to ensure claims are handled by licensed bar members "
             "under transparent, ethical fee structures.\" "
-            "— Editorial Board, Surplus Docket"
+            "— Research & Regulatory Analysis Desk, Surplus Docket"
         ),
         "citeable_data": [
             "Over 40% of surplus claims filed by non-attorney finders encounter clerk rejections or jurisdictional dismissal for defective assignment instruments.",
-            "Florida § 197.582 and Texas § 34.04 enforce stringent non-attorney fee and procedural caps, voiding predatory recovery agreements.",
-            "Educational resource deployed at Surplus Docket for homeowners: https://surplusdocket.com/resources/homeowner-surplus-guide"
+            "Florida §§ 45.033, 197.582, 717.135 and Texas § 34.04 enforce stringent non-attorney fee and procedural caps, voiding predatory recovery agreements.",
+            "Educational resource deployed at Surplus Docket for homeowners: https://surplusdocket.com/resources/homeowner-surplus-guide.html"
         ],
-        "resource_url": "https://surplusdocket.com/resources/homeowner-surplus-guide",
+        "resource_url": "https://surplusdocket.com/resources/homeowner-surplus-guide.html",
         "call_to_action": (
             "We can connect your team with forensic analysis on surplus assignment disputes, clerk filing statistics, "
             "and legal analysis on the regulatory divergence between attorney representation and finder contracts."
@@ -72,23 +72,23 @@ PITCH_TEMPLATES = [
     {
         "id": "legaltech-court-registry-automation",
         "category": "Legal Technology & Registry Intelligence",
-        "title": "Automating the Court Registry: How AI & Direct Court Feeds Eliminate Blind Spots in Excess Proceeds Recovery",
+        "title": "Automating the Court Registry: How Judicial Feeds Eliminate Blind Spots in Excess Proceeds Recovery",
         "target_outlets": ["Legal IT Insider", "Artificial Lawyer", "LawSites by Bob Ambrogi", "Legaltech News"],
         "hook": (
             "For decades, foreclosure surplus recovery was the domain of manual courthouse ledger checks and microfiche title searches. "
-            "Today, institutional legal intelligence platforms are scraping 100+ county clerk court registries in real-time, "
-            "automating junior lien title scrubbing and statutory deadline calculations."
+            "Today, institutional legal intelligence platforms are ingesting court dockets and judicial registry notices in real-time, "
+            "automating subordinate encumbrance screening and statutory deadline calculations."
         ),
         "expert_quote": (
             "\"Attorneys handling foreclosure defense or probate previously spent 10 to 15 hours per file just validating whether "
             "surplus funds existed and calculating subordinate mortgage priority. Automated registry intelligence now surfaces "
             "unencumbered funds within hours of certificate disbursement.\" "
-            "— Platform Architecture Lead, Surplus Docket"
+            "— Systems Engineering & Data Architecture Lead, Surplus Docket"
         ),
         "citeable_data": [
             "Surplus Docket processes daily registry feeds across FL, TX, CA, GA, NC, and TN court registries.",
             "Interactive statutory deadline calculator available for publisher embedding: https://surplusdocket.com/embed/surplus-calculator.html",
-            "98.4% accuracy in identifying unencumbered files by algorithmic filtering of superior municipal liens and unreleased mortgages."
+            "Algorithmic pre-screening of recorded liens and municipal encumbrances across 35 county registries."
         ],
         "resource_url": "https://surplusdocket.com/embed/",
         "call_to_action": (

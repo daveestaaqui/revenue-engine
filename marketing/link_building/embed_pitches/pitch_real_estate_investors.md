@@ -13,7 +13,7 @@ We built a free, embeddable calculator that your members or readers can use righ
 https://surplusdocket.com/embed/
 
 Key Features:
-- Instant countdown to statutory expiration across Florida (120 days), Texas (2 years), California (1 year), Georgia (5 years), North Carolina (10-day upset bid), and Tennessee.
+- Instant countdown to statutory expiration across Florida (120 days), Texas (2 years), California (1 year), Georgia (5 years), North Carolina (post-confirmation special proceedings), and Tennessee.
 - Real-time statutory non-attorney fee cap benchmark calculations.
 - Clean iframe embed with zero tracking cookies or signups.
 

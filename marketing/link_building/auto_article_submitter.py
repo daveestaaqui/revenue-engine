@@ -181,6 +181,17 @@ def submit_dev_to_article(
     title = article_meta.get("title", "")
     canonical_url = article_meta.get("canonical_url", "")
     body = article_meta.get("body", "")
+
+    # Deprecated by default: Dev.to is developer-focused and inappropriate for legaltech/court data
+    if os.environ.get("ENABLE_DEVTO_SYNDICATION", "false").lower() != "true":
+        return {
+            "platform": "dev.to",
+            "title": title,
+            "canonical_url": canonical_url,
+            "status": "deprecated_skipped",
+            "note": "Dev.to syndication deprecated for judicial registry content to protect brand authority. Set ENABLE_DEVTO_SYNDICATION=true to override."
+        }
+
     # Dev.to supports up to 4 lowercase alphanumeric tags
     tags = [re.sub(r'[^a-zA-Z0-9]', '', t).lower() for t in article_meta.get("tags", [])][:4]
 

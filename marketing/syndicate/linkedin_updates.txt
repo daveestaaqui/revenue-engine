@@ -1,29 +1,29 @@
-=== LINKEDIN UPDATE 1: INSTITUTIONAL LIEN PURGING ===
-Why do 70% of tax deed surplus leads fail before filing?
+=== LINKEDIN UPDATE 1: SUBORDINATE ENCUMBRANCE SCREENING ===
+Why do over 60% of raw tax deed surplus leads fail before filing?
 
-Senior mortgage encumbrances.
+Unrecorded and senior encumbrances.
 
-When an unscrubbed county clerk list shows a $140,000 tax deed surplus, what it DOESN'T show is the $220,000 recorded first mortgage or junior municipal assessment. Under state priority statutes (such as Fla. Stat. § 197.582 and Tex. Tax Code § 34.04), senior lienholders get paid first.
+When an unscrubbed county ledger lists a $140,000 tax deed surplus, what it rarely highlights is the recorded senior mortgage or municipal assessment lien. Under state priority statutes (such as Fla. Stat. § 197.582 and Tex. Tax Code § 34.04), senior encumbrancers have priority standing.
 
-Paralegals waste dozens of hours contacting heirs and drafting motions on dockets where $0 will ever reach the former owner.
+Legal teams waste hours contacting claimants and drafting pleadings on files where senior lienholders absorb the entire balance.
 
-Surplus Docket solves this with a 4-stage automated pipeline:
-✓ Continuous court registry ingestion across FL, TX & GA
-✓ O.R. & Lis Pendens cross-referencing
-✓ Senior mortgage & corporate lien filtering
-✓ Statutory fee benchmark calculation
+Surplus Docket addresses this with an automated court registry intelligence pipeline:
+✓ Continuous court registry ingestion across FL, TX, GA, CA, NC & TN
+✓ Public registry & Lis Pendens cross-referencing
+✓ Senior mortgage & corporate encumbrance pre-screening
+✓ Statutory timeline and fee benchmark calculation
 
 Inspect our data methodology whitepaper & download a sample feed: https://surplusdocket.com/methodology.html
 
 #LegalTech #AssetRecovery #TaxDeedSurplus #ExcessProceeds #RealEstateLaw
 
-=== LINKEDIN UPDATE 2: DAILY MARKET PULSE (September 13, 2026) ===
+=== LINKEDIN UPDATE 2: DAILY MARKET PULSE (September 14, 2026) ===
 Today's Public Records Intelligence Snapshot:
-💰 Monitored Surplus: $3,244,600.00 across 12 high-volume metro circuits
+💰 Monitored Surplus: $3,244,600.00 across 35 high-volume county court registries
 💵 Statutory Benchmark Fees: $668,580.00
-🏛️ Top Counties: Palm Beach (FL), Harris (TX), Miami-Dade (FL), Fulton (GA), Dallas (TX)
+🏛️ Primary Jurisdictions: Florida, Texas, Georgia, California, North Carolina, Tennessee
 
-Every record is pre-filtered for individual titleholders and verified against official court dockets.
+Every record is pre-screened for owner equity and verified against official judicial dockets.
 
 Full daily feed delivered at 7:00 AM EST in CSV, Excel, and REST API: https://surplusdocket.com
 
