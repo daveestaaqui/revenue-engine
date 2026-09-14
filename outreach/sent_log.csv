@@ -170,3 +170,15 @@ Timestamp,Email,Name,Firm,State,Subject,Status,Mode,Output_File
 2026-08-26T11:37:29.172509,contact@nashvilletaxsurplus.com,Lawrence Bennett,Nashville Tax Surplus Attorneys,TN,Verified Tennessee surplus leads for Nashville Tax Surplus Attorneys (e.g. Case 2024-TD-004501),GENERATED (DRY_RUN),dry-run,contact_nashvilletaxsurplus.com.txt
 2026-08-26T11:37:29.172608,contact@thatcherdelgadolaw.com,Gregory Thatcher,"Thatcher & Delgado, LLP",CA,"Verified California surplus leads for Thatcher & Delgado, LLP (e.g. Case 2024-TD-004501)",GENERATED (DRY_RUN),dry-run,contact_thatcherdelgadolaw.com.txt
 2026-08-26T11:37:29.172830,contact@sandiegosurplusrecovery.com,Victor Reyes,San Diego Surplus Recovery Counsel,CA,Verified California surplus leads for San Diego Surplus Recovery Counsel (e.g. Case 2024-TD-004501),GENERATED (DRY_RUN),dry-run,contact_sandiegosurplusrecovery.com.txt
+2026-09-14T21:36:41.158391,michael@davislaw.com,Michael J. Davis,Davis Law Group,CA,Los Angeles County surplus filing — 2024-CA-008120,SENT,live,001_michael_at_davislaw_com.eml
+2026-09-14T21:36:54.359261,dennis@evict123.com,Dennis P. Block,Dennis P. Block & Associates,CA,Los Angeles County surplus filing — 2024-CA-008640,SENT,live,002_dennis_at_evict123_com.eml
+2026-09-14T21:37:04.924167,greg@garrisonlawcorp.com,Gregory M. Garrison,Garrison Law Corporation,CA,San Diego County surplus filing — 2024-CA-005210,SENT,live,003_greg_at_garrisonlawcorp_com.eml
+2026-09-14T21:37:17.868052,dcooper@kleinlaw.com,David J. Cooper,"Klein, DeNatale, Goldner",CA,Los Angeles County surplus filing — 2024-CA-008120,SENT,live,004_dcooper_at_kleinlaw_com.eml
+2026-09-14T21:37:31.087025,hamid@lawwiz.net,Hamid Soleimanian,Law Offices of Hamid Soleimanian,CA,Los Angeles County surplus filing — 2024-CA-008120,SENT,live,005_hamid_at_lawwiz_net.eml
+2026-09-14T21:37:44.996455,paul@justilaw.com,Paul B. Justi,Law Offices of Paul B. Justi,CA,Los Angeles County surplus filing — 2024-CA-008640,SENT,live,006_paul_at_justilaw_com.eml
+2026-09-14T21:37:57.990695,steve@lovettlaw.com,Steven R. Lovett,Law Offices of Steven R. Lovett,CA,Los Angeles County surplus filing — 2024-CA-008640,SENT,live,007_steve_at_lovettlaw_com.eml
+2026-09-14T21:38:12.258556,ken@levinsonlaw.com,Kenneth L. Levinson,Levinson Law Group,CA,Los Angeles County surplus filing — 2024-CA-008120,SENT,live,008_ken_at_levinsonlaw_com.eml
+2026-09-14T21:38:22.228089,andrew@moherlaw.com,Andrew A. Moher,Moher Law Group,CA,San Diego County surplus filing — 2024-CA-005210,SENT,live,009_andrew_at_moherlaw_com.eml
+2026-09-14T21:38:30.665096,jonathan@berkowitzlawgroup.com,Jonathan A. Berkowitz,Berkowitz & Associates,FL,Palm Beach County surplus filing — 2024-TD-004501,SENT,live,010_jonathan_at_berkowitzlawgroup_com.eml
+2026-09-14T21:38:39.091542,mark@cmapalaw.com,Mark Cmapa,Cmapa Law,FL,Palm Beach County surplus filing — 2024-TD-004501,SENT,live,011_mark_at_cmapalaw_com.eml
+2026-09-14T21:38:50.599724,craig@rothburdpa.com,Craig E. Rothburd,"Craig E. Rothburd, P.A.",FL,Hillsborough County surplus filing — 2024-TD-008912,SENT,live,012_craig_at_rothburdpa_com.eml
