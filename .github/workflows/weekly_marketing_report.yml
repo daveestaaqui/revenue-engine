@@ -1,9 +1,9 @@
 name: Weekly Autonomous Marketing Progress Report
 
 on:
-  schedule:
-    # Every Monday at 12:00 UTC (8:00 AM EST / 5:00 AM PST)
-    - cron: '0 12 * * 1'
+  # schedule:
+  #   # Every Monday at 12:00 UTC (8:00 AM EST / 5:00 AM PST)
+  #   - cron: '0 12 * * 1'
   workflow_dispatch:
     inputs:
       recipient:

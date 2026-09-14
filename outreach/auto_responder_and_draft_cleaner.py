@@ -80,6 +80,7 @@ FROM_NAME = os.getenv("FROM_NAME", "Surplus Docket Intelligence")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL", "dockets@surplusdocket.com")
 REPLY_TO = os.getenv("REPLY_TO", "dockets@surplusdocket.com")
 REPORT_RECIPIENT = os.getenv("REPORT_RECIPIENT", "sandwichfitness@gmail.com")
+SEND_VOICEMAIL_MEMOS = os.getenv("SEND_VOICEMAIL_MEMOS", "false").lower() in ["true", "1", "yes"]
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 
@@ -2895,6 +2896,8 @@ def sync_voicemails_to_inbox(mail):
     Ensures any Google Voice voicemail notifications in [Gmail]/All Mail
     are present in INBOX so the user never misses an inbound voicemail.
     """
+    if not SEND_VOICEMAIL_MEMOS:
+        return
     try:
         status, _ = mail.select('"[Gmail]/All Mail"')
         if status != "OK":
@@ -3134,6 +3137,11 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
             is_vm = inquiry_info.get("is_voicemail", False)
 
             if is_vm and not inquiry_info.get("email"):
+                if not SEND_VOICEMAIL_MEMOS:
+                    if not is_already_seen:
+                        mail.store(mid, "+FLAGS", r"(\Seen)")
+                    continue
+
                 # Internal Voicemail Action Memorandum for operator (REPORT_RECIPIENT)
                 prospect_email = REPORT_RECIPIENT
                 inquiry_info["email"] = prospect_email
@@ -3171,7 +3179,7 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                     log(f"  🚀 {persona['name']} ({role_title}) response AUTO-SENT to {prospect_email} via SMTP!")
 
                     # If voicemail where caller DID provide an email, also dispatch action memo to operator
-                    if is_vm and inquiry_info.get("email") and prospect_email != REPORT_RECIPIENT:
+                    if is_vm and inquiry_info.get("email") and prospect_email != REPORT_RECIPIENT and SEND_VOICEMAIL_MEMOS:
                         memo_msg, m_subj, m_body = build_voicemail_action_memo(
                             inquiry_info, state_cases, message_id=message_id
                         )

@@ -96,7 +96,8 @@ def get_feed_statistics():
                 "amount": float(r.get(surplus_col, 0.0)),
                 "state": str(r.get("State") or "FL"),
                 "county": str(r.get("County") or r.get("COUNTY") or ""),
-                "statute": str(r.get("Governing_Statute") or "")
+                "statute": str(r.get("Governing_Statute") or ""),
+                "clerk_url": str(r.get("Clerk_Verification_URL") or "https://surplusdocket.com/practitioner-toolkit.html"),
             })
 
         return {
@@ -131,7 +132,8 @@ def get_feed_statistics():
                     "amount": amt,
                     "state": str(r.get("State") or "FL"),
                     "county": str(r.get("County") or r.get("COUNTY") or ""),
-                    "statute": str(r.get("Governing_Statute") or "")
+                    "statute": str(r.get("Governing_Statute") or ""),
+                    "clerk_url": str(r.get("Clerk_Verification_URL") or "https://surplusdocket.com/practitioner-toolkit.html"),
                 })
 
     return {
@@ -172,10 +174,8 @@ def compose_email_content(subscriber, stats, date_str):
             urgency_badge = '<span style="display: inline-block; background-color: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; font-family: -apple-system, sans-serif; letter-spacing: 0.02em;">Verified Docket</span>'
 
         statute_markup = f'''<div style="margin-top: 5px;">
-            <a href="https://surplusdocket.com/#compliance" target="_blank" style="text-decoration: none;">
-                <span style="color: #64748b; font-size: 11px;">Statute: </span>
-                <span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; font-weight: 600; color: #1b365d; background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 2px 7px; border-radius: 4px;">{d["statute"]}</span>
-            </a>
+            <span style="color: #64748b; font-size: 11px;">Statute: </span>
+            <span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; font-weight: 600; color: #1b365d; background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 2px 7px; border-radius: 4px;">{d["statute"]}</span>
         </div>''' if d.get("statute") else ''
 
         dockets_html += f"""
@@ -186,7 +186,7 @@ def compose_email_content(subscriber, stats, date_str):
                         <tr>
                             <td align="left" valign="middle" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
                                 <span style="display: inline-block; background-color: #edf3ec; color: #365134; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 4px; border: 1px solid #c2d9c0; margin-right: 8px;">{d['state']}</span>
-                                <a href="https://surplusdocket.com/#live-docket" target="_blank" style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; font-weight: 700; color: #1b365d; text-decoration: none; border-bottom: 1px dotted #1b365d;">{d['docket']}</a>
+                                <a href="{d['clerk_url']}" target="_blank" style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; font-weight: 700; color: #1b365d; text-decoration: none; border-bottom: 1px dotted #1b365d;">{d['docket']}</a>
                                 <span style="color: #64748b; font-size: 13px; font-weight: 500; margin-left: 6px;">• {d['county']} County</span>
                             </td>
                             <td align="right" valign="middle" style="text-align: right;">
@@ -208,8 +208,8 @@ def compose_email_content(subscriber, stats, date_str):
                             <td align="right" valign="middle" style="text-align: right; white-space: nowrap;">
                                 <div style="margin-bottom: 6px;">{urgency_badge}</div>
                                 <div>
-                                    <a href="https://surplusdocket.com/#live-docket" target="_blank" style="font-size: 11px; font-weight: 700; color: #1b365d; text-decoration: none; border-bottom: 1px solid #1b365d;">
-                                        Review Docket &rarr;
+                                    <a href="{d['clerk_url']}" target="_blank" style="font-size: 11px; font-weight: 700; color: #1b365d; text-decoration: none; border-bottom: 1px solid #1b365d;">
+                                        Review Official Registry &rarr;
                                     </a>
                                 </div>
                             </td>
@@ -236,11 +236,10 @@ FEATURED HIGH-EQUITY DOCKETS:
 {dockets_text}
 Complete unencumbered docket feeds are attached to this transmission in CSV and Excel (.xlsx) formats for immediate importation into your practice management software.
 
-QUICK LINKS:
-• Live Docket Terminal: https://surplusdocket.com/#live-docket
+RESOURCES & ACCOUNT:
 • Practitioner Toolkit & Forms: https://surplusdocket.com/practitioner-toolkit.html
-• Statutory Filing Rules: https://surplusdocket.com/#compliance
-• Subscriber Billing Portal: https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00
+• Subscriber Billing & Seat Management: https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00
+• REST API Documentation: https://surplusdocket.com/api-documentation.html
 
 Best regards,
 
@@ -311,11 +310,9 @@ surplusdocket.com • dockets@surplusdocket.com
                                         </table>
                                     </td>
                                     <td align="right" valign="middle" class="header-tag-cell" style="padding: 0;">
-                                        <a href="https://surplusdocket.com/#live-docket" target="_blank" style="text-decoration: none;">
-                                            <span style="display: inline-block; background-color: #edf3ec; border: 1px solid #c2d9c0; color: #365134; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; letter-spacing: 0.02em; white-space: nowrap;">
-                                                7:00 AM EST • DAILY BRIEFING
-                                            </span>
-                                        </a>
+                                        <span style="display: inline-block; background-color: #edf3ec; border: 1px solid #c2d9c0; color: #365134; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; letter-spacing: 0.02em; white-space: nowrap;">
+                                            7:00 AM EST • DAILY BRIEFING
+                                        </span>
                                     </td>
                                 </tr>
                             </table>
@@ -328,13 +325,11 @@ surplusdocket.com • dockets@surplusdocket.com
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td align="left" style="color: #64748b; white-space: nowrap;">
-                                        <a href="https://surplusdocket.com/#live-docket" target="_blank" class="nav-link" style="color: #1b365d; text-decoration: none; font-weight: 700;">Live Docket</a>
-                                        <span style="color: #cbd5e1; margin: 0 6px;">•</span>
-                                        <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" class="nav-link" style="color: #526174; text-decoration: none;">Toolkit</a>
-                                        <span style="color: #cbd5e1; margin: 0 6px;">•</span>
-                                        <a href="https://surplusdocket.com/#compliance" target="_blank" class="nav-link" style="color: #526174; text-decoration: none;">Statutes</a>
-                                        <span style="color: #cbd5e1; margin: 0 6px;">•</span>
-                                        <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" class="nav-link" style="color: #526174; text-decoration: none;">Billing</a>
+                                        <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" class="nav-link" style="color: #1b365d; text-decoration: none; font-weight: 700;">Practitioner Toolkit</a>
+                                        <span style="color: #cbd5e1; margin: 0 8px;">•</span>
+                                        <a href="https://surplusdocket.com/api-documentation.html" target="_blank" class="nav-link" style="color: #526174; text-decoration: none;">API Docs</a>
+                                        <span style="color: #cbd5e1; margin: 0 8px;">•</span>
+                                        <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" class="nav-link" style="color: #526174; text-decoration: none;">Billing Portal</a>
                                     </td>
                                     <td align="right" class="nav-date" style="color: #94a3b8; font-size: 11px; font-weight: 500; white-space: nowrap;">
                                         {date_str}
@@ -356,31 +351,23 @@ surplusdocket.com • dockets@surplusdocket.com
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="metrics-table" style="width: 100%; margin: 18px 0 24px 0;">
                                 <tr>
                                     <td width="23%" style="padding: 14px 10px; background-color: #edf3ec; border: 1px solid #c2d9c0; border-radius: 8px; text-align: center;">
-                                        <a href="https://surplusdocket.com/#live-docket" target="_blank" style="text-decoration: none; display: block;">
-                                            <div style="font-size: 18px; font-weight: 900; color: #365134; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{total_bal_fmt}</div>
-                                            <div style="font-size: 10px; text-transform: uppercase; color: #4c6d48; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Unencumbered Equity</div>
-                                        </a>
+                                        <div style="font-size: 18px; font-weight: 900; color: #365134; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{total_bal_fmt}</div>
+                                        <div style="font-size: 10px; text-transform: uppercase; color: #4c6d48; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Unencumbered Equity</div>
                                     </td>
                                     <td width="2%" class="metrics-spacer" style="width: 8px;"></td>
                                     <td width="23%" style="padding: 14px 10px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center;">
-                                        <a href="https://surplusdocket.com/#live-docket" target="_blank" style="text-decoration: none; display: block;">
-                                            <div style="font-size: 18px; font-weight: 900; color: #1b365d; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{rec_count} Files</div>
-                                            <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Audited Dockets</div>
-                                        </a>
+                                        <div style="font-size: 18px; font-weight: 900; color: #1b365d; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{rec_count} Files</div>
+                                        <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Audited Dockets</div>
                                     </td>
                                     <td width="2%" class="metrics-spacer" style="width: 8px;"></td>
                                     <td width="23%" style="padding: 14px 10px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center;">
-                                        <a href="https://surplusdocket.com/#data" target="_blank" style="text-decoration: none; display: block;">
-                                            <div style="font-size: 18px; font-weight: 900; color: #1b365d; font-family: -apple-system, sans-serif;">6 States</div>
-                                            <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">FL • TX • GA • NC • TN • CA</div>
-                                        </a>
+                                        <div style="font-size: 18px; font-weight: 900; color: #1b365d; font-family: -apple-system, sans-serif;">6 States</div>
+                                        <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">FL • TX • GA • NC • TN • CA</div>
                                     </td>
                                     <td width="2%" class="metrics-spacer" style="width: 8px;"></td>
                                     <td width="23%" style="padding: 14px 10px; background-color: #edf3ec; border: 1px solid #c2d9c0; border-radius: 8px; text-align: center;">
-                                        <a href="https://surplusdocket.com/#compliance" target="_blank" style="text-decoration: none; display: block;">
-                                            <div style="font-size: 18px; font-weight: 900; color: #365134; font-family: -apple-system, sans-serif;">Zero Liens</div>
-                                            <div style="font-size: 10px; text-transform: uppercase; color: #4c6d48; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Bank Liens Filtered</div>
-                                        </a>
+                                        <div style="font-size: 18px; font-weight: 900; color: #365134; font-family: -apple-system, sans-serif;">Zero Liens</div>
+                                        <div style="font-size: 10px; text-transform: uppercase; color: #4c6d48; font-weight: 700; margin-top: 3px; letter-spacing: 0.04em;">Bank Liens Filtered</div>
                                     </td>
                                 </tr>
                             </table>
@@ -394,9 +381,9 @@ surplusdocket.com • dockets@surplusdocket.com
                                         </div>
                                     </td>
                                     <td align="right" valign="middle">
-                                        <a href="https://surplusdocket.com/#live-docket" target="_blank" style="font-size: 11px; font-weight: 700; color: #4c6d48; text-decoration: none;">
-                                            View All {rec_count} Filings &rarr;
-                                        </a>
+                                        <span style="font-size: 11px; font-weight: 600; color: #64748b;">
+                                            Full feed attached below
+                                        </span>
                                     </td>
                                 </tr>
                             </table>
@@ -444,11 +431,11 @@ surplusdocket.com • dockets@surplusdocket.com
 
                             <!-- Action Buttons -->
                             <div style="text-align: center; margin: 28px 0 22px 0;">
-                                <a href="https://surplusdocket.com/#live-docket" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
-                                    Open Live Docket Terminal &rarr;
+                                <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
+                                    Access Practitioner Toolkit &rarr;
                                 </a>
-                                <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
-                                    Practitioner Toolkit Forms
+                                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
+                                    Subscriber Billing &amp; Seats
                                 </a>
                             </div>
 
@@ -469,9 +456,8 @@ surplusdocket.com • dockets@surplusdocket.com
                     <tr>
                         <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
-                                <a href="https://surplusdocket.com/#live-docket" target="_blank" style="color: #526174; text-decoration: none;">Live Docket</a> &nbsp;•&nbsp; 
                                 <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
-                                <a href="https://surplusdocket.com/#compliance" target="_blank" style="color: #526174; text-decoration: none;">Statutory Compliance</a> &nbsp;•&nbsp; 
+                                <a href="https://surplusdocket.com/api-documentation.html" target="_blank" style="color: #526174; text-decoration: none;">REST API Documentation</a> &nbsp;•&nbsp; 
                                 <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
                             </div>
                             {LEGAL_DISCLAIMER}<br>
@@ -620,8 +606,8 @@ KEY PRACTICE ONBOARDING:
 3. Transparent Evaluation Terms: Day 8 rollover to the standard monthly plan ($249/mo). 1-click self-service control anytime via your Stripe Billing Portal: https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00.
 
 QUICK LINKS:
-• Live Docket Terminal: https://surplusdocket.com/#live-docket
 • Practitioner Toolkit & Forms: https://surplusdocket.com/practitioner-toolkit.html
+• REST API Documentation: https://surplusdocket.com/api-documentation.html
 • Subscriber Billing Portal: https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00
 
 Best regards,
@@ -689,11 +675,9 @@ surplusdocket.com • dockets@surplusdocket.com
                                         </table>
                                     </td>
                                     <td align="right" valign="middle" class="header-tag-cell" style="padding: 0;">
-                                        <a href="https://surplusdocket.com/#pricing" target="_blank" style="text-decoration: none;">
-                                            <span style="display: inline-block; background-color: #edf3ec; border: 1px solid #c2d9c0; color: #365134; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; letter-spacing: 0.02em; white-space: nowrap;">
-                                                $0 DUE TODAY • 7-DAY EVALUATION
-                                            </span>
-                                        </a>
+                                        <span style="display: inline-block; background-color: #edf3ec; border: 1px solid #c2d9c0; color: #365134; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; letter-spacing: 0.02em; white-space: nowrap;">
+                                            $0 DUE TODAY • 7-DAY EVALUATION
+                                        </span>
                                     </td>
                                 </tr>
                             </table>
@@ -706,11 +690,9 @@ surplusdocket.com • dockets@surplusdocket.com
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td align="left" style="color: #64748b;">
-                                        <a href="https://surplusdocket.com/#live-docket" target="_blank" style="color: #1b365d; text-decoration: none; font-weight: 700;">Live Docket</a>
+                                        <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" style="color: #1b365d; text-decoration: none; font-weight: 700;">Practitioner Toolkit</a>
                                         <span style="color: #cbd5e1; margin: 0 8px;">•</span>
-                                        <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a>
-                                        <span style="color: #cbd5e1; margin: 0 8px;">•</span>
-                                        <a href="https://surplusdocket.com/#compliance" target="_blank" style="color: #526174; text-decoration: none;">Statutory Rules</a>
+                                        <a href="https://surplusdocket.com/api-documentation.html" target="_blank" style="color: #526174; text-decoration: none;">API Docs</a>
                                         <span style="color: #cbd5e1; margin: 0 8px;">•</span>
                                         <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" style="color: #526174; text-decoration: none;">Billing Portal</a>
                                     </td>
@@ -786,11 +768,11 @@ surplusdocket.com • dockets@surplusdocket.com
 
                             <!-- Action Buttons -->
                             <div style="text-align: center; margin: 28px 0 22px 0;">
-                                <a href="https://surplusdocket.com/#live-docket" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
-                                    Open Live Docket Terminal &rarr;
+                                <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
+                                    Access Practitioner Toolkit &rarr;
                                 </a>
-                                <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
-                                    Access Practitioner Toolkit
+                                <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
+                                    Manage Subscription in Stripe
                                 </a>
                             </div>
 
@@ -811,9 +793,8 @@ surplusdocket.com • dockets@surplusdocket.com
                     <tr>
                         <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
-                                <a href="https://surplusdocket.com/#live-docket" target="_blank" style="color: #526174; text-decoration: none;">Live Docket</a> &nbsp;•&nbsp; 
                                 <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
-                                <a href="https://surplusdocket.com/#compliance" target="_blank" style="color: #526174; text-decoration: none;">Statutory Rules</a> &nbsp;•&nbsp; 
+                                <a href="https://surplusdocket.com/api-documentation.html" target="_blank" style="color: #526174; text-decoration: none;">REST API Documentation</a> &nbsp;•&nbsp; 
                                 <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
                             </div>
                             {LEGAL_DISCLAIMER}<br>

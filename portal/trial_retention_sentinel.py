@@ -111,10 +111,8 @@ Download verified motion templates, notice of appearance forms, and clerk claim 
 {TOOLKIT_URL}
 
 QUICK LINKS:
-• Live Docket Terminal: https://surplusdocket.com/#live-docket
-• Practitioner Toolkit: {TOOLKIT_URL}
-• Statutory Filing Rules: https://surplusdocket.com/#compliance
-• Subscriber Billing Portal: {STRIPE_PORTAL_URL}
+• Practitioner Toolkit & Statutory Forms: {TOOLKIT_URL}
+• Subscriber Billing & Seat Management: {STRIPE_PORTAL_URL}
 
 Best regards,
 
@@ -196,11 +194,7 @@ surplusdocket.com • dockets@surplusdocket.com
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td align="left" style="color: #64748b;">
-                                        <a href="https://surplusdocket.com/#live-docket" target="_blank" style="color: #1b365d; text-decoration: none; font-weight: 700;">Live Docket</a>
-                                        <span style="color: #cbd5e1; margin: 0 8px;">•</span>
-                                        <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a>
-                                        <span style="color: #cbd5e1; margin: 0 8px;">•</span>
-                                        <a href="https://surplusdocket.com/#compliance" target="_blank" style="color: #526174; text-decoration: none;">Statutory Rules</a>
+                                        <a href="{TOOLKIT_URL}" target="_blank" style="color: #1b365d; text-decoration: none; font-weight: 700;">Practitioner Toolkit</a>
                                         <span style="color: #cbd5e1; margin: 0 8px;">•</span>
                                         <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #526174; text-decoration: none;">Billing Portal</a>
                                     </td>
@@ -271,8 +265,8 @@ surplusdocket.com • dockets@surplusdocket.com
                                 <a href="{TOOLKIT_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
                                     Access Practitioner Motion Dossiers &rarr;
                                 </a>
-                                <a href="https://surplusdocket.com/#live-docket" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
-                                    Open Live Docket
+                                <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
+                                    Subscriber Billing Portal
                                 </a>
                             </div>
 
@@ -293,9 +287,7 @@ surplusdocket.com • dockets@surplusdocket.com
                     <tr>
                         <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
-                                <a href="https://surplusdocket.com/#live-docket" target="_blank" style="color: #526174; text-decoration: none;">Live Docket</a> &nbsp;•&nbsp; 
                                 <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
-                                <a href="https://surplusdocket.com/#compliance" target="_blank" style="color: #526174; text-decoration: none;">Statutory Rules</a> &nbsp;•&nbsp; 
                                 <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
                             </div>
                             {LEGAL_DISCLAIMER}<br>
@@ -422,11 +414,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td align="left" style="color: #64748b;">
-                                        <a href="https://surplusdocket.com/#live-docket" target="_blank" style="color: #1b365d; text-decoration: none; font-weight: 700;">Live Docket</a>
-                                        <span style="color: #cbd5e1; margin: 0 8px;">•</span>
-                                        <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a>
-                                        <span style="color: #cbd5e1; margin: 0 8px;">•</span>
-                                        <a href="https://surplusdocket.com/#compliance" target="_blank" style="color: #526174; text-decoration: none;">Statutory Rules</a>
+                                        <a href="{TOOLKIT_URL}" target="_blank" style="color: #1b365d; text-decoration: none; font-weight: 700;">Practitioner Toolkit</a>
                                         <span style="color: #cbd5e1; margin: 0 8px;">•</span>
                                         <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #526174; text-decoration: none;">Billing Portal</a>
                                     </td>
@@ -502,9 +490,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                     <tr>
                         <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
-                                <a href="https://surplusdocket.com/#live-docket" target="_blank" style="color: #526174; text-decoration: none;">Live Docket</a> &nbsp;•&nbsp; 
                                 <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
-                                <a href="https://surplusdocket.com/#compliance" target="_blank" style="color: #526174; text-decoration: none;">Statutory Rules</a> &nbsp;•&nbsp; 
                                 <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
                             </div>
                             {LEGAL_DISCLAIMER}<br>

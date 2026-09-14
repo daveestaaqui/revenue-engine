@@ -1040,7 +1040,8 @@ Play message: https://voice.google.com/message/4956"""
         with patch("outreach.auto_responder_and_draft_cleaner.send_response_email") as mock_send, \
              patch("outreach.auto_responder_and_draft_cleaner.is_within_sending_hours", return_value=(False, "Closed")), \
              patch("outreach.auto_responder_and_draft_cleaner.record_notable_email_activity"), \
-             patch("outreach.auto_responder_and_draft_cleaner.AUTO_SEND", True):
+             patch("outreach.auto_responder_and_draft_cleaner.AUTO_SEND", True), \
+             patch("outreach.auto_responder_and_draft_cleaner.SEND_VOICEMAIL_MEMOS", True):
             mock_send.return_value = (True, "Delivered")
             check_and_create_auto_responses(
                 mock_mail, self.mock_state_cases, enforce_delay=True, enforce_hours=True
@@ -1056,6 +1057,47 @@ Play message: https://voice.google.com/message/4956"""
             self.assertIn("Attorney Davis", draft_msg["Subject"])
             payload_text = draft_msg.get_payload(decode=True).decode("utf-8")
             self.assertIn("SURPLUS DOCKET — INBOUND VOICEMAIL ACTION MEMORANDUM", payload_text)
+
+    def test_check_and_create_auto_responses_voicemail_memo_suppressed_by_default(self):
+        """
+        Verifies that by default (SEND_VOICEMAIL_MEMOS=False), inbound voicemails
+        do NOT dispatch an action memorandum email to operator REPORT_RECIPIENT.
+        """
+        from unittest.mock import MagicMock, patch
+        from outreach.auto_responder_and_draft_cleaner import check_and_create_auto_responses
+
+        mock_mail = MagicMock()
+        mock_mail.select.return_value = ("OK", [b"1"])
+        mock_mail.search.side_effect = [
+            ("OK", [b"1"]),  # UNSEEN
+            ("OK", [b"1"]),  # ALL
+        ]
+
+        raw_vm_email = (
+            b"From: voice-noreply@google.com\r\n"
+            b"To: sandwichfitness@gmail.com\r\n"
+            b"Subject: New voicemail from (508) 517-8981 at 11:30 PM\r\n"
+            b"Message-ID: <vm-msg-suppress@google.com>\r\n"
+            b"Date: Mon, 7 Sep 2026 23:30:00 -0400\r\n"
+            b"\r\n"
+            b"New voicemail from (508) 517-8981:\r\n"
+            b"\r\n"
+            b"\"Hello this is Attorney Davis calling about Fulton County Georgia surplus records.\"\r\n"
+            b"\r\n"
+            b"Play message: https://voice.google.com/message/54321\r\n"
+        )
+        mock_mail.fetch.return_value = ("OK", [(b"1 (RFC822 {250})", raw_vm_email)])
+
+        with patch("outreach.auto_responder_and_draft_cleaner.send_response_email") as mock_send, \
+             patch("outreach.auto_responder_and_draft_cleaner.is_within_sending_hours", return_value=(False, "Closed")), \
+             patch("outreach.auto_responder_and_draft_cleaner.record_notable_email_activity"), \
+             patch("outreach.auto_responder_and_draft_cleaner.AUTO_SEND", True):
+            mock_send.return_value = (True, "Delivered")
+            check_and_create_auto_responses(
+                mock_mail, self.mock_state_cases, enforce_delay=True, enforce_hours=True
+            )
+            # Voicemail memo must be suppressed by default
+            mock_send.assert_not_called()
 
 
 if __name__ == "__main__":
