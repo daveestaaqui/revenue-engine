@@ -1,13 +1,6 @@
 idx,email,name,firm,state,subject,file
-1,michael@davislaw.com,Michael J. Davis,Davis Law Group,CA,Los Angeles County surplus filing — 2024-CA-008120,001_michael_at_davislaw_com.eml
-2,dennis@evict123.com,Dennis P. Block,Dennis P. Block & Associates,CA,Los Angeles County surplus filing — 2024-CA-008640,002_dennis_at_evict123_com.eml
-3,greg@garrisonlawcorp.com,Gregory M. Garrison,Garrison Law Corporation,CA,San Diego County surplus filing — 2024-CA-005210,003_greg_at_garrisonlawcorp_com.eml
-4,dcooper@kleinlaw.com,David J. Cooper,"Klein, DeNatale, Goldner",CA,Los Angeles County surplus filing — 2024-CA-008120,004_dcooper_at_kleinlaw_com.eml
-5,hamid@lawwiz.net,Hamid Soleimanian,Law Offices of Hamid Soleimanian,CA,Los Angeles County surplus filing — 2024-CA-008120,005_hamid_at_lawwiz_net.eml
-6,paul@justilaw.com,Paul B. Justi,Law Offices of Paul B. Justi,CA,Los Angeles County surplus filing — 2024-CA-008640,006_paul_at_justilaw_com.eml
-7,steve@lovettlaw.com,Steven R. Lovett,Law Offices of Steven R. Lovett,CA,Los Angeles County surplus filing — 2024-CA-008640,007_steve_at_lovettlaw_com.eml
-8,ken@levinsonlaw.com,Kenneth L. Levinson,Levinson Law Group,CA,Los Angeles County surplus filing — 2024-CA-008120,008_ken_at_levinsonlaw_com.eml
-9,andrew@moherlaw.com,Andrew A. Moher,Moher Law Group,CA,San Diego County surplus filing — 2024-CA-005210,009_andrew_at_moherlaw_com.eml
-10,jonathan@berkowitzlawgroup.com,Jonathan A. Berkowitz,Berkowitz & Associates,FL,Palm Beach County surplus filing — 2024-TD-004501,010_jonathan_at_berkowitzlawgroup_com.eml
-11,mark@cmapalaw.com,Mark Cmapa,Cmapa Law,FL,Palm Beach County surplus filing — 2024-TD-004501,011_mark_at_cmapalaw_com.eml
-12,craig@rothburdpa.com,Craig E. Rothburd,"Craig E. Rothburd, P.A.",FL,Hillsborough County surplus filing — 2024-TD-008912,012_craig_at_rothburdpa_com.eml
+1,andrew@moherlaw.com,Andrew A. Moher,Moher Law Group,CA,San Diego County surplus filing — 2024-CA-005210,001_andrew_at_moherlaw_com.eml
+2,arthur@gonzalezlawca.com,Arthur J. Gonzalez,Gonzalez & Associates,CA,Los Angeles County surplus filing — 2024-CA-008120,002_arthur_at_gonzalezlawca_com.eml
+3,dcooper@kleinlaw.com,David J. Cooper,"Klein, DeNatale, Goldner",CA,Los Angeles County surplus filing — 2024-CA-008120,003_dcooper_at_kleinlaw_com.eml
+4,dennis@evict123.com,Dennis P. Block,Dennis P. Block & Associates,CA,Los Angeles County surplus filing — 2024-CA-008640,004_dennis_at_evict123_com.eml
+5,greg@garrisonlawcorp.com,Gregory M. Garrison,Garrison Law Corporation,CA,San Diego County surplus filing — 2024-CA-005210,005_greg_at_garrisonlawcorp_com.eml

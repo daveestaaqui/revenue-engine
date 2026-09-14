@@ -15,16 +15,20 @@ on:
       dry_run:
         description: 'Run in dry-run preview mode (no live submission/email send)'
         type: boolean
-        default: false
+        default: true
       channel:
-        description: 'Channel to execute: email (SMTP), forms (Playwright), or both'
+        description: 'Channel to execute: forms (Playwright - safe), email (SMTP drafts), or both'
         required: false
-        default: 'email'
+        default: 'forms'
         type: choice
         options:
-          - email
           - forms
+          - email
           - both
+      confirm_live_send:
+        description: 'Type CONFIRM_LIVE to authorize live SMTP transmission (ignored in dry-run)'
+        required: false
+        default: ''
 
 concurrency:
   group: outreach-production-ledger
@@ -58,7 +62,7 @@ jobs:
         run: |
           playwright install --with-deps chromium
 
-      - name: Execute Automated Direct Email Outreach (SMTP Draft Dispatcher)
+      - name: Execute Automated Direct Email Outreach (Draft Mode & Zero-Spam Protection)
         if: github.event_name == 'schedule' || inputs.channel == 'email' || inputs.channel == 'both' || inputs.channel == ''
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
@@ -69,11 +73,13 @@ jobs:
           BATCH_LIMIT: ${{ inputs.limit || '12' }}
         run: |
           LIMIT="$BATCH_LIMIT"
-          if [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ -z "$GMAIL_APP_PASS" ]; then
-            echo "Running in dry-run draft mode..."
+          # STRICT ZERO-SPAM POLICY: Scheduled automated runs NEVER dispatch live SMTP cold emails.
+          # Live SMTP is strictly restricted to manual workflow_dispatch where dry_run is false AND confirm_live_send == 'CONFIRM_LIVE'.
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.dry_run }}" != "false" ] || [ "${{ github.event.inputs.confirm_live_send }}" != "CONFIRM_LIVE" ] || [ -z "$GMAIL_APP_PASS" ]; then
+            echo "🛡️ Zero-Spam Protection: Generating draft artifacts in dry-run mode (no SMTP transmission)..."
             python outreach/generate_drafts.py --dry-run --limit="$LIMIT"
           else
-            echo "Running live SMTP dispatch..."
+            echo "⚠️ Manual live SMTP dispatch explicitly authorized with confirmation..."
             python outreach/generate_drafts.py --send --limit="$LIMIT"
           fi
 

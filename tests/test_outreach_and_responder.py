@@ -227,5 +227,78 @@ class TestIdempotencyAndDomainLoaders(unittest.TestCase):
                 pass
 
 
+class TestDirectEmailAntiSpamAndDeliverability(unittest.TestCase):
+    """Tests zero-spam protections, bounce blacklist, and high-conviction email list."""
+
+    def test_bounced_and_generic_email_rejection(self):
+        from outreach.generate_drafts import is_valid_direct_email
+
+        # 1. Bounced addresses must be rejected
+        self.assertFalse(is_valid_direct_email("paul@justilaw.com"))
+        self.assertFalse(is_valid_direct_email("other@justilaw.com"))
+        self.assertFalse(is_valid_direct_email("info@lw.com"))
+        self.assertFalse(is_valid_direct_email("partner@lw.com"))
+
+        # 2. Generic mailboxes must be rejected
+        self.assertFalse(is_valid_direct_email("info@anyfirm.com"))
+        self.assertFalse(is_valid_direct_email("contact@anyfirm.com"))
+        self.assertFalse(is_valid_direct_email("intake@anyfirm.com"))
+        self.assertFalse(is_valid_direct_email("office@anyfirm.com"))
+        self.assertFalse(is_valid_direct_email("admin@anyfirm.com"))
+        self.assertFalse(is_valid_direct_email("support@anyfirm.com"))
+        self.assertFalse(is_valid_direct_email("inquiry@anyfirm.com"))
+
+        # 3. High-conviction named practitioners must be accepted
+        self.assertTrue(is_valid_direct_email("andrew@moherlaw.com"))
+        self.assertTrue(is_valid_direct_email("dennis@evict123.com"))
+        self.assertTrue(is_valid_direct_email("dcooper@kleinlaw.com"))
+        self.assertTrue(is_valid_direct_email("vincent@taorminalawpa.com"))
+
+    def test_high_conviction_attorneys_csv_integrity(self):
+        import csv
+        hc_file = BASE_DIR / "outreach" / "high_conviction_attorneys.csv"
+        self.assertTrue(hc_file.exists(), "high_conviction_attorneys.csv must exist")
+
+        with open(hc_file, "r", encoding="utf-8") as f:
+            rows = list(csv.DictReader(f))
+
+        self.assertGreaterEqual(len(rows), 50, "Should have at least 50 high-conviction targets")
+
+        generic_prefixes = ("info@", "contact@", "admin@", "office@", "inquiry@", "intake@", "help@", "support@")
+        allowed_states = {"FL", "TX", "CA", "GA", "NC", "TN"}
+        blocked_domains = {"justilaw.com", "lw.com", "example.com"}
+
+        for r in rows:
+            em = r["Email"].lower()
+            st = r["State"].upper()
+            self.assertTrue(r["Name"], f"Missing name for {em}")
+            self.assertTrue(r["Firm"], f"Missing firm for {em}")
+            self.assertIn(st, allowed_states, f"State {st} not in core top 6")
+            self.assertFalse(em.startswith(generic_prefixes), f"Generic email found: {em}")
+            dom = em.split("@")[1]
+            self.assertNotIn(dom, blocked_domains, f"Blocked domain found: {dom}")
+
+    def test_record_bounced_email_persistence(self):
+        import tempfile
+        from unittest.mock import patch
+        from outreach.generate_drafts import record_bounced_email
+
+        with tempfile.NamedTemporaryFile("w+", delete=False) as tf:
+            tf.write('["initial@bounce.com"]')
+            tf.flush()
+
+            with patch("outreach.generate_drafts.BOUNCED_FILE", Path(tf.name)):
+                record_bounced_email("testfail@unrouted-box.com")
+                with open(tf.name, "r", encoding="utf-8") as rf:
+                    data = json.load(rf)
+                self.assertIn("testfail@unrouted-box.com", data)
+                self.assertIn("unrouted-box.com", data)
+
+            try:
+                os.remove(tf.name)
+            except Exception:
+                pass
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

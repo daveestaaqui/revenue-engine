@@ -32,14 +32,23 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 OUTREACH_DIR = BASE_DIR / "outreach"
-TARGETS_CSV = OUTREACH_DIR / "master_ranked_attorney_targets.csv"
-if not TARGETS_CSV.exists():
-    TARGETS_CSV = OUTREACH_DIR / "verified_attorney_targets.csv"
+HIGH_CONVICTION_CSV = OUTREACH_DIR / "high_conviction_attorneys.csv"
+MASTER_TARGETS_CSV = OUTREACH_DIR / "master_ranked_attorney_targets.csv"
+VERIFIED_TARGETS_CSV = OUTREACH_DIR / "verified_attorney_targets.csv"
+
+# Prioritize curated high-conviction named practitioners
+if HIGH_CONVICTION_CSV.exists():
+    TARGETS_CSV = HIGH_CONVICTION_CSV
+elif MASTER_TARGETS_CSV.exists():
+    TARGETS_CSV = MASTER_TARGETS_CSV
+else:
+    TARGETS_CSV = VERIFIED_TARGETS_CSV
 
 SENT_LOG_CSV = OUTREACH_DIR / "sent_log.csv"
 DRAFTS_DIR = OUTREACH_DIR / "drafts"
 FEED_CSV = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
 UNSUBSCRIBED_FILE = OUTREACH_DIR / "unsubscribed_urls.json"
+BOUNCED_FILE = OUTREACH_DIR / "bounced_emails.json"
 
 # Optional local .env loading
 ENV_FILE = BASE_DIR / ".env"
@@ -113,6 +122,7 @@ DEAD_DOMAINS = {
     "sinclairassociatespa.com",
     "example.com",
     "lw.com",  # Latham & Watkins rejects generic info@
+    "justilaw.com",  # Yahoo mail rejects unrouted mailboxes (552)
 }
 
 # Generic department prefixes that reject cold emails or do not reach counsel
@@ -135,14 +145,48 @@ BLOCKED_OUTREACH_DOMAINS = {
     "klgates.com", "mcguirewoods.com", "perkinscoie.com", "sheppardmullin.com",
     "wilmerhale.com", "blankrome.com", "cozen.com", "foxrothschild.com",
     "lockelord.com", "nixonpeabody.com", "polsinelli.com", "seyfarth.com",
-    "troutmansanders.com", "troutman.com", "venable.com", "winston.com"
+    "troutmansanders.com", "troutman.com", "venable.com", "winston.com",
+    "justilaw.com"
 }
+
+
+def record_bounced_email(email_str: str):
+    """Persist bounced email and domain to bounced_emails.json immediately."""
+    if not email_str or "@" not in email_str:
+        return
+    clean_em = email_str.strip().lower()
+    domain = clean_em.split("@")[1]
+    
+    data = []
+    if BOUNCED_FILE.exists():
+        try:
+            with open(BOUNCED_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            data = []
+    
+    changed = False
+    if clean_em not in data:
+        data.append(clean_em)
+        changed = True
+    if domain not in data:
+        data.append(domain)
+        changed = True
+    
+    if changed:
+        try:
+            with open(BOUNCED_FILE, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2)
+            print(f"  🛡️ Recorded bounced target to blacklist: {clean_em}")
+        except Exception as e:
+            sys.stderr.write(f"Warning: could not update {BOUNCED_FILE}: {e}\n")
 
 
 def is_valid_direct_email(email_str: str) -> bool:
     """
     Validates that an email is a legitimate individual practitioner address,
-    preventing 550 bounces from dead generic mailboxes (like info@lw.com).
+    preventing 550/552 bounces from dead generic mailboxes (like info@lw.com)
+    and dead individual mailboxes (like paul@justilaw.com).
     """
     if not email_str or "@" not in email_str:
         return False
@@ -153,11 +197,16 @@ def is_valid_direct_email(email_str: str) -> bool:
     if domain in DEAD_DOMAINS or domain in BLOCKED_OUTREACH_DOMAINS:
         return False
 
-    # 2. Skip generic corporate aliases that reject or don't reach attorneys
+    # 2. Skip unsubscribed and bounced emails or domains
+    bounced_and_unsub = get_unsubscribed_domains()
+    if e_clean in bounced_and_unsub or domain in bounced_and_unsub:
+        return False
+
+    # 3. Skip generic corporate aliases that reject or don't reach attorneys
     if e_clean.startswith(GENERIC_EMAIL_PREFIXES):
         return False
 
-    # 3. Skip placeholder local parts
+    # 4. Skip placeholder local parts
     if len(local_part) < 2 or local_part in ("test", "example", "user", "lawyer", "attorney"):
         return False
 
@@ -259,19 +308,20 @@ def get_already_contacted():
     return contacted
 
 
-def load_targets(allow_generic: bool = False):
+def load_targets(target_path=None, allow_generic: bool = False):
     """
     Load verified attorney targets from CSV.
     Strictly filters out generic/department mailboxes (info@, contact@)
-    to prevent delivery failures and bounces.
+    and dead/bounced addresses to prevent delivery failures and bounces.
     """
-    if not TARGETS_CSV.exists():
-        print(f"  Target file not found: {TARGETS_CSV}")
+    csv_file = Path(target_path) if target_path else TARGETS_CSV
+    if not csv_file.exists():
+        print(f"  Target file not found: {csv_file}")
         return []
 
     targets = []
     skipped_generic = 0
-    with open(TARGETS_CSV, "r", encoding="utf-8") as f:
+    with open(csv_file, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             clean = {}
@@ -289,7 +339,7 @@ def load_targets(allow_generic: bool = False):
             targets.append(clean)
 
     if skipped_generic > 0:
-        print(f"  🛡️ Target Quality Gate: Filtered out {skipped_generic} generic/blocked mailboxes (e.g. info@, contact@).")
+        print(f"  🛡️ Target Quality Gate: Filtered out {skipped_generic} generic/blocked mailboxes (e.g. info@, contact@, dead domains).")
     return targets
 
 
@@ -516,12 +566,15 @@ def main():
     parser.add_argument("--from-name", type=str, default="", help="Override sender display name")
     parser.add_argument("--from-email", type=str, default="", help="Override sender email address")
     parser.add_argument("--reply-to", type=str, default="", help="Override reply-to email address")
+    parser.add_argument("--targets", type=str, default="", help="Path to targets CSV (default: high_conviction_attorneys.csv)")
 
     args = parser.parse_args()
 
     from_name = args.from_name or DEFAULT_FROM_NAME
     from_email = args.from_email or DEFAULT_FROM_EMAIL
     reply_to = args.reply_to or DEFAULT_REPLY_TO
+
+    target_file = Path(args.targets) if args.targets else TARGETS_CSV
 
     is_live = args.send and not args.dry_run
 
@@ -532,7 +585,7 @@ def main():
     print(f"  From Sender    : {from_name} <{from_email}>")
     print(f"  Reply-To       : {reply_to}")
     print(f"  SMTP Host      : {SMTP_HOST}:{SMTP_PORT}")
-    print(f"  Target Ledger  : {TARGETS_CSV.name}")
+    print(f"  Target Ledger  : {target_file.name}")
     print("=" * 70)
 
     # 1. Load feed data
@@ -542,8 +595,8 @@ def main():
     print(f"✓ Loaded {total_cases} verified surplus cases across {len(state_cases)} states.")
 
     # 2. Load targets
-    print("\n  Loading verified attorney targets...")
-    targets = load_targets()
+    print(f"\n  Loading verified attorney targets from {target_file.name}...")
+    targets = load_targets(target_file)
     print(f"✓ Found {len(targets)} verified practice targets.")
 
     if args.state:
@@ -714,6 +767,12 @@ def main():
                         "Mode": "live",
                         "Output_File": str(filename),
                     })
+                    # Blacklist immediately to prevent future retries
+                    record_bounced_email(to_email)
+                    print(f"\n🛑 CIRCUIT BREAKER TRIPPED: Delivery failure on {to_email} ({err}).")
+                    print(f"   Blacklisted {to_email} in {BOUNCED_FILE.name} and aborted remaining batch.")
+                    print("   Terminating outreach run immediately to protect Gmail sender reputation.\n")
+                    break
             else:
                 # Dry run — do not mutate production sent_log.csv
                 print(f"  [{idx:02d}/{len(batch):02d}] 📝 DRAFT: {firm} <{to_email}> ({state}) -> {filename}")
