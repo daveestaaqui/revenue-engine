@@ -401,7 +401,8 @@ def reconcile_and_repair_subscribers(subscribers: list = None, write_back: bool 
 
         # Check trial expiration
         status = sub.get("status", "ACTIVE").upper()
-        if status in ("TRIAL", "TRIALING"):
+        is_eval_tier = any(k in str(sub.get("tier", "")).lower() for k in ["evaluation", "trial"])
+        if status in ("TRIAL", "TRIALING") or (is_eval_tier and status == "ACTIVE"):
             days_active = None
             if sub.get("days_active") is not None:
                 try:

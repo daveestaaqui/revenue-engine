@@ -1,14 +1,14 @@
 <!--
 PLATFORM: LINKEDIN
 TITLE: Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery
-CANONICAL_URL: https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing
+CANONICAL_URL: https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html
 DATE: September 15, 2026
 TAGS: LegalTech, AI, TitleResearch, PropertyRights, LegalInnovation
 -->
 
 # Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery
 
-*Originally published on [Surplus Docket Legal Intelligence](https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing)*
+*Originally published on [Surplus Docket Legal Intelligence](https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html)*
 
 ---
 ### The Unanimous Mandate of Tyler v. Hennepin County
@@ -37,7 +37,7 @@ Modern legal intelligence platforms like [Surplus Docket](https://surplusdocket.
 This analysis was authored by the research team at **[Surplus Docket](https://surplusdocket.com)**. Surplus Docket provides real-time court docket intelligence, junior lien title scrubbing, and statutory deadline automation for legal practices in foreclosure defense, probate, and real estate litigation.
 
 - **Interactive Calculator Widget:** [Statutory Surplus Calculator](https://surplusdocket.com/embed/surplus-calculator.html)
-- **Public Educational Resource:** [Homeowner's Guide to Foreclosure Surplus](https://surplusdocket.com/resources/homeowner-surplus-guide)
-- **Live Court Registry Feeds:** [Surplus Docket Intelligence](https://surplusdocket.com/data)
+- **Public Educational Resource:** [Homeowner's Guide to Foreclosure Surplus](https://surplusdocket.com/resources/homeowner-surplus-guide.html)
+- **Live Court Registry Feeds:** [Surplus Docket Intelligence](https://surplusdocket.com/#data)
 
-*Canonical Source: [https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing](https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing)*
+*Canonical Source: [https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html](https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html)*

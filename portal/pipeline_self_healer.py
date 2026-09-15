@@ -260,41 +260,58 @@ def generate_clio_matter_export(leads: list, output_path: Path) -> Path:
         "Statute Citation"
     ]
 
+    def sanitize_cell(val):
+        if isinstance(val, str):
+            s = val.lstrip()
+            if s.startswith(("=", "+", "-", "@")):
+                return "'" + val
+        return val
+
+    def parse_crm_name(owner_raw: str):
+        owner = str(owner_raw).strip()
+        if any(k in owner.upper() for k in ("ESTATE", "TRUST", "LLC", "INC", "CORP", "BANK")):
+            return owner, "Entity / Estate"
+        if " & " in owner or " AND " in owner.upper():
+            return owner, "Joint Titleholders"
+        parts = owner.split()
+        if len(parts) == 1:
+            return parts[0], "Titleholder"
+        return parts[0], " ".join(parts[1:])
+
     rows = []
     today_str = datetime.now().strftime("%Y-%m-%d")
 
     for lead in leads:
         owner = lead.get("Owner_Name", "Titleholder")
-        parts = owner.split()
-        first_name = parts[0] if parts else "Titleholder"
-        last_name = " ".join(parts[1:]) if len(parts) > 1 else "Estate"
+        first_name, last_name = parse_crm_name(owner)
         
+        state = lead.get("State", "")
         surplus = lead.get("Surplus_Balance_USD", 0.0)
-        fee = lead.get("Est_Finder_Fee_USD", round(surplus * 0.20, 2))
+        default_rate = 0.25 if state == "TX" else 0.20
+        fee = lead.get("Est_Finder_Fee_USD", round(surplus * default_rate, 2))
         docket = lead.get("Case_or_TaxDeed_No", "")
         county = lead.get("County", "")
-        state = lead.get("State", "")
-        statute = lead.get("Statute_Citation", "Statutory Claim Procedure")
+        statute = lead.get("Governing_Statute") or lead.get("Statute_Citation") or "Statutory Claim Procedure"
         clerk_url = lead.get("Clerk_Verification_URL", "")
-        deadline = lead.get("Claim_Deadline_Date", "Review Docket")
+        deadline = lead.get("Claim_Deadline_Date") or lead.get("Statutory_Deadline_Window") or "Review Docket"
 
         matter_desc = f"Surplus Recovery: {owner} — {docket} ({county} Co., {state})"
 
         rows.append({
-            "Matter Description": matter_desc,
-            "Client First Name": first_name,
-            "Client Last Name": last_name,
+            "Matter Description": sanitize_cell(matter_desc),
+            "Client First Name": sanitize_cell(first_name),
+            "Client Last Name": sanitize_cell(last_name),
             "Practice Area": "Tax Deed Surplus Recovery",
             "Open Date": today_str,
             "Status": "Open",
             "Pending Surplus USD": f"${surplus:,.2f}",
             "Statutory Fee Cap": f"${fee:,.2f}",
-            "Filing Deadline": deadline,
-            "Court Docket Link": clerk_url,
-            "Case / Deed No": docket,
-            "Jurisdiction County": county,
-            "Jurisdiction State": state,
-            "Statute Citation": statute
+            "Filing Deadline": sanitize_cell(deadline),
+            "Court Docket Link": sanitize_cell(clerk_url),
+            "Case / Deed No": sanitize_cell(docket),
+            "Jurisdiction County": sanitize_cell(county),
+            "Jurisdiction State": sanitize_cell(state),
+            "Statute Citation": sanitize_cell(statute)
         })
 
     with open(output_path, "w", newline="", encoding="utf-8") as f:
@@ -326,33 +343,41 @@ def generate_filevine_lead_export(leads: list, output_path: Path) -> Path:
         "Legal Statute"
     ]
 
+    def sanitize_cell(val):
+        if isinstance(val, str):
+            s = val.lstrip()
+            if s.startswith(("=", "+", "-", "@")):
+                return "'" + val
+        return val
+
     rows = []
     for lead in leads:
         owner = lead.get("Owner_Name", "Titleholder")
+        state = lead.get("State", "")
         surplus = lead.get("Surplus_Balance_USD", 0.0)
-        fee = lead.get("Est_Finder_Fee_USD", round(surplus * 0.20, 2))
+        default_rate = 0.25 if state == "TX" else 0.20
+        fee = lead.get("Est_Finder_Fee_USD", round(surplus * default_rate, 2))
         docket = lead.get("Case_or_TaxDeed_No", "")
         county = lead.get("County", "")
-        state = lead.get("State", "")
-        statute = lead.get("Statute_Citation", "Statutory Claim Procedure")
+        statute = lead.get("Governing_Statute") or lead.get("Statute_Citation") or "Statutory Claim Procedure"
         clerk_url = lead.get("Clerk_Verification_URL", "")
         sale_date = lead.get("Sale_Date", "")
-        deadline = lead.get("Claim_Deadline_Date", "Verify Court Record")
+        deadline = lead.get("Claim_Deadline_Date") or lead.get("Statutory_Deadline_Window") or "Verify Court Record"
 
         rows.append({
-            "Project Name": f"{owner} — Tax Deed Surplus ({docket})",
-            "Client Full Name": owner,
+            "Project Name": sanitize_cell(f"{owner} — Tax Deed Surplus ({docket})"),
+            "Client Full Name": sanitize_cell(owner),
             "Project Type": "Excess Proceeds Recovery",
             "Phase": "Intake & Docket Verification",
             "Estimated Value": f"${surplus:,.2f}",
             "Contingency / Cap Fee": f"${fee:,.2f}",
-            "Incident / Sale Date": sale_date,
-            "Filing Deadline": deadline,
-            "Court Docket URL": clerk_url,
-            "Docket Number": docket,
-            "County": county,
-            "State": state,
-            "Legal Statute": statute
+            "Incident / Sale Date": sanitize_cell(sale_date),
+            "Filing Deadline": sanitize_cell(deadline),
+            "Court Docket URL": sanitize_cell(clerk_url),
+            "Docket Number": sanitize_cell(docket),
+            "County": sanitize_cell(county),
+            "State": sanitize_cell(state),
+            "Legal Statute": sanitize_cell(statute)
         })
 
     with open(output_path, "w", newline="", encoding="utf-8") as f:

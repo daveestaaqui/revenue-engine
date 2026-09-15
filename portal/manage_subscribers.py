@@ -45,7 +45,7 @@ def get_jurisdictions_for_tier(tier):
 
 
 def add_subscriber(email, name="Counsel", firm="", tier="Core Plan (7-Day Evaluation)",
-                   jurisdictions=None, delivery_format=None, filepath=SUBSCRIBERS_FILE):
+                   jurisdictions=None, delivery_format=None, status="ACTIVE", filepath=SUBSCRIBERS_FILE):
     email = email.strip().lower()
     if not email or "@" not in email:
         raise ValueError(f"Invalid email address: {email}")
@@ -57,7 +57,7 @@ def add_subscriber(email, name="Counsel", firm="", tier="Core Plan (7-Day Evalua
     # Check if subscriber already exists
     for sub in subscribers:
         if sub.get("email", "").strip().lower() == email:
-            sub["status"] = "ACTIVE"
+            sub["status"] = status or "ACTIVE"
             sub["name"] = name
             sub["firm"] = firm
             sub["tier"] = tier
@@ -68,6 +68,7 @@ def add_subscriber(email, name="Counsel", firm="", tier="Core Plan (7-Day Evalua
 
     # Generate unique ID
     sub_id = f"SUB-{datetime.now().strftime('%Y%m%d')}-{len(subscribers) + 1:03d}"
+
     new_sub = {
         "id": sub_id,
         "email": email,
@@ -76,8 +77,9 @@ def add_subscriber(email, name="Counsel", firm="", tier="Core Plan (7-Day Evalua
         "tier": tier,
         "jurisdictions": assigned_jurisdictions,
         "delivery_format": delivery_format or DEFAULT_FORMATS,
-        "status": "ACTIVE",
-        "subscribed_at": datetime.now(timezone.utc).isoformat()
+        "status": status or "ACTIVE",
+        "subscribed_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": datetime.now(timezone.utc).isoformat()
     }
     subscribers.append(new_sub)
     save_subscribers(subscribers, filepath)

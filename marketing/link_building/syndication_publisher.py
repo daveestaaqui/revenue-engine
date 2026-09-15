@@ -13,7 +13,7 @@ ARTICLES_TO_SYNDICATE = [
     {
         "slug": "statutory-deadlines-tax-deed-surplus-top-6-states",
         "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-        "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
+        "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
         "summary": "A comprehensive practitioner breakdown of excess proceeds recovery deadlines across Florida, Texas, California, Georgia, North Carolina, and Tennessee.",
         "tags": ["LegalTech", "Foreclosure", "RealEstateLaw", "Litigation", "CourtDocket"],
         "body": """
@@ -45,7 +45,7 @@ Excess proceeds resulting from a delinquent tax sale are held by the Chancery Co
     {
         "slug": "post-tyler-hennepin-county-title-scrubbing",
         "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-        "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
+        "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
         "summary": "How automated court registry ingestion and title scrubbing eliminate catastrophic malpractice risks in excess proceeds litigation.",
         "tags": ["LegalTech", "AI", "TitleResearch", "PropertyRights", "LegalInnovation"],
         "body": """
@@ -99,8 +99,8 @@ TAGS: {', '.join(article['tags'])}
 This analysis was authored by the research team at **[Surplus Docket](https://surplusdocket.com)**. Surplus Docket provides real-time court docket intelligence, junior lien title scrubbing, and statutory deadline automation for legal practices in foreclosure defense, probate, and real estate litigation.
 
 - **Interactive Calculator Widget:** [Statutory Surplus Calculator](https://surplusdocket.com/embed/surplus-calculator.html)
-- **Public Educational Resource:** [Homeowner's Guide to Foreclosure Surplus](https://surplusdocket.com/resources/homeowner-surplus-guide)
-- **Live Court Registry Feeds:** [Surplus Docket Intelligence](https://surplusdocket.com/data)
+- **Public Educational Resource:** [Homeowner's Guide to Foreclosure Surplus](https://surplusdocket.com/resources/homeowner-surplus-guide.html)
+- **Live Court Registry Feeds:** [Surplus Docket Intelligence](https://surplusdocket.com/#data)
 
 *Canonical Source: [{article['canonical_url']}]({article['canonical_url']})*
 """

@@ -1304,6 +1304,29 @@
                     <p class="text-xs sm:text-sm text-slate-600">If the records, sources, and coverage fit your practice, evaluate the feed in your own workflow.</p>
                 </div>
 
+                <!-- 1x Case ROI Anchor Card -->
+                <div class="max-w-4xl mx-auto mb-10 bg-brand-canvas border-2 border-brand-green/40 rounded-2xl p-6 sm:p-7 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
+                        <div class="space-y-1.5">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-greenSoft text-brand-green text-[11px] font-bold uppercase tracking-wider border border-brand-green/30">
+                                ⚖️ Practice ROI Economics
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-heading font-black text-brand-navy">
+                                1 Recovery Claim = 5+ Years of Subscription Value
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl">
+                                Under standard statutory attorney fee limits (Florida 20% / Texas 25%), resolving a single <strong class="text-brand-navy font-bold">$75,000 unencumbered surplus file</strong> yields <strong class="text-brand-green font-bold">$15,000 to $18,750</strong> in legal fees. A single case covers multiple years of daily court intelligence.
+                            </p>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4 shrink-0 text-center md:text-right shadow-sm min-w-[210px]">
+                            <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Breakeven Benchmark</div>
+                            <div class="text-2xl font-heading font-black text-brand-green mt-0.5">$15,000+</div>
+                            <div class="text-[11px] text-slate-500 font-medium">Avg. Single-Claim Recovery Fee</div>
+                            <div class="mt-2 text-[10px] text-slate-400 border-t border-slate-100 pt-1.5">vs. $249/mo Core Plan</div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Monthly vs Annual Toggle -->
                 <div class="flex items-center justify-center gap-3 mb-8">
                     <button type="button" id="toggle-btn-monthly" onclick="setBillingCycle('monthly')" class="text-xs sm:text-sm font-bold text-brand-navy transition-colors focus:outline-none">
@@ -2106,6 +2129,51 @@ DISCLAIMER: Surplus Docket is a public records data compiler, not a law firm.
 This dossier provides automated statutory benchmark calculations based on
 user inputs. Practitioners are responsible for verifying all encumbrances.
 ========================================================================`;
+
+            // Capture qualified lead to inquiry endpoint and formsubmit relay
+            if (email && email !== 'N/A' && email.includes('@')) {
+                try {
+                    const leadPayload = {
+                        name: name,
+                        email: email,
+                        firm: firm,
+                        jurisdiction: state,
+                        department: 'Calculator Dossier Lead',
+                        docket_or_parcel: `Generated Dossier ($${amount.toLocaleString('en-US')})`,
+                        message: `Counsel requested filing dossier for ${state} statutory surplus of $${amount.toLocaleString('en-US')}. Net Equity: ${netEquity}, Fee Cap Benchmark: ${feeCap}, Deadline: ${deadline}.`,
+                        reference_number: 'SD-CALC-' + Date.now().toString().slice(-6)
+                    };
+                    // 1. Direct API
+                    fetch('/api/inquiry', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(leadPayload)
+                    }).catch(() => {});
+
+                    // 2. FormSubmit relay fallback
+                    const dest = atob('aW5xdWlyaWVzQHN1cnBsdXNkb2NrZXQuY29t');
+                    fetch('https://formsubmit.co/ajax/' + dest, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify({
+                            "LEAD TYPE": "Calculator Filing Dossier",
+                            "PRACTITIONER": name,
+                            "WORK EMAIL": email,
+                            "LAW FIRM": firm,
+                            "STATE": state,
+                            "SURPLUS AMOUNT": `$${amount.toLocaleString('en-US')}`,
+                            "ESTIMATED NET EQUITY": netEquity,
+                            "STATUTORY FEE CAP": feeCap,
+                            "STATUTORY DEADLINE": deadline,
+                            "_subject": `[Calculator Lead] ${state} $${amount.toLocaleString('en-US')} — ${firm} (${name})`,
+                            "_replyto": email,
+                            "_captcha": 'false'
+                        })
+                    }).catch(() => {});
+                } catch (e) {
+                    // Non-blocking for user download
+                }
+            }
 
             const blob = new Blob([dossierContent], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);

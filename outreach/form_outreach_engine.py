@@ -545,14 +545,11 @@ async def has_form_elements(page):
     try:
         for frame in page.frames:
             try:
-                # Textarea
-                if await frame.locator("textarea").count() > 0:
-                    return True
-                # Email inputs
-                if await frame.locator("input[type='email'], input[name*='email' i], [name*='ZW1haWw'], input[placeholder*='email' i], input.wpforms-field-email, input.ginput_email").count() > 0:
-                    return True
-                # Forms with submit buttons
-                if await frame.locator("form button[type='submit'], form input[type='submit']").count() > 0:
+                # Require an email input AND either a message field or a submit button
+                has_email = await frame.locator("input[type='email'], input[name*='email' i], [name*='ZW1haWw'], input[placeholder*='email' i], input.wpforms-field-email, input.ginput_email, input.hs-input[type='email'], input.w-input[type='email'], input.wpcf7-email").count() > 0
+                has_textarea = await frame.locator("textarea, div[contenteditable='true']").count() > 0
+                has_submit = await frame.locator("button[type='submit'], input[type='submit'], input.hs-button, input.w-button, button.wpforms-submit, button.elementor-button, input.gform_button, button.gform_button").count() > 0
+                if has_email and (has_textarea or has_submit):
                     return True
             except Exception:
                 continue
@@ -592,7 +589,6 @@ async def find_contact_page(page, base_url, explicit_form_url=None):
         "a[href*='get-in-touch' i]",
         "a[href*='intake' i]",
         "a[href*='reach-us' i]",
-        "a[href*='locations' i]",
         "a:has-text('Contact Us')",
         "a:has-text('Contact')",
         "a:has-text('Free Consultation')",
@@ -633,7 +629,7 @@ async def find_contact_page(page, base_url, explicit_form_url=None):
             continue
 
     # 4. Try direct navigation to standard contact paths
-    for path in ["/contact", "/contact-us/", "/contact-us", "/contact/", "/free-consultation", "/consultation", "/get-in-touch", "/contact-us-lawyer/", "/contact-us-lawyer", "/locations"]:
+    for path in ["/contact", "/contact-us/", "/contact-us", "/contact/", "/free-consultation", "/consultation", "/get-in-touch", "/contact-us-lawyer/", "/contact-us-lawyer"]:
         try:
             target = base_url.rstrip("/") + path
             resp = await page.goto(target, timeout=9000, wait_until="domcontentloaded")
@@ -755,7 +751,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 except Exception:
                     pass
 
-            # 2. Email field (standard, WordPress, CF7, Gravity, WPForms, Elementor, Lawmatics)
+            # 2. Email field (standard, WordPress, CF7, Gravity, WPForms, Elementor, Lawmatics, HubSpot, Webflow)
             email_selectors = [
                 "input[type='email']",
                 "input[autocomplete='email']",
@@ -763,7 +759,6 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 "input[id*='email' i]",
                 "input[placeholder*='email' i]",
                 "input[placeholder*='e-mail' i]",
-                "input[placeholder*='mail' i]",
                 "input[class*='email' i]",
                 "input[aria-label*='email' i]",
                 "input[aria-label*='e-mail' i]",
@@ -774,6 +769,10 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
                 "input[name*='wpforms'][name*='email' i]",
                 "input.ginput_email",
                 "div.ginput_container_email input",
+                "input.hs-input[type='email']",
+                "input.w-input[type='email']",
+                "input.wpcf7-email",
+                "input.elementor-field[type='email']",
                 "input[name*='form_fields'][type='email']",
                 "input[name*='item_meta'][type='email']",
             ]
@@ -1000,6 +999,15 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     submit_selectors = [
         "button[type='submit']",
         "input[type='submit']",
+        "input.hs-button",
+        "input.w-button",
+        "input.wpcf7-submit",
+        "button.wpforms-submit",
+        "button.elementor-button",
+        "input.gform_button",
+        "button.gform_button",
+        "input[value*='submit' i]",
+        "input[value*='send' i]",
         "button:has-text('Submit')",
         "button:has-text('Send')",
         "button:has-text('Send Message')",
@@ -1012,6 +1020,13 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     ]
     
     before_submission = (await page.inner_text("body")).lower()
+    if target_context != page:
+        try:
+            iframe_before = (await target_context.evaluate("() => document.body ? document.body.innerText : ''")).lower()
+            before_submission += " " + iframe_before
+        except Exception:
+            pass
+
     await dismiss_banners_and_modals(page)
     submitted = False
     for sel in submit_selectors:
@@ -1046,6 +1061,11 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     # Check for explicit failure cues instead of naive string matching on recaptcha script tags
     try:
         page_text = (await page.inner_text("body")).lower()
+        if target_context != page:
+            try:
+                page_text += " " + (await target_context.evaluate("() => document.body ? document.body.innerText : ''")).lower()
+            except Exception:
+                pass
         captcha_failure_cues = [
             "please complete the captcha",
             "recaptcha verification failed",
@@ -1060,8 +1080,26 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     except Exception:
         pass
 
-    confirmations = ("thank you for contacting", "your message has been sent", "we have received your message", "form has been submitted")
+    confirmations = (
+        "thank you for contacting",
+        "your message has been sent",
+        "we have received your message",
+        "form has been submitted",
+        "thank you for reaching out",
+        "message successfully sent",
+        "thanks for reaching out",
+        "inquiry has been received",
+        "we will be in touch",
+        "we'll be in touch",
+    )
     after_submission = (await page.inner_text("body")).lower()
+    if target_context != page:
+        try:
+            iframe_after = (await target_context.evaluate("() => document.body ? document.body.innerText : ''")).lower()
+            after_submission += " " + iframe_after
+        except Exception:
+            pass
+
     if not any(cue in after_submission and cue not in before_submission for cue in confirmations):
         return False, "UNCONFIRMED: Submission attempted; delivery requires manual review. Do not retry automatically.", variant
     await page.screenshot(path=str(screenshot_path), full_page=False)
@@ -1105,9 +1143,10 @@ async def process_target(browser, target, is_dry_run=False):
         print(f"  🌐 Visiting {firm} ({source_url})...")
         # Locate contact form page (using explicit Form_URL first if available)
         form_url = await find_contact_page(page, source_url, explicit_form_url=explicit_form_url)
-        print(f"     Found form page: {form_url}")
+        if not form_url:
+            return {"status": "FORM_NOT_FOUND", "form_url": source_url, "detail": "Contact form not found on domain", "variant": ""}
 
-        if not form_url or "chrome-error://" in str(form_url).lower() or "chromewebdata" in str(form_url).lower():
+        if "chrome-error://" in str(form_url).lower() or "chromewebdata" in str(form_url).lower():
             return {"status": "ERROR", "form_url": form_url or source_url, "detail": "err_name_not_resolved (Chrome navigation error)", "variant": ""}
 
         # Check if landed on domain broker page

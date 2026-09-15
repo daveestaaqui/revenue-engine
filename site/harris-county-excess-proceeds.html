@@ -24,16 +24,78 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Dataset",
-      "name": "Harris County Tax Deed Surplus & Excess Proceeds Feed",
-      "description": "Daily automated Harris County / Houston excess proceeds feed. Scrubbed court registry tax sale excess proceeds data for Texas recovery attorneys.",
-      "spatialCoverage": "Harris County, Texas",
-      "license": "https://surplusdocket.com/terms.html",
-      "creator": {
-        "@type": "Organization",
-        "name": "Surplus Docket",
-        "url": "https://surplusdocket.com"
-      }
+      "@graph": [
+        {
+          "@type": "Dataset",
+          "name": "Harris County Tax Deed Surplus & Excess Proceeds Feed",
+          "description": "Daily automated Harris County / Houston excess proceeds feed. Scrubbed court registry tax sale excess proceeds data for Texas recovery attorneys.",
+          "spatialCoverage": "Harris County, Texas",
+          "license": "https://surplusdocket.com/terms.html",
+          "creator": {
+            "@type": "Organization",
+            "name": "Surplus Docket",
+            "url": "https://surplusdocket.com"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://surplusdocket.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Texas",
+              "item": "https://surplusdocket.com/texas-tax-sale-excess-proceeds.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Harris County",
+              "item": "https://surplusdocket.com/harris-county-excess-proceeds.html"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What statute governs tax sale surplus in Harris County?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Surplus funds in Harris County are governed by Tex. Tax Code § 34.04. Claimants have a statutory deadline of 2 Years from Date of Tax Sale."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where are tax deed excess proceeds deposited in Harris County?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Excess auction proceeds are deposited directly with the Harris County District Clerk (Court Registry Division) registry pending petition disbursement."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "GovernmentService",
+          "name": "Harris County Court Registry Surplus Fund Administration",
+          "serviceType": "Tax Deed Surplus Recovery",
+          "provider": {
+            "@type": "GovernmentOrganization",
+            "name": "Harris County District Clerk (Court Registry Division)",
+            "url": "https://www.hcdistrictclerk.com/"
+          },
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "Harris County, Texas"
+          }
+        }
+      ]
     }
     </script>
 
@@ -186,16 +248,24 @@
 
         <!-- Cross-Jurisdiction Matrix Links -->
         <div class="bg-brand-canvas border border-slate-300 rounded-2xl p-6 text-center text-xs text-slate-600">
-            <p class="font-bold text-brand-navy mb-2">Explore Monitored Jurisdictions</p>
-            <div class="flex flex-wrap items-center justify-center gap-2 font-semibold">
+            <p class="font-bold text-brand-navy mb-3">Explore Monitored Jurisdictions &amp; Resources</p>
+            <div class="flex flex-wrap items-center justify-center gap-2 font-semibold mb-3">
                 <a href="/palm-beach-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Palm Beach</a>
-                <a href="/harris-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Harris</a>
+                <a href="/broward-county-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Broward</a>
                 <a href="/miami-dade-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Miami-Dade</a>
                 <a href="/orange-county-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Orange</a>
                 <a href="/hillsborough-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Hillsborough</a>
+                <a href="/harris-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Harris</a>
                 <a href="/dallas-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Dallas</a>
+                <a href="/tarrant-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Tarrant</a>
+                <a href="/travis-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Travis</a>
                 <a href="/fulton-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Fulton</a>
+                <a href="/cobb-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Cobb</a>
                 <a href="/dekalb-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">DeKalb</a>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-2 border-t border-slate-200/60 font-semibold">
+                <a href="/texas-tax-sale-excess-proceeds.html" class="px-3 py-1 bg-brand-greenSoft text-brand-greenDark rounded-lg border border-brand-green/30 hover:bg-brand-green hover:text-white transition-all">Texas Statewide Registry &rarr;</a>
+                <a href="/practitioner-toolkit.html" class="px-3 py-1 bg-brand-greenSoft text-brand-greenDark rounded-lg border border-brand-green/30 hover:bg-brand-green hover:text-white transition-all">Practitioner Toolkit &rarr;</a>
             </div>
         </div>
     </main>
@@ -267,6 +337,7 @@
                         <li><a href="/refund-policy.html" class="hover:text-brand-green transition-colors">14-Day Refund Guarantee</a></li>
                     </ul>
                 </div>
+            </div>
             </div>
 
             <!-- Bottom Sub-Bar -->

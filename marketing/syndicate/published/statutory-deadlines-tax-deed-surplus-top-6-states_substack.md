@@ -1,14 +1,14 @@
 <!--
 PLATFORM: SUBSTACK
 TITLE: Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis
-CANONICAL_URL: https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus
+CANONICAL_URL: https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html
 DATE: September 15, 2026
 TAGS: LegalTech, Foreclosure, RealEstateLaw, Litigation, CourtDocket
 -->
 
 # Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis
 
-*Originally published on [Surplus Docket Legal Intelligence](https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus)*
+*Originally published on [Surplus Docket Legal Intelligence](https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html)*
 
 ---
 ### The Jurisdictional Fracture in Excess Proceeds Recovery
@@ -41,7 +41,7 @@ Excess proceeds resulting from a delinquent tax sale are held by the Chancery Co
 This analysis was authored by the research team at **[Surplus Docket](https://surplusdocket.com)**. Surplus Docket provides real-time court docket intelligence, junior lien title scrubbing, and statutory deadline automation for legal practices in foreclosure defense, probate, and real estate litigation.
 
 - **Interactive Calculator Widget:** [Statutory Surplus Calculator](https://surplusdocket.com/embed/surplus-calculator.html)
-- **Public Educational Resource:** [Homeowner's Guide to Foreclosure Surplus](https://surplusdocket.com/resources/homeowner-surplus-guide)
-- **Live Court Registry Feeds:** [Surplus Docket Intelligence](https://surplusdocket.com/data)
+- **Public Educational Resource:** [Homeowner's Guide to Foreclosure Surplus](https://surplusdocket.com/resources/homeowner-surplus-guide.html)
+- **Live Court Registry Feeds:** [Surplus Docket Intelligence](https://surplusdocket.com/#data)
 
-*Canonical Source: [https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus](https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus)*
+*Canonical Source: [https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html](https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html)*

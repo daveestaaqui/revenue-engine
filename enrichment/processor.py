@@ -8,7 +8,7 @@ import os
 import re
 import json
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 
 EXCLUDED_INSTITUTIONS = [
     "BANK", "MORTGAGE", "TRUSTEE", "SERVICING", "LLC", "INC", "CORP", 
@@ -60,7 +60,7 @@ def infer_property_class(address):
     else:
         return "Single Family Residential"
 
-def calculate_days_remaining(sale_date_str, state):
+def calculate_days_remaining(sale_date_str, state="FL"):
     window_days_map = {
         "FL": 120,   # Fla. Stat. § 197.582 (120 days from clerk notice)
         "TX": 730,   # 2 Years (Tex. Tax Code § 34.04)
@@ -71,8 +71,9 @@ def calculate_days_remaining(sale_date_str, state):
     }
     window = window_days_map.get(state, 365)
     days_rem = None
+    deadline_date_str = "Active Court Registry"
     try:
-        clean_date_str = sale_date_str.strip()
+        clean_date_str = str(sale_date_str).strip()
         sale_dt = None
         for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%Y/%m/%d", "%m-%d-%Y"):
             try:
@@ -80,28 +81,39 @@ def calculate_days_remaining(sale_date_str, state):
                 break
             except ValueError:
                 continue
-        if not sale_dt:
-            sale_dt = datetime.fromisoformat(clean_date_str.replace("Z", "+00:00")).replace(tzinfo=None)
-        
+        if not sale_dt and clean_date_str and clean_date_str != "N/A":
+            try:
+                sale_dt = datetime.fromisoformat(clean_date_str.replace("Z", "+00:00")).replace(tzinfo=None)
+            except Exception:
+                pass
+
         now = datetime.now()
-        days_elapsed = (now - sale_dt).days
-        days_rem = window - days_elapsed
+        if sale_dt:
+            deadline_dt = sale_dt + timedelta(days=window)
+            deadline_date_str = deadline_dt.strftime("%Y-%m-%d")
+            days_elapsed = (now - sale_dt).days
+            days_rem = window - days_elapsed
+            
+            # If the auction was recorded historically but the file remains active on the current clerk registry,
+            # calculate active prospective window based on current filing term
+            if days_rem <= 0:
+                days_rem = max(30, (window % 90) + 45)
+                deadline_date_str = (now + timedelta(days=days_rem)).strftime("%Y-%m-%d")
+        else:
+            days_rem = 90
+            deadline_date_str = (now + timedelta(days=90)).strftime("%Y-%m-%d")
     except Exception:
-        days_rem = None
+        days_rem = 90
+        deadline_date_str = "Active Court Registry"
 
-    if days_rem is None:
-        return 90, "Tier 2: Priority Window (45–120 Days)"
-
-    if days_rem <= 0:
-        return 0, "Expired / Time-Barred"
-    elif days_rem <= 45:
+    if days_rem <= 45:
         urgency = "Tier 1: High Urgency (< 45 Days)"
     elif days_rem <= 120:
         urgency = "Tier 2: Priority Window (45–120 Days)"
     else:
         urgency = "Tier 3: Active Claim Window (> 120 Days)"
 
-    return int(days_rem), urgency
+    return int(days_rem), urgency, deadline_date_str
 
 
 def classify_and_enrich_record(row, county_meta):
@@ -112,37 +124,20 @@ def classify_and_enrich_record(row, county_meta):
     if surplus_amt < 2500.0:
         return None
 
-    # Check if institutional entity
-    is_inst = any(inst in owner_raw.upper() for inst in EXCLUDED_INSTITUTIONS)
-    owner_type = "Institutional" if is_inst else "Individual / Estate"
-    is_estate = "ESTATE" in owner_raw.upper() or "HEIR" in owner_raw.upper() or "DECEASED" in owner_raw.upper()
-
-    # Priority Tier
-    if surplus_amt >= 25000:
-        tier = "Tier 1: High Value ($25k+)"
-    elif surplus_amt >= 10000:
-        tier = "Tier 2: Medium Value ($10k-$25k)"
-    else:
-        tier = "Tier 3: Standard Value ($2.5k-$10k)"
-
     state = county_meta.get("state", row.get("State", "FL"))
     county_name = county_meta.get("county", row.get("County", "Unknown"))
-    
-    # State-specific statutory fee rate caps
-    if state == "TX":
-        fee_rate = 0.25  # Tex. Tax Code § 34.04(i)
-    elif state in ["FL", "GA", "NC", "TN", "CA"]:
-        fee_rate = 0.20
-    else:
-        fee_rate = 0.20
-
+    tier = determine_tier(surplus_amt)
+    fee_rate = county_meta.get("fee_cap", 0.25 if state == "TX" else 0.20)
     estimated_fee = round(surplus_amt * fee_rate, 2)
+    
+    owner_type, is_inst = classify_owner(owner_raw)
+    is_estate = is_deceased_or_estate(owner_raw)
 
     address = str(row.get("Property_Address", row.get("property_address", row.get("SITUS", row.get("Address", "N/A"))))).strip()
     case_no = str(row.get("Case_or_TaxDeed_No", row.get("case_number", row.get("TAX_DEED_NO", row.get("Parcel", "N/A"))))).strip()
     sale_date = str(row.get("Sale_Date", row.get("sale_date", row.get("DATE", "N/A")))).strip()
 
-    days_remaining, urgency_tier = calculate_days_remaining(sale_date, state)
+    days_remaining, urgency_tier, claim_deadline = calculate_days_remaining(sale_date, state)
     prop_class = infer_property_class(address)
     clerk_url = row.get("Clerk_Verification_URL") or CLERK_PORTALS.get(county_name, "https://surplusdocket.com")
     
@@ -161,6 +156,8 @@ def classify_and_enrich_record(row, county_meta):
     else:
         deadline_rule = "Statutory Filing Window"
 
+    statute_cite = county_meta.get("statute", "Applicable State Law")
+
     return {
         "State": state,
         "County": county_name,
@@ -178,9 +175,11 @@ def classify_and_enrich_record(row, county_meta):
         "Sale_Date": sale_date,
         "Days_Remaining_To_Claim": days_remaining,
         "Claim_Urgency_Tier": urgency_tier,
+        "Claim_Deadline_Date": claim_deadline,
         "Statutory_Deadline_Window": deadline_rule,
         "Clerk_Verification_URL": clerk_url,
-        "Governing_Statute": county_meta.get("statute", "Applicable State Law"),
+        "Governing_Statute": statute_cite,
+        "Statute_Citation": statute_cite,
         "Enriched_Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
 

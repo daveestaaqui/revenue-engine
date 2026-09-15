@@ -24,16 +24,78 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Dataset",
-      "name": "DeKalb County Tax Deed Surplus & Excess Proceeds Feed",
-      "description": "Daily DeKalb County excess funds data feed. Clean, case-verified tax auction overages delivered in CSV/Excel every morning at 7:00 AM EST.",
-      "spatialCoverage": "DeKalb County, Georgia",
-      "license": "https://surplusdocket.com/terms.html",
-      "creator": {
-        "@type": "Organization",
-        "name": "Surplus Docket",
-        "url": "https://surplusdocket.com"
-      }
+      "@graph": [
+        {
+          "@type": "Dataset",
+          "name": "DeKalb County Tax Deed Surplus & Excess Proceeds Feed",
+          "description": "Daily DeKalb County excess funds data feed. Clean, case-verified tax auction overages delivered in CSV/Excel every morning at 7:00 AM EST.",
+          "spatialCoverage": "DeKalb County, Georgia",
+          "license": "https://surplusdocket.com/terms.html",
+          "creator": {
+            "@type": "Organization",
+            "name": "Surplus Docket",
+            "url": "https://surplusdocket.com"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://surplusdocket.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Georgia",
+              "item": "https://surplusdocket.com/georgia-tax-sale-excess-funds.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "DeKalb County",
+              "item": "https://surplusdocket.com/dekalb-county-excess-funds.html"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What statute governs tax sale surplus in DeKalb County?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Surplus funds in DeKalb County are governed by O.C.G.A. § 48-4-5. Claimants have a statutory deadline of 5 Years from Date of Tax Sale."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where are tax deed excess proceeds deposited in DeKalb County?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Excess auction proceeds are deposited directly with the DeKalb County Tax Commissioner (Delinquent Tax Division) registry pending petition disbursement."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "GovernmentService",
+          "name": "DeKalb County Court Registry Surplus Fund Administration",
+          "serviceType": "Tax Deed Surplus Recovery",
+          "provider": {
+            "@type": "GovernmentOrganization",
+            "name": "DeKalb County Tax Commissioner (Delinquent Tax Division)",
+            "url": "https://www.dekalbcountytax.org/"
+          },
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "DeKalb County, Georgia"
+          }
+        }
+      ]
     }
     </script>
 
@@ -186,16 +248,24 @@
 
         <!-- Cross-Jurisdiction Matrix Links -->
         <div class="bg-brand-canvas border border-slate-300 rounded-2xl p-6 text-center text-xs text-slate-600">
-            <p class="font-bold text-brand-navy mb-2">Explore Monitored Jurisdictions</p>
-            <div class="flex flex-wrap items-center justify-center gap-2 font-semibold">
+            <p class="font-bold text-brand-navy mb-3">Explore Monitored Jurisdictions &amp; Resources</p>
+            <div class="flex flex-wrap items-center justify-center gap-2 font-semibold mb-3">
                 <a href="/palm-beach-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Palm Beach</a>
-                <a href="/harris-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Harris</a>
+                <a href="/broward-county-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Broward</a>
                 <a href="/miami-dade-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Miami-Dade</a>
                 <a href="/orange-county-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Orange</a>
                 <a href="/hillsborough-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Hillsborough</a>
+                <a href="/harris-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Harris</a>
                 <a href="/dallas-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Dallas</a>
+                <a href="/tarrant-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Tarrant</a>
+                <a href="/travis-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Travis</a>
                 <a href="/fulton-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Fulton</a>
+                <a href="/cobb-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Cobb</a>
                 <a href="/dekalb-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">DeKalb</a>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-2 border-t border-slate-200/60 font-semibold">
+                <a href="/georgia-tax-sale-excess-funds.html" class="px-3 py-1 bg-brand-greenSoft text-brand-greenDark rounded-lg border border-brand-green/30 hover:bg-brand-green hover:text-white transition-all">Georgia Statewide Registry &rarr;</a>
+                <a href="/practitioner-toolkit.html" class="px-3 py-1 bg-brand-greenSoft text-brand-greenDark rounded-lg border border-brand-green/30 hover:bg-brand-green hover:text-white transition-all">Practitioner Toolkit &rarr;</a>
             </div>
         </div>
     </main>
@@ -267,6 +337,7 @@
                         <li><a href="/refund-policy.html" class="hover:text-brand-green transition-colors">14-Day Refund Guarantee</a></li>
                     </ul>
                 </div>
+            </div>
             </div>
 
             <!-- Bottom Sub-Bar -->

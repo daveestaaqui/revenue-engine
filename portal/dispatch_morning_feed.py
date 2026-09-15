@@ -163,7 +163,13 @@ def compose_email_content(subscriber, stats, date_str):
     dockets_text = ""
     dockets_html = ""
     for d in stats["top_dockets"]:
-        dockets_text += f"• Docket {d['docket']} ({d['county']}, {d['state']}) — ${d['amount']:,.2f} | Owner: {d['owner']}\n"
+        urgency_label = f" [{d['urgency']}]" if d.get("urgency") else ""
+        statute_label = f"\n    Statute: {d['statute']}" if d.get("statute") else ""
+        clerk_label = f"\n    Registry Verification: {d['clerk_url']}" if d.get("clerk_url") else ""
+        dockets_text += (
+            f"• Docket {d['docket']} ({d['county']}, {d['state']}){urgency_label} — ${d['amount']:,.2f}\n"
+            f"    Owner: {d['owner']}{statute_label}{clerk_label}\n\n"
+        )
 
         urgency_val = d.get("urgency", "")
         if "Tier 1" in urgency_val:

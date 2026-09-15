@@ -25,23 +25,41 @@ SYNDICATE_DIR = MARKETING_DIR / "syndicate"
 INDEXNOW_KEY = "0a4d3f3acd10f37db48e4681df146902"
 
 
-def get_all_site_urls() -> list[str]:
-    """Dynamically gathers all indexable site HTML pages."""
-    urls = []
+EXCLUDED_NAMES = {
+    "404.html", "500.html", "welcome.html", "pricing.html",
+    "toolkit.html", "checklist.html", "live-docket.html", "api.html",
+    "googleadb6429ca7be1cf6.html"
+}
+EXCLUDED_PARTS = {"components", "embed", ".well-known"}
+
+
+def get_all_site_urls() -> list[tuple[str, str]]:
+    """Dynamically gathers all indexable site HTML pages with their true lastmod dates."""
+    url_records = []
     for p in sorted(SITE_DIR.rglob("*.html")):
-        if p.name in ("404.html", "500.html"):
+        if p.name in EXCLUDED_NAMES or any(part in p.parts for part in EXCLUDED_PARTS):
             continue
         rel = p.relative_to(SITE_DIR).as_posix()
         if rel == "index.html":
-            urls.append("https://surplusdocket.com/")
+            u = "https://surplusdocket.com/"
         elif rel.endswith("/index.html"):
-            urls.append(f"https://surplusdocket.com/{rel[:-10]}")
+            u = f"https://surplusdocket.com/{rel[:-10]}"
         else:
-            urls.append(f"https://surplusdocket.com/{rel}")
-    return sorted(list(set(urls)))
+            u = f"https://surplusdocket.com/{rel}"
+        
+        mtime_str = datetime.fromtimestamp(p.stat().st_mtime, tz=timezone.utc).strftime("%Y-%m-%d")
+        url_records.append((u, mtime_str))
+    
+    # Deduplicate by URL
+    seen = {}
+    for u, m in url_records:
+        if u not in seen or m > seen[u]:
+            seen[u] = m
+    return sorted([(u, seen[u]) for u in seen], key=lambda x: x[0])
 
 
-ALL_SITE_URLS = get_all_site_urls()
+ALL_SITE_URL_DATA = get_all_site_urls()
+ALL_SITE_URLS = [u for u, _ in ALL_SITE_URL_DATA]
 
 
 def generate_rss_feed():
@@ -90,15 +108,14 @@ def generate_rss_feed():
 
 def update_sitemap():
     sitemap_path = SITE_DIR / "sitemap.xml"
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     url_entries = ""
-    for u in ALL_SITE_URLS:
+    for u, mtime in ALL_SITE_URL_DATA:
         priority = "1.0" if u == "https://surplusdocket.com/" else ("0.9" if "county" in u or "surplus" in u or "proceeds" in u or "funds" in u or "toolkit" in u or "api" in u else "0.8")
         freq = "daily" if "feed" in u or u == "https://surplusdocket.com/" or "blog/" in u else "weekly"
         url_entries += f"""  <url>
     <loc>{u}</loc>
-    <lastmod>{today_str}</lastmod>
+    <lastmod>{mtime}</lastmod>
     <changefreq>{freq}</changefreq>
     <priority>{priority}</priority>
   </url>
@@ -112,7 +129,7 @@ def update_sitemap():
 {url_entries}</urlset>"""
 
     sitemap_path.write_text(sitemap_xml.strip(), encoding="utf-8")
-    print(f"  [✓] Updated Sitemap with {len(ALL_SITE_URLS)} canonical URLs: {sitemap_path.name}")
+    print(f"  [✓] Updated Sitemap with {len(ALL_SITE_URL_DATA)} canonical URLs: {sitemap_path.name}")
 
 def submit_indexnow():
     """Submits all site URLs to IndexNow for instant crawling across Bing and AI search engines."""

@@ -50,6 +50,7 @@ SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 587
 
 STRIPE_PORTAL_URL = "https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00"
+STRIPE_CHECKOUT_URL = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 TOOLKIT_URL = "https://surplusdocket.com/practitioner-toolkit.html"
 LOGO_URL = "https://surplusdocket.com/assets/logo_surplus_docket.png"
 
@@ -81,6 +82,166 @@ def format_firm_suffix(subscriber):
     if raw_firm and raw_firm not in ("Surplus Docket Compliance & Research Desk", "Practice", "Legal Practice", "Firm"):
         return f" ({raw_firm})"
     return ""
+
+
+def compose_day1_email(subscriber):
+    name = subscriber.get("name", "Counsel")
+    firm_suffix = format_firm_suffix(subscriber)
+    year = datetime.now().year
+
+    text_body = f"""Dear {name},
+
+Welcome to Surplus Docket. Your 7-day practice evaluation seat is active and your court registry intelligence feeds are initialized.
+
+Every business morning at 7:00 AM EST, your practice receives audited court registry filings across Florida, Texas, Georgia, California, North Carolina, and Tennessee.
+
+QUICK-START: 3 ESSENTIAL PRACTICE STEPS:
+1. DAILY FEED DELIVERY:
+Your morning feed arrives directly in your inbox with attached CSV and Excel (.xlsx) files. Senior mortgages, institutional liens, and junior municipal encumbrances have been verified and filtered upstream.
+
+2. CASE MANAGEMENT IMPORT:
+Our CSV feeds are pre-formatted for direct one-click import into Clio, Filevine, MyCase, and PracticePanther, complete with parcel IDs, defendant names, and official clerk docket links.
+
+3. PRACTITIONER TOOLKIT & STATUTORY PETITIONS:
+Access verified claim petitions, surplus motions, and clerk submission guidelines directly from our Practitioner Toolkit:
+{TOOLKIT_URL}
+
+NEED CUSTOM COUNTY FILTERS?
+If your firm focuses on specific circuits or counties, reply directly to this transmission. Our ingestion team will tailor your morning feed.
+
+MANAGE YOUR EVALUATION SEAT:
+• Practitioner Toolkit & Forms: {TOOLKIT_URL}
+• Subscriber Billing & Seat Management: {STRIPE_PORTAL_URL}
+
+Best regards,
+
+Surplus Docket Intelligence
+Court Registry Ingestion Desk | Surplus Docket
+surplusdocket.com • dockets@surplusdocket.com
+
+---
+{LEGAL_DISCLAIMER}
+Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
+"""
+
+    html_body = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Counsel — Practice Quick-Start</title>
+    <style type="text/css">
+        @media only screen and (max-width: 680px) {{
+            .email-wrapper {{ width: 100% !important; }}
+            .email-outer-td {{ padding: 8px 4px !important; }}
+            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
+            .content-cell {{ padding: 22px 16px !important; }}
+            .header-cell {{ padding: 18px 16px !important; }}
+            .nav-cell {{ padding: 10px 14px !important; }}
+            .header-tag-cell {{ display: none !important; }}
+            .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
+        }}
+    </style>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
+        <tr>
+            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
+                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08);">
+                    <tr>
+                        <td class="header-cell" style="background-color: #ffffff; padding: 22px 32px; border-bottom: 2px solid #1b365d;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                                <tr>
+                                    <td align="left" valign="middle" style="padding: 0;">
+                                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td valign="middle" style="padding-right: 14px;">
+                                                    <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none; display: block;">
+                                                        <img src="{LOGO_URL}" alt="Surplus Docket Crest" width="46" height="36" style="display: block; width: 46px; height: auto; max-height: 38px; border: 0;" />
+                                                    </a>
+                                                </td>
+                                                <td valign="middle" style="line-height: 1.15;">
+                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -0.02em; margin: 0;">
+                                                        <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none;">
+                                                            <span style="color: #4c6d48; font-weight: 800;">SURPLUS</span> <span style="color: #1b365d; font-weight: 900;">DOCKET</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; font-weight: 700; color: #64748b; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px;">
+                                                        Court Registry Intelligence
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td align="right" valign="middle" class="header-tag-cell" style="padding: 0;">
+                                        <a href="{STRIPE_PORTAL_URL}" target="_blank" style="text-decoration: none;">
+                                            <span style="display: inline-block; background-color: #edf3ec; color: #365134; border: 1px solid #c2d9c0; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase;">
+                                                Evaluation Day 1 of 7
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-cell" style="padding: 28px 32px; background-color: #ffffff;">
+                            <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Dear <b>{name}</b>{firm_suffix},</p>
+                            <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
+                                Welcome to Surplus Docket. Your 7-day practice evaluation seat is active and your court registry intelligence feeds are configured. Below are the key steps to integrate our unencumbered surplus intelligence into your practice workflow immediately.
+                            </p>
+                            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 18px 20px; margin: 20px 0;">
+                                <div style="font-size: 12px; font-weight: 800; color: #1b365d; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
+                                    🚀 Practice Quick-Start Overview:
+                                </div>
+                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12px; color: #334155; line-height: 1.6;">
+                                    <tr>
+                                        <td style="padding: 6px 0; font-weight: 700; width: 140px; color: #1b365d;">Daily 7:00 AM Delivery:</td>
+                                        <td style="padding: 6px 0;">Freshly audited court filings delivered every weekday morning with attached CSV &amp; Excel sheets.</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 6px 0; font-weight: 700; color: #1b365d;">Zero Bank Liens:</td>
+                                        <td style="padding: 6px 0;">Upstream verification filters senior mortgages and tax deeds so only recoverable surplus reaches your desk.</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 6px 0; font-weight: 700; color: #1b365d;">Clio / Filevine Ready:</td>
+                                        <td style="padding: 6px 0;">Pre-mapped matter exports allow instant intake and conflict checks without manual data entry.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="text-align: center; margin: 28px 0 22px 0;">
+                                <a href="{TOOLKIT_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
+                                    Access Practitioner Toolkit &rarr;
+                                </a>
+                                <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
+                                    Manage Subscription Portal
+                                </a>
+                            </div>
+                            <div style="margin-top: 26px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #475569;">
+                                <strong style="color: #1b365d; font-size: 13px;">Surplus Docket Intelligence</strong><br>
+                                <span style="font-size: 12px; color: #64748b;">Court Registry Ingestion Desk | Surplus Docket</span><br>
+                                <a href="https://surplusdocket.com" target="_blank" style="color: #4c6d48; text-decoration: none; font-weight: 600;">surplusdocket.com</a> • <a href="mailto:dockets@surplusdocket.com" style="color: #1b365d; text-decoration: none;">dockets@surplusdocket.com</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
+                            <div style="margin-bottom: 8px; font-weight: 600;">
+                                <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
+                                <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
+                            </div>
+                            {LEGAL_DISCLAIMER}<br>
+                            &copy; {year} Surplus Docket. All rights reserved.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+"""
+    return text_body, html_body
 
 
 def compose_day3_email(subscriber):
@@ -507,6 +668,149 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
     return text_body, html_body
 
 
+def compose_day10_email(subscriber):
+    name = subscriber.get("name", "Counsel")
+    firm_suffix = format_firm_suffix(subscriber)
+    year = datetime.now().year
+
+    text_body = f"""Dear {name},
+
+Following the conclusion of your recent evaluation of Surplus Docket, our court registry ingestion desk has continued indexing verified tax deed surplus filings across your monitored jurisdictions.
+
+Over the past week alone, dozens of unencumbered surplus files representing millions in recoverable equity have been recorded by county clerks across Florida, Texas, Georgia, California, North Carolina, and Tennessee.
+
+SINGLE-CASE ROI:
+In asset recovery practice, securing representation on just one $75,000 unencumbered surplus file yields $15,000 to $18,750 in statutory contingency fees (under state fee caps). A full year of Surplus Docket Core ($249/mo) is covered more than 5x over by a single successful claim.
+
+INSTANT 1-CLICK REACTIVATION:
+If you would like to restore daily 7:00 AM EST court feed deliveries with unencumbered CSV and Excel attachments, you can reactivate your practice subscription instantly:
+Direct Checkout: {STRIPE_CHECKOUT_URL}
+Or via Stripe Billing Portal: {STRIPE_PORTAL_URL}
+
+• Zero setup fees
+• No long-term lock-in (month-to-month, cancel anytime)
+• Full access to Practitioner Toolkit verified petition motions
+
+Best regards,
+
+Surplus Docket Intelligence
+Court Registry Ingestion Desk | Surplus Docket
+surplusdocket.com • dockets@surplusdocket.com
+
+---
+{LEGAL_DISCLAIMER}
+Reactivate Subscription: {STRIPE_CHECKOUT_URL}
+"""
+
+    html_body = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docket Intelligence Update — Priority Reactivation</title>
+    <style type="text/css">
+        @media only screen and (max-width: 680px) {{
+            .email-wrapper {{ width: 100% !important; }}
+            .email-outer-td {{ padding: 8px 4px !important; }}
+            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
+            .content-cell {{ padding: 22px 16px !important; }}
+            .header-cell {{ padding: 18px 16px !important; }}
+            .nav-cell {{ padding: 10px 14px !important; }}
+            .header-tag-cell {{ display: none !important; }}
+            .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
+        }}
+    </style>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
+        <tr>
+            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
+                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08);">
+                    <tr>
+                        <td class="header-cell" style="background-color: #ffffff; padding: 22px 32px; border-bottom: 2px solid #1b365d;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                                <tr>
+                                    <td align="left" valign="middle" style="padding: 0;">
+                                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td valign="middle" style="padding-right: 14px;">
+                                                    <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none; display: block;">
+                                                        <img src="{LOGO_URL}" alt="Surplus Docket Crest" width="46" height="36" style="display: block; width: 46px; height: auto; max-height: 38px; border: 0;" />
+                                                    </a>
+                                                </td>
+                                                <td valign="middle" style="line-height: 1.15;">
+                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -0.02em; margin: 0;">
+                                                        <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none;">
+                                                            <span style="color: #4c6d48; font-weight: 800;">SURPLUS</span> <span style="color: #1b365d; font-weight: 900;">DOCKET</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; font-weight: 700; color: #64748b; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px;">
+                                                        Court Registry Intelligence
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td align="right" valign="middle" class="header-tag-cell" style="padding: 0;">
+                                        <a href="{STRIPE_CHECKOUT_URL}" target="_blank" style="text-decoration: none;">
+                                            <span style="display: inline-block; background-color: #edf3ec; color: #365134; border: 1px solid #c2d9c0; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px; letter-spacing: 0.04em; text-transform: uppercase;">
+                                                Docket Intelligence Update
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-cell" style="padding: 28px 32px; background-color: #ffffff;">
+                            <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Dear <b>{name}</b>{firm_suffix},</p>
+                            <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
+                                Following the conclusion of your evaluation of Surplus Docket, county court registries have recorded hundreds of thousands of dollars in newly unencumbered surplus funds across your target jurisdictions.
+                            </p>
+                            <div style="background-color: #edf3ec; border: 1px solid #c2d9c0; border-radius: 10px; padding: 18px 20px; margin: 20px 0;">
+                                <div style="font-size: 12px; font-weight: 800; color: #365134; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">
+                                    ⚖️ Practice Acquisition Economics:
+                                </div>
+                                <p style="font-size: 12px; color: #2e442c; line-height: 1.6; margin: 0;">
+                                    A single verified petition on a typical $75,000 surplus recovery generates <b>$15,000 to $18,750</b> in statutory contingency legal fees. That single resolution covers more than 5 years of Surplus Docket Core subscriptions.
+                                </p>
+                            </div>
+                            <div style="text-align: center; margin: 28px 0 22px 0;">
+                                <a href="{STRIPE_CHECKOUT_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
+                                    Reactivate Daily Feed ($249/mo) &rarr;
+                                </a>
+                                <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
+                                    Stripe Billing Portal
+                                </a>
+                            </div>
+                            <div style="margin-top: 26px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #475569;">
+                                <strong style="color: #1b365d; font-size: 13px;">Surplus Docket Intelligence</strong><br>
+                                <span style="font-size: 12px; color: #64748b;">Court Registry Ingestion Desk | Surplus Docket</span><br>
+                                <a href="https://surplusdocket.com" target="_blank" style="color: #4c6d48; text-decoration: none; font-weight: 600;">surplusdocket.com</a> • <a href="mailto:dockets@surplusdocket.com" style="color: #1b365d; text-decoration: none;">dockets@surplusdocket.com</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
+                            <div style="margin-bottom: 8px; font-weight: 600;">
+                                <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
+                                <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
+                            </div>
+                            {LEGAL_DISCLAIMER}<br>
+                            &copy; {year} Surplus Docket. All rights reserved.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+"""
+    return text_body, html_body
+
+
 def send_lifecycle_email(dest, subject, text_body, html_body, is_dry_run=False):
     if is_dry_run:
         print(f"  [DRY RUN] Would send email to: {dest}")
@@ -599,8 +903,12 @@ def run_trial_sentinel(is_dry_run=False, test_recipient=None, force_day=None):
         email_addr = sub.get("email", "").strip().lower()
         status = sub.get("status", "").upper()
 
-        if not email_addr or status != "ACTIVE":
+        allowed_statuses = ("ACTIVE", "TRIAL", "TRIALING", "EXPIRED_TRIAL", "CANCELLED", "EXPIRED")
+        if not email_addr or status not in allowed_statuses:
             continue
+
+        is_active_or_trial = status in ("ACTIVE", "TRIAL", "TRIALING")
+        is_lapsed = status in ("EXPIRED_TRIAL", "CANCELLED", "EXPIRED")
 
         sub_record = lifecycle_log.setdefault(email_addr, {})
 
@@ -613,15 +921,30 @@ def run_trial_sentinel(is_dry_run=False, test_recipient=None, force_day=None):
 
         days_active = (now_utc - sub_date).total_seconds() / 86400.0
 
-        print(f"\nEvaluating subscriber: {email_addr} (Day {days_active:.1f} of trial)")
+        print(f"\nEvaluating subscriber: {email_addr} (Day {days_active:.1f} of trial, status: {status})")
 
-        # Day 3 Evaluation Trigger
-        should_send_day3 = False
-        # Day 3 Advisory Trigger
+        # Day 1 Quick-Start Onboarding Trigger
+        should_send_day1 = False
+        if force_day == 1:
+            should_send_day1 = True
+        elif not sub_record.get("day_1_sent") and 0.5 <= days_active < 2.5 and is_active_or_trial:
+            should_send_day1 = True
+
+        if should_send_day1:
+            print(f"  Triggering Day 1 Quick-Start Onboarding for {email_addr}...")
+            subject = "[Surplus Docket] Welcome Counsel — Practice Quick-Start & Feed Integration"
+            t_body, h_body = compose_day1_email(sub)
+            if send_lifecycle_email(email_addr, subject, t_body, h_body, is_dry_run=is_dry_run):
+                if not is_dry_run:
+                    sub_record["day_1_sent"] = now_utc.isoformat()
+                    save_lifecycle_log(lifecycle_log)
+                    processed_count += 1
+
+        # Day 3 Statutory Advisory Trigger
         should_send_day3 = False
         if force_day == 3:
             should_send_day3 = True
-        elif not sub_record.get("day_3_sent") and 2.5 <= days_active < 5.0:
+        elif not sub_record.get("day_3_sent") and 2.5 <= days_active < 5.0 and is_active_or_trial:
             should_send_day3 = True
 
         if should_send_day3:
@@ -640,7 +963,7 @@ def run_trial_sentinel(is_dry_run=False, test_recipient=None, force_day=None):
         should_send_day6 = False
         if force_day == 6:
             should_send_day6 = True
-        elif not sub_record.get("day_6_sent") and 5.5 <= days_active <= 7.5 and is_trial_tier:
+        elif not sub_record.get("day_6_sent") and 5.5 <= days_active <= 7.5 and is_trial_tier and is_active_or_trial:
             should_send_day6 = True
 
         if should_send_day6:
@@ -653,6 +976,23 @@ def run_trial_sentinel(is_dry_run=False, test_recipient=None, force_day=None):
                     save_lifecycle_log(lifecycle_log)
                     processed_count += 1
 
+        # Day 10 Win-Back Reactivation Trigger (for expired or cancelled trialists)
+        should_send_day10 = False
+        if force_day == 10:
+            should_send_day10 = True
+        elif not sub_record.get("day_10_sent") and 9.0 <= days_active <= 15.0 and is_lapsed:
+            should_send_day10 = True
+
+        if should_send_day10:
+            print(f"  Triggering Day 10 Win-Back Reactivation for {email_addr}...")
+            subject = "[Surplus Docket] Docket Updates in Your Jurisdiction — Priority Reactivation"
+            t_body, h_body = compose_day10_email(sub)
+            if send_lifecycle_email(email_addr, subject, t_body, h_body, is_dry_run=is_dry_run):
+                if not is_dry_run:
+                    sub_record["day_10_sent"] = now_utc.isoformat()
+                    save_lifecycle_log(lifecycle_log)
+                    processed_count += 1
+
     print(f"\n✅ Sentinel run completed. Dispatches triggered: {processed_count}")
     return 0
 
@@ -662,7 +1002,7 @@ if __name__ == "__main__":
     parser.add_argument("--dry-run", action="store_true", help="Simulate email dispatches without sending")
     parser.add_argument("--send", action="store_true", help="Send live lifecycle emails")
     parser.add_argument("--test-email", type=str, help="Recipient email address for test preview")
-    parser.add_argument("--force-day", type=int, choices=[3, 6], help="Force Day 3 or Day 6 email for testing")
+    parser.add_argument("--force-day", type=int, choices=[1, 3, 6, 10], help="Force Day 1, Day 3, Day 6, or Day 10 email for testing")
 
     args = parser.parse_args()
     dry_run = args.dry_run if args.dry_run else (not args.send)

@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from datetime import datetime, timedelta
 
 from outreach.form_outreach_engine import browser_name, summarize_results
 from marketing.link_building import auto_article_submitter as articles
@@ -146,6 +147,70 @@ class ReliabilityTests(unittest.TestCase):
             content = eml_path.read_text(encoding="utf-8")
             self.assertIn("X-Unsent: 1", content)
             self.assertIn("sarah@jenkinslaw.com", content)
+
+    def test_lifecycle_emails_and_plaintext_fallback(self):
+        from portal.trial_retention_sentinel import (
+            compose_day1_email,
+            compose_day3_email,
+            compose_day6_email,
+            compose_day10_email,
+        )
+        from portal.dispatch_morning_feed import compose_email_content
+
+        sub = {"name": "Alex Mercer", "firm": "Mercer Legal Group, PLLC"}
+        
+        # Day 1 Quick-Start
+        t1, h1 = compose_day1_email(sub)
+        self.assertIn("Dear Alex Mercer", t1)
+        self.assertIn("Practice Quick-Start", h1)
+        self.assertIn("Evaluation Day 1 of 7", h1)
+
+        # Day 6 Courtesy Notice
+        t6, h6 = compose_day6_email(sub)
+        self.assertIn("evaluation of Surplus Docket", t6)
+        self.assertIn("Courtesy Notice", h6)
+
+        # Day 10 Win-Back
+        t10, h10 = compose_day10_email(sub)
+        self.assertIn("SINGLE-CASE ROI", t10)
+        self.assertIn("https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21", t10)
+        self.assertIn("Priority Reactivation", h10)
+
+        # Plaintext docket feed formatting verification
+        stats = {
+            "total_surplus": 150000.0,
+            "total_records": 1,
+            "top_dockets": [{
+                "docket": "2026-TD-001234",
+                "owner": "Jane Doe",
+                "amount": 75000.0,
+                "state": "FL",
+                "county": "Orange",
+                "statute": "Fla. Stat. § 197.582",
+                "clerk_url": "https://www.myorangeclerk.com/dockets/1234",
+                "urgency": "Tier 1: High Urgency (< 45d)",
+            }]
+        }
+        text_feed, html_feed = compose_email_content(sub, stats, "September 15, 2026")
+        self.assertIn("Docket 2026-TD-001234 (Orange, FL) [Tier 1: High Urgency (< 45d)]", text_feed)
+        self.assertIn("Statute: Fla. Stat. § 197.582", text_feed)
+        self.assertIn("Registry Verification: https://www.myorangeclerk.com/dockets/1234", text_feed)
+
+    def test_statutory_enrichment_deadline(self):
+        from enrichment.processor import calculate_days_remaining
+        
+        # 30 days ago in FL (window is 120 days -> ~90 days remaining, Tier 2)
+        sale_date = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+        days, tier, deadline = calculate_days_remaining(sale_date, "FL")
+        self.assertGreater(days, 0)
+        self.assertIn("Tier", tier)
+        self.assertEqual(len(deadline), 10)
+
+        # 100 days ago in FL (window is 120 days -> ~20 days remaining, Tier 1)
+        sale_date_urgent = (datetime.now() - timedelta(days=100)).strftime("%Y-%m-%d")
+        days_urg, tier_urg, _ = calculate_days_remaining(sale_date_urgent, "FL")
+        self.assertLessEqual(days_urg, 45)
+        self.assertIn("Tier 1", tier_urg)
 
 
 if __name__ == '__main__':
