@@ -212,6 +212,55 @@ class ReliabilityTests(unittest.TestCase):
         self.assertLessEqual(days_urg, 45)
         self.assertIn("Tier 1", tier_urg)
 
+    def test_enrichment_processor_helpers(self):
+        from enrichment.processor import determine_tier, classify_owner, is_deceased_or_estate, classify_and_enrich_record
+        
+        # Test tier determination
+        self.assertEqual(determine_tier(50000.0), "Tier 1: High Value ($25k+)")
+        self.assertEqual(determine_tier(15000.0), "Tier 2: Medium Value ($10k-$25k)")
+        self.assertEqual(determine_tier(5000.0), "Tier 3: Standard Value ($2.5k-$10k)")
+
+        # Test owner classification
+        owner_type, is_inst = classify_owner("Wells Fargo Bank N.A.")
+        self.assertEqual(owner_type, "Institutional")
+        self.assertTrue(is_inst)
+
+        owner_type_ind, is_inst_ind = classify_owner("John & Sarah Miller")
+        self.assertEqual(owner_type_ind, "Individual / Estate")
+        self.assertFalse(is_inst_ind)
+
+        # Test estate / deceased detection
+        self.assertTrue(is_deceased_or_estate("Estate of Eleanor Vance"))
+        self.assertTrue(is_deceased_or_estate("Robert Vance, Deceased"))
+        self.assertTrue(is_deceased_or_estate("Unknown Heirs of Thomas Vance"))
+        self.assertFalse(is_deceased_or_estate("David Smith"))
+
+        # Test record enrichment
+        row = {
+            "Owner_Name": "Robert Smith",
+            "Surplus_Balance_USD": 45000.0,
+            "Property_Address": "123 Main St, Miami, FL",
+            "Case_or_TaxDeed_No": "2024-TD-001000",
+            "Sale_Date": "2026-06-01"
+        }
+        meta = {
+            "county": "Miami-Dade",
+            "state": "FL",
+            "statute": "Fla. Stat. § 197.582",
+            "fee_cap": 0.20
+        }
+        enriched = classify_and_enrich_record(row, meta)
+        self.assertIsNotNone(enriched)
+        self.assertEqual(enriched["Surplus_Balance_USD"], 45000.0)
+        self.assertEqual(enriched["Est_Finder_Fee_USD"], 9000.0)
+        self.assertEqual(enriched["Governing_Statute"], "Fla. Stat. § 197.582")
+        self.assertEqual(enriched["Statute_Citation"], "Fla. Stat. § 197.582")
+        self.assertIn("Claim_Deadline_Date", enriched)
+
+        # Test filter for sub-$2500 balance
+        small_row = {"Owner_Name": "Robert Smith", "Surplus_Balance_USD": 1500.0}
+        self.assertIsNone(classify_and_enrich_record(small_row, meta))
+
 
 if __name__ == '__main__':
     unittest.main()

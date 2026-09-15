@@ -27,10 +27,12 @@
       "Sale_Date": "2024-07-02",
       "Days_Remaining_To_Claim": 1020,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-07-01",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48",
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -50,10 +52,12 @@
       "Sale_Date": "2024-08-13",
       "Days_Remaining_To_Claim": 1062,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-08-12",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48",
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -73,10 +77,12 @@
       "Sale_Date": "2024-07-16",
       "Days_Remaining_To_Claim": 1034,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-07-15",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48",
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -96,10 +102,12 @@
       "Sale_Date": "2024-08-06",
       "Days_Remaining_To_Claim": 1055,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-08-05",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48",
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -119,10 +127,12 @@
       "Sale_Date": "2024-07-23",
       "Days_Remaining_To_Claim": 1041,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-07-22",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48",
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

@@ -60,6 +60,26 @@ def infer_property_class(address):
     else:
         return "Single Family Residential"
 
+def determine_tier(surplus_amt):
+    """Classifies surplus balance into high, medium, or standard value tiers."""
+    if surplus_amt >= 25000:
+        return "Tier 1: High Value ($25k+)"
+    elif surplus_amt >= 10000:
+        return "Tier 2: Medium Value ($10k-$25k)"
+    else:
+        return "Tier 3: Standard Value ($2.5k-$10k)"
+
+def classify_owner(owner_raw):
+    """Determines whether record owner is an institutional entity or individual/estate."""
+    is_inst = any(inst in owner_raw.upper() for inst in EXCLUDED_INSTITUTIONS)
+    owner_type = "Institutional" if is_inst else "Individual / Estate"
+    return owner_type, is_inst
+
+def is_deceased_or_estate(owner_raw):
+    """Checks whether the record owner involves an estate, heirs, or deceased party."""
+    upper = owner_raw.upper()
+    return "ESTATE" in upper or "HEIR" in upper or "DECEASED" in upper
+
 def calculate_days_remaining(sale_date_str, state="FL"):
     window_days_map = {
         "FL": 120,   # Fla. Stat. § 197.582 (120 days from clerk notice)

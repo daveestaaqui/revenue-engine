@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T12:58:48.277186",
+  "generated_at": "2026-09-15T17:06:43.548763",
   "total_records": 35,
   "total_surplus_volume_usd": 3244600.0,
   "total_finder_fees_available_usd": 668580.0,
@@ -19,12 +19,14 @@
       "Est_Finder_Fee_USD": 43000.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-09",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "CA",
@@ -41,12 +43,14 @@
       "Est_Finder_Fee_USD": 36800.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-16",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "CA",
@@ -63,12 +67,14 @@
       "Est_Finder_Fee_USD": 33600.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-30",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -85,12 +91,14 @@
       "Est_Finder_Fee_USD": 29000.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-06-28",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "NC",
@@ -107,12 +115,14 @@
       "Est_Finder_Fee_USD": 27600.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-25",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "N.C.G.S. \u00a7 105-374",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "GA",
@@ -131,10 +141,12 @@
       "Sale_Date": "2024-07-02",
       "Days_Remaining_To_Claim": 1020,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-07-01",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "TX",
@@ -151,12 +163,14 @@
       "Est_Finder_Fee_USD": 32125.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-09",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 55,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-09",
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "TN",
@@ -173,12 +187,14 @@
       "Est_Finder_Fee_USD": 25200.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-16",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "CA",
@@ -195,12 +211,14 @@
       "Est_Finder_Fee_USD": 23900.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-06",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "GA",
@@ -219,10 +237,12 @@
       "Sale_Date": "2024-08-13",
       "Days_Remaining_To_Claim": 1062,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-08-12",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "NC",
@@ -239,12 +259,14 @@
       "Est_Finder_Fee_USD": 22900.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-18",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "N.C.G.S. \u00a7 105-374",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -261,12 +283,14 @@
       "Est_Finder_Fee_USD": 22400.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-05",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "TN",
@@ -283,12 +307,14 @@
       "Est_Finder_Fee_USD": 20400.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-23",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "GA",
@@ -307,10 +333,12 @@
       "Sale_Date": "2024-07-16",
       "Days_Remaining_To_Claim": 1034,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-07-15",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "NC",
@@ -327,12 +355,14 @@
       "Est_Finder_Fee_USD": 19280.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-08",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "N.C.G.S. \u00a7 105-374",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -349,12 +379,14 @@
       "Est_Finder_Fee_USD": 18480.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-25",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "NC",
@@ -371,12 +403,14 @@
       "Est_Finder_Fee_USD": 17640.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-01",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "N.C.G.S. \u00a7 105-374",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "TX",
@@ -393,12 +427,14 @@
       "Est_Finder_Fee_USD": 21550.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-16",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 55,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-09",
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "TN",
@@ -415,12 +451,14 @@
       "Est_Finder_Fee_USD": 16900.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-06",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "GA",
@@ -439,10 +477,12 @@
       "Sale_Date": "2024-08-06",
       "Days_Remaining_To_Claim": 1055,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-08-05",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "TX",
@@ -459,12 +499,14 @@
       "Est_Finder_Fee_USD": 19450.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-13",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 55,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-09",
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -481,12 +523,14 @@
       "Est_Finder_Fee_USD": 14860.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-08",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "TN",
@@ -503,12 +547,14 @@
       "Est_Finder_Fee_USD": 14360.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-13",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -525,12 +571,14 @@
       "Est_Finder_Fee_USD": 13780.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-14",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "GA",
@@ -549,10 +597,12 @@
       "Sale_Date": "2024-07-23",
       "Days_Remaining_To_Claim": 1041,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
+      "Claim_Deadline_Date": "2029-07-22",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "NC",
@@ -569,12 +619,14 @@
       "Est_Finder_Fee_USD": 12900.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-11",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 50,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-04",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/durham",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "N.C.G.S. \u00a7 105-374",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -591,12 +643,14 @@
       "Est_Finder_Fee_USD": 12360.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-03",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "TX",
@@ -613,12 +667,14 @@
       "Est_Finder_Fee_USD": 14850.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-23",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 55,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-09",
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -635,12 +691,14 @@
       "Est_Finder_Fee_USD": 10820.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-02",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -657,12 +715,14 @@
       "Est_Finder_Fee_USD": 9650.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-06-12",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -679,12 +739,14 @@
       "Est_Finder_Fee_USD": 8700.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-12",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "TX",
@@ -701,12 +763,14 @@
       "Est_Finder_Fee_USD": 10325.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-06",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 55,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-09",
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -723,12 +787,14 @@
       "Est_Finder_Fee_USD": 6350.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-10",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -745,12 +811,14 @@
       "Est_Finder_Fee_USD": 5880.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-17",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     },
     {
       "State": "FL",
@@ -767,12 +835,14 @@
       "Est_Finder_Fee_USD": 3780.0,
       "Opportunity_Tier": "Tier 2: Medium Value ($10k-$25k)",
       "Sale_Date": "2024-08-01",
-      "Days_Remaining_To_Claim": 0,
-      "Claim_Urgency_Tier": "Expired / Time-Barred",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-11-29",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 12:58:48"
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-15 17:06:43"
     }
   ]
 }

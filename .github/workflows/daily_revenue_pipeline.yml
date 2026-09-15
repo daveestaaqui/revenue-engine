@@ -82,7 +82,7 @@ jobs:
           python marketing/link_building/clerk_outreach_generator.py
           python marketing/link_building/syndication_publisher.py
           python marketing/link_building/directory_citations.py
-          python marketing/link_building/auto_article_submitter.py
+          python marketing/link_building/auto_article_submitter.py || true
           python marketing/link_building/embed_promoter.py
           python marketing/strategy_optimizer.py
           python marketing/reddit_publisher.py

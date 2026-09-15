@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-15T16:58:48.686706+00:00",
+  "updated_at": "2026-09-15T21:07:36.067523+00:00",
   "state_weights_pct": {
-    "FL": 24.9,
-    "TX": 16.1,
-    "CA": 17.4,
-    "GA": 17.1,
-    "NC": 13.5,
-    "TN": 11.0
+    "FL": 25.7,
+    "TX": 16.0,
+    "CA": 17.8,
+    "GA": 16.6,
+    "NC": 13.1,
+    "TN": 10.8
   },
   "primary_focus_states": [
     "FL",
@@ -25,76 +25,76 @@
   },
   "state_performance_breakdown": {
     "FL": {
-      "score": 0.2518,
-      "win_rate": 18.0,
-      "smoothed_deliverability": 18.0,
+      "score": 0.2557,
+      "win_rate": 17.8,
+      "smoothed_deliverability": 17.9,
       "surplus_pool": 780300.0,
       "fee_pool": 156060.0,
       "lead_count": 12,
-      "addressable_firms": 428,
-      "attempts": 128,
+      "addressable_firms": 392,
+      "attempts": 129,
       "successes": 23,
-      "allocated_weight_pct": 24.9
+      "allocated_weight_pct": 25.7
     },
     "TX": {
-      "score": 0.1631,
-      "win_rate": 16.9,
-      "smoothed_deliverability": 17.1,
+      "score": 0.1596,
+      "win_rate": 16.4,
+      "smoothed_deliverability": 16.7,
       "surplus_pool": 393200.0,
       "fee_pool": 98300.0,
       "lead_count": 5,
-      "addressable_firms": 296,
-      "attempts": 65,
+      "addressable_firms": 252,
+      "attempts": 67,
       "successes": 11,
-      "allocated_weight_pct": 16.1
+      "allocated_weight_pct": 16.0
     },
     "CA": {
-      "score": 0.1766,
-      "win_rate": 11.8,
-      "smoothed_deliverability": 12.1,
+      "score": 0.1772,
+      "win_rate": 11.3,
+      "smoothed_deliverability": 11.6,
       "surplus_pool": 686500.0,
       "fee_pool": 137300.0,
       "lead_count": 4,
-      "addressable_firms": 228,
-      "attempts": 136,
+      "addressable_firms": 206,
+      "attempts": 141,
       "successes": 16,
-      "allocated_weight_pct": 17.4
+      "allocated_weight_pct": 17.8
     },
     "GA": {
-      "score": 0.1731,
-      "win_rate": 37.5,
-      "smoothed_deliverability": 30.8,
+      "score": 0.1652,
+      "win_rate": 30.0,
+      "smoothed_deliverability": 26.7,
       "surplus_pool": 498700.0,
       "fee_pool": 99740.0,
       "lead_count": 5,
-      "addressable_firms": 169,
-      "attempts": 8,
+      "addressable_firms": 150,
+      "attempts": 10,
       "successes": 3,
-      "allocated_weight_pct": 17.1
+      "allocated_weight_pct": 16.6
     },
     "NC": {
-      "score": 0.1368,
+      "score": 0.1302,
       "win_rate": 0.0,
-      "smoothed_deliverability": 14.3,
+      "smoothed_deliverability": 12.5,
       "surplus_pool": 501600.0,
       "fee_pool": 100320.0,
       "lead_count": 5,
-      "addressable_firms": 154,
-      "attempts": 2,
+      "addressable_firms": 125,
+      "attempts": 3,
       "successes": 0,
-      "allocated_weight_pct": 13.5
+      "allocated_weight_pct": 13.1
     },
     "TN": {
-      "score": 0.1117,
+      "score": 0.1079,
       "win_rate": 0.0,
-      "smoothed_deliverability": 14.3,
+      "smoothed_deliverability": 12.5,
       "surplus_pool": 384300.0,
       "fee_pool": 76860.0,
       "lead_count": 4,
-      "addressable_firms": 119,
-      "attempts": 2,
+      "addressable_firms": 104,
+      "attempts": 3,
       "successes": 0,
-      "allocated_weight_pct": 11.0
+      "allocated_weight_pct": 10.8
     }
   }
 }

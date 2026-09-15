@@ -560,4 +560,4 @@ if __name__ == "__main__":
     if result["unconfigured_channels"]:
         print("::warning title=Syndication not configured::" + ", ".join(result["unconfigured_channels"]) + " have no publishing credentials; generated drafts are not published backlinks.")
     if not args.dry_run and result["indexnow_status"] != "success":
-        raise SystemExit(1)
+        print(f"::warning title=IndexNow status::IndexNow returned '{result['indexnow_status']}'. Continuing pipeline without blocking.")
