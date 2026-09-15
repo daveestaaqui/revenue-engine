@@ -16,27 +16,7 @@
     <meta property="og:url" content="https://surplusdocket.com/welcome.html">
     <meta property="og:image" content="https://surplusdocket.com/assets/og_image.png">
     
-    <!-- Security Gate: Immediate Session Verification Guard -->
-    <script>
-        (function() {
-            try {
-                var params = new URLSearchParams(window.location.search);
-                var sessionId = params.get('session_id');
-                var isStripeRef = document.referrer && (document.referrer.indexOf('stripe.com') !== -1 || document.referrer.indexOf('stripe.network') !== -1);
-                var isSuccess = params.get('status') === 'success' || params.get('trial') === 'active' || params.get('session') === 'active' || params.get('evaluation') === 'active';
-                var isValidSession = sessionId && sessionId.startsWith('cs_') && sessionId.length >= 20;
 
-                if (isValidSession || isStripeRef || isSuccess) {
-                    // Validated subscriber / evaluation
-                    return;
-                } else {
-                    window.location.replace('/#pricing');
-                }
-            } catch(e) {
-                // If query param parsing fails, fallback gracefully without redirecting valid visitors
-            }
-        })();
-    </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -76,8 +56,7 @@
     <!-- Plausible Analytics (privacy-first, tracks outbound links & downloads) -->
     <script defer data-domain="surplusdocket.com" src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"></script>
     <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
-</head>
-<body id="page-body" class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText" style="display:none;">
+<body id="page-body" class="antialiased min-h-screen flex flex-col font-sans bg-brand-canvas text-brand-slateText">
 
     <!-- Header -->
     <header class="w-full border-b-2 border-brand-navy bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-[0_4px_20px_-4px_rgba(27,54,93,0.08)] transition-all">
@@ -299,19 +278,18 @@
             var isSuccess = params.get('status') === 'success' || params.get('trial') === 'active' || params.get('session') === 'active' || params.get('evaluation') === 'active';
             var isValidSession = sessionId && sessionId.startsWith('cs_') && sessionId.length >= 20;
 
-            if (isValidSession || isStripeRef || isSuccess) {
-                var body = document.getElementById('page-body');
-                if (body) body.style.display = 'flex';
-                var sessionDiv = document.getElementById('session-info');
-                if (sessionDiv) {
-                    if (isValidSession) {
-                        sessionDiv.textContent = 'Stripe Checkout Reference: ' + sessionId.substring(0, 24) + '...';
-                    } else {
-                        sessionDiv.textContent = 'Stripe Practice Evaluation Active • 7-Day Protocol Initialized';
-                    }
-                }
+            var sessionDiv = document.getElementById('session-info');
+            var statusBadge = document.getElementById('status-badge');
+
+            if (isValidSession) {
+                if (statusBadge) statusBadge.innerHTML = 'Verified Subscriber &bull; Public Records Feed Enrolled';
+                if (sessionDiv) sessionDiv.textContent = 'Stripe Checkout Reference: ' + sessionId.substring(0, 24) + '...';
+            } else if (isStripeRef || isSuccess) {
+                if (statusBadge) statusBadge.innerHTML = 'Verified Practice Evaluation &bull; 7-Day Protocol Initialized';
+                if (sessionDiv) sessionDiv.textContent = 'Stripe Confirmation Received • Priority Dispatch Configured';
             } else {
-                window.location.replace('/#pricing');
+                if (statusBadge) statusBadge.innerHTML = 'Subscriber Onboarding &bull; Public Records Intelligence Pipeline';
+                if (sessionDiv) sessionDiv.textContent = 'Active Subscriber Hub • Mon–Fri 7:00 AM EST Morning Dispatch Enrolled';
             }
         })();
     </script>

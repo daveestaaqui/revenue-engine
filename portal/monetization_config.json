@@ -2,7 +2,11 @@
   "tri_state_core": {
     "tier_id": "tri_state_core",
     "title": "Tri-State Core Feed",
-    "jurisdictions": ["FL", "TX", "GA"],
+    "jurisdictions": [
+      "FL",
+      "TX",
+      "GA"
+    ],
     "price_monthly_usd": 249,
     "price_annual_usd": 2490,
     "has_trial": true,
@@ -20,7 +24,14 @@
   "six_state_national": {
     "tier_id": "six_state_national",
     "title": "Six-State Feed + REST API",
-    "jurisdictions": ["FL", "TX", "GA", "NC", "TN", "CA"],
+    "jurisdictions": [
+      "FL",
+      "TX",
+      "GA",
+      "NC",
+      "TN",
+      "CA"
+    ],
     "price_monthly_usd": 449,
     "price_annual_usd": 4490,
     "has_trial": false,

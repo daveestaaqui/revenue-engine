@@ -261,7 +261,27 @@ class ReliabilityTests(unittest.TestCase):
         small_row = {"Owner_Name": "Robert Smith", "Surplus_Balance_USD": 1500.0}
         self.assertIsNone(classify_and_enrich_record(small_row, meta))
 
+    def test_monetization_config_and_welcome_page(self):
+        from portal.setup_b2b_monetization import MONETIZATION_CONFIG, CONFIG_FILE, print_monetization_overview
+        
+        # Verify monetization tiers
+        self.assertIn("tri_state_core", MONETIZATION_CONFIG)
+        self.assertIn("six_state_national", MONETIZATION_CONFIG)
+        self.assertEqual(MONETIZATION_CONFIG["tri_state_core"]["price_monthly_usd"], 249)
+        self.assertEqual(MONETIZATION_CONFIG["six_state_national"]["price_monthly_usd"], 449)
+        self.assertTrue(MONETIZATION_CONFIG["tri_state_core"]["checkout_monthly_url"].startswith("https://buy.stripe.com/"))
+        self.assertTrue(MONETIZATION_CONFIG["six_state_national"]["checkout_monthly_url"].startswith("https://buy.stripe.com/"))
+        self.assertTrue(MONETIZATION_CONFIG["stripe_customer_portal_url"].startswith("https://billing.stripe.com/"))
+
+        # Verify welcome.html does not bounce paying customers
+        welcome_path = Path(__file__).resolve().parent.parent / "site" / "welcome.html"
+        welcome_content = welcome_path.read_text(encoding="utf-8")
+        self.assertNotIn("window.location.replace('/#pricing')", welcome_content)
+        self.assertNotIn('style="display:none;"', welcome_content)
+        self.assertIn("Verified Subscriber", welcome_content)
+
 
 if __name__ == '__main__':
     unittest.main()
+
 
