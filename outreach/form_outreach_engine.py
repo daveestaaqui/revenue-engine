@@ -379,6 +379,42 @@ async def handle_human_verification_widgets(page):
         pass
 
 
+async def dismiss_banners_and_modals(page):
+    """
+    Dismisses cookie consent banners, legal disclaimers, and overlay modals that block form interactions and submit clicks.
+    """
+    dismiss_selectors = [
+        "#onetrust-accept-btn-handler",
+        ".cookie-accept",
+        ".accept-cookies",
+        "#accept-cookies",
+        "#hs-eu-confirmation-button",
+        ".cc-btn.cc-dismiss",
+        ".cc-btn.cc-allow",
+        "button:has-text('Accept All')",
+        "button:has-text('Accept Cookies')",
+        "button:has-text('Accept all cookies')",
+        "button:has-text('Accept')",
+        "button:has-text('I Agree')",
+        "button:has-text('Agree')",
+        "button:has-text('I Understand')",
+        "button:has-text('Understand')",
+        "button:has-text('Got It')",
+        "button:has-text('Close')",
+        "button[aria-label='Close']",
+        ".close-modal",
+        ".modal-close"
+    ]
+    for sel in dismiss_selectors:
+        try:
+            btn = page.locator(sel).first
+            if await btn.is_visible(timeout=250):
+                await btn.click(timeout=1000)
+                await page.wait_for_timeout(300)
+        except Exception:
+            pass
+
+
 async def handle_dropdowns_and_radios(ctx):
     """
     Intelligently selects practice area / consultation dropdowns and radio buttons.
@@ -611,6 +647,7 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
 
     # 0. Attempt human verification widgets first (Cloudflare Turnstile, reCAPTCHA, etc.)
     await handle_human_verification_widgets(page)
+    await dismiss_banners_and_modals(page)
 
     # Scroll page to trigger lazy loaded forms
     try:
@@ -963,13 +1000,27 @@ async def fill_and_submit_form(page, target, is_dry_run=False):
     ]
     
     before_submission = (await page.inner_text("body")).lower()
+    await dismiss_banners_and_modals(page)
     submitted = False
     for sel in submit_selectors:
         loc = target_context.locator(sel).first
         if await loc.is_visible(timeout=1000):
-            await loc.click(timeout=3000)
-            submitted = True
-            break
+            try:
+                await loc.click(timeout=3000)
+                submitted = True
+                break
+            except Exception:
+                try:
+                    await loc.click(force=True, timeout=2000)
+                    submitted = True
+                    break
+                except Exception:
+                    try:
+                        await loc.evaluate("el => el.click()")
+                        submitted = True
+                        break
+                    except Exception:
+                        pass
 
     if not submitted:
         try:

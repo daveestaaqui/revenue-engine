@@ -21,7 +21,8 @@ from marketing.link_building.directory_citations import (
     load_citations,
     get_citation_metrics,
     generate_submission_packet,
-    export_markdown_summary
+    export_markdown_summary,
+    update_citation_status
 )
 from marketing.link_building.pr_pitcher import (
     PITCH_TEMPLATES,
@@ -65,6 +66,28 @@ class TestDirectoryCitations(unittest.TestCase):
         self.assertIn("High-Authority Directory Citation Registry", summary)
         self.assertIn("Capterra", summary)
         self.assertIn("Justia", summary)
+
+    def test_update_citation_status(self):
+        import tempfile
+        import csv
+        with tempfile.NamedTemporaryFile("w+", delete=False, suffix=".csv") as tmp:
+            writer = csv.writer(tmp)
+            writer.writerow(["name","category","da","url","submission_url","status","anchor_target"])
+            writer.writerow(["Sample Hub","LegalTech","70","https://example.com","https://example.com/sub","READY_FOR_SUBMISSION","Sample Anchor"])
+            tmp_path = Path(tmp.name)
+        try:
+            res = update_citation_status("Sample Hub", "SUBMITTED", registry_path=tmp_path)
+            self.assertTrue(res)
+            cits = load_citations(tmp_path)
+            self.assertEqual(cits[0]["status"], "SUBMITTED")
+            
+            # Non-existent
+            res2 = update_citation_status("NonExistent", "SUBMITTED", registry_path=tmp_path)
+            self.assertFalse(res2)
+        finally:
+            if tmp_path.exists():
+                tmp_path.unlink()
+
 
 
 class TestPrPitcher(unittest.TestCase):

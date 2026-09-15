@@ -58,7 +58,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Install Playwright Headless Chromium (if forms channel selected)
-        if: inputs.channel == 'forms' || inputs.channel == 'both'
+        if: github.event_name == 'schedule' || inputs.channel == 'forms' || inputs.channel == 'both' || inputs.channel == ''
         run: |
           playwright install --with-deps chromium
 
@@ -84,19 +84,19 @@ jobs:
           fi
 
       - name: Execute Form Outreach Batch (if selected)
-        if: inputs.channel == 'forms' || inputs.channel == 'both'
+        if: github.event_name == 'schedule' || inputs.channel == 'forms' || inputs.channel == 'both'
         env:
           BATCH_LIMIT: ${{ inputs.limit || '12' }}
         run: |
           LIMIT="$BATCH_LIMIT"
-          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+          if [ "${{ github.event_name }}" != "schedule" ] && [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             python outreach/form_outreach_engine.py --dry-run --limit="$LIMIT"
           else
             python outreach/form_outreach_engine.py --limit="$LIMIT"
           fi
 
       - name: Commit & Push Updated Submission Logs & Manifests
-        if: always() && github.ref == 'refs/heads/main' && inputs.dry_run != true
+        if: always() && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || inputs.dry_run != true)
         run: |
           git config --global user.name "Surplus Docket Outreach Bot"
           git config --global user.email "outreach@surplusdocket.com"

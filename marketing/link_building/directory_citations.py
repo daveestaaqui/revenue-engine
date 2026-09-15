@@ -120,6 +120,31 @@ Support Email: {COMPANY_PROFILE['contact_email']}
 """
 
 
+def update_citation_status(name: str, new_status: str, registry_path: Path = DEFAULT_REGISTRY_PATH) -> bool:
+    """Updates the status of a specific directory citation in the CSV registry."""
+    if not registry_path.exists():
+        return False
+    
+    rows = []
+    updated = False
+    with open(registry_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        for r in reader:
+            if r["name"].strip().lower() == name.strip().lower():
+                r["status"] = new_status.strip().upper()
+                updated = True
+            rows.append(r)
+            
+    if updated and fieldnames:
+        with open(registry_path, "w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+            
+    return updated
+
+
 def export_markdown_summary(registry_path: Path = DEFAULT_REGISTRY_PATH) -> str:
     """Exports a formatted markdown report of the citation landscape."""
     citations = load_citations(registry_path)
@@ -148,8 +173,30 @@ def export_markdown_summary(registry_path: Path = DEFAULT_REGISTRY_PATH) -> str:
 
 
 if __name__ == "__main__":
-    citations = load_citations()
-    metrics = get_citation_metrics(citations)
-    print(f"Loaded {metrics['total_directories']} directories. Average DA: {metrics['average_da']}. DA 80+: {metrics['da_80_plus']}.")
-    print("\nSummary preview:")
-    print(export_markdown_summary())
+    import argparse
+    parser = argparse.ArgumentParser(description="Surplus Docket Directory Citation Manager")
+    parser.add_argument("--update", nargs=2, metavar=("NAME", "STATUS"), help="Update status of a directory citation")
+    parser.add_argument("--export-summary", action="store_true", help="Print markdown summary of citations")
+    parser.add_argument("--metrics", action="store_true", help="Print summary metrics")
+    args = parser.parse_args()
+
+    if args.update:
+        dir_name, new_st = args.update
+        success = update_citation_status(dir_name, new_st)
+        if success:
+            print(f"✅ Successfully updated status of '{dir_name}' to '{new_st.upper()}'.")
+        else:
+            print(f"❌ Directory '{dir_name}' not found in registry.")
+    elif args.export_summary:
+        print(export_markdown_summary())
+    elif args.metrics:
+        citations = load_citations()
+        metrics = get_citation_metrics(citations)
+        print(f"Loaded {metrics['total_directories']} directories. Average DA: {metrics['average_da']}. DA 80+: {metrics['da_80_plus']}.")
+    else:
+        citations = load_citations()
+        metrics = get_citation_metrics(citations)
+        print(f"Loaded {metrics['total_directories']} directories. Average DA: {metrics['average_da']}. DA 80+: {metrics['da_80_plus']}.")
+        print("\nSummary preview:")
+        print(export_markdown_summary())
+

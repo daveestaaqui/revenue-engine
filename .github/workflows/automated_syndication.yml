@@ -2,8 +2,8 @@ name: Autonomous Article Submission & Link-Building Syndication
 
 on:
   schedule:
-    # Runs twice weekly on Wednesday & Friday at 15:00 UTC (11:00 AM EST)
-    - cron: '0 15 * * 3,5'
+    # Runs Monday, Wednesday & Friday at 15:00 UTC (11:00 AM EST)
+    - cron: '0 15 * * 1,3,5'
   workflow_dispatch:
     inputs:
       dry_run:
