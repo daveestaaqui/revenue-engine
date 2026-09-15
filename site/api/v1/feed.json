@@ -5,7 +5,7 @@
   "message": "Full unredacted REST API access requires an active Surplus Docket Enterprise subscription with a valid Bearer API token. Production feeds deliver unredacted claimant identities, verified property situs, and court docket links every business morning (Mon\u2013Fri) at 7:00 AM EST.",
   "api_version": "v1.0",
   "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
-  "generated_at": "2026-09-15T17:06:43.560364",
+  "generated_at": "2026-09-15T19:17:51.424049",
   "subscription_portal": "https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00",
   "subscribe_url": "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22",
   "meta": {
@@ -52,7 +52,7 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -77,7 +77,7 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -102,7 +102,7 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -127,7 +127,7 @@
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -152,7 +152,7 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -177,7 +177,7 @@
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -202,7 +202,7 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -227,7 +227,7 @@
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -252,7 +252,7 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -277,7 +277,7 @@
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -302,7 +302,7 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -327,7 +327,7 @@
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -352,7 +352,7 @@
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -377,7 +377,7 @@
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -402,7 +402,7 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -427,7 +427,7 @@
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -452,7 +452,7 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -477,7 +477,7 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -502,7 +502,7 @@
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -527,7 +527,7 @@
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -552,7 +552,7 @@
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -577,7 +577,7 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -602,7 +602,7 @@
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -627,7 +627,7 @@
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -652,7 +652,7 @@
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -677,7 +677,7 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -702,7 +702,7 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -727,7 +727,7 @@
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -752,7 +752,7 @@
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -777,7 +777,7 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -802,7 +802,7 @@
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -827,7 +827,7 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -852,7 +852,7 @@
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -877,7 +877,7 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -902,7 +902,7 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-15 17:06:43",
+      "Enriched_Timestamp": "2026-09-15 19:17:51",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

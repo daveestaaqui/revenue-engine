@@ -1,12 +1,12 @@
 # 📊 Surplus Docket — Autonomous Marketing Strategy & Optimization Briefing
-**Last Updated:** September 15, 2026 at 21:07 UTC  
+**Last Updated:** September 15, 2026 at 23:17 UTC  
 **Optimization Mode:** Multi-Factor Empirical Model (Surplus Equity + Firm Density + Deliverability)
 
 ---
 
 ## 🚀 1. Executive Directive: High-Yield Resource Calibration
 
-Based on automated analysis of **364 technical outreach points**, **1229 addressable real estate & probate law practices**, and **$3,244,600.00 verified public registry surplus inventory** across 35 court dockets:
+Based on automated analysis of **376 technical outreach points**, **1229 addressable real estate & probate law practices**, and **$3,244,600.00 verified public registry surplus inventory** across 35 court dockets:
 
 1. **PRIMARY POWERHOUSE: FL (25.7% Resource Allocation)**
    - **Monitored Surplus Pool:** $780,300.00 across 12 verified dockets.
@@ -14,7 +14,7 @@ Based on automated analysis of **364 technical outreach points**, **1229 address
    - **Addressable Law Practice Market:** 392 licensed practitioner targets.
    - **Strategic Focus:** In-depth procedural petition guides, title examination whitepapers, and direct 1-on-1 docket briefings.
 
-2. **SECONDARY DRIVER: CA (17.8% Resource Allocation)**
+2. **SECONDARY DRIVER: CA (17.6% Resource Allocation)**
    - **Monitored Surplus Pool:** $686,500.00 across 4 verified dockets.
    - **Potential Legal Recovery Fees:** $137,300.00.
    - **Addressable Law Practice Market:** 206 licensed practitioner targets.
@@ -27,11 +27,11 @@ Based on automated analysis of **364 technical outreach points**, **1229 address
 | State | Priority Weight | Addressable Firms | Active Surplus | Potential Legal Fees | Governing Statute | Strategic Role |
 | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **FL** | **25.7%** | 392 | $780,300 | $156,060 | Fla. Stat. § 197.582 | Core High-Volume Administrative Feed |
-| **TX** | **16.0%** | 252 | $393,200 | $98,300 | Tex. Tax Code § 34.04 | Judicial District Court Litigation Hub |
-| **CA** | **17.8%** | 206 | $686,500 | $137,300 | Cal. Rev. & Tax Code § 4675 | High-Equity Board of Supervisors Claims |
+| **TX** | **16.1%** | 252 | $393,200 | $98,300 | Tex. Tax Code § 34.04 | Judicial District Court Litigation Hub |
+| **CA** | **17.6%** | 206 | $686,500 | $137,300 | Cal. Rev. & Tax Code § 4675 | High-Equity Board of Supervisors Claims |
 | **GA** | **16.6%** | 150 | $498,700 | $99,740 | O.C.G.A. § 48-4-5 | Sheriff & Superior Court Interpleader Hub |
 | **NC** | **13.1%** | 125 | $501,600 | $100,320 | N.C.G.S. § 105-374(q) | Judicial Foreclosure & Upset Bid Review |
-| **TN** | **10.8%** | 104 | $384,300 | $76,860 | T.C.A. § 67-5-2501 | Chancery Court Motion & Probate Expansion |
+| **TN** | **10.9%** | 104 | $384,300 | $76,860 | T.C.A. § 67-5-2501 | Chancery Court Motion & Probate Expansion |
 
 ---
 

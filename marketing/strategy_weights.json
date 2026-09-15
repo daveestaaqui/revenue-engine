@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-15T21:07:36.067523+00:00",
+  "updated_at": "2026-09-15T23:17:58.416910+00:00",
   "state_weights_pct": {
     "FL": 25.7,
-    "TX": 16.0,
-    "CA": 17.8,
+    "TX": 16.1,
+    "CA": 17.6,
     "GA": 16.6,
     "NC": 13.1,
-    "TN": 10.8
+    "TN": 10.9
   },
   "primary_focus_states": [
     "FL",
@@ -46,19 +46,19 @@
       "addressable_firms": 252,
       "attempts": 67,
       "successes": 11,
-      "allocated_weight_pct": 16.0
+      "allocated_weight_pct": 16.1
     },
     "CA": {
-      "score": 0.1772,
-      "win_rate": 11.3,
-      "smoothed_deliverability": 11.6,
+      "score": 0.1754,
+      "win_rate": 10.5,
+      "smoothed_deliverability": 10.8,
       "surplus_pool": 686500.0,
       "fee_pool": 137300.0,
       "lead_count": 4,
       "addressable_firms": 206,
-      "attempts": 141,
+      "attempts": 153,
       "successes": 16,
-      "allocated_weight_pct": 17.8
+      "allocated_weight_pct": 17.6
     },
     "GA": {
       "score": 0.1652,
@@ -94,7 +94,7 @@
       "addressable_firms": 104,
       "attempts": 3,
       "successes": 0,
-      "allocated_weight_pct": 10.8
+      "allocated_weight_pct": 10.9
     }
   }
 }
