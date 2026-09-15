@@ -29,22 +29,38 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 LEDGER_FILE = DATA_DIR / "ai_usage_ledger.json"
 
-DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
+DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash")
+FALLBACK_GEMINI_MODEL = os.environ.get("GEMINI_FALLBACK_MODEL", "gemini-1.5-flash")
+DEFAULT_GEMINI_PRO_MODEL = os.environ.get("GEMINI_PRO_MODEL", "gemini-1.5-pro")
 DEFAULT_OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o")
 
 AI_BUDGET_CONFIG = {
     "primary_provider": "google_gemini",
     "routine_model": DEFAULT_GEMINI_MODEL,
+    "pro_model": DEFAULT_GEMINI_PRO_MODEL,
+    "fallback_gemini_model": FALLBACK_GEMINI_MODEL,
     "fallback_model": DEFAULT_OPENAI_MODEL,
     "daily_spend_cap_usd": 10.00,
     "monthly_spend_cap_usd": 100.00,
-    "target_workflow_cost_usd": 0.01,
+    "target_workflow_cost_usd": 0.00,
     "zero_cost_mode": os.environ.get("ZERO_COST_MODE", "true").lower() in ("true", "1", "yes"),
     "allow_paid_openai": os.environ.get("ALLOW_PAID_OPENAI", "false").lower() in ("true", "1", "yes")
 }
 
 ZERO_COST_MODE = AI_BUDGET_CONFIG["zero_cost_mode"]
 ALLOW_PAID_OPENAI = AI_BUDGET_CONFIG["allow_paid_openai"]
+
+
+def get_optimal_model(task_type: str = "routine") -> str:
+    """
+    Intelligently selects the most sophisticated Google Gemini model based on task demands:
+    - 'deep_legal', 'complex_memo', 'dossier': gemini-1.5-pro (2M token context, bar-grade reasoning)
+    - 'routine', 'transcription', 'entity_extraction', 'intake': gemini-2.0-flash (sub-300ms, native audio tokens)
+    """
+    t_lower = (task_type or "").lower()
+    if any(k in t_lower for k in ["deep", "complex", "memo", "dossier", "brief", "statute_analysis"]):
+        return DEFAULT_GEMINI_PRO_MODEL
+    return DEFAULT_GEMINI_MODEL
 
 
 def load_ai_usage_ledger():
@@ -208,15 +224,19 @@ def transcribe_audio_with_gemini(audio_bytes, mime_type="audio/mp3", api_key=Non
         return None
 
 
-def generate_text(prompt, system_instruction=None, max_tokens=1024, temperature=0.2):
+def generate_text(prompt, system_instruction=None, max_tokens=1024, temperature=0.2, task_type="routine", model=None):
     """
     Executes a structured text generation request using Google Gemini first,
     falling back to OpenAI if Gemini is not configured.
+    Intelligently selects the optimal model tier:
+    - Routine / Extraction -> Gemini 2.0 Flash (sub-300ms, free tier)
+    - Deep Legal / Complex Memo -> Gemini 1.5 Pro (2M token context, bar-grade reasoning)
     """
     provider, key = get_active_provider()
 
     if provider == "gemini":
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{DEFAULT_GEMINI_MODEL}:generateContent?key={key}"
+        target_model = model or get_optimal_model(task_type)
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{target_model}:generateContent?key={key}"
         parts = []
         if system_instruction:
             parts.append({"text": f"SYSTEM INSTRUCTION: {system_instruction}\n\n"})
@@ -241,10 +261,31 @@ def generate_text(prompt, system_instruction=None, max_tokens=1024, temperature=
                 candidates = data.get("candidates", [])
                 if candidates:
                     out = candidates[0].get("content", {}).get("parts", [{}])[0].get("text", "")
-                    record_ai_usage("google_gemini", DEFAULT_GEMINI_MODEL, "text_generation", cost_usd=0.0)
+                    record_ai_usage("google_gemini", target_model, f"text_generation_{task_type}", cost_usd=0.0)
                     return out
+        except urllib.error.HTTPError as he:
+            # If target model fails (e.g. region availability), retry with stable FALLBACK_GEMINI_MODEL
+            if target_model != FALLBACK_GEMINI_MODEL:
+                try:
+                    fallback_url = f"https://generativelanguage.googleapis.com/v1beta/models/{FALLBACK_GEMINI_MODEL}:generateContent?key={key}"
+                    req2 = urllib.request.Request(
+                        fallback_url,
+                        data=json.dumps(payload).encode("utf-8"),
+                        headers={"Content-Type": "application/json"},
+                        method="POST"
+                    )
+                    with urllib.request.urlopen(req2, timeout=30) as resp2:
+                        data2 = json.loads(resp2.read().decode("utf-8"))
+                        cands = data2.get("candidates", [])
+                        if cands:
+                            out = cands[0].get("content", {}).get("parts", [{}])[0].get("text", "")
+                            record_ai_usage("google_gemini", FALLBACK_GEMINI_MODEL, f"text_generation_{task_type}", cost_usd=0.0)
+                            return out
+                except Exception:
+                    pass
+            record_ai_usage("google_gemini", target_model, f"text_generation_{task_type}", status=f"failed: {he}")
         except Exception as e:
-            record_ai_usage("google_gemini", DEFAULT_GEMINI_MODEL, "text_generation", status=f"failed: {e}")
+            record_ai_usage("google_gemini", target_model, f"text_generation_{task_type}", status=f"failed: {e}")
 
     elif provider == "openai":
         # Financial kill-switch: avoid paid OpenAI calls unless explicitly authorized

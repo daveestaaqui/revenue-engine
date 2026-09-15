@@ -1,6 +1,13 @@
 idx,email,name,firm,state,subject,file
-1,andrew@moherlaw.com,Andrew A. Moher,Moher Law Group,CA,San Diego County surplus filing — 2024-CA-005210,001_andrew_at_moherlaw_com.eml
-2,arthur@gonzalezlawca.com,Arthur J. Gonzalez,Gonzalez & Associates,CA,Los Angeles County surplus filing — 2024-CA-008120,002_arthur_at_gonzalezlawca_com.eml
-3,dcooper@kleinlaw.com,David J. Cooper,"Klein, DeNatale, Goldner",CA,Los Angeles County surplus filing — 2024-CA-008120,003_dcooper_at_kleinlaw_com.eml
-4,dennis@evict123.com,Dennis P. Block,Dennis P. Block & Associates,CA,Los Angeles County surplus filing — 2024-CA-008640,004_dennis_at_evict123_com.eml
-5,greg@garrisonlawcorp.com,Gregory M. Garrison,Garrison Law Corporation,CA,San Diego County surplus filing — 2024-CA-005210,005_greg_at_garrisonlawcorp_com.eml
+1,arthur@gonzalezlawca.com,Arthur J. Gonzalez,Gonzalez & Associates,CA,Los Angeles County surplus filing — 2024-CA-008120,001_arthur_at_gonzalezlawca_com.eml
+2,robert@jacobslawgroup.com,Robert B. Jacobs,Jacobs & Jacobs Law,CA,Los Angeles County surplus filing — 2024-CA-008120,002_robert_at_jacobslawgroup_com.eml
+3,andrew@pascalelaw.com,Andrew J. Pascale,"Law Office of Andrew J. Pascale, P.A.",FL,Miami-Dade County surplus filing — 2024-TD-004812,003_andrew_at_pascalelaw_com.eml
+4,brokaw@rokawlaw.com,Brian M. Rokaw,"Brian M. Rokaw, P.A.",FL,Miami-Dade County surplus filing — 2024-TD-004812,004_brokaw_at_rokawlaw_com.eml
+5,cjimerson@jimersonfirm.com,Charles B. Jimerson,"Jimerson Birr, P.A.",FL,Palm Beach County surplus filing — 2024-TD-004501,005_cjimerson_at_jimersonfirm_com.eml
+6,david@kramerlaw.com,David M. Kramer,Kramer Law,FL,Palm Beach County surplus filing — 2024-TD-004501,006_david_at_kramerlaw_com.eml
+7,david@tuplerlaw.com,David S. Tupler,"David S. Tupler, P.A.",FL,Palm Beach County surplus filing — 2024-TD-004688,007_david_at_tuplerlaw_com.eml
+8,eric@zoeckleinlawpa.com,Eric Zoecklein,Zoecklein Law P.A.,FL,Hillsborough County surplus filing — 2024-TD-008912,008_eric_at_zoeckleinlawpa_com.eml
+9,evan@evanmrosen.com,Evan M. Rosen,"Law Offices of Evan M. Rosen, P.A.",FL,Miami-Dade County surplus filing — 2024-TD-004812,009_evan_at_evanmrosen_com.eml
+10,j.salcines@salcineslaw.com,Jacqueline A. Salcines,Salcines Law P.A.,FL,Palm Beach County surplus filing — 2024-TD-004688,010_j_salcines_at_salcineslaw_com.eml
+11,kimberly@thesotolawoffice.com,Kimberly M. Soto,"The Soto Law Office, P.A.",FL,Orange County surplus filing — 2024-TD-001501,011_kimberly_at_thesotolawoffice_com.eml
+12,matt@weidnerlaw.com,Matthew D. Weidner,"Weidner Law, P.A.",FL,Palm Beach County surplus filing — 2024-TD-004501,012_matt_at_weidnerlaw_com.eml
