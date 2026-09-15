@@ -224,3 +224,4 @@
 [2026-09-14 23:32:33]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
 [2026-09-14 23:32:34]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
 [2026-09-14 23:32:34]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-09-15 05:53:39]   ⏭️ Skipped non-prospect from cash@square.com (Sub: 'You earned a $4.73 Estee Lauder stock di'): Sender 'cash@square.com' is not in verified target database and not a statutory inquiry
