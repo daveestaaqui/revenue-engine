@@ -1,4 +1,4 @@
-timestamp,firm,name,state,target_url,form_url,status,detail
+timestamp,firm,name,state,target_url,form_url,status,detail,variant
 2026-08-30T17:52:10.692743,Taormina Law PA,Salvatore Taormina,FL,https://taorminalawpa.com,https://www.taorminalawpa.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot saved to /Users/davidmahler/revenue-engine/outreach/form_screenshots/Taormina_Law_PA_1788126730.png
 2026-08-30T17:52:13.808581,Kyle & Kyle Law,Andrew Kyle,FL,https://kyleandkylelaw.com,https://kyleandkylelaw.com,FAILED,No visible textarea message field found.
 2026-08-30T17:52:18.544431,Bilu Law,Ron Bilu,FL,https://bilulaw.com,https://www.bilulaw.com/,SUCCESS,DRY_RUN: Form filled successfully. Screenshot saved to /Users/davidmahler/revenue-engine/outreach/form_screenshots/Bilu_Law_1788126738.png

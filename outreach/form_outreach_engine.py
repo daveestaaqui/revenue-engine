@@ -1089,7 +1089,8 @@ async def process_target(browser, target, is_dry_run=False):
         dom = urlparse(source_url).netloc.replace("www.", "").split(":")[0]
         if dom:
             try:
-                socket.gethostbyname(dom)
+                loop = asyncio.get_event_loop()
+                await loop.run_in_executor(None, socket.gethostbyname, dom)
             except Exception:
                 print(f"     [ERROR] Domain {dom} failed DNS resolution")
                 return {"status": "ERROR", "form_url": source_url, "detail": "err_name_not_resolved (DNS resolution failed)", "variant": ""}
@@ -1435,9 +1436,23 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
     # Preview data must never enter the production outreach ledger.
     log_path = OUTREACH_DIR / "preview_artifacts" / "form_submissions_log.csv" if is_dry_run else LOG_CSV
     log_path.parent.mkdir(parents=True, exist_ok=True)
+    _expected_fields = ["timestamp", "firm", "name", "state", "target_url", "form_url", "status", "detail", "variant"]
     file_exists = log_path.exists()
+    # Migrate stale 8-column header -> 9-column header (adds 'variant')
+    if file_exists:
+        try:
+            with open(log_path, "r", encoding="utf-8", newline="") as hf:
+                first_line = hf.readline().strip()
+            if first_line and "variant" not in first_line:
+                with open(log_path, "r", encoding="utf-8", newline="") as hf:
+                    all_content = hf.read()
+                with open(log_path, "w", encoding="utf-8", newline="") as hf:
+                    hf.write(all_content.replace(first_line, ",".join(_expected_fields), 1))
+                print("[*] Migrated form_submissions_log.csv header: added 'variant' column")
+        except Exception:
+            pass
     with open(log_path, "a", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["timestamp", "firm", "name", "state", "target_url", "form_url", "status", "detail", "variant"])
+        writer = csv.DictWriter(f, fieldnames=_expected_fields)
         if not file_exists:
             writer.writeheader()
         for r in results:
