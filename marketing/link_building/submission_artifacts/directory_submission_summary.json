@@ -1,12 +1,10 @@
 [
   {
-    "directory": "BetaList",
-    "url": "https://betalist.com/submit",
+    "directory": "LegalTech Hub",
+    "url": "https://www.legaltechnologyhub.com/submit",
     "status": "UNSUPPORTED_FORM_LAYOUT",
-    "fields_filled": [
-      "contact_email"
-    ],
-    "notes": "Only detected 1 matchable fields. May require bespoke profile claim flow.",
-    "screenshot": "/Users/davidmahler/revenue-engine/marketing/link_building/submission_artifacts/betalist_populated.png"
+    "fields_filled": [],
+    "notes": "Only detected 0 matchable fields. May require bespoke profile claim flow.",
+    "screenshot": "/Users/davidmahler/revenue-engine/marketing/link_building/submission_artifacts/legaltech_hub_populated.png"
   }
 ]

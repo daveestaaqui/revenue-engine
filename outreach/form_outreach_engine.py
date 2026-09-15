@@ -634,7 +634,10 @@ async def find_contact_page(page, base_url, explicit_form_url=None):
         except Exception:
             continue
 
-    return page.url or base_url
+    res_url = page.url or base_url
+    if "chrome-error://" in res_url.lower() or "chromewebdata" in res_url.lower():
+        return None
+    return res_url
 
 
 async def fill_and_submit_form(page, target, is_dry_run=False):
@@ -1080,10 +1083,24 @@ async def process_target(browser, target, is_dry_run=False):
             if bp in source_url.lower() or bp in explicit_form_url.lower():
                 return {"status": "ERROR", "detail": "Domain expired / parked broker page", "variant": ""}
 
+        # Fast DNS pre-validation before browser navigation
+        import socket
+        from urllib.parse import urlparse
+        dom = urlparse(source_url).netloc.replace("www.", "").split(":")[0]
+        if dom:
+            try:
+                socket.gethostbyname(dom)
+            except Exception:
+                print(f"     [ERROR] Domain {dom} failed DNS resolution")
+                return {"status": "ERROR", "form_url": source_url, "detail": "err_name_not_resolved (DNS resolution failed)", "variant": ""}
+
         print(f"  🌐 Visiting {firm} ({source_url})...")
         # Locate contact form page (using explicit Form_URL first if available)
         form_url = await find_contact_page(page, source_url, explicit_form_url=explicit_form_url)
         print(f"     Found form page: {form_url}")
+
+        if not form_url or "chrome-error://" in str(form_url).lower() or "chromewebdata" in str(form_url).lower():
+            return {"status": "ERROR", "form_url": form_url or source_url, "detail": "err_name_not_resolved (Chrome navigation error)", "variant": ""}
 
         # Check if landed on domain broker page
         for bp in ["hugedomains.com", "dan.com", "sedo.com", "afternic.com", "godaddy.com/domainsearch"]:
@@ -1177,6 +1194,16 @@ def get_submission_history(cooldown_days=90):
     dead_domains = set()
     latest_success = {}
 
+    bounced_path = OUTREACH_DIR / "bounced_emails.json"
+    if bounced_path.exists():
+        try:
+            with open(bounced_path, "r", encoding="utf-8") as bf:
+                for b_item in json.load(bf):
+                    b_dom = clean_domain(b_item)
+                    if b_dom: dead_domains.add(b_dom)
+        except Exception:
+            pass
+
     if LOG_CSV.exists():
         with open(LOG_CSV, "r", encoding="utf-8") as f:
             for row in csv.DictReader(f):
@@ -1189,7 +1216,7 @@ def get_submission_history(cooldown_days=90):
                 timestamp_str = row.get("timestamp", "")
 
                 # Permanently exclude dead / broker domains
-                if "ERROR" in status and any(err in detail for err in ["err_name_not_resolved", "broker", "hugedomains", "expired", "dan.com", "sedo.com"]):
+                if ("ERROR" in status or "FAILED" in status) and any(err in detail for err in ["err_name_not_resolved", "chrome-error", "chromewebdata", "broker", "hugedomains", "expired", "dan.com", "sedo.com"]):
                     if d1: dead_domains.add(d1)
                     if d2: dead_domains.add(d2)
                     continue

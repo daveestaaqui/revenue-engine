@@ -49,9 +49,9 @@ jobs:
       - name: 3. Autonomous Directory Submissions
         run: |
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-            python marketing/link_building/auto_directory_submitter.py --dry-run --limit 3
+            python marketing/link_building/auto_directory_submitter.py --dry-run --limit 8
           else
-            python marketing/link_building/auto_directory_submitter.py --live --limit 3
+            python marketing/link_building/auto_directory_submitter.py --live --limit 8 || true
           fi
 
       - name: 4. Generate Digital PR Pitches

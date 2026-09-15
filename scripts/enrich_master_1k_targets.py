@@ -134,7 +134,7 @@ def run():
 
     for r in master:
         dom = clean_dom(r.get("Source_URL", ""))
-        if not dom or dom in seen_domains:
+        if not dom or dom in seen_domains or dom in bounced:
             continue
         seen_domains.add(dom)
 

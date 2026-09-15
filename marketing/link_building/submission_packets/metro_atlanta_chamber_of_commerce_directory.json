@@ -1,0 +1,22 @@
+{
+  "directory_name": "Metro Atlanta Chamber of Commerce Directory",
+  "domain_authority": "75",
+  "category": "Directory",
+  "submission_url": "https://www.metroatlantachamber.com/directory",
+  "company_name": "Surplus Docket",
+  "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
+  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
+  "website_url": "https://surplusdocket.com/",
+  "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
+  "api_docs_url": "https://surplusdocket.com/api-documentation.html",
+  "keywords": [
+    "LegalTech",
+    "Legal Software",
+    "Tax Deed Surplus",
+    "Excess Proceeds",
+    "Court Dockets",
+    "Foreclosure Intelligence"
+  ],
+  "target_anchor": "Atlanta Excess Funds Platform",
+  "status": "READY_FOR_SUBMISSION"
+}

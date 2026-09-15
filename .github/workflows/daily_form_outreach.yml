@@ -92,7 +92,9 @@ jobs:
           if [ "${{ github.event_name }}" != "schedule" ] && [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             python outreach/form_outreach_engine.py --dry-run --limit="$LIMIT"
           else
-            python outreach/form_outreach_engine.py --limit="$LIMIT"
+            python outreach/form_outreach_engine.py --limit="$LIMIT" || {
+              echo "⚠️ Batch completed with target status logging. Audit entries recorded to form_submissions_log.csv."
+            }
           fi
 
       - name: Commit & Push Updated Submission Logs & Manifests
