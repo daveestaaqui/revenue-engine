@@ -246,3 +246,4 @@
 [2026-09-15 16:43:04]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
 [2026-09-15 16:43:05]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
 [2026-09-15 16:43:05]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-09-15 22:17:28]   ⏭️ Skipped non-prospect from noreply-location-sharing@google.com (Sub: 'You're sharing your real-time location w'): Message identified as automated notification, bounce, or system alert
