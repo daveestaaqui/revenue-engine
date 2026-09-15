@@ -78,8 +78,14 @@ jobs:
         run: |
           git config --global user.name "Surplus Docket Syndication Bot"
           git config --global user.email "syndication@surplusdocket.com"
-          git add site/feed.xml site/rss.xml marketing/syndicate/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(syndicate): autonomous search engine indexing & article publication [skip ci]" && git pull --rebase origin main && git push)
+          git add site/feed.xml site/rss.xml marketing/syndicate/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/ || true
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(syndicate): autonomous search engine indexing & article publication [skip ci]"
+            git checkout -- . || true
+            git clean -fd || true
+            git pull --rebase origin main
+            git push
+          fi
 
       - name: 8. Upload Syndication Registry Artifact
         uses: actions/upload-artifact@v4
