@@ -29,6 +29,10 @@ permissions:
   contents: write
   issues: write
 
+concurrency:
+  group: autonomous-bug-resolver
+  cancel-in-progress: false
+
 jobs:
   triage-and-resolve:
     # Only run on workflow_dispatch or issues opened/reopened/labeled by repository owners or members
@@ -93,8 +97,9 @@ jobs:
             git commit -m "fix(auto-heal): self-remediated issue #${ISSUE_REF} [skip ci]"
             git checkout -- . || true
             git clean -fd || true
-            git pull --rebase origin main
-            git push
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
+            done
           fi
 
       - name: Upload Diagnostic Logs & Email Artifact

@@ -31,9 +31,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: manage-subscribers
+  cancel-in-progress: false
+
 jobs:
   manage-subscribers:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -77,6 +82,7 @@ jobs:
             git commit -m "chore(subscribers): update subscriber registry [skip ci]"
             git checkout -- . || true
             git clean -fd || true
-            git pull --rebase origin main
-            git push
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
+            done
           fi

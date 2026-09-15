@@ -16,15 +16,25 @@ Features:
 import asyncio
 import csv
 import json
+import logging
 import os
-import tempfile
 import random
 import re
+import socket
 import sys
+import tempfile
 import time
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlparse
 from playwright.async_api import async_playwright
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger("form_outreach_engine")
 
 # Dynamic Paths (works on both local Mac and GitHub Actions)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -553,7 +563,6 @@ async def has_form_elements(page):
 
 async def find_contact_page(page, base_url, explicit_form_url=None):
     """Attempts to locate the Contact or Consultation page on the firm's website."""
-    from urllib.parse import urlparse
     base_netloc = urlparse(base_url).netloc.replace("www.", "")
 
     # 1. First priority: if target already has an explicit Form_URL, navigate directly
@@ -1084,8 +1093,6 @@ async def process_target(browser, target, is_dry_run=False):
                 return {"status": "ERROR", "detail": "Domain expired / parked broker page", "variant": ""}
 
         # Fast DNS pre-validation before browser navigation
-        import socket
-        from urllib.parse import urlparse
         dom = urlparse(source_url).netloc.replace("www.", "").split(":")[0]
         if dom:
             try:
