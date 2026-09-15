@@ -35,24 +35,34 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          playwright install chromium --with-deps
 
-      - name: 1. Generate Latest Syndication Articles
+      - name: 1. Generate Latest RSS Feeds & Syndication Articles
         run: |
+          python scripts/generate_rss_feed.py
           python marketing/link_building/syndication_publisher.py
 
       - name: 2. Refresh High-DA Directory Citations & Packets
         run: |
           python marketing/link_building/directory_citations.py
 
-      - name: 3. Generate Digital PR Pitches
+      - name: 3. Autonomous Directory Submissions
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python marketing/link_building/auto_directory_submitter.py --dry-run --limit 3
+          else
+            python marketing/link_building/auto_directory_submitter.py --live --limit 3
+          fi
+
+      - name: 4. Generate Digital PR Pitches
         run: |
           python marketing/link_building/pr_pitcher.py
 
-      - name: 4. Generate County Clerk & Legal Aid Educational Letters
+      - name: 5. Generate County Clerk & Legal Aid Educational Letters
         run: |
           python marketing/link_building/clerk_outreach_generator.py
 
-      - name: 5. Execute Article Submissions, IndexNow & Search Engine Indexing
+      - name: 6. Execute Article Submissions, IndexNow & Search Engine Indexing
         env:
           DEV_TO_API_KEY: ${{ secrets.DEV_TO_API_KEY || secrets.DEVTO_API_KEY }}
           MEDIUM_TOKEN: ${{ secrets.MEDIUM_TOKEN }}
@@ -64,14 +74,14 @@ jobs:
             python marketing/link_building/auto_article_submitter.py
           fi
 
-      - name: 6. Commit & Push Updated Submission Logs, Citations & Syndications
+      - name: 7. Commit & Push Updated Submission Logs, Citations & Syndications
         run: |
           git config --global user.name "Surplus Docket Syndication Bot"
           git config --global user.email "syndication@surplusdocket.com"
-          git add marketing/syndicate/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/
+          git add site/feed.xml site/rss.xml marketing/syndicate/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(syndicate): autonomous search engine indexing & article publication [skip ci]" && git pull --rebase origin main && git push)
 
-      - name: 7. Upload Syndication Registry Artifact
+      - name: 8. Upload Syndication Registry Artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:

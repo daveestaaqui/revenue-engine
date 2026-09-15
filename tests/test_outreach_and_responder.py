@@ -175,6 +175,21 @@ class TestBounceAndReceiptClassification(unittest.TestCase):
         )
         self.assertTrue(is_automated_receipt_or_bounce(msg, "MAILER-DAEMON@mail.server.com", "Undelivered Mail Returned to Sender"))
 
+    def test_dmarc_report_identification(self):
+        msg = email.message_from_string(
+            "Subject: Report Domain: surplusdocket.com Submitter: fastmail.com Report-ID:2026.09.15.2153048471\n"
+            "From: reports@fastmaildmarc.com\n\n"
+            "DMARC aggregate telemetry data."
+        )
+        self.assertTrue(is_automated_receipt_or_bounce(msg, "reports@fastmaildmarc.com", "Report Domain: surplusdocket.com Submitter: fastmail.com"))
+
+        msg_google = email.message_from_string(
+            "Subject: Report domain: surplusdocket.com Submitter: google.com\n"
+            "From: noreply-dmarc-support@google.com\n\n"
+            "Google DMARC report."
+        )
+        self.assertTrue(is_automated_receipt_or_bounce(msg_google, "noreply-dmarc-support@google.com", "Report domain: surplusdocket.com Submitter: google.com"))
+
     def test_genuine_prospect_reply(self):
         msg = email.message_from_string(
             "Subject: Re: Florida surplus & excess proceeds data\n"

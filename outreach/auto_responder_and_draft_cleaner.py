@@ -199,6 +199,8 @@ SYSTEM_BLOCKLIST_DOMAINS = {
     # Retail / E-commerce / Banking
     "amazon.com", "paypal.com", "citi.com", "citicards.com", "chase.com", "bankofamerica.com",
     "wellsfargo.com", "capitalist.net", "starkbros.com",
+    # DMARC telemetry & report collectors
+    "fastmaildmarc.com", "dmarc.postmarkapp.com", "valimail.com", "dmarcian.com",
     # Internal domain
     "surplusdocket.com",
 }
@@ -209,7 +211,8 @@ SYSTEM_SENDER_PATTERNS = [
     "mailer-daemon", "postmaster", "bounce", "notification", "notifications",
     "alert", "alerts", "security", "support", "billing", "invoicing",
     "account", "accounts", "service", "services", "team", "newsletter", "digest",
-    "confirm", "confirmation", "verify", "verification", "auto-reply", "automated"
+    "confirm", "confirmation", "verify", "verification", "auto-reply", "automated",
+    "dmarc", "reports"
 ]
 
 # Subjects matching these cues are system / administrative emails
@@ -217,7 +220,8 @@ SYSTEM_SUBJECT_BLOCKLIST = [
     "confirmation", "verification", "verify", "security alert",
     "payment", "invoice", "statement", "receipt", "shipping confirmation",
     "password", "login", "welcome to", "delivery status", "failure notice",
-    "undelivered mail", "out of office", "automatic reply", "auto-reply", "missing email"
+    "undelivered mail", "out of office", "automatic reply", "auto-reply", "missing email",
+    "report domain", "dmarc report", "dmarc aggregate"
 ]
 
 BANNED_FIRST_NAMES = {
@@ -707,6 +711,10 @@ def is_automated_receipt_or_bounce(msg, sender_email, subject_raw):
     s_email = sender_email.lower().strip()
     s_dom = clean_domain_str(s_email)
     local_part = s_email.split("@")[0] if "@" in s_email else s_email
+
+    # 0. DMARC authentication and telemetry reports
+    if "dmarc" in s_email or "dmarc" in s_dom or "report domain" in subj or "dmarc" in subj:
+        return True
 
     # 1. Hard domain blocklist
     if s_dom in SYSTEM_BLOCKLIST_DOMAINS:
@@ -3071,6 +3079,25 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         _, reply_to_email = parseaddr(reply_to_raw)
 
         text_body, html_body = extract_body_parts(msg)
+
+        # -------------------------------------------------------------
+        # 0. DMARC TELEMETRY AUTO-CLEANER (Auto-delete from mailbox)
+        # -------------------------------------------------------------
+        is_dmarc = (
+            "dmarc" in sender_email.lower() or
+            "fastmaildmarc" in sender_email.lower() or
+            "dmarc" in subject_raw.lower() or
+            "report domain" in subject_raw.lower()
+        )
+        if is_dmarc:
+            log(f"  🗑️ Auto-clearing automated DMARC telemetry report from {sender_email}")
+            try:
+                mail.store(mid, "+X-GM-LABELS", "\\Trash")
+            except Exception:
+                pass
+            mail.store(mid, "+FLAGS", r"(\Seen \Deleted)")
+            mail.expunge()
+            continue
 
         # -------------------------------------------------------------
         # 1. AUTO-UNSUBSCRIBE MODULE (Only for unread messages)

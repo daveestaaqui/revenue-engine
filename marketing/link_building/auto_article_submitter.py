@@ -135,6 +135,33 @@ def ping_search_engines(sitemap_url: str = f"https://{DEFAULT_HOST}/sitemap.xml"
             for name in ("google", "bing")}
 
 
+def ping_pingomatic(feed_url: str = f"https://{DEFAULT_HOST}/feed.xml", dry_run: bool = False) -> Dict[str, Any]:
+    """
+    Pings Ping-O-Matic XML-RPC protocol to notify major blog spiders and crawlers.
+    """
+    if dry_run:
+        return {
+            "status": "dry_run_success",
+            "endpoint": "http://rpc.pingomatic.com",
+            "message": "[DRY RUN] Ping-O-Matic XML-RPC notification queued."
+        }
+
+    try:
+        import xmlrpc.client
+        proxy = xmlrpc.client.ServerProxy("http://rpc.pingomatic.com", timeout=10)
+        res = proxy.weblogUpdates.ping("Surplus Docket — Court Registry Intelligence", f"https://{DEFAULT_HOST}/", feed_url)
+        return {
+            "status": "success",
+            "flerror": res.get("flerror", False),
+            "message": res.get("message", "Ping sent")
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "error": str(e)
+        }
+
+
 def parse_markdown_metadata(content: str) -> Dict[str, Any]:
     """Parses header comment or frontmatter metadata from syndication markdown."""
     meta = {
@@ -431,11 +458,14 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
     indexnow_res = submit_to_indexnow(urls, dry_run=dry_run)
     print(f"    -> IndexNow Status: {indexnow_res.get('status')} (Code: {indexnow_res.get('status_code')})")
 
-    # 2. Ping Search Engines
+    # 2. Ping Search Engines & Aggregators
     print("[*] Sitemap discovery uses robots.txt and webmaster tools; legacy pings are retired.")
     ping_res = ping_search_engines(dry_run=dry_run)
     for name, stat in ping_res.items():
         print(f"    -> {name.capitalize()}: {stat.get('status')} ({stat.get('status_code', 'N/A')})")
+
+    pingomatic_res = ping_pingomatic(dry_run=dry_run)
+    print(f"    -> Ping-O-Matic: {pingomatic_res.get('status')} ({pingomatic_res.get('message', 'N/A')})")
 
     # 3. Read syndication articles with deduplication
     syndication_results = []
@@ -479,6 +509,7 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
         "urls_indexed_count": None,
         "indexnow": indexnow_res,
         "search_engine_pings": ping_res,
+        "pingomatic": pingomatic_res,
         "syndications": syndication_results,
         "webhook": webhook_res
     }

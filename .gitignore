@@ -8,5 +8,6 @@ outreach/drafts/*.eml
 
 outreach/preview_artifacts/
 outreach/form_screenshots/
+marketing/link_building/submission_artifacts/*.png
 site-health.json
 output/*.html
