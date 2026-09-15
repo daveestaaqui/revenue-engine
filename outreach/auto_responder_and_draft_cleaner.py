@@ -201,6 +201,7 @@ SYSTEM_BLOCKLIST_DOMAINS = {
     "wellsfargo.com", "capitalist.net", "starkbros.com",
     # DMARC telemetry & report collectors
     "fastmaildmarc.com", "dmarc.postmarkapp.com", "valimail.com", "dmarcian.com",
+    "mimecastreport.com", "dmarc.yahoo.com",
     # Internal domain
     "surplusdocket.com",
 }
@@ -3086,8 +3087,10 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         is_dmarc = (
             "dmarc" in sender_email.lower() or
             "fastmaildmarc" in sender_email.lower() or
+            "mimecastreport" in sender_email.lower() or
             "dmarc" in subject_raw.lower() or
-            "report domain" in subject_raw.lower()
+            "report domain" in subject_raw.lower() or
+            "report-id" in subject_raw.lower()
         )
         if is_dmarc:
             log(f"  🗑️ Auto-clearing automated DMARC telemetry report from {sender_email}")
