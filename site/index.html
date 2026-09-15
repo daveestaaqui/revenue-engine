@@ -399,22 +399,18 @@
         <!-- 2. Data Pipeline Specifications Bar (Integrated Institutional Metric Strip) -->
         <section class="border-y border-slate-200/80 bg-white/75 backdrop-blur-sm py-6 sm:py-7 shadow-sm">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center divide-y sm:divide-y-0 lg:divide-x divide-slate-200/70">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-200/70">
                     <div class="p-2 sm:p-3 flex flex-col justify-center">
-                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-green mb-0.5 truncate tracking-tight">Six States</div>
-                        <div class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">FL, TX, GA, NC, TN, CA</div>
+                        <div class="text-xl sm:text-2xl md:text-3xl font-heading font-black text-brand-green mb-1 tracking-tight">Six Core States</div>
+                        <div class="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">FL, TX, GA, NC, TN, CA Feeds</div>
                     </div>
-                    <div class="p-2 sm:p-3 flex flex-col justify-center pt-4 sm:pt-2">
-                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-0.5 truncate tracking-tight">Multi-State</div>
-                        <div class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Tri-State &bull; 6-State Feeds</div>
+                    <div class="p-2 sm:p-3 flex flex-col justify-center pt-4 md:pt-2">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-1 tracking-tight">CSV, Excel &amp; API</div>
+                        <div class="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Mon–Fri 7:00 AM EST Morning Dispatch</div>
                     </div>
-                    <div class="p-2 sm:p-3 flex flex-col justify-center pt-4 sm:pt-2">
-                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-green mb-0.5 truncate tracking-tight">CSV &amp; Excel</div>
-                        <div class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Multi-Format + REST API</div>
-                    </div>
-                    <div class="p-2 sm:p-3 flex flex-col justify-center pt-4 sm:pt-2">
-                        <div class="text-base sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-0.5 truncate tracking-tight">100% Public</div>
-                        <div class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Clerk &amp; Court Records</div>
+                    <div class="p-2 sm:p-3 flex flex-col justify-center pt-4 md:pt-2">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-1 tracking-tight">100% Public Records</div>
+                        <div class="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Audited County Clerk Registries</div>
                     </div>
                 </div>
             </div>
@@ -1019,17 +1015,26 @@
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-5 border-t border-slate-200 mb-5 text-left">
-                        <div class="bg-white p-3 sm:p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+                        <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 flex flex-col justify-between min-h-[5.75rem]">
                             <span class="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Statutory Fee Cap</span>
-                            <span id="calc-fee-cap" class="text-base sm:text-xl font-heading font-black text-brand-green whitespace-nowrap">$17,000.00 (20%)</span>
+                            <div>
+                                <span id="calc-fee-cap" class="text-lg sm:text-2xl font-heading font-black text-brand-green leading-tight block break-words">$17,000.00</span>
+                                <span id="calc-fee-sub" class="text-[11px] sm:text-xs font-semibold text-slate-500 mt-0.5 block break-words">20% Statutory Cap</span>
+                            </div>
                         </div>
-                        <div class="bg-white p-3 sm:p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+                        <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 flex flex-col justify-between min-h-[5.75rem]">
                             <span class="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Filing Window</span>
-                            <span id="calc-window" class="text-base sm:text-xl font-heading font-black text-brand-navy whitespace-nowrap">120 Days</span>
+                            <div>
+                                <span id="calc-window" class="text-lg sm:text-2xl font-heading font-black text-brand-navy leading-tight block break-words">120 Days</span>
+                                <span id="calc-window-sub" class="text-[11px] sm:text-xs font-semibold text-slate-500 mt-0.5 block break-words">From Notice of Surplus</span>
+                            </div>
                         </div>
-                        <div class="bg-white p-3 sm:p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
-                            <span class="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Deadline</span>
-                            <span id="calc-deadline" class="text-base sm:text-xl font-heading font-black text-brand-navy whitespace-nowrap">Set Sale Date</span>
+                        <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 flex flex-col justify-between min-h-[5.75rem]">
+                            <span class="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Filing Deadline</span>
+                            <div>
+                                <span id="calc-deadline" class="text-lg sm:text-2xl font-heading font-black text-brand-navy leading-tight block break-words">Set Sale Date</span>
+                                <span id="calc-deadline-sub" class="text-[11px] sm:text-xs font-semibold text-slate-500 mt-0.5 block break-words">FRCP 6(a) / Holiday Adjusted</span>
+                            </div>
                         </div>
                     </div>
 
@@ -1053,7 +1058,7 @@
                         <div class="bg-gradient-to-br from-[#102238] via-[#1b365d] to-[#0c1827] text-white p-5 sm:p-6 rounded-2xl shadow-xl border border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">
                             <div class="w-full sm:w-auto">
                                 <span class="text-xs uppercase font-bold text-emerald-400 tracking-wider block">Estimated Net Equity:</span>
-                                <div id="calc-net-equity" class="text-xl sm:text-2xl font-heading font-black text-white whitespace-nowrap">$85,000.00</div>
+                                <div id="calc-net-equity" class="text-xl sm:text-2xl font-heading font-black text-white break-words">$85,000.00</div>
                             </div>
                             <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-between sm:justify-end">
                                 <button type="button" onclick="exportDossierTxtDirect()" class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold text-xs rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0">
@@ -1768,28 +1773,40 @@
             const junior = Math.max(0, parseFloat(document.getElementById('lien-junior')?.value) || 0);
 
             let capRate = 0.20;
-            let windowText = "120 Days (from notice)";
+            let capSub = "20% Statutory Cap (Fla. Stat. § 197.582)";
+            let windowPrimary = "120 Days";
+            let windowSub = "From Notice of Surplus";
             let daysToAdd = 120;
 
             if (state === 'TX') {
                 capRate = 0.25;
-                windowText = "2 Years (730 days)";
+                capSub = "25% Statutory Limit (Tex. Tax Code § 34.04)";
+                windowPrimary = "2 Years";
+                windowSub = "730 Days from Sale Date";
                 daysToAdd = 730;
             } else if (state === 'GA') {
                 capRate = 0.20;
-                windowText = "5 Years (Judicial/Lien)";
+                capSub = "20% Benchmark (O.C.G.A. § 48-4-5)";
+                windowPrimary = "5 Years";
+                windowSub = "Sheriff / Superior Court Interpleader";
                 daysToAdd = 1825;
             } else if (state === 'NC') {
                 capRate = 0.20;
-                windowText = "10-Day Upset / Judicial Registry";
-                daysToAdd = 365;
+                capSub = "20% Benchmark (N.C.G.S. § 105-374)";
+                windowPrimary = "10-Day Upset";
+                windowSub = "Mandatory Confirmation Window";
+                daysToAdd = 10;
             } else if (state === 'TN') {
                 capRate = 0.20;
-                windowText = "Chancery Court Motion";
+                capSub = "20% Benchmark (T.C.A. § 67-5-2501)";
+                windowPrimary = "1 Year";
+                windowSub = "Chancery Court Motion Procedure";
                 daysToAdd = 365;
             } else if (state === 'CA') {
                 capRate = 0.20;
-                windowText = "1 Year (Cal. Rev. & Tax Code § 4675)";
+                capSub = "20% Benchmark (Cal. Rev. & Tax Code § 4675)";
+                windowPrimary = "1 Year";
+                windowSub = "365 Days from Deed Recordation";
                 daysToAdd = 365;
             }
 
@@ -1797,10 +1814,16 @@
             const fee = netEquity * capRate;
 
             const feeCapEl = document.getElementById('calc-fee-cap');
-            if (feeCapEl) feeCapEl.textContent = `$${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${(capRate * 100).toFixed(0)}%)`;
+            if (feeCapEl) feeCapEl.textContent = `$${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+            const feeSubEl = document.getElementById('calc-fee-sub');
+            if (feeSubEl) feeSubEl.textContent = capSub;
             
             const winEl = document.getElementById('calc-window');
-            if (winEl) winEl.textContent = windowText;
+            if (winEl) winEl.textContent = windowPrimary;
+
+            const winSubEl = document.getElementById('calc-window-sub');
+            if (winSubEl) winSubEl.textContent = windowSub;
 
             const netEquityEl = document.getElementById('calc-net-equity');
             if (netEquityEl) {
@@ -1808,14 +1831,17 @@
             }
 
             const deadlineEl = document.getElementById('calc-deadline');
+            const deadlineSubEl = document.getElementById('calc-deadline-sub');
             if (deadlineEl) {
                 if (dateVal) {
                     const parts = dateVal.split('-');
                     const saleDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
                     const finalDeadline = rollForwardCourtDeadline(saleDate, daysToAdd);
                     deadlineEl.textContent = finalDeadline.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'});
+                    if (deadlineSubEl) deadlineSubEl.textContent = "FRCP 6(a) / Holiday Adjusted";
                 } else {
-                    deadlineEl.textContent = "Select Date";
+                    deadlineEl.textContent = "Set Sale Date";
+                    if (deadlineSubEl) deadlineSubEl.textContent = "Select date above to compute";
                 }
             }
         }
@@ -1958,8 +1984,14 @@
             const state = document.getElementById('calc-state')?.value || 'FL';
             const dateVal = document.getElementById('calc-date')?.value || '';
             const amount = Math.max(0, parseFloat(document.getElementById('calc-amount')?.value) || 0);
-            const feeCap = document.getElementById('calc-fee-cap')?.textContent || '$0.00';
-            const windowText = document.getElementById('calc-window')?.textContent || '';
+            const feeVal = document.getElementById('calc-fee-cap')?.textContent || '$0.00';
+            const feeSub = document.getElementById('calc-fee-sub')?.textContent || '';
+            const feeCap = feeSub ? `${feeVal} (${feeSub})` : feeVal;
+
+            const winPrimary = document.getElementById('calc-window')?.textContent || '';
+            const winSub = document.getElementById('calc-window-sub')?.textContent || '';
+            const windowText = winSub ? `${winPrimary} (${winSub})` : winPrimary;
+
             const deadline = document.getElementById('calc-deadline')?.textContent || '';
             const netEquity = document.getElementById('calc-net-equity')?.textContent || '$0.00';
             const mortgage = Math.max(0, parseFloat(document.getElementById('lien-mortgage')?.value) || 0);
@@ -2093,8 +2125,14 @@ user parameters. Counsel must verify all title records and recorded encumbrances
             const state = document.getElementById('calc-state')?.value || 'FL';
             const dateVal = document.getElementById('calc-date')?.value || '';
             const amount = Math.max(0, parseFloat(document.getElementById('calc-amount')?.value) || 0);
-            const feeCap = document.getElementById('calc-fee-cap')?.textContent || '$0.00';
-            const windowText = document.getElementById('calc-window')?.textContent || '';
+            const feeVal = document.getElementById('calc-fee-cap')?.textContent || '$0.00';
+            const feeSub = document.getElementById('calc-fee-sub')?.textContent || '';
+            const feeCap = feeSub ? `${feeVal} (${feeSub})` : feeVal;
+
+            const winPrimary = document.getElementById('calc-window')?.textContent || '';
+            const winSub = document.getElementById('calc-window-sub')?.textContent || '';
+            const windowText = winSub ? `${winPrimary} (${winSub})` : winPrimary;
+
             const deadline = document.getElementById('calc-deadline')?.textContent || '';
             const netEquity = document.getElementById('calc-net-equity')?.textContent || '$0.00';
             const mortgage = Math.max(0, parseFloat(document.getElementById('lien-mortgage')?.value) || 0);
