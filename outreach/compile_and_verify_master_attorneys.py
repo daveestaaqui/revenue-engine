@@ -176,7 +176,7 @@ def run():
         state_name = STATE_NAMES.get(st, st)
         source_url = f"https://{dom}"
         form_url = f"https://{dom}{form}" if form.startswith("/") else form
-        email = f"info@{dom}"
+        email = ""  # Strictly keep empty for web form targets to prevent SMTP bounces
 
         record = {
             "Rank": "",
