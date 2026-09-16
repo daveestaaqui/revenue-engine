@@ -249,3 +249,4 @@
 [2026-09-15 22:17:28]   ⏭️ Skipped non-prospect from noreply-location-sharing@google.com (Sub: 'You're sharing your real-time location w'): Message identified as automated notification, bounce, or system alert
 [2026-09-16 05:17:59]   🗑️ Auto-clearing automated DMARC telemetry report from noreply-dmarc-support@google.com
 [2026-09-16 10:11:40]   🗑️ Auto-clearing automated DMARC telemetry report from dmarcreport@microsoft.com
+[2026-09-16 15:00:06]   ⏭️ Skipped non-prospect from em@em1.cloudflare.com (Sub: 'Updates to managing AI crawlers on your '): Sender 'em@em1.cloudflare.com' is not in verified target database and not a statutory inquiry
