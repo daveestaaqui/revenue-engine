@@ -1,82 +1,130 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Surplus Docket — Daily Tax Deed Surplus &amp; Excess Proceeds Feed</title>
+    <title>Surplus Docket — Legal Intelligence &amp; Court Registry Feeds</title>
     <link>https://surplusdocket.com/</link>
-    <description>Daily public records intelligence tracking tax deed surplus and excess proceeds court dockets across Florida, Texas, and Georgia jurisdictions.</description>
+    <description>Real-time court docket intelligence, statutory surplus fund recovery analysis, and municipal lien screening for foreclosure counsel.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Sep 2026 15:13:05 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2026 18:38:00 +0000</lastBuildDate>
     <atom:link href="https://surplusdocket.com/feed.xml" rel="self" type="application/rss+xml" />
-
     <item>
-      <title>[CA - Los Angeles] Docket 2024-CA-008120 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-CA-008120</link>
-      <guid isPermaLink="false">2024-CA-008120-CA</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in Los Angeles County, CA. Governed by Cal. Rev. &amp; Tax Code § 4675. Indexed by Surplus Docket intelligence feed.</description>
+      <title>Surplus Docket Launches Autonomous Public Records Intelligence Platform for Asset Recovery Counsel Across Florida, Texas, and Georgia</title>
+      <link>https://surplusdocket.com/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html</guid>
+      <pubDate>Wed, 16 Sep 2026 18:37:28 +0000</pubDate>
+      <description>Surplus Docket officially announced the launch of its autonomous public records intelligence platform, providing structured, case-verified tax deed surplus and excess proceeds data to asset recovery attorneys, title counsel, and real estate practitioners.</description>
     </item>
     <item>
-      <title>[CA - San Diego] Docket 2024-CA-005210 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-CA-005210</link>
-      <guid isPermaLink="false">2024-CA-005210-CA</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in San Diego County, CA. Governed by Cal. Rev. &amp; Tax Code § 4675. Indexed by Surplus Docket intelligence feed.</description>
+      <title>Surplus Docket Deploys Upstream Lien Priority Screening and Chronological Evidence Graph Engine for Asset Recovery Litigators</title>
+      <link>https://surplusdocket.com/press/releases/surplus-docket-launches-evidence-graph-lien-screening.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/press/releases/surplus-docket-launches-evidence-graph-lien-screening.html</guid>
+      <pubDate>Wed, 16 Sep 2026 18:37:28 +0000</pubDate>
+      <description>Surplus Docket unveiled its automated preliminary lien screening and evidence graph engine, enabling legal counsel to evaluate recorded junior encumbrances and title priority tiers across Florida, Texas, and multi-state registries.</description>
     </item>
     <item>
-      <title>[CA - Los Angeles] Docket 2024-CA-008640 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-CA-008640</link>
-      <guid isPermaLink="false">2024-CA-008640-CA</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in Los Angeles County, CA. Governed by Cal. Rev. &amp; Tax Code § 4675. Indexed by Surplus Docket intelligence feed.</description>
+      <title>Surplus Docket Unveils Programmatic REST JSON API for Law Firm Practice Management and AI Intake Automation</title>
+      <link>https://surplusdocket.com/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html</guid>
+      <pubDate>Wed, 16 Sep 2026 18:37:28 +0000</pubDate>
+      <description>Surplus Docket introduced its programmatic REST JSON API endpoint (/api/v1/feed.json), allowing legal-tech practices to stream live court surplus records directly into their CRM intake pipelines without manual data entry.</description>
     </item>
     <item>
-      <title>[FL - Palm Beach] Docket 2024-TD-004501 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-TD-004501</link>
-      <guid isPermaLink="false">2024-TD-004501-FL</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in Palm Beach County, FL. Governed by Fla. Stat. § 197.582. Indexed by Surplus Docket intelligence feed.</description>
+      <title>Surplus Docket Expands Autonomous Registry Monitoring Across Six Jurisdictions, Surpassing $3.2 Million in Audited Excess Proceeds</title>
+      <link>https://surplusdocket.com/press/releases/surplus-docket-expands-six-state-registry-monitoring.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/press/releases/surplus-docket-expands-six-state-registry-monitoring.html</guid>
+      <pubDate>Wed, 16 Sep 2026 18:37:28 +0000</pubDate>
+      <description>Surplus Docket announced the expansion of its court registry monitoring infrastructure to encompass six key judicial jurisdictions, indexing more than $3.2 million in pre-cleared, unencumbered surplus funds for licensed recovery practitioners.</description>
     </item>
     <item>
-      <title>[NC - Mecklenburg] Docket 2024-NC-003110 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-NC-003110</link>
-      <guid isPermaLink="false">2024-NC-003110-NC</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in Mecklenburg County, NC. Governed by N.C.G.S. § 105-374. Indexed by Surplus Docket intelligence feed.</description>
+      <title>Recovering Deceased Owner Surplus Funds: Affidavits of Heirship &amp; Small Estate Administration</title>
+      <link>https://surplusdocket.com/blog/posts/probate-heirship-affidavit-surplus-recovery-guide.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/probate-heirship-affidavit-surplus-recovery-guide.html</guid>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
+      <description>A practitioner&#x27;s guide to establishing standing, drafting heirship affidavits, and navigating probate administration when surplus funds originate from deceased record owners.</description>
     </item>
     <item>
-      <title>[GA - Fulton] Docket 2024-GA-003810 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-GA-003810</link>
-      <guid isPermaLink="false">2024-GA-003810-GA</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in Fulton County, GA. Governed by O.C.G.A. § 48-4-5. Indexed by Surplus Docket intelligence feed.</description>
+      <title>Post-Tyler v. Hennepin County Reforms: State Notice Procedures &amp; Due Process in Surplus Equity</title>
+      <link>https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-post-sale-notice-reforms.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-post-sale-notice-reforms.html</guid>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
+      <description>How the Supreme Court&#x27;s landmark Fifth Amendment ruling in Tyler v. Hennepin County (598 U.S. 631) is reshaping county clerk post-sale notice requirements and excess proceeds claims nationwide.</description>
     </item>
     <item>
-      <title>[TX - Harris] Docket 2024-TX-04812 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-TX-04812</link>
-      <guid isPermaLink="false">2024-TX-04812-TX</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in Harris County, TX. Governed by Tex. Tax Code § 34.04. Indexed by Surplus Docket intelligence feed.</description>
+      <title>Bankruptcy Automatic Stays and Tax Sale Surplus Funds: 11 U.S.C. § 362 Analysis</title>
+      <link>https://surplusdocket.com/blog/posts/bankruptcy-automatic-stay-surplus-funds-11-usc-362.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/bankruptcy-automatic-stay-surplus-funds-11-usc-362.html</guid>
+      <pubDate>Sun, 13 Sep 2026 00:00:00 +0000</pubDate>
+      <description>How bankruptcy petitions filed before or after tax deed sales trigger the 11 U.S.C. § 362 automatic stay, impact court registry funds, and require relief from stay motions.</description>
     </item>
     <item>
-      <title>[TN - Davidson] Docket 2024-TN-002190 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-TN-002190</link>
-      <guid isPermaLink="false">2024-TN-002190-TN</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in Davidson County, TN. Governed by T.C.A. § 67-5-2501. Indexed by Surplus Docket intelligence feed.</description>
+      <title>Tennessee Delinquent Tax Sale Surplus Recovery: Chancery Court Petitions under T.C.A. § 67-5-2501</title>
+      <link>https://surplusdocket.com/blog/posts/tennessee-delinquent-tax-sale-surplus-guide-tca-67-5-2501.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/tennessee-delinquent-tax-sale-surplus-guide-tca-67-5-2501.html</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Strategic guide to recovering excess proceeds from Tennessee Chancery Court tax sales, Clerk &amp; Master registry administration, and statutory claim procedures under T.C.A. § 67-5-2501 et seq.</description>
     </item>
     <item>
-      <title>[CA - San Diego] Docket 2024-CA-005780 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-CA-005780</link>
-      <guid isPermaLink="false">2024-CA-005780-CA</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in San Diego County, CA. Governed by Cal. Rev. &amp; Tax Code § 4675. Indexed by Surplus Docket intelligence feed.</description>
+      <title>North Carolina Tax Foreclosure Surplus Recovery: N.C.G.S. § 105-374(q) and Upset Bid Rules</title>
+      <link>https://surplusdocket.com/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Procedural analysis of North Carolina judicial tax foreclosure sales, the 10-day upset bid period under N.C.G.S. § 1-339.25, and surplus proceeds petitions before the Clerk of Superior Court under N.C.G.S. § 105-374(q).</description>
     </item>
     <item>
-      <title>[GA - Cobb] Docket 2024-GA-001550 Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket=2024-GA-001550</link>
-      <guid isPermaLink="false">2024-GA-001550-GA</guid>
-      <pubDate>Wed, 16 Sep 2026 15:13:05 GMT</pubDate>
-      <description>Public tax deed surplus docket filing in Cobb County, GA. Governed by O.C.G.A. § 48-4-5. Indexed by Surplus Docket intelligence feed.</description>
+      <title>Mortgage Foreclosure Surplus vs. Tax Deed Surplus: Procedural Differences, 60-Day Deadlines, and Priority</title>
+      <link>https://surplusdocket.com/blog/posts/mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions.html</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Comparative legal analysis of judicial foreclosure surplus proceedings versus administrative tax deed auctions, detailing distinct statutory timelines and lienholder standing.</description>
+    </item>
+    <item>
+      <title>Probate Surplus Recovery: How Letters of Administration and Summary Administration Unlock Court Registry Funds</title>
+      <link>https://surplusdocket.com/blog/posts/probate-surplus-recovery-estate-administration-guide.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/probate-surplus-recovery-estate-administration-guide.html</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Strategic blueprint for probate counsel navigating deceased-owner tax deed dockets, summary administration petitions, and heirship claims in court registries.</description>
+    </item>
+    <item>
+      <title>Tyler v. Hennepin County: Supreme Court Ruling Unlocks $8B+ in Recoverable Tax Surplus</title>
+      <link>https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
+      <description>A legal breakdown of the unanimous 9-0 Supreme Court ruling under the Takings Clause, invalidating home equity theft and expanding nationwide asset recovery practice areas.</description>
+    </item>
+    <item>
+      <title>California Excess Proceeds from Tax-Defaulted Property Sales: Cal. Rev. &amp; Tax Code § 4675</title>
+      <link>https://surplusdocket.com/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html</guid>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Detailed legal analysis of California&#x27;s strict 1-year statute of limitations from deed recording, Board of Supervisors claim procedures, and statutory assignment restrictions.</description>
+    </item>
+    <item>
+      <title>Georgia Tax Sale Excess Funds: A Practitioner&#x27;s Guide to O.C.G.A. § 48-4-5 and Superior Court Interpleader</title>
+      <link>https://surplusdocket.com/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+      <description>A practitioner&#x27;s guide to Georgia&#x27;s 5-year surplus claim period, county tax commissioner claim procedures, sheriff tax sales, and lien priority distribution.</description>
+    </item>
+    <item>
+      <title>Why Institutional Lien Pre-Filtering Multiplies Recovery Law Firm ROI</title>
+      <link>https://surplusdocket.com/blog/posts/institutional-lien-filtering-asset-recovery.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/institutional-lien-filtering-asset-recovery.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      <description>How raw county clerk lists waste hundreds of billable hours on mortgage servicers and bank liens, and how automated pre-filtering isolates recoverable owner equity.</description>
+    </item>
+    <item>
+      <title>Florida Tax Deed Surplus Recovery: A Practical Guide to Fla. Stat. § 197.582</title>
+      <link>https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html</guid>
+      <pubDate>Sat, 22 Aug 2026 00:00:00 +0000</pubDate>
+      <description>An in-depth legal analysis of the 120-day claim window, clerk notice procedures, statutory priority of liens, and the 20% representative fee cap under Florida law.</description>
+    </item>
+    <item>
+      <title>Texas Tax Sale Excess Proceeds: Filing Petitions under Tex. Tax Code § 34.04</title>
+      <link>https://surplusdocket.com/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html</link>
+      <guid isPermaLink="true">https://surplusdocket.com/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html</guid>
+      <pubDate>Sat, 22 Aug 2026 00:00:00 +0000</pubDate>
+      <description>How excess funds from Texas tax warrant and judicial foreclosure sales are deposited into district court registries, with procedural rules for formal judicial petitions.</description>
     </item>
   </channel>
 </rss>

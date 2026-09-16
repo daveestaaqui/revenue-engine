@@ -5,6 +5,62 @@
     "status": "UNSUPPORTED_FORM_LAYOUT",
     "fields_filled": [],
     "notes": "Only detected 0 matchable fields. May require bespoke profile claim flow.",
-    "screenshot": "/Users/davidmahler/revenue-engine/marketing/link_building/submission_artifacts/legaltech_hub_populated.png"
+    "screenshot": "/home/runner/work/revenue-engine/revenue-engine/marketing/link_building/submission_artifacts/legaltech_hub_populated.png"
+  },
+  {
+    "directory": "Justia Legal Resources",
+    "url": "https://lawyers.justia.com/resources",
+    "status": "UNSUPPORTED_FORM_LAYOUT",
+    "fields_filled": [],
+    "notes": "Only detected 0 matchable fields. May require bespoke profile claim flow.",
+    "screenshot": "/home/runner/work/revenue-engine/revenue-engine/marketing/link_building/submission_artifacts/justia_legal_resources_populated.png"
+  },
+  {
+    "directory": "HG.org Legal Resources",
+    "url": "https://www.hg.org/add-legal-service.html",
+    "status": "NETWORK_OR_TIMEOUT_ERROR",
+    "fields_filled": [],
+    "notes": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.hg.org/add-legal-service.html\nCall log:\n  - navigating to \"https://www.hg.org/add-legal-service.h",
+    "screenshot": ""
+  },
+  {
+    "directory": "LawNext LegalTech Directory",
+    "url": "https://directory.lawnext.com/claim-or-add/",
+    "status": "NETWORK_OR_TIMEOUT_ERROR",
+    "fields_filled": [],
+    "notes": "Page.goto: Navigation to \"https://directory.lawnext.com/claim-or-add/\" is interrupted by another navigation to \"chrome-error://chromewebdata/\"\nCall lo",
+    "screenshot": ""
+  },
+  {
+    "directory": "American Bar Association Legal Technology Resource Center",
+    "url": "https://www.americanbar.org/submit",
+    "status": "NETWORK_OR_TIMEOUT_ERROR",
+    "fields_filled": [],
+    "notes": "Page.goto: Navigation to \"https://www.americanbar.org/submit\" is interrupted by another navigation to \"https://directory.lawnext.com/claim-or-add/\"\nCa",
+    "screenshot": ""
+  },
+  {
+    "directory": "ILTA (International Legal Technology Association)",
+    "url": "https://www.iltanet.org/resources",
+    "status": "NETWORK_OR_TIMEOUT_ERROR",
+    "fields_filled": [],
+    "notes": "Page.goto: Navigation to \"https://www.iltanet.org/resources\" is interrupted by another navigation to \"https://www.americanbar.org/submit/\"\nCall log:\n ",
+    "screenshot": ""
+  },
+  {
+    "directory": "FindLaw Legal Technology Guide",
+    "url": "https://www.findlaw.com/legal-technology.html",
+    "status": "NETWORK_OR_TIMEOUT_ERROR",
+    "fields_filled": [],
+    "notes": "Page.goto: Navigation to \"https://www.findlaw.com/legal-technology.html\" is interrupted by another navigation to \"https://www.iltanet.org/resources\"\nC",
+    "screenshot": ""
+  },
+  {
+    "directory": "Legal IT Professionals Directory",
+    "url": "https://www.legalitprofessionals.com/directory",
+    "status": "NETWORK_OR_TIMEOUT_ERROR",
+    "fields_filled": [],
+    "notes": "Page.goto: Navigation to \"https://www.legalitprofessionals.com/directory\" is interrupted by another navigation to \"https://www.findlaw.com/legal-techn",
+    "screenshot": ""
   }
 ]
