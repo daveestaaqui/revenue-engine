@@ -258,3 +258,5 @@
 [2026-09-17 23:55:48]   ⏭️ Skipped non-prospect from CloudPlatform-noreply@google.com (Sub: 'Action required: your billing account 01'): Message identified as automated notification, bounce, or system alert
 [2026-09-17 23:55:48]   ⏭️ Skipped non-prospect from CloudPlatform-noreply@google.com (Sub: 'Your Project: SporlyWorks is at risk of '): Message identified as automated notification, bounce, or system alert
 [2026-09-17 23:55:49]   ⏭️ Skipped non-prospect from onlinebanking@ealerts.bankofamerica.com (Sub: 'You have important account information r'): Sender 'onlinebanking@ealerts.bankofamerica.com' is not in verified target database and not a statutory inquiry
+[2026-09-18 23:54:18]   ⏭️ Skipped non-prospect from support@magicbag.co (Sub: 'Re: Mold?'): Message identified as automated notification, bounce, or system alert
+[2026-09-18 23:54:18]   ⏭️ Skipped non-prospect from vrbo@mk.vrbo.com (Sub: 'Your Members Only Deals are live'): Sender 'vrbo@mk.vrbo.com' is not in verified target database and not a statutory inquiry
