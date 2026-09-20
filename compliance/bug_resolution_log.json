@@ -1,5 +1,43 @@
 [
   {
+    "timestamp": "2026-09-20T14:23:23.002068+00:00",
+    "issue_number": null,
+    "issue_title": "System Integrity & Link Audit",
+    "issue_body": "",
+    "issue_url": "",
+    "reporter": "User Submission",
+    "categories": [
+      "general_integrity"
+    ],
+    "resolution_status": "VERIFIED CLEAN (PENDING HUMAN REVIEW)",
+    "resolution_summary": "Automated test suite verified 100% sound (289 tests pass, 0 broken links). Per platform security policy, user-reported issues remain OPEN for maintainer verification.",
+    "healed_actions": [],
+    "test_results": {
+      "passed": true,
+      "test_count": 289,
+      "elapsed_seconds": 8.56,
+      "output": "ification queued.)\n[*] Processed 0 platform syndication targets.\n\n[DRY RUN] Email would be dispatched to: ['test@example.com']\nSubject: \ud83d\udcca Surplus Docket Weekly Marketing Report \u2014 Sep 20, 2026\nBody preview:\n======================================================================\nSURPLUS DOCKET \u2014 WEEKLY MARKETING & PIPELINE REPORT\nCoverage Period: Sep 07, 2026 \u2013 Sep 14, 2026\n======================================================================\n\n\ud83d\ude80 EXECUTIVE HEADLINE:\n\u2022 Firms Contacted (Past 7 Days): 204\n\u2022 Cumulative Firms Contacted:    163 unique firms\n\u2022 Market Penetration:            13.3% of 1229 addr...\n\n.................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 289 tests in 4.922s\n\nOK\n"
+    },
+    "link_results": {
+      "html_pages_scanned": 63,
+      "total_links_checked": 2035,
+      "broken_links": [],
+      "broken_assets": [],
+      "is_healthy": true
+    },
+    "python_health": {
+      "files_checked": 87,
+      "errors": [],
+      "is_healthy": true
+    },
+    "statutory_health": {
+      "status": "verified",
+      "jurisdictions_count": 6,
+      "missing_states": [],
+      "is_healthy": true
+    }
+  },
+  {
     "timestamp": "2026-09-19T14:03:02.151783+00:00",
     "issue_number": null,
     "issue_title": "System Integrity & Link Audit",
