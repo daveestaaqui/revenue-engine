@@ -272,3 +272,5 @@
 [2026-09-20 14:53:44]   🗑️ IMAP: Removed sent draft for: dwashburn@haconcapecod.org
 [2026-09-20 14:53:45] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
 [2026-09-20 17:59:58]   ⏭️ Skipped non-prospect from no-reply@accounts.google.com (Sub: 'Security alert for avamahler2017@gmail.c'): Message identified as automated notification, bounce, or system alert
+[2026-09-20 22:43:17]   ⏭️ Skipped non-prospect from auto-confirm@amazon.com (Sub: 'Ordered: 1 Snack Foods item'): Message identified as automated notification, bounce, or system alert
+[2026-09-20 22:43:18]   ⏭️ Skipped non-prospect from no-reply@awin.com (Sub: 'A reason to revisit our invitation'): Message identified as automated notification, bounce, or system alert
