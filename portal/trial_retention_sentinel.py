@@ -131,23 +131,44 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Counsel — Practice Quick-Start</title>
     <style type="text/css">
+        body {{
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #ffffff !important;
+        }}
+        .email-wrapper {{
+            width: 100% !important;
+            background-color: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }}
+        .email-outer-td {{
+            padding: 0 !important;
+            margin: 0 !important;
+        }}
+        .email-container {{
+            width: 100% !important;
+            max-width: 680px !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 0 auto !important;
+            background-color: #ffffff !important;
+        }}
         @media only screen and (max-width: 680px) {{
-            .email-wrapper {{ width: 100% !important; }}
-            .email-outer-td {{ padding: 8px 4px !important; }}
-            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
-            .content-cell {{ padding: 22px 16px !important; }}
-            .header-cell {{ padding: 18px 16px !important; }}
-            .nav-cell {{ padding: 10px 14px !important; }}
+            .content-cell {{ padding: 20px 16px !important; }}
+            .header-cell {{ padding: 16px 16px !important; }}
+            .nav-cell {{ padding: 8px 14px !important; }}
             .header-tag-cell {{ display: none !important; }}
             .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
         <tr>
-            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08);">
+            <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
                     <tr>
                         <td class="header-cell" style="background-color: #ffffff; padding: 22px 32px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
@@ -292,24 +313,45 @@ surplusdocket.com • dockets@surplusdocket.com
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice Advisory — Statutory Claim Windows</title>
     <style type="text/css">
+        body {{
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #ffffff !important;
+        }}
+        .email-wrapper {{
+            width: 100% !important;
+            background-color: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }}
+        .email-outer-td {{
+            padding: 0 !important;
+            margin: 0 !important;
+        }}
+        .email-container {{
+            width: 100% !important;
+            max-width: 680px !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 0 auto !important;
+            background-color: #ffffff !important;
+        }}
         @media only screen and (max-width: 680px) {{
-            .email-wrapper {{ width: 100% !important; }}
-            .email-outer-td {{ padding: 8px 4px !important; }}
-            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
-            .content-cell {{ padding: 22px 16px !important; }}
-            .header-cell {{ padding: 18px 16px !important; }}
-            .nav-cell {{ padding: 10px 14px !important; }}
+            .content-cell {{ padding: 20px 16px !important; }}
+            .header-cell {{ padding: 16px 16px !important; }}
+            .nav-cell {{ padding: 8px 14px !important; }}
             .header-tag-cell {{ display: none !important; }}
             .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
         <tr>
-            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
+            <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
                 <!-- Main Card Container -->
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08);">
+                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
                     
                     <!-- Top Brand Header -->
                     <tr>
@@ -512,24 +554,45 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courtesy Notice — Practice Evaluation Summary</title>
     <style type="text/css">
+        body {{
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #ffffff !important;
+        }}
+        .email-wrapper {{
+            width: 100% !important;
+            background-color: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }}
+        .email-outer-td {{
+            padding: 0 !important;
+            margin: 0 !important;
+        }}
+        .email-container {{
+            width: 100% !important;
+            max-width: 680px !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 0 auto !important;
+            background-color: #ffffff !important;
+        }}
         @media only screen and (max-width: 680px) {{
-            .email-wrapper {{ width: 100% !important; }}
-            .email-outer-td {{ padding: 8px 4px !important; }}
-            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
-            .content-cell {{ padding: 22px 16px !important; }}
-            .header-cell {{ padding: 18px 16px !important; }}
-            .nav-cell {{ padding: 10px 14px !important; }}
+            .content-cell {{ padding: 20px 16px !important; }}
+            .header-cell {{ padding: 16px 16px !important; }}
+            .nav-cell {{ padding: 8px 14px !important; }}
             .header-tag-cell {{ display: none !important; }}
             .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
         <tr>
-            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
+            <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
                 <!-- Main Card Container -->
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08);">
+                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
                     
                     <!-- Top Brand Header -->
                     <tr>
@@ -709,23 +772,44 @@ Reactivate Subscription: {STRIPE_CHECKOUT_URL}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docket Intelligence Update — Priority Reactivation</title>
     <style type="text/css">
+        body {{
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #ffffff !important;
+        }}
+        .email-wrapper {{
+            width: 100% !important;
+            background-color: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }}
+        .email-outer-td {{
+            padding: 0 !important;
+            margin: 0 !important;
+        }}
+        .email-container {{
+            width: 100% !important;
+            max-width: 680px !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 0 auto !important;
+            background-color: #ffffff !important;
+        }}
         @media only screen and (max-width: 680px) {{
-            .email-wrapper {{ width: 100% !important; }}
-            .email-outer-td {{ padding: 8px 4px !important; }}
-            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
-            .content-cell {{ padding: 22px 16px !important; }}
-            .header-cell {{ padding: 18px 16px !important; }}
-            .nav-cell {{ padding: 10px 14px !important; }}
+            .content-cell {{ padding: 20px 16px !important; }}
+            .header-cell {{ padding: 16px 16px !important; }}
+            .nav-cell {{ padding: 8px 14px !important; }}
             .header-tag-cell {{ display: none !important; }}
             .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
         <tr>
-            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08);">
+            <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
+                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
                     <tr>
                         <td class="header-cell" style="background-color: #ffffff; padding: 22px 32px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">

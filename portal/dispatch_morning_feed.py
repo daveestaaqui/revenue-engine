@@ -228,13 +228,7 @@ def compose_email_content(subscriber, stats, date_str):
         </table>
         """
 
-    text_body = f"""Good morning {name},
-
-Here is your daily Surplus Docket court intelligence briefing for {date_str}.
-
-Filings across 6 core states have been audited against official county court registries with senior mortgages, institutional liens, and junior municipal encumbrances filtered upstream.
-
-BENCHMARK SUMMARY:
+    text_body = f"""BENCHMARK SUMMARY ({date_str}):
 • Active Verified Records: {rec_count} files
 • Gross Unencumbered Surplus: {total_bal_fmt}
 • Upstream Bank Lien Filtering: 100% Verified (Zero Bank Liens)
@@ -249,13 +243,10 @@ RESOURCES & ACCOUNT:
 • Subscriber Billing & Seat Management: https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00
 • REST API Documentation: https://surplusdocket.com/api-documentation.html
 
-Best regards,
-
-Surplus Docket Intelligence
-Court Registry Ingestion Desk | Surplus Docket
+---
+Surplus Docket Intelligence • Court Registry Ingestion Desk
 surplusdocket.com • dockets@surplusdocket.com
 
----
 {LEGAL_DISCLAIMER}
 """
 
@@ -282,31 +273,36 @@ surplusdocket.com • dockets@surplusdocket.com
             outline: none;
             text-decoration: none;
         }}
+        body {{
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #ffffff !important;
+        }}
+        .email-wrapper {{
+            width: 100% !important;
+            background-color: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }}
+        .email-outer-td {{
+            padding: 0 !important;
+            margin: 0 !important;
+        }}
+        .email-container {{
+            width: 100% !important;
+            max-width: 680px !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 0 auto !important;
+            background-color: #ffffff !important;
+        }}
         @media only screen and (max-width: 640px) {{
-            body {{
-                padding: 0 !important;
-                margin: 0 !important;
-                background-color: #ffffff !important;
-            }}
-            .email-wrapper {{
-                width: 100% !important;
-                background-color: #ffffff !important;
-            }}
-            .email-outer-td {{
-                padding: 0 !important;
-            }}
-            .email-container {{
-                width: 100% !important;
-                max-width: 100% !important;
-                border-radius: 0 !important;
-                border: none !important;
-                box-shadow: none !important;
-            }}
             .content-cell {{
-                padding: 20px 14px !important;
+                padding: 16px 14px !important;
             }}
             .header-cell {{
-                padding: 16px 14px !important;
+                padding: 14px 14px !important;
             }}
             .nav-cell {{
                 padding: 8px 14px !important;
@@ -315,7 +311,7 @@ surplusdocket.com • dockets@surplusdocket.com
                 display: none !important;
             }}
             .footer-cell {{
-                padding: 22px 14px !important;
+                padding: 20px 14px !important;
             }}
             .header-tag-cell {{
                 display: none !important;
@@ -391,16 +387,16 @@ surplusdocket.com • dockets@surplusdocket.com
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
         <tr>
-            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
-                <!-- Main Card Container: 680px max for desktop, 100% fluid edge-to-edge on mobile -->
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08);">
+            <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
+                <!-- Main Container: Clean, Edge-to-Edge without outer shell framing -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
                     
                     <!-- Top Brand Header: High-contrast white backdrop matching website -->
                     <tr>
-                        <td class="header-cell" style="background-color: #ffffff; padding: 20px 28px; border-bottom: 2px solid #1b365d;">
+                        <td class="header-cell" style="background-color: #ffffff; padding: 18px 24px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                                 <tr>
                                     <td align="left" valign="middle" style="padding: 0;">
@@ -444,7 +440,7 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Secondary Quick Navigation Bar -->
                     <tr>
-                        <td class="nav-cell" style="background-color: #f8fafc; padding: 8px 28px; border-bottom: 1px solid #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
+                        <td class="nav-cell" style="background-color: #f8fafc; padding: 8px 24px; border-bottom: 1px solid #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td align="left" style="color: #64748b; white-space: nowrap;">
@@ -464,14 +460,9 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Main Content Body -->
                     <tr>
-                        <td class="content-cell" style="padding: 26px 28px; background-color: #ffffff;">
-                            <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Good morning <b>{name}</b>{firm_suffix},</p>
-                            <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
-                                Here is your verified daily court intelligence briefing for <b>{date_str}</b>. Public filings across 6 core states have been audited against official clerk registries, with senior mortgages, institutional liens, and junior municipal encumbrances filtered upstream.
-                            </p>
-
+                        <td class="content-cell" style="padding: 20px 24px; background-color: #ffffff;">
                             <!-- Benchmark Metrics: 2x2 Grid (Flawless Flow on Both Mobile & Desktop) -->
-                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 16px 0 22px 0;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0 0 22px 0;">
                                 <tr>
                                     <td width="49%" class="metric-cell" style="padding: 12px 10px; background-color: #edf3ec; border: 1px solid #c2d9c0; border-radius: 8px; text-align: center;">
                                         <div class="metric-val" style="font-size: 18px; font-weight: 900; color: #365134; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;">{total_bal_fmt}</div>
@@ -579,7 +570,7 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Institutional Footer -->
                     <tr>
-                        <td class="footer-cell" style="background-color: #f8fafc; padding: 22px 28px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
+                        <td class="footer-cell" style="background-color: #ffffff; padding: 22px 24px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
                                 <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
                                 <a href="https://surplusdocket.com/api-documentation.html" target="_blank" style="color: #526174; text-decoration: none;">REST API Documentation</a> &nbsp;•&nbsp; 
@@ -789,13 +780,34 @@ surplusdocket.com • dockets@surplusdocket.com
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice Evaluation Activated — Surplus Docket</title>
     <style type="text/css">
+        body {{
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #ffffff !important;
+        }}
+        .email-wrapper {{
+            width: 100% !important;
+            background-color: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }}
+        .email-outer-td {{
+            padding: 0 !important;
+            margin: 0 !important;
+        }}
+        .email-container {{
+            width: 100% !important;
+            max-width: 680px !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 0 auto !important;
+            background-color: #ffffff !important;
+        }}
         @media only screen and (max-width: 680px) {{
-            .email-wrapper {{ width: 100% !important; }}
-            .email-outer-td {{ padding: 8px 4px !important; }}
-            .email-container {{ width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }}
-            .content-cell {{ padding: 22px 16px !important; }}
-            .header-cell {{ padding: 18px 16px !important; }}
-            .nav-cell {{ padding: 10px 14px !important; }}
+            .content-cell {{ padding: 20px 16px !important; }}
+            .header-cell {{ padding: 16px 16px !important; }}
+            .nav-cell {{ padding: 8px 14px !important; }}
             .header-tag-cell {{ display: none !important; }}
             .deliverables-table td {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin-bottom: 8px !important; }}
             .deliverables-spacer {{ display: none !important; }}
@@ -803,12 +815,12 @@ surplusdocket.com • dockets@surplusdocket.com
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
         <tr>
-            <td align="center" class="email-outer-td" style="padding: 16px 8px;">
+            <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
                 <!-- Main Card Container -->
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08);">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
                     
                     <!-- Header with Official Logo -->
                     <tr>
@@ -953,7 +965,7 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Footer -->
                     <tr>
-                        <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
+                        <td style="background-color: #ffffff; padding: 22px 24px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
                                 <a href="https://surplusdocket.com/practitioner-toolkit.html" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
                                 <a href="https://surplusdocket.com/api-documentation.html" target="_blank" style="color: #526174; text-decoration: none;">REST API Documentation</a> &nbsp;•&nbsp; 

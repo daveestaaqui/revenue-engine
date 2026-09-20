@@ -79,8 +79,8 @@ export async function onRequestPost(context) {
 <head>
     <meta charset="utf-8">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 24px 8px; color: #1e293b; }
-        .container { max-width: 680px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 16px -2px rgba(0,0,0,0.05); }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; }
+        .container { max-width: 680px; margin: 0 auto; background: #ffffff; border: none; border-radius: 0; box-shadow: none; }
         .header { background: #ffffff; padding: 20px 32px; border-bottom: 2px solid #1b365d; display: flex; align-items: center; justify-content: space-between; }
         .brand-wrap { display: flex; align-items: center; gap: 12px; }
         .brand-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -0.02em; margin: 0; line-height: 1.15; }

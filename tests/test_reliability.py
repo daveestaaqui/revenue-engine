@@ -70,7 +70,10 @@ class ReliabilityTests(unittest.TestCase):
         text, html = compose_email_content(sub, stats, "September 11, 2026")
         self.assertNotIn("Surplus Docket Compliance & Research Desk", html)
         self.assertNotIn("()", html)
-        self.assertIn("Good morning <b>David Mahler</b>,", html)
+        self.assertNotIn("Good morning", html)
+        self.assertNotIn("Good morning", text)
+        self.assertIn("Audited Surplus Pool", html)
+        self.assertIn("BENCHMARK SUMMARY", text)
 
         text_d3, html_d3 = compose_day3_email(sub)
         self.assertNotIn("Surplus Docket Compliance & Research Desk", html_d3)
