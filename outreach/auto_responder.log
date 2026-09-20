@@ -271,3 +271,4 @@
 [2026-09-20 11:43:01]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Your August 2026 transaction history'): Sender 'venmo@venmo.com' is not in verified target database and not a statutory inquiry
 [2026-09-20 14:53:44]   🗑️ IMAP: Removed sent draft for: dwashburn@haconcapecod.org
 [2026-09-20 14:53:45] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
+[2026-09-20 17:59:58]   ⏭️ Skipped non-prospect from no-reply@accounts.google.com (Sub: 'Security alert for avamahler2017@gmail.c'): Message identified as automated notification, bounce, or system alert
