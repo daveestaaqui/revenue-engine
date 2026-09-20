@@ -269,3 +269,5 @@
 [2026-09-20 01:09:37]   🧹 Auto-unsubscribed and cleared marketing email from berkshire-east-mountain-resort@mg.swellcx.com
 [2026-09-20 06:17:00]   ⏭️ Skipped non-prospect from mashpeewampanoag@msn.com (Sub: 'Court: Courtesy Email...'): Message identified as automated notification, bounce, or system alert
 [2026-09-20 11:43:01]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Your August 2026 transaction history'): Sender 'venmo@venmo.com' is not in verified target database and not a statutory inquiry
+[2026-09-20 14:53:44]   🗑️ IMAP: Removed sent draft for: dwashburn@haconcapecod.org
+[2026-09-20 14:53:45] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
