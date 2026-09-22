@@ -278,3 +278,7 @@
 [2026-09-21 11:07:28]   ⏭️ Skipped non-prospect from no.reply.alerts@chase.com (Sub: 'Your credit card statement is available'): Message identified as automated notification, bounce, or system alert
 [2026-09-21 11:07:28]   ⏭️ Skipped non-prospect from help@awin.com (Sub: 'Shenzhen Cangyu Technology Co., Ltd. has'): Sender 'help@awin.com' is not in verified target database and not a statutory inquiry
 [2026-09-21 21:04:59]   ⏭️ Skipped non-prospect from vrbo@mg.vrbo.com (Sub: 'Important update to our Host Cancellatio'): Sender 'vrbo@mg.vrbo.com' is not in verified target database and not a statutory inquiry
+[2026-09-22 00:07:40]   ⏭️ Skipped non-prospect from drmichaeldinn@lhmailer.com (Sub: 'Don’t forget to use your benefits!'): Sender 'drmichaeldinn@lhmailer.com' is not in verified target database and not a statutory inquiry
+[2026-09-22 00:07:41]   ⏭️ Skipped non-prospect from order-update@amazon.com (Sub: 'Delivered: 1 Snack Foods item'): Message identified as automated notification, bounce, or system alert
+[2026-09-22 00:07:41]   ⏭️ Skipped non-prospect from DoNotReply@MyHealth.AtriusHealth.org (Sub: 'MyHealth Online - New Message'): Message identified as automated notification, bounce, or system alert
+[2026-09-22 00:07:41]   ⏭️ Skipped non-prospect from CloudPlatform-noreply@google.com (Sub: 'Action required: your billing account 01'): Message identified as automated notification, bounce, or system alert
