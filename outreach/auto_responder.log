@@ -282,3 +282,5 @@
 [2026-09-22 00:07:41]   ⏭️ Skipped non-prospect from order-update@amazon.com (Sub: 'Delivered: 1 Snack Foods item'): Message identified as automated notification, bounce, or system alert
 [2026-09-22 00:07:41]   ⏭️ Skipped non-prospect from DoNotReply@MyHealth.AtriusHealth.org (Sub: 'MyHealth Online - New Message'): Message identified as automated notification, bounce, or system alert
 [2026-09-22 00:07:41]   ⏭️ Skipped non-prospect from CloudPlatform-noreply@google.com (Sub: 'Action required: your billing account 01'): Message identified as automated notification, bounce, or system alert
+[2026-09-22 04:56:35]   🗑️ IMAP: Removed sent draft for: support@magicbag.co
+[2026-09-22 04:56:35] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
