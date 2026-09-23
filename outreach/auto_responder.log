@@ -290,3 +290,5 @@
 [2026-09-22 18:07:18] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
 [2026-09-22 18:07:20]   🧹 Auto-unsubscribed and cleared marketing email from no-reply@clientfeedback.bankofamerica.com
 [2026-09-22 21:19:22]   ⏭️ Skipped non-prospect from no-reply@email.kraken.com (Sub: '[Action Required] Log in to your Kraken '): Message identified as automated notification, bounce, or system alert
+[2026-09-23 12:55:29]   ⏭️ Skipped non-prospect from no-reply@amazon.com (Sub: 'Choose replacement item - subscription c'): Message identified as automated notification, bounce, or system alert
+[2026-09-23 12:55:29]   ⏭️ Skipped non-prospect from no-reply@mailer.alpaca.markets (Sub: 'Scheduled maintenance on Saturday, Septe'): Message identified as automated notification, bounce, or system alert
