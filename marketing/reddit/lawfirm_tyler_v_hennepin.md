@@ -2,7 +2,7 @@
 **Target Subreddit:** `r/LawFirm`  
 **Flair:** `Practice Management / Tech`  
 **Suggested Title:** `Practitioner Resource: Statutory Claim Deadlines and Free Embeddable Calculator for Excess Proceeds`  
-**Generated Date:** 2026-09-22 15:16 UTC
+**Generated Date:** 2026-09-23 15:14 UTC
 
 ---
 
