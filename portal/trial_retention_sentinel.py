@@ -131,16 +131,32 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Counsel — Practice Quick-Start</title>
     <style type="text/css">
+        body, table, td, p, a, li, blockquote {{
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }}
+        table, td {{
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }}
+        img {{
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }}
         body {{
             margin: 0 !important;
             padding: 0 !important;
-            background-color: #ffffff !important;
+            background-color: #f8f8f4 !important;
         }}
         .email-wrapper {{
             width: 100% !important;
-            background-color: #ffffff !important;
+            background-color: #f8f8f4 !important;
             margin: 0 !important;
-            padding: 0 !important;
+            padding: 24px 12px !important;
         }}
         .email-outer-td {{
             padding: 0 !important;
@@ -148,29 +164,62 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
         }}
         .email-container {{
             width: 100% !important;
-            max-width: 680px !important;
-            border-radius: 0 !important;
-            border: none !important;
-            box-shadow: none !important;
+            max-width: 660px !important;
+            border-radius: 12px !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08) !important;
             margin: 0 auto !important;
             background-color: #ffffff !important;
+            overflow: hidden !important;
         }}
-        @media only screen and (max-width: 680px) {{
-            .content-cell {{ padding: 20px 16px !important; }}
-            .header-cell {{ padding: 16px 16px !important; }}
-            .nav-cell {{ padding: 8px 14px !important; }}
-            .header-tag-cell {{ display: none !important; }}
-            .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
+        @media only screen and (max-width: 640px) {{
+            .email-wrapper {{
+                padding: 12px 6px !important;
+            }}
+            .email-container {{
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 10px !important;
+            }}
+            .content-cell {{
+                padding: 22px 18px !important;
+            }}
+            .header-cell {{
+                padding: 16px 18px !important;
+            }}
+            .nav-cell {{
+                padding: 9px 14px !important;
+                text-align: center !important;
+            }}
+            .footer-cell {{
+                padding: 20px 16px !important;
+            }}
+            .header-tag-cell {{
+                display: none !important;
+            }}
+            .btn-cta {{
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                margin: 8px 0 !important;
+                text-align: center !important;
+                padding: 14px 16px !important;
+                font-size: 13px !important;
+                border-radius: 8px !important;
+            }}
+            .btn-cta-secondary {{
+                margin-left: 0 !important;
+            }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%; margin: 0; padding: 24px 12px;">
         <tr>
             <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 660px; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08); margin: 0 auto; overflow: hidden;">
                     <tr>
-                        <td class="header-cell" style="background-color: #ffffff; padding: 22px 32px; border-bottom: 2px solid #1b365d;">
+                        <td class="header-cell" style="background-color: #ffffff; padding: 20px 28px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                                 <tr>
                                     <td align="left" valign="middle" style="padding: 0;">
@@ -206,7 +255,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                         </td>
                     </tr>
                     <tr>
-                        <td class="content-cell" style="padding: 28px 32px; background-color: #ffffff;">
+                        <td class="content-cell" style="padding: 26px 30px; background-color: #ffffff;">
                             <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Dear <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
                                 Welcome to Surplus Docket. Your 7-day practice evaluation seat is active and your court registry intelligence feeds are configured. Below are the key steps to integrate our unencumbered surplus intelligence into your practice workflow immediately.
@@ -231,10 +280,10 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                                 </table>
                             </div>
                             <div style="text-align: center; margin: 28px 0 22px 0;">
-                                <a href="{TOOLKIT_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
+                                <a href="{TOOLKIT_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 8px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
                                     Access Practitioner Toolkit &rarr;
                                 </a>
-                                <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
+                                <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta btn-cta-secondary" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1.5px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 8px; letter-spacing: 0.02em; margin-left: 8px;">
                                     Manage Subscription Portal
                                 </a>
                             </div>
@@ -246,7 +295,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                         </td>
                     </tr>
                     <tr>
-                        <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
+                        <td class="footer-cell" style="background-color: #f8fafc; padding: 22px 28px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
                                 <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
                                 <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
@@ -313,16 +362,32 @@ surplusdocket.com • dockets@surplusdocket.com
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice Advisory — Statutory Claim Windows</title>
     <style type="text/css">
+        body, table, td, p, a, li, blockquote {{
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }}
+        table, td {{
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }}
+        img {{
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }}
         body {{
             margin: 0 !important;
             padding: 0 !important;
-            background-color: #ffffff !important;
+            background-color: #f8f8f4 !important;
         }}
         .email-wrapper {{
             width: 100% !important;
-            background-color: #ffffff !important;
+            background-color: #f8f8f4 !important;
             margin: 0 !important;
-            padding: 0 !important;
+            padding: 24px 12px !important;
         }}
         .email-outer-td {{
             padding: 0 !important;
@@ -330,32 +395,65 @@ surplusdocket.com • dockets@surplusdocket.com
         }}
         .email-container {{
             width: 100% !important;
-            max-width: 680px !important;
-            border-radius: 0 !important;
-            border: none !important;
-            box-shadow: none !important;
+            max-width: 660px !important;
+            border-radius: 12px !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08) !important;
             margin: 0 auto !important;
             background-color: #ffffff !important;
+            overflow: hidden !important;
         }}
-        @media only screen and (max-width: 680px) {{
-            .content-cell {{ padding: 20px 16px !important; }}
-            .header-cell {{ padding: 16px 16px !important; }}
-            .nav-cell {{ padding: 8px 14px !important; }}
-            .header-tag-cell {{ display: none !important; }}
-            .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
+        @media only screen and (max-width: 640px) {{
+            .email-wrapper {{
+                padding: 12px 6px !important;
+            }}
+            .email-container {{
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 10px !important;
+            }}
+            .content-cell {{
+                padding: 22px 18px !important;
+            }}
+            .header-cell {{
+                padding: 16px 18px !important;
+            }}
+            .nav-cell {{
+                padding: 9px 14px !important;
+                text-align: center !important;
+            }}
+            .footer-cell {{
+                padding: 20px 16px !important;
+            }}
+            .header-tag-cell {{
+                display: none !important;
+            }}
+            .btn-cta {{
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                margin: 8px 0 !important;
+                text-align: center !important;
+                padding: 14px 16px !important;
+                font-size: 13px !important;
+                border-radius: 8px !important;
+            }}
+            .btn-cta-secondary {{
+                margin-left: 0 !important;
+            }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%; margin: 0; padding: 24px 12px;">
         <tr>
             <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
                 <!-- Main Card Container -->
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 660px; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08); margin: 0 auto; overflow: hidden;">
                     
                     <!-- Top Brand Header -->
                     <tr>
-                        <td class="header-cell" style="background-color: #ffffff; padding: 22px 32px; border-bottom: 2px solid #1b365d;">
+                        <td class="header-cell" style="background-color: #ffffff; padding: 20px 28px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                                 <tr>
                                     <td align="left" valign="middle" style="padding: 0;">
@@ -393,7 +491,7 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Secondary Quick Navigation Bar -->
                     <tr>
-                        <td class="nav-cell" style="background-color: #f8fafc; padding: 9px 32px; border-bottom: 1px solid #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
+                        <td class="nav-cell" style="background-color: #f8fafc; padding: 9px 28px; border-bottom: 1px solid #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td align="left" style="color: #64748b;">
@@ -411,7 +509,7 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Body -->
                     <tr>
-                        <td class="content-cell" style="padding: 28px 32px; background-color: #ffffff;">
+                        <td class="content-cell" style="padding: 26px 30px; background-color: #ffffff;">
                             <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Dear <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
                                 As your practice enters Day 3 of your 7-day evaluation with Surplus Docket, here is key guidance on how leading asset recovery counsel leverage the statutory countdown metrics embedded in your morning court feed.
@@ -465,10 +563,10 @@ surplusdocket.com • dockets@surplusdocket.com
 
                             <!-- Action Buttons -->
                             <div style="text-align: center; margin: 28px 0 22px 0;">
-                                <a href="{TOOLKIT_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
+                                <a href="{TOOLKIT_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 8px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
                                     Access Practitioner Motion Dossiers &rarr;
                                 </a>
-                                <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
+                                <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta btn-cta-secondary" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1.5px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 8px; letter-spacing: 0.02em; margin-left: 8px;">
                                     Subscriber Billing Portal
                                 </a>
                             </div>
@@ -488,7 +586,7 @@ surplusdocket.com • dockets@surplusdocket.com
 
                     <!-- Footer -->
                     <tr>
-                        <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
+                        <td class="footer-cell" style="background-color: #f8fafc; padding: 22px 28px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
                                 <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
                                 <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
@@ -554,16 +652,32 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courtesy Notice — Practice Evaluation Summary</title>
     <style type="text/css">
+        body, table, td, p, a, li, blockquote {{
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }}
+        table, td {{
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }}
+        img {{
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }}
         body {{
             margin: 0 !important;
             padding: 0 !important;
-            background-color: #ffffff !important;
+            background-color: #f8f8f4 !important;
         }}
         .email-wrapper {{
             width: 100% !important;
-            background-color: #ffffff !important;
+            background-color: #f8f8f4 !important;
             margin: 0 !important;
-            padding: 0 !important;
+            padding: 24px 12px !important;
         }}
         .email-outer-td {{
             padding: 0 !important;
@@ -571,32 +685,65 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
         }}
         .email-container {{
             width: 100% !important;
-            max-width: 680px !important;
-            border-radius: 0 !important;
-            border: none !important;
-            box-shadow: none !important;
+            max-width: 660px !important;
+            border-radius: 12px !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08) !important;
             margin: 0 auto !important;
             background-color: #ffffff !important;
+            overflow: hidden !important;
         }}
-        @media only screen and (max-width: 680px) {{
-            .content-cell {{ padding: 20px 16px !important; }}
-            .header-cell {{ padding: 16px 16px !important; }}
-            .nav-cell {{ padding: 8px 14px !important; }}
-            .header-tag-cell {{ display: none !important; }}
-            .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
+        @media only screen and (max-width: 640px) {{
+            .email-wrapper {{
+                padding: 12px 6px !important;
+            }}
+            .email-container {{
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 10px !important;
+            }}
+            .content-cell {{
+                padding: 22px 18px !important;
+            }}
+            .header-cell {{
+                padding: 16px 18px !important;
+            }}
+            .nav-cell {{
+                padding: 9px 14px !important;
+                text-align: center !important;
+            }}
+            .footer-cell {{
+                padding: 20px 16px !important;
+            }}
+            .header-tag-cell {{
+                display: none !important;
+            }}
+            .btn-cta {{
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                margin: 8px 0 !important;
+                text-align: center !important;
+                padding: 14px 16px !important;
+                font-size: 13px !important;
+                border-radius: 8px !important;
+            }}
+            .btn-cta-secondary {{
+                margin-left: 0 !important;
+            }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%; margin: 0; padding: 24px 12px;">
         <tr>
             <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
                 <!-- Main Card Container -->
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 660px; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08); margin: 0 auto; overflow: hidden;">
                     
                     <!-- Top Brand Header -->
                     <tr>
-                        <td class="header-cell" style="background-color: #ffffff; padding: 22px 32px; border-bottom: 2px solid #1b365d;">
+                        <td class="header-cell" style="background-color: #ffffff; padding: 20px 28px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                                 <tr>
                                     <td align="left" valign="middle" style="padding: 0;">
@@ -634,7 +781,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
 
                     <!-- Secondary Quick Navigation Bar -->
                     <tr>
-                        <td class="nav-cell" style="background-color: #f8fafc; padding: 9px 32px; border-bottom: 1px solid #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
+                        <td class="nav-cell" style="background-color: #f8fafc; padding: 9px 28px; border-bottom: 1px solid #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td align="left" style="color: #64748b;">
@@ -652,7 +799,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
 
                     <!-- Body -->
                     <tr>
-                        <td class="content-cell" style="padding: 28px 32px; background-color: #ffffff;">
+                        <td class="content-cell" style="padding: 26px 30px; background-color: #ffffff;">
                             <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Dear <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
                                 This is an institutional courtesy notice regarding your 7-day practice evaluation of Surplus Docket. Your trial introductory period concludes tomorrow.
@@ -691,7 +838,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                                     If you wish to keep your feed active, no action is needed. If you ever need to adjust practice seats, update payment methods, or cancel before the rollover, you have 1-click self-service access anytime:
                                 </p>
                                 <div style="text-align: center;">
-                                    <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
+                                    <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 8px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
                                         Open Stripe Subscriber Portal &rarr;
                                     </a>
                                 </div>
@@ -712,7 +859,7 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
 
                     <!-- Footer -->
                     <tr>
-                        <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
+                        <td class="footer-cell" style="background-color: #f8fafc; padding: 22px 28px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
                                 <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
                                 <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
@@ -772,16 +919,32 @@ Reactivate Subscription: {STRIPE_CHECKOUT_URL}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docket Intelligence Update — Priority Reactivation</title>
     <style type="text/css">
+        body, table, td, p, a, li, blockquote {{
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }}
+        table, td {{
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }}
+        img {{
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }}
         body {{
             margin: 0 !important;
             padding: 0 !important;
-            background-color: #ffffff !important;
+            background-color: #f8f8f4 !important;
         }}
         .email-wrapper {{
             width: 100% !important;
-            background-color: #ffffff !important;
+            background-color: #f8f8f4 !important;
             margin: 0 !important;
-            padding: 0 !important;
+            padding: 24px 12px !important;
         }}
         .email-outer-td {{
             padding: 0 !important;
@@ -789,29 +952,62 @@ Reactivate Subscription: {STRIPE_CHECKOUT_URL}
         }}
         .email-container {{
             width: 100% !important;
-            max-width: 680px !important;
-            border-radius: 0 !important;
-            border: none !important;
-            box-shadow: none !important;
+            max-width: 660px !important;
+            border-radius: 12px !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08) !important;
             margin: 0 auto !important;
             background-color: #ffffff !important;
+            overflow: hidden !important;
         }}
-        @media only screen and (max-width: 680px) {{
-            .content-cell {{ padding: 20px 16px !important; }}
-            .header-cell {{ padding: 16px 16px !important; }}
-            .nav-cell {{ padding: 8px 14px !important; }}
-            .header-tag-cell {{ display: none !important; }}
-            .btn-cta {{ display: block !important; width: 100% !important; box-sizing: border-box !important; margin: 6px 0 !important; text-align: center !important; }}
+        @media only screen and (max-width: 640px) {{
+            .email-wrapper {{
+                padding: 12px 6px !important;
+            }}
+            .email-container {{
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 10px !important;
+            }}
+            .content-cell {{
+                padding: 22px 18px !important;
+            }}
+            .header-cell {{
+                padding: 16px 18px !important;
+            }}
+            .nav-cell {{
+                padding: 9px 14px !important;
+                text-align: center !important;
+            }}
+            .footer-cell {{
+                padding: 20px 16px !important;
+            }}
+            .header-tag-cell {{
+                display: none !important;
+            }}
+            .btn-cta {{
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                margin: 8px 0 !important;
+                text-align: center !important;
+                padding: 14px 16px !important;
+                font-size: 13px !important;
+                border-radius: 8px !important;
+            }}
+            .btn-cta-secondary {{
+                margin-left: 0 !important;
+            }}
         }}
     </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #ffffff; width: 100%; margin: 0; padding: 0;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f8f4; margin: 0; padding: 0; color: #1e293b; line-height: 1.5; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-wrapper" style="background-color: #f8f8f4; width: 100%; margin: 0; padding: 24px 12px;">
         <tr>
             <td align="center" class="email-outer-td" style="padding: 0; margin: 0;">
-                <table role="presentation" width="680" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 680px; width: 100%; background-color: #ffffff; border: none; border-radius: 0; box-shadow: none; margin: 0 auto;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 660px; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 20px -4px rgba(27,54,93,0.08); margin: 0 auto; overflow: hidden;">
                     <tr>
-                        <td class="header-cell" style="background-color: #ffffff; padding: 22px 32px; border-bottom: 2px solid #1b365d;">
+                        <td class="header-cell" style="background-color: #ffffff; padding: 20px 28px; border-bottom: 2px solid #1b365d;">
                             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                                 <tr>
                                     <td align="left" valign="middle" style="padding: 0;">
@@ -847,7 +1043,7 @@ Reactivate Subscription: {STRIPE_CHECKOUT_URL}
                         </td>
                     </tr>
                     <tr>
-                        <td class="content-cell" style="padding: 28px 32px; background-color: #ffffff;">
+                        <td class="content-cell" style="padding: 26px 30px; background-color: #ffffff;">
                             <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Dear <b>{name}</b>{firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
                                 Following the conclusion of your evaluation of Surplus Docket, county court registries have recorded hundreds of thousands of dollars in newly unencumbered surplus funds across your target jurisdictions.
@@ -861,10 +1057,10 @@ Reactivate Subscription: {STRIPE_CHECKOUT_URL}
                                 </p>
                             </div>
                             <div style="text-align: center; margin: 28px 0 22px 0;">
-                                <a href="{STRIPE_CHECKOUT_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 6px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
+                                <a href="{STRIPE_CHECKOUT_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #1b365d; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 13px; padding: 13px 26px; border-radius: 8px; letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(27,54,93,0.18);">
                                     Reactivate Daily Feed ($249/mo) &rarr;
                                 </a>
-                                <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 6px; letter-spacing: 0.02em; margin-left: 8px;">
+                                <a href="{STRIPE_PORTAL_URL}" target="_blank" class="btn-cta btn-cta-secondary" style="display: inline-block; background-color: #ffffff; color: #1b365d; border: 1.5px solid #1b365d; text-decoration: none; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 8px; letter-spacing: 0.02em; margin-left: 8px;">
                                     Stripe Billing Portal
                                 </a>
                             </div>
@@ -876,7 +1072,7 @@ Reactivate Subscription: {STRIPE_CHECKOUT_URL}
                         </td>
                     </tr>
                     <tr>
-                        <td style="background-color: #f8fafc; padding: 22px 32px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
+                        <td class="footer-cell" style="background-color: #f8fafc; padding: 22px 28px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.6;">
                             <div style="margin-bottom: 8px; font-weight: 600;">
                                 <a href="{TOOLKIT_URL}" target="_blank" style="color: #526174; text-decoration: none;">Practitioner Toolkit</a> &nbsp;•&nbsp; 
                                 <a href="{STRIPE_PORTAL_URL}" target="_blank" style="color: #1b365d; text-decoration: underline; font-weight: 700;">Subscriber Billing Portal</a>
