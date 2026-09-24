@@ -1,4 +1,26 @@
 {
+  "single_county_pilot": {
+    "tier_id": "single_county_pilot",
+    "title": "Single-County 14-Day Pilot Dossier",
+    "jurisdictions": [
+      "FL",
+      "TX",
+      "GA",
+      "NC",
+      "TN",
+      "CA"
+    ],
+    "price_usd": 49,
+    "has_trial": false,
+    "rest_api_enabled": false,
+    "checkout_url": "https://surplusdocket.com/inquiry.html?plan=pilot",
+    "features": [
+      "Target single county of your choice (e.g. Palm Beach, Harris, Fulton, Los Angeles)",
+      "14-Day verified court surplus docket dossier & export",
+      "Full court petition & claim motion templates included",
+      "100% money-back satisfaction guarantee"
+    ]
+  },
   "tri_state_core": {
     "tier_id": "tri_state_core",
     "title": "Tri-State Core Feed",
