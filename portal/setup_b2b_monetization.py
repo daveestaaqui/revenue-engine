@@ -13,6 +13,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 CONFIG_FILE = BASE_DIR / "portal" / "monetization_config.json"
 
 MONETIZATION_CONFIG = {
+    "single_county_pilot": {
+        "tier_id": "single_county_pilot",
+        "title": "Single-County 14-Day Pilot Dossier",
+        "jurisdictions": ["FL", "TX", "GA", "NC", "TN", "CA"],
+        "price_usd": 49,
+        "has_trial": False,
+        "rest_api_enabled": False,
+        "checkout_url": "https://buy.stripe.com/6oU5kDc0GgXN2Dz6K20ZW23",
+        "features": [
+            "Target single county of your choice (e.g. Palm Beach, Harris, Fulton, Los Angeles)",
+            "14-Day verified court surplus docket dossier & export",
+            "Full court petition & claim motion templates included",
+            "100% money-back satisfaction guarantee"
+        ]
+    },
     "tri_state_core": {
         "tier_id": "tri_state_core",
         "title": "Tri-State Core Feed",
@@ -63,10 +78,13 @@ def print_monetization_overview():
     tiers = {k: v for k, v in MONETIZATION_CONFIG.items() if isinstance(v, dict)}
     for key, p in tiers.items():
         print(f"📦 Product: {p['title']} [{p['tier_id']}]")
-        print(f"   - Monthly: ${p['price_monthly_usd']}/mo (Checkout: {p['checkout_monthly_url']})")
-        print(f"   - Annual:  ${p['price_annual_usd']}/yr (Checkout: {p['checkout_annual_url']})")
+        if "price_monthly_usd" in p:
+            print(f"   - Monthly: ${p['price_monthly_usd']}/mo (Checkout: {p.get('checkout_monthly_url')})")
+            print(f"   - Annual:  ${p['price_annual_usd']}/yr (Checkout: {p.get('checkout_annual_url')})")
+        else:
+            print(f"   - One-time: ${p.get('price_usd', 49)} (Checkout: {p.get('checkout_url')})")
         print(f"   - Jurisdictions: {', '.join(p['jurisdictions'])}")
-        print(f"   - Trial: {p['trial_days']} days (Trial active: {p['has_trial']})")
+        print(f"   - Trial: {p.get('trial_days', 0)} days (Trial active: {p.get('has_trial', False)})")
         print(f"   - REST API: {'Enabled' if p['rest_api_enabled'] else 'Disabled'}")
         print(f"   - Features: {len(p['features'])} deliverables")
         print("-" * 65)

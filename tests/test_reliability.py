@@ -268,10 +268,13 @@ class ReliabilityTests(unittest.TestCase):
         from portal.setup_b2b_monetization import MONETIZATION_CONFIG, CONFIG_FILE, print_monetization_overview
         
         # Verify monetization tiers
+        self.assertIn("single_county_pilot", MONETIZATION_CONFIG)
         self.assertIn("tri_state_core", MONETIZATION_CONFIG)
         self.assertIn("six_state_national", MONETIZATION_CONFIG)
+        self.assertEqual(MONETIZATION_CONFIG["single_county_pilot"]["price_usd"], 49)
         self.assertEqual(MONETIZATION_CONFIG["tri_state_core"]["price_monthly_usd"], 249)
         self.assertEqual(MONETIZATION_CONFIG["six_state_national"]["price_monthly_usd"], 449)
+        self.assertTrue(MONETIZATION_CONFIG["single_county_pilot"]["checkout_url"].startswith("https://buy.stripe.com/"))
         self.assertTrue(MONETIZATION_CONFIG["tri_state_core"]["checkout_monthly_url"].startswith("https://buy.stripe.com/"))
         self.assertTrue(MONETIZATION_CONFIG["six_state_national"]["checkout_monthly_url"].startswith("https://buy.stripe.com/"))
         self.assertTrue(MONETIZATION_CONFIG["stripe_customer_portal_url"].startswith("https://billing.stripe.com/"))
