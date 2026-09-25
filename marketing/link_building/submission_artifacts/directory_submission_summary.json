@@ -11,8 +11,10 @@
     "directory": "Justia Legal Resources",
     "url": "https://lawyers.justia.com/resources",
     "status": "UNSUPPORTED_FORM_LAYOUT",
-    "fields_filled": [],
-    "notes": "Only detected 0 matchable fields. May require bespoke profile claim flow.",
+    "fields_filled": [
+      "company_name"
+    ],
+    "notes": "Only detected 1 matchable fields. May require bespoke profile claim flow.",
     "screenshot": "/home/runner/work/revenue-engine/revenue-engine/marketing/link_building/submission_artifacts/justia_legal_resources_populated.png"
   },
   {
