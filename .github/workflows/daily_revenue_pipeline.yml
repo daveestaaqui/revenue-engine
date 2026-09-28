@@ -2,8 +2,10 @@ name: Daily Autonomous Revenue Pipeline
 
 on:
   schedule:
-    # Runs daily at 11:00 UTC (7:00 AM EST) — before US business hours
-    - cron: '0 11 * * *'
+    # Runs daily overnight at 06:18 UTC (2:18 AM EDT / 1:18 AM EST)
+    # Off-peak hours guarantee zero runner congestion, completing all B2B data generation,
+    # compliance audits, and Stripe sync before morning dispatch.
+    - cron: '18 6 * * *'
   workflow_dispatch: # Allows manual 1-click trigger from GitHub web UI
 
 permissions:
@@ -124,19 +126,9 @@ jobs:
             done
           fi
 
-      - name: 11. Dispatch 7:00 AM EST Morning Feed to Active Subscribers
-        env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
-          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-          FROM_EMAIL: 'dockets@surplusdocket.com'
-          FROM_NAME: 'Surplus Docket Intelligence'
+      - name: 11. Pre-Compile & Verify Morning Feed Health
         run: |
-          if [ -n "$GMAIL_APP_PASS" ]; then
-            python portal/dispatch_morning_feed.py --send
-          else
-            echo "GMAIL_APP_PASS secret not set; running dry-run preview."
-            python portal/dispatch_morning_feed.py --dry-run
-          fi
+          python portal/dispatch_morning_feed.py --dry-run
 
       - name: 11b. Run Institutional 7-Day Trial Retention Sentinel (Day 3 & Day 6)
         env:

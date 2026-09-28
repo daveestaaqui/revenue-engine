@@ -1,0 +1,100 @@
+name: Dispatch 7:00 AM EST Morning Court Intelligence Feed
+
+on:
+  schedule:
+    # Primary Morning Dispatch (Weekdays at 10:18 UTC = 6:18 AM EDT / 5:18 AM EST)
+    # Uses off-peak minute 18 to completely bypass GitHub Actions top-of-the-hour queue backlogs.
+    - cron: '18 10 * * 1-5'
+    # Watchdog / Standard Time Catch-Up (Weekdays at 10:48 UTC = 6:48 AM EDT / 5:48 AM EST)
+    - cron: '48 10 * * 1-5'
+    # Winter Standard Time Secondary Window (Weekdays at 11:18 UTC = 7:18 AM EDT / 6:18 AM EST)
+    - cron: '18 11 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force live dispatch even if already dispatched today'
+        type: boolean
+        default: false
+      dry_run:
+        description: 'Run in dry-run preview mode (no emails transmitted)'
+        type: boolean
+        default: false
+      recipient:
+        description: 'Optional single recipient email override for testing'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dispatch-morning-feed
+  cancel-in-progress: false
+
+jobs:
+  dispatch-morning-feed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: .
+      GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+      GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+      FROM_EMAIL: 'dockets@surplusdocket.com'
+      FROM_NAME: 'Surplus Docket Intelligence'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Dispatch Verified Morning Intelligence Feed to Subscribers
+        run: |
+          ARGS=""
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          if [ -n "${{ github.event.inputs.recipient }}" ]; then
+            ARGS="$ARGS --recipient ${{ github.event.inputs.recipient }}"
+          fi
+
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ -z "$GMAIL_APP_PASS" ]; then
+            echo "Running in preview / dry-run mode..."
+            python portal/dispatch_morning_feed.py --dry-run $ARGS
+          else
+            echo "Running live morning feed dispatch to active subscribers..."
+            python portal/dispatch_morning_feed.py --send $ARGS
+          fi
+
+      - name: Run Institutional 7-Day Trial Retention Sentinel (Day 3 & Day 6)
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ -z "$GMAIL_APP_PASS" ]; then
+            python portal/trial_retention_sentinel.py --dry-run
+          else
+            python portal/trial_retention_sentinel.py --send
+          fi
+
+      - name: Commit Dispatch & Retention Logs (Idempotent Ledgers)
+        run: |
+          git config --global user.name "Surplus Docket Bot"
+          git config --global user.email "bot@surplusdocket.com"
+          for f in portal/daily_dispatch_log.json portal/trial_lifecycle_log.json; do
+            if [ -f "$f" ]; then
+              git add "$f"
+            fi
+          done
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(feed): update morning dispatch and trial retention logs [skip ci]"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
+            done
+          fi

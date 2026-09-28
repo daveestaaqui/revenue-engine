@@ -47,6 +47,7 @@ EXPORTS_DIR = BASE_DIR / "exports"
 SUBSCRIBERS_FILE = BASE_DIR / "portal" / "subscribers.json"
 MASTER_CSV = EXPORTS_DIR / "Master_Surplus_Lead_Feed.csv"
 MASTER_XLSX = EXPORTS_DIR / "Master_Surplus_Lead_Feed.xlsx"
+DISPATCH_LOG_FILE = BASE_DIR / "portal" / "daily_dispatch_log.json"
 
 # Credentials & Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
@@ -601,7 +602,7 @@ surplusdocket.com • dockets@surplusdocket.com
     return text_body, html_body
 
 
-def dispatch_feed(is_dry_run=False, recipient_override=None):
+def dispatch_feed(is_dry_run=False, recipient_override=None, force=False):
     print("=" * 70)
     print(" 🚀 SURPLUS DOCKET — 7:00 AM EST MORNING SUBSCRIBER DISPATCH")
     print("=" * 70)
@@ -623,9 +624,29 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
         print("ℹ️ No active subscribers found in portal/subscribers.json. Exiting.")
         return 0
 
-    stats = get_feed_statistics()
-    date_str = datetime.now().strftime("%B %d, %Y")
+    try:
+        from zoneinfo import ZoneInfo
+        now_et = datetime.now(ZoneInfo("America/New_York"))
+    except Exception:
+        now_et = datetime.now()
+
+    date_key = now_et.strftime("%Y-%m-%d")
+    date_str = now_et.strftime("%B %d, %Y")
     subject = f"[Surplus Docket] Daily Morning Court Intelligence Feed — {date_str}"
+
+    # Idempotency check: if not forcing and not overriding recipient, avoid duplicate same-day dispatches
+    if not is_dry_run and not recipient_override and not force and DISPATCH_LOG_FILE.exists():
+        try:
+            with open(DISPATCH_LOG_FILE, "r", encoding="utf-8") as f:
+                log_data = json.load(f)
+            if log_data.get("last_dispatched_date") == date_key and log_data.get("status") == "SUCCESS":
+                print(f"ℹ️ Morning feed for {date_str} ({date_key}) has ALREADY been dispatched (at {log_data.get('timestamp')}).")
+                print("   Skipping duplicate dispatch to prevent inbox spam. Use --force to override.")
+                return 0
+        except Exception as log_err:
+            print(f"Notice reading dispatch log: {log_err}")
+
+    stats = get_feed_statistics()
 
     print(f"✓ Found {len(subscribers)} active subscriber(s).")
     print(f"✓ Feed Stats: {stats['total_records']} dockets | ${stats['total_surplus']:,.2f} total surplus.\n")
@@ -735,6 +756,20 @@ def dispatch_feed(is_dry_run=False, recipient_override=None):
                 print(f"  ❌ Failed to dispatch to {dest}: {send_err}")
 
         print(f"\n🎉 Successfully dispatched morning feeds to {sent_count} subscriber(s).")
+        if not is_dry_run and not recipient_override and sent_count > 0:
+            try:
+                log_entry = {
+                    "last_dispatched_date": date_key,
+                    "timestamp": now_et.isoformat(),
+                    "sent_count": sent_count,
+                    "recipients": [s.get("email") for s in subscribers],
+                    "status": "SUCCESS"
+                }
+                with open(DISPATCH_LOG_FILE, "w", encoding="utf-8") as f:
+                    json.dump(log_entry, f, indent=2)
+                print(f"✓ Recorded successful morning dispatch in {DISPATCH_LOG_FILE.name}")
+            except Exception as we:
+                print(f"Notice saving dispatch log: {we}")
         return 0
     except Exception as e:
         print(f"❌ Error during morning feed dispatch: {e}")
@@ -1072,6 +1107,7 @@ if __name__ == "__main__":
     parser.add_argument("--send", action="store_true", help="Send live emails via SMTP")
     parser.add_argument("--recipient", type=str, help="Override recipient email for manual testing")
     parser.add_argument("--welcome", action="store_true", help="Send immediate Day 0 welcome starter kit")
+    parser.add_argument("--force", action="store_true", help="Force dispatch even if already sent today")
     args = parser.parse_args()
 
     if args.welcome:
@@ -1081,5 +1117,5 @@ if __name__ == "__main__":
     if not args.send and not args.dry_run:
         args.dry_run = True
 
-    sys.exit(dispatch_feed(is_dry_run=args.dry_run, recipient_override=args.recipient))
+    sys.exit(dispatch_feed(is_dry_run=args.dry_run, recipient_override=args.recipient, force=args.force))
 
