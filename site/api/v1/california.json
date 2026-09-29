@@ -33,7 +33,9 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -59,7 +61,9 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -85,7 +89,9 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -111,7 +117,9 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

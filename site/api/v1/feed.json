@@ -5,12 +5,12 @@
   "message": "Full unredacted REST API access requires an active Surplus Docket Enterprise subscription with a valid Bearer API token. Production feeds deliver unredacted claimant identities, verified property situs, and court docket links every business morning (Mon\u2013Fri) at 7:00 AM EST.",
   "api_version": "v1.0",
   "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
-  "generated_at": "2026-09-29T16:10:02.813724",
+  "generated_at": "2026-09-29T17:09:20.812214",
   "subscription_portal": "https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00",
   "subscribe_url": "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22",
   "meta": {
-    "total_records_indexed": 38,
-    "total_surplus_volume_usd": 3520000.0,
+    "total_records_indexed": 43,
+    "total_surplus_volume_usd": 3909100.0,
     "preview_mode": "REDACTED_EVALUATION_SANDBOX",
     "jurisdictions_monitored": [
       "FL",
@@ -53,7 +53,9 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -79,7 +81,9 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -105,7 +109,9 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -131,7 +137,9 @@
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -157,7 +165,9 @@
       "Clerk_Verification_URL": "https://www.browardclerk.org/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -183,7 +193,9 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -209,7 +221,9 @@
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -235,7 +249,9 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -261,7 +277,9 @@
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -287,7 +305,9 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -313,7 +333,37 @@
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Access_Status": "REDACTED_PREVIEW"
+    },
+    {
+      "State": "FL",
+      "County": "Miami-Dade",
+      "Parcel_ID": "02-3209-018-0240",
+      "Case_or_TaxDeed_No": "2024-CA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Owner_Name": "J. & M. M\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Entity_Type": "Estate / Deceased",
+      "Is_Individual": true,
+      "Heir_Search_Recommended": true,
+      "Property_Address": "1440 OCEAN [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
+      "Property_Type": "Condo / Multi-Family",
+      "Surplus_Balance_USD": 115000.0,
+      "Statutory_Fee_Rate": "20%",
+      "Est_Finder_Fee_USD": 23000.0,
+      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
+      "Sale_Date": "2024-08-28",
+      "Days_Remaining_To_Claim": 105,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2027-01-12",
+      "Statutory_Deadline_Window": "60 Days from Certificate of Disbursement (Fla. Stat. \u00a7 45.032)",
+      "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
+      "Governing_Statute": "Fla. Stat. \u00a7 45.032",
+      "Statute_Citation": "Fla. Stat. \u00a7 45.032",
+      "Record_Type": "Foreclosure Surplus",
+      "TYPE": "FORECLOSURE",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -339,7 +389,9 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -365,7 +417,9 @@
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -391,7 +445,9 @@
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -417,7 +473,9 @@
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -443,7 +501,9 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -469,7 +529,37 @@
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Access_Status": "REDACTED_PREVIEW"
+    },
+    {
+      "State": "FL",
+      "County": "Miami-Dade",
+      "Parcel_ID": "30-4014-012-0580",
+      "Case_or_TaxDeed_No": "2024-CA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Owner_Name": "V. & C. C\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Entity_Type": "Estate / Deceased",
+      "Is_Individual": true,
+      "Heir_Search_Recommended": true,
+      "Property_Address": "10845 SW [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
+      "Property_Type": "Single Family Residential",
+      "Surplus_Balance_USD": 89450.0,
+      "Statutory_Fee_Rate": "20%",
+      "Est_Finder_Fee_USD": 17890.0,
+      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
+      "Sale_Date": "2024-08-22",
+      "Days_Remaining_To_Claim": 105,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2027-01-12",
+      "Statutory_Deadline_Window": "60 Days from Certificate of Disbursement (Fla. Stat. \u00a7 45.032)",
+      "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
+      "Governing_Statute": "Fla. Stat. \u00a7 45.032",
+      "Statute_Citation": "Fla. Stat. \u00a7 45.032",
+      "Record_Type": "Foreclosure Surplus",
+      "TYPE": "FORECLOSURE",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -495,7 +585,9 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -521,7 +613,9 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -547,7 +641,9 @@
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -573,7 +669,9 @@
       "Clerk_Verification_URL": "https://www.browardclerk.org/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -599,7 +697,37 @@
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Access_Status": "REDACTED_PREVIEW"
+    },
+    {
+      "State": "FL",
+      "County": "Palm Beach",
+      "Parcel_ID": "00-43-43-05-11-002-0080",
+      "Case_or_TaxDeed_No": "2024-CA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Owner_Name": "R. & G. M\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Entity_Type": "Individual / Estate",
+      "Is_Individual": true,
+      "Heir_Search_Recommended": false,
+      "Property_Address": "318 COLONIAL [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
+      "Property_Type": "Single Family Residential",
+      "Surplus_Balance_USD": 78250.0,
+      "Statutory_Fee_Rate": "20%",
+      "Est_Finder_Fee_USD": 15650.0,
+      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
+      "Sale_Date": "2024-08-19",
+      "Days_Remaining_To_Claim": 105,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2027-01-12",
+      "Statutory_Deadline_Window": "60 Days from Certificate of Disbursement (Fla. Stat. \u00a7 45.032)",
+      "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
+      "Governing_Statute": "Fla. Stat. \u00a7 45.032",
+      "Statute_Citation": "Fla. Stat. \u00a7 45.032",
+      "Record_Type": "Foreclosure Surplus",
+      "TYPE": "FORECLOSURE",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -625,7 +753,9 @@
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -651,7 +781,9 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -677,7 +809,9 @@
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -703,7 +837,9 @@
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -729,7 +865,37 @@
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Access_Status": "REDACTED_PREVIEW"
+    },
+    {
+      "State": "FL",
+      "County": "Broward",
+      "Parcel_ID": "4842-18-09-0410",
+      "Case_or_TaxDeed_No": "2024-CA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Owner_Name": "L. & T. T\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Entity_Type": "Estate / Deceased",
+      "Is_Individual": true,
+      "Heir_Search_Recommended": true,
+      "Property_Address": "4210 NE [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
+      "Property_Type": "Single Family Residential",
+      "Surplus_Balance_USD": 64800.0,
+      "Statutory_Fee_Rate": "20%",
+      "Est_Finder_Fee_USD": 12960.0,
+      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
+      "Sale_Date": "2024-08-15",
+      "Days_Remaining_To_Claim": 105,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2027-01-12",
+      "Statutory_Deadline_Window": "60 Days from Certificate of Disbursement (Fla. Stat. \u00a7 45.032)",
+      "Clerk_Verification_URL": "https://www.browardclerk.org/",
+      "Governing_Statute": "Fla. Stat. \u00a7 45.032",
+      "Statute_Citation": "Fla. Stat. \u00a7 45.032",
+      "Record_Type": "Foreclosure Surplus",
+      "TYPE": "FORECLOSURE",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -755,7 +921,9 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -781,7 +949,9 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -807,7 +977,9 @@
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -833,7 +1005,9 @@
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -859,7 +1033,9 @@
       "Clerk_Verification_URL": "https://www.browardclerk.org/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -885,7 +1061,9 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -911,7 +1089,37 @@
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Access_Status": "REDACTED_PREVIEW"
+    },
+    {
+      "State": "FL",
+      "County": "Broward",
+      "Parcel_ID": "5041-35-02-0190",
+      "Case_or_TaxDeed_No": "2024-CA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Owner_Name": "T. & C. W\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "Entity_Type": "Individual / Estate",
+      "Is_Individual": true,
+      "Heir_Search_Recommended": false,
+      "Property_Address": "8920 SW [REDACTED \u2014 SUBSCRIBER ACCESS ONLY]",
+      "Property_Type": "Single Family Residential",
+      "Surplus_Balance_USD": 41600.0,
+      "Statutory_Fee_Rate": "20%",
+      "Est_Finder_Fee_USD": 8320.0,
+      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
+      "Sale_Date": "2024-08-09",
+      "Days_Remaining_To_Claim": 105,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2027-01-12",
+      "Statutory_Deadline_Window": "60 Days from Certificate of Disbursement (Fla. Stat. \u00a7 45.032)",
+      "Clerk_Verification_URL": "https://www.browardclerk.org/",
+      "Governing_Statute": "Fla. Stat. \u00a7 45.032",
+      "Statute_Citation": "Fla. Stat. \u00a7 45.032",
+      "Record_Type": "Foreclosure Surplus",
+      "TYPE": "FORECLOSURE",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -937,7 +1145,9 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -963,7 +1173,9 @@
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -989,7 +1201,9 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1015,7 +1229,9 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 16:10:02",
+      "Record_Type": "Tax Deed Surplus",
+      "TYPE": "TAX_DEED",
+      "Enriched_Timestamp": "2026-09-29 17:09:20",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

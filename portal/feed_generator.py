@@ -41,7 +41,9 @@ def generate_b2b_exports():
         fl_raw = pd.read_csv(fl_csv).to_dict(orient="records")
         for r in fl_raw:
             healed_r = self_heal_record(r, default_state="FL", default_county="Orange")
-            county_meta = {"state": "FL", "county": healed_r.get("County", "Orange"), "statute": "Fla. Stat. § 197.582"}
+            r_type = str(healed_r.get("TYPE", "TAX_DEED")).strip().upper()
+            statute = "Fla. Stat. § 45.032" if r_type == "FORECLOSURE" else "Fla. Stat. § 197.582"
+            county_meta = {"state": "FL", "county": healed_r.get("County", "Orange"), "statute": statute, "record_type": r_type}
             leads = process_county_dataset([healed_r], county_meta)
             all_leads.extend(leads)
 

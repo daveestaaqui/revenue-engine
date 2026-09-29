@@ -48,9 +48,10 @@ STRIPE_CHECKOUT_URL = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 CANONICAL_STATUTES = {
     "FL": {
         "statute": "Fla. Stat. § 197.582",
+        "valid_statutes": ["Fla. Stat. § 197.582", "Fla. Stat. § 45.032"],
         "fee_cap": 0.20,
         "fee_label": "20%",
-        "window_desc": "120 Days from Notice (Fla. Stat. § 197.582)"
+        "window_desc": "120 Days from Notice (Fla. Stat. § 197.582) / 60 Days from Certificate of Disbursement (Fla. Stat. § 45.032)"
     },
     "TX": {
         "statute": "Tex. Tax Code § 34.04",
@@ -170,8 +171,9 @@ def validate_single_record(record: dict, source_label: str = "Record") -> list:
         errors.append(f"[{source_label}] Invalid state '{state}'. Must be one of {list(CANONICAL_STATUTES.keys())}")
     else:
         canonical = CANONICAL_STATUTES[state]
-        if statute != canonical["statute"]:
-            errors.append(f"[{source_label}] Statutory hallucination: State {state} has statute '{statute}', expected '{canonical['statute']}'")
+        valid_statutes = canonical.get("valid_statutes", [canonical["statute"]])
+        if statute not in valid_statutes:
+            errors.append(f"[{source_label}] Statutory hallucination: State {state} has statute '{statute}', expected one of {valid_statutes}")
 
     # 2. County Check
     if not county or len(county) < 2:

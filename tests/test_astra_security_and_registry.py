@@ -220,7 +220,7 @@ class LegalRegistryTests(unittest.TestCase):
             "NC": "N.C. Gen. Stat. § 105-374",
             "TN": "Tenn. Code Ann. § 67-5-2501",
         }
-        self.assertEqual(len(RULES), 6)
+        self.assertEqual(len(RULES), 7)
         for state, citation in expected.items():
             rule = get_rule(state.lower(), DEFAULT_PROCEEDINGS[state])
             self.assertEqual(rule.citation, citation)

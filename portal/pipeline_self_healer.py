@@ -192,6 +192,9 @@ def self_heal_record(record: dict, default_state: str = "FL", default_county: st
     healed = {}
     # 1. Map columns using fuzzy aliasing
     for k, v in record.items():
+        if k == "TYPE":
+            healed["TYPE"] = v
+            continue
         canon_key = normalize_column_name(k)
         healed[canon_key] = v
 
@@ -223,6 +226,7 @@ def self_heal_record(record: dict, default_state: str = "FL", default_county: st
     if not parcel_id or parcel_id.lower() in ("nan", "none", "null"):
         parcel_id = "N/A"
 
+    record_type = str(healed.get("TYPE", record.get("TYPE", "TAX_DEED"))).strip()
     # 4. Standard canonical record output
     canonical = {
         "Case_or_TaxDeed_No": case_no,
@@ -234,10 +238,12 @@ def self_heal_record(record: dict, default_state: str = "FL", default_county: st
         "County": cty,
         "State": st,
         "Clerk_Verification_URL": healed_url,
+        "TYPE": record_type,
+        "Record_Type": record_type,
     }
 
     # Retain any extra enrichment fields if present
-    for extra_field in ["Opportunity_Tier", "Est_Finder_Fee_USD", "Statute_Citation", "Days_Remaining_To_Claim", "Claim_Deadline_Date", "Property_Class", "Parcel_ID"]:
+    for extra_field in ["Opportunity_Tier", "Est_Finder_Fee_USD", "Statute_Citation", "Days_Remaining_To_Claim", "Claim_Deadline_Date", "Property_Class", "Parcel_ID", "TYPE", "Record_Type"]:
         if extra_field in healed and extra_field not in canonical:
             canonical[extra_field] = healed[extra_field]
 
@@ -308,7 +314,7 @@ def generate_clio_matter_export(leads: list, output_path: Path) -> Path:
             "Matter Description": sanitize_cell(matter_desc),
             "Client First Name": sanitize_cell(first_name),
             "Client Last Name": sanitize_cell(last_name),
-            "Practice Area": "Tax Deed Surplus Recovery",
+            "Practice Area": "Foreclosure Surplus Recovery" if lead.get("TYPE", lead.get("Record_Type")) == "FORECLOSURE" else "Tax Deed Surplus Recovery",
             "Open Date": today_str,
             "Status": "Open",
             "Pending Surplus USD": f"${surplus:,.2f}",
@@ -372,7 +378,7 @@ def generate_filevine_lead_export(leads: list, output_path: Path) -> Path:
         deadline = lead.get("Claim_Deadline_Date") or lead.get("Statutory_Deadline_Window") or "Verify Court Record"
 
         rows.append({
-            "Project Name": sanitize_cell(f"{owner} — Tax Deed Surplus ({docket})"),
+            "Project Name": sanitize_cell(f"{owner} — {'Foreclosure' if lead.get('TYPE', lead.get('Record_Type')) == 'FORECLOSURE' else 'Tax Deed'} Surplus ({docket})"),
             "Client Full Name": sanitize_cell(owner),
             "Project Type": "Excess Proceeds Recovery",
             "Phase": "Intake & Docket Verification",

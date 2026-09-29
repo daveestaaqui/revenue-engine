@@ -1,4 +1,4 @@
-"""Versioned, immutable reference registry for TAX-SALE surplus proceedings.
+"""Versioned, immutable reference registry for TAX-SALE and FORECLOSURE surplus proceedings.
 
 Not applicable to mortgage foreclosure, bankruptcy, redemption deadlines, or
 case-specific court orders.
@@ -54,6 +54,20 @@ class LegalRule:
 
 
 _RULES = (
+    LegalRule(
+        "FL",
+        "foreclosure",
+        "Fla. Stat. § 45.032",
+        "sale_date",
+        "60 calendar days after the clerk files the certificate of disbursement",
+        (
+            "Judicial mortgage-foreclosure surplus deposited in the court "
+            "registry. The 60-day window runs from the certificate of "
+            "disbursement, not the sale date. Verify with the circuit court "
+            "clerk's office for the actual certificate filing date."
+        ),
+        ("sale_date", "certificate_of_disbursement_date"),
+    ),
     LegalRule(
         "FL",
         "tax_deed",

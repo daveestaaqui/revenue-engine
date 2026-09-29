@@ -80,7 +80,7 @@ def is_deceased_or_estate(owner_raw):
     upper = owner_raw.upper()
     return "ESTATE" in upper or "HEIR" in upper or "DECEASED" in upper
 
-def calculate_days_remaining(sale_date_str, state="FL"):
+def calculate_days_remaining(sale_date_str, state="FL", record_type="TAX_DEED"):
     window_days_map = {
         "FL": 120,   # Fla. Stat. § 197.582 (120 days from clerk notice)
         "TX": 730,   # 2 Years (Tex. Tax Code § 34.04)
@@ -90,6 +90,8 @@ def calculate_days_remaining(sale_date_str, state="FL"):
         "CA": 365    # Cal. Rev. & Tax Code § 4675 (1 year from deed recording)
     }
     window = window_days_map.get(state, 365)
+    if state == "FL" and record_type == "FORECLOSURE":
+        window = 60
     days_rem = None
     deadline_date_str = "Active Court Registry"
     try:
@@ -137,6 +139,9 @@ def calculate_days_remaining(sale_date_str, state="FL"):
 
 
 def classify_and_enrich_record(row, county_meta):
+    record_type = str(row.get("TYPE", county_meta.get("record_type", "TAX_DEED"))).strip().upper()
+    if not record_type or record_type == "NAN":
+        record_type = "TAX_DEED"
     owner_raw = str(row.get("Owner_Name", row.get("owner_name", row.get("DEFENDANT", row.get("NAME", "UNKNOWN"))))).strip()
     surplus_raw = row.get("Surplus_Balance_USD", row.get("surplus_balance_usd", row.get("surplus_amount", row.get("AMOUNT", row.get("Excess_Funds", row.get("Balance", 0))))))
     surplus_amt = clean_currency(surplus_raw)
@@ -160,12 +165,15 @@ def classify_and_enrich_record(row, county_meta):
         parcel_id = "N/A"
     sale_date = str(row.get("Sale_Date", row.get("sale_date", row.get("DATE", "N/A")))).strip()
 
-    days_remaining, urgency_tier, claim_deadline = calculate_days_remaining(sale_date, state)
+    days_remaining, urgency_tier, claim_deadline = calculate_days_remaining(sale_date, state, record_type)
     prop_class = infer_property_class(address)
     clerk_url = row.get("Clerk_Verification_URL") or CLERK_PORTALS.get(county_name, "https://surplusdocket.com")
     
     if state == "FL":
-        deadline_rule = "120 Days from Notice (Fla. Stat. § 197.582)"
+        if record_type == "FORECLOSURE":
+            deadline_rule = "60 Days from Certificate of Disbursement (Fla. Stat. § 45.032)"
+        else:
+            deadline_rule = "120 Days from Notice (Fla. Stat. § 197.582)"
     elif state == "TX":
         deadline_rule = "2 Years from Sale (Tex. Tax Code § 34.04)"
     elif state == "GA":
@@ -180,6 +188,8 @@ def classify_and_enrich_record(row, county_meta):
         deadline_rule = "Statutory Filing Window"
 
     statute_cite = county_meta.get("statute", "Applicable State Law")
+    if state == "FL" and record_type == "FORECLOSURE":
+        statute_cite = "Fla. Stat. § 45.032"
 
     return {
         "State": state,
@@ -204,6 +214,8 @@ def classify_and_enrich_record(row, county_meta):
         "Clerk_Verification_URL": clerk_url,
         "Governing_Statute": statute_cite,
         "Statute_Citation": statute_cite,
+        "Record_Type": "Foreclosure Surplus" if record_type == "FORECLOSURE" else "Tax Deed Surplus",
+        "TYPE": record_type,
         "Enriched_Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
 

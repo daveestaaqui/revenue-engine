@@ -96,6 +96,23 @@
       "registry_type": "County Treasurer-Tax Collector Trust Fund",
       "official_source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=4675.",
       "status": "EXPANSION_VERIFIED"
+    },
+    "FL_FORECLOSURE": {
+      "state_name": "Florida",
+      "governing_statute": "Fla. Stat. \u00a7 45.032",
+      "statute_title": "Disbursement of surplus from judicial foreclosure sale",
+      "claim_window_days": 60,
+      "claim_window_text": "60 Days from Certificate of Disbursement",
+      "finder_fee_cap_percent": 20,
+      "finder_fee_rule": "20% statutory limit applicable to non-attorney surplus recovery filers",
+      "priority_order": [
+        "Senior Mortgagees & Recorded Lienholders",
+        "Junior Lienholders & Judgment Creditors",
+        "Record Titleholder / Heirs of Record"
+      ],
+      "registry_type": "Circuit Court Civil Registry",
+      "official_source_url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&Search_String=&URL=0000-0099/0045/Sections/0045.032.html",
+      "status": "ACTIVE_VERIFIED"
     }
   }
 }
