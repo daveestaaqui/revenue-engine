@@ -2014,17 +2014,18 @@
         function downloadSampleCSV(e) {
             if (e) e.preventDefault();
             const csvRows = [
-                ["State","County","Docket_Number","Auction_Date","Indexed_Owner","Gross_Surplus","Statutory_Cap_Ref","Clerk_Portal_URL"],
-                ["CA","Los Angeles","2026-CA-008120","2026-08-20","G. & E. T████████","215000.00","43000.00 (20%)","https://ttc.lacounty.gov/tax-sale-auction-results/?parcel=2026-CA-008120"],
-                ["FL","Palm Beach","2026-TD-004501","2026-08-18","A. & G. V████████","145000.00","29000.00 (20%)","https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501"],
-                ["GA","Fulton","2026-GA-003810","2026-08-15","M. & E. J███████","134000.00","26800.00 (20%)","https://www.fultonclerk.org/search?q=2026-GA-003810"],
-                ["TX","Harris","2026-TX-04812","2026-08-12","W. & M. H██████","128500.00","32125.00 (25%)","https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04812"],
-                ["TN","Davidson","2026-TN-002190","2026-08-10","F. & J. M██████","126000.00","25200.00 (20%)","https://chanceryclerkandmaster.nashville.gov/case-search?case=2026-TN-002190"],
-                ["GA","Cobb","2026-GA-001550","2026-08-08","Est. of R. V██████","118000.00","23600.00 (20%)","https://www.cobbsheriff.org/civil-tax-sales?docket=2026-GA-001550"],
-                ["NC","Wake","2026-NC-001420","2026-08-06","H. & C. V█████","114500.00","22900.00 (20%)","https://www.nccourts.gov/locations/wake?search=2026-NC-001420"],
-                ["FL","Miami-Dade","2026-TD-004812","2026-08-05","L. & M. H████████","112000.00","22400.00 (20%)","https://www2.miamidadeclerk.gov/ocs/Search.aspx?caseid=2026-TD-004812"],
-                ["FL","Hillsborough","2026-TD-008912","2026-07-29","R. & C. S██████","92400.00","18480.00 (20%)","https://www.hillsclerk.com/records-search?case=2026-TD-008912"],
-                ["TX","Harris","2026-TX-04950","2026-07-22","Est. of C. B██████","86200.00","21550.00 (25%)","https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04950"]
+                ["State","County","Parcel_ID_Folio","Docket_Number","Auction_Date","Indexed_Owner","Gross_Surplus","Statutory_Cap_Ref","Clerk_Portal_URL"],
+                ["CA","Los Angeles","2145-012-089","2026-CA-008120","2026-08-20","G. & E. T████████","215000.00","43000.00 (20%)","https://ttc.lacounty.gov/tax-sale-auction-results/?parcel=2026-CA-008120"],
+                ["FL","Palm Beach","50-43-43-15-06-001-0020","2026-TD-004501","2026-08-18","A. & G. V████████","145000.00","29000.00 (20%)","https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501"],
+                ["FL","Broward","4942-12-05-0890","2026-TD-003891","2026-08-16","M. & H. V█████████","138500.00","27700.00 (20%)","https://www.browardclerk.org/"],
+                ["GA","Fulton","14-0045-0002-019","2026-GA-003810","2026-08-15","M. & E. J███████","134000.00","26800.00 (20%)","https://www.fultonclerk.org/search?q=2026-GA-003810"],
+                ["TX","Harris","041-285-000-0012","2026-TX-04812","2026-08-12","W. & M. H██████","128500.00","32125.00 (25%)","https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04812"],
+                ["TN","Davidson","093-06-2-045.00","2026-TN-002190","2026-08-10","F. & J. M██████","126000.00","25200.00 (20%)","https://chanceryclerkandmaster.nashville.gov/case-search?case=2026-TN-002190"],
+                ["GA","Cobb","17-0245-0-012-0","2026-GA-001550","2026-08-08","Est. of R. V██████","118000.00","23600.00 (20%)","https://www.cobbsheriff.org/civil-tax-sales?docket=2026-GA-001550"],
+                ["NC","Wake","0794.18-42-1045","2026-NC-001420","2026-08-06","H. & C. V█████","114500.00","22900.00 (20%)","https://www.nccourts.gov/locations/wake?search=2026-NC-001420"],
+                ["FL","Miami-Dade","01-4138-005-0120","2026-TD-004812","2026-08-05","L. & M. H████████","112000.00","22400.00 (20%)","https://www2.miamidadeclerk.gov/ocs/Search.aspx?caseid=2026-TD-004812"],
+                ["FL","Hillsborough","182914-4TA000001000020","2026-TD-008912","2026-07-29","R. & C. S██████","92400.00","18480.00 (20%)","https://www.hillsclerk.com/records-search?case=2026-TD-008912"],
+                ["TX","Harris","062-114-000-0088","2026-TX-04950","2026-07-22","Est. of C. B██████","86200.00","21550.00 (25%)","https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04950"]
             ];
             const csvContent = csvRows.map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
