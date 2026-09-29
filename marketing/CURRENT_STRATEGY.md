@@ -1,12 +1,12 @@
 # 📊 Surplus Docket — Autonomous Marketing Strategy & Optimization Briefing
-**Last Updated:** September 28, 2026 at 18:19 UTC  
+**Last Updated:** September 29, 2026 at 12:50 UTC  
 **Optimization Mode:** Multi-Factor Empirical Model (Surplus Equity + Firm Density + Deliverability)
 
 ---
 
 ## 🚀 1. Executive Directive: High-Yield Resource Calibration
 
-Based on automated analysis of **568 technical outreach points**, **1229 addressable real estate & probate law practices**, and **$3,244,600.00 verified public registry surplus inventory** across 35 court dockets:
+Based on automated analysis of **592 technical outreach points**, **1229 addressable real estate & probate law practices**, and **$3,244,600.00 verified public registry surplus inventory** across 35 court dockets:
 
 1. **PRIMARY POWERHOUSE: FL (25.8% Resource Allocation)**
    - **Monitored Surplus Pool:** $780,300.00 across 12 verified dockets.
