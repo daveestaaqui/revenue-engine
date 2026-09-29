@@ -1,5 +1,16 @@
 [
   {
+    "id": "sentinel_d0af7fbaddfe10f7",
+    "type": "security_quarantine",
+    "category": "dangerous_content",
+    "sender": "alden@cohenrecoverylaw.com",
+    "sender_name": "A.L.D.E.N.",
+    "subject": "Florida feed questions: Miami-Dade, Palm Beach, and Broward",
+    "reason": "Attachment, execution, or payment risk",
+    "timestamp": "2026-09-29T19:34:14.869544+00:00",
+    "status": "quarantined_by_sentinel"
+  },
+  {
     "id": "ACT-7370919",
     "timestamp": "2026-09-07T16:56:47.328796",
     "sender_name": "Attorney Davis Calling",

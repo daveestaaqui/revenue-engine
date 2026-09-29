@@ -319,3 +319,5 @@
 [2026-09-29 01:30:15]   ⏭️ Skipped non-prospect from CloudPlatform-noreply@google.com (Sub: 'Urgent: your billing account 01259D-5202'): Message identified as automated notification, bounce, or system alert
 [2026-09-29 01:30:17]   🧹 Auto-unsubscribed and cleared marketing email from no-reply@helius.xyz
 [2026-09-29 07:27:41]   ⏭️ Skipped non-prospect from discover@card-e.em.discover.com (Sub: 'Attn: Additional account information nee'): Sender 'discover@card-e.em.discover.com' is not in verified target database and not a statutory inquiry
+[2026-09-29 19:34:14]   ⏭️ Skipped non-prospect from DoNotReply@MyHealth.AtriusHealth.org (Sub: 'MyHealth Online - New Message'): Message identified as automated notification, bounce, or system alert
+[2026-09-29 19:34:14]   🛡️ Sentinel Firewall Quarantined inbound message from alden@cohenrecoverylaw.com [dangerous_content]: Attachment, execution, or payment risk
