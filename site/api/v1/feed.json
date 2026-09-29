@@ -5,7 +5,7 @@
   "message": "Full unredacted REST API access requires an active Surplus Docket Enterprise subscription with a valid Bearer API token. Production feeds deliver unredacted claimant identities, verified property situs, and court docket links every business morning (Mon\u2013Fri) at 7:00 AM EST.",
   "api_version": "v1.0",
   "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
-  "generated_at": "2026-09-29T17:09:20.812214",
+  "generated_at": "2026-09-29T18:54:59.180941",
   "subscription_portal": "https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00",
   "subscribe_url": "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22",
   "meta": {
@@ -55,7 +55,7 @@
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -83,7 +83,7 @@
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -111,7 +111,7 @@
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -139,7 +139,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -167,7 +167,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -195,7 +195,7 @@
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -223,7 +223,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -251,7 +251,7 @@
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -279,7 +279,7 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -307,7 +307,7 @@
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -335,7 +335,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -363,7 +363,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -391,7 +391,7 @@
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -419,7 +419,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -447,7 +447,7 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -475,7 +475,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -503,7 +503,7 @@
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -531,7 +531,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -559,7 +559,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -587,7 +587,7 @@
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -615,7 +615,7 @@
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -643,7 +643,7 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -671,7 +671,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -699,7 +699,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -727,7 +727,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -755,7 +755,7 @@
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -783,7 +783,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -811,7 +811,7 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -839,7 +839,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -867,7 +867,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -895,7 +895,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -923,7 +923,7 @@
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -951,7 +951,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -979,7 +979,7 @@
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1007,7 +1007,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1035,7 +1035,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1063,7 +1063,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1091,7 +1091,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1119,7 +1119,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1147,7 +1147,7 @@
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1175,7 +1175,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1203,7 +1203,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -1231,7 +1231,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-09-29 17:09:20",
+      "Enriched_Timestamp": "2026-09-29 18:54:59",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

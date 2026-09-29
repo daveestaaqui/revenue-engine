@@ -3,18 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surplus Docket — Florida Tax Deed Surplus &amp; Excess Proceeds (Fla. Stat. § 197.582)</title>
-    <meta name="description" content="Daily aggregated public records feed of newly filed tax deed surplus funds across Florida counties (Miami-Dade, Broward, Palm Beach, Orange, Hillsborough) for asset recovery attorneys.">
+    <title>Surplus Docket — Florida Tax Deed &amp; Foreclosure Surplus Feed (Fla. Stat. § 197.582 &amp; § 45.032)</title>
+    <meta name="description" content="Daily court intelligence feed indexing newly filed tax deed surplus (Fla. Stat. § 197.582) and judicial foreclosure surplus (Fla. Stat. § 45.032) across Miami-Dade, Broward, Palm Beach, Orange, and Hillsborough counties. Mon–Fri 7:00 AM EST.">
     <link rel="canonical" href="https://surplusdocket.com/florida-tax-deed-surplus.html">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <meta property="og:title" content="Surplus Docket — Florida Tax Deed Surplus & Excess Proceeds (Fla. Stat. § 197.582)">
-    <meta property="og:description" content="Daily aggregated public records feed of newly filed tax deed surplus funds across Florida counties for asset recovery attorneys.">
+    <meta property="og:title" content="Surplus Docket — Florida Tax Deed &amp; Foreclosure Surplus Feed (Fla. Stat. § 197.582 &amp; § 45.032)">
+    <meta property="og:description" content="Daily court intelligence feed indexing newly filed tax deed surplus and judicial foreclosure surplus across Miami-Dade, Broward, Palm Beach, Orange, and Hillsborough counties. Delivered every business morning at 7:00 AM EST.">
     <meta property="og:image" content="https://surplusdocket.com/assets/og_image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://surplusdocket.com/assets/og_image.png">
+
+    <!-- Schema.org JSON-LD Structured Data for High-Intent Legal & Data Feed Queries -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Dataset",
+          "name": "Florida Court Surplus & Excess Proceeds Data Feed",
+          "description": "Daily automated court intelligence feed indexing tax deed surplus funds (Fla. Stat. § 197.582) and judicial foreclosure excess proceeds (Fla. Stat. § 45.032) across Florida county court registries including Miami-Dade, Broward, Palm Beach, Orange, and Hillsborough.",
+          "spatialCoverage": {
+            "@type": "Place",
+            "name": "Florida, United States",
+            "geo": {
+              "@type": "GeoShape",
+              "box": "24.52 -87.63 31.00 -80.03"
+            }
+          },
+          "license": "https://surplusdocket.com/terms.html",
+          "creator": {
+            "@type": "Organization",
+            "name": "Surplus Docket",
+            "url": "https://surplusdocket.com"
+          },
+          "distribution": [
+            {
+              "@type": "DataDownload",
+              "encodingFormat": "text/csv",
+              "contentUrl": "https://surplusdocket.com/exports/Florida_Surplus_Feed.csv"
+            },
+            {
+              "@type": "DataDownload",
+              "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "contentUrl": "https://surplusdocket.com/exports/Florida_Surplus_Feed.xlsx"
+            },
+            {
+              "@type": "DataDownload",
+              "encodingFormat": "application/json",
+              "contentUrl": "https://surplusdocket.com/api/v1/florida.json"
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://surplusdocket.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Florida Court Surplus Feed",
+              "item": "https://surplusdocket.com/florida-tax-deed-surplus.html"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What Florida statutes govern surplus funds recovery?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Florida law provides two distinct surplus recovery pathways: administrative tax deed sales under Fla. Stat. § 197.582 (120-day claim window from the clerk's statutory notice) and circuit court judicial foreclosure sales under Fla. Stat. § 45.032 (60-day claim window following the clerk's Certificate of Disbursements)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the Florida feed cover Broward, Miami-Dade, and Palm Beach counties?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Surplus Docket provides comprehensive daily coverage for Broward County (17th Judicial Circuit), Miami-Dade County (11th Judicial Circuit), Palm Beach County (15th Judicial Circuit), Orange County (9th Judicial Circuit), and Hillsborough County (13th Judicial Circuit)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What fields are included in each Florida surplus record?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Every docket record includes former owner name (with estate/deceased flagging), standardized parcel ID/folio number (Miami-Dade 13-digit folio, Broward 12-digit parcel, Palm Beach 17-digit PCN), uniform case/tax deed number, property address, sale date, surplus balance, statutory claim deadline, governing statute, and direct clerk verification portal link."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can Florida surplus records be imported directly into Clio or Filevine?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Subscribers receive pre-formatted 1-click import templates configured for Clio Manage matters and Filevine project intake with every morning 7:00 AM EST distribution."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -190,10 +289,10 @@
 
         <div class="mb-10 text-center md:text-left">
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-navy mb-3 leading-tight">
-                Florida Tax Deed Surplus Claims &amp; Overbid Intelligence
+                Florida Court Surplus &amp; Excess Proceeds Feed
             </h1>
             <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
-                Comprehensive statutory framework, claim filing timelines, and automated daily data feed for Florida tax deed excess proceeds.
+                Daily aggregated court registry feed covering Miami-Dade, Broward, Palm Beach, Orange, and Hillsborough counties. Standardized lead dockets for both administrative tax deed surplus (<strong class="text-brand-navy font-semibold">Fla. Stat. § 197.582</strong>) and judicial foreclosure excess proceeds (<strong class="text-brand-navy font-semibold">Fla. Stat. § 45.032</strong>).
             </p>
         </div>
 
