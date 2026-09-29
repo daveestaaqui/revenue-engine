@@ -13,6 +13,7 @@
     {
       "State": "TN",
       "County": "Davidson",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TN-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "F. & J. M\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -32,12 +33,13 @@
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TN",
       "County": "Shelby",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TN-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "L. & T. B\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -57,12 +59,13 @@
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TN",
       "County": "Davidson",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TN-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "G. & C. C\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -82,12 +85,13 @@
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TN",
       "County": "Shelby",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TN-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "B. & H. H\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -107,7 +111,7 @@
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

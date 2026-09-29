@@ -1,12 +1,13 @@
 {
-  "generated_at": "2026-09-29T12:50:34.556790",
-  "total_records": 35,
-  "total_surplus_volume_usd": 3244600.0,
-  "total_finder_fees_available_usd": 668580.0,
+  "generated_at": "2026-09-29T16:10:02.804212",
+  "total_records": 38,
+  "total_surplus_volume_usd": 3520000.0,
+  "total_finder_fees_available_usd": 723660.0,
   "data": [
     {
       "State": "CA",
       "County": "Los Angeles",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-CA-008120",
       "Owner_Name": "GREGORY & EVELYN THATCHER",
       "Entity_Type": "Individual / Estate",
@@ -26,11 +27,12 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "CA",
       "County": "San Diego",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-CA-005210",
       "Owner_Name": "VICTOR & MONICA REYES",
       "Entity_Type": "Individual / Estate",
@@ -50,11 +52,12 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "CA",
       "County": "Los Angeles",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-CA-008640",
       "Owner_Name": "ESTATE OF CAROLINE DELGADO",
       "Entity_Type": "Estate / Deceased",
@@ -74,11 +77,12 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Palm Beach",
+      "Parcel_ID": "50-43-43-15-06-001-0020",
       "Case_or_TaxDeed_No": "2024-TD-004501",
       "Owner_Name": "ANTHONY & GRACE VALENTINE",
       "Entity_Type": "Individual / Estate",
@@ -98,11 +102,37 @@
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
+    },
+    {
+      "State": "FL",
+      "County": "Broward",
+      "Parcel_ID": "4942-12-05-0890",
+      "Case_or_TaxDeed_No": "2024-TD-003891",
+      "Owner_Name": "MARCUS & HELENA VANDERBILT",
+      "Entity_Type": "Individual / Estate",
+      "Is_Individual": true,
+      "Heir_Search_Recommended": false,
+      "Property_Address": "1520 SE 12TH ST FORT LAUDERDALE FL 33316",
+      "Property_Type": "Single Family Residential",
+      "Surplus_Balance_USD": 138500.0,
+      "Statutory_Fee_Rate": "20%",
+      "Est_Finder_Fee_USD": 27700.0,
+      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
+      "Sale_Date": "2024-07-19",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-12-13",
+      "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.browardclerk.org/",
+      "Governing_Statute": "Fla. Stat. \u00a7 197.582",
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "NC",
       "County": "Mecklenburg",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-003110",
       "Owner_Name": "DERRICK & ANGELA MORGAN",
       "Entity_Type": "Individual / Estate",
@@ -122,11 +152,12 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "GA",
       "County": "Fulton",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-003810",
       "Owner_Name": "MARCUS & ELEANOR JENKINS",
       "Entity_Type": "Individual / Estate",
@@ -146,11 +177,12 @@
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "TX",
       "County": "Harris",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-04812",
       "Owner_Name": "WILLIAM & MARY HOLLOWAY",
       "Entity_Type": "Individual / Estate",
@@ -170,11 +202,12 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "TN",
       "County": "Davidson",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TN-002190",
       "Owner_Name": "FRANKLIN & JUDITH MERCER",
       "Entity_Type": "Individual / Estate",
@@ -194,11 +227,12 @@
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "CA",
       "County": "San Diego",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-CA-005780",
       "Owner_Name": "ESTATE OF DOUGLAS WINSLOW",
       "Entity_Type": "Estate / Deceased",
@@ -218,11 +252,12 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "GA",
       "County": "Cobb",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-001550",
       "Owner_Name": "ESTATE OF RAYMOND VAUGHN",
       "Entity_Type": "Estate / Deceased",
@@ -242,11 +277,12 @@
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "NC",
       "County": "Wake",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-001420",
       "Owner_Name": "HARRISON & CAROLINE VANCE",
       "Entity_Type": "Individual / Estate",
@@ -266,11 +302,12 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Miami-Dade",
+      "Parcel_ID": "01-4138-005-0120",
       "Case_or_TaxDeed_No": "2024-TD-004812",
       "Owner_Name": "LUIS & MARIA HERNANDEZ",
       "Entity_Type": "Individual / Estate",
@@ -290,11 +327,12 @@
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "TN",
       "County": "Shelby",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TN-004110",
       "Owner_Name": "LAWRENCE & TINA BENNETT",
       "Entity_Type": "Individual / Estate",
@@ -314,11 +352,12 @@
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "GA",
       "County": "Fulton",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-004120",
       "Owner_Name": "ESTATE OF HAROLD CRAWFORD",
       "Entity_Type": "Estate / Deceased",
@@ -338,11 +377,12 @@
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "NC",
       "County": "Mecklenburg",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-003450",
       "Owner_Name": "ESTATE OF WALTER STERLING",
       "Entity_Type": "Estate / Deceased",
@@ -362,11 +402,12 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Hillsborough",
+      "Parcel_ID": "182914-4TA000001000020",
       "Case_or_TaxDeed_No": "2024-TD-008912",
       "Owner_Name": "ROBERT & CLAIRE SULLIVAN",
       "Entity_Type": "Individual / Estate",
@@ -386,11 +427,12 @@
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "NC",
       "County": "Wake",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-001890",
       "Owner_Name": "ESTATE OF SAMUEL KAUFMAN",
       "Entity_Type": "Estate / Deceased",
@@ -410,11 +452,12 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "TX",
       "County": "Harris",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-04950",
       "Owner_Name": "ESTATE OF CHARLES BEAUMONT",
       "Entity_Type": "Estate / Deceased",
@@ -434,11 +477,12 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "TN",
       "County": "Davidson",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TN-002840",
       "Owner_Name": "ESTATE OF GLORIA CHANDLER",
       "Entity_Type": "Estate / Deceased",
@@ -458,11 +502,37 @@
       "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
+    },
+    {
+      "State": "FL",
+      "County": "Broward",
+      "Parcel_ID": "5142-28-03-0140",
+      "Case_or_TaxDeed_No": "2024-TD-004105",
+      "Owner_Name": "ESTATE OF RAYMOND CHANDLER",
+      "Entity_Type": "Estate / Deceased",
+      "Is_Individual": true,
+      "Heir_Search_Recommended": true,
+      "Property_Address": "3840 N 56TH AVE HOLLYWOOD FL 33021",
+      "Property_Type": "Single Family Residential",
+      "Surplus_Balance_USD": 84200.0,
+      "Statutory_Fee_Rate": "20%",
+      "Est_Finder_Fee_USD": 16840.0,
+      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
+      "Sale_Date": "2024-08-01",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-12-13",
+      "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.browardclerk.org/",
+      "Governing_Statute": "Fla. Stat. \u00a7 197.582",
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "GA",
       "County": "Dekalb",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-002490",
       "Owner_Name": "TERRENCE & MONICA BRADLEY",
       "Entity_Type": "Individual / Estate",
@@ -482,11 +552,12 @@
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "TX",
       "County": "Dallas",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-02044",
       "Owner_Name": "ESTATE OF MARGARET THORNTON",
       "Entity_Type": "Estate / Deceased",
@@ -506,11 +577,12 @@
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Orange",
+      "Parcel_ID": "28-23-27-0000-00-015",
       "Case_or_TaxDeed_No": "2024-TD-001955",
       "Owner_Name": "JAMES & LINDA CHEN",
       "Entity_Type": "Individual / Estate",
@@ -530,11 +602,12 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "TN",
       "County": "Shelby",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TN-004550",
       "Owner_Name": "ESTATE OF BERNARD HAYES",
       "Entity_Type": "Estate / Deceased",
@@ -554,11 +627,12 @@
       "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Palm Beach",
+      "Parcel_ID": "00-42-43-27-05-022-0140",
       "Case_or_TaxDeed_No": "2024-TD-004688",
       "Owner_Name": "ESTATE OF ARTHUR STERLING",
       "Entity_Type": "Estate / Deceased",
@@ -578,11 +652,12 @@
       "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "GA",
       "County": "Gwinnett",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-001920",
       "Owner_Name": "VICTORIA STRICKLAND",
       "Entity_Type": "Individual / Estate",
@@ -602,11 +677,12 @@
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "NC",
       "County": "Durham",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-002100",
       "Owner_Name": "PATRICIA HOLLOWAY",
       "Entity_Type": "Individual / Estate",
@@ -626,11 +702,12 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/locations/durham",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Orange",
+      "Parcel_ID": "29-22-30-0000-00-042",
       "Case_or_TaxDeed_No": "2024-TD-001501",
       "Owner_Name": "ESTATE OF ELEANOR VANCE",
       "Entity_Type": "Estate / Deceased",
@@ -650,11 +727,12 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "TX",
       "County": "Dallas",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-01928",
       "Owner_Name": "GEORGE & DOROTHY WASHINGTON",
       "Entity_Type": "Individual / Estate",
@@ -674,11 +752,12 @@
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Hillsborough",
+      "Parcel_ID": "192802-5TB000002000040",
       "Case_or_TaxDeed_No": "2024-TD-009041",
       "Owner_Name": "ESTATE OF HENRY PATTERSON",
       "Entity_Type": "Estate / Deceased",
@@ -698,11 +777,37 @@
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
+    },
+    {
+      "State": "FL",
+      "County": "Broward",
+      "Parcel_ID": "4842-35-08-0320",
+      "Case_or_TaxDeed_No": "2024-TD-002980",
+      "Owner_Name": "PATRICIA & GLENN O'CONNOR",
+      "Entity_Type": "Individual / Estate",
+      "Is_Individual": true,
+      "Heir_Search_Recommended": false,
+      "Property_Address": "2100 NE 48TH ST POMPANO BEACH FL 33064",
+      "Property_Type": "Single Family Residential",
+      "Surplus_Balance_USD": 52700.0,
+      "Statutory_Fee_Rate": "20%",
+      "Est_Finder_Fee_USD": 10540.0,
+      "Opportunity_Tier": "Tier 1: High Value ($25k+)",
+      "Sale_Date": "2024-08-14",
+      "Days_Remaining_To_Claim": 75,
+      "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
+      "Claim_Deadline_Date": "2026-12-13",
+      "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
+      "Clerk_Verification_URL": "https://www.browardclerk.org/",
+      "Governing_Statute": "Fla. Stat. \u00a7 197.582",
+      "Statute_Citation": "Fla. Stat. \u00a7 197.582",
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Orange",
+      "Parcel_ID": "29-22-29-0000-00-088",
       "Case_or_TaxDeed_No": "2024-TD-001248",
       "Owner_Name": "RICHARD HAWKINS",
       "Entity_Type": "Individual / Estate",
@@ -722,11 +827,12 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Miami-Dade",
+      "Parcel_ID": "01-3122-015-0450",
       "Case_or_TaxDeed_No": "2024-TD-004990",
       "Owner_Name": "EUGENE FITZPATRICK",
       "Entity_Type": "Individual / Estate",
@@ -746,11 +852,12 @@
       "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "TX",
       "County": "Harris",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-05110",
       "Owner_Name": "RAFAEL GUERRERO",
       "Entity_Type": "Individual / Estate",
@@ -770,11 +877,12 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Hillsborough",
+      "Parcel_ID": "182923-3TC000001000010",
       "Case_or_TaxDeed_No": "2024-TD-009188",
       "Owner_Name": "DANIELLE KAUFMAN",
       "Entity_Type": "Individual / Estate",
@@ -794,11 +902,12 @@
       "Clerk_Verification_URL": "https://www.hillsclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Orange",
+      "Parcel_ID": "28-21-15-0000-00-031",
       "Case_or_TaxDeed_No": "2024-TD-001622",
       "Owner_Name": "MARCOS & SOFIA ALVAREZ",
       "Entity_Type": "Individual / Estate",
@@ -818,11 +927,12 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     },
     {
       "State": "FL",
       "County": "Orange",
+      "Parcel_ID": "29-23-35-0000-00-019",
       "Case_or_TaxDeed_No": "2024-TD-001844",
       "Owner_Name": "BEATRICE MONTGOMERY",
       "Entity_Type": "Individual / Estate",
@@ -842,7 +952,7 @@
       "Clerk_Verification_URL": "https://www.myorangeclerk.com/",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
-      "Enriched_Timestamp": "2026-09-29 12:50:34"
+      "Enriched_Timestamp": "2026-09-29 16:10:02"
     }
   ]
 }

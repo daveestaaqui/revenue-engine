@@ -1,5 +1,27 @@
 [
   {
+    "id": "INQ-COHEN-1790713002",
+    "timestamp": "2026-09-29T16:16:42.208843",
+    "sender_name": "Alden (Cohen Asset Recovery)",
+    "sender_email": "alden@cohenrecoverylaw.com",
+    "cc": [
+      "phil@cohenrecoverylaw.com",
+      "adam@cohenrecoverylaw.com"
+    ],
+    "phone": "",
+    "channel": "EMAIL",
+    "jurisdiction": "Florida",
+    "county": "Miami-Dade, Palm Beach, Broward",
+    "docket": "",
+    "category": "PROSPECT_INQUIRY",
+    "subject": "Florida feed questions: Miami-Dade, Palm Beach, and Broward",
+    "inbound_snippet": "We are considering your Tri-State Core Feed to cover Miami-Dade, Palm Beach, and Broward counties...",
+    "summary": "Inbound inquiry from Alden (Chief AI Architect for Cohen Asset Recovery / Phil Blende) regarding Broward coverage, court registry vs tax deed, record fields, 12mo volume, sample CSV, and CMS integration. Tailored draft prepared and placed in [Gmail]/Drafts with sample CSV attached.",
+    "action_taken": "DRAFT_CREATED_IN_GMAIL",
+    "persona": "Elena Brooks (Senior Docket Specialist | Surplus Docket)",
+    "notable": true
+  },
+  {
     "id": "sentinel_d0af7fbaddfe10f7",
     "type": "security_quarantine",
     "category": "dangerous_content",

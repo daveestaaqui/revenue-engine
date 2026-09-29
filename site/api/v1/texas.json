@@ -13,6 +13,7 @@
     {
       "State": "TX",
       "County": "Harris",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "W. & M. H\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -32,12 +33,13 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TX",
       "County": "Harris",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "C. & B. B\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -57,12 +59,13 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TX",
       "County": "Dallas",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "M. & T. T\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -82,12 +85,13 @@
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TX",
       "County": "Dallas",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "G. & D. W\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -107,12 +111,13 @@
       "Clerk_Verification_URL": "https://www.dallascounty.org/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "TX",
       "County": "Harris",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-TX-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "R. & G. G\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -132,7 +137,7 @@
       "Clerk_Verification_URL": "https://www.hcdistrictclerk.com/",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

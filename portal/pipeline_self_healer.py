@@ -80,10 +80,12 @@ COLUMN_ALIASES = {
     "case_or_taxdeed_no": [
         "case_or_taxdeed_no", "case_no", "case_number", "caseno", "case #", "case#",
         "tax_deed_no", "tax_deed_number", "tax_deed_#", "tax deed #", "deed_number",
-        "certificate_number", "cert_no", "cert #", "item_no", "item #", "parcel_id",
-        "parcel_number", "parcel id", "folio", "folio_number", "folio #", "cause_no",
-        "cause_number", "cause #", "docket", "docket_number", "docket #", "account_no",
-        "parcel"
+        "certificate_number", "cert_no", "cert #", "item_no", "item #", "cause_no",
+        "cause_number", "cause #", "docket", "docket_number", "docket #", "account_no"
+    ],
+    "parcel_id": [
+        "parcel_id", "parcel_number", "parcel id", "folio", "folio_number", "folio #",
+        "pin", "parcel", "parcel_control_number", "pcn"
     ],
     "surplus_balance_usd": [
         "surplus_balance_usd", "surplus_balance", "surplus_amount", "surplus amount",
@@ -217,9 +219,14 @@ def self_heal_record(record: dict, default_state: str = "FL", default_county: st
     raw_url = str(healed.get("clerk_verification_url") or "")
     healed_url = heal_clerk_verification_url(cty, st, raw_url)
 
+    parcel_id = str(healed.get("parcel_id") or record.get("Parcel_ID") or record.get("PARCEL_ID") or record.get("Folio") or record.get("PIN") or "").strip()
+    if not parcel_id or parcel_id.lower() in ("nan", "none", "null"):
+        parcel_id = "N/A"
+
     # 4. Standard canonical record output
     canonical = {
         "Case_or_TaxDeed_No": case_no,
+        "Parcel_ID": parcel_id,
         "Surplus_Balance_USD": bal,
         "Owner_Name": owner,
         "Property_Address": addr,
@@ -230,8 +237,8 @@ def self_heal_record(record: dict, default_state: str = "FL", default_county: st
     }
 
     # Retain any extra enrichment fields if present
-    for extra_field in ["Opportunity_Tier", "Est_Finder_Fee_USD", "Statute_Citation", "Days_Remaining_To_Claim", "Claim_Deadline_Date", "Property_Class"]:
-        if extra_field in healed:
+    for extra_field in ["Opportunity_Tier", "Est_Finder_Fee_USD", "Statute_Citation", "Days_Remaining_To_Claim", "Claim_Deadline_Date", "Property_Class", "Parcel_ID"]:
+        if extra_field in healed and extra_field not in canonical:
             canonical[extra_field] = healed[extra_field]
 
     return canonical

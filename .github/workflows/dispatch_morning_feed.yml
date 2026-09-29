@@ -2,13 +2,16 @@ name: Dispatch 7:00 AM EST Morning Court Intelligence Feed
 
 on:
   schedule:
-    # Primary Morning Dispatch (Weekdays at 10:18 UTC = 6:18 AM EDT / 5:18 AM EST)
-    # Uses off-peak minute 18 to completely bypass GitHub Actions top-of-the-hour queue backlogs.
-    - cron: '18 10 * * 1-5'
-    # Watchdog / Standard Time Catch-Up (Weekdays at 10:48 UTC = 6:48 AM EDT / 5:48 AM EST)
-    - cron: '48 10 * * 1-5'
-    # Winter Standard Time Secondary Window (Weekdays at 11:18 UTC = 7:18 AM EDT / 6:18 AM EST)
-    - cron: '18 11 * * 1-5'
+    # Daylight Saving Time Window (EDT = UTC-4): 7:00 AM EDT is 11:00 UTC
+    # 10:55 UTC (6:55 AM EDT) ensures dispatch completes before 7:00 AM sharp in client inboxes
+    - cron: '55 10 * * 1-5'
+    - cron: '5 11 * * 1-5'
+    - cron: '15 11 * * 1-5'
+    # Standard Winter Time Window (EST = UTC-5): 7:00 AM EST is 12:00 UTC
+    # 11:55 UTC (6:55 AM EST) ensures dispatch completes before 7:00 AM sharp in client inboxes
+    - cron: '55 11 * * 1-5'
+    - cron: '5 12 * * 1-5'
+    - cron: '15 12 * * 1-5'
   workflow_dispatch:
     inputs:
       force:

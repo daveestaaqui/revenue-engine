@@ -106,7 +106,7 @@ SECRETS = _patterns(
 )
 
 DANGEROUS = _patterns(
-    r"\.(?:exe|scr|com|bat|cmd|ps1|vbs|vbe|js|jse|msi|hta|lnk|"
+    r"\.(?:exe|scr|bat|cmd|ps1|vbs|vbe|jse|msi|hta|lnk|"
     r"iso|img|docm|xlsm|pptm|jar)(?:\b|[\"'>])",
     r"\b(?:enable\s+(?:macros|content)|powershell|"
     r"rundll32|mshta|credential\s+harvest|ransomware)\b",

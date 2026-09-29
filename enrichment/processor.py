@@ -155,6 +155,9 @@ def classify_and_enrich_record(row, county_meta):
 
     address = str(row.get("Property_Address", row.get("property_address", row.get("SITUS", row.get("Address", "N/A"))))).strip()
     case_no = str(row.get("Case_or_TaxDeed_No", row.get("case_number", row.get("TAX_DEED_NO", row.get("Parcel", "N/A"))))).strip()
+    parcel_id = str(row.get("Parcel_ID", row.get("PARCEL_ID", row.get("Folio", row.get("FOLIO", row.get("PIN", "N/A")))))).strip()
+    if not parcel_id or parcel_id.lower() in ("nan", "none", "null"):
+        parcel_id = "N/A"
     sale_date = str(row.get("Sale_Date", row.get("sale_date", row.get("DATE", "N/A")))).strip()
 
     days_remaining, urgency_tier, claim_deadline = calculate_days_remaining(sale_date, state)
@@ -181,6 +184,7 @@ def classify_and_enrich_record(row, county_meta):
     return {
         "State": state,
         "County": county_name,
+        "Parcel_ID": parcel_id,
         "Case_or_TaxDeed_No": case_no,
         "Owner_Name": owner_raw,
         "Entity_Type": "Estate / Deceased" if is_estate else owner_type,

@@ -13,6 +13,7 @@
     {
       "State": "GA",
       "County": "Fulton",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "M. & E. J\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -32,12 +33,13 @@
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "GA",
       "County": "Cobb",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "R. & V. V\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -57,12 +59,13 @@
       "Clerk_Verification_URL": "https://www.cobbtax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "GA",
       "County": "Fulton",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "H. & C. C\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -82,12 +85,13 @@
       "Clerk_Verification_URL": "https://www.fultonclerk.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "GA",
       "County": "Dekalb",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "T. & M. B\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -107,12 +111,13 @@
       "Clerk_Verification_URL": "https://www.dekalbcountytax.org/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "GA",
       "County": "Gwinnett",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-GA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "V. & S. S\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -132,7 +137,7 @@
       "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

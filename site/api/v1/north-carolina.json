@@ -13,6 +13,7 @@
     {
       "State": "NC",
       "County": "Mecklenburg",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "D. & A. M\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -32,12 +33,13 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "NC",
       "County": "Wake",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "H. & C. V\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -57,12 +59,13 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "NC",
       "County": "Mecklenburg",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "W. & S. S\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -82,12 +85,13 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "NC",
       "County": "Wake",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "S. & K. K\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -107,12 +111,13 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "NC",
       "County": "Durham",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-NC-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "P. & H. H\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -132,7 +137,7 @@
       "Clerk_Verification_URL": "https://www.nccourts.gov/",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

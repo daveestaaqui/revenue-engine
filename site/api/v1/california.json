@@ -13,6 +13,7 @@
     {
       "State": "CA",
       "County": "Los Angeles",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-CA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "G. & E. T\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -32,12 +33,13 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "CA",
       "County": "San Diego",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-CA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "V. & M. R\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Individual / Estate",
@@ -57,12 +59,13 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "CA",
       "County": "Los Angeles",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-CA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "C. & D. D\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -82,12 +85,13 @@
       "Clerk_Verification_URL": "https://ttc.lacounty.gov/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
       "State": "CA",
       "County": "San Diego",
+      "Parcel_ID": "N/A",
       "Case_or_TaxDeed_No": "2024-CA-\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Owner_Name": "D. & W. W\u2588\u2588\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "Entity_Type": "Estate / Deceased",
@@ -107,7 +111,7 @@
       "Clerk_Verification_URL": "https://www.sdttc.com/",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
-      "Enriched_Timestamp": "2026-09-29 12:50:34",
+      "Enriched_Timestamp": "2026-09-29 16:10:02",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]
