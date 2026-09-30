@@ -395,3 +395,5 @@
 [2026-09-30 09:13:48]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
 [2026-09-30 09:13:48]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
 [2026-09-30 09:13:48]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-09-30 15:12:23]   ⏭️ Skipped non-prospect from noreply@careforth.com (Sub: 'Missing Massachusetts Daily Check In'): Message identified as automated notification, bounce, or system alert
+[2026-09-30 15:12:24]   ⏭️ Skipped non-prospect from notifications@github.com (Sub: '[daveestaaqui/revenue-engine] Run failed'): Message identified as automated notification, bounce, or system alert
