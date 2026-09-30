@@ -106,8 +106,8 @@ class TestElenaIdentityAndOutreach(unittest.TestCase):
 class TestMorningFeedDeliverySystem(unittest.TestCase):
     """Verifies morning feed subscribers, redundancy, and dispatch execution."""
 
-    def test_subscribers_json_includes_both_destinations(self):
-        """Ensure both sandwichfitness@gmail.com and david@surplusdocket.com are registered and active."""
+    def test_subscribers_json_primary_destination(self):
+        """Ensure david@surplusdocket.com is registered and active, and sandwichfitness is not duplicated."""
         subscribers_path = BASE_DIR / "portal" / "subscribers.json"
         self.assertTrue(subscribers_path.exists())
 
@@ -116,10 +116,10 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
 
         emails = [s.get("email") for s in subs if s.get("status") == "ACTIVE"]
         self.assertIn("david@surplusdocket.com", emails)
-        self.assertIn("sandwichfitness@gmail.com", emails)
+        self.assertNotIn("sandwichfitness@gmail.com", emails)
 
         for s in subs:
-            if s.get("email") in ("david@surplusdocket.com", "sandwichfitness@gmail.com"):
+            if s.get("email") == "david@surplusdocket.com":
                 self.assertEqual(s.get("status"), "ACTIVE")
                 self.assertIn("CSV", s.get("delivery_format", []))
                 self.assertIn("Excel", s.get("delivery_format", []))
@@ -132,7 +132,7 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
         active_subs = load_active_subscribers()
         active_emails = [s["email"] for s in active_subs]
         self.assertIn("david@surplusdocket.com", active_emails)
-        self.assertIn("sandwichfitness@gmail.com", active_emails)
+        self.assertNotIn("sandwichfitness@gmail.com", active_emails)
 
         res = dispatch_feed(is_dry_run=True)
         self.assertEqual(res, 0)
