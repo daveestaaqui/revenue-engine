@@ -325,7 +325,8 @@ def sync_all_drafts():
     print("=" * 75)
     print(f"  • Total Self-Serve Drafts in Gmail : {uploaded}")
     print(f"  • Deliverable / MX Verified        : 100%")
-    print(f"  • Sender Identity                  : David Mahler <david@surplusdocket.com>")
+    print(f"  • Sender Identity                  : Elena Brooks <elena.brooks@surplusdocket.com>")
+
     print(f"  • Manifest Log                     : {manifest_path}")
     print("=" * 75)
 

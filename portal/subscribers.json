@@ -3,7 +3,28 @@
     "id": "SUB-ADMIN-001",
     "email": "david@surplusdocket.com",
     "name": "David Mahler",
-    "firm": "",
+    "firm": "Surplus Docket Administration",
+    "tier": "National Master Suite",
+    "jurisdictions": [
+      "FL",
+      "TX",
+      "GA",
+      "NC",
+      "TN",
+      "CA"
+    ],
+    "delivery_format": [
+      "CSV",
+      "Excel"
+    ],
+    "status": "ACTIVE",
+    "subscribed_at": "2026-09-01T00:00:00Z"
+  },
+  {
+    "id": "SUB-ADMIN-002",
+    "email": "sandwichfitness@gmail.com",
+    "name": "David Mahler",
+    "firm": "Surplus Docket Executive",
     "tier": "National Master Suite",
     "jurisdictions": [
       "FL",

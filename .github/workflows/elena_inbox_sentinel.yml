@@ -43,9 +43,9 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
           STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
-          FROM_NAME: 'Surplus Docket Intelligence'
-          SENDER_EMAIL: 'dockets@surplusdocket.com'
-          REPLY_TO: 'dockets@surplusdocket.com'
+          FROM_NAME: 'Elena Brooks'
+          SENDER_EMAIL: 'elena.brooks@surplusdocket.com'
+          REPLY_TO: 'elena.brooks@surplusdocket.com'
         run: |
           if [ -z "$GMAIL_APP_PASS" ]; then
             echo "ℹ️ GMAIL_APP_PASS secret not configured in repository. Skipping IMAP pass."
@@ -54,11 +54,52 @@ jobs:
           python outreach/auto_responder_and_draft_cleaner.py --single-pass
           python portal/sync_stripe_subscribers.py
 
+      - name: 7:00 AM EST Morning Court Feed Autonomous Failover Check
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          FROM_EMAIL: 'dockets@surplusdocket.com'
+          FROM_NAME: 'Surplus Docket Intelligence'
+        run: |
+          if [ -n "$GMAIL_APP_PASS" ]; then
+            python -c "
+import os, sys, json, subprocess
+from datetime import datetime
+try:
+    from zoneinfo import ZoneInfo
+    now_et = datetime.now(ZoneInfo('America/New_York'))
+except Exception:
+    now_et = datetime.now()
+
+# Only run failover on weekdays (0=Mon, 4=Fri) between 6:50 AM and 8:30 AM EST
+if now_et.weekday() < 5 and ((now_et.hour == 6 and now_et.minute >= 50) or now_et.hour == 7 or (now_et.hour == 8 and now_et.minute <= 30)):
+    date_key = now_et.strftime('%Y-%m-%d')
+    log_file = 'portal/daily_dispatch_log.json'
+    dispatched = False
+    if os.path.exists(log_file):
+        try:
+            with open(log_file, 'r') as f:
+                d = json.load(f)
+                if d.get('last_dispatched_date') == date_key and d.get('status') == 'SUCCESS':
+                    dispatched = True
+        except Exception:
+            pass
+    if not dispatched:
+        print(f'🚨 Sentinel Failover: Morning feed not dispatched for {date_key} by {now_et.strftime(\"%I:%M %p EST\")}. Triggering autonomous dispatch...')
+        subprocess.run(['python', 'portal/dispatch_morning_feed.py', '--send'], check=True)
+    else:
+        print(f'✅ Sentinel Failover Check: Morning feed already successfully dispatched for {date_key}.')
+else:
+    print(f'ℹ️ Sentinel Failover Check: Outside 6:50-8:30 AM EST dispatch failover window ({now_et.strftime(\"%A %I:%M %p EST\")}).')
+"
+          fi
+
       - name: Commit & Push Updated Logs & Tracking
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          for f in data/notable_email_activity.json outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log portal/subscribers.json portal/processed_stripe_events.json; do if [ -f "$f" ]; then git add "$f"; fi; done
+          for f in data/notable_email_activity.json outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log portal/subscribers.json portal/processed_stripe_events.json portal/daily_dispatch_log.json portal/trial_lifecycle_log.json; do if [ -f "$f" ]; then git add "$f"; fi; done
+
           if ! git diff --staged --quiet; then
             git commit -m "chore(inbox): updated auto-responses & notable activity [skip ci]"
             git checkout -- . || true

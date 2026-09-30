@@ -50,10 +50,11 @@ if ENV_FILE.exists():
 # Gmail Account Credentials
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
-FROM_NAME = "David Mahler"
-REPLY_TO = "david@surplusdocket.com"
+FROM_NAME = "Elena Brooks"
+REPLY_TO = "elena.brooks@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
+
 
 # State data
 STATE_NAMES = {
@@ -332,9 +333,11 @@ Subscribe directly: {STRIPE_LINK}
 Happy to send a free sample extract if you want to see the data first — just reply here.
 
 {closing}
-Dave Mahler
-Surplus Docket
-{SITE_URL}"""
+Elena Brooks
+Senior Docket Specialist | Surplus Docket
+surplusdocket.com
+elena.brooks@surplusdocket.com"""
+
 
     return subject, body
 

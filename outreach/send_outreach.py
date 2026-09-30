@@ -143,25 +143,37 @@ def send_email_smtp(to_email: str, subject: str, body_text: str) -> bool:
     """
     smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
     smtp_port = int(os.getenv("SMTP_PORT", "587"))
-    smtp_user = os.getenv("SMTP_USER", "")
-    smtp_pass = os.getenv("SMTP_PASS", "")
-    from_email = os.getenv("FROM_EMAIL", smtp_user)
+    smtp_user = os.getenv("SMTP_USER", os.getenv("GMAIL_USER", "sandwichfitness@gmail.com"))
+    smtp_pass = os.getenv("SMTP_PASS", os.getenv("GMAIL_APP_PASS", ""))
+    from_name = os.getenv("FROM_NAME", "Elena Brooks")
+    from_email = os.getenv("FROM_EMAIL", "elena.brooks@surplusdocket.com")
+    reply_to = os.getenv("REPLY_TO", "elena.brooks@surplusdocket.com")
 
     if not smtp_user or not smtp_pass:
         print(f"  [!] SMTP credentials not set. Set SMTP_USER and SMTP_PASS env vars to send live email to {to_email}")
         return False
 
     try:
+        # Strict Elena Brooks identity enforcement & anti-leak sanitization
+        if "elena" in from_name.lower() or "elena" in from_email.lower():
+            from_name = "Elena Brooks"
+            from_email = "elena.brooks@surplusdocket.com"
+            reply_to = "elena.brooks@surplusdocket.com"
+            body_text = body_text.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
+            body_text = body_text.replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+
         msg = MIMEMultipart()
-        msg["From"] = from_email
+        msg["From"] = f"{from_name} <{from_email}>"
         msg["To"] = to_email
         msg["Subject"] = subject
+        msg["Reply-To"] = f"{from_name} <{reply_to}>"
         msg.attach(MIMEText(body_text, "plain"))
 
         with smtplib.SMTP(smtp_host, smtp_port) as server:
             server.starttls()
             server.login(smtp_user, smtp_pass)
             server.send_message(msg)
+
 
         print(f"  [✓] Live email dispatched via SMTP to: {to_email}")
         return True

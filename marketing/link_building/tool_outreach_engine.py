@@ -56,8 +56,9 @@ SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 
 DEFAULT_FROM_NAME = os.getenv("TOOL_OUTREACH_FROM_NAME", "Elena Brooks")
-DEFAULT_FROM_EMAIL = os.getenv("TOOL_OUTREACH_FROM_EMAIL", "press@surplusdocket.com")
-DEFAULT_REPLY_TO = os.getenv("TOOL_OUTREACH_REPLY_TO", "press@surplusdocket.com")
+DEFAULT_FROM_EMAIL = os.getenv("TOOL_OUTREACH_FROM_EMAIL", "elena.brooks@surplusdocket.com")
+DEFAULT_REPLY_TO = os.getenv("TOOL_OUTREACH_REPLY_TO", "elena.brooks@surplusdocket.com")
+
 
 TOOLS_HUB_URL = "https://surplusdocket.com/tools.html"
 CALCULATOR_URL = "https://surplusdocket.com/embed/surplus-calculator.html"
@@ -265,8 +266,13 @@ def send_email_smtp(to_email: str, subject: str, text_body: str, html_body: str)
     msg["Date"] = email.utils.formatdate(localtime=True)
     msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
 
+    # Strict Elena Brooks identity & anti-leak sanitization
+    text_body = text_body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com").replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+    html_body = html_body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com").replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+
     msg.attach(MIMEText(text_body, "plain", "utf-8"))
     msg.attach(MIMEText(html_body, "html", "utf-8"))
+
 
     try:
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=15) as server:

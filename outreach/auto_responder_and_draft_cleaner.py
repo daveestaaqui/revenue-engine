@@ -447,12 +447,27 @@ def send_response_email(msg_obj, from_email, recipient_email, dry_run=False):
     When sent via smtp.gmail.com, Google automatically archives a copy to [Gmail]/Sent Mail.
     Returns: (success: bool, detail: str)
     """
+    # Strict Persona & Anti-Leak Sanitization (SD-POL-OUTREACH-2026-V1)
+    # Ensure Elena's correspondence strictly uses elena.brooks@surplusdocket.com and never leaks personal/operator email
+    from_header = str(msg_obj.get("From", ""))
+    if "elena" in from_header.lower() or "elena" in str(from_email).lower():
+        from_email = "elena.brooks@surplusdocket.com"
+        if "From" in msg_obj:
+            msg_obj.replace_header("From", "Elena Brooks <elena.brooks@surplusdocket.com>")
+        else:
+            msg_obj["From"] = "Elena Brooks <elena.brooks@surplusdocket.com>"
+        if "Reply-To" in msg_obj:
+            msg_obj.replace_header("Reply-To", "Elena Brooks <elena.brooks@surplusdocket.com>")
+        else:
+            msg_obj["Reply-To"] = "Elena Brooks <elena.brooks@surplusdocket.com>"
+
     if dry_run:
         log(f"  [DRY RUN] Would auto-send email to {recipient_email} from {from_email}")
         return True, "Dry-run successful"
 
     if not GMAIL_APP_PASS:
         return False, "GMAIL_APP_PASS not configured in environment or .env"
+
 
     try:
         context = ssl.create_default_context()
@@ -465,6 +480,7 @@ def send_response_email(msg_obj, from_email, recipient_email, dry_run=False):
         err_msg = f"SMTP transmission error: {e}"
         log(f"  ❌ {err_msg}")
         return False, err_msg
+
 
 
 def record_notable_email_activity(activity):
@@ -3375,11 +3391,14 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
             state_cases=state_cases,
         )
 
+        # Elena Brooks identity enforcement (SD-POL-OUTREACH-2026-V1)
+        elena_name = "Elena Brooks"
+        elena_email = "elena.brooks@surplusdocket.com"
         draft_msg = MIMEText(reply_body, "plain", "utf-8")
-        draft_msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
+        draft_msg["From"] = f"{elena_name} <{elena_email}>"
         draft_msg["To"] = sender_raw
         draft_msg["Subject"] = reply_subject
-        draft_msg["Reply-To"] = f"{FROM_NAME} <{REPLY_TO}>"
+        draft_msg["Reply-To"] = f"{elena_name} <{elena_email}>"
         if message_id:
             draft_msg["In-Reply-To"] = message_id
             draft_msg["References"] = message_id
@@ -3388,7 +3407,8 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         draft_msg["Message-ID"] = make_msgid()
 
         if AUTO_SEND:
-            sent_ok, send_detail = send_response_email(draft_msg, SENDER_EMAIL, sender_email)
+            sent_ok, send_detail = send_response_email(draft_msg, elena_email, sender_email)
+
             if sent_ok:
                 save_created_draft(draft_key)
                 already_drafted.add(draft_key)

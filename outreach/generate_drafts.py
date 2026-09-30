@@ -75,16 +75,17 @@ else:
     DEFAULT_FROM_NAME = raw_from_name
 
 raw_from_email = os.getenv("FROM_EMAIL", "elena.brooks@surplusdocket.com")
-if not raw_from_email or raw_from_email in ("dockets@surplusdocket.com", "bot@surplusdocket.com"):
+if not raw_from_email or raw_from_email in ("dockets@surplusdocket.com", "bot@surplusdocket.com", "sandwichfitness@gmail.com", "david@surplusdocket.com"):
     DEFAULT_FROM_EMAIL = "elena.brooks@surplusdocket.com"
 else:
     DEFAULT_FROM_EMAIL = raw_from_email
 
 raw_reply_to = os.getenv("REPLY_TO", "elena.brooks@surplusdocket.com")
-if not raw_reply_to or raw_reply_to in ("dockets@surplusdocket.com", "bot@surplusdocket.com"):
+if not raw_reply_to or raw_reply_to in ("dockets@surplusdocket.com", "bot@surplusdocket.com", "sandwichfitness@gmail.com", "david@surplusdocket.com"):
     DEFAULT_REPLY_TO = "elena.brooks@surplusdocket.com"
 else:
     DEFAULT_REPLY_TO = raw_reply_to
+
 
 # Domains confirmed dead, unverified, or historical test entries
 DEAD_DOMAINS = {
@@ -417,20 +418,21 @@ def select_best_case(target, state_cases):
 
     def score_candidate(c):
         score = 0
-        county_lower = c["county"].lower()
+        county_lower = c.get("county", "").lower()
         if county_lower in metro_text:
             score += 100
         if is_probate:
-            if "estate" in c["owner_name"].lower() or c["heir_search_recommended"]:
+            if "estate" in c.get("owner_name", "").lower() or c.get("heir_search_recommended", False):
                 score += 80
         elif is_foreclosure:
-            if "commercial" in c["property_type"].lower() or c["balance"] >= 100000:
+            if "commercial" in c.get("property_type", "").lower() or c.get("balance", 0) >= 100000:
                 score += 60
         else:
-            if c["balance"] >= 75000:
+            if c.get("balance", 0) >= 75000:
                 score += 40
-        score += min(c["balance"] / 10000.0, 20.0)
+        score += min(c.get("balance", 0) / 10000.0, 20.0)
         return score
+
 
     scored = sorted(candidates, key=score_candidate, reverse=True)
     return scored[0]
@@ -522,7 +524,8 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
     )
 
     # Clean signature
-    sig = f"Best regards,\n\n{from_name}\nSenior Docket Specialist | Surplus Docket\nsurplusdocket.com"
+    sig_email = "elena.brooks@surplusdocket.com" if "elena" in from_name.lower() or "elena" in from_email.lower() else from_email
+    sig = f"Best regards,\n\n{from_name}\nSenior Docket Specialist | Surplus Docket\nsurplusdocket.com\n{sig_email}"
 
     body = f"{greeting}\n\n{opener}\n\n{case_body}\n\n{closing_ask}\n\n{sig}"
 
@@ -530,7 +533,15 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
 
 
 def create_eml_file(to_email, to_name, subject, body, output_path, from_name=DEFAULT_FROM_NAME, from_email=DEFAULT_FROM_EMAIL, reply_to=DEFAULT_REPLY_TO):
-    """Create a standards-compliant .eml file marked as draft."""
+    """Create a standards-compliant .eml file marked as draft with strict identity enforcement."""
+    if "elena" in str(from_name).lower() or "elena" in str(from_email).lower():
+        from_name = "Elena Brooks"
+        from_email = "elena.brooks@surplusdocket.com"
+        reply_to = "elena.brooks@surplusdocket.com"
+        # Strict sanitization: ensure personal email is never exposed in Elena's communications
+        body = body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
+        body = body.replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+
     msg = MIMEText(body, "plain", "utf-8")
     msg["From"] = f"{from_name} <{from_email}>"
     msg["To"] = f"{to_name} <{to_email}>"
@@ -541,6 +552,7 @@ def create_eml_file(to_email, to_name, subject, body, output_path, from_name=DEF
     msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
 
     output_path.write_text(msg.as_string(), encoding="utf-8")
+
 
 
 def log_sent_status(log_path: Path, entry: dict):
@@ -647,16 +659,27 @@ def main():
                 server = smtplib.SMTP(SMTP_HOST, SMTP_PORT)
                 server.starttls()
                 server.login(GMAIL_USER, GMAIL_APP_PASS)
+                active_from_name = from_name
+                active_from_email = from_email
+                active_reply_to = reply_to
+                if "elena" in str(active_from_name).lower() or "elena" in str(active_from_email).lower():
+                    active_from_name = "Elena Brooks"
+                    active_from_email = "elena.brooks@surplusdocket.com"
+                    active_reply_to = "elena.brooks@surplusdocket.com"
+                    body = body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
+                    body = body.replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+
                 msg = MIMEMultipart()
-                msg["From"] = f"{from_name} <{from_email}>"
+                msg["From"] = f"{active_from_name} <{active_from_email}>"
                 msg["To"] = args.test_recipient
                 msg["Subject"] = f"[TEST] {subject}"
-                msg["Reply-To"] = f"{from_name} <{reply_to}>"
+                msg["Reply-To"] = f"{active_from_name} <{active_reply_to}>"
                 msg["Date"] = email.utils.formatdate(localtime=True)
                 msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
                 msg.attach(MIMEText(body, "plain", "utf-8"))
 
                 server.sendmail(GMAIL_USER, [args.test_recipient], msg.as_string())
+
                 server.quit()
                 print(f"✅ Test verification email dispatched successfully to {args.test_recipient} via {SMTP_HOST}!")
                 return 0
@@ -723,16 +746,27 @@ def main():
 
             if is_live:
                 try:
+                    active_from_name = from_name
+                    active_from_email = from_email
+                    active_reply_to = reply_to
+                    if "elena" in str(active_from_name).lower() or "elena" in str(active_from_email).lower():
+                        active_from_name = "Elena Brooks"
+                        active_from_email = "elena.brooks@surplusdocket.com"
+                        active_reply_to = "elena.brooks@surplusdocket.com"
+                        body = body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
+                        body = body.replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+
                     msg = MIMEMultipart()
-                    msg["From"] = f"{from_name} <{from_email}>"
+                    msg["From"] = f"{active_from_name} <{active_from_email}>"
                     msg["To"] = f"{name} <{to_email}>"
                     msg["Subject"] = subject
-                    msg["Reply-To"] = f"{from_name} <{reply_to}>"
+                    msg["Reply-To"] = f"{active_from_name} <{active_reply_to}>"
                     msg["Date"] = email.utils.formatdate(localtime=True)
                     msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
                     msg.attach(MIMEText(body, "plain", "utf-8"))
 
                     server.sendmail(GMAIL_USER, [to_email], msg.as_string())
+
                     sent_count += 1
                     status = "SENT"
                     print(f"  [{idx:02d}/{len(batch):02d}] ✉️ SENT: {firm} <{to_email}> ({state})")

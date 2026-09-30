@@ -2,13 +2,19 @@ name: Backup Redundant 7:00 AM EST Morning Court Intelligence Feed
 
 on:
   schedule:
-    # Redundant failover triggers scheduled immediately after primary window
-    # Daylight Saving Time Window (EDT = UTC-4): 7:02 AM & 7:10 AM EDT (11:02 & 11:10 UTC)
+    # Redundant failover triggers scheduled across 6:56 AM - 7:18 AM window
+    # Daylight Saving Time Window (EDT = UTC-4): 7:00 AM EDT is 11:00 UTC
+    - cron: '56 10 * * 1-5'
     - cron: '2 11 * * 1-5'
-    - cron: '10 11 * * 1-5'
-    # Standard Winter Time Window (EST = UTC-5): 7:02 AM & 7:10 AM EST (12:02 & 12:10 UTC)
+    - cron: '7 11 * * 1-5'
+    - cron: '12 11 * * 1-5'
+    - cron: '18 11 * * 1-5'
+    # Standard Winter Time Window (EST = UTC-5): 7:00 AM EST is 12:00 UTC
+    - cron: '56 11 * * 1-5'
     - cron: '2 12 * * 1-5'
-    - cron: '10 12 * * 1-5'
+    - cron: '7 12 * * 1-5'
+    - cron: '12 12 * * 1-5'
+    - cron: '18 12 * * 1-5'
   repository_dispatch:
     types: [dispatch_morning_feed_backup]
   workflow_dispatch:
@@ -30,8 +36,9 @@ permissions:
   contents: write
 
 concurrency:
-  group: dispatch-morning-feed
-  cancel-in-progress: false
+  group: dispatch-morning-feed-backup
+  cancel-in-progress: true
+
 
 jobs:
   dispatch-morning-feed-backup:

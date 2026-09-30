@@ -47,11 +47,12 @@ if ENV_FILE.exists():
 # Credentials & Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
-FROM_NAME = "David Mahler"
-SENDER_EMAIL = "david@surplusdocket.com"
-REPLY_TO = "david@surplusdocket.com"
+FROM_NAME = "Elena Brooks"
+SENDER_EMAIL = "elena.brooks@surplusdocket.com"
+REPLY_TO = "elena.brooks@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
+
 
 # Blacklist of all confirmed bounced addresses
 BOUNCED_EMAILS = {
@@ -229,11 +230,13 @@ You can inspect the live {state_name} feed and sample cases directly here:
 We deliver the standardized feed every morning at 7:00 AM EST (CSV, Excel, JSON). If you'd like to set up daily delivery for your practice ($249/mo flat, cancel anytime), you can get started right here:
 {STRIPE_LINK}
 
-Best,
+Best regards,
 
-David Mahler
+Elena Brooks
+Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-david@surplusdocket.com"""
+elena.brooks@surplusdocket.com"""
+
 
     return subject, body
 

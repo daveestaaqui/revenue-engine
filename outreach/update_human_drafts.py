@@ -43,10 +43,11 @@ if ENV_FILE.exists():
 # Credentials & Sender Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
-FROM_NAME = "David Mahler"
-SENDER_EMAIL = "david@surplusdocket.com"
-REPLY_TO = "david@surplusdocket.com"
+FROM_NAME = "Elena Brooks"
+SENDER_EMAIL = "elena.brooks@surplusdocket.com"
+REPLY_TO = "elena.brooks@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
+
 
 STATE_NAMES = {
     "FL": "Florida",
@@ -129,11 +130,13 @@ Most county surplus lists are a headache to work through because the majority of
 
 If you'd like to see a sample export for {state_name} to see if it's useful for your practice, let me know and I'd be happy to send one over.
 
-Best,
+Best regards,
 
-David Mahler
+Elena Brooks
+Senior Docket Specialist | Surplus Docket
 surplusdocket.com
-david@surplusdocket.com"""
+elena.brooks@surplusdocket.com"""
+
 
     return subject, body
 

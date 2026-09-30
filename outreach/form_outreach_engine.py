@@ -1450,17 +1450,22 @@ https://surplusdocket.com
     safe_email = re.sub(r"[^a-zA-Z0-9]", "_", email_addr)
     draft_file = drafts_dir / f"fallback_{safe_email}.eml"
 
+    # Strict Elena Brooks identity & anti-leak sanitization
+    clean_body = body_text.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com").replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+
     eml_content = f"""From: Elena Brooks <elena.brooks@surplusdocket.com>
+Reply-To: Elena Brooks <elena.brooks@surplusdocket.com>
 To: {name} <{email_addr}>
 Subject: {subject}
 Date: {datetime.now().strftime('%a, %d %b %Y %H:%M:%S %z')}
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 
-{body_text}
+{clean_body}
 """
     draft_file.write_text(eml_content, encoding="utf-8")
     return draft_file
+
 
 
 async def run_engine(is_dry_run=False, limit=35, state_filter=None):
