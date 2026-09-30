@@ -1,7 +1,7 @@
 {
   "manifest_version": "1.0.0",
   "publisher": "Surplus Docket \u2014 Autonomous Public Records Intelligence",
-  "generated_at": "2026-09-30T15:47:15.547188+00:00",
+  "generated_at": "2026-09-30T16:12:12.464938+00:00",
   "audit_status": "PASSED_100_PERCENT",
   "jurisdictions_verified": [
     "FL",
@@ -109,7 +109,7 @@
     "site/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html": "75b7d20d7f1cbcc312cbaa796d6aa89f3432eb9dd7d3c965ffbf1f71e0fabe2f",
     "site/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html": "f51f1844a6a19b936287ef76e6bde03126c8931a436588cf6f170a09bab339ee",
     "site/press/releases/surplus-docket-expands-six-state-registry-monitoring.html": "23949796d77c58877d8a8bda9f720333c1f85ac0b74599313c118917e6cd8825",
-    "site/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html": "441a62b3096711d1849471b5dd50c16f6b02e1dad3f0bcc9ad8ff06a08cc3520",
+    "site/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html": "0194a3980672cb0bdd1082d0d219ec7ec0d3e0b2743778cfd544570f03088a93",
     "site/press/releases/surplus-docket-launches-evidence-graph-lien-screening.html": "0e3bf39579b9aaa5e9d86495727929d727e5dd23172897a93aaf4019d76d48a0",
     "site/for/tax-sale-litigation.html": "97cc48c443607b45150c9470f3aec32cb4ef6d80b84b4093a6f4e617e16299ce",
     "site/for/mortgage-foreclosure.html": "0112ca66b8f1bd100d1376582403564be72711939884e24eb64a7339c7afbbc4",
