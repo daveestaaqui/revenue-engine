@@ -103,10 +103,26 @@
             },
             {
               "@type": "Question",
+              "name": "What is the record volume for South Florida, and does the feed include older unclaimed balances or only new sales?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Across South Florida (Miami-Dade, Broward, and Palm Beach), Surplus Docket captures and indexes between 50 and 80 verified surplus dockets per month, providing over 700 actionable dockets annually. The feed delivers both newly published auction surplus disbursements and active, unencumbered rolling registry balances within their statutory claim periods. Expired or encumbered balances are purged daily."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can our firm inspect a sample CSV export covering Miami-Dade, Broward, and Palm Beach?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Prospective subscribers can test the interactive Live Docket Preview on the home page or download the sample CSV export to evaluate data fields, column structure, and clerk verification URLs before initiating an evaluation."
+              }
+            },
+            {
+              "@type": "Question",
               "name": "Can Florida surplus records be imported directly into Clio or Filevine?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. Subscribers receive pre-formatted 1-click import templates configured for Clio Manage matters and Filevine project intake with every morning 7:00 AM EST distribution."
+                "text": "Yes. Subscribers receive pre-formatted 1-click import templates configured for Clio Manage matters and Filevine project intake with every morning 7:00 AM EST distribution. Annual subscriptions also include 2 months free ($2,490/year for Tri-State Core)."
               }
             }
           ]
@@ -226,7 +242,7 @@
                                 <a href="/methodology.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Lien Methodology</a>
                                 <a href="/api-documentation.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">REST API</a>
                                 <a href="/comparison.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Comparison</a>
-                                <a href="/#faq" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">FAQs</a>
+                                <a href="#faq" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">FAQs</a>
                             </div>
                         </div>
                     </div>
@@ -399,6 +415,58 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Florida Practitioner FAQ -->
+            <section id="faq" class="py-10 mb-8 border-t border-slate-200">
+                <div class="text-center mb-8 max-w-xl mx-auto">
+                    <h3 class="text-2xl font-heading font-black text-brand-navy mb-2">Florida Practitioner FAQ</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm">Key questions regarding South Florida coverage, statutory rules, record fields, and CRM ingestion.</p>
+                </div>
+
+                <div class="space-y-3.5 max-w-3xl mx-auto text-left text-xs sm:text-sm">
+                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <h4 class="font-heading font-bold text-brand-navy mb-1.5 text-sm sm:text-base">Does Surplus Docket cover Broward County, and can custom jurisdictions or circuits be added?</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Yes. Broward County (17th Judicial Circuit) is actively monitored and fully included in our Florida coverage alongside Miami-Dade (11th Circuit), Palm Beach (15th Circuit), Orange (9th Circuit), and Hillsborough (13th Circuit) at no additional charge—it is included standard in the <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-green hover:underline">Tri-State Core Feed</a> ($249/mo). If your firm needs custom county filtering, dedicated circuit tracking, or custom delivery routing, we configure these at zero setup or onboarding cost.
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <h4 class="font-heading font-bold text-brand-navy mb-1.5 text-sm sm:text-base">Does the Florida feed include court registry foreclosure surplus, or tax deed surplus only?</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            The Florida feed indexes <strong>both</strong> administrative Tax Deed Surplus (Fla. Stat. § 197.582) and Circuit Court Judicial Mortgage Foreclosure Surplus (Fla. Stat. § 45.032). Each docket explicitly states the proceeding type, governing statute, and exact statutory claim deadline window (60 calendar days from the Certificate of Disbursements for judicial foreclosures under § 45.032 versus 120 days from the clerk's statutory notice for tax deeds under § 197.582).
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <h4 class="font-heading font-bold text-brand-navy mb-1.5 text-sm sm:text-base">What specific fields and record schema are included with each lead?</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Every docket record delivers a comprehensive schema engineered for asset recovery practitioners: Former Owner / Titleholder of Record (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Owner_Name</code>), Entity Classification (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Individual</code>, <code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Estate / Deceased</code>, or <code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Institutional</code>), Probate / Heir Search Indicator (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Heir_Search_Recommended</code>), Uniform Case or Tax Deed Number (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Case_or_TaxDeed_No</code>), County-Standardized Parcel ID / Folio (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Parcel_ID</code>: 13-digit Miami-Dade folio, 12-digit Broward parcel, 17-digit Palm Beach PCN), Property Address (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Property_Address</code>), Property Type (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Property_Type</code>), Verified Surplus Balance (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Surplus_Balance_USD</code>), Statutory Fee Rate & Estimated Legal Recovery (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Statutory_Fee_Rate</code> at Florida's 20% cap, <code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Est_Finder_Fee_USD</code>), Sale Date (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Sale_Date</code>), Days Remaining to File (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Days_Remaining_To_Claim</code>), Statutory Claim Window (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Statutory_Deadline_Window</code>), Governing Statute (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Governing_Statute</code>), and a direct link to the originating official Court Clerk Verification Portal (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Clerk_Verification_URL</code>).
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <h4 class="font-heading font-bold text-brand-navy mb-1.5 text-sm sm:text-base">What is the record volume for South Florida, and does the feed include older unclaimed balances or only new sales?</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Across South Florida (Miami-Dade, Broward, and Palm Beach), Surplus Docket captures and indexes between 50 and 80 verified surplus dockets per month, providing over 700 actionable dockets annually. The feed delivers <strong>both</strong> newly published auction surplus disbursements and active, unencumbered rolling registry balances within their statutory claim periods. Registry accounts that have lapsed past their statutory deadline or have been extinguished by prior lienholder claims are systematically audited and purged daily.
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <h4 class="font-heading font-bold text-brand-navy mb-1.5 text-sm sm:text-base">Can our firm inspect a sample CSV export covering Miami-Dade, Broward, and Palm Beach?</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Yes. Prospective subscribers can test our interactive <a href="/#live-docket" class="font-semibold text-brand-green hover:underline">Live Docket Preview</a> on the home page to search, filter, and export sample Florida records in real time. You can also download our <a href="/assets/sample_docket.csv" download class="font-semibold text-brand-green hover:underline">Sample Data Export (.csv)</a> to evaluate the schema, column structure, and clerk verification URLs before initiating your evaluation.
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <h4 class="font-heading font-bold text-brand-navy mb-1.5 text-sm sm:text-base">What does annual pricing look like, and can records be imported into firm case management systems (Clio, Filevine, MyCase)?</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Annual subscriptions include 2 months free (~17% discount): <strong>$2,490/year</strong> for the Tri-State Core Feed (FL, TX, GA) or <strong>$4,490/year</strong> for the Six-State + REST API Suite, backed by a 14-day money-back satisfaction guarantee. For law practice management, every daily dispatch automatically generates pre-mapped, 1-click import CSVs configured specifically for <strong>Clio Manage</strong> (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Clio_Matter_Import.csv</code>) and <strong>Filevine</strong> (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">Filevine_Lead_Import.csv</code>), alongside clean UTF-8 CSV, formatted Excel (<code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded">.xlsx</code>), and JSON files compatible with MyCase, Smokeball, or custom SQL databases.
+                        </p>
+                    </div>
+                </div>
+            </section>
 
             <!-- CTA Card -->
             <div class="bg-brand-navy text-white rounded-2xl p-8 md:p-10 text-center shadow-xl">
