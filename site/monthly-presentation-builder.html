@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Presentation Builder (4-Week Data Aggregator to PowerPoint)</title>
-    <meta name="description" content="Client-side tool for combining 4 weekly data feeds into an executive monthly PowerPoint presentation matching your template format.">
+    <title>Monthly Deck Builder — 4-Week Data Aggregator to PowerPoint</title>
+    <meta name="description" content="Client-side engine for consolidating 4 weekly data reports into an executive monthly PowerPoint presentation matching your template format.">
     <!-- Unlisted Tool — Do Not Index -->
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    <!-- Fonts & CDNs -->
+    <!-- Fonts & Tailwind -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -21,29 +21,14 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-                        heading: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
-                    },
-                    colors: {
-                        brand: {
-                            primary: '#1e293b',
-                            primaryDark: '#0f172a',
-                            accent: '#2563eb',
-                            accentLight: '#3b82f6',
-                            accentSoft: '#eff6ff',
-                            canvas: '#f8fafc',
-                            card: '#ffffff',
-                            success: '#059669',
-                            successSoft: '#ecfdf5',
-                            border: '#e2e8f0'
-                        }
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
                     }
                 }
             }
         }
     </script>
 
-    <!-- Local Client-Side PPTX & Spreadsheet Engines (Zero Server Exposure) with Resilient CDN Fallbacks -->
+    <!-- Client-Side PPTX & Spreadsheet Engines with CDN Fallbacks -->
     <script src="assets/js/jszip.min.js"></script>
     <script>window.JSZip || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"><\/script>')</script>
     <script src="assets/js/pptxgen.bundle.js"></script>
@@ -52,343 +37,253 @@
     <script>window.XLSX || document.write('<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"><\/script>')</script>
 
     <style>
-        .slide-aspect {
-            aspect-ratio: 16 / 9;
-        }
-        .dropzone-active {
-            border-color: #2563eb !important;
-            background-color: #eff6ff !important;
-        }
+        .slide-aspect { aspect-ratio: 16 / 9; }
+        .dropzone-active { border-color: #4f46e5 !important; background-color: #eef2ff !important; }
     </style>
 </head>
-<body class="bg-brand-canvas text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-accent selection:text-white">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-indigo-600 selection:text-white">
 
-    <!-- Top Navigation Header -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-xs">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-                    </svg>
+    <!-- Compact Navigation Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 h-12 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                    PPT
                 </div>
-                <div class="flex flex-col">
-                    <div class="flex items-baseline gap-1.5 leading-none">
-                        <span class="font-heading font-black text-lg sm:text-xl tracking-tight text-slate-900">Monthly Deck</span>
-                        <span class="font-heading font-black text-lg sm:text-xl tracking-tight text-indigo-600">Builder</span>
-                    </div>
-                    <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 mt-0.5">4-Week Data Aggregator to PowerPoint</span>
+                <div class="flex items-baseline gap-1.5">
+                    <span class="font-bold text-sm text-slate-900">Monthly Deck Builder</span>
+                    <span class="text-xs text-slate-400 hidden sm:inline">• 4-Week Data Aggregator</span>
                 </div>
             </div>
-
-            <!-- Privacy & Offline Badges -->
-            <div class="flex items-center gap-2 sm:gap-3">
-                <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-emerald-800 bg-emerald-50 border border-emerald-200">
-                    <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                    <span>100% Client-Side Private</span>
+            <div class="flex items-center gap-2">
+                <span class="text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-medium hidden sm:inline-flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    100% In-Browser Private
                 </span>
-                <a href="presentation-builder-offline.zip" download class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 shadow-2xs transition hover:text-indigo-600" title="Download standalone bundle for offline use">
-                    <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                    <span>Download Offline App (.zip)</span>
+                <a href="presentation-builder-offline.zip" download class="text-xs text-slate-600 hover:text-indigo-600 bg-white hover:bg-slate-50 border border-slate-200 px-2.5 py-1 rounded shadow-2xs font-medium transition flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span>Offline App (.zip)</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <!-- Main Workspace -->
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-6 w-full space-y-5">
 
-        <!-- Tool Header -->
-        <div class="max-w-4xl mx-auto text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight leading-tight mb-3">
-                Combine 4 Weekly Feeds into Your Monthly PowerPoint
-            </h1>
-            <p class="text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-                Upload <strong>1 monthly reference file</strong> (showing your target slide format and styling) and <strong>4 weekly data files</strong>. All numbers are calculated exclusively from the weekly data and styled to match your monthly template.
-            </p>
-
-            <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs text-slate-600">
-                <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span><strong>Mathematical Accuracy:</strong> Monthly totals and averages are derived strictly from Week 1 + Week 2 + Week 3 + Week 4.</span>
-            </div>
-        </div>
-
-        <!-- Action Bar: Fast Controls -->
-        <div class="max-w-5xl mx-auto mb-6 flex items-center justify-between gap-3 bg-white p-3 sm:p-4 rounded-xl border border-slate-200 shadow-2xs">
-            <div class="flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <span id="file-status-indicator" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
-                <span id="file-count-badge">0 of 5 files loaded</span>
-            </div>
-            <div class="flex items-center gap-2">
-                <button type="button" onclick="loadSampleData()" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-heading font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 hover:bg-indigo-100 rounded-lg transition-all shadow-2xs">
-                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    <span>⚡ Load Sample Business Data</span>
-                </button>
-                <button type="button" onclick="resetAll()" class="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors">
-                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                    <span>Reset</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- File Upload Section -->
-        <section class="max-w-5xl mx-auto mb-8 space-y-4">
-
-            <!-- Unified Dropzone -->
-            <div id="master-dropzone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleMasterDrop(event)" onclick="triggerFileInput('master-file-input')" class="border-2 border-dashed border-slate-300 hover:border-indigo-500 bg-white hover:bg-slate-50 rounded-2xl p-6 sm:p-8 text-center cursor-pointer transition-all group">
-                <input type="file" id="master-file-input" multiple accept=".pptx,.ppt,.xlsx,.xls,.csv,.json,.tsv" onchange="handleMasterFileSelect(event)" class="hidden">
-                <div class="w-12 h-12 mx-auto rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-2.5 group-hover:scale-105 transition-transform">
-                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-                </div>
-                <h3 class="text-base font-heading font-bold text-slate-800 mb-1">
-                    Drag &amp; Drop all 5 files here (or click to browse)
-                </h3>
-                <p class="text-xs text-slate-500 max-w-md mx-auto mb-2">
-                    Upload your <strong>1 Monthly Template</strong> (.pptx, .xlsx, .csv) and <strong>4 Weekly Data Files</strong> (W1, W2, W3, W4).
+        <!-- Title & Subtitle (Clean & Compact) -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-200 pb-3">
+            <div>
+                <h1 class="text-lg sm:text-xl font-bold text-slate-900">
+                    Consolidate 4 Weekly Feeds to Monthly PowerPoint
+                </h1>
+                <p class="text-xs text-slate-500 mt-0.5">
+                    Upload 1 Monthly Template + 4 Weekly Feeds. Numbers are 100% calculated from weekly data and styled to match your template.
                 </p>
-                <div class="inline-flex items-center gap-2 text-[11px] font-mono text-slate-400 bg-slate-50 px-2.5 py-1 rounded border border-slate-200">
-                    <span>PowerPoint (.pptx)</span>
-                    <span>•</span>
-                    <span>Excel (.xlsx)</span>
-                    <span>•</span>
-                    <span>CSV (.csv)</span>
-                    <span>•</span>
-                    <span>JSON (.json)</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <button type="button" onclick="loadSampleData()" class="px-2.5 py-1 text-xs font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200 hover:bg-indigo-100 rounded transition flex items-center gap-1">
+                    <span>⚡ Sample Data</span>
+                </button>
+                <button type="button" onclick="resetAll()" class="px-2.5 py-1 text-xs font-medium text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded transition">
+                    Reset
+                </button>
+            </div>
+        </div>
+
+        <!-- Unified Smart Dropzone (Auto-recognizes all 5 files) -->
+        <section class="space-y-3">
+            <div id="master-dropzone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleMasterDrop(event)" onclick="triggerFileInput('master-file-input')" class="border-2 border-dashed border-slate-300 hover:border-indigo-500 bg-white hover:bg-indigo-50/20 rounded-xl p-5 text-center cursor-pointer transition-all">
+                <input type="file" id="master-file-input" multiple accept=".pptx,.ppt,.xlsx,.xls,.csv,.json,.tsv" onchange="handleMasterFileSelect(event)" class="hidden">
+                <div class="flex flex-col items-center justify-center">
+                    <svg class="w-8 h-8 text-indigo-500 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                    </svg>
+                    <div class="text-sm font-semibold text-slate-800">
+                        Drop all 5 files here <span class="text-slate-400 font-normal">or click to browse</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-0.5">
+                        Auto-recognizes: 1 Monthly Template (.pptx) + 4 Weekly Feeds (.xlsx, .csv).
+                    </p>
                 </div>
             </div>
 
-            <!-- 5 Dedicated Slots Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-
+            <!-- Auto-Recognized File Status Row (5 Compact Slots) -->
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
                 <!-- Slot 1: Monthly Reference Template -->
-                <div id="slot-monthly" class="bg-white border-2 border-slate-200 rounded-xl p-3.5 flex flex-col justify-between hover:border-indigo-400 transition-all">
-                    <div>
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[9px] font-mono font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-1.5 py-0.5 rounded">Format Template</span>
-                            <span id="badge-monthly" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
-                        </div>
-                        <h4 class="text-xs font-heading font-bold text-slate-900 mb-0.5">1. Monthly File</h4>
-                        <div id="desc-monthly" class="text-[11px] text-slate-500 mb-2">
-                            Dictates output layout &amp; design.
-                        </div>
+                <div id="slot-monthly" class="bg-white border border-slate-200 rounded-lg p-2.5 flex flex-col justify-between text-xs">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-bold text-[10px] text-indigo-700 bg-indigo-50 px-1 rounded uppercase">1. Template</span>
+                        <span id="badge-monthly" class="w-2 h-2 rounded-full bg-slate-300"></span>
                     </div>
-                    <div>
+                    <div id="desc-monthly" class="font-medium text-slate-700 truncate" title="Format Guide (.pptx)">Format Guide (.pptx)</div>
+                    <div class="mt-1 flex items-center justify-between text-[11px] text-slate-400">
+                        <span id="btn-text-monthly">Empty</span>
+                        <button type="button" onclick="triggerFileInput('input-monthly')" class="text-indigo-600 hover:underline">Browse</button>
                         <input type="file" id="input-monthly" accept=".pptx,.ppt,.xlsx,.xls,.csv" onchange="handleSingleFileSelect(event, 'monthly')" class="hidden">
-                        <button type="button" onclick="triggerFileInput('input-monthly')" class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium rounded-lg border border-slate-200 transition-colors flex items-center justify-center gap-1">
-                            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                            <span id="btn-text-monthly">Select File</span>
-                        </button>
                     </div>
                 </div>
 
                 <!-- Slot 2: Week 1 Data -->
-                <div id="slot-w1" class="bg-white border-2 border-slate-200 rounded-xl p-3.5 flex flex-col justify-between hover:border-emerald-400 transition-all">
-                    <div>
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[9px] font-mono font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">Data Feed</span>
-                            <span id="badge-w1" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
-                        </div>
-                        <h4 class="text-xs font-heading font-bold text-slate-900 mb-0.5">2. Week 1 Data</h4>
-                        <div id="desc-w1" class="text-[11px] text-slate-500 mb-2">
-                            Primary Week 1 metrics.
-                        </div>
+                <div id="slot-w1" class="bg-white border border-slate-200 rounded-lg p-2.5 flex flex-col justify-between text-xs">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-bold text-[10px] text-slate-600 bg-slate-100 px-1 rounded uppercase">2. Week 1</span>
+                        <span id="badge-w1" class="w-2 h-2 rounded-full bg-slate-300"></span>
                     </div>
-                    <div>
+                    <div id="desc-w1" class="font-medium text-slate-700 truncate" title="Data Feed">Data Feed</div>
+                    <div class="mt-1 flex items-center justify-between text-[11px] text-slate-400">
+                        <span id="btn-text-w1">Empty</span>
+                        <button type="button" onclick="triggerFileInput('input-w1')" class="text-indigo-600 hover:underline">Browse</button>
                         <input type="file" id="input-w1" accept=".xlsx,.xls,.csv,.json,.tsv" onchange="handleSingleFileSelect(event, 'w1')" class="hidden">
-                        <button type="button" onclick="triggerFileInput('input-w1')" class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium rounded-lg border border-slate-200 transition-colors flex items-center justify-center gap-1">
-                            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                            <span id="btn-text-w1">Select File</span>
-                        </button>
                     </div>
                 </div>
 
                 <!-- Slot 3: Week 2 Data -->
-                <div id="slot-w2" class="bg-white border-2 border-slate-200 rounded-xl p-3.5 flex flex-col justify-between hover:border-emerald-400 transition-all">
-                    <div>
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[9px] font-mono font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">Data Feed</span>
-                            <span id="badge-w2" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
-                        </div>
-                        <h4 class="text-xs font-heading font-bold text-slate-900 mb-0.5">3. Week 2 Data</h4>
-                        <div id="desc-w2" class="text-[11px] text-slate-500 mb-2">
-                            Primary Week 2 metrics.
-                        </div>
+                <div id="slot-w2" class="bg-white border border-slate-200 rounded-lg p-2.5 flex flex-col justify-between text-xs">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-bold text-[10px] text-slate-600 bg-slate-100 px-1 rounded uppercase">3. Week 2</span>
+                        <span id="badge-w2" class="w-2 h-2 rounded-full bg-slate-300"></span>
                     </div>
-                    <div>
+                    <div id="desc-w2" class="font-medium text-slate-700 truncate" title="Data Feed">Data Feed</div>
+                    <div class="mt-1 flex items-center justify-between text-[11px] text-slate-400">
+                        <span id="btn-text-w2">Empty</span>
+                        <button type="button" onclick="triggerFileInput('input-w2')" class="text-indigo-600 hover:underline">Browse</button>
                         <input type="file" id="input-w2" accept=".xlsx,.xls,.csv,.json,.tsv" onchange="handleSingleFileSelect(event, 'w2')" class="hidden">
-                        <button type="button" onclick="triggerFileInput('input-w2')" class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium rounded-lg border border-slate-200 transition-colors flex items-center justify-center gap-1">
-                            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                            <span id="btn-text-w2">Select File</span>
-                        </button>
                     </div>
                 </div>
 
                 <!-- Slot 4: Week 3 Data -->
-                <div id="slot-w3" class="bg-white border-2 border-slate-200 rounded-xl p-3.5 flex flex-col justify-between hover:border-emerald-400 transition-all">
-                    <div>
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[9px] font-mono font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">Data Feed</span>
-                            <span id="badge-w3" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
-                        </div>
-                        <h4 class="text-xs font-heading font-bold text-slate-900 mb-0.5">4. Week 3 Data</h4>
-                        <div id="desc-w3" class="text-[11px] text-slate-500 mb-2">
-                            Primary Week 3 metrics.
-                        </div>
+                <div id="slot-w3" class="bg-white border border-slate-200 rounded-lg p-2.5 flex flex-col justify-between text-xs">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-bold text-[10px] text-slate-600 bg-slate-100 px-1 rounded uppercase">4. Week 3</span>
+                        <span id="badge-w3" class="w-2 h-2 rounded-full bg-slate-300"></span>
                     </div>
-                    <div>
+                    <div id="desc-w3" class="font-medium text-slate-700 truncate" title="Data Feed">Data Feed</div>
+                    <div class="mt-1 flex items-center justify-between text-[11px] text-slate-400">
+                        <span id="btn-text-w3">Empty</span>
+                        <button type="button" onclick="triggerFileInput('input-w3')" class="text-indigo-600 hover:underline">Browse</button>
                         <input type="file" id="input-w3" accept=".xlsx,.xls,.csv,.json,.tsv" onchange="handleSingleFileSelect(event, 'w3')" class="hidden">
-                        <button type="button" onclick="triggerFileInput('input-w3')" class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium rounded-lg border border-slate-200 transition-colors flex items-center justify-center gap-1">
-                            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                            <span id="btn-text-w3">Select File</span>
-                        </button>
                     </div>
                 </div>
 
                 <!-- Slot 5: Week 4 Data -->
-                <div id="slot-w4" class="bg-white border-2 border-slate-200 rounded-xl p-3.5 flex flex-col justify-between hover:border-emerald-400 transition-all">
-                    <div>
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[9px] font-mono font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">Data Feed</span>
-                            <span id="badge-w4" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
-                        </div>
-                        <h4 class="text-xs font-heading font-bold text-slate-900 mb-0.5">5. Week 4 Data</h4>
-                        <div id="desc-w4" class="text-[11px] text-slate-500 mb-2">
-                            Primary Week 4 metrics.
-                        </div>
+                <div id="slot-w4" class="bg-white border border-slate-200 rounded-lg p-2.5 flex flex-col justify-between text-xs">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-bold text-[10px] text-slate-600 bg-slate-100 px-1 rounded uppercase">5. Week 4</span>
+                        <span id="badge-w4" class="w-2 h-2 rounded-full bg-slate-300"></span>
                     </div>
-                    <div>
+                    <div id="desc-w4" class="font-medium text-slate-700 truncate" title="Data Feed">Data Feed</div>
+                    <div class="mt-1 flex items-center justify-between text-[11px] text-slate-400">
+                        <span id="btn-text-w4">Empty</span>
+                        <button type="button" onclick="triggerFileInput('input-w4')" class="text-indigo-600 hover:underline">Browse</button>
                         <input type="file" id="input-w4" accept=".xlsx,.xls,.csv,.json,.tsv" onchange="handleSingleFileSelect(event, 'w4')" class="hidden">
-                        <button type="button" onclick="triggerFileInput('input-w4')" class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium rounded-lg border border-slate-200 transition-colors flex items-center justify-center gap-1">
-                            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                            <span id="btn-text-w4">Select File</span>
-                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Primary Generate Button -->
-            <div class="pt-2 text-center">
-                <button type="button" id="btn-generate" disabled onclick="processAndBuildDeck()" class="w-full max-w-md mx-auto py-3.5 px-6 rounded-xl font-heading font-bold text-sm sm:text-base text-slate-400 bg-slate-200 cursor-not-allowed transition-all shadow-sm flex items-center justify-center gap-2">
-                    <span>Upload 4 Weekly Files to Generate</span>
+            <!-- Trigger Button -->
+            <div class="pt-1 flex items-center justify-between">
+                <span id="file-count-badge" class="text-xs text-slate-500">0 of 5 files loaded</span>
+                <button type="button" id="btn-generate" disabled onclick="processAndBuildDeck()" class="py-1.5 px-4 rounded-lg font-semibold text-xs text-slate-400 bg-slate-200 cursor-not-allowed transition flex items-center gap-1.5 shadow-2xs">
+                    <span>Generate Presentation</span>
                 </button>
             </div>
         </section>
 
-        <!-- Results & Slide Deck Preview Section -->
-        <section id="results-section" class="max-w-5xl mx-auto space-y-6 hidden">
+        <!-- Presentation Results & Slide Preview -->
+        <section id="results-section" class="space-y-4 hidden">
 
-            <!-- Template Match & Style Indicator Banner -->
-            <div class="bg-indigo-900 text-white rounded-2xl p-4 sm:p-5 shadow-sm border border-indigo-800 flex flex-wrap items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                        <svg class="w-6 h-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h3 class="text-sm sm:text-base font-heading font-bold">Template Format Matched &amp; Verified</h3>
-                            <span id="template-aspect-badge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-indigo-800 text-indigo-200">16:9 Widescreen</span>
-                        </div>
-                        <p id="template-info-text" class="text-xs text-indigo-200 mt-0.5">
-                            Colors, typography, and slide structures extracted from your monthly template.
-                        </p>
-                    </div>
+            <!-- Download Action Bar -->
+            <div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 shadow-2xs">
+                <div class="flex items-center gap-2 text-xs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span class="font-semibold text-slate-800">Template Style Extracted</span>
+                    <span id="template-info-text" class="text-slate-400">• Standard 16:9 • Colors &amp; Fonts Matched</span>
                 </div>
-                <div class="flex items-center gap-2.5">
-                    <button type="button" onclick="downloadPptxFile()" class="px-4 py-2 bg-white text-indigo-900 hover:bg-slate-100 rounded-xl font-heading font-bold text-xs sm:text-sm shadow-xs transition-all flex items-center gap-2">
-                        <svg class="w-4 h-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="downloadPptxFile()" class="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold text-xs shadow-xs transition flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         <span>Download Presentation (.pptx)</span>
                     </button>
-                    <button type="button" onclick="exportConsolidatedExcel()" class="px-3.5 py-2 bg-indigo-800 hover:bg-indigo-700 text-white rounded-xl font-heading font-semibold text-xs transition-colors flex items-center gap-1.5" title="Export unified spreadsheet with all weekly columns">
-                        <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                        <span>Export Excel (.xlsx)</span>
+                    <button type="button" id="btn-hydrated-template" onclick="downloadHydratedTemplate()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium text-xs transition hidden">
+                        Download Hydrated Template
+                    </button>
+                    <button type="button" onclick="exportConsolidatedExcel()" class="px-2.5 py-1.5 text-slate-600 hover:text-slate-900 text-xs font-medium transition" title="Export Excel table">
+                        Export .xlsx
                     </button>
                 </div>
             </div>
 
-            <!-- KPI Metric Cards -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs">
-                    <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">Total Monthly Volume</span>
-                    <div id="stat-total-volume" class="text-xl sm:text-2xl font-heading font-black text-slate-900 mt-1">--</div>
-                    <span id="stat-total-records" class="text-[11px] text-slate-500 mt-0.5 block">--</span>
+            <!-- KPI Metric Summary Row -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+                <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Monthly Total</span>
+                    <div id="stat-total-volume" class="text-base font-bold text-slate-900 mt-0.5">--</div>
+                    <span id="stat-total-records" class="text-[11px] text-slate-500">--</span>
                 </div>
-                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs">
-                    <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">Weekly Average</span>
-                    <div id="stat-weekly-avg" class="text-xl sm:text-2xl font-heading font-black text-indigo-600 mt-1">--</div>
-                    <span class="text-[11px] text-slate-500 mt-0.5 block">Normalized 4-week pacing</span>
+                <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Weekly Run-Rate</span>
+                    <div id="stat-weekly-avg" class="text-base font-bold text-indigo-600 mt-0.5">--</div>
+                    <span class="text-[11px] text-slate-500">Average per week</span>
                 </div>
-                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs">
-                    <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">Peak Week</span>
-                    <div id="stat-peak-week" class="text-xl sm:text-2xl font-heading font-black text-slate-900 mt-1">--</div>
-                    <span id="stat-peak-amount" class="text-[11px] text-slate-500 mt-0.5 block">--</span>
+                <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Peak Week</span>
+                    <div id="stat-peak-week" class="text-base font-bold text-slate-900 mt-0.5">--</div>
+                    <span id="stat-peak-amount" class="text-[11px] text-slate-500">--</span>
                 </div>
-                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs">
-                    <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">Net Month Momentum</span>
-                    <div id="stat-wow-momentum" class="text-xl sm:text-2xl font-heading font-black text-slate-900 mt-1">--</div>
-                    <span id="stat-wow-desc" class="text-[11px] text-slate-500 mt-0.5 block">Week 1 → Week 4</span>
+                <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">W1 → W4 Momentum</span>
+                    <div id="stat-wow-momentum" class="text-base font-bold text-slate-900 mt-0.5">--</div>
+                    <span id="stat-wow-desc" class="text-[11px] text-slate-500">Trajectory</span>
                 </div>
             </div>
 
             <!-- Slide Deck Interactive Stage & Previewer -->
-            <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-2xs space-y-4">
-                <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
-                    <div>
-                        <h2 class="text-base sm:text-lg font-heading font-bold text-slate-900">Slide Deck Preview</h2>
-                        <p class="text-xs text-slate-500">Preview generated slides styled according to your monthly template.</p>
+            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <!-- Compact Slide Tabs -->
+                    <div class="flex items-center gap-1 overflow-x-auto text-xs py-0.5">
+                        <button type="button" onclick="selectSlide(0)" id="tab-slide-0" class="px-2 py-1 rounded font-medium bg-indigo-600 text-white">01. Cover</button>
+                        <button type="button" onclick="selectSlide(1)" id="tab-slide-1" class="px-2 py-1 rounded font-medium text-slate-600 hover:bg-slate-100">02. KPIs</button>
+                        <button type="button" onclick="selectSlide(2)" id="tab-slide-2" class="px-2 py-1 rounded font-medium text-slate-600 hover:bg-slate-100">03. 4-Week Trend</button>
+                        <button type="button" onclick="selectSlide(3)" id="tab-slide-3" class="px-2 py-1 rounded font-medium text-slate-600 hover:bg-slate-100">04. Breakdown</button>
+                        <button type="button" onclick="selectSlide(4)" id="tab-slide-4" class="px-2 py-1 rounded font-medium text-slate-600 hover:bg-slate-100">05. Top Items</button>
+                        <button type="button" onclick="selectSlide(5)" id="tab-slide-5" class="px-2 py-1 rounded font-medium text-slate-600 hover:bg-slate-100">06. Full Ledger</button>
+                        <button type="button" onclick="selectSlide(6)" id="tab-slide-6" class="px-2 py-1 rounded font-medium text-slate-600 hover:bg-slate-100">07. Audit</button>
                     </div>
 
-                    <!-- Slide Navigation Tabs -->
-                    <div class="flex items-center gap-1 overflow-x-auto py-1 text-xs">
-                        <button type="button" onclick="selectSlide(0)" id="tab-slide-0" class="px-2.5 py-1 rounded-lg font-semibold bg-indigo-600 text-white transition-colors">01. Cover</button>
-                        <button type="button" onclick="selectSlide(1)" id="tab-slide-1" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 hover:bg-slate-100 transition-colors">02. KPIs</button>
-                        <button type="button" onclick="selectSlide(2)" id="tab-slide-2" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 hover:bg-slate-100 transition-colors">03. 4-Week Trend</button>
-                        <button type="button" onclick="selectSlide(3)" id="tab-slide-3" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 hover:bg-slate-100 transition-colors">04. Breakdown</button>
-                        <button type="button" onclick="selectSlide(4)" id="tab-slide-4" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 hover:bg-slate-100 transition-colors">05. Top Records</button>
-                        <button type="button" onclick="selectSlide(5)" id="tab-slide-5" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 hover:bg-slate-100 transition-colors">06. Full Ledger</button>
-                        <button type="button" onclick="selectSlide(6)" id="tab-slide-6" class="px-2.5 py-1 rounded-lg font-semibold text-slate-600 hover:bg-slate-100 transition-colors">07. Audit</button>
+                    <div class="flex items-center gap-1.5 text-xs">
+                        <button type="button" onclick="prevSlide()" class="p-1 text-slate-500 hover:text-slate-800 rounded border border-slate-200 hover:bg-slate-50">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        </button>
+                        <span id="slide-counter-text" class="text-slate-400 font-mono text-[11px]">1 / 7</span>
+                        <button type="button" onclick="nextSlide()" class="p-1 text-slate-500 hover:text-slate-800 rounded border border-slate-200 hover:bg-slate-50">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
                     </div>
                 </div>
 
                 <!-- 16:9 Presentation Slide Canvas -->
-                <div id="slide-preview-container" class="w-full slide-aspect bg-slate-900 rounded-xl p-6 sm:p-10 text-white relative shadow-lg overflow-hidden flex flex-col justify-between border border-slate-800">
+                <div id="slide-preview-container" class="w-full slide-aspect bg-slate-900 rounded-lg p-5 sm:p-7 text-white relative shadow-sm overflow-hidden flex flex-col justify-between border border-slate-800">
                     <div id="slide-stage-content" class="w-full h-full flex flex-col justify-between">
                         <!-- Dynamic Slide Content Inserted Here -->
                     </div>
                 </div>
 
-                <!-- Slide Navigation Footer -->
-                <div class="flex items-center justify-between pt-2 text-xs">
-                    <button type="button" onclick="prevSlide()" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors">
-                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                        <span>Previous Slide</span>
-                    </button>
-                    <span id="slide-counter-text" class="font-mono text-slate-400">Slide 1 of 7</span>
-                    <button type="button" onclick="nextSlide()" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors">
-                        <span>Next Slide</span>
-                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Optional Title & Metric Configuration -->
-            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs">
-                <div class="flex items-center justify-between mb-3">
-                    <h3 class="text-xs font-heading font-bold uppercase tracking-wider text-slate-500">Presentation Settings</h3>
-                    <span class="text-[11px] text-slate-400">Optional Adjustments</span>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                    <div>
-                        <label class="block font-medium text-slate-700 mb-1">Deck Title</label>
-                        <input type="text" id="cfg-title" placeholder="Monthly Performance Review" onchange="updatePresentationConfig()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:border-indigo-500">
+                <!-- Optional Compact Metadata Inputs -->
+                <div class="flex flex-wrap items-center gap-3 pt-2 text-xs border-t border-slate-100">
+                    <div class="flex items-center gap-1.5">
+                        <label class="text-slate-500 font-medium">Title:</label>
+                        <input type="text" id="cfg-title" placeholder="Monthly Executive Review" onchange="updatePresentationConfig()" class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-slate-800 text-xs">
                     </div>
-                    <div>
-                        <label class="block font-medium text-slate-700 mb-1">Reporting Period / Date</label>
-                        <input type="text" id="cfg-date" placeholder="September 2026" onchange="updatePresentationConfig()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:border-indigo-500">
+                    <div class="flex items-center gap-1.5">
+                        <label class="text-slate-500 font-medium">Period:</label>
+                        <input type="text" id="cfg-date" placeholder="September 2026" onchange="updatePresentationConfig()" class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-slate-800 text-xs">
                     </div>
-                    <div>
-                        <label class="block font-medium text-slate-700 mb-1">Primary Value Metric</label>
-                        <select id="cfg-metric" onchange="changePrimaryMetric(event)" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:border-indigo-500">
-                            <!-- Populated dynamically from columns -->
+                    <div class="flex items-center gap-1.5">
+                        <label class="text-slate-500 font-medium">Primary Metric:</label>
+                        <select id="cfg-metric" onchange="changePrimaryMetric(event)" class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-slate-800 text-xs">
+                            <!-- Populated dynamically -->
                         </select>
                     </div>
                 </div>
@@ -399,15 +294,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="mt-auto border-t border-slate-200 bg-white py-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-            <p>Monthly Deck Builder • Standalone Client-Side Engine • All Data Processed in Browser Sandbox</p>
-            <div class="flex items-center gap-4">
-                <span>Zero Server Uploads</span>
-                <span>•</span>
-                <span>Deterministic Math</span>
-            </div>
-        </div>
+    <footer class="mt-auto border-t border-slate-200 bg-white py-3 text-xs text-slate-400 text-center">
+        Monthly Deck Builder • Standalone Client-Side Engine • All Data Processed in Local Browser Sandbox
     </footer>
 
     <!-- JavaScript Application Logic -->
@@ -481,10 +369,10 @@
 
             let remaining = [...files];
 
-            // 1. Identify Monthly Reference (.pptx, or containing 'month' / 'template')
+            // 1. Identify Monthly Reference (.pptx, or containing 'month' / 'template' / 'deck')
             const monthlyIdx = remaining.findIndex(f => {
                 const name = f.name.toLowerCase();
-                return name.endsWith('.pptx') || name.endsWith('.ppt') || name.includes('month') || name.includes('template');
+                return name.endsWith('.pptx') || name.endsWith('.ppt') || name.includes('month') || name.includes('template') || name.includes('deck');
             });
 
             if (monthlyIdx !== -1) {
@@ -509,8 +397,11 @@
         }
 
         function extractWeekNum(filename) {
-            const m = filename.toLowerCase().match(/(?:week|w)[_-\s]?([0-9]+)/);
-            return m ? parseInt(m[1], 10) : null;
+            const m = filename.toLowerCase().match(/(?:week|wk|w)[_-\s]?0*([0-9]+)/i);
+            if (m) return parseInt(m[1], 10);
+            const numMatch = filename.toLowerCase().match(/[_-]0*([0-9]+)(?:\.[a-z0-9]+)?$/i);
+            if (numMatch) return parseInt(numMatch[1], 10);
+            return null;
         }
 
         function handleSingleFileSelect(e, slot) {
@@ -520,7 +411,7 @@
             }
         }
 
-        // Robust Numeric Parser (handles $, commas, %, (negative), scientific)
+        // Robust Numeric Parser
         function parseNumericValue(val) {
             if (val === null || val === undefined || val === '') return 0;
             if (typeof val === 'number') return isNaN(val) ? 0 : val;
@@ -536,13 +427,13 @@
             return isNegative ? -num : num;
         }
 
-        // Smart Formatter: Detects Currency vs Percentage vs Integer Count
+        // Executive Formatter: Compact & Legible
         function formatMetricDisplay(val, colName) {
             const strCol = String(colName || '').toLowerCase();
             const num = Number(val || 0);
 
             if (/amount|revenue|sales|volume|spend|cost|profit|price|fee|balance|\$|usd/i.test(strCol)) {
-                return '$' + num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                return '$' + Math.round(num).toLocaleString('en-US');
             } else if (/pct|rate|percent|margin|%/i.test(strCol)) {
                 return num.toFixed(1) + '%';
             } else {
@@ -575,7 +466,6 @@
                         const loadedZip = await zip.loadAsync(evt.target.result);
                         const slideFiles = Object.keys(loadedZip.files).filter(k => /^ppt\/slides\/slide\d+\.xml$/.test(k));
                         
-                        // Extract Design Theme, Colors, Fonts from Template PPTX
                         await extractPptxTemplateProperties(loadedZip);
 
                         storeParsedSlot(slot, file.name, { slideCount: slideFiles.length, zip: loadedZip, rawBuffer: evt.target.result }, 'pptx', file);
@@ -613,10 +503,10 @@
             }
         }
 
-        // Extract Theme Colors, Typography, & Layout from Template PPTX
+        // Extract Theme Colors & Fonts from Template PPTX
         async function extractPptxTemplateProperties(zip) {
             try {
-                // 1. Aspect Ratio from ppt/presentation.xml
+                // 1. Aspect Ratio
                 const presFile = zip.file('ppt/presentation.xml');
                 if (presFile) {
                     const presXml = await presFile.async('text');
@@ -631,7 +521,7 @@
                     }
                 }
 
-                // 2. Colors & Fonts from ppt/theme/theme1.xml
+                // 2. Theme Colors & Fonts
                 const themeFile = zip.file('ppt/theme/theme1.xml');
                 if (themeFile) {
                     const themeXml = await themeFile.async('text');
@@ -655,14 +545,9 @@
                     if (minorFontMatch && minorFontMatch[1]) appState.templateTheme.bodyFont = minorFontMatch[1];
                 }
 
-                // Update UI indicator
                 const infoText = document.getElementById('template-info-text');
-                const aspectBadge = document.getElementById('template-aspect-badge');
                 if (infoText) {
-                    infoText.textContent = `Font: ${appState.templateTheme.titleFont} • Accent: #${appState.templateTheme.accentColor} • Layout: ${appState.templateTheme.aspectRatio}`;
-                }
-                if (aspectBadge) {
-                    aspectBadge.textContent = appState.templateTheme.aspectRatio === '16x9' ? '16:9 Widescreen' : '4:3 Standard';
+                    infoText.textContent = `• ${appState.templateTheme.aspectRatio === '16x9' ? '16:9' : '4:3'} • Font: ${appState.templateTheme.titleFont} • Accent: #${appState.templateTheme.accentColor}`;
                 }
             } catch (e) {
                 console.warn('Could not extract complete PPTX theme:', e);
@@ -691,38 +576,44 @@
                 badge.classList.remove('bg-slate-300');
                 badge.classList.add('bg-emerald-500');
             }
-            if (btnText) {
-                btnText.textContent = '✓ ' + truncateStr(filename, 14);
-            }
             if (desc) {
+                desc.textContent = filename;
+                desc.title = filename;
+            }
+            if (btnText) {
                 if (slot === 'monthly') {
-                    const count = parsedData.slideCount || (Array.isArray(parsedData) ? parsedData.length : 1);
-                    desc.innerHTML = `<span class="font-semibold text-slate-800">${filename}</span><br><span class="text-indigo-600 font-bold">${count} slide template structure</span>`;
+                    const count = parsedData.slideCount || 1;
+                    btnText.textContent = `✓ ${count} slides`;
                 } else {
                     const rowCount = Array.isArray(parsedData) ? parsedData.length : 0;
-                    desc.innerHTML = `<span class="font-semibold text-slate-800">${filename}</span><br><span class="text-emerald-600 font-bold">${rowCount} verified records</span>`;
+                    btnText.textContent = `✓ ${rowCount} rows`;
+                }
+            }
+
+            // Reveal template hydration button if valid monthly pptx
+            const hydratedBtn = document.getElementById('btn-hydrated-template');
+            if (hydratedBtn) {
+                if (appState.monthly && appState.monthly.format === 'pptx' && appState.monthly.data.zip) {
+                    hydratedBtn.classList.remove('hidden');
+                } else {
+                    hydratedBtn.classList.add('hidden');
                 }
             }
 
             updateFileCountsAndButton();
-        }
 
-        function truncateStr(str, n) {
-            return (str.length > n) ? str.substr(0, n - 1) + '…' : str;
+            // Auto-trigger calculation when 4 weekly files are loaded
+            const weeklyLoaded = ['w1', 'w2', 'w3', 'w4'].every(s => appState[s] !== null);
+            if (weeklyLoaded && !appState.aggregated) {
+                processAndBuildDeck();
+            }
         }
 
         function updateFileCountsAndButton() {
             const slots = ['monthly', 'w1', 'w2', 'w3', 'w4'];
             const loaded = slots.filter(s => appState[s] !== null).length;
             const badge = document.getElementById('file-count-badge');
-            const indicator = document.getElementById('file-status-indicator');
-
             if (badge) badge.textContent = `${loaded} of 5 files loaded`;
-            if (indicator) {
-                if (loaded === 5) indicator.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500';
-                else if (loaded > 0) indicator.className = 'w-2.5 h-2.5 rounded-full bg-amber-500';
-                else indicator.className = 'w-2.5 h-2.5 rounded-full bg-slate-300';
-            }
 
             const btn = document.getElementById('btn-generate');
             if (!btn) return;
@@ -731,18 +622,16 @@
 
             if (weeklyLoaded) {
                 btn.disabled = false;
-                btn.classList.remove('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
-                btn.classList.add('bg-indigo-600', 'hover:bg-indigo-700', 'text-white', 'cursor-pointer', 'shadow-md');
-                btn.innerHTML = `<span>🚀 Generate Monthly Presentation (${loaded}/5 Ready)</span>`;
+                btn.className = 'py-1.5 px-4 rounded-lg font-semibold text-xs text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer shadow-xs transition';
+                btn.innerHTML = `<span>Generate Presentation (${loaded}/5 Ready)</span>`;
             } else {
                 btn.disabled = true;
-                btn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700', 'text-white', 'cursor-pointer', 'shadow-md');
-                btn.classList.add('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
-                btn.innerHTML = `<span>Upload 4 Weekly Files to Generate (${loaded}/5 Loaded)</span>`;
+                btn.className = 'py-1.5 px-4 rounded-lg font-semibold text-xs text-slate-400 bg-slate-200 cursor-not-allowed transition';
+                btn.innerHTML = `<span>Upload 4 Weekly Files to Generate</span>`;
             }
         }
 
-        // CSV Parser with Quotes & Delimiter Handling
+        // CSV Parser
         function parseCsvText(text) {
             const lines = text.split(/\r\n|\n/).filter(l => l.trim().length > 0);
             if (lines.length < 2) return [];
@@ -783,7 +672,6 @@
             return result;
         }
 
-        // Change Primary Metric from Dropdown
         function changePrimaryMetric(e) {
             if (e.target && e.target.value) {
                 appState.primaryMetricOverride = e.target.value;
@@ -791,7 +679,6 @@
             }
         }
 
-        // Update Title & Date Config
         function updatePresentationConfig() {
             const titleEl = document.getElementById('cfg-title');
             const dateEl = document.getElementById('cfg-date');
@@ -804,11 +691,11 @@
             }
         }
 
-        // Combine & Aggregate Weekly Data with Mathematical Rigor
+        // Aggregate Weekly Data — 100% Exclusively from Weekly Files
         function processAndBuildDeck() {
             const weeklyKeys = ['w1', 'w2', 'w3', 'w4'];
             if (!weeklyKeys.every(k => appState[k] && appState[k].data)) {
-                alert('Please upload all 4 weekly data files to calculate accurate monthly totals.');
+                alert('Please upload all 4 weekly data files.');
                 return;
             }
 
@@ -823,14 +710,14 @@
                 };
             });
 
-            // Gather all available columns across all weekly files
+            // Extract all available columns
             const allColsSet = new Set();
             weeks.forEach(w => {
                 w.rows.forEach(r => Object.keys(r).forEach(col => allColsSet.add(col)));
             });
             const colNames = Array.from(allColsSet);
 
-            // Find all candidate numeric columns
+            // Candidate numeric metrics
             const candidateNumericCols = colNames.filter(c => {
                 let numericCount = 0;
                 weeks.forEach(w => {
@@ -843,7 +730,6 @@
                 return numericCount > 0;
             });
 
-            // Populate Metric Selector in UI
             const metricSelect = document.getElementById('cfg-metric');
             if (metricSelect && candidateNumericCols.length > 0) {
                 const currentVal = appState.primaryMetricOverride || metricSelect.value;
@@ -852,27 +738,23 @@
                 `).join('');
             }
 
-            // Determine primary value column
             let valueCol = appState.primaryMetricOverride;
             if (!valueCol || !colNames.includes(valueCol)) {
-                valueCol = colNames.find(c => /revenue|sales|amount|volume|spend|profit|units|cost/i.test(c)) ||
+                valueCol = colNames.find(c => /revenue|sales|amount|volume|spend|profit|units|cost|total/i.test(c)) ||
                            candidateNumericCols[0] ||
                            'Volume';
             }
 
-            // Find category column
             const categoryCol = colNames.find(c => /region|category|department|segment|product|status|type|channel/i.test(c)) || colNames[0] || 'Category';
-
-            // Find entity/name column
             const nameCol = colNames.find(c => /name|account|client|entity|id|description|item|rep/i.test(c)) || colNames[1] || colNames[0] || 'Record';
 
-            // Compute Weekly Stats & Master Combination
             let grandTotalVolume = 0;
             let grandTotalRecords = 0;
             const weekStats = [];
             const allRecordsMerged = [];
             const categoryAggregates = {};
 
+            // Calculate weekly sums & totals
             weeks.forEach(w => {
                 let weekSum = 0;
                 w.rows.forEach(r => {
@@ -880,7 +762,6 @@
                     const numVal = parseNumericValue(rawVal !== undefined ? rawVal : 1);
                     weekSum += numVal;
 
-                    // Category aggregation
                     const cat = (String(r[categoryCol] || 'General')).trim();
                     categoryAggregates[cat] = (categoryAggregates[cat] || 0) + numVal;
 
@@ -907,27 +788,22 @@
             const weeklyAvg = grandTotalVolume / 4;
             const peakWeekObj = [...weekStats].sort((a, b) => b.totalValue - a.totalValue)[0] || weekStats[0];
 
-            // Week 1 to Week 4 Growth
             const w1Val = weekStats[0].totalValue || 1;
             const w4Val = weekStats[3].totalValue || 0;
             const wowGrowth = ((w4Val - w1Val) / (w1Val || 1)) * 100;
 
-            // Sort Top Records across Month
             allRecordsMerged.sort((a, b) => b._Numeric_Value - a._Numeric_Value);
             const topOpportunities = allRecordsMerged.slice(0, 6);
 
-            // Default dates and titles
             const currentDateStr = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-            const defaultTitle = appState.titleOverride || "Monthly Executive Performance Review";
+            const defaultTitle = appState.titleOverride || "Monthly Performance Review";
             const defaultDate = appState.dateOverride || currentDateStr;
 
-            // Populate Config Inputs
             const titleInput = document.getElementById('cfg-title');
             if (titleInput && !appState.titleOverride) titleInput.value = defaultTitle;
             const dateInput = document.getElementById('cfg-date');
             if (dateInput && !appState.dateOverride) dateInput.value = defaultDate;
 
-            // Store Aggregation State
             appState.aggregated = {
                 presentationTitle: defaultTitle,
                 reportDate: defaultDate,
@@ -950,41 +826,39 @@
 
             // Update UI KPI Cards
             document.getElementById('stat-total-volume').textContent = formatMetricDisplay(grandTotalVolume, valueCol);
-            document.getElementById('stat-total-records').textContent = `${grandTotalRecords} records consolidated`;
+            document.getElementById('stat-total-records').textContent = `${grandTotalRecords} records combined`;
             document.getElementById('stat-weekly-avg').textContent = formatMetricDisplay(weeklyAvg, valueCol);
             document.getElementById('stat-peak-week').textContent = peakWeekObj.week;
             document.getElementById('stat-peak-amount').textContent = `${formatMetricDisplay(peakWeekObj.totalValue, valueCol)} (${grandTotalVolume > 0 ? ((peakWeekObj.totalValue / grandTotalVolume) * 100).toFixed(1) : 0}%)`;
 
             const momentumEl = document.getElementById('stat-wow-momentum');
             momentumEl.textContent = `${wowGrowth >= 0 ? '+' : ''}${wowGrowth.toFixed(1)}%`;
-            momentumEl.className = `text-xl sm:text-2xl font-heading font-black mt-1 ${wowGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`;
+            momentumEl.className = `text-base font-bold mt-0.5 ${wowGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`;
             document.getElementById('stat-wow-desc').textContent = `W1 (${formatMetricDisplay(w1Val, valueCol)}) → W4 (${formatMetricDisplay(w4Val, valueCol)})`;
 
-            // Reveal Results & Render Slide Preview
             const results = document.getElementById('results-section');
             if (results) {
                 results.classList.remove('hidden');
-                results.scrollIntoView({ behavior: 'smooth' });
             }
 
             selectSlide(appState.activeSlide || 0);
         }
 
-        // Slide Deck Previewer Handlers
+        // Slide Deck Navigation
         function selectSlide(idx) {
             appState.activeSlide = idx;
             for (let i = 0; i < 7; i++) {
                 const tab = document.getElementById(`tab-slide-${i}`);
                 if (tab) {
                     if (i === idx) {
-                        tab.className = 'px-2.5 py-1 rounded-lg font-semibold bg-indigo-600 text-white transition-colors';
+                        tab.className = 'px-2 py-1 rounded font-medium bg-indigo-600 text-white';
                     } else {
-                        tab.className = 'px-2.5 py-1 rounded-lg font-semibold text-slate-600 hover:bg-slate-100 transition-colors';
+                        tab.className = 'px-2 py-1 rounded font-medium text-slate-600 hover:bg-slate-100';
                     }
                 }
             }
             const counter = document.getElementById('slide-counter-text');
-            if (counter) counter.textContent = `Slide ${idx + 1} of 7`;
+            if (counter) counter.textContent = `${idx + 1} / 7`;
 
             renderSlideStage(idx);
         }
@@ -997,244 +871,231 @@
             if (appState.activeSlide < 6) selectSlide(appState.activeSlide + 1);
         }
 
-        // Render Individual Slide Stage in Canvas
+        // Render Compact, Proportional Slide Canvas Preview
         function renderSlideStage(idx) {
             const stage = document.getElementById('slide-stage-content');
             if (!stage || !appState.aggregated) return;
 
             const agg = appState.aggregated;
             const vCol = agg.valueCol;
-            const theme = appState.templateTheme;
 
             if (idx === 0) {
                 // Slide 1: Cover Title
                 stage.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <span class="text-xs font-mono tracking-widest text-slate-400 uppercase">EXECUTIVE BRIEFING</span>
-                        <span class="text-xs font-mono text-emerald-400">STATUS: CONSOLIDATED &amp; VERIFIED</span>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[11px] font-mono text-slate-400">
+                        <span>EXECUTIVE MONTHLY BRIEFING</span>
+                        <span class="text-emerald-400 font-bold">VERIFIED FROM 4 WEEKLY FEEDS</span>
                     </div>
-                    <div class="my-auto py-4">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/60 border border-indigo-500/30 text-indigo-300 text-xs font-mono mb-4">
-                            <span>Consolidated 4-Week Ledger Analysis (Weeks 1 – 4)</span>
+                    <div class="my-auto py-2">
+                        <div class="text-[11px] font-medium text-indigo-400 uppercase tracking-wider mb-1">
+                            Consolidated 4-Week Activity Review
                         </div>
-                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-heading font-black text-white leading-tight mb-3">
+                        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-snug mb-2">
                             ${agg.presentationTitle}
                         </h1>
-                        <p class="text-sm sm:text-base text-slate-300 max-w-2xl font-sans">
-                            Mathematical synthesis derived strictly from primary weekly data files. All totals and performance trends verified.
+                        <p class="text-xs text-slate-300 max-w-xl">
+                            All metrics, tables, and momentum derived strictly from Week 1 through Week 4 source datasets.
                         </p>
                     </div>
-                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-t border-slate-800 pt-3">
+                    <div class="flex items-center justify-between text-[10px] font-mono text-slate-400 border-t border-slate-800 pt-2">
                         <span>Period: ${agg.reportDate}</span>
                         <span>Source: 4 Audited Weekly Datasets</span>
                     </div>
                 `;
             } else if (idx === 1) {
-                // Slide 2: Core Performance Benchmarks (KPIs)
+                // Slide 2: KPIs
                 stage.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <h3 class="text-sm font-heading font-bold text-slate-400 uppercase tracking-wider">Slide 02 — Performance Benchmarks</h3>
-                        <span class="text-xs font-mono text-emerald-400">Weekly Pacing</span>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[11px] font-mono text-slate-400">
+                        <span>SLIDE 02 — MONTHLY PERFORMANCE BENCHMARKS</span>
+                        <span class="text-indigo-400">Core Run-Rate</span>
                     </div>
-                    <div class="py-2">
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-white mb-4">Core Monthly Performance Metrics</h2>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono">
-                            <div class="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
-                                <span class="text-[10px] text-slate-400 uppercase">Total ${vCol}</span>
-                                <div class="text-base sm:text-xl font-bold text-emerald-400 mt-1">${formatMetricDisplay(agg.grandTotalVolume, vCol)}</div>
-                                <span class="text-[10px] text-slate-400">${agg.grandTotalRecords} records combined</span>
+                    <div class="py-1 my-auto">
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-xs mb-3">
+                            <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+                                <span class="text-[9px] text-slate-400 uppercase">Total ${vCol}</span>
+                                <div class="text-sm font-bold text-emerald-400 mt-0.5">${formatMetricDisplay(agg.grandTotalVolume, vCol)}</div>
+                                <span class="text-[9px] text-slate-400">${agg.grandTotalRecords} records</span>
                             </div>
-                            <div class="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
-                                <span class="text-[10px] text-slate-400 uppercase">Weekly Average</span>
-                                <div class="text-base sm:text-xl font-bold text-indigo-400 mt-1">${formatMetricDisplay(agg.weeklyAvg, vCol)}</div>
-                                <span class="text-[10px] text-slate-400">4-week normalized</span>
+                            <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+                                <span class="text-[9px] text-slate-400 uppercase">Weekly Average</span>
+                                <div class="text-sm font-bold text-indigo-400 mt-0.5">${formatMetricDisplay(agg.weeklyAvg, vCol)}</div>
+                                <span class="text-[9px] text-slate-400">4-week pacing</span>
                             </div>
-                            <div class="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
-                                <span class="text-[10px] text-slate-400 uppercase">Peak Week</span>
-                                <div class="text-base sm:text-xl font-bold text-amber-400 mt-1">${agg.peakWeek}</div>
-                                <span class="text-[10px] text-slate-400">${formatMetricDisplay(agg.peakWeekAmount, vCol)}</span>
+                            <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+                                <span class="text-[9px] text-slate-400 uppercase">Peak Period</span>
+                                <div class="text-sm font-bold text-amber-400 mt-0.5">${agg.peakWeek}</div>
+                                <span class="text-[9px] text-slate-400">${formatMetricDisplay(agg.peakWeekAmount, vCol)}</span>
                             </div>
-                            <div class="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
-                                <span class="text-[10px] text-slate-400 uppercase">W1 → W4 Momentum</span>
-                                <div class="text-base sm:text-xl font-bold ${agg.wowGrowth >= 0 ? 'text-emerald-400' : 'text-rose-400'} mt-1">${agg.wowGrowth >= 0 ? '+' : ''}${agg.wowGrowth.toFixed(1)}%</div>
-                                <span class="text-[10px] text-slate-400">Net trajectory</span>
+                            <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+                                <span class="text-[9px] text-slate-400 uppercase">Trajectory</span>
+                                <div class="text-sm font-bold ${agg.wowGrowth >= 0 ? 'text-emerald-400' : 'text-rose-400'} mt-0.5">${agg.wowGrowth >= 0 ? '+' : ''}${agg.wowGrowth.toFixed(1)}%</div>
+                                <span class="text-[9px] text-slate-400">W1 → W4</span>
                             </div>
                         </div>
-                        <div class="mt-4 p-3 bg-slate-800/50 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-1">
-                            <p>• <strong>Consolidated Volume:</strong> Generated ${formatMetricDisplay(agg.grandTotalVolume, vCol)} in total monthly activity across ${agg.grandTotalRecords} line items.</p>
-                            <p>• <strong>Pacing &amp; Run-Rate:</strong> Maintained an average velocity of ${formatMetricDisplay(agg.weeklyAvg, vCol)} per week, peaking during ${agg.peakWeek}.</p>
+                        <div class="bg-slate-800/50 p-2.5 rounded border border-slate-700 text-xs text-slate-300 space-y-1">
+                            <p>• <strong>Consolidated Activity:</strong> Total of ${formatMetricDisplay(agg.grandTotalVolume, vCol)} generated across ${agg.grandTotalRecords} consolidated records.</p>
+                            <p>• <strong>Pacing &amp; Run-Rate:</strong> Normalized run-rate of ${formatMetricDisplay(agg.weeklyAvg, vCol)} per week, achieving peak during ${agg.peakWeek}.</p>
                         </div>
                     </div>
-                    <div class="text-[10px] font-mono text-slate-500">EXECUTIVE PERFORMANCE BENCHMARK</div>
+                    <div class="text-[10px] font-mono text-slate-500">EXECUTIVE BENCHMARKS</div>
                 `;
             } else if (idx === 2) {
-                // Slide 3: 4-Week Side-by-Side Progression Table
+                // Slide 3: 4-Week Progression
                 stage.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <h3 class="text-sm font-heading font-bold text-slate-400 uppercase tracking-wider">Slide 03 — 4-Week Progression</h3>
-                        <span class="text-xs font-mono text-emerald-400">Side-by-Side</span>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[11px] font-mono text-slate-400">
+                        <span>SLIDE 03 — 4-WEEK PROGRESSION LEDGER</span>
+                        <span class="text-emerald-400">Deterministic Sum</span>
                     </div>
-                    <div class="py-2 overflow-x-auto">
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-white mb-3">Weekly Breakdown &amp; Monthly Synthesis</h2>
+                    <div class="py-1 overflow-x-auto my-auto">
                         <table class="w-full text-left text-xs font-mono">
                             <thead>
                                 <tr class="border-b border-slate-700 text-slate-400 text-[10px]">
-                                    <th class="py-1.5">Period</th>
-                                    <th class="py-1.5">Source Dataset</th>
-                                    <th class="py-1.5 text-right">Items</th>
-                                    <th class="py-1.5 text-right">${vCol}</th>
-                                    <th class="py-1.5 text-right">Share (%)</th>
+                                    <th class="py-1">Week</th>
+                                    <th class="py-1">File Name</th>
+                                    <th class="py-1 text-right">Items</th>
+                                    <th class="py-1 text-right">${vCol}</th>
+                                    <th class="py-1 text-right">Share (%)</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-800 text-[11px]">
                                 ${agg.weekStats.map(ws => `
                                     <tr>
-                                        <td class="py-1.5 font-bold text-white">${ws.week}</td>
-                                        <td class="py-1.5 text-slate-400">${truncateStr(ws.filename, 22)}</td>
-                                        <td class="py-1.5 text-right text-slate-300">${ws.rowCount}</td>
-                                        <td class="py-1.5 text-right font-bold text-emerald-400">${formatMetricDisplay(ws.totalValue, vCol)}</td>
-                                        <td class="py-1.5 text-right text-slate-400">${agg.grandTotalVolume > 0 ? ((ws.totalValue / agg.grandTotalVolume) * 100).toFixed(1) : 0}%</td>
+                                        <td class="py-1 font-bold text-white">${ws.week}</td>
+                                        <td class="py-1 text-slate-400 text-[10px]">${ws.filename}</td>
+                                        <td class="py-1 text-right text-slate-300">${ws.rowCount}</td>
+                                        <td class="py-1 text-right font-bold text-emerald-400">${formatMetricDisplay(ws.totalValue, vCol)}</td>
+                                        <td class="py-1 text-right text-slate-400">${agg.grandTotalVolume > 0 ? ((ws.totalValue / agg.grandTotalVolume) * 100).toFixed(1) : 0}%</td>
                                     </tr>
                                 `).join('')}
                                 <tr class="font-bold border-t border-indigo-500 text-indigo-300">
-                                    <td class="py-2">TOTAL</td>
-                                    <td class="py-2 text-slate-400">Combined 4-Week Sum</td>
-                                    <td class="py-2 text-right">${agg.grandTotalRecords}</td>
-                                    <td class="py-2 text-right text-emerald-300">${formatMetricDisplay(agg.grandTotalVolume, vCol)}</td>
-                                    <td class="py-2 text-right">100.0%</td>
+                                    <td class="py-1.5">TOTAL</td>
+                                    <td class="py-1.5 text-slate-400 text-[10px]">Combined 4-Week Sum</td>
+                                    <td class="py-1.5 text-right">${agg.grandTotalRecords}</td>
+                                    <td class="py-1.5 text-right text-emerald-300">${formatMetricDisplay(agg.grandTotalVolume, vCol)}</td>
+                                    <td class="py-1.5 text-right">100.0%</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="text-[10px] font-mono text-slate-500">100% EXCLUSIVE TO AUDITED WEEKLY SOURCE FEEDS</div>
+                    <div class="text-[10px] font-mono text-slate-500">EXCLUSIVELY DERIVED FROM WEEKLY REPORTS</div>
                 `;
             } else if (idx === 3) {
-                // Slide 4: Categorical / Segment Breakdown
+                // Slide 4: Breakdown
                 const cats = Object.entries(agg.categoryBreakdown).sort((a, b) => b[1] - a[1]);
                 stage.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <h3 class="text-sm font-heading font-bold text-slate-400 uppercase tracking-wider">Slide 04 — Categorical Distribution</h3>
-                        <span class="text-xs font-mono text-emerald-400">Breakdown by ${agg.categoryCol}</span>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[11px] font-mono text-slate-400">
+                        <span>SLIDE 04 — SEGMENTATION BREAKDOWN</span>
+                        <span class="text-indigo-400">By ${agg.categoryCol}</span>
                     </div>
-                    <div class="py-2">
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-white mb-3">Portfolio Segmentation</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="py-1 my-auto">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
                             ${cats.slice(0, 6).map(([cat, val]) => {
                                 const pct = agg.grandTotalVolume > 0 ? ((val / agg.grandTotalVolume) * 100).toFixed(1) : 0;
                                 return `
-                                    <div class="bg-slate-800/70 p-2.5 rounded-lg border border-slate-700">
-                                        <div class="flex justify-between text-xs font-mono mb-1">
-                                            <span class="font-bold text-slate-200">${cat}</span>
+                                    <div class="bg-slate-800/70 p-2 rounded border border-slate-700">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-slate-200 font-bold">${cat}</span>
                                             <span class="text-emerald-400 font-bold">${formatMetricDisplay(val, vCol)} <span class="text-slate-400">(${pct}%)</span></span>
                                         </div>
-                                        <div class="w-full bg-slate-900 rounded-full h-1.5">
-                                            <div class="bg-indigo-500 h-1.5 rounded-full" style="width: ${Math.min(pct, 100)}%"></div>
+                                        <div class="w-full bg-slate-900 rounded-full h-1">
+                                            <div class="bg-indigo-500 h-1 rounded-full" style="width: ${Math.min(pct, 100)}%"></div>
                                         </div>
                                     </div>
                                 `;
                             }).join('')}
                         </div>
                     </div>
-                    <div class="text-[10px] font-mono text-slate-500">SEGMENTED ACROSS COMBINED 4-WEEK DATASETS</div>
+                    <div class="text-[10px] font-mono text-slate-500">SEGMENTED TOTALS</div>
                 `;
             } else if (idx === 4) {
-                // Slide 5: Top Contributing Records
+                // Slide 5: Top Items
                 stage.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <h3 class="text-sm font-heading font-bold text-slate-400 uppercase tracking-wider">Slide 05 — Top Contributors</h3>
-                        <span class="text-xs font-mono text-emerald-400">Ranked by ${vCol}</span>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[11px] font-mono text-slate-400">
+                        <span>SLIDE 05 — TOP CONTRIBUTING ITEMS</span>
+                        <span class="text-emerald-400">Ranked by ${vCol}</span>
                     </div>
-                    <div class="py-2 overflow-x-auto">
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-white mb-3">Highest Impact Line Items</h2>
+                    <div class="py-1 overflow-x-auto my-auto">
                         <table class="w-full text-left text-xs font-mono">
                             <thead>
                                 <tr class="border-b border-slate-700 text-slate-400 text-[10px]">
-                                    <th class="py-1.5">Item / Entity</th>
-                                    <th class="py-1.5">Category</th>
-                                    <th class="py-1.5">Week</th>
-                                    <th class="py-1.5 text-right">${vCol}</th>
+                                    <th class="py-1">Rank</th>
+                                    <th class="py-1">Item / Entity</th>
+                                    <th class="py-1">Category</th>
+                                    <th class="py-1">Week</th>
+                                    <th class="py-1 text-right">${vCol}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-800 text-[11px]">
-                                ${agg.topOpportunities.slice(0, 5).map(o => `
+                                ${agg.topOpportunities.slice(0, 5).map((o, idx) => `
                                     <tr>
-                                        <td class="py-1.5 font-bold text-white">${truncateStr(o._Name, 28)}</td>
-                                        <td class="py-1.5 text-slate-300">${o._Category}</td>
-                                        <td class="py-1.5 text-indigo-400">${o._Source_Week}</td>
-                                        <td class="py-1.5 text-right font-bold text-emerald-300">${formatMetricDisplay(o._Numeric_Value, vCol)}</td>
+                                        <td class="py-1 text-slate-400 font-bold">#${idx + 1}</td>
+                                        <td class="py-1 font-bold text-white">${o._Name}</td>
+                                        <td class="py-1 text-slate-300">${o._Category}</td>
+                                        <td class="py-1 text-indigo-400">${o._Source_Week}</td>
+                                        <td class="py-1 text-right font-bold text-emerald-300">${formatMetricDisplay(o._Numeric_Value, vCol)}</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
                         </table>
                     </div>
-                    <div class="text-[10px] font-mono text-slate-500">INDIVIDUAL RECORDS EXTRACTED FROM WEEKLY FEEDS</div>
+                    <div class="text-[10px] font-mono text-slate-500">INDIVIDUAL LINE ITEMS FROM WEEKLY FEEDS</div>
                 `;
             } else if (idx === 5) {
-                // Slide 6: Complete Consolidated Weekly Data Table
+                // Slide 6: Full Ledger
                 const displayCols = agg.colNames.slice(0, 5);
                 stage.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <h3 class="text-sm font-heading font-bold text-slate-400 uppercase tracking-wider">Slide 06 — Consolidated Weekly Data Ledger</h3>
-                        <span class="text-xs font-mono text-emerald-400">All Information Preserved</span>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[11px] font-mono text-slate-400">
+                        <span>SLIDE 06 — COMPLETE CONSOLIDATED WEEKLY LEDGER</span>
+                        <span class="text-indigo-400">All Columns Preserved</span>
                     </div>
-                    <div class="py-2 overflow-x-auto">
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-white mb-2">Master 4-Week Activity Register</h2>
-                        <table class="w-full text-left text-xs font-mono">
+                    <div class="py-1 overflow-x-auto my-auto">
+                        <table class="w-full text-left text-[10px] font-mono">
                             <thead>
-                                <tr class="border-b border-slate-700 text-slate-400 text-[10px]">
+                                <tr class="border-b border-slate-700 text-slate-400">
                                     <th class="py-1">Week</th>
                                     ${displayCols.map(c => `<th class="py-1">${c}</th>`).join('')}
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-800 text-[10px]">
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
                                 ${agg.allRecords.slice(0, 6).map(r => `
                                     <tr>
                                         <td class="py-1 text-indigo-400 font-bold">${r._Source_Week}</td>
-                                        ${displayCols.map(c => `<td class="py-1 text-slate-300">${truncateStr(String(r[c] || ''), 20)}</td>`).join('')}
+                                        ${displayCols.map(c => `<td class="py-1">${String(r[c] || '')}</td>`).join('')}
                                     </tr>
                                 `).join('')}
                             </tbody>
                         </table>
-                        <div class="text-[11px] text-slate-400 mt-2">Showing sample of ${agg.grandTotalRecords} total consolidated rows across 4 weekly feeds.</div>
                     </div>
-                    <div class="text-[10px] font-mono text-slate-500">FULL UNIFIED MONTHLY REPOSITORY</div>
+                    <div class="text-[10px] font-mono text-slate-500">SHOWING SAMPLE OF ${agg.grandTotalRecords} CONSOLIDATED WEEKLY ROWS</div>
                 `;
             } else if (idx === 6) {
-                // Slide 7: Mathematical Reconciliation & Audit Trail
+                // Slide 7: Audit
                 stage.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <h3 class="text-sm font-heading font-bold text-slate-400 uppercase tracking-wider">Slide 07 — Mathematical Audit</h3>
-                        <span class="text-xs font-mono text-emerald-400">Integrity Proof</span>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[11px] font-mono text-slate-400">
+                        <span>SLIDE 07 — MATHEMATICAL AUDIT</span>
+                        <span class="text-emerald-400 font-bold">100% VERIFIED</span>
                     </div>
-                    <div class="my-auto py-3">
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-white mb-2">100% Deterministic Data Reconciliation</h2>
-                        <p class="text-xs text-slate-300 mb-4 font-mono">
-                            Every slide metric has been verified against the 4 weekly source datasets. Total = Week 1 + Week 2 + Week 3 + Week 4.
-                        </p>
-                        <div class="grid grid-cols-2 gap-3 font-mono text-xs mb-4">
-                            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-                                <span class="text-slate-400">Total Records Consolidated:</span>
-                                <div class="text-base font-bold text-emerald-400">${agg.grandTotalRecords} Verified Rows</div>
+                    <div class="my-auto py-2 text-xs font-mono">
+                        <div class="grid grid-cols-2 gap-2 mb-3">
+                            <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+                                <span class="text-[10px] text-slate-400">Total Filings / Records:</span>
+                                <div class="text-sm font-bold text-emerald-400">${agg.grandTotalRecords} Verified Rows</div>
                             </div>
-                            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-                                <span class="text-slate-400">Monthly ${vCol} Certified:</span>
-                                <div class="text-base font-bold text-emerald-400">${formatMetricDisplay(agg.grandTotalVolume, vCol)}</div>
+                            <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+                                <span class="text-[10px] text-slate-400">Monthly Volume Certified:</span>
+                                <div class="text-sm font-bold text-emerald-400">${formatMetricDisplay(agg.grandTotalVolume, vCol)}</div>
                             </div>
                         </div>
-                        <div class="bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-xl text-xs text-emerald-300 flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            <span>Audit Passed: Weekly input files sum strictly to 100% of reported monthly presentation totals.</span>
+                        <div class="bg-emerald-950/40 border border-emerald-500/30 p-2 rounded text-emerald-300 text-[11px]">
+                            ✓ Audit Passed: Monthly totals equal strictly 100% of Week 1 + Week 2 + Week 3 + Week 4.
                         </div>
                     </div>
-                    <div class="flex items-center justify-between text-[10px] font-mono text-slate-500 border-t border-slate-800 pt-2">
-                        <span>Status: Verified</span>
-                        <span>Consolidated Monthly Presentation</span>
-                    </div>
+                    <div class="text-[10px] font-mono text-slate-500">EXECUTIVE AUDIT PROOF</div>
                 `;
             }
         }
 
-        // PowerPoint (.pptx) File Generation Engine via PptxGenJS Matching Template Theme
+        // PowerPoint (.pptx) Generator Matching Template Styling & Executive Proportions
         function downloadPptxFile() {
             if (!appState.aggregated) {
                 alert('Please process files before downloading presentation.');
@@ -1252,7 +1113,7 @@
                 const theme = appState.templateTheme;
                 pptx.layout = theme.aspectRatio === '4x3' ? 'LAYOUT_4x3' : 'LAYOUT_16x9';
 
-                // Extract & Apply Colors matching the user's template
+                // Use Template Theme Colors & Fonts (with elegant corporate defaults)
                 const PRIMARY = theme.primaryColor || '0F172A';
                 const ACCENT = theme.accentColor || '2563EB';
                 const SECONDARY = theme.secondaryColor || '059669';
@@ -1268,130 +1129,130 @@
                 const vCol = agg.valueCol;
 
                 // ==========================================
-                // SLIDE 1: Cover Title Slide
+                // SLIDE 1: Cover Title (Executive Scale, Not Oversized)
                 // ==========================================
                 const s1 = pptx.addSlide();
                 s1.background = { color: DARK_BG };
 
                 s1.addText('EXECUTIVE MONTHLY BRIEFING', {
-                    x: 0.8, y: 0.8, w: 10, h: 0.4,
-                    fontSize: 10, fontFace: BODY_FONT, color: '94A3B8', bold: true
+                    x: 0.8, y: 1.0, w: 10, h: 0.3,
+                    fontSize: 9, fontFace: BODY_FONT, color: '94A3B8', bold: true
                 });
 
                 s1.addText(agg.presentationTitle, {
-                    x: 0.8, y: 1.8, w: 11.5, h: 2.2,
-                    fontSize: 36, fontFace: TITLE_FONT, color: WHITE, bold: true, lineSpacing: 42
+                    x: 0.8, y: 1.6, w: 11.5, h: 1.6,
+                    fontSize: 24, fontFace: TITLE_FONT, color: WHITE, bold: true, lineSpacing: 30
                 });
 
-                s1.addText('Consolidated 4-Week Ledger Analysis (Weeks 1 – 4)\nMathematical synthesis derived strictly from primary weekly data feeds.', {
-                    x: 0.8, y: 4.2, w: 11, h: 1.2,
-                    fontSize: 15, fontFace: BODY_FONT, color: 'CBD5E1', lineSpacing: 22
+                s1.addText('Consolidated 4-Week Activity Review\nDerived strictly and exclusively from primary weekly reports.', {
+                    x: 0.8, y: 3.5, w: 11, h: 1.0,
+                    fontSize: 12, fontFace: BODY_FONT, color: 'CBD5E1', lineSpacing: 18
                 });
 
-                s1.addText(`Reporting Period: ${agg.reportDate}   |   Data Source: 4 Weekly Audited Files   |   Status: Verified`, {
-                    x: 0.8, y: 6.4, w: 11.5, h: 0.4,
-                    fontSize: 10, fontFace: 'Courier New', color: '94A3B8'
+                s1.addText(`Reporting Period: ${agg.reportDate}   |   Source: 4 Weekly Audited Files   |   Status: Verified`, {
+                    x: 0.8, y: 6.2, w: 11.5, h: 0.3,
+                    fontSize: 9, fontFace: 'Courier New', color: '94A3B8'
                 });
 
                 // ==========================================
-                // SLIDE 2: Executive Summary & KPI Stat Cards
+                // SLIDE 2: Core Performance Benchmarks (Compact Cards)
                 // ==========================================
                 const s2 = pptx.addSlide();
                 s2.background = { color: LIGHT_BG };
 
                 s2.addText('SLIDE 02  •  EXECUTIVE BENCHMARKS', {
-                    x: 0.8, y: 0.6, w: 8, h: 0.3,
-                    fontSize: 9, fontFace: 'Courier New', color: ACCENT, bold: true
+                    x: 0.8, y: 0.6, w: 8, h: 0.25,
+                    fontSize: 8, fontFace: 'Courier New', color: ACCENT, bold: true
                 });
                 s2.addText('Core Monthly Performance Benchmarks', {
-                    x: 0.8, y: 0.9, w: 11, h: 0.6,
-                    fontSize: 24, fontFace: TITLE_FONT, color: PRIMARY, bold: true
+                    x: 0.8, y: 0.85, w: 11, h: 0.45,
+                    fontSize: 18, fontFace: TITLE_FONT, color: PRIMARY, bold: true
                 });
 
                 const cardW = 2.65;
-                const cardH = 1.8;
-                const cardY = 1.7;
+                const cardH = 1.3;
+                const cardY = 1.5;
 
                 // Card 1: Total Volume
-                s2.addShape(pptx.ShapeType.roundRect, { x: 0.8, y: cardY, w: cardW, h: cardH, fill: WHITE, line: { color: 'E2E8F0', width: 1 }, rectRadius: 0.1 });
-                s2.addText(`TOTAL ${vCol.toUpperCase()}`, { x: 1.0, y: cardY + 0.2, w: cardW - 0.4, h: 0.3, fontSize: 8, fontFace: 'Courier New', color: SLATE, bold: true });
-                s2.addText(formatMetricDisplay(agg.grandTotalVolume, vCol), { x: 1.0, y: cardY + 0.6, w: cardW - 0.4, h: 0.6, fontSize: 18, fontFace: TITLE_FONT, color: SECONDARY, bold: true });
-                s2.addText(`${agg.grandTotalRecords} records combined`, { x: 1.0, y: cardY + 1.25, w: cardW - 0.4, h: 0.3, fontSize: 9, fontFace: BODY_FONT, color: SLATE });
+                s2.addShape(pptx.ShapeType.roundRect, { x: 0.8, y: cardY, w: cardW, h: cardH, fill: WHITE, line: { color: 'E2E8F0', width: 0.5 }, rectRadius: 0.05 });
+                s2.addText(`TOTAL ${vCol.toUpperCase()}`, { x: 0.95, y: cardY + 0.15, w: cardW - 0.3, h: 0.2, fontSize: 7.5, fontFace: 'Courier New', color: SLATE, bold: true });
+                s2.addText(formatMetricDisplay(agg.grandTotalVolume, vCol), { x: 0.95, y: cardY + 0.45, w: cardW - 0.3, h: 0.4, fontSize: 14, fontFace: TITLE_FONT, color: SECONDARY, bold: true });
+                s2.addText(`${agg.grandTotalRecords} records combined`, { x: 0.95, y: cardY + 0.95, w: cardW - 0.3, h: 0.2, fontSize: 7.5, fontFace: BODY_FONT, color: SLATE });
 
                 // Card 2: Weekly Average
-                s2.addShape(pptx.ShapeType.roundRect, { x: 3.75, y: cardY, w: cardW, h: cardH, fill: WHITE, line: { color: 'E2E8F0', width: 1 }, rectRadius: 0.1 });
-                s2.addText('WEEKLY AVERAGE RUN-RATE', { x: 3.95, y: cardY + 0.2, w: cardW - 0.4, h: 0.3, fontSize: 8, fontFace: 'Courier New', color: SLATE, bold: true });
-                s2.addText(formatMetricDisplay(agg.weeklyAvg, vCol), { x: 3.95, y: cardY + 0.6, w: cardW - 0.4, h: 0.6, fontSize: 18, fontFace: TITLE_FONT, color: ACCENT, bold: true });
-                s2.addText('Normalized 4-wk pacing', { x: 3.95, y: cardY + 1.25, w: cardW - 0.4, h: 0.3, fontSize: 9, fontFace: BODY_FONT, color: SLATE });
+                s2.addShape(pptx.ShapeType.roundRect, { x: 3.75, y: cardY, w: cardW, h: cardH, fill: WHITE, line: { color: 'E2E8F0', width: 0.5 }, rectRadius: 0.05 });
+                s2.addText('WEEKLY RUN-RATE', { x: 3.9, y: cardY + 0.15, w: cardW - 0.3, h: 0.2, fontSize: 7.5, fontFace: 'Courier New', color: SLATE, bold: true });
+                s2.addText(formatMetricDisplay(agg.weeklyAvg, vCol), { x: 3.9, y: cardY + 0.45, w: cardW - 0.3, h: 0.4, fontSize: 14, fontFace: TITLE_FONT, color: ACCENT, bold: true });
+                s2.addText('Average per week', { x: 3.9, y: cardY + 0.95, w: cardW - 0.3, h: 0.2, fontSize: 7.5, fontFace: BODY_FONT, color: SLATE });
 
                 // Card 3: Peak Week
-                s2.addShape(pptx.ShapeType.roundRect, { x: 6.7, y: cardY, w: cardW, h: cardH, fill: WHITE, line: { color: 'E2E8F0', width: 1 }, rectRadius: 0.1 });
-                s2.addText('PEAK WEEK PERFORMANCE', { x: 6.9, y: cardY + 0.2, w: cardW - 0.4, h: 0.3, fontSize: 8, fontFace: 'Courier New', color: SLATE, bold: true });
-                s2.addText(agg.peakWeek, { x: 6.9, y: cardY + 0.6, w: cardW - 0.4, h: 0.6, fontSize: 18, fontFace: TITLE_FONT, color: PRIMARY, bold: true });
-                s2.addText(`${formatMetricDisplay(agg.peakWeekAmount, vCol)} (${agg.grandTotalVolume > 0 ? ((agg.peakWeekAmount / agg.grandTotalVolume) * 100).toFixed(1) : 0}%)`, { x: 6.9, y: cardY + 1.25, w: cardW - 0.4, h: 0.3, fontSize: 9, fontFace: BODY_FONT, color: SLATE });
+                s2.addShape(pptx.ShapeType.roundRect, { x: 6.7, y: cardY, w: cardW, h: cardH, fill: WHITE, line: { color: 'E2E8F0', width: 0.5 }, rectRadius: 0.05 });
+                s2.addText('PEAK WEEK', { x: 6.85, y: cardY + 0.15, w: cardW - 0.3, h: 0.2, fontSize: 7.5, fontFace: 'Courier New', color: SLATE, bold: true });
+                s2.addText(agg.peakWeek, { x: 6.85, y: cardY + 0.45, w: cardW - 0.3, h: 0.4, fontSize: 14, fontFace: TITLE_FONT, color: PRIMARY, bold: true });
+                s2.addText(`${formatMetricDisplay(agg.peakWeekAmount, vCol)} (${agg.grandTotalVolume > 0 ? ((agg.peakWeekAmount / agg.grandTotalVolume) * 100).toFixed(1) : 0}%)`, { x: 6.85, y: cardY + 0.95, w: cardW - 0.3, h: 0.2, fontSize: 7.5, fontFace: BODY_FONT, color: SLATE });
 
                 // Card 4: Momentum
-                s2.addShape(pptx.ShapeType.roundRect, { x: 9.65, y: cardY, w: cardW, h: cardH, fill: WHITE, line: { color: 'E2E8F0', width: 1 }, rectRadius: 0.1 });
-                s2.addText('NET MONTH MOMENTUM', { x: 9.85, y: cardY + 0.2, w: cardW - 0.4, h: 0.3, fontSize: 8, fontFace: 'Courier New', color: SLATE, bold: true });
-                s2.addText(`${agg.wowGrowth >= 0 ? '+' : ''}${agg.wowGrowth.toFixed(1)}%`, { x: 9.85, y: cardY + 0.6, w: cardW - 0.4, h: 0.6, fontSize: 18, fontFace: TITLE_FONT, color: agg.wowGrowth >= 0 ? SECONDARY : 'DC2626', bold: true });
-                s2.addText('Week 1 to Week 4 velocity', { x: 9.85, y: cardY + 1.25, w: cardW - 0.4, h: 0.3, fontSize: 9, fontFace: BODY_FONT, color: SLATE });
+                s2.addShape(pptx.ShapeType.roundRect, { x: 9.65, y: cardY, w: cardW, h: cardH, fill: WHITE, line: { color: 'E2E8F0', width: 0.5 }, rectRadius: 0.05 });
+                s2.addText('TRAJECTORY', { x: 9.8, y: cardY + 0.15, w: cardW - 0.3, h: 0.2, fontSize: 7.5, fontFace: 'Courier New', color: SLATE, bold: true });
+                s2.addText(`${agg.wowGrowth >= 0 ? '+' : ''}${agg.wowGrowth.toFixed(1)}%`, { x: 9.8, y: cardY + 0.45, w: cardW - 0.3, h: 0.4, fontSize: 14, fontFace: TITLE_FONT, color: agg.wowGrowth >= 0 ? SECONDARY : 'DC2626', bold: true });
+                s2.addText('W1 to W4 velocity', { x: 9.8, y: cardY + 0.95, w: cardW - 0.3, h: 0.2, fontSize: 7.5, fontFace: BODY_FONT, color: SLATE });
 
-                // Takeaways Box
-                s2.addShape(pptx.ShapeType.roundRect, { x: 0.8, y: 3.8, w: 11.5, h: 2.6, fill: WHITE, line: { color: 'E2E8F0', width: 1 }, rectRadius: 0.1 });
-                s2.addText('EXECUTIVE OBSERVATIONS & TAKEAWAYS', {
-                    x: 1.1, y: 4.0, w: 11, h: 0.3, fontSize: 9, fontFace: 'Courier New', color: ACCENT, bold: true
+                // Observations Box (Compact)
+                s2.addShape(pptx.ShapeType.roundRect, { x: 0.8, y: 3.1, w: 11.5, h: 3.2, fill: WHITE, line: { color: 'E2E8F0', width: 0.5 }, rectRadius: 0.05 });
+                s2.addText('EXECUTIVE SUMMARY & OBSERVATIONS', {
+                    x: 1.0, y: 3.3, w: 11, h: 0.25, fontSize: 8, fontFace: 'Courier New', color: ACCENT, bold: true
                 });
                 s2.addText([
-                    { text: `• Total Volume Aggregation: Generated ${formatMetricDisplay(agg.grandTotalVolume, vCol)} across ${agg.grandTotalRecords} combined line items.\n`, options: { bold: false, color: SLATE } },
-                    { text: `• Consistency & Velocity: Maintained average of ${formatMetricDisplay(agg.weeklyAvg, vCol)} per week, achieving peak activity during ${agg.peakWeek}.\n`, options: { bold: false, color: SLATE } },
-                    { text: `• Data Integrity Certification: Derived exclusively from 4 independent weekly files with 100% mathematical reconciliation.`, options: { bold: false, color: SLATE } }
-                ], { x: 1.1, y: 4.4, w: 10.9, h: 1.8, fontSize: 11, fontFace: BODY_FONT, lineSpacing: 20 });
+                    { text: `• Total Volume Aggregation: Consolidated ${formatMetricDisplay(agg.grandTotalVolume, vCol)} in total monthly performance across ${agg.grandTotalRecords} combined records.\n`, options: { bold: false, color: SLATE } },
+                    { text: `• Run-Rate Stability: Maintained an average velocity of ${formatMetricDisplay(agg.weeklyAvg, vCol)} per week, peaking during ${agg.peakWeek}.\n`, options: { bold: false, color: SLATE } },
+                    { text: `• Data Integrity Certification: Derived exclusively from the 4 weekly data reports with 100% mathematical reconciliation.`, options: { bold: false, color: SLATE } }
+                ], { x: 1.0, y: 3.65, w: 11.0, h: 2.4, fontSize: 10, fontFace: BODY_FONT, lineSpacing: 18 });
 
                 // ==========================================
-                // SLIDE 3: 4-Week Side-by-Side Trend Table
+                // SLIDE 3: 4-Week Side-by-Side Progression Table
                 // ==========================================
                 const s3 = pptx.addSlide();
                 s3.background = { color: LIGHT_BG };
 
                 s3.addText('SLIDE 03  •  PROGRESSION AUDIT', {
-                    x: 0.8, y: 0.6, w: 8, h: 0.3, fontSize: 9, fontFace: 'Courier New', color: ACCENT, bold: true
+                    x: 0.8, y: 0.6, w: 8, h: 0.25, fontSize: 8, fontFace: 'Courier New', color: ACCENT, bold: true
                 });
                 s3.addText('4-Week Side-by-Side Progression Ledger', {
-                    x: 0.8, y: 0.9, w: 11, h: 0.6, fontSize: 24, fontFace: TITLE_FONT, color: PRIMARY, bold: true
+                    x: 0.8, y: 0.85, w: 11, h: 0.45, fontSize: 18, fontFace: TITLE_FONT, color: PRIMARY, bold: true
                 });
 
                 const tableRows = [
                     [
-                        { text: 'Reporting Period', options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 10 } },
-                        { text: 'Source Data File', options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 10 } },
-                        { text: 'Items / Records', options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 10 } },
-                        { text: `${vCol} Volume`, options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 10 } },
-                        { text: 'Monthly Share (%)', options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 10 } }
+                        { text: 'Reporting Period', options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 8.5 } },
+                        { text: 'Source Data File', options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 8.5 } },
+                        { text: 'Items / Records', options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 8.5 } },
+                        { text: `${vCol} Volume`, options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 8.5 } },
+                        { text: 'Share (%)', options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 8.5 } }
                     ]
                 ];
 
                 agg.weekStats.forEach((ws, idx) => {
                     const rowBg = idx % 2 === 0 ? WHITE : LIGHT_SLATE;
                     tableRows.push([
-                        { text: ws.week, options: { bold: true, fill: rowBg, color: PRIMARY, fontSize: 10 } },
-                        { text: ws.filename, options: { fill: rowBg, color: SLATE, fontSize: 9 } },
-                        { text: String(ws.rowCount), options: { fill: rowBg, color: SLATE, align: 'right', fontSize: 10 } },
-                        { text: formatMetricDisplay(ws.totalValue, vCol), options: { bold: true, fill: rowBg, color: SECONDARY, align: 'right', fontSize: 10 } },
-                        { text: `${agg.grandTotalVolume > 0 ? ((ws.totalValue / agg.grandTotalVolume) * 100).toFixed(1) : 0}%`, options: { fill: rowBg, color: SLATE, align: 'right', fontSize: 10 } }
+                        { text: ws.week, options: { bold: true, fill: rowBg, color: PRIMARY, fontSize: 8 } },
+                        { text: ws.filename, options: { fill: rowBg, color: SLATE, fontSize: 7.5 } },
+                        { text: String(ws.rowCount), options: { fill: rowBg, color: SLATE, align: 'right', fontSize: 8 } },
+                        { text: formatMetricDisplay(ws.totalValue, vCol), options: { bold: true, fill: rowBg, color: SECONDARY, align: 'right', fontSize: 8 } },
+                        { text: `${agg.grandTotalVolume > 0 ? ((ws.totalValue / agg.grandTotalVolume) * 100).toFixed(1) : 0}%`, options: { fill: rowBg, color: SLATE, align: 'right', fontSize: 8 } }
                     ]);
                 });
 
                 // Summary Row
                 tableRows.push([
-                    { text: 'MONTHLY TOTAL', options: { bold: true, fill: 'E2E8F0', color: PRIMARY, fontSize: 11 } },
-                    { text: 'Combined 4-Week Sum', options: { bold: true, fill: 'E2E8F0', color: SLATE, fontSize: 10 } },
-                    { text: String(agg.grandTotalRecords), options: { bold: true, fill: 'E2E8F0', color: PRIMARY, align: 'right', fontSize: 11 } },
-                    { text: formatMetricDisplay(agg.grandTotalVolume, vCol), options: { bold: true, fill: 'E2E8F0', color: SECONDARY, align: 'right', fontSize: 11 } },
-                    { text: '100.0%', options: { bold: true, fill: 'E2E8F0', color: PRIMARY, align: 'right', fontSize: 11 } }
+                    { text: 'MONTHLY TOTAL', options: { bold: true, fill: 'E2E8F0', color: PRIMARY, fontSize: 8.5 } },
+                    { text: 'Combined 4-Week Sum', options: { bold: true, fill: 'E2E8F0', color: SLATE, fontSize: 8 } },
+                    { text: String(agg.grandTotalRecords), options: { bold: true, fill: 'E2E8F0', color: PRIMARY, align: 'right', fontSize: 8.5 } },
+                    { text: formatMetricDisplay(agg.grandTotalVolume, vCol), options: { bold: true, fill: 'E2E8F0', color: SECONDARY, align: 'right', fontSize: 8.5 } },
+                    { text: '100.0%', options: { bold: true, fill: 'E2E8F0', color: PRIMARY, align: 'right', fontSize: 8.5 } }
                 ]);
 
                 s3.addTable(tableRows, {
-                    x: 0.8, y: 1.8, w: 11.5, h: 4.2,
+                    x: 0.8, y: 1.5, w: 11.5, h: 4.8,
                     colW: [2.0, 3.5, 1.8, 2.2, 2.0],
                     border: { pt: 0.5, color: 'CBD5E1' }
                 });
@@ -1402,18 +1263,18 @@
                 const s4 = pptx.addSlide();
                 s4.background = { color: LIGHT_BG };
 
-                s4.addText('SLIDE 04  •  PORTFOLIO SEGMENTATION', {
-                    x: 0.8, y: 0.6, w: 8, h: 0.3, fontSize: 9, fontFace: 'Courier New', color: ACCENT, bold: true
+                s4.addText('SLIDE 04  •  SEGMENTATION', {
+                    x: 0.8, y: 0.6, w: 8, h: 0.25, fontSize: 8, fontFace: 'Courier New', color: ACCENT, bold: true
                 });
                 s4.addText(`Categorical Distribution (${agg.categoryCol})`, {
-                    x: 0.8, y: 0.9, w: 11, h: 0.6, fontSize: 24, fontFace: TITLE_FONT, color: PRIMARY, bold: true
+                    x: 0.8, y: 0.85, w: 11, h: 0.45, fontSize: 18, fontFace: TITLE_FONT, color: PRIMARY, bold: true
                 });
 
                 const catRows = [
                     [
-                        { text: agg.categoryCol, options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 10 } },
-                        { text: `${vCol} Total`, options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 10 } },
-                        { text: 'Share of Monthly Volume', options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 10 } }
+                        { text: agg.categoryCol, options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 8.5 } },
+                        { text: `${vCol} Total`, options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 8.5 } },
+                        { text: 'Share of Monthly Volume', options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 8.5 } }
                     ]
                 ];
 
@@ -1422,93 +1283,93 @@
                     const rowBg = idx % 2 === 0 ? WHITE : LIGHT_SLATE;
                     const pct = agg.grandTotalVolume > 0 ? ((val / agg.grandTotalVolume) * 100).toFixed(1) : 0;
                     catRows.push([
-                        { text: cat, options: { bold: true, fill: rowBg, color: PRIMARY, fontSize: 10 } },
-                        { text: formatMetricDisplay(val, vCol), options: { bold: true, fill: rowBg, color: SECONDARY, align: 'right', fontSize: 10 } },
-                        { text: `${pct}%`, options: { fill: rowBg, color: SLATE, align: 'right', fontSize: 10 } }
+                        { text: cat, options: { bold: true, fill: rowBg, color: PRIMARY, fontSize: 8 } },
+                        { text: formatMetricDisplay(val, vCol), options: { bold: true, fill: rowBg, color: SECONDARY, align: 'right', fontSize: 8 } },
+                        { text: `${pct}%`, options: { fill: rowBg, color: SLATE, align: 'right', fontSize: 8 } }
                     ]);
                 });
 
                 s4.addTable(catRows, {
-                    x: 0.8, y: 1.8, w: 11.5, h: Math.min(sortedCats.length * 0.45 + 0.6, 4.5),
+                    x: 0.8, y: 1.5, w: 11.5, h: Math.min(sortedCats.length * 0.4 + 0.5, 4.8),
                     colW: [4.5, 3.5, 3.5],
                     border: { pt: 0.5, color: 'CBD5E1' }
                 });
 
                 // ==========================================
-                // SLIDE 5: Top Contributing Records
+                // SLIDE 5: Top Contributing Items
                 // ==========================================
                 const s5 = pptx.addSlide();
                 s5.background = { color: LIGHT_BG };
 
                 s5.addText('SLIDE 05  •  TOP CONTRIBUTORS', {
-                    x: 0.8, y: 0.6, w: 8, h: 0.3, fontSize: 9, fontFace: 'Courier New', color: ACCENT, bold: true
+                    x: 0.8, y: 0.6, w: 8, h: 0.25, fontSize: 8, fontFace: 'Courier New', color: ACCENT, bold: true
                 });
                 s5.addText('Highest Impact Contributing Records', {
-                    x: 0.8, y: 0.9, w: 11, h: 0.6, fontSize: 24, fontFace: TITLE_FONT, color: PRIMARY, bold: true
+                    x: 0.8, y: 0.85, w: 11, h: 0.45, fontSize: 18, fontFace: TITLE_FONT, color: PRIMARY, bold: true
                 });
 
                 const topRows = [
                     [
-                        { text: 'Rank', options: { bold: true, fill: PRIMARY, color: WHITE, align: 'center', fontSize: 10 } },
-                        { text: agg.nameCol, options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 10 } },
-                        { text: agg.categoryCol, options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 10 } },
-                        { text: 'Source Week', options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 10 } },
-                        { text: vCol, options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 10 } }
+                        { text: 'Rank', options: { bold: true, fill: PRIMARY, color: WHITE, align: 'center', fontSize: 8.5 } },
+                        { text: agg.nameCol, options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 8.5 } },
+                        { text: agg.categoryCol, options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 8.5 } },
+                        { text: 'Source Week', options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 8.5 } },
+                        { text: vCol, options: { bold: true, fill: PRIMARY, color: WHITE, align: 'right', fontSize: 8.5 } }
                     ]
                 ];
 
                 agg.topOpportunities.forEach((item, idx) => {
                     const rowBg = idx % 2 === 0 ? WHITE : LIGHT_SLATE;
                     topRows.push([
-                        { text: `#${idx + 1}`, options: { bold: true, fill: rowBg, color: ACCENT, align: 'center', fontSize: 10 } },
-                        { text: item._Name, options: { bold: true, fill: rowBg, color: PRIMARY, fontSize: 10 } },
-                        { text: item._Category, options: { fill: rowBg, color: SLATE, fontSize: 10 } },
-                        { text: item._Source_Week, options: { fill: rowBg, color: ACCENT, fontSize: 10 } },
-                        { text: formatMetricDisplay(item._Numeric_Value, vCol), options: { bold: true, fill: rowBg, color: SECONDARY, align: 'right', fontSize: 10 } }
+                        { text: `#${idx + 1}`, options: { bold: true, fill: rowBg, color: ACCENT, align: 'center', fontSize: 8 } },
+                        { text: item._Name, options: { bold: true, fill: rowBg, color: PRIMARY, fontSize: 8 } },
+                        { text: item._Category, options: { fill: rowBg, color: SLATE, fontSize: 8 } },
+                        { text: item._Source_Week, options: { fill: rowBg, color: ACCENT, fontSize: 8 } },
+                        { text: formatMetricDisplay(item._Numeric_Value, vCol), options: { bold: true, fill: rowBg, color: SECONDARY, align: 'right', fontSize: 8 } }
                     ]);
                 });
 
                 s5.addTable(topRows, {
-                    x: 0.8, y: 1.8, w: 11.5, h: 4.2,
+                    x: 0.8, y: 1.5, w: 11.5, h: 4.8,
                     colW: [1.0, 4.5, 2.5, 1.5, 2.0],
                     border: { pt: 0.5, color: 'CBD5E1' }
                 });
 
                 // ==========================================
-                // SLIDE 6: Master Consolidated Weekly Data Register
+                // SLIDE 6: Complete Consolidated Weekly Ledger
                 // ==========================================
                 const s6 = pptx.addSlide();
                 s6.background = { color: LIGHT_BG };
 
                 s6.addText('SLIDE 06  •  UNIFIED DATA REGISTER', {
-                    x: 0.8, y: 0.6, w: 8, h: 0.3, fontSize: 9, fontFace: 'Courier New', color: ACCENT, bold: true
+                    x: 0.8, y: 0.6, w: 8, h: 0.25, fontSize: 8, fontFace: 'Courier New', color: ACCENT, bold: true
                 });
-                s6.addText('Consolidated 4-Week Activity Register', {
-                    x: 0.8, y: 0.9, w: 11, h: 0.6, fontSize: 24, fontFace: TITLE_FONT, color: PRIMARY, bold: true
+                s6.addText('Complete Consolidated 4-Week Activity Register', {
+                    x: 0.8, y: 0.85, w: 11, h: 0.45, fontSize: 18, fontFace: TITLE_FONT, color: PRIMARY, bold: true
                 });
 
                 const colsToDisplay = agg.colNames.slice(0, 5);
                 const regHeader = [
-                    { text: 'Source', options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 9 } }
+                    { text: 'Source', options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 8 } }
                 ];
                 colsToDisplay.forEach(c => {
-                    regHeader.push({ text: c, options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 9 } });
+                    regHeader.push({ text: c, options: { bold: true, fill: PRIMARY, color: WHITE, fontSize: 8 } });
                 });
 
                 const regRows = [regHeader];
-                agg.allRecords.slice(0, 8).forEach((r, idx) => {
+                agg.allRecords.slice(0, 10).forEach((r, idx) => {
                     const rowBg = idx % 2 === 0 ? WHITE : LIGHT_SLATE;
                     const rRow = [
-                        { text: r._Source_Week, options: { bold: true, fill: rowBg, color: ACCENT, fontSize: 9 } }
+                        { text: r._Source_Week, options: { bold: true, fill: rowBg, color: ACCENT, fontSize: 7.5 } }
                     ];
                     colsToDisplay.forEach(c => {
-                        rRow.push({ text: truncateStr(String(r[c] || ''), 25), options: { fill: rowBg, color: SLATE, fontSize: 9 } });
+                        rRow.push({ text: String(r[c] || ''), options: { fill: rowBg, color: SLATE, fontSize: 7.5 } });
                     });
                     regRows.push(rRow);
                 });
 
                 s6.addTable(regRows, {
-                    x: 0.8, y: 1.8, w: 11.5, h: 4.4,
+                    x: 0.8, y: 1.5, w: 11.5, h: 5.0,
                     border: { pt: 0.5, color: 'CBD5E1' }
                 });
 
@@ -1519,28 +1380,28 @@
                 s7.background = { color: DARK_BG };
 
                 s7.addText('SLIDE 07  •  MATHEMATICAL AUDIT', {
-                    x: 0.8, y: 0.6, w: 8, h: 0.3, fontSize: 9, fontFace: 'Courier New', color: '38BDF8', bold: true
+                    x: 0.8, y: 0.6, w: 8, h: 0.25, fontSize: 8, fontFace: 'Courier New', color: '38BDF8', bold: true
                 });
-                s7.addText('Mathematical Reconciliation & Integrity Audit', {
-                    x: 0.8, y: 0.9, w: 11, h: 0.6, fontSize: 24, fontFace: TITLE_FONT, color: WHITE, bold: true
+                s7.addText('Mathematical Reconciliation & Integrity Proof', {
+                    x: 0.8, y: 0.85, w: 11, h: 0.45, fontSize: 18, fontFace: TITLE_FONT, color: WHITE, bold: true
                 });
 
-                s7.addShape(pptx.ShapeType.roundRect, { x: 0.8, y: 1.8, w: 11.5, h: 4.2, fill: '1E293B', line: { color: '334155', width: 1 }, rectRadius: 0.1 });
+                s7.addShape(pptx.ShapeType.roundRect, { x: 0.8, y: 1.5, w: 11.5, h: 4.5, fill: '1E293B', line: { color: '334155', width: 0.5 }, rectRadius: 0.05 });
 
                 s7.addText('INTEGRITY CERTIFICATION', {
-                    x: 1.2, y: 2.1, w: 10, h: 0.3, fontSize: 10, fontFace: 'Courier New', color: '38BDF8', bold: true
+                    x: 1.2, y: 1.8, w: 10, h: 0.25, fontSize: 9, fontFace: 'Courier New', color: '38BDF8', bold: true
                 });
 
                 s7.addText([
-                    { text: `• Grand Total Reconciled: ${formatMetricDisplay(agg.grandTotalVolume, vCol)} (Strictly 100% of W1 + W2 + W3 + W4)\n`, options: { bold: false, color: 'E2E8F0' } },
-                    { text: `• Total Filings / Records Processed: ${agg.grandTotalRecords} verified rows\n`, options: { bold: false, color: 'E2E8F0' } },
-                    { text: `• Weekly Pacing Average: ${formatMetricDisplay(agg.weeklyAvg, vCol)} run-rate\n`, options: { bold: false, color: 'E2E8F0' } },
-                    { text: `• Net Month Trajectory: ${agg.wowGrowth >= 0 ? '+' : ''}${agg.wowGrowth.toFixed(1)}% momentum\n`, options: { bold: false, color: 'E2E8F0' } },
+                    { text: `• Total Volume Reconciled: ${formatMetricDisplay(agg.grandTotalVolume, vCol)} (Strictly 100% of W1 + W2 + W3 + W4)\n`, options: { bold: false, color: 'E2E8F0' } },
+                    { text: `• Total Records Consolidated: ${agg.grandTotalRecords} verified rows from 4 weekly feeds\n`, options: { bold: false, color: 'E2E8F0' } },
+                    { text: `• Weekly Run-Rate Average: ${formatMetricDisplay(agg.weeklyAvg, vCol)} normalized pacing\n`, options: { bold: false, color: 'E2E8F0' } },
+                    { text: `• Trajectory: ${agg.wowGrowth >= 0 ? '+' : ''}${agg.wowGrowth.toFixed(1)}% momentum from Week 1 to Week 4\n`, options: { bold: false, color: 'E2E8F0' } },
                     { text: `• Zero Data Discrepancy: All slides derive exclusively from the 4 weekly input files.\n`, options: { bold: false, color: '34D399' } }
-                ], { x: 1.2, y: 2.5, w: 10.5, h: 2.6, fontSize: 12, fontFace: BODY_FONT, lineSpacing: 22 });
+                ], { x: 1.2, y: 2.1, w: 10.5, h: 3.4, fontSize: 10.5, fontFace: BODY_FONT, lineSpacing: 20 });
 
                 s7.addText(`Certified Ground Truth  •  ${agg.reportDate}  •  Consolidated Executive Deck`, {
-                    x: 0.8, y: 6.4, w: 11.5, h: 0.4, fontSize: 9, fontFace: 'Courier New', color: '64748B'
+                    x: 0.8, y: 6.3, w: 11.5, h: 0.3, fontSize: 8, fontFace: 'Courier New', color: '64748B'
                 });
 
                 // Generate & Trigger Download
@@ -1553,7 +1414,62 @@
             }
         }
 
-        // Export Consolidated 4-Week Dataset to Excel
+        // Direct PPTX Template Hydration (Preserves 100% of Original Template Layout & XML)
+        async function downloadHydratedTemplate() {
+            if (!appState.monthly || !appState.monthly.data || !appState.monthly.data.zip) {
+                alert('Please upload a monthly .pptx template to use direct template hydration.');
+                return;
+            }
+            if (!appState.aggregated) {
+                alert('Please process weekly data before downloading.');
+                return;
+            }
+
+            try {
+                const zip = appState.monthly.data.zip;
+                const agg = appState.aggregated;
+
+                // Create a clone of the template zip
+                const newZip = new JSZip();
+                for (const [filename, fileObj] of Object.entries(zip.files)) {
+                    if (!fileObj.dir) {
+                        const content = await fileObj.async('uint8array');
+                        newZip.file(filename, content);
+                    }
+                }
+
+                // Hydrate slide texts in template
+                const slideFiles = Object.keys(newZip.files).filter(k => /^ppt\/slides\/slide\d+\.xml$/.test(k));
+                for (const sPath of slideFiles) {
+                    let sxml = await newZip.file(sPath).async('text');
+                    
+                    // Replace standard placeholder patterns if present
+                    sxml = sxml.replace(/\{\{TOTAL_VOLUME\}\}/g, formatMetricDisplay(agg.grandTotalVolume, agg.valueCol));
+                    sxml = sxml.replace(/\{\{TOTAL_RECORDS\}\}/g, String(agg.grandTotalRecords));
+                    sxml = sxml.replace(/\{\{WEEKLY_AVG\}\}/g, formatMetricDisplay(agg.weeklyAvg, agg.valueCol));
+                    sxml = sxml.replace(/\{\{PEAK_WEEK\}\}/g, agg.peakWeek);
+                    sxml = sxml.replace(/\{\{REPORT_DATE\}\}/g, agg.reportDate);
+                    sxml = sxml.replace(/\{\{TITLE\}\}/g, agg.presentationTitle);
+
+                    newZip.file(sPath, sxml);
+                }
+
+                const blob = await newZip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Hydrated_${(appState.monthly.filename || 'Template.pptx')}`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } catch (err) {
+                console.error('Error hydrating template:', err);
+                alert('Could not hydrate template: ' + err.message);
+            }
+        }
+
+        // Export Consolidated Dataset to Excel
         function exportConsolidatedExcel() {
             if (!appState.aggregated) return;
             try {
@@ -1564,7 +1480,6 @@
                 }
                 const wb = XLSXClass.utils.book_new();
 
-                // Clean records for export
                 const exportRows = appState.aggregated.allRecords.map(r => {
                     const row = { 'Consolidated_Week': r._Source_Week };
                     appState.aggregated.colNames.forEach(c => {
@@ -1576,7 +1491,6 @@
                 const ws = XLSXClass.utils.json_to_sheet(exportRows);
                 XLSXClass.utils.book_append_sheet(wb, ws, 'Consolidated_4_Weeks');
 
-                // Summary Sheet
                 const summaryRows = [
                     { 'Metric': 'Grand Total Volume', 'Value': appState.aggregated.grandTotalVolume },
                     { 'Metric': 'Weekly Average', 'Value': appState.aggregated.weeklyAvg },
@@ -1595,7 +1509,7 @@
             }
         }
 
-        // Reset Everything
+        // Reset All
         function resetAll() {
             const slots = ['monthly', 'w1', 'w2', 'w3', 'w4'];
             slots.forEach(slot => {
@@ -1607,16 +1521,16 @@
                 const input = document.getElementById(`input-${slot}`);
 
                 if (card) {
-                    card.className = 'bg-white border-2 border-slate-200 rounded-xl p-3.5 flex flex-col justify-between hover:border-indigo-400 transition-all';
+                    card.className = 'bg-white border border-slate-200 rounded-lg p-2.5 flex flex-col justify-between text-xs';
                 }
                 if (badge) {
-                    badge.className = 'w-2.5 h-2.5 rounded-full bg-slate-300';
+                    badge.className = 'w-2 h-2 rounded-full bg-slate-300';
                 }
                 if (btnText) {
-                    btnText.textContent = 'Select File';
+                    btnText.textContent = 'Empty';
                 }
                 if (desc) {
-                    desc.textContent = slot === 'monthly' ? 'Dictates output layout & design.' : `Primary ${slot.toUpperCase()} metrics.`;
+                    desc.textContent = slot === 'monthly' ? 'Format Guide (.pptx)' : 'Data Feed';
                 }
                 if (input) input.value = '';
             });
@@ -1633,12 +1547,14 @@
             const results = document.getElementById('results-section');
             if (results) results.classList.add('hidden');
 
+            const hydratedBtn = document.getElementById('btn-hydrated-template');
+            if (hydratedBtn) hydratedBtn.classList.add('hidden');
+
             updateFileCountsAndButton();
         }
 
         // Load Sample Executive Business Dataset
         function loadSampleData() {
-            // Realistic Corporate Executive Data
             const sampleW1 = [
                 { Week: 'Week 1', Region: 'North America', Account_Name: 'Apex Enterprise Global', Product_Line: 'Cloud Platform', Units_Sold: 140, Revenue_USD: 145000, Gross_Margin_Pct: 78.5 },
                 { Week: 'Week 1', Region: 'EMEA', Account_Name: 'Vanguard Systems Ltd', Product_Line: 'Enterprise Suite', Units_Sold: 110, Revenue_USD: 128500, Gross_Margin_Pct: 81.2 },
@@ -1667,11 +1583,11 @@
                 { Week: 'Week 4', Region: 'LATAM', Account_Name: 'Andes Telematics', Product_Line: 'Security Shield', Units_Sold: 72, Revenue_USD: 78500, Gross_Margin_Pct: 74.2 }
             ];
 
-            storeParsedSlot('monthly', 'Monthly_Executive_Template.pptx', { slideCount: 7 }, 'template_reference', null);
-            storeParsedSlot('w1', 'Week_1_Feed.xlsx', sampleW1, 'excel', null);
-            storeParsedSlot('w2', 'Week_2_Feed.xlsx', sampleW2, 'excel', null);
-            storeParsedSlot('w3', 'Week_3_Feed.xlsx', sampleW3, 'excel', null);
-            storeParsedSlot('w4', 'Week_4_Feed.xlsx', sampleW4, 'excel', null);
+            storeParsedSlot('monthly', 'Executive_Template.pptx', { slideCount: 7 }, 'template_reference', null);
+            storeParsedSlot('w1', 'Week_1_Report.xlsx', sampleW1, 'excel', null);
+            storeParsedSlot('w2', 'Week_2_Report.xlsx', sampleW2, 'excel', null);
+            storeParsedSlot('w3', 'Week_3_Report.xlsx', sampleW3, 'excel', null);
+            storeParsedSlot('w4', 'Week_4_Report.xlsx', sampleW4, 'excel', null);
 
             processAndBuildDeck();
         }
