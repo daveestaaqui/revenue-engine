@@ -3,12 +3,14 @@ name: Dispatch 7:00 AM EST Morning Court Intelligence Feed
 on:
   schedule:
     # Daylight Saving Time Window (EDT = UTC-4): 7:00 AM EDT is 11:00 UTC
-    # 10:55 UTC (6:55 AM EDT) ensures dispatch completes before 7:00 AM sharp in client inboxes
+    # 10:50 and 10:55 UTC (6:50 and 6:55 AM EDT) ensures dispatch completes before 7:00 AM sharp in client inboxes
+    - cron: '50 10 * * 1-5'
     - cron: '55 10 * * 1-5'
     - cron: '5 11 * * 1-5'
     - cron: '15 11 * * 1-5'
     # Standard Winter Time Window (EST = UTC-5): 7:00 AM EST is 12:00 UTC
-    # 11:55 UTC (6:55 AM EST) ensures dispatch completes before 7:00 AM sharp in client inboxes
+    # 11:50 and 11:55 UTC (6:50 and 6:55 AM EST) ensures dispatch completes before 7:00 AM sharp in client inboxes
+    - cron: '50 11 * * 1-5'
     - cron: '55 11 * * 1-5'
     - cron: '5 12 * * 1-5'
     - cron: '15 12 * * 1-5'
