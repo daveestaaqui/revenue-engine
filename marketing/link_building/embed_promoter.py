@@ -50,8 +50,9 @@ Embed Snippet:
 Feel free to embed this on your legal tools or resources page.
 
 Best regards,
-Surplus Docket Editorial Team
-press@surplusdocket.com | https://surplusdocket.com
+Elena Brooks
+Director of Practice Relations & Legal Technology
+elena.brooks@surplusdocket.com | https://surplusdocket.com
 """
     },
     {
@@ -79,9 +80,10 @@ Free embed code:
 
 Let us know if you have any questions or feature requests for additional jurisdictions!
 
-Best,
-Surplus Docket Research Desk
-https://surplusdocket.com
+Best regards,
+Elena Brooks
+Director of Practice Relations & Legal Technology
+elena.brooks@surplusdocket.com | https://surplusdocket.com
 """
     },
     {
@@ -112,8 +114,9 @@ Embed Code for Clinical Resources / Student Guides:
 We provide full complimentary access to our verified court feeds for non-profit clinics and academic researchers.
 
 Sincerely,
-Surplus Docket Research & Public Interest Desk
-press@surplusdocket.com | https://surplusdocket.com/tools.html
+Elena Brooks
+Director of Practice Relations & Legal Technology
+elena.brooks@surplusdocket.com | https://surplusdocket.com/tools.html
 """
     },
     {
@@ -138,8 +141,9 @@ These tools allow bar members to:
 We would welcome contributing a brief practice tip or resource mention to your LPM newsletter or technology directory.
 
 Best regards,
-Surplus Docket Legal Technology Desk
-press@surplusdocket.com | https://surplusdocket.com
+Elena Brooks
+Director of Practice Relations & Legal Technology
+elena.brooks@surplusdocket.com | https://surplusdocket.com
 """
     }
 ]

@@ -43,8 +43,9 @@ if ENV_FILE.exists():
 # Credentials & Sender Identity
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
-FROM_NAME = "Dave Mahler"
-REPLY_TO = "data@surplusdocket.com"
+FROM_NAME = "Elena Brooks"
+SENDER_EMAIL = "elena.brooks@surplusdocket.com"
+REPLY_TO = "elena.brooks@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
 
 STATE_METADATA = {
@@ -210,7 +211,8 @@ If you would like to see a sample data extract for {state_name} to evaluate the 
 
 Sincerely,
 
-Dave Mahler
+Elena Brooks
+Director of Practice Relations
 Surplus Docket
 {SITE_URL}"""
 
@@ -281,10 +283,10 @@ def update_drafts():
 
         # Create MIME Message
         msg = MIMEText(body, "plain", "utf-8")
-        msg["From"] = f"{FROM_NAME} <{GMAIL_USER}>"
+        msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
         msg["To"] = f"{to_name} <{to_email}>"
         msg["Subject"] = subject
-        msg["Reply-To"] = f"Surplus Docket <{REPLY_TO}>"
+        msg["Reply-To"] = f"{FROM_NAME} <{REPLY_TO}>"
         msg["X-Unsent"] = "1"
         msg["Date"] = formatdate(localtime=True)
         msg["Message-ID"] = make_msgid()

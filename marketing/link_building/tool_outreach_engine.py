@@ -267,20 +267,32 @@ def send_email_smtp(to_email: str, subject: str, text_body: str, html_body: str)
     msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
 
     # Strict Elena Brooks identity & anti-leak sanitization
-    text_body = text_body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com").replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
-    html_body = html_body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com").replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+    text_body = (
+        text_body
+        .replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
+        .replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+        .replace("Dave Mahler", "Elena Brooks")
+        .replace("David Mahler", "Elena Brooks")
+    )
+    html_body = (
+        html_body
+        .replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
+        .replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+        .replace("Dave Mahler", "Elena Brooks")
+        .replace("David Mahler", "Elena Brooks")
+    )
 
     msg.attach(MIMEText(text_body, "plain", "utf-8"))
     msg.attach(MIMEText(html_body, "html", "utf-8"))
 
-
     try:
+        envelope_from = GMAIL_USER if ("gmail.com" in SMTP_HOST.lower() and GMAIL_USER) else DEFAULT_FROM_EMAIL
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=15) as server:
             server.ehlo()
             server.starttls()
             server.ehlo()
             server.login(GMAIL_USER, GMAIL_APP_PASS)
-            server.sendmail(DEFAULT_FROM_EMAIL, [to_email], msg.as_string())
+            server.sendmail(envelope_from, [to_email], msg.as_string())
         return True, msg["Message-ID"]
     except Exception as e:
         return False, str(e)

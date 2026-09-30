@@ -61,6 +61,7 @@ BOUNCED_EMAILS = {
     "attorneyforlife@aol.com",
     "bmdouglas@briandouglaslaw.com",
     "clinicaltrials@discgenics.com",
+    "clinics@law.ufl.edu",
     "contact@charlotteforeclosurerecovery.com",
     "contact@duffleylaw.com",
     "contact@mercerchancery.com",
@@ -90,6 +91,8 @@ BOUNCED_EMAILS = {
     "info@williamsteusink.com",
     "info@zingrally.com",
     "jack@duffleylaw.com",
+    "law_clinics@unc.edu",
+    "lawclinics@emory.edu",
     "memberservicesma@commonwealthcare.org",
     "mksipes@sipeslaw.com",
     "nancy@vankampenlaw.com",
@@ -405,7 +408,7 @@ def purge_and_rebuild():
     print("=" * 75)
     print(f"  • Total Deliverable Drafts in Gmail : {uploaded}")
     print(f"  • Bounced / Dead Entries Filtered   : {bounced_count}")
-    print(f"  • Sender                            : David Mahler <david@surplusdocket.com>")
+    print(f"  • Sender                            : Elena Brooks <elena.brooks@surplusdocket.com>")
     print(f"  • Manifest Log                      : {manifest_path}")
     print("=" * 75)
 

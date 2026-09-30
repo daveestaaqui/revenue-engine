@@ -2,10 +2,10 @@
 """
 Surplus Docket — Natural, Human, Concise Legal Outreach Generator & Gmail Uploader
 ==================================================================================
-Generates ~80-word, natural, human outreach emails in David's authentic voice
+Generates ~80-word, natural, concise outreach emails in Elena Brooks' voice
 and syncs them to Gmail's Drafts folder.
 
-Sender: David Mahler <david@surplusdocket.com>
+Sender: Elena Brooks <elena.brooks@surplusdocket.com>
 """
 
 import csv
@@ -236,7 +236,7 @@ def sync_gmail_drafts():
 
         # Create MIME Message
         msg = MIMEText(body, "plain", "utf-8")
-        msg["From"] = f"{FROM_NAME} <{GMAIL_USER}>"
+        msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
         msg["To"] = f"{to_name} <{to_email}>" if to_name else to_email
         msg["Subject"] = subject
         msg["Reply-To"] = f"{FROM_NAME} <{REPLY_TO}>"
@@ -289,7 +289,7 @@ def sync_gmail_drafts():
     print("=" * 75)
     print(f"  • Total Drafts in Gmail Drafts : {uploaded}")
     print(f"  • Local .eml Copies Saved      : {uploaded} in {DRAFTS_DIR}")
-    print(f"  • Sender Identity              : David Mahler (david@surplusdocket.com)")
+    print(f"  • Sender Identity              : Elena Brooks ({SENDER_EMAIL})")
     print(f"  • Manifest Log                 : {manifest_path}")
     print("=" * 75)
 

@@ -51,6 +51,7 @@ if ENV_FILE.exists():
 GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
 FROM_NAME = "Elena Brooks"
+SENDER_EMAIL = "elena.brooks@surplusdocket.com"
 REPLY_TO = "elena.brooks@surplusdocket.com"
 SITE_URL = "https://surplusdocket.com"
 STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
@@ -403,10 +404,10 @@ def upload_all_drafts():
 
         # Create MIME message
         msg = MIMEText(body, "plain", "utf-8")
-        msg["From"] = f"{FROM_NAME} <{GMAIL_USER}>"
+        msg["From"] = f"{FROM_NAME} <{SENDER_EMAIL}>"
         msg["To"] = f"{to_name} <{to_email}>"
         msg["Subject"] = subject
-        msg["Reply-To"] = f"Surplus Docket <{REPLY_TO}>"
+        msg["Reply-To"] = f"{FROM_NAME} <{REPLY_TO}>"
         msg["Date"] = formatdate(localtime=True)
         msg["Message-ID"] = make_msgid()
 

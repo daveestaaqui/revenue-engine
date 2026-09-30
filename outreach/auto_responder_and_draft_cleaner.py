@@ -483,10 +483,11 @@ def send_response_email(msg_obj, from_email, recipient_email, dry_run=False):
 
     try:
         context = ssl.create_default_context()
+        envelope_from = GMAIL_USER if ("gmail.com" in SMTP_HOST.lower() and GMAIL_USER) else from_email
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=30) as server:
             server.starttls(context=context)
             server.login(GMAIL_USER, GMAIL_APP_PASS)
-            server.send_message(msg_obj, from_addr=from_email, to_addrs=[recipient_email])
+            server.send_message(msg_obj, from_addr=envelope_from, to_addrs=[recipient_email])
         return True, "Dispatched successfully via SMTP"
     except Exception as e:
         err_msg = f"SMTP transmission error: {e}"

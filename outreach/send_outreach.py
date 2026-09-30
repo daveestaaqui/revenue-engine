@@ -158,9 +158,13 @@ def send_email_smtp(to_email: str, subject: str, body_text: str) -> bool:
         if "elena" in from_name.lower() or "elena" in from_email.lower():
             from_name = "Elena Brooks"
             from_email = "elena.brooks@surplusdocket.com"
-            reply_to = "elena.brooks@surplusdocket.com"
-            body_text = body_text.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
-            body_text = body_text.replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+            body_text = (
+                body_text
+                .replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
+                .replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+                .replace("Dave Mahler", "Elena Brooks")
+                .replace("David Mahler", "Elena Brooks")
+            )
 
         msg = MIMEMultipart()
         msg["From"] = f"{from_name} <{from_email}>"
@@ -169,10 +173,11 @@ def send_email_smtp(to_email: str, subject: str, body_text: str) -> bool:
         msg["Reply-To"] = f"{from_name} <{reply_to}>"
         msg.attach(MIMEText(body_text, "plain"))
 
+        envelope_from = smtp_user if ("gmail.com" in smtp_host.lower() and smtp_user) else from_email
         with smtplib.SMTP(smtp_host, smtp_port) as server:
             server.starttls()
             server.login(smtp_user, smtp_pass)
-            server.send_message(msg)
+            server.send_message(msg, from_addr=envelope_from, to_addrs=[to_email])
 
 
         print(f"  [✓] Live email dispatched via SMTP to: {to_email}")
