@@ -386,7 +386,7 @@ def validate_all_feeds() -> dict:
 
 
 VERIFIED_STRIPE_URLS = {
-    "https://buy.stripe.com/6oU5kDc0GgXN2Dz6K20ZW23",  # Single-County Pilot Dossier ($49)
+    "https://buy.stripe.com/4gM3cv4iacHx4LH2tM0ZW24",  # Single-County Pilot Dossier ($49)
     "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",  # Multi-State Feed ($249/mo)
     "https://buy.stripe.com/6oU6oHg0SgXNce9gkC0ZW1Z",  # Multi-State Feed Annual ($2,490/yr)
     "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22",  # National + API Feed ($449/mo)
