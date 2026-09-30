@@ -2,23 +2,13 @@ name: Dispatch 7:00 AM EST Morning Court Intelligence Feed
 
 on:
   schedule:
-    # Daylight Saving Time Window (EDT = UTC-4): 7:00 AM EDT is 11:00 UTC
-    # Off-peak minute headstarts ensure runner starts immediately with zero queue latency, delivering right at 7:00 AM sharp
-    - cron: '42 10 * * 1-5'
-    - cron: '48 10 * * 1-5'
-    - cron: '53 10 * * 1-5'
-    - cron: '58 10 * * 1-5'
-    - cron: '3 11 * * 1-5'
-    - cron: '8 11 * * 1-5'
-    - cron: '14 11 * * 1-5'
-    # Standard Winter Time Window (EST = UTC-5): 7:00 AM EST is 12:00 UTC
-    - cron: '42 11 * * 1-5'
-    - cron: '48 11 * * 1-5'
-    - cron: '53 11 * * 1-5'
-    - cron: '58 11 * * 1-5'
-    - cron: '3 12 * * 1-5'
-    - cron: '8 12 * * 1-5'
-    - cron: '14 12 * * 1-5'
+    # Two triggers cover both US Eastern time zones year-round.
+    # The dispatch script's idempotency guard ensures only the first
+    # successful send on a given calendar day actually delivers email.
+    # Daylight Saving Time (EDT = UTC-4): 7:00 AM EDT = 11:00 UTC
+    - cron: '0 11 * * 1-5'
+    # Standard Time (EST = UTC-5): 7:00 AM EST = 12:00 UTC
+    - cron: '0 12 * * 1-5'
   repository_dispatch:
     types: [dispatch_morning_feed]
   workflow_dispatch:

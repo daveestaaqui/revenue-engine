@@ -1324,5 +1324,73 @@
       "cap_usd": 10.0,
       "utilization_pct": 95.0
     }
+  },
+  {
+    "event_id": "SNTL-20260930114645-0118",
+    "timestamp": "2026-09-30T15:46:45.303369+00:00",
+    "event_type": "TEST_BENCHMARK_PROBE",
+    "severity": "INFO",
+    "containment_action": "NONE_OBSERVATION_ONLY",
+    "details": {
+      "benchmark": "golden_evaluation"
+    }
+  },
+  {
+    "event_id": "SNTL-20260930114645-0119",
+    "timestamp": "2026-09-30T15:46:45.304217+00:00",
+    "event_type": "AI_BUDGET_THRESHOLD_WARNING",
+    "severity": "WARNING",
+    "containment_action": "OPERATOR_NOTIFICATION",
+    "details": {
+      "spend_usd": 8.0,
+      "cap_usd": 10.0,
+      "utilization_pct": 80.0
+    }
+  },
+  {
+    "event_id": "SNTL-20260930114645-0120",
+    "timestamp": "2026-09-30T15:46:45.304973+00:00",
+    "event_type": "AI_BUDGET_CAP_EXCEEDED",
+    "severity": "CRITICAL",
+    "containment_action": "DEFER_NON_ESSENTIAL_WORKFLOWS",
+    "details": {
+      "spend_usd": 9.5,
+      "cap_usd": 10.0,
+      "utilization_pct": 95.0
+    }
+  },
+  {
+    "event_id": "SNTL-20260930114715-0121",
+    "timestamp": "2026-09-30T15:47:15.746588+00:00",
+    "event_type": "TEST_BENCHMARK_PROBE",
+    "severity": "INFO",
+    "containment_action": "NONE_OBSERVATION_ONLY",
+    "details": {
+      "benchmark": "golden_evaluation"
+    }
+  },
+  {
+    "event_id": "SNTL-20260930114715-0122",
+    "timestamp": "2026-09-30T15:47:15.747357+00:00",
+    "event_type": "AI_BUDGET_THRESHOLD_WARNING",
+    "severity": "WARNING",
+    "containment_action": "OPERATOR_NOTIFICATION",
+    "details": {
+      "spend_usd": 8.0,
+      "cap_usd": 10.0,
+      "utilization_pct": 80.0
+    }
+  },
+  {
+    "event_id": "SNTL-20260930114715-0123",
+    "timestamp": "2026-09-30T15:47:15.748129+00:00",
+    "event_type": "AI_BUDGET_CAP_EXCEEDED",
+    "severity": "CRITICAL",
+    "containment_action": "DEFER_NON_ESSENTIAL_WORKFLOWS",
+    "details": {
+      "spend_usd": 9.5,
+      "cap_usd": 10.0,
+      "utilization_pct": 95.0
+    }
   }
 ]

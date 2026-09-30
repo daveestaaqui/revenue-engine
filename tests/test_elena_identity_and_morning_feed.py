@@ -151,10 +151,9 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
         self.assertIn("group: dispatch-morning-feed-backup", backup_wf)
         self.assertIn("cancel-in-progress: true", backup_wf)
 
-        # Off-peak minute headstarts
-        self.assertIn("'42 10 * * 1-5'", primary_wf)
-        self.assertIn("'48 10 * * 1-5'", primary_wf)
-        self.assertIn("'53 10 * * 1-5'", primary_wf)
+        # Simplified EDT/EST dual-trigger schedule
+        self.assertIn("'0 11 * * 1-5'", primary_wf)
+        self.assertIn("'0 12 * * 1-5'", primary_wf)
 
         # Sentinel 7:00 AM failover step
         self.assertIn("7:00 AM EST Morning Court Feed Autonomous Failover Check", sentinel_wf)
