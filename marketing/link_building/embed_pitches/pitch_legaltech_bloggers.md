@@ -26,8 +26,5 @@ Embed Snippet:
 Feel free to embed this on your legal tools or resources page.
 
 Best regards,
-
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
-
+Surplus Docket Editorial Team
+press@surplusdocket.com | https://surplusdocket.com

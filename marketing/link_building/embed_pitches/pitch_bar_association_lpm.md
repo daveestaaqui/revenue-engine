@@ -21,8 +21,5 @@ These tools allow bar members to:
 We would welcome contributing a brief practice tip or resource mention to your LPM newsletter or technology directory.
 
 Best regards,
-
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
-
+Surplus Docket Legal Technology Desk
+press@surplusdocket.com | https://surplusdocket.com

@@ -27,8 +27,5 @@ Embed Code for Clinical Resources / Student Guides:
 We provide full complimentary access to our verified court feeds for non-profit clinics and academic researchers.
 
 Sincerely,
-
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com/tools.html
-
+Surplus Docket Research & Public Interest Desk
+press@surplusdocket.com | https://surplusdocket.com/tools.html
