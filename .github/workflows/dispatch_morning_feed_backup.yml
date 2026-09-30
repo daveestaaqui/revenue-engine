@@ -1,25 +1,16 @@
-name: Dispatch 7:00 AM EST Morning Court Intelligence Feed
+name: Backup Redundant 7:00 AM EST Morning Court Intelligence Feed
 
 on:
   schedule:
-    # Daylight Saving Time Window (EDT = UTC-4): 7:00 AM EDT is 11:00 UTC
-    # Starts at 10:45/10:50/10:55 UTC (6:45/6:50/6:55 AM EDT) to account for queue lag and ensure inboxes receive it at 7:00 AM sharp
-    - cron: '45 10 * * 1-5'
-    - cron: '50 10 * * 1-5'
-    - cron: '55 10 * * 1-5'
-    - cron: '0 11 * * 1-5'
-    - cron: '5 11 * * 1-5'
-    - cron: '15 11 * * 1-5'
-    # Standard Winter Time Window (EST = UTC-5): 7:00 AM EST is 12:00 UTC
-    # Starts at 11:45/11:50/11:55 UTC (6:45/6:50/6:55 AM EST) to account for queue lag and ensure inboxes receive it at 7:00 AM sharp
-    - cron: '45 11 * * 1-5'
-    - cron: '50 11 * * 1-5'
-    - cron: '55 11 * * 1-5'
-    - cron: '0 12 * * 1-5'
-    - cron: '5 12 * * 1-5'
-    - cron: '15 12 * * 1-5'
+    # Redundant failover triggers scheduled immediately after primary window
+    # Daylight Saving Time Window (EDT = UTC-4): 7:02 AM & 7:10 AM EDT (11:02 & 11:10 UTC)
+    - cron: '2 11 * * 1-5'
+    - cron: '10 11 * * 1-5'
+    # Standard Winter Time Window (EST = UTC-5): 7:02 AM & 7:10 AM EST (12:02 & 12:10 UTC)
+    - cron: '2 12 * * 1-5'
+    - cron: '10 12 * * 1-5'
   repository_dispatch:
-    types: [dispatch_morning_feed]
+    types: [dispatch_morning_feed_backup]
   workflow_dispatch:
     inputs:
       force:
@@ -43,8 +34,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  dispatch-morning-feed:
-    runs-on: ubuntu-latest
+  dispatch-morning-feed-backup:
+    runs-on: ubuntu-22.04
     timeout-minutes: 10
     env:
       PYTHONPATH: .
@@ -68,7 +59,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Dispatch Verified Morning Intelligence Feed to Subscribers
+      - name: Dispatch Verified Morning Intelligence Feed to Subscribers (Redundant Failover)
         run: |
           ARGS=""
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
@@ -82,7 +73,7 @@ jobs:
             echo "Running in preview / dry-run mode..."
             python portal/dispatch_morning_feed.py --dry-run $ARGS
           else
-            echo "Running live morning feed dispatch to active subscribers..."
+            echo "Running morning feed dispatch (idempotent failover)..."
             python portal/dispatch_morning_feed.py --send $ARGS
           fi
 
@@ -104,7 +95,7 @@ jobs:
             fi
           done
           if ! git diff --staged --quiet; then
-            git commit -m "chore(feed): update morning dispatch and trial retention logs [skip ci]"
+            git commit -m "chore(feed): update backup morning dispatch log [skip ci]"
             for attempt in 1 2 3; do
               git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
             done
