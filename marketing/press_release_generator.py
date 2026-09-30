@@ -69,13 +69,13 @@ PRESS_RELEASES = [
         "iso_date": "2026-08-23T07:00:00-04:00",
         "rfc822_date": "Sun, 23 Aug 2026 07:00:00 -0400",
         "headline": "Surplus Docket Unveils Programmatic REST JSON API for Law Firm Practice Management and AI Intake Automation",
-        "subheadline": "Enterprise API tier enables direct ingestion into Clio, MyCase, Airtable, and custom legal-tech pipelines with priority 6:00 AM EST dispatch.",
+        "subheadline": "Enterprise API tier enables direct ingestion into Clio, MyCase, Airtable, and custom legal-tech pipelines with priority 7:00 AM EST dispatch.",
         "location": "ATLANTA, Ga.",
         "summary": "Surplus Docket introduced its programmatic REST JSON API endpoint (/api/v1/feed.json), allowing legal-tech practices to stream live court surplus records directly into their CRM intake pipelines without manual data entry.",
         "body_paragraphs": [
             "Surplus Docket today expanded its enterprise offerings with the release of its developer-first REST JSON API endpoint (`/api/v1/feed.json`), designed to power automated client intake and workflow management for modern asset recovery practices.",
             "As legal practices increasingly adopt workflow automation tools such as Zapier, Make, Clio, and custom AI agents, the need for clean, machine-readable court docket streams has accelerated. Surplus Docket's REST API delivers standardized JSON schemas containing official case docket numbers, verified surplus balances, parcel identification numbers, property situs addresses, and calculated statutory filing deadlines.",
-            "Subscribers to the National Feed + API tier receive priority 6:00 AM EST data dispatch, custom county ingestion support, and webhook notifications whenever new high-value excess proceeds cases are confirmed in monitored court registries.",
+            "Subscribers to the National Feed + API tier receive priority 7:00 AM EST data dispatch, custom county ingestion support, and webhook notifications whenever new high-value excess proceeds cases are confirmed in monitored court registries.",
             "\"Legal practitioners should not have to manually re-type county clerk records into their practice management systems,\" stated Surplus Docket. \"Our REST API allows firms to connect ground-truth public records directly into their client outreach workflows in under ten minutes.\"",
             "Complete interactive documentation, sample cURL requests, Python SDK scripts, and JSON response schemas are publicly accessible in the Surplus Docket Developer Documentation portal at surplusdocket.com/api-documentation.html."
         ]

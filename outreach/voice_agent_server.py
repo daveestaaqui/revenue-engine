@@ -125,10 +125,10 @@ def generate_voice_response(speech_text):
             "We offer two transparent subscriptions for legal practices. "
             "Our Tri-State Core Feed covers Florida, Texas, and Georgia for a flat 249 dollars per month, "
             "delivered every business morning at 7:00 AM Eastern in CSV and Excel. "
-            "For full 6-state coverage including North Carolina, Tennessee, and California with priority "
-            "6:00 AM dispatch and REST API access, our National Feed is 449 dollars a month. "
-            "Both include a 7-day practice evaluation with zero dollars due today. "
-            "Would you like me to text the evaluation link directly to your phone?",
+            "For full 6-state coverage including North Carolina, Tennessee, and California with "
+            "REST API access, our National Feed is 449 dollars a month. "
+            "Our Tri-State Core plan includes a 7-day practice evaluation with zero dollars due today. "
+            "Would you like me to text the details directly to your phone?",
             True,
             False,
         )

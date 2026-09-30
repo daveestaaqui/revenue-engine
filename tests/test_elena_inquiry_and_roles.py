@@ -215,7 +215,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         self.assertIn("Enterprise & Multi-Jurisdiction Feed Licensing", subj)
         self.assertIn("National Feed + REST API Tier ($449/month)", body)
         self.assertIn("Full 6-State Coverage: Florida, Texas, Georgia, North Carolina, Tennessee, and California", body)
-        self.assertIn("6:00 AM EST", body)
+        self.assertIn("7:00 AM EST", body)
         self.assertIn("Director of Practice Relations & Licensing", body)
         self.assertIn("https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22", body)
 

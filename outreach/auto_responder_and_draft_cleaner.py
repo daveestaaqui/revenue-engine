@@ -84,7 +84,19 @@ REPLY_TO = os.getenv("REPLY_TO", "dockets@surplusdocket.com")
 REPORT_RECIPIENT = os.getenv("REPORT_RECIPIENT", "sandwichfitness@gmail.com")
 SEND_VOICEMAIL_MEMOS = os.getenv("SEND_VOICEMAIL_MEMOS", "false").lower() in ["true", "1", "yes"]
 SITE_URL = "https://surplusdocket.com"
-STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
+
+try:
+    from outreach.staff_knowledge_engine import knowledge_engine
+except ImportError:
+    try:
+        from staff_knowledge_engine import knowledge_engine
+    except Exception:
+        knowledge_engine = None
+
+if knowledge_engine:
+    STRIPE_LINK = knowledge_engine.get_stripe_checkout_url("tri_state_core")
+else:
+    STRIPE_LINK = "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21"
 
 # Human Turnaround Pacing (Policy SD-POL-PACING-2026-V1)
 # Ensures enough time elapses to simulate realistic coordinator review & docket lookup
@@ -2241,7 +2253,7 @@ def compose_elena_inquiry_response(inquiry_info, state_cases):
     if any(k in dept_lower for k in ["evaluation", "7-day", "trial", "onboarding"]):
         is_expansion = state_code in ["NC", "TN", "CA"]
         if is_expansion:
-            tier_note = f"Records for {state_name} are compiled and delivered under our National Feed + REST API Tier ($449/month, covering FL, TX, GA, NC, TN, and CA with priority 6:00 AM EST dispatch and live REST API Bearer tokens)."
+            tier_note = f"Records for {state_name} are compiled and delivered under our National Feed + REST API Tier ($449/month, covering FL, TX, GA, NC, TN, and CA with live REST API Bearer tokens and 7:00 AM EST dispatch)."
             checkout_url = "https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22"
         else:
             tier_note = f"Under our Tri-State Core Feed plan, coverage includes Florida, Texas, and Georgia for a flat $249/month starting on Day 8. There are no per-claim charges, no long-term contracts, and you can cancel anytime with one click through your self-service Stripe billing portal."
@@ -2288,7 +2300,7 @@ Thank you for your inquiry regarding enterprise and multi-jurisdiction feed lice
 
 For practices requiring comprehensive multi-state coverage and direct data ingestion, we offer our National Feed + REST API Tier ($449/month):
 - Full 6-State Coverage: Florida, Texas, Georgia, North Carolina, Tennessee, and California.
-- Priority Morning Dispatch: Feeds delivered at 6:00 AM EST (one hour ahead of standard distribution).
+- Morning Court Dispatch: Feeds delivered every court business morning at 7:00 AM EST.
 - Direct REST API Access: Bearer-token authenticated endpoints (/api/v1/*.json) for automated pipeline and CRM ingestion.
 - Enterprise Multi-Seat Access: Unlimited distribution across your firm's attorneys and paralegals.
 
@@ -2312,7 +2324,7 @@ Thank you for reaching out regarding REST API and practice management integratio
 Our Developer REST API is designed for programmatic legal practice management integration (including Clio, Filevine, Smokeball, or internal SQL databases):
 - Standard Endpoints: Available in JSON format at /api/v1/*.json (including state-specific feeds for FL, TX, GA, NC, TN, CA and consolidated master feed).
 - Authentication: Secure HTTP header authentication using standard Bearer tokens (Authorization: Bearer <API_TOKEN>).
-- Daily Data Pipeline: Feeds update automatically every business morning by 6:00 AM EST with complete court docket references, parcel IDs, clean equity calculations, and county registry links.
+- Daily Data Pipeline: Feeds update automatically every business morning by 7:00 AM EST with complete court docket references, parcel IDs, clean equity calculations, and county registry links.
 - Interactive Documentation: Complete schema specifications and endpoint parameters are published at https://surplusdocket.com/api-documentation.html.
 
 API access is provisioned under our National Feed + REST API Tier ($449/month):
@@ -2659,7 +2671,7 @@ Please reply with the specific scope, academic institution, or research paramete
         elif state_code in ["NC", "TN", "CA"]:
             pricing_clause = (
                 f"For {state_name}, records are compiled under our National Feed + REST API Tier ($449/mo), covering FL, TX, GA, NC, TN, and CA "
-                f"with priority 6:00 AM EST dispatch and live REST API Bearer tokens:\n"
+                f"with live REST API Bearer tokens and 7:00 AM EST dispatch:\n"
                 f"https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22"
             )
         else:
@@ -2667,7 +2679,7 @@ Please reply with the specific scope, academic institution, or research paramete
                 f"We offer two transparent subscriptions:\n"
                 f"1. Tri-State Core Feed ($249/mo flat with 7-day evaluation $0 due today): Florida, Texas, and Georgia morning CSV & Excel delivery.\n"
                 f"   {STRIPE_LINK}\n"
-                f"2. National Feed + REST API ($449/mo): Full 6-state coverage (FL, TX, GA + NC, TN, CA) with priority 6:00 AM EST dispatch and live REST API Bearer tokens.\n"
+                f"2. National Feed + REST API ($449/mo): Full 6-state coverage (FL, TX, GA + NC, TN, CA) with live REST API Bearer tokens and 7:00 AM EST dispatch.\n"
                 f"   https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22"
             )
 
@@ -2726,7 +2738,7 @@ Surplus Docket indexes active, unencumbered surplus funds across county registri
 {sample_block}We offer two transparent subscriptions:
 1. Tri-State Core Feed ($249/mo with 7-day trial $0 due today): Florida, Texas, and Georgia morning CSV & Excel delivery.
    {STRIPE_LINK}
-2. National Feed + REST API ($449/mo): Complete 6-state coverage (FL, TX, GA + NC, TN, CA) with priority 6:00 AM EST dispatch and full REST API Bearer token access.
+2. National Feed + REST API ($449/mo): Complete 6-state coverage (FL, TX, GA + NC, TN, CA) with full REST API Bearer token access and 7:00 AM EST morning delivery.
    https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22
 {bar_note}{tyler_note}{upl_note}
 
