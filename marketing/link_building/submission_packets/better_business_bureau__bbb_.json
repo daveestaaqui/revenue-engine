@@ -1,7 +1,7 @@
 {
-  "directory_name": "Crunchbase",
+  "directory_name": "Better Business Bureau (BBB)",
   "domain_authority": "93",
-  "submission_url": "https://www.crunchbase.com/add-new",
+  "submission_url": "https://www.bbb.org/get-accredited",
   "company_name": "Surplus Docket",
   "website_url": "https://surplusdocket.com/",
   "tools_url": "https://surplusdocket.com/tools.html",
@@ -10,6 +10,6 @@
   "short_description": "Surplus Docket is a legal intelligence platform delivering automated court registry feeds, subordinate encumbrance screening, and statutory deadline tracking for surplus funds and tax deed recovery attorneys.",
   "long_description": "Surplus Docket modernizes foreclosure surplus recovery for law firms. The platform ingests real-time court docket and excess proceeds registry records across Florida, Texas, California, Georgia, North Carolina, and Tennessee. By combining automated municipal and mortgage lien screening with statutory deadline calculations (Florida \u00a7 197.582, Texas \u00a7 34.04, California \u00a7 4675), Surplus Docket empowers attorneys to surface unencumbered court registry inventory within hours of sale confirmation without manual courthouse ledger research.",
   "contact_email": "contact@surplusdocket.com",
-  "timestamp": "2026-09-30T13:12:10.754638+00:00",
+  "timestamp": "2026-09-30T13:12:10.755931+00:00",
   "status": "READY_FOR_SUBMISSION"
 }
