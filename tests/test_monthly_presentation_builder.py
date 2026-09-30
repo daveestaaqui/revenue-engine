@@ -111,6 +111,12 @@ class TestMonthlyPresentationBuilder(unittest.TestCase):
         self.assertEqual(weekly_avg, 523425.0)
         self.assertEqual(max([w1_sum, w2_sum, w3_sum, w4_sum]), w2_sum)  # Week 2 is peak
 
+    def test_no_surplus_branding_or_domain_references(self):
+        """Verify the tool is completely neutral with zero surplusdocket mentions."""
+        self.assertNotIn("surplusdocket", self.html_content.lower(), "Must contain no references to surplusdocket")
+        self.assertNotIn("elena", self.html_content.lower(), "Must contain no persona references")
+        self.assertNotIn("tax deed", self.html_content.lower(), "Must contain no tax deed domain references")
+
 
 if __name__ == "__main__":
     unittest.main()
