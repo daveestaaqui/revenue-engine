@@ -26,6 +26,7 @@ COMPANY_PROFILE = {
         "court registry inventory within hours of sale confirmation without manual courthouse ledger research."
     ),
     "website_url": "https://surplusdocket.com",
+    "tools_url": "https://surplusdocket.com/tools.html",
     "embed_url": "https://surplusdocket.com/embed/",
     "data_feed_url": "https://surplusdocket.com/#live-docket",
     "resource_guide_url": "https://surplusdocket.com/resources/homeowner-surplus-guide",
@@ -111,6 +112,7 @@ Full Profile Description:
 {COMPANY_PROFILE['long_description']}
 
 Primary Reference Links:
+- Free Practice Tools Hub: {COMPANY_PROFILE['tools_url']}
 - Embed Tools: {COMPANY_PROFILE['embed_url']}
 - Court Registry Data: {COMPANY_PROFILE['data_feed_url']}
 - Public Educational Guide: {COMPANY_PROFILE['resource_guide_url']}

@@ -83,6 +83,64 @@ Best,
 Surplus Docket Research Desk
 https://surplusdocket.com
 """
+    },
+    {
+        "target_type": "Law School Legal Clinics & Access-to-Justice Centers",
+        "subject": "Free Open-Access Statutory Surplus & Due Process Calculator for Clinical Programs",
+        "file_name": "pitch_law_school_clinics.md",
+        "body": """Dear Clinical Director & Faculty Advisors,
+
+We follow your clinical advocacy assisting distressed homeowners and heir-property claimants in post-foreclosure equity protection.
+
+Following the Supreme Court's ruling in Tyler v. Hennepin County (598 U.S. 631), our engineering team developed a free, zero-tracking public tool suite for statutory surplus calculations, deadline verification, and legal motions:
+
+• Free Practice Tools Hub: https://surplusdocket.com/tools.html
+• Statutory Deadline & Recovery Calculator: https://surplusdocket.com/embed/surplus-calculator.html
+• Practitioner Toolkit (Verified Motions & Petitions): https://surplusdocket.com/practitioner-toolkit.html
+
+Key Clinical Utilities:
+- Multi-jurisdiction statutory deadline calculation across Florida, Texas, California, Georgia, North Carolina, and Tennessee.
+- Verification of statutory finder fee caps (preventing predatory fee exploitation against vulnerable heirs).
+- Clean, open-access embed widget requiring zero user logins or tracking cookies.
+
+Embed Code for Clinical Resources / Student Guides:
+```html
+<iframe src="https://surplusdocket.com/embed/surplus-calculator.html" width="100%" height="480" frameborder="0" style="border: 1px solid #1e293b; border-radius: 8px; max-width: 580px;" title="Statutory Surplus Deadline Calculator"></iframe>
+<p style="font-size: 11px; color: #64748b; text-align: center; margin-top: 6px;">Powered by <a href="https://surplusdocket.com/tools.html" target="_blank" rel="noopener">Surplus Docket Practice Tools</a></p>
+```
+
+We provide full complimentary access to our verified court feeds for non-profit clinics and academic researchers.
+
+Sincerely,
+Surplus Docket Research & Public Interest Desk
+press@surplusdocket.com | https://surplusdocket.com/tools.html
+"""
+    },
+    {
+        "target_type": "State & Local Bar Association LPM (Law Practice Management) Editors",
+        "subject": "Resource Contribution: Open-Access Surplus Recovery Tools & Clio/Filevine CRM Schemas",
+        "file_name": "pitch_bar_association_lpm.md",
+        "body": """Hi {Editor / Practice Management Advisor},
+
+We frequently read your practice management technology reviews and practice guides for solo and small-firm practitioners.
+
+With increasing judicial activity surrounding foreclosure surplus recovery and court registry interpleader actions, we've developed and released a free suite of practice utilities for real estate, probate, and civil litigation members:
+
+• Free Practice Tools Hub: https://surplusdocket.com/tools.html
+• Pre-mapped Clio & Filevine CRM intake schemas: https://surplusdocket.com/tools.html#crm
+• Embeddable Statutory Deadline & Fee Benchmark Calculator: https://surplusdocket.com/embed/surplus-calculator.html
+
+These tools allow bar members to:
+1. Instantly calculate statutory filing deadlines across FL (§ 197.582 / § 45.032), TX (§ 34.04), GA (§ 48-4-5), CA (§ 4675), NC, and TN.
+2. Directly ingest court docket data into Clio Manage or Filevine with standardized matter references.
+3. Access verified statutory claim motion templates compliant with local rules.
+
+We would welcome contributing a brief practice tip or resource mention to your LPM newsletter or technology directory.
+
+Best regards,
+Surplus Docket Legal Technology Desk
+press@surplusdocket.com | https://surplusdocket.com
+"""
     }
 ]
 
@@ -123,6 +181,7 @@ def generate_directory_submission_packets():
                 "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
                 "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
                 "website_url": "https://surplusdocket.com/",
+                "tools_url": "https://surplusdocket.com/tools.html",
                 "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
                 "api_docs_url": "https://surplusdocket.com/api-documentation.html",
                 "keywords": ["LegalTech", "Legal Software", "Tax Deed Surplus", "Excess Proceeds", "Court Dockets", "Foreclosure Intelligence"],

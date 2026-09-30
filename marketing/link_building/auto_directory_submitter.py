@@ -51,6 +51,7 @@ COMPANY_DATA = {
         "court registry inventory within hours of sale confirmation without manual courthouse ledger research."
     ),
     "website_url": "https://surplusdocket.com/",
+    "tools_url": "https://surplusdocket.com/tools.html",
     "embed_url": "https://surplusdocket.com/embed/surplus-calculator.html",
     "contact_email": "contact@surplusdocket.com",
     "categories": ["LegalTech", "Legal Software", "Real Estate Intelligence", "B2B SaaS"],

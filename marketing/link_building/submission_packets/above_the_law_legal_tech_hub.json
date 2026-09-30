@@ -1,0 +1,23 @@
+{
+  "directory_name": "Above The Law Legal Tech Hub",
+  "domain_authority": "79",
+  "category": "Legal",
+  "submission_url": "https://abovethelaw.com/contact/",
+  "company_name": "Surplus Docket",
+  "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
+  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
+  "website_url": "https://surplusdocket.com/",
+  "tools_url": "https://surplusdocket.com/tools.html",
+  "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
+  "api_docs_url": "https://surplusdocket.com/api-documentation.html",
+  "keywords": [
+    "LegalTech",
+    "Legal Software",
+    "Tax Deed Surplus",
+    "Excess Proceeds",
+    "Court Dockets",
+    "Foreclosure Intelligence"
+  ],
+  "target_anchor": "Above The Law Foreclosure Docket Automation",
+  "status": "READY_FOR_SUBMISSION"
+}

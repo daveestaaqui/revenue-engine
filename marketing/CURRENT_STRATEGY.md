@@ -51,6 +51,7 @@ To maximize B2B law firm customer lifetime value and eliminate low-yield marketi
 ---
 
 ## 🧩 4. Open Statutory Utility Hub
+**Free Practice Tools Hub:** `https://surplusdocket.com/tools.html`  
 **Interactive Calculator:** `https://surplusdocket.com/embed/surplus-calculator.html`  
 **Embed Documentation:** `https://surplusdocket.com/embed/`
 

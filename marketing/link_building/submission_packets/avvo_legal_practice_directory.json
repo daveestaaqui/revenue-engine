@@ -7,6 +7,7 @@
   "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
   "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
   "website_url": "https://surplusdocket.com/",
+  "tools_url": "https://surplusdocket.com/tools.html",
   "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
   "api_docs_url": "https://surplusdocket.com/api-documentation.html",
   "keywords": [

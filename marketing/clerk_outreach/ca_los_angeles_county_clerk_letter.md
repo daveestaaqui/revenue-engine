@@ -3,7 +3,7 @@
 **To:** Excess Proceeds Claims Administrator  
 **Agency:** Treasurer and Tax Collector, Los Angeles County, CA  
 **Department:** Auction & Excess Proceeds Division  
-**Date:** September 29, 2026  
+**Date:** September 30, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Los Angeles County Web Portal)
 
 ---
