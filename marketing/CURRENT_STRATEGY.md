@@ -1,5 +1,5 @@
 # 📊 Surplus Docket — Autonomous Marketing Strategy & Optimization Briefing
-**Last Updated:** September 30, 2026 at 00:14 UTC  
+**Last Updated:** September 30, 2026 at 12:32 UTC  
 **Optimization Mode:** Multi-Factor Empirical Model (Surplus Equity + Firm Density + Deliverability)
 
 ---
@@ -51,7 +51,6 @@ To maximize B2B law firm customer lifetime value and eliminate low-yield marketi
 ---
 
 ## 🧩 4. Open Statutory Utility Hub
-**Free Practice Tools Hub:** `https://surplusdocket.com/tools.html`  
 **Interactive Calculator:** `https://surplusdocket.com/embed/surplus-calculator.html`  
 **Embed Documentation:** `https://surplusdocket.com/embed/`
 

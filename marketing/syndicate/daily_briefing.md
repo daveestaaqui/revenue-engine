@@ -1,13 +1,13 @@
 # Surplus Docket — Daily Market Intelligence Briefing
-**Published:** September 29, 2026
+**Published:** September 30, 2026
 **Coverage:** 35 High-Volume County Court Registries (CA, FL, GA, NC, TN, TX)
 
 ---
 
 ### 📊 Key Market Metrics
-- **Active Audited Dockets:** 35
-- **Total Monitored Surplus Inventory:** $3,244,600.00
-- **Total Estimated Statutory Benchmark Fees:** $668,580.00
+- **Active Audited Dockets:** 43
+- **Total Monitored Surplus Inventory:** $3,909,100.00
+- **Total Estimated Statutory Benchmark Fees:** $801,480.00
 - **Automated Encumbrance Pre-Screening:** 100% (Subordinate mortgages and institutional claims pre-indexed)
 
 ---
