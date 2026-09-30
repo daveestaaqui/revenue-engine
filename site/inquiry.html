@@ -270,6 +270,7 @@
                         <div>
                             <label for="inq-category" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Inquiry Department <span class="text-red-500">*</span></label>
                             <select id="inq-category" name="department" required class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
+                                <option value="Single-County Pilot Dossier ($49)">Single-County Pilot Dossier ($49)</option>
                                 <option value="7-Day Institutional Practice Evaluation">7-Day Institutional Practice Evaluation</option>
                                 <option value="Enterprise Feed Licensing">Enterprise / Multi-Jurisdiction Custom Feed Licensing</option>
                                 <option value="Law Practice API Integration">Practice Management &amp; REST API Integration</option>
@@ -570,6 +571,21 @@
             const m = document.getElementById('sub-mobile-menu');
             if (m) m.classList.toggle('hidden');
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const plan = params.get('plan') || params.get('department');
+            if (plan && (plan.toLowerCase().includes('pilot') || plan === '49')) {
+                const catSelect = document.getElementById('inq-category');
+                if (catSelect) {
+                    catSelect.value = 'Single-County Pilot Dossier ($49)';
+                }
+                const msgField = document.getElementById('inq-message');
+                if (msgField && !msgField.value) {
+                    msgField.placeholder = "Please specify your target county (e.g. Palm Beach County, FL or Harris County, TX) and preferred delivery format (CSV / Excel)...";
+                }
+            }
+        });
     </script>
 </body>
 </html>
