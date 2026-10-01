@@ -24,6 +24,7 @@ Free embed code:
 
 Let us know if you have any questions or feature requests for additional jurisdictions!
 
-Best,
-Surplus Docket Research Desk
-https://surplusdocket.com
+Best regards,
+Elena Brooks
+Director of Practice Relations & Legal Technology
+elena.brooks@surplusdocket.com | https://surplusdocket.com
