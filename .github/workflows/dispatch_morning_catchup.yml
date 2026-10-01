@@ -1,0 +1,80 @@
+name: Morning Feed Catch-Up Redundancy Dispatch
+
+on:
+  schedule:
+    # Staggered catch-up triggers (all Mon-Fri)
+    # These supplement the primary 7:00 AM triggers.
+    # The dispatch script's idempotency guard prevents duplicate sends.
+    # EDT (UTC-4): 7:30 AM = 11:30 UTC, 8:00 AM = 12:00 UTC, 9:00 AM = 13:00 UTC
+    # EST (UTC-5): 7:30 AM = 12:30 UTC, 8:00 AM = 13:00 UTC, 9:00 AM = 14:00 UTC
+    - cron: '30 11 * * 1-5'   # 7:30 AM EDT catch-up
+    - cron: '0 13 * * 1-5'    # 8:00 AM EST / 9:00 AM EDT catch-up
+    - cron: '30 13 * * 1-5'   # 8:30 AM EST / 9:30 AM EDT catch-up
+    - cron: '0 14 * * 1-5'    # 9:00 AM EST / 10:00 AM EDT catch-up
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force live dispatch even if already dispatched today'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dispatch-morning-feed-catchup
+  cancel-in-progress: true
+
+jobs:
+  catchup-dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: .
+      GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+      GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+      FROM_EMAIL: 'dockets@surplusdocket.com'
+      FROM_NAME: 'Surplus Docket Intelligence'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Catch-Up Morning Feed Dispatch (Idempotent)
+        run: |
+          if [ -z "$GMAIL_APP_PASS" ]; then
+            echo "Running in preview / dry-run mode..."
+            python portal/dispatch_morning_feed.py --dry-run
+          else
+            ARGS=""
+            if [ "${{ github.event.inputs.force }}" = "true" ]; then
+              ARGS="$ARGS --force"
+            fi
+            echo "Running catch-up morning feed dispatch (idempotent)..."
+            python portal/dispatch_morning_feed.py --send $ARGS
+          fi
+
+      - name: Commit Dispatch Log
+        run: |
+          git config --global user.name "Surplus Docket Bot"
+          git config --global user.email "bot@surplusdocket.com"
+          if [ -f "portal/daily_dispatch_log.json" ]; then
+            git add portal/daily_dispatch_log.json
+          fi
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(feed): update catch-up dispatch log [skip ci]"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
+            done
+          fi

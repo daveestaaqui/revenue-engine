@@ -28,7 +28,7 @@ INDEXNOW_KEY = "0a4d3f3acd10f37db48e4681df146902"
 EXCLUDED_NAMES = {
     "404.html", "500.html", "welcome.html", "pricing.html",
     "toolkit.html", "checklist.html", "live-docket.html", "api.html",
-    "googleadb6429ca7be1cf6.html"
+    "googleadb6429ca7be1cf6.html", "monthly-presentation-builder.html"
 }
 EXCLUDED_PARTS = {"components", "embed", ".well-known"}
 
