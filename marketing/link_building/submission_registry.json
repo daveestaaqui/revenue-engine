@@ -1,92 +1,8 @@
 {
   "version": "1.0",
   "created_at": "2026-09-05T17:57:36.206796+00:00",
-  "total_submissions": 4926,
+  "total_submissions": 4978,
   "runs": [
-    {
-      "timestamp": "2026-09-13T14:44:44.722312+00:00",
-      "mode": "live",
-      "urls_submitted_count": 37,
-      "urls_indexed_count": null,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 37,
-        "status": "success",
-        "status_code": 200,
-        "response": ""
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "retired_use_robots_and_webmaster_tools",
-          "sitemap_url": "https://surplusdocket.com/sitemap.xml"
-        },
-        "bing": {
-          "status": "retired_use_robots_and_webmaster_tools",
-          "sitemap_url": "https://surplusdocket.com/sitemap.xml"
-        }
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "success",
-          "status_code": 201,
-          "published_url": "https://dev.to/flowkit/post-tyler-v-hennepin-county-why-automated-junior-lien-title-scrubbing-is-essential-for-surplus-4506"
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-          "status": "simulated_no_token",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/tyler-hennepin-junior-lien-scrubbing",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "status": "http_error_429",
-          "response": "Retry later\n"
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-          "status": "simulated_no_token",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/statutory-deadlines-tax-deed-surplus",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "no_webhook_configured",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
     {
       "timestamp": "2026-09-14T16:42:33.749606+00:00",
       "mode": "live",
@@ -2630,9 +2546,97 @@
         "articles_queued": 4,
         "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
       }
+    },
+    {
+      "timestamp": "2026-10-02T12:32:03.932458+00:00",
+      "mode": "live",
+      "urls_submitted_count": 52,
+      "urls_indexed_count": null,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 52,
+        "status": "success",
+        "status_code": 200,
+        "response": ""
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "retired_use_robots_and_webmaster_tools",
+          "sitemap_url": "https://surplusdocket.com/sitemap.xml"
+        },
+        "bing": {
+          "status": "retired_use_robots_and_webmaster_tools",
+          "sitemap_url": "https://surplusdocket.com/sitemap.xml"
+        }
+      },
+      "pingomatic": {
+        "status": "error",
+        "error": "ServerProxy.__init__() got an unexpected keyword argument 'timeout'"
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
+          "status": "deprecated_skipped",
+          "note": "Dev.to syndication deprecated for judicial registry content to protect brand authority. Set ENABLE_DEVTO_SYNDICATION=true to override."
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
+          "status": "simulated_no_token",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
+          "status": "deprecated_skipped",
+          "note": "Dev.to syndication deprecated for judicial registry content to protect brand authority. Set ENABLE_DEVTO_SYNDICATION=true to override."
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
+          "status": "simulated_no_token",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "no_webhook_configured",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
     }
   ],
-  "last_run_timestamp": "2026-10-01T13:10:53.469339+00:00",
+  "last_run_timestamp": "2026-10-02T12:32:03.932458+00:00",
   "published_articles": [
     {
       "platform": "dev.to",
