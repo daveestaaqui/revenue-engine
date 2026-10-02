@@ -65,11 +65,20 @@ jobs:
             python portal/sentinel_morning_failover.py || python portal/dispatch_morning_feed.py --send
           fi
 
+      - name: Scheduled Client Follow-Up Sentinel (Cohen Asset Recovery)
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+        run: |
+          if [ -n "$GMAIL_APP_PASS" ]; then
+            python outreach/schedule_alden_followup.py
+          fi
+
       - name: Commit & Push Updated Logs & Tracking
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          for f in data/notable_email_activity.json outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log portal/subscribers.json portal/processed_stripe_events.json portal/daily_dispatch_log.json portal/trial_lifecycle_log.json; do if [ -f "$f" ]; then git add "$f"; fi; done
+          for f in data/notable_email_activity.json outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log outreach/alden_followup_log.json portal/subscribers.json portal/processed_stripe_events.json portal/daily_dispatch_log.json portal/trial_lifecycle_log.json; do if [ -f "$f" ]; then git add "$f"; fi; done
 
           if ! git diff --staged --quiet; then
             git commit -m "chore(inbox): updated auto-responses & notable activity [skip ci]"

@@ -19,5 +19,6 @@ if [ -f ".env" ]; then
 fi
 
 python3 "${REPO_DIR}/portal/sentinel_morning_failover.py" >> "${LOG_FILE}" 2>&1
+python3 "${REPO_DIR}/outreach/schedule_alden_followup.py" >> "${LOG_FILE}" 2>&1 || true
 
 echo "[$(date)] Failover check finished." >> "${LOG_FILE}"
