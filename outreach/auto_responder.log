@@ -445,3 +445,6 @@
 [2026-09-30 23:46:30]   ⏭️ Skipped non-prospect from notifications@stripe.com (Sub: 'Updates to Stripe’s legal terms and Priv'): Message identified as automated notification, bounce, or system alert
 [2026-10-01 03:17:01]   ⏭️ Skipped non-prospect from shipment-tracking@amazon.com (Sub: 'Shipped: 7 Electrical & Heating, Nutriti'): Message identified as automated notification, bounce, or system alert
 [2026-10-01 10:20:29]   ⏭️ Skipped non-prospect from info@canadianprescriptiondrugstore.com (Sub: 'Update regarding your recent order'): Sender 'info@canadianprescriptiondrugstore.com' is not in verified target database and not a statutory inquiry
+[2026-10-02 01:12:54]   ⏭️ Skipped non-prospect from wiki-noreply@oeis.org (Sub: 'Re: changes to A336071'): Message identified as automated notification, bounce, or system alert
+[2026-10-02 01:12:54]   ⏭️ Skipped non-prospect from googleaistudio-noreply@google.com (Sub: 'Important: Your billing account has been'): Message identified as automated notification, bounce, or system alert
+[2026-10-02 01:12:56]   🧹 Auto-unsubscribed and cleared marketing email from noreply@email.openai.com
