@@ -25,124 +25,81 @@ EMBED_PITCHES_DIR.mkdir(parents=True, exist_ok=True)
 EMBED_PROFILES = [
     {
         "target_type": "LegalTech Bloggers & Legal Podcasters",
-        "subject": "Free Embeddable Statutory Surplus & Court Deadline Calculator for Your Readers",
+        "subject": "Free statutory deadline calculator for legal tech readers",
         "file_name": "pitch_legaltech_bloggers.md",
         "body": """Hi {Editor / Webmaster},
 
-Noticed your coverage on foreclosure trends and legal technology resources.
+Follow your writing on legal technology and practice workflows.
 
-We recently open-sourced an interactive, embeddable statutory deadline calculator designed specifically for asset recovery, foreclosure defense, and probate law practitioners:
+We put together a free, open-access statutory deadline calculator for foreclosure and tax deed surplus claims across six states (FL, TX, CA, GA, NC, TN):
+https://surplusdocket.com/tools.html
 
-Live Embed Hub: https://surplusdocket.com/embed/
-Direct Calculator Widget: https://surplusdocket.com/embed/surplus-calculator.html
+There are no paywalls, accounts, or tracking. Thought your readers might find it useful as a quick reference, and it's also set up so anyone can link or embed it directly if they want.
 
-What it does for your site visitors:
-• Calculates statutory claim deadlines and fee caps across 6 states (FL § 197.582, TX § 34.04, CA § 4675, GA § 48-4-5, NC § 105-374, TN § 67-5-2501).
-• 100% free, zero ads, zero cookies, zero user-registration required.
-• Responsive iframe that drops into any WordPress, Webflow, or custom HTML page in 30 seconds.
+Hope it's helpful,
 
-Embed Snippet:
-```html
-<iframe src="https://surplusdocket.com/embed/surplus-calculator.html" width="100%" height="480" frameborder="0" style="border: 1px solid #1e293b; border-radius: 8px; max-width: 580px;" title="Statutory Surplus Deadline Calculator"></iframe>
-<p style="font-size: 11px; color: #64748b; text-align: center; margin-top: 6px;">Powered by <a href="https://surplusdocket.com/" target="_blank" rel="noopener">Surplus Docket Legal Intelligence</a></p>
-```
-
-Feel free to embed this on your legal tools or resources page.
-
-Best regards,
 Elena Brooks
-Director of Practice Relations & Legal Technology
+Surplus Docket
 elena.brooks@surplusdocket.com | https://surplusdocket.com
 """
     },
     {
         "target_type": "Real Estate Investor & Tax Sale Communities",
-        "subject": "Free Interactive Tax Deed Surplus Calculator Widget",
+        "subject": "Free tax deed surplus deadline calculator",
         "file_name": "pitch_real_estate_investors.md",
         "body": """Hi {Community Lead},
 
-Wanted to share a free tool that solves a common headache for tax deed investors and excess funds researchers:
+Wanted to share a quick free resource for your community working with tax deeds and excess funds.
 
-Calculating statutory claim deadlines and statutory maximum fee caps across different states after a foreclosure auction.
+We put together an open calculator that maps out statutory claim deadlines and finder fee caps across Florida, Texas, California, Georgia, North Carolina, and Tennessee:
+https://surplusdocket.com/tools.html
 
-We built a free, embeddable calculator that your members or readers can use right on your site:
-https://surplusdocket.com/embed/
+Zero paywalls, logins, or ads. Feel free to share it with your members if you think it'd save them some time.
 
-Key Features:
-- Instant countdown to statutory expiration across Florida (120 days), Texas (2 years), California (1 year), Georgia (5 years), North Carolina (post-confirmation special proceedings), and Tennessee.
-- Real-time statutory non-attorney fee cap benchmark calculations.
-- Clean iframe embed with zero tracking cookies or signups.
+Best,
 
-Free embed code:
-```html
-<iframe src="https://surplusdocket.com/embed/surplus-calculator.html" width="100%" height="480" frameborder="0" style="border: 1px solid #1e293b; border-radius: 8px; max-width: 580px;" title="Statutory Surplus Deadline Calculator"></iframe>
-```
-
-Let us know if you have any questions or feature requests for additional jurisdictions!
-
-Best regards,
 Elena Brooks
-Director of Practice Relations & Legal Technology
+Surplus Docket
 elena.brooks@surplusdocket.com | https://surplusdocket.com
 """
     },
     {
         "target_type": "Law School Legal Clinics & Access-to-Justice Centers",
-        "subject": "Free Open-Access Statutory Surplus & Due Process Calculator for Clinical Programs",
+        "subject": "Free statutory surplus calculator for clinical programs",
         "file_name": "pitch_law_school_clinics.md",
-        "body": """Dear Clinical Director & Faculty Advisors,
+        "body": """Hi {Clinical Director & Faculty Advisors},
 
-We follow your clinical advocacy assisting distressed homeowners and heir-property claimants in post-foreclosure equity protection.
+Came across your clinic's foreclosure and housing advocacy work.
 
-Following the Supreme Court's ruling in Tyler v. Hennepin County (598 U.S. 631), our engineering team developed a free, zero-tracking public tool suite for statutory surplus calculations, deadline verification, and legal motions:
+Following Tyler v. Hennepin County, we put together a free, open-access statutory surplus calculator tracking claim deadlines and fee caps across six states ({statute_citation}):
+https://surplusdocket.com/tools.html
 
-• Free Practice Tools Hub: https://surplusdocket.com/tools.html
-• Statutory Deadline & Recovery Calculator: https://surplusdocket.com/embed/surplus-calculator.html
-• Practitioner Toolkit (Verified Motions & Petitions): https://surplusdocket.com/practitioner-toolkit.html
+Zero ads, accounts, or tracking. Thought it might be a handy practical reference for your students and staff assisting distressed property owners.
 
-Key Clinical Utilities:
-- Multi-jurisdiction statutory deadline calculation across Florida, Texas, California, Georgia, North Carolina, and Tennessee.
-- Verification of statutory finder fee caps (preventing predatory fee exploitation against vulnerable heirs).
-- Clean, open-access embed widget requiring zero user logins or tracking cookies.
+Hope it's helpful,
 
-Embed Code for Clinical Resources / Student Guides:
-```html
-<iframe src="https://surplusdocket.com/embed/surplus-calculator.html" width="100%" height="480" frameborder="0" style="border: 1px solid #1e293b; border-radius: 8px; max-width: 580px;" title="Statutory Surplus Deadline Calculator"></iframe>
-<p style="font-size: 11px; color: #64748b; text-align: center; margin-top: 6px;">Powered by <a href="https://surplusdocket.com/tools.html" target="_blank" rel="noopener">Surplus Docket Practice Tools</a></p>
-```
-
-We provide full complimentary access to our verified court feeds for non-profit clinics and academic researchers.
-
-Sincerely,
 Elena Brooks
-Director of Practice Relations & Legal Technology
+Surplus Docket
 elena.brooks@surplusdocket.com | https://surplusdocket.com/tools.html
 """
     },
     {
         "target_type": "State & Local Bar Association LPM (Law Practice Management) Editors",
-        "subject": "Resource Contribution: Open-Access Surplus Recovery Tools & Clio/Filevine CRM Schemas",
+        "subject": "Free surplus recovery practice utilities & Clio/Filevine schemas",
         "file_name": "pitch_bar_association_lpm.md",
         "body": """Hi {Editor / Practice Management Advisor},
 
-We frequently read your practice management technology reviews and practice guides for solo and small-firm practitioners.
+Follow your practice management resources for solo and small-firm practitioners.
 
-With increasing judicial activity surrounding foreclosure surplus recovery and court registry interpleader actions, we've developed and released a free suite of practice utilities for real estate, probate, and civil litigation members:
+We recently released a set of free practice utilities for attorneys handling post-foreclosure surplus claims, including multi-state statutory deadline calculation and pre-mapped Clio and Filevine intake schemas:
+https://surplusdocket.com/tools.html
 
-• Free Practice Tools Hub: https://surplusdocket.com/tools.html
-• Pre-mapped Clio & Filevine CRM intake schemas: https://surplusdocket.com/tools.html#crm
-• Embeddable Statutory Deadline & Fee Benchmark Calculator: https://surplusdocket.com/embed/surplus-calculator.html
-
-These tools allow bar members to:
-1. Instantly calculate statutory filing deadlines across FL (§ 197.582 / § 45.032), TX (§ 34.04), GA (§ 48-4-5), CA (§ 4675), NC, and TN.
-2. Directly ingest court docket data into Clio Manage or Filevine with standardized matter references.
-3. Access verified statutory claim motion templates compliant with local rules.
-
-We would welcome contributing a brief practice tip or resource mention to your LPM newsletter or technology directory.
+Everything is free and open-access with no account required. If you ever highlight member tools or tech tips in your LPM column or directory, thought this might be of interest.
 
 Best regards,
+
 Elena Brooks
-Director of Practice Relations & Legal Technology
+Surplus Docket
 elena.brooks@surplusdocket.com | https://surplusdocket.com
 """
     }

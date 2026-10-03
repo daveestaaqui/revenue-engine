@@ -214,39 +214,26 @@ def build_personalized_email(target: Dict[str, Any]) -> Tuple[str, str, str]:
     body = body_template.replace("{Editor / Webmaster}", recipient_name)
     body = body.replace("{Community Lead}", recipient_name)
     body = body.replace("{Editor / Practice Management Advisor}", recipient_name)
-    body = body.replace("Dear Clinical Director & Faculty Advisors,", f"Dear {recipient_name} at {org_name},")
+    body = body.replace("{Clinical Director & Faculty Advisors}", f"{recipient_name} at {org_name}" if org_name != "your organization" else recipient_name)
+    body = body.replace("Dear Clinical Director & Faculty Advisors,", f"Hi {recipient_name},")
     body = body.replace("{Recipient}", recipient_name)
     body = body.replace("{Organization}", org_name)
+    body = body.replace("{statute_citation}", statute_citation)
 
-    # HTML formatted alternative
+    # Clean, human HTML formatting that mirrors the concise plain text (zero iframes, zero spam walls)
+    paragraphs = [p.strip() for p in body.split("\n\n") if p.strip()]
+    html_paragraphs = []
+    for p in paragraphs:
+        p_html = p.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        p_html = re.sub(r'(https?://[^\s<]+)', r'<a href="\1" style="color:#1b365d;">\1</a>', p_html)
+        p_html = p_html.replace("\n", "<br>")
+        html_paragraphs.append(f"  <p style=\"margin: 0 0 14px 0;\">{p_html}</p>")
+
     html_body = f"""<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"></head>
-<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;padding:20px;">
-  <p>Dear {recipient_name},</p>
-  <p>We follow <strong>{org_name}</strong>'s outstanding leadership in legal education, property rights, and access to justice.</p>
-  <p>Following the Supreme Court's landmark ruling in <em>Tyler v. Hennepin County</em> (598 U.S. 631), our engineering team developed a free, zero-tracking public tool suite for statutory surplus calculations, deadline verification, and legal practice workflows:</p>
-  <ul>
-    <li><strong>Free Practice Tools Hub:</strong> <a href="{TOOLS_HUB_URL}">{TOOLS_HUB_URL}</a></li>
-    <li><strong>Interactive Statutory Calculator:</strong> <a href="{CALCULATOR_URL}">{CALCULATOR_URL}</a></li>
-    <li><strong>Clio &amp; Filevine CRM Importer Schemas:</strong> <a href="{CRM_SCHEMAS_URL}">{CRM_SCHEMAS_URL}</a></li>
-    <li><strong>Practitioner Motion &amp; Claim Toolkit:</strong> <a href="{TOOLKIT_URL}">{TOOLKIT_URL}</a></li>
-  </ul>
-  <p><strong>Key Practical Utilities:</strong></p>
-  <ul>
-    <li>Calculates statutory filing windows across {statute_citation}.</li>
-    <li>Identifies statutory fee caps to protect homeowners and heirs from predatory third-party finders.</li>
-    <li>100% free, responsive iframe embed requiring zero logins or tracking cookies.</li>
-  </ul>
-  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-family:monospace;font-size:12px;margin:16px 0;">
-    &lt;iframe src="{CALCULATOR_URL}" width="100%" height="480" frameborder="0" style="border:1px solid #cbd5e1;border-radius:8px;max-width:580px;" title="Statutory Surplus Deadline Calculator"&gt;&lt;/iframe&gt;
-  </div>
-  <p>We provide full complimentary research feeds to non-profit clinics, academic programs, and bar association committees.</p>
-  <p style="margin-top:24px;">Sincerely,<br>
-  <strong>Elena Brooks</strong><br>
-  Research &amp; Public Interest Desk<br>
-  <a href="https://surplusdocket.com">Surplus Docket</a> | <a href="mailto:{DEFAULT_REPLY_TO}">{DEFAULT_REPLY_TO}</a>
-  </p>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#1e293b;max-width:600px;margin:0;padding:16px;">
+{chr(10).join(html_paragraphs)}
 </body>
 </html>"""
 

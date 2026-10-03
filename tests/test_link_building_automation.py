@@ -117,6 +117,7 @@ class TestLinkBuildingAutomation(unittest.TestCase):
         content = eml_file.read_text(encoding="utf-8", errors="ignore")
         self.assertIn("lpm@texasbar.com", content)
         self.assertIn("Subject:", content)
+        eml_file.unlink(missing_ok=True)
 
     def test_tool_outreach_logging(self):
         """Verify transmission logging to CSV."""

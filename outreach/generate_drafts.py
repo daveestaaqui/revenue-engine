@@ -506,21 +506,19 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
     else:
         greeting = f"Hello {firm_prose} team," if firm_prose != "your practice" else "Hello,"
 
-    # Paragraph 1: Authentic research opener
-    opener = f"I was reviewing recent {county} County court registry filings and came across {firm_prose} while looking at active {practice_focus} counsel in {state_full}."
+    # Paragraph 1: Direct, human opener
+    opener = f"Came across {firm_prose} while looking at active {practice_focus} counsel in {state_full}."
 
     # Paragraph 2: Specific unencumbered docket finding
     case_body = (
-        f"We track unencumbered surplus funds across clerk registries, and we recently identified a "
-        f"{balance_fmt} surplus balance on Case {case_no} in {county} County {owner_clause}. "
-        f"We verified upstream that senior institutional mortgages have been cleared, and the claim "
-        f"window under {statute} is currently open."
+        f"We track open court registry overages and recently flagged a {balance_fmt} surplus on Case {case_no} in {county} County {owner_clause}. "
+        f"Senior mortgages are cleared upstream and the claim window under {statute} is currently open."
     )
 
     # Paragraph 3: Direct question / conversation starter
     closing_ask = (
-        f"Are you currently handling surplus recovery petitions or excess proceeds claims in {county} County? "
-        f"If this is an active area for your practice, I'd be glad to send over the docket summary and title notes for your review."
+        f"Are you handling surplus recovery petitions in {county} County? "
+        f"If so, happy to send over the docket summary and filing notes."
     )
 
     # Clean signature
