@@ -451,3 +451,4 @@
 [2026-10-02 22:34:16]   🗑️ IMAP: Removed sent draft for: support@magicbag.co
 [2026-10-02 22:34:17]   🗑️ IMAP: Removed sent draft for: support@magicbag.co
 [2026-10-02 22:34:18] ✓ Expunged 2 sent draft(s) from [Gmail]/Drafts.
+[2026-10-03 01:26:20]   ⏭️ Skipped non-prospect from cash@square.com (Sub: 'Payment received'): Message identified as automated notification, bounce, or system alert
