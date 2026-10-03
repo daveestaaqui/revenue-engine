@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-02T12:32:06.310968+00:00",
+  "updated_at": "2026-10-03T11:37:48.358602+00:00",
   "state_weights_pct": {
     "FL": 31.6,
     "TX": 15.4,
@@ -25,14 +25,14 @@
   },
   "state_performance_breakdown": {
     "FL": {
-      "score": 0.3087,
-      "win_rate": 15.2,
-      "smoothed_deliverability": 15.4,
+      "score": 0.3083,
+      "win_rate": 15.0,
+      "smoothed_deliverability": 15.2,
       "surplus_pool": 1444800.0,
       "fee_pool": 288960.0,
       "lead_count": 20,
       "addressable_firms": 392,
-      "attempts": 151,
+      "attempts": 153,
       "successes": 23,
       "allocated_weight_pct": 31.6
     },
@@ -49,14 +49,14 @@
       "allocated_weight_pct": 15.4
     },
     "CA": {
-      "score": 0.1457,
-      "win_rate": 3.8,
-      "smoothed_deliverability": 4.0,
+      "score": 0.1453,
+      "win_rate": 3.6,
+      "smoothed_deliverability": 3.8,
       "surplus_pool": 686500.0,
       "fee_pool": 137300.0,
       "lead_count": 4,
       "addressable_firms": 206,
-      "attempts": 419,
+      "attempts": 441,
       "successes": 16,
       "allocated_weight_pct": 14.9
     },
