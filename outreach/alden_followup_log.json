@@ -1,0 +1,13 @@
+{
+  "status": "SENT",
+  "timestamp": "2026-10-05T13:16:08.257787-04:00",
+  "target": "alden@cohenrecoverylaw.com",
+  "cc": [
+    "phil@cohenrecoverylaw.com",
+    "adam@cohenrecoverylaw.com"
+  ],
+  "persona": "david",
+  "from": "David Mahler <david@surplusdocket.com>",
+  "subject": "Re: Florida feed questions: Miami-Dade, Palm Beach, and Broward",
+  "message_id": "<179122056825.2170.16982405525916920611@surplusdocket.com>"
+}
