@@ -108,6 +108,23 @@ def load_unsubscribed_domains() -> set:
     return set()
 
 
+# Known bounced email addresses to suppress from all link-building outreach
+BOUNCED_EMAILS = {
+    "cpm@ncbar.org",
+    "editor@lawyerist.com",
+    "contact@legaltechnologyhub.com",
+    "editor@lawnext.com",
+    "clinics@law.ufl.edu",
+    "lawclinics@emory.edu",
+    "law_clinics@unc.edu",
+}
+try:
+    from outreach.fix_bounces_and_rebuild import BOUNCED_EMAILS as MASTER_BOUNCED_EMAILS
+    BOUNCED_EMAILS.update(e.lower() for e in MASTER_BOUNCED_EMAILS)
+except Exception:
+    pass
+
+
 def select_outreach_targets(
     targets: List[Dict[str, Any]],
     limit: int = 5,
@@ -122,6 +139,11 @@ def select_outreach_targets(
     for t in targets:
         email_addr = t.get("contact_email", "").strip().lower()
         if not email_addr:
+            continue
+        status = t.get("status", "").strip().upper()
+        if status.startswith("BOUNCED"):
+            continue
+        if email_addr in BOUNCED_EMAILS:
             continue
         domain = email_addr.split("@")[-1] if "@" in email_addr else ""
         if domain in unsubscribed or email_addr in unsubscribed:
