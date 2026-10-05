@@ -62,7 +62,8 @@ jobs:
           FROM_NAME: 'Surplus Docket Intelligence'
         run: |
           if [ -n "$GMAIL_APP_PASS" ]; then
-            python portal/sentinel_morning_failover.py || python portal/dispatch_morning_feed.py --send
+            # Executes failover sentinel; safely dispatches via portal/dispatch_morning_feed.py only if inside morning window
+            python portal/sentinel_morning_failover.py
           fi
 
       - name: Scheduled Client Follow-Up Sentinel (Cohen Asset Recovery)

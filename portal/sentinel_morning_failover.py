@@ -22,14 +22,15 @@ def check_and_failover():
     except Exception:
         now_et = datetime.now()
 
-    # Only run failover on weekdays (0=Mon, 4=Fri) between 5:30 AM and 11:00 AM EST
+    # Only run failover on weekdays (0=Mon, 4=Fri) between 5:30 AM and 10:30 AM EST
     in_window = (now_et.weekday() < 5 and (
         (now_et.hour == 5 and now_et.minute >= 30) or
-        (6 <= now_et.hour <= 10)
+        (6 <= now_et.hour <= 9) or
+        (now_et.hour == 10 and now_et.minute <= 30)
     ))
 
     if not in_window:
-        print(f"ℹ️ Sentinel Failover Check: Outside 5:30-11:00 AM EST dispatch failover window ({now_et.strftime('%A %I:%M %p EST')}).")
+        print(f"ℹ️ Sentinel Failover Check: Outside 5:30-10:30 AM EST dispatch failover window ({now_et.strftime('%A %I:%M %p EST')}).")
         return 0
 
     date_key = now_et.strftime('%Y-%m-%d')

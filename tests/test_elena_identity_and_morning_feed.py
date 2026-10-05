@@ -159,6 +159,41 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
         self.assertIn("7:00 AM EST Morning Court Feed Autonomous Failover Check", sentinel_wf)
         self.assertIn("portal/dispatch_morning_feed.py", sentinel_wf)
 
+    def test_dispatch_window_guard_blocks_afternoon_and_weekend(self):
+        """Verify dispatch_feed blocks live sends outside morning window (e.g. 3:35 PM or weekend)."""
+        from portal.dispatch_morning_feed import dispatch_feed
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        from unittest.mock import patch
+
+        # Case 1: Monday at 3:35 PM EDT (afternoon)
+        afternoon_time = datetime(2026, 10, 5, 15, 35, 0, tzinfo=ZoneInfo("America/New_York"))
+        with patch("portal.dispatch_morning_feed.datetime") as mock_dt:
+            mock_dt.now.return_value = afternoon_time
+            res = dispatch_feed(is_dry_run=False, recipient_override=None, force=False)
+            self.assertEqual(res, 0)
+
+        # Case 2: Saturday at 7:00 AM EDT (weekend)
+        weekend_time = datetime(2026, 10, 10, 7, 0, 0, tzinfo=ZoneInfo("America/New_York"))
+        with patch("portal.dispatch_morning_feed.datetime") as mock_dt:
+            mock_dt.now.return_value = weekend_time
+            res = dispatch_feed(is_dry_run=False, recipient_override=None, force=False)
+            self.assertEqual(res, 0)
+
+    def test_sentinel_morning_failover_window(self):
+        """Verify sentinel_morning_failover exits 0 without triggering feed outside 5:30-10:30 AM."""
+        from portal.sentinel_morning_failover import check_and_failover
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        from unittest.mock import patch
+
+        afternoon_time = datetime(2026, 10, 5, 15, 35, 0, tzinfo=ZoneInfo("America/New_York"))
+        with patch("portal.sentinel_morning_failover.datetime") as mock_dt:
+            mock_dt.now.return_value = afternoon_time
+            res = check_and_failover()
+            self.assertEqual(res, 0)
+
 
 if __name__ == "__main__":
     unittest.main()
+
