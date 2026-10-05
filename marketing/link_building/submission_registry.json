@@ -1,96 +1,8 @@
 {
   "version": "1.0",
   "created_at": "2026-09-05T17:57:36.206796+00:00",
-  "total_submissions": 5186,
+  "total_submissions": 5238,
   "runs": [
-    {
-      "timestamp": "2026-09-15T21:07:32.871193+00:00",
-      "mode": "live",
-      "urls_submitted_count": 0,
-      "urls_indexed_count": null,
-      "indexnow": {
-        "engine": "IndexNow",
-        "endpoint": "https://api.indexnow.org/indexnow",
-        "urls_submitted": 51,
-        "status": "http_error_403",
-        "status_code": 403,
-        "response": "Request to POST /indexnow on api.indexnow.org not allowed by policy\n"
-      },
-      "search_engine_pings": {
-        "google": {
-          "status": "retired_use_robots_and_webmaster_tools",
-          "sitemap_url": "https://surplusdocket.com/sitemap.xml"
-        },
-        "bing": {
-          "status": "retired_use_robots_and_webmaster_tools",
-          "sitemap_url": "https://surplusdocket.com/sitemap.xml"
-        }
-      },
-      "pingomatic": {
-        "status": "error",
-        "error": "ServerProxy.__init__() got an unexpected keyword argument 'timeout'"
-      },
-      "syndications": [
-        {
-          "platform": "dev.to",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
-          "status": "deprecated_skipped",
-          "note": "Dev.to syndication deprecated for judicial registry content to protect brand authority. Set ENABLE_DEVTO_SYNDICATION=true to override."
-        },
-        {
-          "platform": "medium",
-          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-          "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
-          "status": "simulated_no_token",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
-            "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
-            "tags": [
-              "LegalTech",
-              "AI",
-              "TitleResearch",
-              "PropertyRights",
-              "LegalInnovation"
-            ],
-            "content_format": "markdown"
-          }
-        },
-        {
-          "platform": "dev.to",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
-          "status": "deprecated_skipped",
-          "note": "Dev.to syndication deprecated for judicial registry content to protect brand authority. Set ENABLE_DEVTO_SYNDICATION=true to override."
-        },
-        {
-          "platform": "medium",
-          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-          "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
-          "status": "simulated_no_token",
-          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
-          "payload_preview": {
-            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
-            "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
-            "tags": [
-              "LegalTech",
-              "Foreclosure",
-              "RealEstateLaw",
-              "Litigation",
-              "CourtDocket"
-            ],
-            "content_format": "markdown"
-          }
-        }
-      ],
-      "webhook": {
-        "platform": "webhook",
-        "status": "no_webhook_configured",
-        "articles_queued": 4,
-        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
-      }
-    },
     {
       "timestamp": "2026-09-15T21:07:35.999266+00:00",
       "mode": "live",
@@ -2642,9 +2554,97 @@
         "articles_queued": 4,
         "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
       }
+    },
+    {
+      "timestamp": "2026-10-05T21:48:23.097200+00:00",
+      "mode": "live",
+      "urls_submitted_count": 52,
+      "urls_indexed_count": null,
+      "indexnow": {
+        "engine": "IndexNow",
+        "endpoint": "https://api.indexnow.org/indexnow",
+        "urls_submitted": 52,
+        "status": "success",
+        "status_code": 200,
+        "response": ""
+      },
+      "search_engine_pings": {
+        "google": {
+          "status": "retired_use_robots_and_webmaster_tools",
+          "sitemap_url": "https://surplusdocket.com/sitemap.xml"
+        },
+        "bing": {
+          "status": "retired_use_robots_and_webmaster_tools",
+          "sitemap_url": "https://surplusdocket.com/sitemap.xml"
+        }
+      },
+      "pingomatic": {
+        "status": "error",
+        "error": "ServerProxy.__init__() got an unexpected keyword argument 'timeout'"
+      },
+      "syndications": [
+        {
+          "platform": "dev.to",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
+          "status": "deprecated_skipped",
+          "note": "Dev.to syndication deprecated for judicial registry content to protect brand authority. Set ENABLE_DEVTO_SYNDICATION=true to override."
+        },
+        {
+          "platform": "medium",
+          "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+          "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
+          "status": "simulated_no_token",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Post-Tyler v. Hennepin County: Why Automated Junior Lien Title Scrubbing is Essential for Surplus Recovery",
+            "canonical_url": "https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html",
+            "tags": [
+              "LegalTech",
+              "AI",
+              "TitleResearch",
+              "PropertyRights",
+              "LegalInnovation"
+            ],
+            "content_format": "markdown"
+          }
+        },
+        {
+          "platform": "dev.to",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
+          "status": "deprecated_skipped",
+          "note": "Dev.to syndication deprecated for judicial registry content to protect brand authority. Set ENABLE_DEVTO_SYNDICATION=true to override."
+        },
+        {
+          "platform": "medium",
+          "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+          "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
+          "status": "simulated_no_token",
+          "note": "Configured and payload verified. Set MEDIUM_TOKEN secret in GitHub Actions to publish live.",
+          "payload_preview": {
+            "title": "Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis",
+            "canonical_url": "https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html",
+            "tags": [
+              "LegalTech",
+              "Foreclosure",
+              "RealEstateLaw",
+              "Litigation",
+              "CourtDocket"
+            ],
+            "content_format": "markdown"
+          }
+        }
+      ],
+      "webhook": {
+        "platform": "webhook",
+        "status": "no_webhook_configured",
+        "articles_queued": 4,
+        "note": "Optional: set SYNDICATION_WEBHOOK_URL to distribute directly to social schedulers or RSS."
+      }
     }
   ],
-  "last_run_timestamp": "2026-10-05T14:34:22.019096+00:00",
+  "last_run_timestamp": "2026-10-05T21:48:23.097200+00:00",
   "published_articles": [
     {
       "platform": "dev.to",
