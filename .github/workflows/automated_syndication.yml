@@ -37,7 +37,7 @@ concurrency:
 
 jobs:
   run-linkbuilding-and-syndication:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 25
     env:
       PYTHONPATH: .

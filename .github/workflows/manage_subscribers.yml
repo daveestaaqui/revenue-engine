@@ -37,7 +37,7 @@ concurrency:
 
 jobs:
   manage-subscribers:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
       - name: Checkout Repository

@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   website:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
           retention-days: 7
   outreach-fixture:
     if: github.event_name != 'schedule'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
