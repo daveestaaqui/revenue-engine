@@ -2,7 +2,7 @@
 PLATFORM: MEDIUM
 TITLE: Navigating Statutory Deadlines in Tax Deed Surplus Recovery: A Six-State Jurisdictional Analysis
 CANONICAL_URL: https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html
-DATE: October 04, 2026
+DATE: October 05, 2026
 TAGS: LegalTech, Foreclosure, RealEstateLaw, Litigation, CourtDocket
 -->
 
