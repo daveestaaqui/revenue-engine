@@ -463,3 +463,5 @@
 [2026-10-04 06:21:07]   ⏭️ Skipped non-prospect from billing@canadianprescriptiondrugstore.com (Sub: 'PAYMENT REMINDER '): Message identified as automated notification, bounce, or system alert
 [2026-10-05 01:57:33]   ⏭️ Skipped non-prospect from security@facebookmail.com (Sub: '05628996 is your Facebook code'): Message identified as automated notification, bounce, or system alert
 [2026-10-05 08:17:44]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Norman Springer commented on a payment b'): Message identified as automated notification, bounce, or system alert
+[2026-10-06 03:00:09]   ⏭️ Skipped non-prospect from info@email.meetup.com (Sub: 'Important updates to our Terms of Servic'): Sender 'info@email.meetup.com' is not in verified target database and not a statutory inquiry
+[2026-10-06 03:00:09]   ⏭️ Skipped non-prospect from shipment-tracking@amazon.com (Sub: 'Shipped: 2 Snack Foods and Hardware item'): Message identified as automated notification, bounce, or system alert
