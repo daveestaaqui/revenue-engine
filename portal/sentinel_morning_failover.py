@@ -2,7 +2,7 @@
 """
 Surplus Docket — Sentinel 7:00 AM EST Morning Court Feed Autonomous Failover Check
 Checks if morning feed for today has already been dispatched.
-If outside failover window or already dispatched, logs status and exits 0.
+If outside failover window (7:05 AM - 10:00 AM EST) or already dispatched, logs status and exits 0.
 If within window and not yet dispatched, executes portal/dispatch_morning_feed.py.
 """
 import os
@@ -22,15 +22,17 @@ def check_and_failover():
     except Exception:
         now_et = datetime.now()
 
-    # Only run failover on weekdays (0=Mon, 4=Fri) between 5:30 AM and 10:30 AM EST
+    # Only run failover on weekdays (0=Mon, 4=Fri) between 7:05 AM and 10:00 AM EST.
+    # This prevents premature dispatch before the official 7:00 AM primary schedule,
+    # allows the primary GitHub Action to complete cleanly, and supports local LaunchAgent (7:05/7:35 AM)
+    # and Elena sentinel runs (7:15 AM+).
     in_window = (now_et.weekday() < 5 and (
-        (now_et.hour == 5 and now_et.minute >= 30) or
-        (6 <= now_et.hour <= 9) or
-        (now_et.hour == 10 and now_et.minute <= 30)
+        (now_et.hour == 7 and now_et.minute >= 5) or
+        (8 <= now_et.hour < 10)
     ))
 
     if not in_window:
-        print(f"ℹ️ Sentinel Failover Check: Outside 5:30-10:30 AM EST dispatch failover window ({now_et.strftime('%A %I:%M %p EST')}).")
+        print(f"ℹ️ Sentinel Failover Check: Outside 7:05-10:00 AM EST dispatch failover window ({now_et.strftime('%A %I:%M %p EST')}).")
         return 0
 
     date_key = now_et.strftime('%Y-%m-%d')

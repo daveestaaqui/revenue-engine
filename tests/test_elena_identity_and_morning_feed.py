@@ -159,21 +159,42 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
         self.assertIn("7:00 AM EST Morning Court Feed Autonomous Failover Check", sentinel_wf)
         self.assertIn("portal/dispatch_morning_feed.py", sentinel_wf)
 
-    def test_dispatch_window_guard_blocks_afternoon_and_weekend(self):
-        """Verify dispatch_feed blocks live sends outside morning window (e.g. 3:35 PM or weekend)."""
+    def test_dispatch_window_guard_blocks_early_morning_afternoon_and_weekend(self):
+        """Verify dispatch_feed blocks live sends outside morning window (e.g. 5:55 AM, 3:35 PM, or weekend)."""
         from portal.dispatch_morning_feed import dispatch_feed
         from datetime import datetime
         from zoneinfo import ZoneInfo
         from unittest.mock import patch
 
-        # Case 1: Monday at 3:35 PM EDT (afternoon)
+        # Case 1: Monday at 5:55 AM EDT (early morning - must NEVER dispatch before 7:00 AM)
+        early_morning = datetime(2026, 10, 5, 5, 55, 0, tzinfo=ZoneInfo("America/New_York"))
+        with patch("portal.dispatch_morning_feed.datetime") as mock_dt:
+            mock_dt.now.return_value = early_morning
+            res = dispatch_feed(is_dry_run=False, recipient_override=None, force=False)
+            self.assertEqual(res, 0)
+
+        # Case 2: Tuesday at 6:45 AM EDT (pre-market - blocked)
+        pre_market = datetime(2026, 10, 6, 6, 45, 0, tzinfo=ZoneInfo("America/New_York"))
+        with patch("portal.dispatch_morning_feed.datetime") as mock_dt:
+            mock_dt.now.return_value = pre_market
+            res = dispatch_feed(is_dry_run=False, recipient_override=None, force=False)
+            self.assertEqual(res, 0)
+
+        # Case 3: Monday at 3:35 PM EDT (afternoon - blocked)
         afternoon_time = datetime(2026, 10, 5, 15, 35, 0, tzinfo=ZoneInfo("America/New_York"))
         with patch("portal.dispatch_morning_feed.datetime") as mock_dt:
             mock_dt.now.return_value = afternoon_time
             res = dispatch_feed(is_dry_run=False, recipient_override=None, force=False)
             self.assertEqual(res, 0)
 
-        # Case 2: Saturday at 7:00 AM EDT (weekend)
+        # Case 4: Monday at 10:15 AM EDT (after 10:00 AM cutoff - blocked)
+        late_morning = datetime(2026, 10, 5, 10, 15, 0, tzinfo=ZoneInfo("America/New_York"))
+        with patch("portal.dispatch_morning_feed.datetime") as mock_dt:
+            mock_dt.now.return_value = late_morning
+            res = dispatch_feed(is_dry_run=False, recipient_override=None, force=False)
+            self.assertEqual(res, 0)
+
+        # Case 5: Saturday at 7:00 AM EDT (weekend - blocked)
         weekend_time = datetime(2026, 10, 10, 7, 0, 0, tzinfo=ZoneInfo("America/New_York"))
         with patch("portal.dispatch_morning_feed.datetime") as mock_dt:
             mock_dt.now.return_value = weekend_time
@@ -181,17 +202,47 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
             self.assertEqual(res, 0)
 
     def test_sentinel_morning_failover_window(self):
-        """Verify sentinel_morning_failover exits 0 without triggering feed outside 5:30-10:30 AM."""
+        """Verify sentinel_morning_failover strictly respects the 7:05 AM - 10:00 AM EST failover window."""
         from portal.sentinel_morning_failover import check_and_failover
         from datetime import datetime
         from zoneinfo import ZoneInfo
-        from unittest.mock import patch
+        from unittest.mock import patch, MagicMock
 
+        # Case 1: Early morning at 5:55 AM EDT (must NOT trigger)
+        early_time = datetime(2026, 10, 6, 5, 55, 0, tzinfo=ZoneInfo("America/New_York"))
+        with patch("portal.sentinel_morning_failover.datetime") as mock_dt, \
+             patch("portal.sentinel_morning_failover.subprocess.run") as mock_sub:
+            mock_dt.now.return_value = early_time
+            res = check_and_failover()
+            self.assertEqual(res, 0)
+            mock_sub.assert_not_called()
+
+        # Case 2: At 7:01 AM EDT (must NOT trigger, letting primary 7:00 AM workflow run)
+        primary_window = datetime(2026, 10, 6, 7, 1, 0, tzinfo=ZoneInfo("America/New_York"))
+        with patch("portal.sentinel_morning_failover.datetime") as mock_dt, \
+             patch("portal.sentinel_morning_failover.subprocess.run") as mock_sub:
+            mock_dt.now.return_value = primary_window
+            res = check_and_failover()
+            self.assertEqual(res, 0)
+            mock_sub.assert_not_called()
+
+        # Case 3: Afternoon at 3:35 PM EDT (must NOT trigger)
         afternoon_time = datetime(2026, 10, 5, 15, 35, 0, tzinfo=ZoneInfo("America/New_York"))
-        with patch("portal.sentinel_morning_failover.datetime") as mock_dt:
+        with patch("portal.sentinel_morning_failover.datetime") as mock_dt, \
+             patch("portal.sentinel_morning_failover.subprocess.run") as mock_sub:
             mock_dt.now.return_value = afternoon_time
             res = check_and_failover()
             self.assertEqual(res, 0)
+            mock_sub.assert_not_called()
+
+        # Case 4: Inside window at 7:15 AM EDT when feed is already dispatched
+        failover_time = datetime(2026, 10, 6, 7, 15, 0, tzinfo=ZoneInfo("America/New_York"))
+        with patch("portal.sentinel_morning_failover.datetime") as mock_dt, \
+             patch("portal.sentinel_morning_failover.subprocess.run") as mock_sub:
+            mock_dt.now.return_value = failover_time
+            res = check_and_failover()
+            self.assertEqual(res, 0)
+            mock_sub.assert_not_called()
 
 
 if __name__ == "__main__":
