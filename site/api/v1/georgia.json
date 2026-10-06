@@ -26,7 +26,7 @@
       "Est_Finder_Fee_USD": 26800.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-02",
-      "Days_Remaining_To_Claim": 1000,
+      "Days_Remaining_To_Claim": 999,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2029-07-01",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
@@ -35,7 +35,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-05 14:34:20",
+      "Enriched_Timestamp": "2026-10-06 13:16:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -54,7 +54,7 @@
       "Est_Finder_Fee_USD": 23600.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-13",
-      "Days_Remaining_To_Claim": 1042,
+      "Days_Remaining_To_Claim": 1041,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2029-08-12",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
@@ -63,7 +63,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-05 14:34:20",
+      "Enriched_Timestamp": "2026-10-06 13:16:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -82,7 +82,7 @@
       "Est_Finder_Fee_USD": 19300.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-16",
-      "Days_Remaining_To_Claim": 1014,
+      "Days_Remaining_To_Claim": 1013,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2029-07-15",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
@@ -91,7 +91,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-05 14:34:20",
+      "Enriched_Timestamp": "2026-10-06 13:16:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -110,7 +110,7 @@
       "Est_Finder_Fee_USD": 16480.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-08-06",
-      "Days_Remaining_To_Claim": 1035,
+      "Days_Remaining_To_Claim": 1034,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2029-08-05",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
@@ -119,7 +119,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-05 14:34:20",
+      "Enriched_Timestamp": "2026-10-06 13:16:59",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {
@@ -138,7 +138,7 @@
       "Est_Finder_Fee_USD": 13560.0,
       "Opportunity_Tier": "Tier 1: High Value ($25k+)",
       "Sale_Date": "2024-07-23",
-      "Days_Remaining_To_Claim": 1021,
+      "Days_Remaining_To_Claim": 1020,
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2029-07-22",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
@@ -147,7 +147,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-05 14:34:20",
+      "Enriched_Timestamp": "2026-10-06 13:16:59",
       "Access_Status": "REDACTED_PREVIEW"
     }
   ]

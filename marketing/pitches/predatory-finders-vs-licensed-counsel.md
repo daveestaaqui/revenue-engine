@@ -1,7 +1,7 @@
 # PRESS PITCH: The Shadow Market in Foreclosure Surplus: Why Courts Are Cracking Down on Unlicensed 'Asset Recovery' Finders
 **Category:** Consumer Protection & Unauthorized Practice of Law (UPL)
 **Suggested Outlets:** Inman News, Real Estate Weekly, State Bar Journals (FL, TX, CA), ProPublica
-**Date:** October 05, 2026
+**Date:** October 06, 2026
 
 ---
 

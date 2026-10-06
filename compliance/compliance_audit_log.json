@@ -1,5 +1,61 @@
 [
   {
+    "timestamp": "2026-10-06T13:16:55.525131+00:00",
+    "date": "2026-10-06",
+    "status": "VERIFIED_COMPLIANT",
+    "audited_jurisdictions": [
+      {
+        "state": "FL",
+        "statute": "Fla. Stat. \u00a7 197.582",
+        "claim_window": "120 Days from Notice Date",
+        "fee_cap_percent": 20,
+        "status": "ACTIVE_VALID"
+      },
+      {
+        "state": "TX",
+        "statute": "Tex. Tax Code \u00a7 34.04",
+        "claim_window": "2 Years from Date of Tax Sale",
+        "fee_cap_percent": 25,
+        "status": "ACTIVE_VALID"
+      },
+      {
+        "state": "GA",
+        "statute": "O.C.G.A. \u00a7 48-4-5",
+        "claim_window": "5 Years from Date of Tax Sale",
+        "fee_cap_percent": 20,
+        "status": "ACTIVE_VALID"
+      },
+      {
+        "state": "NC",
+        "statute": "N.C.G.S. \u00a7 105-374",
+        "claim_window": "10-Day Mandatory Upset Bid Confirmation Window",
+        "fee_cap_percent": 20,
+        "status": "ACTIVE_VALID"
+      },
+      {
+        "state": "TN",
+        "statute": "T.C.A. \u00a7 67-5-2501 & \u00a7 67-5-2702",
+        "claim_window": "Chancery Court Motion Procedure",
+        "fee_cap_percent": 20,
+        "status": "ACTIVE_VALID"
+      },
+      {
+        "state": "CA",
+        "statute": "Cal. Rev. & Tax Code \u00a7 4675",
+        "claim_window": "Exactly 1 Year from Date of Deed Recording",
+        "fee_cap_percent": 20,
+        "status": "ACTIVE_VALID"
+      },
+      {
+        "state": "FL_FORECLOSURE",
+        "statute": "Fla. Stat. \u00a7 45.032",
+        "claim_window": "60 Days from Certificate of Disbursement",
+        "fee_cap_percent": 20,
+        "status": "ACTIVE_VALID"
+      }
+    ]
+  },
+  {
     "timestamp": "2026-10-05T14:34:16.893521+00:00",
     "date": "2026-10-05",
     "status": "VERIFIED_COMPLIANT",
@@ -1416,55 +1472,6 @@
   {
     "timestamp": "2026-09-07T16:12:10.487028+00:00",
     "date": "2026-09-07",
-    "status": "VERIFIED_COMPLIANT",
-    "audited_jurisdictions": [
-      {
-        "state": "FL",
-        "statute": "Fla. Stat. \u00a7 197.582",
-        "claim_window": "120 Days from Notice Date",
-        "fee_cap_percent": 20,
-        "status": "ACTIVE_VALID"
-      },
-      {
-        "state": "TX",
-        "statute": "Tex. Tax Code \u00a7 34.04",
-        "claim_window": "2 Years from Date of Tax Sale",
-        "fee_cap_percent": 25,
-        "status": "ACTIVE_VALID"
-      },
-      {
-        "state": "GA",
-        "statute": "O.C.G.A. \u00a7 48-4-5",
-        "claim_window": "5 Years from Date of Tax Sale",
-        "fee_cap_percent": 20,
-        "status": "ACTIVE_VALID"
-      },
-      {
-        "state": "NC",
-        "statute": "N.C.G.S. \u00a7 105-374",
-        "claim_window": "10-Day Mandatory Upset Bid Confirmation Window",
-        "fee_cap_percent": 20,
-        "status": "ACTIVE_VALID"
-      },
-      {
-        "state": "TN",
-        "statute": "T.C.A. \u00a7 67-5-2501",
-        "claim_window": "Chancery Court Motion Procedure",
-        "fee_cap_percent": 20,
-        "status": "ACTIVE_VALID"
-      },
-      {
-        "state": "CA",
-        "statute": "Cal. Rev. & Tax Code \u00a7 4675",
-        "claim_window": "Exactly 1 Year from Date of Deed Recording",
-        "fee_cap_percent": 20,
-        "status": "ACTIVE_VALID"
-      }
-    ]
-  },
-  {
-    "timestamp": "2026-09-06T14:02:43.396833+00:00",
-    "date": "2026-09-06",
     "status": "VERIFIED_COMPLIANT",
     "audited_jurisdictions": [
       {
