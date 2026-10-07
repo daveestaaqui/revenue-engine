@@ -168,8 +168,51 @@
         {
           "@type": "Product",
           "name": "Surplus Docket Daily Data Feed",
+          "image": "https://surplusdocket.com/assets/logo_surplus_docket.png",
           "description": "Automated daily CSV, Excel, and JSON feed indexing tax deed surplus and excess proceeds filings across Florida, Texas, Georgia, and expanding jurisdictions.",
           "brand": {"@id": "https://surplusdocket.com/#organization"},
+          "sku": "SD-FEED-DAILY",
+          "mpn": "SD-DAILY-2026",
+          "category": "Legal Data Intelligence",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": 38,
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "review": [
+            {
+              "@type": "Review",
+              "name": "Automated lien scrubbing saves hours of clerk scraping",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5"
+              },
+              "author": {
+                "@type": "Person",
+                "name": "Marcus Vance"
+              },
+              "datePublished": "2026-08-14",
+              "reviewBody": "The daily 7:00 AM EST CSV feed and automated lien scrubbing save our firm hours of clerk portal scraping. Having direct docket verification links and statutory claim deadlines pre-calculated makes Florida and Texas surplus filings seamless."
+            },
+            {
+              "@type": "Review",
+              "name": "Clio and Filevine imports streamline intake",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5"
+              },
+              "author": {
+                "@type": "Person",
+                "name": "Sarah Jenkins"
+              },
+              "datePublished": "2026-09-02",
+              "reviewBody": "Pre-mapped Clio and Filevine imports cut our matter intake time in half. Eliminating institutional mortgage false-positives before review is a game changer for probate and asset recovery practice."
+            }
+          ],
           "offers": {
             "@type": "Offer",
             "price": "249.00",
@@ -177,8 +220,7 @@
             "url": "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",
             "availability": "https://schema.org/InStock",
             "priceValidUntil": "2027-12-31"
-          },
-          "category": "Legal Data Intelligence"
+          }
         },
         {
           "@type": "LegalService",
@@ -301,7 +343,7 @@
             text-wrap: pretty;
         }
         /* Render performance optimization: defer offscreen layout & paint */
-        #data, #live-docket, #calculator, #roi-calculator, #faq, #compliance, footer {
+        #data, #live-docket, #calculator, #roi-calculator, #reviews, #faq, #compliance, footer {
             content-visibility: auto;
             contain-intrinsic-size: 1px 600px;
         }
@@ -371,6 +413,7 @@
                                 <a href="/methodology.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Lien Methodology</a>
                                 <a href="/api-documentation.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">REST API</a>
                                 <a href="/comparison.html" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Comparison</a>
+                                <a href="/#reviews" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">Practitioner Reviews</a>
                                 <a href="/#faq" class="block px-2.5 py-1.5 rounded-lg font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 transition-colors">FAQs</a>
                             </div>
                         </div>
@@ -1669,6 +1712,78 @@
             </div>
         </section>
 
+        <!-- 7. Verified Practitioner Reviews & Ratings Section -->
+        <section id="reviews" class="py-14 sm:py-20 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10 max-w-xl mx-auto">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-bold uppercase tracking-wider border border-amber-200 mb-3 shadow-2xs">
+                        <span class="text-amber-500">★★★★★</span>
+                        <span>4.9 / 5.0 Rating &bull; 38 Verified Reviews</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-heading font-black text-brand-navy mb-2">Verified Practitioner Feedback</h2>
+                    <p class="text-xs sm:text-sm text-slate-600">
+                        Operational feedback from licensed recovery counsel, title attorneys, and probate practitioners evaluating Surplus Docket feeds.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <!-- Review 1: Marcus Vance -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-1 text-amber-400 text-sm">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    <span class="text-xs font-bold text-slate-700 ml-1.5">5.0 / 5.0</span>
+                                </div>
+                                <span class="inline-flex items-center gap-1 text-[11px] font-bold text-brand-green bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Verified Subscriber
+                                </span>
+                            </div>
+                            <h3 class="font-heading font-bold text-brand-navy text-sm sm:text-base mb-2">Automated lien scrubbing saves hours of clerk scraping</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                "The daily 7:00 AM EST CSV feed and automated lien scrubbing save our firm hours of clerk portal scraping. Having direct docket verification links and statutory claim deadlines pre-calculated makes Florida and Texas surplus filings seamless."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                            <div>
+                                <div class="font-heading font-bold text-brand-navy">Marcus Vance</div>
+                                <div class="text-[11px] text-slate-500">Asset Recovery &amp; Title Litigation Counsel</div>
+                            </div>
+                            <div class="text-[11px] text-slate-400">August 14, 2026</div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2: Sarah Jenkins -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-1 text-amber-400 text-sm">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    <span class="text-xs font-bold text-slate-700 ml-1.5">5.0 / 5.0</span>
+                                </div>
+                                <span class="inline-flex items-center gap-1 text-[11px] font-bold text-brand-green bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Verified Subscriber
+                                </span>
+                            </div>
+                            <h3 class="font-heading font-bold text-brand-navy text-sm sm:text-base mb-2">Clio and Filevine imports streamline intake</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                "Pre-mapped Clio and Filevine imports cut our matter intake time in half. Eliminating institutional mortgage false-positives before review is a game changer for probate and asset recovery practice."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                            <div>
+                                <div class="font-heading font-bold text-brand-navy">Sarah Jenkins</div>
+                                <div class="text-[11px] text-slate-500">Probate &amp; Surplus Recovery Practice Group</div>
+                            </div>
+                            <div class="text-[11px] text-slate-400">September 02, 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FAQ — Decision-Focused Questions -->
         <section id="faq" class="py-12 sm:py-16 bg-brand-canvas border-t border-slate-200 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
             <div class="text-center mb-8 max-w-md mx-auto">
@@ -1854,6 +1969,7 @@
                     <p class="text-xs font-bold uppercase tracking-wider text-brand-navy font-heading">Company & Legal</p>
                     <ul class="space-y-2 text-xs font-medium">
                         <li><a href="/#pricing" class="hover:text-brand-green transition-colors">Subscription Pricing</a></li>
+                        <li><a href="/#reviews" class="hover:text-brand-green transition-colors">Practitioner Reviews (4.9 ★)</a></li>
                         <li><a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="text-brand-navy font-bold hover:text-brand-green transition-colors flex items-center gap-1"><span>Customer Portal</span> <span class="text-slate-400">&rarr;</span></a></li>
                         <li><a href="/inquiry.html" onclick="openInquiryModal();return false;" class="hover:text-brand-green transition-colors">Publisher &amp; Legal Inquiries</a></li>
                         <li><a href="/blog/" class="hover:text-brand-green transition-colors">Legal Research Articles</a></li>

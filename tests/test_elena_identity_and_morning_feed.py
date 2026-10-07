@@ -238,11 +238,22 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
         # Case 4: Inside window at 7:15 AM EDT when feed is already dispatched
         failover_time = datetime(2026, 10, 6, 7, 15, 0, tzinfo=ZoneInfo("America/New_York"))
         with patch("portal.sentinel_morning_failover.datetime") as mock_dt, \
+             patch("portal.sentinel_morning_failover.json.load", return_value={"last_dispatched_date": "2026-10-06", "status": "SUCCESS"}), \
              patch("portal.sentinel_morning_failover.subprocess.run") as mock_sub:
             mock_dt.now.return_value = failover_time
             res = check_and_failover()
             self.assertEqual(res, 0)
             mock_sub.assert_not_called()
+
+        # Case 5: Inside window at 7:15 AM EDT when feed is NOT yet dispatched (triggers failover)
+        with patch("portal.sentinel_morning_failover.datetime") as mock_dt, \
+             patch("portal.sentinel_morning_failover.json.load", return_value={"last_dispatched_date": "2026-10-05", "status": "SUCCESS"}), \
+             patch("portal.sentinel_morning_failover.subprocess.run") as mock_sub:
+            mock_sub.return_value = MagicMock(returncode=0)
+            mock_dt.now.return_value = failover_time
+            res = check_and_failover()
+            self.assertEqual(res, 0)
+            mock_sub.assert_called_once()
 
 
 if __name__ == "__main__":
