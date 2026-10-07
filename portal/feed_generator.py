@@ -309,5 +309,13 @@ def generate_b2b_exports():
     print(f"   - {api_master_path.name}")
     print(f"   - {api_health_path.name}")
 
+    # Sync generated feed files to site/exports/ for web distribution
+    site_exports = BASE_DIR / "site" / "exports"
+    site_exports.mkdir(parents=True, exist_ok=True)
+    import shutil
+    for f in EXPORTS_DIR.glob("*.*"):
+        shutil.copy2(f, site_exports / f.name)
+    print(f"📦 Synchronized public distribution feeds to: {site_exports}")
+
 if __name__ == "__main__":
     generate_b2b_exports()

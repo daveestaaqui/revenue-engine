@@ -145,6 +145,49 @@ class TestProductStructuredData(unittest.TestCase):
         self.assertIsInstance(delivery, dict)
         self.assertEqual(delivery.get("@type"), "ShippingDeliveryTime")
 
+    def test_dataset_structured_data_distribution_content_url(self):
+        """Ensure Dataset structured data has distribution with contentUrl for each entry."""
+        graph = self.json_data.get("@graph", [])
+        datasets = [node for node in graph if node.get("@type") == "Dataset"]
+        self.assertGreaterEqual(len(datasets), 1, "Expected at least one Dataset node in graph")
+
+        dataset = datasets[0]
+        self.assertEqual(dataset.get("name"), "Daily Tax Deed Surplus & Excess Proceeds Public Records Feed")
+        self.assertTrue(dataset.get("description"))
+
+        distributions = dataset.get("distribution")
+        self.assertIsInstance(distributions, list, "Dataset must have a 'distribution' list")
+        self.assertGreaterEqual(len(distributions), 3, "Expected at least 3 distribution formats (CSV, XLSX, JSON)")
+
+        for dist in distributions:
+            self.assertEqual(dist.get("@type"), "DataDownload", "Each distribution must be a DataDownload")
+            self.assertTrue(dist.get("encodingFormat"), "Each distribution must specify encodingFormat")
+            
+            # Critical GSC requirement: contentUrl
+            content_url = dist.get("contentUrl")
+            self.assertIsNotNone(content_url, "DataDownload must contain 'contentUrl' to resolve GSC issue")
+            self.assertTrue(content_url.startswith("https://surplusdocket.com/"), f"contentUrl '{content_url}' must be absolute HTTPS URL")
+
+    def test_all_site_datasets_have_valid_content_urls(self):
+        """Ensure any Dataset across all site HTML files has valid contentUrl for all distribution items."""
+        for html_file in SITE_DIR.glob("*.html"):
+            content = html_file.read_text(encoding="utf-8")
+            matches = re.findall(r'<script type="application/ld\+json">\s*(\{.*?\})\s*</script>', content, re.DOTALL)
+            for m in matches:
+                try:
+                    data = json.loads(m)
+                except Exception:
+                    continue
+                graph = data.get("@graph", [data])
+                for node in graph:
+                    if node.get("@type") == "Dataset" and "distribution" in node:
+                        distributions = node.get("distribution", [])
+                        for dist in distributions:
+                            self.assertEqual(dist.get("@type"), "DataDownload", f"In {html_file.name}, distribution item must be DataDownload")
+                            content_url = dist.get("contentUrl")
+                            self.assertIsNotNone(content_url, f"In {html_file.name}, DataDownload must have contentUrl")
+                            self.assertTrue(content_url.startswith("https://surplusdocket.com/"), f"In {html_file.name}, contentUrl must be absolute HTTPS")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -51,9 +51,30 @@
             "@id": "https://surplusdocket.com/#organization"
           },
           "distribution": [
-            {"@type": "DataDownload", "encodingFormat": "text/csv"},
-            {"@type": "DataDownload", "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
-            {"@type": "DataDownload", "encodingFormat": "application/json"}
+            {
+              "@type": "DataDownload",
+              "name": "Master Surplus Docket Feed (CSV)",
+              "encodingFormat": "text/csv",
+              "contentUrl": "https://surplusdocket.com/exports/Master_Surplus_Lead_Feed.csv"
+            },
+            {
+              "@type": "DataDownload",
+              "name": "Master Surplus Docket Feed (Excel)",
+              "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "contentUrl": "https://surplusdocket.com/exports/Master_Surplus_Lead_Feed.xlsx"
+            },
+            {
+              "@type": "DataDownload",
+              "name": "Programmatic Feed Endpoint (JSON)",
+              "encodingFormat": "application/json",
+              "contentUrl": "https://surplusdocket.com/api/v1/feed.json"
+            },
+            {
+              "@type": "DataDownload",
+              "name": "Sample Surplus Docket Export (CSV)",
+              "encodingFormat": "text/csv",
+              "contentUrl": "https://surplusdocket.com/assets/sample_docket.csv"
+            }
           ]
         },
         {
