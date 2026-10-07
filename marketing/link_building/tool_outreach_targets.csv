@@ -1,7 +1,7 @@
 name,organization,contact_email,target_type,category,da,jurisdiction,status,last_contacted,notes
-Clinical Director,Harvard Legal Aid Bureau,hlab@law.harvard.edu,law_school_clinic,Legal Education,93,National,DRAFTED,2026-09-30T13:12:32.598509+00:00,Tyler v. Hennepin clinical research and student equity guidance
-Clinical Faculty Advisors,Stanford Community Law Clinic,communitylawclinic@law.stanford.edu,law_school_clinic,Legal Education,93,CA,DRAFTED,2026-09-30T13:12:32.599723+00:00,Consumer and post-foreclosure housing defense
-Clinical Faculty,UC Berkeley Center for Consumer Law & Economic Justice,consumerlaw@law.berkeley.edu,law_school_clinic,Legal Education,92,CA,DRAFTED,2026-09-30T13:12:32.600833+00:00,Tyler precedent and statutory fee caps
+Clinical Director,Harvard Legal Aid Bureau,hlab@law.harvard.edu,law_school_clinic,Legal Education,93,National,SENT,2026-10-07T20:25:53.551346+00:00,Tyler v. Hennepin clinical research and student equity guidance
+Clinical Faculty Advisors,Stanford Community Law Clinic,communitylawclinic@law.stanford.edu,law_school_clinic,Legal Education,93,CA,SENT,2026-10-07T20:25:55.839567+00:00,Consumer and post-foreclosure housing defense
+Clinical Faculty,UC Berkeley Center for Consumer Law & Economic Justice,consumerlaw@law.berkeley.edu,law_school_clinic,Legal Education,92,CA,SENT,2026-10-07T20:25:58.095011+00:00,Tyler precedent and statutory fee caps
 Housing Clinic Director,University of Texas School of Law Clinics,clinics@law.utexas.edu,law_school_clinic,Legal Education,91,TX,SENT,2026-09-30T19:47:40.072742+00:00,Texas Tax Code 34.04 excess proceeds clinical assistance
 Civil Clinic Director,University of Florida Levin College of Law,clinics@law.ufl.edu,law_school_clinic,Legal Education,89,FL,BOUNCED_INVALID_ADDRESS,2026-09-30T19:47:43.168411+00:00,Bounced - non-existent university inbox (550 5.4.1 Access denied)
 Foreclosure Clinic Coordinator,University of Miami School of Law,clinics@law.miami.edu,law_school_clinic,Legal Education,87,FL,SENT,2026-09-30T19:47:53.729017+00:00,South Florida civil registry and excess proceeds claims
@@ -20,10 +20,10 @@ LPM Director,New York State Bar Association Practice Resources,lpm@nysba.org,bar
 Editor in Chief,Lawyerist Editorial Desk,editor@lawyerist.com,legaltech_blogger,Media / Review,68,National,BOUNCED_INVALID_ADDRESS,2026-10-05T21:48:13.508220+00:00,Bounced - 550 5.1.1 User unknown (use webform https://lawyerist.com/contact/)
 Bob Ambrogi,LawNext LegalTech Directory,editor@lawnext.com,legaltech_blogger,Media / Review,58,National,BOUNCED_INVALID_ADDRESS,2026-10-05T21:48:21.359894+00:00,Bounced - 550 5.1.1 NoSuchUser (use directory form https://directory.lawnext.com/claim-or-add/)
 Editorial Team,Legal Technology Hub,contact@legaltechnologyhub.com,legaltech_blogger,Media / Review,64,National,BOUNCED_INVALID_ADDRESS,2026-10-05T21:48:16.014981+00:00,Bounced - 550 Invalid Recipient (use webform https://www.legaltechnologyhub.com/submit)
-Editor,Legal IT Professionals,editor@legalitprofessionals.com,legaltech_blogger,Media / Review,54,National,READY_FOR_OUTREACH,,Legal IT Professionals workflow automation guest article
-Editor,Artificial Lawyer,richard@artificiallawyer.com,legaltech_blogger,Media / Review,56,National,READY_FOR_OUTREACH,,Court registry data extraction and title scrubbing tech
+Editor,Legal IT Professionals,editor@legalitprofessionals.com,legaltech_blogger,Media / Review,54,National,SENT,2026-10-07T20:25:48.601820+00:00,Legal IT Professionals workflow automation guest article
+Editor,Artificial Lawyer,richard@artificiallawyer.com,legaltech_blogger,Media / Review,56,National,SENT,2026-10-07T20:25:46.261570+00:00,Court registry data extraction and title scrubbing tech
 Legal Tech Editor,Above The Law,tips@abovethelaw.com,legaltech_blogger,Media / Review,79,National,SENT,2026-10-02T19:44:25.001358+00:00,Above The Law legaltech feature on Tyler v. Hennepin
 Pulse Editor,Law360 Pulse / Legal Tech,pulse@law360.com,legaltech_blogger,Media / Review,85,National,SENT,2026-10-02T19:44:15.992099+00:00,Law360 legaltech innovation spotlight
 Community Director,BiggerPockets Foreclosure Community,editor@biggerpockets.com,real_estate_community,Community,84,National,SENT,2026-10-02T19:44:22.190768+00:00,BiggerPockets tax sale calculator embed widget
 Executive Director,National Real Estate Investors Association (REIA),info@nationalreia.org,real_estate_community,Community,62,National,SENT,2026-10-05T21:48:18.696923+00:00,National REIA member statutory surplus resource
-Research Director,Tax Sale Resources Community,support@taxsaleresources.com,real_estate_community,Community,48,National,READY_FOR_OUTREACH,,Tax sale excess funds statutory countdown integration
+Research Director,Tax Sale Resources Community,support@taxsaleresources.com,real_estate_community,Community,48,National,SENT,2026-10-07T20:25:51.263042+00:00,Tax sale excess funds statutory countdown integration
