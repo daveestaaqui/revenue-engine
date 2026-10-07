@@ -2,7 +2,7 @@
 **Target Subreddit:** `r/legaltech`  
 **Flair:** `Tool / Resource`  
 **Suggested Title:** `Built a free, embeddable statutory deadline & fee calculator for foreclosure surplus recovery (6 states)`  
-**Generated Date:** 2026-10-06 13:17 UTC
+**Generated Date:** 2026-10-07 13:20 UTC
 
 ---
 

@@ -3,7 +3,7 @@
 **To:** Excess Funds Hearing Coordinator  
 **Agency:** Fulton County Sheriff & Superior Court Clerk, Fulton County, GA  
 **Department:** Tax Sale & Excess Funds Division  
-**Date:** October 06, 2026  
+**Date:** October 07, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Fulton County Web Portal)
 
 ---

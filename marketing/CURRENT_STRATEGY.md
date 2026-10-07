@@ -1,12 +1,12 @@
 # 📊 Surplus Docket — Autonomous Marketing Strategy & Optimization Briefing
-**Last Updated:** October 06, 2026 at 13:17 UTC  
+**Last Updated:** October 07, 2026 at 13:20 UTC  
 **Optimization Mode:** Multi-Factor Empirical Model (Surplus Equity + Firm Density + Deliverability)
 
 ---
 
 ## 🚀 1. Executive Directive: High-Yield Resource Calibration
 
-Based on automated analysis of **712 technical outreach points**, **1229 addressable real estate & probate law practices**, and **$3,909,100.00 verified public registry surplus inventory** across 43 court dockets:
+Based on automated analysis of **736 technical outreach points**, **1229 addressable real estate & probate law practices**, and **$3,909,100.00 verified public registry surplus inventory** across 43 court dockets:
 
 1. **PRIMARY POWERHOUSE: FL (31.6% Resource Allocation)**
    - **Monitored Surplus Pool:** $1,444,800.00 across 20 verified dockets.
@@ -27,10 +27,10 @@ Based on automated analysis of **712 technical outreach points**, **1229 address
 | State | Priority Weight | Addressable Firms | Active Surplus | Potential Legal Fees | Governing Statute | Strategic Role |
 | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **FL** | **31.6%** | 392 | $1,444,800 | $288,960 | Fla. Stat. § 197.582 | Core High-Volume Administrative Feed |
-| **TX** | **15.4%** | 252 | $393,200 | $98,300 | Tex. Tax Code § 34.04 | Judicial District Court Litigation Hub |
+| **TX** | **15.5%** | 252 | $393,200 | $98,300 | Tex. Tax Code § 34.04 | Judicial District Court Litigation Hub |
 | **CA** | **14.9%** | 206 | $686,500 | $137,300 | Cal. Rev. & Tax Code § 4675 | High-Equity Board of Supervisors Claims |
 | **GA** | **15.8%** | 150 | $498,700 | $99,740 | O.C.G.A. § 48-4-5 | Sheriff & Superior Court Interpleader Hub |
-| **NC** | **12.1%** | 125 | $501,600 | $100,320 | N.C.G.S. § 105-374(q) | Judicial Foreclosure & Upset Bid Review |
+| **NC** | **12.2%** | 125 | $501,600 | $100,320 | N.C.G.S. § 105-374(q) | Judicial Foreclosure & Upset Bid Review |
 | **TN** | **10.2%** | 104 | $384,300 | $76,860 | T.C.A. § 67-5-2501 | Chancery Court Motion & Probate Expansion |
 
 ---
