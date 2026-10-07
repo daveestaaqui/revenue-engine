@@ -49,6 +49,7 @@ class TestProductStructuredData(unittest.TestCase):
         self.assertEqual(agg.get("@type"), "AggregateRating")
         self.assertEqual(str(agg.get("ratingValue")), "4.9")
         self.assertEqual(int(agg.get("reviewCount")), 38)
+        self.assertEqual(int(agg.get("ratingCount")), 38)
         self.assertEqual(str(agg.get("bestRating")), "5")
         self.assertEqual(str(agg.get("worstRating")), "1")
 
