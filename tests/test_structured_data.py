@@ -91,6 +91,61 @@ class TestProductStructuredData(unittest.TestCase):
             self.assertIn(author_name, self.html, f"Author '{author_name}' must be visible in HTML body")
             self.assertIn(review_snippet, self.html, f"Review text snippet '{review_snippet}' must be visible in HTML body")
 
+    def test_merchant_listings_compliance(self):
+        """Ensure Product node resolves all 5 Google Merchant listings issues."""
+        graph = self.json_data.get("@graph", [])
+        product = [node for node in graph if node.get("@type") == "Product"][0]
+
+        # 1. Critical: Image field (must be list of image URLs)
+        images = product.get("image")
+        self.assertIsInstance(images, list, "Product 'image' must be a list of URLs for Merchant listings")
+        self.assertGreaterEqual(len(images), 1, "Must contain at least 1 image URL")
+        for img in images:
+            self.assertTrue(img.startswith("https://surplusdocket.com/"), "Image must be absolute HTTPS URL")
+
+        # 2. Brand object type
+        brand = product.get("brand")
+        self.assertIsInstance(brand, dict, "Product 'brand' must be an object")
+        self.assertEqual(brand.get("@type"), "Brand", "Brand must have @type: 'Brand'")
+        self.assertEqual(brand.get("name"), "Surplus Docket", "Brand must have name: 'Surplus Docket'")
+
+        # 3. Offers checks
+        offers = product.get("offers")
+        self.assertIsInstance(offers, dict, "Product must have 'offers' object")
+
+        # 3a. validFrom
+        self.assertTrue(offers.get("validFrom"), "Offers must contain 'validFrom'")
+        self.assertRegex(offers.get("validFrom"), r"^\d{4}-\d{2}-\d{2}", "validFrom must be ISO date")
+
+        # 3b. hasMerchantReturnPolicy
+        return_policy = offers.get("hasMerchantReturnPolicy")
+        self.assertIsInstance(return_policy, dict, "Offers must contain 'hasMerchantReturnPolicy'")
+        self.assertEqual(return_policy.get("@type"), "MerchantReturnPolicy")
+        self.assertEqual(return_policy.get("applicableCountry"), "US")
+        self.assertEqual(return_policy.get("returnPolicyCategory"), "https://schema.org/MerchantReturnFiniteReturnWindow")
+        self.assertEqual(return_policy.get("merchantReturnDays"), 14)
+        self.assertEqual(return_policy.get("returnFees"), "https://schema.org/FreeReturn")
+        self.assertEqual(return_policy.get("merchantReturnLink"), "https://surplusdocket.com/refund-policy.html")
+
+        # 3c. shippingDetails
+        shipping = offers.get("shippingDetails")
+        self.assertIsInstance(shipping, dict, "Offers must contain 'shippingDetails'")
+        self.assertEqual(shipping.get("@type"), "OfferShippingDetails")
+        
+        rate = shipping.get("shippingRate")
+        self.assertIsInstance(rate, dict)
+        self.assertEqual(rate.get("value"), "0.00")
+        self.assertEqual(rate.get("currency"), "USD")
+
+        destination = shipping.get("shippingDestination")
+        self.assertIsInstance(destination, dict)
+        self.assertEqual(destination.get("addressCountry"), "US")
+
+        delivery = shipping.get("deliveryTime")
+        self.assertIsInstance(delivery, dict)
+        self.assertEqual(delivery.get("@type"), "ShippingDeliveryTime")
+
 
 if __name__ == "__main__":
     unittest.main()
+

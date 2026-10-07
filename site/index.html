@@ -168,9 +168,15 @@
         {
           "@type": "Product",
           "name": "Surplus Docket Daily Data Feed",
-          "image": "https://surplusdocket.com/assets/logo_surplus_docket.png",
+          "image": [
+            "https://surplusdocket.com/assets/logo_surplus_docket.png",
+            "https://surplusdocket.com/assets/og_image.png"
+          ],
           "description": "Automated daily CSV, Excel, and JSON feed indexing tax deed surplus and excess proceeds filings across Florida, Texas, Georgia, and expanding jurisdictions.",
-          "brand": {"@id": "https://surplusdocket.com/#organization"},
+          "brand": {
+            "@type": "Brand",
+            "name": "Surplus Docket"
+          },
           "sku": "SD-FEED-DAILY",
           "mpn": "SD-DAILY-2026",
           "category": "Legal Data Intelligence",
@@ -219,7 +225,44 @@
             "priceCurrency": "USD",
             "url": "https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21",
             "availability": "https://schema.org/InStock",
-            "priceValidUntil": "2027-12-31"
+            "validFrom": "2026-01-01",
+            "priceValidUntil": "2027-12-31",
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": "US",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 14,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/FreeReturn",
+              "merchantReturnLink": "https://surplusdocket.com/refund-policy.html"
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "0.00",
+                "currency": "USD"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "US"
+              },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 0,
+                  "maxValue": 0,
+                  "unitCode": "DAY"
+                },
+                "transitTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 0,
+                  "maxValue": 0,
+                  "unitCode": "DAY"
+                }
+              }
+            }
           }
         },
         {
