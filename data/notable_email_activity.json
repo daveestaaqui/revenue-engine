@@ -1,5 +1,31 @@
 [
   {
+    "id": "BOUNCE-LEGALIT-1791404747",
+    "timestamp": "2026-10-07T20:25:50.000000",
+    "sender_name": "Mail Delivery Subsystem",
+    "sender_email": "mailer-daemon@googlemail.com",
+    "channel": "EMAIL",
+    "category": "HARD_BOUNCE",
+    "subject": "Delivery Status Notification (Failure) \u2014 editor@legalitprofessionals.com",
+    "inbound_snippet": "Your message wasn't delivered to editor@legalitprofessionals.com because the address couldn't be found, or is unable to receive mail. 550 5.1.1 Recipient address rejected: User unknown in relay recipient table.",
+    "summary": "Delivery failure for Legal IT Professionals (editor@legalitprofessionals.com). Address rejected (550 User unknown). Added to global bounced blocklist and marked BOUNCED in tool outreach registry.",
+    "action_taken": "BLOCKLIST_UPDATED_EMAIL_PURGED",
+    "notable": true
+  },
+  {
+    "id": "BOUNCE-BERKELEY-1791404757",
+    "timestamp": "2026-10-07T20:26:00.000000",
+    "sender_name": "Mail Delivery Subsystem",
+    "sender_email": "mailer-daemon@googlemail.com",
+    "channel": "EMAIL",
+    "category": "HARD_BOUNCE",
+    "subject": "Delivery Status Notification (Failure) \u2014 consumerlaw@law.berkeley.edu",
+    "inbound_snippet": "Your message wasn't delivered to consumerlaw@law.berkeley.edu because the address couldn't be found, or is unable to receive mail. 550 5.1.1 The email account that you tried to reach does not exist.",
+    "summary": "Delivery failure for UC Berkeley Center for Consumer Law & Economic Justice (consumerlaw@law.berkeley.edu). Address non-existent (550 NoSuchUser). Added to global bounced blocklist and marked BOUNCED in tool outreach registry.",
+    "action_taken": "BLOCKLIST_UPDATED_EMAIL_PURGED",
+    "notable": true
+  },
+  {
     "id": "INQ-COHEN-1790713002",
     "timestamp": "2026-09-29T16:16:42.208843",
     "sender_name": "Alden (Cohen Asset Recovery)",

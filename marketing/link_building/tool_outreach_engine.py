@@ -112,6 +112,8 @@ def load_unsubscribed_domains() -> set:
 BOUNCED_EMAILS = {
     "cpm@ncbar.org",
     "editor@lawyerist.com",
+    "editor@legalitprofessionals.com",
+    "consumerlaw@law.berkeley.edu",
     "contact@legaltechnologyhub.com",
     "editor@lawnext.com",
     "clinics@law.ufl.edu",
