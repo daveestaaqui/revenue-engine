@@ -1,5 +1,18 @@
 [
   {
+    "id": "GSC-VALIDATED-10030335",
+    "timestamp": "2026-10-08T09:27:04.000000",
+    "sender_name": "Google Search Console",
+    "sender_email": "sc-noreply@google.com",
+    "channel": "EMAIL",
+    "category": "SEARCH_CONSOLE_VALIDATION",
+    "subject": "Product snippets structured data issues successfully fixed for site https://surplusdocket.com/",
+    "inbound_snippet": "Google has validated your fix for Product snippets structured data issues on https://surplusdocket.com/. The specific issue validated was: Missing field 'aggregateRating'. 1 pages on your site were validated as fixed.",
+    "summary": "Google Search Console officially validated the schema fix for Product snippets (aggregateRating) on https://surplusdocket.com/. 1 affected pages passed Google's validation.",
+    "action_taken": "VALIDATED_FIX_RECORDED",
+    "notable": true
+  },
+  {
     "id": "BOUNCE-LEGALIT-1791404747",
     "timestamp": "2026-10-07T20:25:50.000000",
     "sender_name": "Mail Delivery Subsystem",
