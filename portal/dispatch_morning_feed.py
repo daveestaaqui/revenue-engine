@@ -29,6 +29,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
+from enrichment.processor import build_direct_clerk_url, is_generic_homepage
+
 # Optional local .env loading
 ENV_FILE = BASE_DIR / ".env"
 if ENV_FILE.exists():
@@ -91,16 +93,28 @@ def get_feed_statistics():
 
         top_dockets = []
         for _, r in df.head(6).iterrows():
+            docket_id = str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending")
+            st = str(r.get("State") or "FL")
+            cty = str(r.get("County") or r.get("COUNTY") or "")
+            rec_type = str(r.get("Record_Type") or r.get("TYPE") or "")
+            parcel_val = str(r.get("Parcel_ID") or "")
+            raw_clerk = str(r.get("Clerk_Verification_URL") or "")
+
+            if not raw_clerk or is_generic_homepage(raw_clerk):
+                direct_url = build_direct_clerk_url(cty, st, docket_id, parcel_id=parcel_val, record_type=rec_type)
+            else:
+                direct_url = raw_clerk
+
             top_dockets.append({
-                "docket": str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
+                "docket": docket_id,
                 "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
                 "address": str(r.get("Property_Address") or r.get("SITUS") or ""),
                 "amount": float(r.get(surplus_col, 0.0)),
-                "state": str(r.get("State") or "FL"),
-                "county": str(r.get("County") or r.get("COUNTY") or ""),
+                "state": st,
+                "county": cty,
                 "statute": str(r.get("Governing_Statute") or ""),
                 "deadline": str(r.get("Statutory_Deadline_Window") or r.get("Claim_Deadline_Date") or ""),
-                "clerk_url": str(r.get("Clerk_Verification_URL") or "https://surplusdocket.com/practitioner-toolkit.html"),
+                "clerk_url": direct_url,
                 "urgency": str(r.get("Claim_Urgency_Tier") or r.get("Opportunity_Tier") or ""),
             })
 
@@ -130,16 +144,28 @@ def get_feed_statistics():
             if st:
                 jurisdiction_counts[st] = jurisdiction_counts.get(st, 0) + 1
             if len(top_dockets) < 6:
+                docket_id = str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending")
+                st_val = str(r.get("State") or "FL")
+                cty_val = str(r.get("County") or r.get("COUNTY") or "")
+                rec_type = str(r.get("Record_Type") or r.get("TYPE") or "")
+                parcel_val = str(r.get("Parcel_ID") or "")
+                raw_clerk = str(r.get("Clerk_Verification_URL") or "")
+
+                if not raw_clerk or is_generic_homepage(raw_clerk):
+                    direct_url = build_direct_clerk_url(cty_val, st_val, docket_id, parcel_id=parcel_val, record_type=rec_type)
+                else:
+                    direct_url = raw_clerk
+
                 top_dockets.append({
-                    "docket": str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending"),
+                    "docket": docket_id,
                     "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
                     "address": str(r.get("Property_Address") or r.get("SITUS") or ""),
                     "amount": amt,
-                    "state": str(r.get("State") or "FL"),
-                    "county": str(r.get("County") or r.get("COUNTY") or ""),
+                    "state": st_val,
+                    "county": cty_val,
                     "statute": str(r.get("Governing_Statute") or ""),
                     "deadline": str(r.get("Statutory_Deadline_Window") or r.get("Claim_Deadline_Date") or ""),
-                    "clerk_url": str(r.get("Clerk_Verification_URL") or "https://surplusdocket.com/practitioner-toolkit.html"),
+                    "clerk_url": direct_url,
                     "urgency": str(r.get("Claim_Urgency_Tier") or r.get("Opportunity_Tier") or ""),
                 })
 
@@ -200,7 +226,7 @@ def compose_email_content(subscriber, stats, date_str):
         clerk_markup = f'''
             <div style="margin-top: 8px;">
                 <a href="{d['clerk_url']}" target="_blank" style="font-size: 12px; font-weight: 600; color: #1b365d; text-decoration: underline;">
-                    Open Official Clerk Registry &rarr;
+                    Open Direct Docket Listing &rarr;
                 </a>
             </div>
         ''' if d.get("clerk_url") else ''

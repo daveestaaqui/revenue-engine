@@ -22,6 +22,8 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from enrichment.processor import build_direct_clerk_url, is_generic_homepage
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 EXPORTS_DIR = BASE_DIR / "exports"
@@ -152,23 +154,28 @@ def normalize_column_name(col_raw: str) -> str:
     return col_raw
 
 
-def heal_clerk_verification_url(county: str, state: str, existing_url: str = "") -> str:
+def heal_clerk_verification_url(county: str, state: str, existing_url: str = "", case_no: str = None, record_type: str = None, parcel_id: str = None) -> str:
     """
     Validates and self-heals a Clerk Verification URL.
-    Restores invalid, placeholder, or dead URLs to the official court records search root.
+    Upgrades generic town/county homepages or missing URLs to direct docket/case listing endpoints.
     """
     county_clean = (county or "").strip().title()
     state_clean = (state or "").strip().upper()
 
-    # Check if existing URL is already valid and secure
+    # Check if existing URL is already valid, specific, and not a generic homepage
     if existing_url and isinstance(existing_url, str):
         url_stripped = existing_url.strip()
         if (url_stripped.startswith("https://") and
             "placeholder" not in url_stripped.lower() and
             "todo" not in url_stripped.lower() and
             "example.com" not in url_stripped.lower() and
-            len(url_stripped) > 12):
+            len(url_stripped) > 12 and
+            not is_generic_homepage(url_stripped)):
             return url_stripped
+
+    # If case number is available, resolve directly to active court/clerk listing
+    if case_no and str(case_no).strip() not in ("Pending", "N/A", "None", ""):
+        return build_direct_clerk_url(county_clean, state_clean, str(case_no).strip(), parcel_id=parcel_id, record_type=record_type)
 
     # Lookup official county clerk portal
     key = (state_clean, county_clean)
@@ -218,15 +225,16 @@ def self_heal_record(record: dict, default_state: str = "FL", default_county: st
 
     sale_date = str(healed.get("sale_date") or datetime.now().strftime("%Y-%m-%d")).strip()
 
-    # 3. Heal Clerk Verification URL
-    raw_url = str(healed.get("clerk_verification_url") or "")
-    healed_url = heal_clerk_verification_url(cty, st, raw_url)
-
     parcel_id = str(healed.get("parcel_id") or record.get("Parcel_ID") or record.get("PARCEL_ID") or record.get("Folio") or record.get("PIN") or "").strip()
     if not parcel_id or parcel_id.lower() in ("nan", "none", "null"):
         parcel_id = "N/A"
 
     record_type = str(healed.get("TYPE", record.get("TYPE", "TAX_DEED"))).strip()
+
+    # 3. Heal Clerk Verification URL to direct listing
+    raw_url = str(healed.get("clerk_verification_url") or "")
+    healed_url = heal_clerk_verification_url(cty, st, raw_url, case_no=case_no, record_type=record_type, parcel_id=parcel_id)
+
     # 4. Standard canonical record output
     canonical = {
         "Case_or_TaxDeed_No": case_no,

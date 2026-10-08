@@ -255,7 +255,51 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
             self.assertEqual(res, 0)
             mock_sub.assert_called_once()
 
+    def test_morning_feed_links_are_direct_listings_not_generic_homepages(self):
+        """Verify that morning feed featured dockets link directly to case listings, not generic town/county homepages."""
+        from portal.dispatch_morning_feed import get_feed_statistics, compose_email_content
+        from enrichment.processor import is_generic_homepage, build_direct_clerk_url
+
+        # 1. Test direct URL builder across multiple jurisdictions
+        url_fl = build_direct_clerk_url("Palm Beach", "FL", "2024-TD-004501")
+        self.assertIn("caseNumber=2024-TD-004501", url_fl)
+        self.assertFalse(is_generic_homepage(url_fl))
+
+        url_ca = build_direct_clerk_url("Los Angeles", "CA", "2024-CA-008120")
+        self.assertIn("docket=2024-CA-008120", url_ca)
+        self.assertFalse(is_generic_homepage(url_ca))
+
+        url_tx = build_direct_clerk_url("Harris", "TX", "2024-TX-04812")
+        self.assertIn("Cas=2024-TX-04812", url_tx)
+        self.assertFalse(is_generic_homepage(url_tx))
+
+        url_ga = build_direct_clerk_url("Fulton", "GA", "2024-GA-003810")
+        self.assertIn("docket=2024-GA-003810", url_ga)
+        self.assertFalse(is_generic_homepage(url_ga))
+
+        # 2. Test active feed statistics top dockets
+        stats = get_feed_statistics()
+        self.assertGreater(len(stats["top_dockets"]), 0)
+        for docket in stats["top_dockets"]:
+            url = docket["clerk_url"]
+            self.assertTrue(url.startswith("https://"))
+            self.assertFalse(is_generic_homepage(url), f"URL '{url}' for docket {docket['docket']} is a generic homepage!")
+            # Must contain docket/case identifier in query or path
+            self.assertTrue(
+                "?" in url or "dockets" in url or "details" in url.lower() or "casesearch" in url.lower(),
+                f"URL '{url}' does not deep-link directly to case record"
+            )
+
+        # 3. Test email composition renders direct listing links and CTA
+        sub = {"name": "Test Counsel", "firm": "Test Law LLP", "email": "test@testlaw.com"}
+        text_feed, html_feed = compose_email_content(sub, stats, "October 08, 2026")
+        self.assertIn("Open Direct Docket Listing &rarr;", html_feed)
+        for docket in stats["top_dockets"]:
+            self.assertIn(docket["clerk_url"], html_feed)
+            self.assertIn(docket["clerk_url"], text_feed)
+
 
 if __name__ == "__main__":
     unittest.main()
+
 
