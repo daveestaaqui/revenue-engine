@@ -13,6 +13,19 @@
     "notable": true
   },
   {
+    "id": "BOUNCE-TBA-1791236889",
+    "timestamp": "2026-10-07T23:56:23.000000",
+    "sender_name": "Mail Delivery Subsystem",
+    "sender_email": "mailer-daemon@googlemail.com",
+    "channel": "EMAIL",
+    "category": "DELIVERY_DELAY_TIMED_OUT",
+    "subject": "Delivery incomplete / Delivery Status Notification (Delay) \u2014 tba@tba.org",
+    "inbound_snippet": "The recipient server did not accept our requests to connect ... mail.tba.org 12.147.102.138: timed out. Final-Recipient: rfc822; tba@tba.org. Status: 4.4.1",
+    "summary": "Delivery incomplete for Tennessee Bar Association LPM Resources (tba@tba.org). Remote mail server timed out (mail.tba.org 12.147.102.138). Added to suppressed bounced email blocklist and marked BOUNCED_TIMED_OUT in outreach targets registry.",
+    "action_taken": "BLOCKLIST_UPDATED_EMAIL_PURGED",
+    "notable": true
+  },
+  {
     "id": "BOUNCE-LEGALIT-1791404747",
     "timestamp": "2026-10-07T20:25:50.000000",
     "sender_name": "Mail Delivery Subsystem",

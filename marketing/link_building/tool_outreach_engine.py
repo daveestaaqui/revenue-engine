@@ -119,6 +119,7 @@ BOUNCED_EMAILS = {
     "clinics@law.ufl.edu",
     "lawclinics@emory.edu",
     "law_clinics@unc.edu",
+    "tba@tba.org",
 }
 try:
     from outreach.fix_bounces_and_rebuild import BOUNCED_EMAILS as MASTER_BOUNCED_EMAILS
