@@ -476,3 +476,8 @@
 [2026-10-09 09:22:46]   ⏭️ Skipped non-prospect from mailer-daemon@googlemail.com (Sub: 'Delivery Status Notification (Failure)'): Message identified as automated notification, bounce, or system alert
 [2026-10-09 09:22:47]   🧹 Auto-unsubscribed and cleared marketing email from onlineservices@em.citizensbankonline.com
 [2026-10-09 16:24:42]   ⏭️ Skipped non-prospect from noreply@careforth.com (Sub: 'Missing Massachusetts Daily Check In'): Message identified as automated notification, bounce, or system alert
+[2026-10-09 21:04:52]   🛑 Recorded 1 bounced address(es) to blocklist: lpm@americanbar.org
+[2026-10-09 21:04:52]   ⏭️ Skipped non-prospect from mailer-daemon@googlemail.com (Sub: 'Delivery Status Notification (Failure)'): Message identified as automated notification, bounce, or system alert
+[2026-10-09 21:04:52]   🛑 Recorded 1 bounced address(es) to blocklist: clinics@law.georgetown.edu
+[2026-10-09 21:04:52]   ⏭️ Skipped non-prospect from mailer-daemon@googlemail.com (Sub: 'Delivery Status Notification (Failure)'): Message identified as automated notification, bounce, or system alert
+[2026-10-09 21:04:53]   ⏭️ Skipped non-prospect from support@legalfuel.zendesk.com (Sub: '[Request received] Free surplus recovery'): Message identified as automated notification, bounce, or system alert
