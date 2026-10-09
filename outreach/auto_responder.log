@@ -471,3 +471,5 @@
 [2026-10-07 13:43:25]   ⏭️ Skipped non-prospect from DoNotReply@MyHealth.AtriusHealth.org (Sub: 'MyHealth Online - New Message'): Message identified as automated notification, bounce, or system alert
 [2026-10-07 19:32:43]   🧹 Auto-unsubscribed and cleared marketing email from hollisterco@tm.hollisterco.com
 [2026-10-08 10:56:44]   🧹 Auto-unsubscribed and cleared marketing email from sc-noreply@google.com
+[2026-10-09 02:24:48]   ⏭️ Skipped non-prospect from xfinity@account.xfinity.com (Sub: 'Your bill is available to view online'): Sender 'xfinity@account.xfinity.com' is not in verified target database and not a statutory inquiry
+[2026-10-09 02:24:48]   ⏭️ Skipped non-prospect from googleplay-noreply@google.com (Sub: 'Updates to Google Play Terms of Service'): Message identified as automated notification, bounce, or system alert
