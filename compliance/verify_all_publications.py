@@ -31,6 +31,9 @@ from pathlib import Path
 
 # Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+from enrichment.processor import is_broken_or_invalid_url
+
 COMPLIANCE_DIR = BASE_DIR / "compliance"
 EXPORTS_DIR = BASE_DIR / "exports"
 SITE_DIR = BASE_DIR / "site"
@@ -235,6 +238,8 @@ def validate_single_record(record: dict, source_label: str = "Record") -> list:
     # 8. Clerk Verification URL Integrity
     if not clerk_url.startswith("https://"):
         errors.append(f"[{source_label}] Clerk URL must be secure HTTPS: '{clerk_url}'")
+    elif is_broken_or_invalid_url(clerk_url):
+        errors.append(f"[{source_label}] Clerk URL '{clerk_url}' is a known broken or 404 endpoint")
     else:
         domain_match = any(d in clerk_url.lower() for d in VERIFIED_CLERK_DOMAINS)
         if not domain_match and not any(clerk_url.lower().endswith(tld) for tld in [".gov", ".gov/", ".us", ".us/"]):

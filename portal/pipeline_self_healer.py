@@ -22,7 +22,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from enrichment.processor import build_direct_clerk_url, is_generic_homepage
+from enrichment.processor import build_direct_clerk_url, is_generic_homepage, is_broken_or_invalid_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
@@ -31,40 +31,40 @@ EXPORTS_DIR = BASE_DIR / "exports"
 # Master Verified County Court Clerk Registries (FL, TX, GA, NC, TN, CA)
 VERIFIED_COUNTY_CLERK_REGISTRIES = {
     # Florida
-    ("FL", "Orange"): "https://www.myorangeclerk.com/",
-    ("FL", "Hillsborough"): "https://www.hillsclerk.com/",
-    ("FL", "Miami-Dade"): "https://www.miamidadeclerk.gov/",
-    ("FL", "Palm Beach"): "https://www.mypalmbeachclerk.com/",
-    ("FL", "Broward"): "https://www.browardclerk.org/",
-    ("FL", "Duval"): "https://www.duvalclerk.com/",
-    ("FL", "Pinellas"): "https://www.mypinellasclerk.org/",
+    ("FL", "Orange"): "https://myeclerk.myorangeclerk.com/",
+    ("FL", "Hillsborough"): "https://www.hillsclerk.com/taxdeeds",
+    ("FL", "Miami-Dade"): "https://www.miamidadeclerk.gov/clerk/property-tax-deeds.page",
+    ("FL", "Palm Beach"): "https://www.mypalmbeachclerk.com/casesearch",
+    ("FL", "Broward"): "https://www.browardclerk.org/Divisions/TaxDeeds",
+    ("FL", "Duval"): "https://www.duvalclerk.com/departments/tax-deeds",
+    ("FL", "Pinellas"): "https://www.mypinellasclerk.org/Home/Tax-Deeds",
     # Texas
-    ("TX", "Harris"): "https://www.hcdistrictclerk.com/",
-    ("TX", "Dallas"): "https://www.dallascounty.org/",
-    ("TX", "Tarrant"): "https://www.tarrantcountytx.gov/",
-    ("TX", "Travis"): "https://www.traviscountytx.gov/",
-    ("TX", "Bexar"): "https://www.bexar.org/districtclerk",
+    ("TX", "Harris"): "https://www.hcdistrictclerk.com/Common/Civil/CourtRegistry.aspx",
+    ("TX", "Dallas"): "https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php",
+    ("TX", "Tarrant"): "https://www.tarrantcountytx.gov/en/district-clerk/case-search.html",
+    ("TX", "Travis"): "https://www.traviscountytx.gov/district-clerk/case-search",
+    ("TX", "Bexar"): "https://www.bexar.org/districtclerk/case-search",
     # Georgia
-    ("GA", "Fulton"): "https://www.fultonclerk.org/",
-    ("GA", "DeKalb"): "https://www.dekalbcountytax.org/",
-    ("GA", "Gwinnett"): "https://www.gwinnetttaxcommissioner.com/",
-    ("GA", "Cobb"): "https://www.cobbtax.org/",
+    ("GA", "Fulton"): "https://www.fultonclerk.org/536/Records-Search-Center",
+    ("GA", "DeKalb"): "https://www.dekalbcountytax.org/excess-funds",
+    ("GA", "Gwinnett"): "https://www.gwinnetttaxcommissioner.com/property-tax/tax-sale-excess-funds",
+    ("GA", "Cobb"): "https://www.cobbtax.org/property/tax_sale/index.php",
     # North Carolina
-    ("NC", "Wake"): "https://www.nccourts.gov/locations/wake",
-    ("NC", "Mecklenburg"): "https://www.nccourts.gov/locations/mecklenburg",
-    ("NC", "Durham"): "https://www.nccourts.gov/locations/durham",
-    ("NC", "Guilford"): "https://www.nccourts.gov/locations/guilford",
+    ("NC", "Wake"): "https://www.nccourts.gov/locations/wake-county",
+    ("NC", "Mecklenburg"): "https://www.nccourts.gov/locations/mecklenburg-county",
+    ("NC", "Durham"): "https://www.nccourts.gov/locations/durham-county",
+    ("NC", "Guilford"): "https://www.nccourts.gov/locations/guilford-county",
     # Tennessee
-    ("TN", "Davidson"): "https://chanceryclerkandmaster.nashville.gov/",
-    ("TN", "Shelby"): "https://chancery.shelbycountytn.gov/",
-    ("TN", "Knox"): "https://www.knoxcounty.org/chancery/",
-    ("TN", "Hamilton"): "https://www.hamiltontn.gov/courts/",
+    ("TN", "Davidson"): "https://chanceryclerkandmaster.nashville.gov/cases/public-records-search/",
+    ("TN", "Shelby"): "https://www.shelbycountytn.gov/222/Chancery-Court",
+    ("TN", "Knox"): "https://www.knoxcounty.org/chancery/case-search",
+    ("TN", "Hamilton"): "https://www.hamiltontn.gov/courts/case-search",
     # California
-    ("CA", "Los Angeles"): "https://ttc.lacounty.gov/",
-    ("CA", "San Diego"): "https://www.sdttc.com/",
-    ("CA", "Orange"): "https://www.ttc.ocgov.com/",
-    ("CA", "Riverside"): "https://countytreasurer.org/",
-    ("CA", "San Bernardino"): "https://mytaxcollector.com/",
+    ("CA", "Los Angeles"): "https://ttc.lacounty.gov/notice-of-excess-proceeds/",
+    ("CA", "San Diego"): "https://www.sdttc.com/content/ttc/en/tax-collection/property-tax-sales.html",
+    ("CA", "Orange"): "https://www.ttc.ocgov.com/tax-defaulted-sale",
+    ("CA", "Riverside"): "https://countytreasurer.org/tax-sales",
+    ("CA", "San Bernardino"): "https://mytaxcollector.com/tax-sales",
 }
 
 # State Default Fallbacks
@@ -170,7 +170,8 @@ def heal_clerk_verification_url(county: str, state: str, existing_url: str = "",
             "todo" not in url_stripped.lower() and
             "example.com" not in url_stripped.lower() and
             len(url_stripped) > 12 and
-            not is_generic_homepage(url_stripped)):
+            not is_generic_homepage(url_stripped) and
+            not is_broken_or_invalid_url(url_stripped)):
             return url_stripped
 
     # If case number is available, resolve directly to active court/clerk listing

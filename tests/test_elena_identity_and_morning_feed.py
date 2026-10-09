@@ -267,7 +267,15 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
 
         url_ca = build_direct_clerk_url("Los Angeles", "CA", "2024-CA-008120")
         self.assertIn("docket=2024-CA-008120", url_ca)
+        self.assertIn("notice-of-excess-proceeds", url_ca)
+        self.assertNotIn("tax-defaulted-property-sales", url_ca)
         self.assertFalse(is_generic_homepage(url_ca))
+
+        url_sd = build_direct_clerk_url("San Diego", "CA", "2024-CA-005210")
+        self.assertIn("docket=2024-CA-005210", url_sd)
+        self.assertIn("property-tax-sales.html", url_sd)
+        self.assertNotIn("tax-sale.html", url_sd)
+        self.assertFalse(is_generic_homepage(url_sd))
 
         url_tx = build_direct_clerk_url("Harris", "TX", "2024-TX-04812")
         self.assertIn("Cas=2024-TX-04812", url_tx)
@@ -278,12 +286,14 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
         self.assertFalse(is_generic_homepage(url_ga))
 
         # 2. Test active feed statistics top dockets
+        from enrichment.processor import is_broken_or_invalid_url
         stats = get_feed_statistics()
         self.assertGreater(len(stats["top_dockets"]), 0)
         for docket in stats["top_dockets"]:
             url = docket["clerk_url"]
             self.assertTrue(url.startswith("https://"))
             self.assertFalse(is_generic_homepage(url), f"URL '{url}' for docket {docket['docket']} is a generic homepage!")
+            self.assertFalse(is_broken_or_invalid_url(url), f"URL '{url}' for docket {docket['docket']} is a broken/404 URL!")
             # Must contain docket/case identifier in query or path
             self.assertTrue(
                 "?" in url or "dockets" in url or "details" in url.lower() or "casesearch" in url.lower(),
@@ -297,6 +307,74 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
         for docket in stats["top_dockets"]:
             self.assertIn(docket["clerk_url"], html_feed)
             self.assertIn(docket["clerk_url"], text_feed)
+            self.assertNotIn("tax-defaulted-property-sales", html_feed)
+            self.assertNotIn("tax-sale.html", html_feed)
+
+    def test_broken_url_healing_and_prevention_guards(self):
+        """Verify is_broken_or_invalid_url and self-healer heal broken links to live endpoints."""
+        from enrichment.processor import is_broken_or_invalid_url, build_direct_clerk_url
+        from portal.pipeline_self_healer import heal_clerk_verification_url, self_heal_record
+
+        # 1. Test is_broken_or_invalid_url detection
+        broken_examples = [
+            "https://ttc.lacounty.gov/tax-defaulted-property-sales/?docket=2024-CA-008120",
+            "https://www.sdttc.com/content/ttc/en/tax-collection/tax-sale.html?docket=2024-CA-005210",
+            "https://www.nccourts.gov/locations/mecklenburg?docket=2024-NC-0012",
+            "https://www.nccourts.gov/locations/wake/wake-county-clerk-of-superior-court",
+            "https://www.fultonclerk.org/case-search?docket=2024-GA-003810",
+            "https://www.cobbtax.org/excess-funds?docket=2024-GA-001920",
+            "https://www.gwinnetttaxcommissioner.com/excess-funds?docket=2024-GA-002840",
+            "https://chancery.shelbycountytn.gov/case-search?docket=2024-TN-001920",
+            "https://chanceryclerkandmaster.nashville.gov/case-search?docket=2024-TN-001180",
+            "https://www.hillsclerk.com/Court-Services/Tax-Deeds?caseNumber=2024-TD-001111",
+            "https://www.dallascounty.org/government/district-clerk/tax-foreclosures.php?case=2024-TX-001111",
+            "https://myclerk.myorangeclerk.com/Case/CaseDetails?caseNumber=2024-TD-001111",
+            "https://www.miamidadeclerk.gov/clerk/tax-deeds.page?caseNumber=2024-TD-001111",
+        ]
+        for url in broken_examples:
+            self.assertTrue(is_broken_or_invalid_url(url), f"Failed to detect broken URL: {url}")
+
+        # 2. Test live replacements are NOT flagged as broken
+        live_examples = [
+            "https://ttc.lacounty.gov/notice-of-excess-proceeds/?docket=2024-CA-008120",
+            "https://www.sdttc.com/content/ttc/en/tax-collection/property-tax-sales.html?docket=2024-CA-005210",
+            "https://www.nccourts.gov/locations/mecklenburg-county?docket=2024-NC-0012",
+            "https://www.nccourts.gov/locations/wake-county?docket=2024-NC-0034",
+            "https://www.fultonclerk.org/536/Records-Search-Center?docket=2024-GA-003810",
+            "https://www.cobbtax.org/property/tax_sale/index.php?docket=2024-GA-001920",
+            "https://www.gwinnetttaxcommissioner.com/property-tax/tax-sale-excess-funds?docket=2024-GA-002840",
+            "https://www.shelbycountytn.gov/222/Chancery-Court?docket=2024-TN-001920",
+            "https://chanceryclerkandmaster.nashville.gov/cases/public-records-search/?docket=2024-TN-001180",
+            "https://www.hillsclerk.com/taxdeeds?caseNumber=2024-TD-001111",
+            "https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php?case=2024-TX-001111",
+            "https://myeclerk.myorangeclerk.com/?caseNumber=2024-TD-001111",
+            "https://www.miamidadeclerk.gov/clerk/property-tax-deeds.page?caseNumber=2024-TD-001111",
+            "https://www.dekalbcountytax.org/excess-funds?docket=2024-GA-001111",
+        ]
+        for url in live_examples:
+            self.assertFalse(is_broken_or_invalid_url(url), f"Incorrectly flagged live URL as broken: {url}")
+
+        # 3. Test heal_clerk_verification_url heals broken input
+        healed_la = heal_clerk_verification_url(
+            "Los Angeles", "CA",
+            existing_url="https://ttc.lacounty.gov/tax-defaulted-property-sales/?docket=2024-CA-008120",
+            case_no="2024-CA-008120"
+        )
+        self.assertIn("notice-of-excess-proceeds", healed_la)
+        self.assertNotIn("tax-defaulted-property-sales", healed_la)
+
+        # 4. Test self_heal_record cleans broken URL
+        record = {
+            "Case_or_TaxDeed_No": "2024-CA-008120",
+            "County": "Los Angeles",
+            "State": "CA",
+            "Clerk_Verification_URL": "https://ttc.lacounty.gov/tax-defaulted-property-sales/?docket=2024-CA-008120",
+            "Surplus_Balance_USD": 215000.0,
+            "Owner_Name": "GREGORY THATCHER",
+        }
+        healed = self_heal_record(record, default_state="CA", default_county="Los Angeles")
+        self.assertIn("notice-of-excess-proceeds", healed["Clerk_Verification_URL"])
+        self.assertNotIn("tax-defaulted-property-sales", healed["Clerk_Verification_URL"])
 
 
 if __name__ == "__main__":

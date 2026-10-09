@@ -29,7 +29,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
-from enrichment.processor import build_direct_clerk_url, is_generic_homepage
+from enrichment.processor import build_direct_clerk_url, is_generic_homepage, is_broken_or_invalid_url
 
 # Optional local .env loading
 ENV_FILE = BASE_DIR / ".env"
@@ -100,7 +100,7 @@ def get_feed_statistics():
             parcel_val = str(r.get("Parcel_ID") or "")
             raw_clerk = str(r.get("Clerk_Verification_URL") or "")
 
-            if not raw_clerk or is_generic_homepage(raw_clerk):
+            if not raw_clerk or is_generic_homepage(raw_clerk) or is_broken_or_invalid_url(raw_clerk):
                 direct_url = build_direct_clerk_url(cty, st, docket_id, parcel_id=parcel_val, record_type=rec_type)
             else:
                 direct_url = raw_clerk
@@ -151,7 +151,7 @@ def get_feed_statistics():
                 parcel_val = str(r.get("Parcel_ID") or "")
                 raw_clerk = str(r.get("Clerk_Verification_URL") or "")
 
-                if not raw_clerk or is_generic_homepage(raw_clerk):
+                if not raw_clerk or is_generic_homepage(raw_clerk) or is_broken_or_invalid_url(raw_clerk):
                     direct_url = build_direct_clerk_url(cty_val, st_val, docket_id, parcel_id=parcel_val, record_type=rec_type)
                 else:
                     direct_url = raw_clerk

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T13:14:18.660838",
+  "generated_at": "2026-10-09T10:15:56.000648",
   "total_records": 43,
   "total_surplus_volume_usd": 3909100.0,
   "total_finder_fees_available_usd": 801480.0,
@@ -24,12 +24,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
-      "Clerk_Verification_URL": "https://ttc.lacounty.gov/tax-defaulted-property-sales/?docket=2024-CA-008120",
+      "Clerk_Verification_URL": "https://ttc.lacounty.gov/notice-of-excess-proceeds/?docket=2024-CA-008120",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "CA",
@@ -51,12 +51,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
-      "Clerk_Verification_URL": "https://www.sdttc.com/content/ttc/en/tax-collection/tax-sale.html?docket=2024-CA-005210",
+      "Clerk_Verification_URL": "https://www.sdttc.com/content/ttc/en/tax-collection/property-tax-sales.html?docket=2024-CA-005210",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "CA",
@@ -78,12 +78,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
-      "Clerk_Verification_URL": "https://ttc.lacounty.gov/tax-defaulted-property-sales/?docket=2024-CA-008640",
+      "Clerk_Verification_URL": "https://ttc.lacounty.gov/notice-of-excess-proceeds/?docket=2024-CA-008640",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -105,12 +105,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://mypalmbeachclerk.com/casesearch?caseNumber=2024-TD-004501",
+      "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/casesearch?caseNumber=2024-TD-004501",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -137,7 +137,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "NC",
@@ -159,12 +159,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
-      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg?docket=2024-NC-003110",
+      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg-county?docket=2024-NC-003110",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "GA",
@@ -186,12 +186,12 @@
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2029-07-01",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
-      "Clerk_Verification_URL": "https://www.fultonclerk.org/case-search?docket=2024-GA-003810",
+      "Clerk_Verification_URL": "https://www.fultonclerk.org/536/Records-Search-Center?docket=2024-GA-003810",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "TX",
@@ -218,7 +218,7 @@
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "TN",
@@ -240,12 +240,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
-      "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/case-search?docket=2024-TN-002190",
+      "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/cases/public-records-search/?docket=2024-TN-002190",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "CA",
@@ -267,12 +267,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "1 Year from Deed Recording (Cal. Rev. & Tax Code \u00a7 4675)",
-      "Clerk_Verification_URL": "https://www.sdttc.com/content/ttc/en/tax-collection/tax-sale.html?docket=2024-CA-005780",
+      "Clerk_Verification_URL": "https://www.sdttc.com/content/ttc/en/tax-collection/property-tax-sales.html?docket=2024-CA-005780",
       "Governing_Statute": "Cal. Rev. & Tax Code \u00a7 4675",
       "Statute_Citation": "Cal. Rev. & Tax Code \u00a7 4675",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "GA",
@@ -294,12 +294,12 @@
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2029-08-12",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
-      "Clerk_Verification_URL": "https://www.cobbtax.org/excess-funds?docket=2024-GA-001550",
+      "Clerk_Verification_URL": "https://www.cobbtax.org/property/tax_sale/index.php?docket=2024-GA-001550",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -321,12 +321,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2027-01-22",
       "Statutory_Deadline_Window": "60 Days from Certificate of Disbursement (Fla. Stat. \u00a7 45.032)",
-      "Clerk_Verification_URL": "https://www2.miamidadeclerk.gov/ocs/Search.aspx?caseNumber=2024-CA-012874",
+      "Clerk_Verification_URL": "https://www2.miamidadeclerk.gov/QOS/default.aspx?caseNumber=2024-CA-012874",
       "Governing_Statute": "Fla. Stat. \u00a7 45.032",
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "NC",
@@ -348,12 +348,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
-      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake/wake-county-clerk-of-superior-court?docket=2024-NC-001420",
+      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake-county?docket=2024-NC-001420",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -375,12 +375,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/clerk/tax-deeds.page?caseNumber=2024-TD-004812",
+      "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/clerk/property-tax-deeds.page?caseNumber=2024-TD-004812",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "TN",
@@ -402,12 +402,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
-      "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/case-search?docket=2024-TN-004110",
+      "Clerk_Verification_URL": "https://www.shelbycountytn.gov/222/Chancery-Court?docket=2024-TN-004110",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "GA",
@@ -429,12 +429,12 @@
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2029-07-15",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
-      "Clerk_Verification_URL": "https://www.fultonclerk.org/case-search?docket=2024-GA-004120",
+      "Clerk_Verification_URL": "https://www.fultonclerk.org/536/Records-Search-Center?docket=2024-GA-004120",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "NC",
@@ -456,12 +456,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
-      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg?docket=2024-NC-003450",
+      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg-county?docket=2024-NC-003450",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -483,12 +483,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://www.hillsclerk.com/Court-Services/Tax-Deeds?caseNumber=2024-TD-008912",
+      "Clerk_Verification_URL": "https://www.hillsclerk.com/taxdeeds?caseNumber=2024-TD-008912",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -510,12 +510,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2027-01-22",
       "Statutory_Deadline_Window": "60 Days from Certificate of Disbursement (Fla. Stat. \u00a7 45.032)",
-      "Clerk_Verification_URL": "https://www2.miamidadeclerk.gov/ocs/Search.aspx?caseNumber=2024-CA-014289",
+      "Clerk_Verification_URL": "https://www2.miamidadeclerk.gov/QOS/default.aspx?caseNumber=2024-CA-014289",
       "Governing_Statute": "Fla. Stat. \u00a7 45.032",
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "NC",
@@ -537,12 +537,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
-      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake/wake-county-clerk-of-superior-court?docket=2024-NC-001890",
+      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/wake-county?docket=2024-NC-001890",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "TX",
@@ -569,7 +569,7 @@
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "TN",
@@ -591,12 +591,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
-      "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/case-search?docket=2024-TN-002840",
+      "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/cases/public-records-search/?docket=2024-TN-002840",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -623,7 +623,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "GA",
@@ -650,7 +650,7 @@
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -672,12 +672,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2027-01-22",
       "Statutory_Deadline_Window": "60 Days from Certificate of Disbursement (Fla. Stat. \u00a7 45.032)",
-      "Clerk_Verification_URL": "https://mypalmbeachclerk.com/casesearch?caseNumber=2024-CA-006731",
+      "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/casesearch?caseNumber=2024-CA-006731",
       "Governing_Statute": "Fla. Stat. \u00a7 45.032",
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "TX",
@@ -699,12 +699,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-03",
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
-      "Clerk_Verification_URL": "https://www.dallascounty.org/government/district-clerk/tax-foreclosures.php?case=2024-TX-02044",
+      "Clerk_Verification_URL": "https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php?case=2024-TX-02044",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -726,12 +726,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://myclerk.myorangeclerk.com/Case/CaseDetails?caseNumber=2024-TD-001955",
+      "Clerk_Verification_URL": "https://myeclerk.myorangeclerk.com/?caseNumber=2024-TD-001955",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "TN",
@@ -753,12 +753,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)",
-      "Clerk_Verification_URL": "https://chancery.shelbycountytn.gov/case-search?docket=2024-TN-004550",
+      "Clerk_Verification_URL": "https://www.shelbycountytn.gov/222/Chancery-Court?docket=2024-TN-004550",
       "Governing_Statute": "T.C.A. \u00a7 67-5-2501",
       "Statute_Citation": "T.C.A. \u00a7 67-5-2501",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -780,12 +780,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://mypalmbeachclerk.com/casesearch?caseNumber=2024-TD-004688",
+      "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/casesearch?caseNumber=2024-TD-004688",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "GA",
@@ -807,12 +807,12 @@
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2029-07-22",
       "Statutory_Deadline_Window": "5 Years from Sale (O.C.G.A. \u00a7 48-4-5)",
-      "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/excess-funds?docket=2024-GA-001920",
+      "Clerk_Verification_URL": "https://www.gwinnetttaxcommissioner.com/property-tax/tax-sale-excess-funds?docket=2024-GA-001920",
       "Governing_Statute": "O.C.G.A. \u00a7 48-4-5",
       "Statute_Citation": "O.C.G.A. \u00a7 48-4-5",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -839,7 +839,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "NC",
@@ -861,12 +861,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-11-28",
       "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry (N.C.G.S. \u00a7 105-374)",
-      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/durham?docket=2024-NC-002100",
+      "Clerk_Verification_URL": "https://www.nccourts.gov/locations/durham-county?docket=2024-NC-002100",
       "Governing_Statute": "N.C.G.S. \u00a7 105-374",
       "Statute_Citation": "N.C.G.S. \u00a7 105-374",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -888,12 +888,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://myclerk.myorangeclerk.com/Case/CaseDetails?caseNumber=2024-TD-001501",
+      "Clerk_Verification_URL": "https://myeclerk.myorangeclerk.com/?caseNumber=2024-TD-001501",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "TX",
@@ -915,12 +915,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-03",
       "Statutory_Deadline_Window": "2 Years from Sale (Tex. Tax Code \u00a7 34.04)",
-      "Clerk_Verification_URL": "https://www.dallascounty.org/government/district-clerk/tax-foreclosures.php?case=2024-TX-01928",
+      "Clerk_Verification_URL": "https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php?case=2024-TX-01928",
       "Governing_Statute": "Tex. Tax Code \u00a7 34.04",
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -942,12 +942,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://www.hillsclerk.com/Court-Services/Tax-Deeds?caseNumber=2024-TD-009041",
+      "Clerk_Verification_URL": "https://www.hillsclerk.com/taxdeeds?caseNumber=2024-TD-009041",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -974,7 +974,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -996,12 +996,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://myclerk.myorangeclerk.com/Case/CaseDetails?caseNumber=2024-TD-001248",
+      "Clerk_Verification_URL": "https://myeclerk.myorangeclerk.com/?caseNumber=2024-TD-001248",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -1023,12 +1023,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/clerk/tax-deeds.page?caseNumber=2024-TD-004990",
+      "Clerk_Verification_URL": "https://www.miamidadeclerk.gov/clerk/property-tax-deeds.page?caseNumber=2024-TD-004990",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -1055,7 +1055,7 @@
       "Statute_Citation": "Fla. Stat. \u00a7 45.032",
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "TX",
@@ -1082,7 +1082,7 @@
       "Statute_Citation": "Tex. Tax Code \u00a7 34.04",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -1104,12 +1104,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://www.hillsclerk.com/Court-Services/Tax-Deeds?caseNumber=2024-TD-009188",
+      "Clerk_Verification_URL": "https://www.hillsclerk.com/taxdeeds?caseNumber=2024-TD-009188",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -1131,12 +1131,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://myclerk.myorangeclerk.com/Case/CaseDetails?caseNumber=2024-TD-001622",
+      "Clerk_Verification_URL": "https://myeclerk.myorangeclerk.com/?caseNumber=2024-TD-001622",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     },
     {
       "State": "FL",
@@ -1158,12 +1158,12 @@
       "Claim_Urgency_Tier": "Tier 2: Priority Window (45\u2013120 Days)",
       "Claim_Deadline_Date": "2026-12-23",
       "Statutory_Deadline_Window": "120 Days from Notice (Fla. Stat. \u00a7 197.582)",
-      "Clerk_Verification_URL": "https://myclerk.myorangeclerk.com/Case/CaseDetails?caseNumber=2024-TD-001844",
+      "Clerk_Verification_URL": "https://myeclerk.myorangeclerk.com/?caseNumber=2024-TD-001844",
       "Governing_Statute": "Fla. Stat. \u00a7 197.582",
       "Statute_Citation": "Fla. Stat. \u00a7 197.582",
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
-      "Enriched_Timestamp": "2026-10-09 13:14:18"
+      "Enriched_Timestamp": "2026-10-09 10:15:55"
     }
   ]
 }

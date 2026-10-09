@@ -28,32 +28,32 @@ def clean_currency(val):
         return 0.0
 
 CLERK_PORTALS = {
-    "Palm Beach": "https://mypalmbeachclerk.com/departments/courts/tax-deeds",
-    "Miami-Dade": "https://www.miamidadeclerk.gov/clerk/tax-deeds.page",
-    "Orange": "https://www.myorangeclerk.com/",
-    "Hillsborough": "https://www.hillsclerk.com/Court-Services/Tax-Deeds",
+    "Palm Beach": "https://www.mypalmbeachclerk.com/casesearch",
+    "Miami-Dade": "https://www.miamidadeclerk.gov/clerk/property-tax-deeds.page",
+    "Orange": "https://myeclerk.myorangeclerk.com/",
+    "Hillsborough": "https://www.hillsclerk.com/taxdeeds",
     "Broward": "https://www.browardclerk.org/Divisions/TaxDeeds",
     "Duval": "https://www.duvalclerk.com/departments/tax-deeds",
     "Pinellas": "https://www.mypinellasclerk.org/Home/Tax-Deeds",
     "Harris": "https://www.hcdistrictclerk.com/Common/Civil/CourtRegistry.aspx",
-    "Dallas": "https://www.dallascounty.org/government/district-clerk/tax-foreclosures.php",
+    "Dallas": "https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php",
     "Tarrant": "https://www.tarrantcountytx.gov/en/district-clerk/case-search.html",
     "Travis": "https://www.traviscountytx.gov/district-clerk/case-search",
     "Bexar": "https://www.bexar.org/districtclerk/case-search",
-    "Fulton": "https://www.fultonclerk.org/",
+    "Fulton": "https://www.fultonclerk.org/536/Records-Search-Center",
     "DeKalb": "https://www.dekalbcountytax.org/excess-funds",
-    "Gwinnett": "https://www.gwinnetttaxcommissioner.com/excess-funds",
-    "Cobb": "https://www.cobbtax.org/excess-funds",
-    "Wake": "https://www.nccourts.gov/locations/wake/wake-county-clerk-of-superior-court",
-    "Mecklenburg": "https://www.nccourts.gov/locations/mecklenburg",
-    "Durham": "https://www.nccourts.gov/locations/durham",
-    "Guilford": "https://www.nccourts.gov/locations/guilford",
-    "Davidson": "https://chanceryclerkandmaster.nashville.gov/case-search",
-    "Shelby": "https://chancery.shelbycountytn.gov/case-search",
+    "Gwinnett": "https://www.gwinnetttaxcommissioner.com/property-tax/tax-sale-excess-funds",
+    "Cobb": "https://www.cobbtax.org/property/tax_sale/index.php",
+    "Wake": "https://www.nccourts.gov/locations/wake-county",
+    "Mecklenburg": "https://www.nccourts.gov/locations/mecklenburg-county",
+    "Durham": "https://www.nccourts.gov/locations/durham-county",
+    "Guilford": "https://www.nccourts.gov/locations/guilford-county",
+    "Davidson": "https://chanceryclerkandmaster.nashville.gov/cases/public-records-search/",
+    "Shelby": "https://www.shelbycountytn.gov/222/Chancery-Court",
     "Knox": "https://www.knoxcounty.org/chancery/case-search",
     "Hamilton": "https://www.hamiltontn.gov/courts/case-search",
-    "Los Angeles": "https://ttc.lacounty.gov/tax-defaulted-property-sales/",
-    "San Diego": "https://www.sdttc.com/content/ttc/en/tax-collection/tax-sale.html",
+    "Los Angeles": "https://ttc.lacounty.gov/notice-of-excess-proceeds/",
+    "San Diego": "https://www.sdttc.com/content/ttc/en/tax-collection/property-tax-sales.html",
     "Riverside": "https://countytreasurer.org/tax-sales",
     "San Bernardino": "https://mytaxcollector.com/tax-sales",
 }
@@ -74,10 +74,42 @@ def is_generic_homepage(url: str) -> bool:
     except Exception:
         return False
 
+KNOWN_BROKEN_URL_PATTERNS = [
+    "tax-defaulted-property-sales",  # Old LA 404 path
+    "tax-sale.html",                 # Old SD 404 path
+    "fultonclerk.org/case-search",   # Old Fulton 404 path
+    "cobbtax.org/excess-funds",      # Old Cobb 404 path
+    "gwinnetttaxcommissioner.com/excess-funds", # Old Gwinnett 404 path
+    "chancery.shelbycountytn.gov",   # Dead domain
+    "chanceryclerkandmaster.nashville.gov/case-search", # Old Davidson 404 path
+    "court-services/tax-deeds",      # Old Hillsborough 404 path
+    "tax-foreclosures.php",          # Old Dallas 404 path
+    "/clerk/tax-deeds.page",         # Old Miami 404 path (distinct from /clerk/property-tax-deeds.page)
+    "myclerk.myorangeclerk.com",     # Old Orange timeout path
+    "orangecountycomptroller.com",   # Non-clerk portal
+    "example.com",
+    "placeholder",
+]
+
+def is_broken_or_invalid_url(url: str) -> bool:
+    """Returns True if the URL contains known broken/404 paths, dead hostnames, or invalid routes."""
+    if not url:
+        return True
+    url_lower = str(url).lower()
+    for pattern in KNOWN_BROKEN_URL_PATTERNS:
+        if pattern.lower() in url_lower:
+            return True
+    # North Carolina court portal locations must have '-county' suffix (otherwise returns 404)
+    if "nccourts.gov/locations/" in url_lower:
+        for county in ("mecklenburg", "wake", "durham", "guilford"):
+            if f"/locations/{county}" in url_lower and f"/locations/{county}-county" not in url_lower:
+                return True
+    return False
+
 def build_direct_clerk_url(county: str, state: str, case_no: str = "", parcel_id: str = None, record_type: str = "TAX_DEED") -> str:
     """
     Builds a direct court docket or tax deed listing URL rather than a generic town/county homepage.
-    Ensures subscribers navigate straight to the active case verification file.
+    Ensures subscribers navigate straight to the active case verification file on verified working endpoints.
     """
     county_clean = (county or "").strip().title()
     state_clean = (state or "").strip().upper()
@@ -91,14 +123,14 @@ def build_direct_clerk_url(county: str, state: str, case_no: str = "", parcel_id
     if state_clean == "FL":
         if county_clean == "Palm Beach":
             if case_encoded:
-                return f"https://mypalmbeachclerk.com/casesearch?caseNumber={case_encoded}"
-            return "https://mypalmbeachclerk.com/departments/courts/tax-deeds"
+                return f"https://www.mypalmbeachclerk.com/casesearch?caseNumber={case_encoded}"
+            return "https://www.mypalmbeachclerk.com/casesearch"
         elif county_clean == "Miami-Dade":
             if is_foreclosure and case_encoded:
-                return f"https://www2.miamidadeclerk.gov/ocs/Search.aspx?caseNumber={case_encoded}"
+                return f"https://www2.miamidadeclerk.gov/QOS/default.aspx?caseNumber={case_encoded}"
             elif case_encoded:
-                return f"https://www.miamidadeclerk.gov/clerk/tax-deeds.page?caseNumber={case_encoded}"
-            return "https://www.miamidadeclerk.gov/clerk/tax-deeds.page"
+                return f"https://www.miamidadeclerk.gov/clerk/property-tax-deeds.page?caseNumber={case_encoded}"
+            return "https://www.miamidadeclerk.gov/clerk/property-tax-deeds.page"
         elif county_clean == "Broward":
             if is_foreclosure and case_encoded:
                 return f"https://www.browardclerk.org/Web2/CaseSearch/Details/?caseNumber={case_encoded}"
@@ -106,17 +138,15 @@ def build_direct_clerk_url(county: str, state: str, case_no: str = "", parcel_id
                 return f"https://www.browardclerk.org/Divisions/TaxDeeds?caseNumber={case_encoded}"
             return "https://www.browardclerk.org/Divisions/TaxDeeds"
         elif county_clean == "Orange":
-            if is_foreclosure and case_encoded:
-                return f"https://myclerk.myorangeclerk.com/Case/CaseDetails?caseNumber={case_encoded}"
-            elif case_encoded:
-                return f"https://myclerk.myorangeclerk.com/Case/CaseDetails?caseNumber={case_encoded}"
+            if case_encoded:
+                return f"https://myeclerk.myorangeclerk.com/?caseNumber={case_encoded}"
             return "https://www.myorangeclerk.com/"
         elif county_clean == "Hillsborough":
             if is_foreclosure and case_encoded:
-                return f"https://hover.hillsclerk.com/html/caseSearch.html?caseNumber={case_encoded}"
+                return f"https://www.hillsclerk.com/court-services/foreclosure-sales?caseNumber={case_encoded}"
             elif case_encoded:
-                return f"https://www.hillsclerk.com/Court-Services/Tax-Deeds?caseNumber={case_encoded}"
-            return "https://www.hillsclerk.com/Court-Services/Tax-Deeds"
+                return f"https://www.hillsclerk.com/taxdeeds?caseNumber={case_encoded}"
+            return "https://www.hillsclerk.com/taxdeeds"
         elif county_clean == "Duval":
             if case_encoded:
                 return f"https://www.duvalclerk.com/departments/tax-deeds?caseNumber={case_encoded}"
@@ -135,9 +165,9 @@ def build_direct_clerk_url(county: str, state: str, case_no: str = "", parcel_id
             if parcel_encoded:
                 params.append(f"parcel={parcel_encoded}")
             query_str = f"?{'&'.join(params)}" if params else ""
-            return f"https://ttc.lacounty.gov/tax-defaulted-property-sales/{query_str}"
+            return f"https://ttc.lacounty.gov/notice-of-excess-proceeds/{query_str}"
         elif county_clean == "San Diego":
-            return f"https://www.sdttc.com/content/ttc/en/tax-collection/tax-sale.html?docket={case_encoded}" if case_encoded else "https://www.sdttc.com/content/ttc/en/tax-collection/tax-sale.html"
+            return f"https://www.sdttc.com/content/ttc/en/tax-collection/property-tax-sales.html?docket={case_encoded}" if case_encoded else "https://www.sdttc.com/content/ttc/en/tax-collection/property-tax-sales.html"
         elif county_clean == "Orange":
             return f"https://www.ttc.ocgov.com/tax-defaulted-sale?docket={case_encoded}" if case_encoded else "https://www.ttc.ocgov.com/tax-defaulted-sale"
         elif county_clean == "Riverside":
@@ -150,7 +180,7 @@ def build_direct_clerk_url(county: str, state: str, case_no: str = "", parcel_id
         if county_clean == "Harris":
             return f"https://www.hcdistrictclerk.com/edocs/public/CaseDetails.aspx?Cas={case_encoded}" if case_encoded else "https://www.hcdistrictclerk.com/Common/Civil/CourtRegistry.aspx"
         elif county_clean == "Dallas":
-            return f"https://www.dallascounty.org/government/district-clerk/tax-foreclosures.php?case={case_encoded}" if case_encoded else "https://www.dallascounty.org/government/district-clerk/tax-foreclosures.php"
+            return f"https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php?case={case_encoded}" if case_encoded else "https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php"
         elif county_clean == "Tarrant":
             return f"https://www.tarrantcountytx.gov/en/district-clerk/case-search.html?case={case_encoded}" if case_encoded else "https://www.tarrantcountytx.gov/en/district-clerk/case-search.html"
         elif county_clean == "Travis":
@@ -161,31 +191,31 @@ def build_direct_clerk_url(county: str, state: str, case_no: str = "", parcel_id
     # 4. Georgia (GA)
     elif state_clean == "GA":
         if county_clean == "Fulton":
-            return f"https://www.fultonclerk.org/case-search?docket={case_encoded}" if case_encoded else "https://www.fultonclerk.org/"
+            return f"https://www.fultonclerk.org/536/Records-Search-Center?docket={case_encoded}" if case_encoded else "https://www.fultonclerk.org/536/Records-Search-Center"
         elif county_clean == "Cobb":
-            return f"https://www.cobbtax.org/excess-funds?docket={case_encoded}" if case_encoded else "https://www.cobbtax.org/"
+            return f"https://www.cobbtax.org/property/tax_sale/index.php?docket={case_encoded}" if case_encoded else "https://www.cobbtax.org/property/tax_sale/index.php"
         elif county_clean in ("Dekalb", "DeKalb"):
             return f"https://www.dekalbcountytax.org/excess-funds?docket={case_encoded}" if case_encoded else "https://www.dekalbcountytax.org/excess-funds"
         elif county_clean == "Gwinnett":
-            return f"https://www.gwinnetttaxcommissioner.com/excess-funds?docket={case_encoded}" if case_encoded else "https://www.gwinnetttaxcommissioner.com/excess-funds"
+            return f"https://www.gwinnetttaxcommissioner.com/property-tax/tax-sale-excess-funds?docket={case_encoded}" if case_encoded else "https://www.gwinnetttaxcommissioner.com/property-tax/tax-sale-excess-funds"
 
     # 5. North Carolina (NC)
     elif state_clean == "NC":
         if county_clean == "Mecklenburg":
-            return f"https://www.nccourts.gov/locations/mecklenburg?docket={case_encoded}" if case_encoded else "https://www.nccourts.gov/locations/mecklenburg"
+            return f"https://www.nccourts.gov/locations/mecklenburg-county?docket={case_encoded}" if case_encoded else "https://www.nccourts.gov/locations/mecklenburg-county"
         elif county_clean == "Wake":
-            return f"https://www.nccourts.gov/locations/wake/wake-county-clerk-of-superior-court?docket={case_encoded}" if case_encoded else "https://www.nccourts.gov/locations/wake/wake-county-clerk-of-superior-court"
+            return f"https://www.nccourts.gov/locations/wake-county?docket={case_encoded}" if case_encoded else "https://www.nccourts.gov/locations/wake-county"
         elif county_clean == "Durham":
-            return f"https://www.nccourts.gov/locations/durham?docket={case_encoded}" if case_encoded else "https://www.nccourts.gov/locations/durham"
+            return f"https://www.nccourts.gov/locations/durham-county?docket={case_encoded}" if case_encoded else "https://www.nccourts.gov/locations/durham-county"
         elif county_clean == "Guilford":
-            return f"https://www.nccourts.gov/locations/guilford?docket={case_encoded}" if case_encoded else "https://www.nccourts.gov/locations/guilford"
+            return f"https://www.nccourts.gov/locations/guilford-county?docket={case_encoded}" if case_encoded else "https://www.nccourts.gov/locations/guilford-county"
 
     # 6. Tennessee (TN)
     elif state_clean == "TN":
         if county_clean == "Davidson":
-            return f"https://chanceryclerkandmaster.nashville.gov/case-search?docket={case_encoded}" if case_encoded else "https://chanceryclerkandmaster.nashville.gov/case-search"
+            return f"https://chanceryclerkandmaster.nashville.gov/cases/public-records-search/?docket={case_encoded}" if case_encoded else "https://chanceryclerkandmaster.nashville.gov/cases/public-records-search/"
         elif county_clean == "Shelby":
-            return f"https://chancery.shelbycountytn.gov/case-search?docket={case_encoded}" if case_encoded else "https://chancery.shelbycountytn.gov/case-search"
+            return f"https://www.shelbycountytn.gov/222/Chancery-Court?docket={case_encoded}" if case_encoded else "https://www.shelbycountytn.gov/222/Chancery-Court"
         elif county_clean == "Knox":
             return f"https://www.knoxcounty.org/chancery/case-search?docket={case_encoded}" if case_encoded else "https://www.knoxcounty.org/chancery/case-search"
         elif county_clean == "Hamilton":
@@ -321,7 +351,7 @@ def classify_and_enrich_record(row, county_meta):
     days_remaining, urgency_tier, claim_deadline = calculate_days_remaining(sale_date, state, record_type)
     prop_class = infer_property_class(address)
     raw_clerk_url = row.get("Clerk_Verification_URL")
-    if raw_clerk_url and not is_generic_homepage(raw_clerk_url):
+    if raw_clerk_url and not is_generic_homepage(raw_clerk_url) and not is_broken_or_invalid_url(raw_clerk_url):
         clerk_url = raw_clerk_url
     else:
         clerk_url = build_direct_clerk_url(county_name, state, case_no, parcel_id, record_type)
