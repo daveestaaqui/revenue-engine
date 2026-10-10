@@ -481,3 +481,5 @@
 [2026-10-09 21:04:52]   🛑 Recorded 1 bounced address(es) to blocklist: clinics@law.georgetown.edu
 [2026-10-09 21:04:52]   ⏭️ Skipped non-prospect from mailer-daemon@googlemail.com (Sub: 'Delivery Status Notification (Failure)'): Message identified as automated notification, bounce, or system alert
 [2026-10-09 21:04:53]   ⏭️ Skipped non-prospect from support@legalfuel.zendesk.com (Sub: '[Request received] Free surplus recovery'): Message identified as automated notification, bounce, or system alert
+[2026-10-10 00:47:23]   ⏭️ Skipped non-prospect from DoNotReply@MyHealth.AtriusHealth.org (Sub: 'MyHealth Online - New Message'): Message identified as automated notification, bounce, or system alert
+[2026-10-10 00:47:23]   ⏭️ Skipped non-prospect from support@bugcrowd.com (Sub: 'Your identity verification attempt faile'): Message identified as automated notification, bounce, or system alert
