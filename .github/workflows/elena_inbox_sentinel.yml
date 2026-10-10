@@ -79,7 +79,7 @@ jobs:
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          for f in data/notable_email_activity.json outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log outreach/alden_followup_log.json portal/subscribers.json portal/processed_stripe_events.json portal/daily_dispatch_log.json portal/trial_lifecycle_log.json; do if [ -f "$f" ]; then git add "$f"; fi; done
+          for f in data/notable_email_activity.json outreach/bounced_emails.json outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log outreach/alden_followup_log.json marketing/link_building/tool_outreach_targets.csv portal/subscribers.json portal/processed_stripe_events.json portal/daily_dispatch_log.json portal/trial_lifecycle_log.json; do if [ -f "$f" ]; then git add "$f"; fi; done
 
           if ! git diff --staged --quiet; then
             git commit -m "chore(inbox): updated auto-responses & notable activity [skip ci]"

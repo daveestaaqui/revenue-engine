@@ -87,7 +87,7 @@ else:
     DEFAULT_REPLY_TO = raw_reply_to
 
 
-# Domains confirmed dead, unverified, or historical test entries
+# Domains confirmed dead, unverified, no-MX/null-MX parked, or historical test entries
 DEAD_DOMAINS = {
     "farahlawtexas.com",
     "schuenemanlaw.com",
@@ -124,15 +124,33 @@ DEAD_DOMAINS = {
     "example.com",
     "lw.com",  # Latham & Watkins rejects generic info@
     "justilaw.com",  # Yahoo mail rejects unrouted mailboxes (552)
+    "legalitprofessionals.com",
+    "tba.org",
+    # 12 parked / no-MX / null-MX domains discovered in MX audit
+    "tuplerlaw.com",
+    "weidnerlaw.com",
+    "danzlaw.com",
+    "themiamilaw.com",
+    "hacheylaw.com",
+    "marshalllaw.com",
+    "carpenterlawgroup.com",
+    "hardinglaw.com",
+    "daveslaw.com",
+    "kanelaw.com",
+    "braylawfirm.com",
+    "jordanfinch.com",
 }
 
-# Generic department prefixes that reject cold emails or do not reach counsel
+# Generic department and institutional role prefixes that reject cold emails or bounce (550)
 GENERIC_EMAIL_PREFIXES = (
     "info@", "contact@", "admin@", "support@", "office@", "reception@",
     "general@", "mail@", "inquiry@", "inquiries@", "hello@", "team@",
     "intake@", "help@", "service@", "services@", "frontdesk@", "desk@",
     "billing@", "accounting@", "sales@", "press@", "media@", "jobs@",
-    "careers@", "marketing@", "legal@"
+    "careers@", "marketing@", "legal@", "clinics@", "lawclinics@",
+    "law_clinics@", "consumerlaw@", "lpm@", "cpm@", "tba@", "editor@",
+    "legalfuel@", "tips@", "pulse@", "submissions@", "directory@",
+    "newsletter@", "webmaster@", "postmaster@"
 )
 
 # Big-law firms that reject unsolicited emails or require web contact forms

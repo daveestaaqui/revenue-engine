@@ -61,6 +61,7 @@ BOUNCED_EMAILS = {
     "attorneyforlife@aol.com",
     "bmdouglas@briandouglaslaw.com",
     "clinicaltrials@discgenics.com",
+    "clinics@law.georgetown.edu",
     "clinics@law.ufl.edu",
     "consumerlaw@law.berkeley.edu",
     "contact@charlotteforeclosurerecovery.com",
@@ -99,6 +100,7 @@ BOUNCED_EMAILS = {
     "jack@duffleylaw.com",
     "law_clinics@unc.edu",
     "lawclinics@emory.edu",
+    "lpm@americanbar.org",
     "memberservicesma@commonwealthcare.org",
     "mksipes@sipeslaw.com",
     "nancy@vankampenlaw.com",
@@ -109,7 +111,7 @@ BOUNCED_EMAILS = {
     "tba@tba.org",
 }
 
-# Blacklist of dead domains
+# Blacklist of dead / parked / no-MX domains
 BOUNCED_DOMAINS = {
     "atlantarealestateattorney.com",
     "charlotteforeclosurerecovery.com",
@@ -127,6 +129,18 @@ BOUNCED_DOMAINS = {
     "bhaermanlaw.com",
     "vangelderenlaw.com",
     "evanslawatlanta.com",
+    "tuplerlaw.com",
+    "weidnerlaw.com",
+    "danzlaw.com",
+    "themiamilaw.com",
+    "hacheylaw.com",
+    "marshalllaw.com",
+    "carpenterlawgroup.com",
+    "hardinglaw.com",
+    "daveslaw.com",
+    "kanelaw.com",
+    "braylawfirm.com",
+    "jordanfinch.com",
 }
 
 STATE_NAMES = {
@@ -179,19 +193,20 @@ COUNTY_URLS = {
 
 
 def check_domain_mx(domain: str) -> bool:
+    """Strictly verify a live, non-null DNS MX record exists for the domain.
+    Never fall back to A records (parked domains have A records but no mail servers)."""
     if not domain or "." not in domain or domain in BOUNCED_DOMAINS:
         return False
     try:
         res = subprocess.run(["dig", "+short", "MX", domain], capture_output=True, text=True, timeout=3)
         out = res.stdout.strip()
-        if out and out != "." and out != "0 .":
-            return True
-    except Exception:
-        pass
-    try:
-        res_a = subprocess.run(["dig", "+short", "A", domain], capture_output=True, text=True, timeout=3)
-        if res_a.stdout.strip():
-            return True
+        if not out:
+            return False
+        for line in out.splitlines():
+            parts = line.strip().split()
+            host = parts[-1].rstrip(".") if parts else ""
+            if host and host != "." and "parklogic" not in host.lower() and "sedoparking" not in host.lower():
+                return True
     except Exception:
         pass
     return False
@@ -334,9 +349,17 @@ def purge_and_rebuild():
             bounced_count += 1
             continue
 
-        # Prefer personal name email over generic info
-        is_generic = user in ["info", "contact", "consultations", "admin", "office", "support", "help"]
-        priority = 0 if is_generic else 1
+        # Strictly reject generic/role mailboxes — only allow direct practitioner emails
+        is_generic = user in [
+            "info", "contact", "consultations", "admin", "office", "support",
+            "help", "intake", "general", "mail", "inquiry", "inquiries",
+            "clinics", "lawclinics", "law_clinics", "consumerlaw", "lpm",
+            "cpm", "tba", "editor", "legalfuel", "tips", "pulse"
+        ]
+        if is_generic:
+            bounced_count += 1
+            continue
+        priority = 1
 
         if domain not in domain_map or priority > domain_map[domain]["priority"]:
             domain_map[domain] = {

@@ -314,6 +314,47 @@ class TestDirectEmailAntiSpamAndDeliverability(unittest.TestCase):
             except Exception:
                 pass
 
+    def test_latest_bounces_and_no_mx_domains_blocked(self):
+        from outreach.generate_drafts import is_valid_direct_email
+        from marketing.link_building.tool_outreach_engine import select_outreach_targets
+
+        # Latest bounced addresses and role prefixes must be blocked
+        for bounced_addr in (
+            "clinics@law.georgetown.edu",
+            "lpm@americanbar.org",
+            "consumerlaw@law.berkeley.edu",
+            "editor@legalitprofessionals.com",
+            "cpm@ncbar.org",
+            "tba@tba.org",
+            "david@tuplerlaw.com",
+            "matt@weidnerlaw.com",
+            "matt@danzlaw.com",
+            "ms@themiamilaw.com",
+            "stephen@hacheylaw.com",
+            "charles@marshalllaw.com",
+            "marcus@carpenterlawgroup.com",
+            "william@hardinglaw.com",
+            "robert@daveslaw.com",
+            "ekane@kanelaw.com",
+            "lbray@braylawfirm.com",
+            "pjordan@jordanfinch.com",
+        ):
+            self.assertFalse(is_valid_direct_email(bounced_addr), f"Should block {bounced_addr}")
+
+        # Verify tool_outreach_engine filters out bounced and guessed role addresses
+        sample_targets = [
+            {"organization": "Georgetown Clinic", "contact_email": "clinics@law.georgetown.edu", "status": "SENT", "da": "92"},
+            {"organization": "ABA LTRC", "contact_email": "lpm@americanbar.org", "status": "SENT", "da": "88"},
+            {"organization": "Generic Clinic", "contact_email": "clinics@someuniversity.edu", "status": "READY_FOR_OUTREACH", "da": "90"},
+            {"organization": "Direct Editor", "contact_email": "jane.doe@verifiedlegaltech.org", "status": "READY_FOR_OUTREACH", "da": "80"},
+        ]
+        selected = select_outreach_targets(sample_targets, limit=10)
+        selected_emails = [t["contact_email"] for t in selected]
+        self.assertNotIn("clinics@law.georgetown.edu", selected_emails)
+        self.assertNotIn("lpm@americanbar.org", selected_emails)
+        self.assertNotIn("clinics@someuniversity.edu", selected_emails)
+        self.assertIn("jane.doe@verifiedlegaltech.org", selected_emails)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

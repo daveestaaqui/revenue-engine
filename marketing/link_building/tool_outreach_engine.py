@@ -110,6 +110,8 @@ def load_unsubscribed_domains() -> set:
 
 # Known bounced email addresses to suppress from all link-building outreach
 BOUNCED_EMAILS = {
+    "clinics@law.georgetown.edu",
+    "lpm@americanbar.org",
     "cpm@ncbar.org",
     "editor@lawyerist.com",
     "editor@legalitprofessionals.com",
@@ -127,6 +129,29 @@ try:
 except Exception:
     pass
 
+BOUNCED_JSON_FILE = BASE_DIR / "outreach" / "bounced_emails.json"
+
+# Guessed institutional/role prefixes that have high bounce rates and should never be cold-emailed
+UNVERIFIED_ROLE_PREFIXES = (
+    "clinics@", "lawclinics@", "law_clinics@", "consumerlaw@",
+    "lpm@", "cpm@", "tba@", "editor@", "contact@", "info@",
+    "support@", "tips@", "pulse@", "legalfuel@", "admin@",
+    "office@", "general@", "help@", "submissions@", "webmaster@"
+)
+
+
+def load_bounced_blacklist() -> set:
+    """Loads dynamic bounced email/domain blacklist from outreach/bounced_emails.json."""
+    bounced = set(BOUNCED_EMAILS)
+    if BOUNCED_JSON_FILE.exists():
+        try:
+            data = json.loads(BOUNCED_JSON_FILE.read_text(encoding="utf-8"))
+            if isinstance(data, list):
+                bounced.update(str(item).strip().lower() for item in data if item)
+        except Exception:
+            pass
+    return bounced
+
 
 def select_outreach_targets(
     targets: List[Dict[str, Any]],
@@ -137,24 +162,29 @@ def select_outreach_targets(
     """Prioritizes and selects eligible uncontacted targets by DA descending."""
     contacted = load_contacted_emails()
     unsubscribed = load_unsubscribed_domains()
+    bounced_blacklist = load_bounced_blacklist()
 
     filtered = []
     for t in targets:
         email_addr = t.get("contact_email", "").strip().lower()
-        if not email_addr:
+        if not email_addr or "@" not in email_addr:
             continue
         status = t.get("status", "").strip().upper()
         if status.startswith("BOUNCED"):
             continue
-        if email_addr in BOUNCED_EMAILS:
+        domain = email_addr.split("@")[-1]
+        if email_addr in bounced_blacklist or domain in bounced_blacklist:
             continue
-        domain = email_addr.split("@")[-1] if "@" in email_addr else ""
         if domain in unsubscribed or email_addr in unsubscribed:
             continue
         if specific_email:
             if email_addr == specific_email.strip().lower():
                 filtered.append(t)
                 break
+            continue
+
+        # Block guessed institutional role addresses from automated selection
+        if email_addr.startswith(UNVERIFIED_ROLE_PREFIXES):
             continue
 
         if email_addr in contacted:

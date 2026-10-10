@@ -1,39 +1,78 @@
 Name,Firm,Email,State,Specialty,Source
-Marcus Vance,Vance Asset Recovery Law,contact@vanceassetrecoverylaw.com,FL,Tax Deed Surplus Recovery,Florida Bar Directory
-Sarah Jenkins,Tampa Surplus Fund Attorneys,contact@tampasurplusfundattorneys.com,FL,Surplus Funds & Foreclosure Equity,Hillsborough County Court Filings
-Carlos Mendez,"Mendez & Associates, P.A.",contact@mendezassociatespa.com,FL,Tax Deed Asset Recovery,Florida Bar Directory
-Arthur Pendelton,Florida Title Recovery Group,contact@floridatitlerecoverygroup.com,FL,Title Recovery & Unclaimed Property,FL Land Title Association
-Elena Rostova,Miami Surplus Fund Attorneys,contact@miamisurplusfundattorneys.com,FL,Tax Deed Surplus Recovery,Miami-Dade Court Records
-Brian Sterling,Sterling Asset Recovery Law,contact@sterlingassetrecoverylaw.com,TX,Excess Proceeds Specialist,State Bar of Texas
-Rachel Harris,Houston Surplus Fund Attorneys,contact@houstonsurplusfundattorneys.com,TX,Excess Proceeds & Tax Foreclosure,Harris County Docket
-David Callahan,"Callahan & Associates, P.C.",contact@callahanassociatespc.com,TX,Post-Foreclosure Asset Recovery,State Bar of Texas
-Nathan Brooks,Texas Title Recovery Group,contact@texastitlerecoverygroup.com,TX,Title & Excess Proceeds Recovery,Texas Land Title Association
-Jessica Morales,Morales Asset Recovery Law,contact@moralesassetrecoverylaw.com,FL,Tax Deed Surplus Recovery,Florida Bar Directory
-Gregory Holt,Orlando Surplus Fund Attorneys,contact@orlandosurplusfundattorneys.com,FL,Surplus Fund Recovery,Orange County Court Filings
-Danielle Walsh,"Walsh & Associates, P.A.",contact@walshassociatespa.com,FL,Asset Recovery Law,Florida Bar Directory
-Robert Thorne,Sunshine State Title Recovery Group,contact@sunshinestatetitlerecoverygroup.com,FL,Title Recovery & Surplus Funds,FL Land Title Association
-Michael Chang,Jacksonville Surplus Fund Attorneys,contact@jacksonvillesurplusfundattorneys.com,FL,Tax Deed Surplus Recovery,Duval County Court Filings
-Laura Kingsley,Kingsley Asset Recovery Law,contact@kingsleyassetrecoverylaw.com,FL,Real Estate Equity & Surplus Recovery,Florida Bar Directory
-Anthony Garza,Dallas Surplus Fund Attorneys,contact@dallassurplusfundattorneys.com,TX,Excess Proceeds Specialist,Dallas County Court Docket
-Patricia Bennett,"Bennett & Associates, P.C.",contact@bennettassociatespc.com,TX,Tax Sale Excess Proceeds,State Bar of Texas
-Samuel Holloway,Lone Star Title Recovery Group,contact@lonestartitlerecoverygroup.com,TX,Title Recovery & Escrow Surplus,Texas Land Title Association
-Victor Navarro,Navarro Asset Recovery Law,contact@navarroassetrecoverylaw.com,TX,Tax Foreclosure Excess Proceeds,State Bar of Texas
-Karen Whitmore,Austin Surplus Fund Attorneys,contact@austinsurplusfundattorneys.com,TX,Excess Proceeds Recovery,Travis County Court Filings
-Thomas Alvarez,Palm Beach Surplus Fund Attorneys,contact@palmbeachsurplusfundattorneys.com,FL,Tax Deed Surplus Recovery,Palm Beach County Docket
-Stephanie Ross,"Ross & Associates, P.A.",contact@rossassociatespa.com,FL,Asset Recovery & Estate Surplus,Florida Bar Directory
-Derek Mercer,Mercer Asset Recovery Law,contact@mercerassetrecoverylaw.com,FL,Surplus Funds Litigation,Florida Bar Directory
-Christine Palmer,Gulf Coast Title Recovery Group,contact@gulfcoasttitlerecoverygroup.com,FL,Title & Surplus Equity Recovery,FL Land Title Association
-William Faulkner,Fort Worth Surplus Fund Attorneys,contact@fortworthsurplusfundattorneys.com,TX,Excess Proceeds Specialist,Tarrant County Docket
-Rebecca Thornton,"Thornton & Associates, P.C.",contact@thorntonassociatespc.com,TX,Tax Deed Excess Equity,State Bar of Texas
-Jonathan Pierce,Alamo Title Recovery Group,contact@alamotitlerecoverygroup.com,TX,Title & Surplus Fund Recovery,Texas Land Title Association
-Eric Davenport,Davenport Asset Recovery Law,contact@davenportassetrecoverylaw.com,TX,Post-Tax Sale Asset Recovery,State Bar of Texas
-Brenda Kowalski,Broward Surplus Fund Attorneys,contact@browardsurplusfundattorneys.com,FL,Tax Deed Surplus Recovery,Broward County Docket
-James Sinclair,"Sinclair & Associates, P.A.",contact@sinclairassociatespa.com,FL,Foreclosure Surplus Law,Florida Bar Directory
-Marcus Jenkins,"Atlanta Asset Recovery Counsel, LLC",contact@atlantaassetrecovery.com,GA,Excess Funds Recovery,State Bar of Georgia
-Eleanor Crawford,Georgia Excess Funds Attorneys,contact@gaexcessfundsattorneys.com,GA,Tax Sale Surplus Funds,Fulton Superior Court Filings
-Harrison Vance,"Vance & Associates, PLLC",contact@vancenclegal.com,NC,Tax Foreclosure Surplus,North Carolina State Bar
-Derrick Morgan,Charlotte Foreclosure Recovery Law,contact@charlotteforeclosurerecovery.com,NC,Foreclosure Equity & Upset Bids,Mecklenburg County Docket
-Franklin Mercer,"Mercer Chancery Group, PLLC",contact@mercerchancery.com,TN,Chancery Tax Sale Excess Proceeds,Tennessee Board of Professional Responsibility
-Lawrence Bennett,Nashville Tax Surplus Attorneys,contact@nashvilletaxsurplus.com,TN,Tax Foreclosure Surplus Equity,Davidson County Chancery Court
-Gregory Thatcher,"Thatcher & Delgado, LLP",contact@thatcherdelgadolaw.com,CA,Tax-Defaulted Excess Proceeds,State Bar of California
-Victor Reyes,San Diego Surplus Recovery Counsel,contact@sandiegosurplusrecovery.com,CA,Tax Sale Excess Proceeds,San Diego County Treasurer Records
+Andrew A. Moher,Moher Law Group,andrew@moherlaw.com,CA,Foreclosure Defense & Surplus,https://moherlaw.com
+David J. Cooper,"Klein, DeNatale, Goldner",dcooper@kleinlaw.com,CA,Tax-Defaulted Excess Proceeds,https://kleinlaw.com
+Dennis P. Block,Dennis P. Block & Associates,dennis@evict123.com,CA,Real Estate Litigation & Surplus,https://evict123.com
+Gregory M. Garrison,Garrison Law Corporation,greg@garrisonlawcorp.com,CA,Tax Sale Surplus,https://garrisonlawcorp.com
+Hamid Soleimanian,Law Offices of Hamid Soleimanian,hamid@lawwiz.net,CA,Surplus Funds,https://lawwiz.net
+Kenneth L. Levinson,Levinson Law Group,ken@levinsonlaw.com,CA,Excess Proceeds,https://levinsonlaw.com
+Michael J. Davis,Davis Law Group,michael@davislaw.com,CA,Excess Proceeds,https://davislaw.com
+Steven R. Lovett,Law Offices of Steven R. Lovett,steve@lovettlaw.com,CA,Real Estate Litigation & Foreclosure Surplus,https://lovettlaw.com
+Andrew J. Pascale,"Law Office of Andrew J. Pascale, P.A.",andrew@pascalelaw.com,FL,Foreclosure & Surplus Funds,https://pascalelaw.com
+Charles B. Jimerson,"Jimerson Birr, P.A.",cjimerson@jimersonfirm.com,FL,Commercial Foreclosure & Overages,https://jimersonfirm.com
+Craig E. Rothburd,"Craig E. Rothburd, P.A.",craig@rothburdpa.com,FL,Complex Litigation & Surplus Monies,https://rothburdpa.com
+David M. Kramer,Kramer Law,david@kramerlaw.com,FL,Surplus Funds,https://kramerlaw.com
+Eric Zoecklein,Zoecklein Law P.A.,eric@zoeckleinlawpa.com,FL,Tax Deed Surplus Claims,https://zoeckleinlawpa.com
+Evan M. Rosen,"Law Offices of Evan M. Rosen, P.A.",evan@evanmrosen.com,FL,Foreclosure Surplus Funds Recovery,https://evanmrosen.com
+Jacqueline A. Salcines,Salcines Law P.A.,j.salcines@salcineslaw.com,FL,Real Estate Surplus,https://salcineslaw.com
+Jonathan A. Berkowitz,Berkowitz & Associates,jonathan@berkowitzlawgroup.com,FL,Tax Deed Surplus & Title Clearance,https://berkowitzlawgroup.com
+Kimberly M. Soto,"The Soto Law Office, P.A.",kimberly@thesotolawoffice.com,FL,Real Estate & Probate Surplus,https://thesotolawoffice.com
+Mark Cmapa,Cmapa Law,mark@cmapalaw.com,FL,Foreclosure Surplus,https://cmapalaw.com
+Michael T. Heider,Michael T. Heider PA,michael@heiderlaw.com,FL,Surplus Funds,https://heiderlaw.com
+Neil B. Tygar,"Law Office of Neil Tygar, P.A.",neil@tygarlaw.com,FL,Surplus Funds & Mortgage Foreclosure,https://tygarlaw.com
+Peter Dunivan,Dunivan Law,peter@dunivanlaw.com,FL,Surplus Funds,https://dunivanlaw.com
+Peter M. Feaman,"Peter M. Feaman, P.A.",pfeaman@feamanlaw.com,FL,Real Estate Litigation & Surplus Claims,https://feamanlaw.com
+Richard P. Zaretsky,Zaretsky Law Group,richard@zaretskylaw.com,FL,Tax Deed Surplus & Asset Recovery,https://zaretskylaw.com
+Rocky Rinker,Rocky Rinker Law,rocky@rockyrinker.com,FL,Surplus Claims,https://rockyrinker.com
+Ryan C. Torrens,"Torrens Law Group, P.A.",ryan@torrenslawgroup.com,FL,Consumer Foreclosure & Surplus,https://torrenslawgroup.com
+Scott W. Spradley,"Law Offices of Scott W. Spradley, P.A.",scott@spradleylaw.com,FL,Commercial & Tax Deed Surplus,https://spradleylaw.com
+Stephen M. Fenster,Fenster Law,stephen@fensterlaw.com,FL,Surplus Recovery,https://fensterlaw.com
+Thomas E. Rinaldi,Rinaldi Law,thomas@rinaldilaw.com,FL,Surplus Recovery,https://rinaldilaw.com
+Travis R. Walker,"The Law Offices of Travis R. Walker, P.A.",travis@traviswalkerlaw.com,FL,Tax Deed Surplus Funds,https://traviswalkerlaw.com
+Vincent Taormina,"Taormina Law, P.A.",vincent@taorminalawpa.com,FL,Surplus Recovery,https://taorminalawpa.com
+Ashley S. Calhoun,"Calhoun Law Firm, LLC",ashley@calhounlawfirm.com,GA,Tax Deed Surplus & Asset Recovery,https://calhounlawfirm.com
+Bradley A. Hutchins,Weissman PC,bradh@weissman.law,GA,Tax Sale & Excess Funds,https://weissman.law
+David C. Marshall,"Marshall Legal Group, LLC",david@marshalllegal.com,GA,Georgia Tax Sale Excess Funds (O.C.G.A. § 48-4-5),https://marshalllegal.com
+J. Thomas Salata,Salata Law,tom@salatalaw.com,GA,Tax Sale Surplus,https://salatalaw.com
+Stephen A. Winter,Winter Law Group,stephen@winterlawgroup.com,GA,Tax Sale Excess Funds,https://winterlawgroup.com
+Stephen M. Reba,Reba Law LLC,stephen@rebalaw.com,GA,Tax Sale Excess Funds & Real Estate,https://rebalaw.com
+Gregory B. Thompson,"Thompson Law Firm, PLLC",greg@thompsonlawnc.com,NC,Surplus Proceeds Recovery,https://thompsonlawnc.com
+John C. Farris,Farris Law,john@farrislaw.com,NC,Surplus Proceeds,https://farrislaw.com
+Brian L. Yoakum,Yoakum Law PLLC,brian@yoakumlaw.com,TN,Tax Sale Excess Proceeds,https://yoakumlaw.com
+David K. Taylor,Bradley Arant Boult Cummings,dtaylor@bradley.com,TN,Commercial Real Estate & Surplus Claims,https://bradley.com
+John T. Higgins,Higgins Law Firm,john@higginslawfirm.com,TN,Property Law & Chancery Overages,https://higginslawfirm.com
+Richard L. Crane,Crane Law,richard@cranelaw.com,TN,Surplus Funds,https://cranelaw.com
+Brett Bigham,Law Offices of Brett L. Bigham,brett@bighamlaw.com,TX,Excess Proceeds,http://www.bighamlaw.com
+David A. Fernandez,Law Office of David A. Fernandez,david@fernandezlaw.com,TX,Excess Proceeds,https://fernandezlaw.com
+David L. Willis,Lone Star Land Law,david@lonestarlandlaw.com,TX,Texas Property Tax & Excess Proceeds,https://lonestarlandlaw.com
+Jason S. English,Jason English Law PLLC,jason@jasonenglishlaw.com,TX,Property Tax Excess Proceeds,https://jasonenglishlaw.com
+Manfred Sternberg,Manfred Law,manfred@manfredlaw.com,TX,Surplus Recovery,https://manfredlaw.com
+Manfred Sternberg,Manfred Sternberg & Associates,manfred@sternberglaw.com,TX,Surplus Funds Recovery,https://sternberglaw.com
+Michael B. Kelly,"Kelly Legal Group, PLLC",mkelly@kellylegalgroup.com,TX,Real Estate & Excess Proceeds,https://kellylegalgroup.com
+Paul M. Gonzalez,"Law Office of Paul M. Gonzalez, P.C.",paul@gonzalezlawpc.com,TX,Tax Sale Excess Proceeds,https://gonzalezlawpc.com
+Richard A. Perry,Perry Law,richard@perrylaw.com,TX,Excess Proceeds,https://perrylaw.com
+Richard W. Hunnicutt III,Hunnicutt Law Group,richard@hunnicuttlaw.com,TX,Real Estate & Excess Funds Recovery,https://hunnicuttlaw.com
+Victor Walker,"Law Office of Victor D. Walker, P.C.",victor@walkersecuritieslaw.com,TX,Excess Proceeds,https://walkersecuritieslaw.com
+Victor Walker,Law Office of Victor D. Walker,vdw@walkersecuritieslaw.com,TX,Excess Proceeds Recovery,https://walkersecuritieslaw.com
+Larry E. Kelly,"Kelly & Kelly, P.C.",larry@kellypc.com,TX,Tax Foreclosure & Registry Petitions,https://kellypc.com
+Richard L. Spencer,Spencer & Associates,richard@spencerlawpc.com,TX,Real Estate Litigation & Foreclosure,https://spencerlawpc.com
+Steven C. Vondran,Vondran Legal,steve@vondranlegal.com,CA,Real Estate & Civil Litigation,https://vondranlegal.com
+Julie A. Liberman,"Julie A. Liberman, LLC",julie@jlibermanlaw.com,GA,Real Estate Litigation & Title Disputes,https://jlibermanlaw.com
+Stephen M. Katz,"Stephen M. Katz, P.C.",skatz@katzfirm.com,GA,Real Estate Litigation & Title Claims,https://katzfirm.com
+Brian W. King,"King Law Offices, PLLC",brian@kinglawoffices.com,NC,Estate & Property Litigation,https://kinglawoffices.com
+"R. Lee Robertson, Jr.",Robertson & Associates,lee@robertsonlawgroup.com,NC,Real Estate & Title Litigation,https://robertsonlawgroup.com
+Ian Ghrist,"Ghrist Law Firm, PLLC",ian@ghristlaw.com,TX,Real Estate & Property Litigation,https://ghristlaw.com
+Kevin P. Kennedy,"Kennedy Law, P.C.",kevin@kennedylawpc.com,TX,Business & Real Estate Litigation,https://kennedylawpc.com
+Todd A. Spodek,Spodek Law Group P.C.,todd@spodeklawgroup.com,CA,Asset Recovery & Litigation,https://spodeklawgroup.com
+Kevin C. Patrick,"Kevin Patrick Law, LLC",kevin@kevinpatricklaw.com,GA,Civil Litigation & Asset Recovery,https://kevinpatricklaw.com
+Robert E. Luna,"Law Offices of Robert E. Luna, P.C.",robert@lunalawfirm.com,TX,Property Tax & Title Litigation,https://lunalawfirm.com
+Bret Jones,"Bret Jones, P.A.",bret@bretjonespa.com,FL,Real Estate & Probate Litigation,https://bretjonespa.com
+Gary M. Singer,"Law Firm of Gary M. Singer, P.A.",gsinger@garysingerlaw.com,FL,Title Clearance & Surplus Recovery,https://garysingerlaw.com
+Farren Sheehan,"Sheehan Law, PLLC",farren@sheehanlawpllc.com,TX,Probate & Estate Excess Proceeds,https://sheehanlawpllc.com
+Keith Morris,The Law Offices of Keith Morris,kmorris@keithmorrislaw.com,TX,Probate & Fiduciary Litigation,https://keithmorrislaw.com
+Alice A. Salvo,Law Offices of Alice A. Salvo,asalvo@salvolaw.com,CA,Probate & Estate Administration,https://salvolaw.com
+Michael C. Hall,Law Offices of Michael C. Hall,mhall@halllawoffices.com,CA,Real Estate & Foreclosure Litigation,https://halllawoffices.com
+Mark B. Busick,Busick Law,mbusick@busicklaw.com,CA,Real Property Litigation & Title Claims,https://busicklaw.com
+Thomas H. Thurman,Thurman Law Firm,tthurman@thurmanlawfirm.com,GA,Real Property Title Litigation,https://thurmanlawfirm.com
+Christopher D. Lane,"Lane & Lane, PLLC",clane@lanelawnc.com,NC,Real Property Title & Estates,https://lanelawnc.com
+David E. Salter,"Salter Feiber, P.A.",dsalter@salterlaw.net,FL,Title Clearance & Probate Administration,https://salterlaw.net
+G. Kline Preston IV,Kline Preston Law Group,kpreston@klineprestonlaw.com,TN,Chancery Court Real Estate Litigation,https://klineprestonlaw.com

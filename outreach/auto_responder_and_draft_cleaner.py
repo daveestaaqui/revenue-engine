@@ -777,27 +777,45 @@ def is_automated_receipt_or_bounce(msg, sender_email, subject_raw):
 
 
 def record_bounced_recipient(text_body, msg=None):
-    """Extracts failed recipient from delivery bounce notices and records to blocklist."""
+    """Extracts failed recipient from delivery bounce notices, records to blocklist,
+    and marks matching targets in tool_outreach_targets.csv as BOUNCED_INVALID_ADDRESS."""
     content = (text_body or "") + " "
     if msg:
         for header_name in ("Final-Recipient", "Original-Recipient", "X-Failed-Recipients"):
             val = msg.get(header_name)
             if val:
                 content += f" {val} "
+        if hasattr(msg, "is_multipart") and msg.is_multipart():
+            for part in msg.walk():
+                ctype = (part.get_content_type() or "").lower()
+                if ctype in ("message/delivery-status", "text/rfc822-headers", "text/plain"):
+                    try:
+                        raw_part = part.get_payload(decode=True)
+                        if raw_part:
+                            content += " " + raw_part.decode("utf-8", errors="ignore")
+                        else:
+                            content += " " + str(part.get_payload())
+                    except Exception:
+                        pass
 
     patterns = [
         r'final-recipient\s*:\s*rfc822\s*;\s*([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)',
+        r'original-recipient\s*:\s*rfc822\s*;\s*([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)',
         r"wasn't delivered to\s+([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)",
+        r'problem delivering your message to\s+([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)',
+        r'delivery to the following recipient failed permanently[:\s]+([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)',
         r'failed to deliver to\s+([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)',
         r'address rejected[:\s]+.*?\b([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)',
     ]
     bounced_emails = set()
     for pat in patterns:
         for match in re.findall(pat, content, re.IGNORECASE):
-            bounced_emails.add(match.lower().strip())
+            cleaned_addr = match.lower().strip().rstrip(".")
+            if "@" in cleaned_addr and "surplusdocket.com" not in cleaned_addr and "sandwichfitness@gmail.com" not in cleaned_addr:
+                bounced_emails.add(cleaned_addr)
 
     if not bounced_emails:
-        return
+        return set()
 
     bounced_file = BASE_DIR / "outreach" / "bounced_emails.json"
     existing = set()
@@ -816,9 +834,34 @@ def record_bounced_recipient(text_body, msg=None):
         try:
             with open(bounced_file, "w", encoding="utf-8") as f:
                 json.dump(sorted(list(existing)), f, indent=2)
-            log(f"  🛑 Recorded {len(new_bounces)} bounced address(es) to blocklist: {', '.join(new_bounces)}")
+            log(f"  🛑 Recorded {len(new_bounces)} bounced address(es) to blocklist: {', '.join(sorted(new_bounces))}")
         except Exception as e:
             log(f"  ⚠️ Could not write to bounced_emails.json: {e}")
+
+    # Also update marketing/link_building/tool_outreach_targets.csv if present
+    tool_targets_csv = BASE_DIR / "marketing" / "link_building" / "tool_outreach_targets.csv"
+    if tool_targets_csv.exists():
+        try:
+            with open(tool_targets_csv, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                fieldnames = reader.fieldnames
+                rows = list(reader)
+            updated_csv = False
+            for r in rows:
+                c_email = (r.get("contact_email") or "").strip().lower()
+                if c_email in bounced_emails and not (r.get("status") or "").startswith("BOUNCED"):
+                    r["status"] = "BOUNCED_INVALID_ADDRESS"
+                    r["notes"] = "Bounced - auto-detected by inbox sentinel"
+                    updated_csv = True
+            if updated_csv and fieldnames:
+                with open(tool_targets_csv, "w", encoding="utf-8", newline="") as f:
+                    writer = csv.DictWriter(f, fieldnames=fieldnames)
+                    writer.writeheader()
+                    writer.writerows(rows)
+        except Exception:
+            pass
+
+    return bounced_emails
 
 
 def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body, directory, email_directory, target_domains):
@@ -3091,7 +3134,14 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                 "surplusdocket.com" in h_to or
                 "voicemail" in h_subj or
                 "inquiry" in h_subj or
-                "surplus docket" in h_subj
+                "surplus docket" in h_subj or
+                "mailer-daemon" in h_from or
+                "postmaster" in h_from or
+                "delivery status" in h_subj or
+                "undeliverable" in h_subj or
+                "delivery incomplete" in h_subj or
+                "returned mail" in h_subj or
+                "failure notice" in h_subj
             )
             if not is_candidate:
                 continue
@@ -3123,6 +3173,35 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         )
         if is_dmarc:
             log(f"  🗑️ Auto-clearing automated DMARC telemetry report from {sender_email}")
+            try:
+                mail.store(mid, "+X-GM-LABELS", "\\Trash")
+            except Exception:
+                pass
+            mail.store(mid, "+FLAGS", r"(\Seen \Deleted)")
+            mail.expunge()
+            continue
+
+        # -------------------------------------------------------------
+        # 0b. BOUNCE / DELIVERY FAILURE AUTO-LEARNER & CLEANER
+        # -------------------------------------------------------------
+        is_bounce_notice = (
+            "mailer-daemon" in sender_email.lower() or
+            "postmaster" in sender_email.lower() or
+            any(
+                kw in subject_raw.lower()
+                for kw in (
+                    "delivery status notification",
+                    "undeliverable",
+                    "delivery incomplete",
+                    "returned mail",
+                    "failure notice",
+                    "mail delivery failed",
+                )
+            )
+        )
+        if is_bounce_notice:
+            bounced_addrs = record_bounced_recipient(text_body, msg)
+            log(f"  🗑️ Learned from bounce ({', '.join(sorted(bounced_addrs)) or 'DSN'}) and auto-deleting bounce notice from INBOX")
             try:
                 mail.store(mid, "+X-GM-LABELS", "\\Trash")
             except Exception:

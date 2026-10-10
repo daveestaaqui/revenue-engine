@@ -88,7 +88,7 @@ jobs:
           TOOL_OUTREACH_REPLY_TO: ${{ vars.TOOL_OUTREACH_REPLY_TO || 'elena.brooks@surplusdocket.com' }}
         run: |
           OUTREACH_LIMIT="${{ github.event.inputs.outreach_limit || 6 }}"
-          if [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ -z "$GMAIL_APP_PASS" ]; then
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ -z "$GMAIL_APP_PASS" ]; then
             echo "🛡️ Zero-Spam Protection / Dry-Run Mode: Generating outreach drafts and updating target log..."
             python marketing/link_building/tool_outreach_engine.py --dry-run --limit "$OUTREACH_LIMIT"
           else
