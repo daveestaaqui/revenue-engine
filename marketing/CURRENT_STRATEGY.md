@@ -1,23 +1,23 @@
 # 📊 Surplus Docket — Autonomous Marketing Strategy & Optimization Briefing
-**Last Updated:** October 10, 2026 at 12:29 UTC  
+**Last Updated:** October 11, 2026 at 12:47 UTC  
 **Optimization Mode:** Multi-Factor Empirical Model (Surplus Equity + Firm Density + Deliverability)
 
 ---
 
 ## 🚀 1. Executive Directive: High-Yield Resource Calibration
 
-Based on automated analysis of **808 technical outreach points**, **1229 addressable real estate & probate law practices**, and **$3,909,100.00 verified public registry surplus inventory** across 43 court dockets:
+Based on automated analysis of **808 technical outreach points**, **1217 addressable real estate & probate law practices**, and **$3,909,100.00 verified public registry surplus inventory** across 43 court dockets:
 
-1. **PRIMARY POWERHOUSE: FL (31.6% Resource Allocation)**
+1. **PRIMARY POWERHOUSE: FL (31.5% Resource Allocation)**
    - **Monitored Surplus Pool:** $1,444,800.00 across 20 verified dockets.
    - **Potential Legal Recovery Fees:** $288,960.00 available to counsel under statutory guidelines.
-   - **Addressable Law Practice Market:** 392 licensed practitioner targets.
+   - **Addressable Law Practice Market:** 385 licensed practitioner targets.
    - **Strategic Focus:** In-depth procedural petition guides, title examination whitepapers, and direct 1-on-1 docket briefings.
 
 2. **SECONDARY DRIVER: GA (15.8% Resource Allocation)**
    - **Monitored Surplus Pool:** $498,700.00 across 5 verified dockets.
    - **Potential Legal Recovery Fees:** $99,740.00.
-   - **Addressable Law Practice Market:** 150 licensed practitioner targets.
+   - **Addressable Law Practice Market:** 148 licensed practitioner targets.
    - **Strategic Focus:** Registry surveillance briefings and practitioner toolkit syndication.
 
 ---
@@ -26,11 +26,11 @@ Based on automated analysis of **808 technical outreach points**, **1229 address
 
 | State | Priority Weight | Addressable Firms | Active Surplus | Potential Legal Fees | Governing Statute | Strategic Role |
 | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **FL** | **31.6%** | 392 | $1,444,800 | $288,960 | Fla. Stat. § 197.582 | Core High-Volume Administrative Feed |
-| **TX** | **15.5%** | 252 | $393,200 | $98,300 | Tex. Tax Code § 34.04 | Judicial District Court Litigation Hub |
-| **CA** | **14.8%** | 206 | $686,500 | $137,300 | Cal. Rev. & Tax Code § 4675 | High-Equity Board of Supervisors Claims |
-| **GA** | **15.8%** | 150 | $498,700 | $99,740 | O.C.G.A. § 48-4-5 | Sheriff & Superior Court Interpleader Hub |
-| **NC** | **12.2%** | 125 | $501,600 | $100,320 | N.C.G.S. § 105-374(q) | Judicial Foreclosure & Upset Bid Review |
+| **FL** | **31.5%** | 385 | $1,444,800 | $288,960 | Fla. Stat. § 197.582 | Core High-Volume Administrative Feed |
+| **TX** | **15.5%** | 251 | $393,200 | $98,300 | Tex. Tax Code § 34.04 | Judicial District Court Litigation Hub |
+| **CA** | **14.9%** | 206 | $686,500 | $137,300 | Cal. Rev. & Tax Code § 4675 | High-Equity Board of Supervisors Claims |
+| **GA** | **15.8%** | 148 | $498,700 | $99,740 | O.C.G.A. § 48-4-5 | Sheriff & Superior Court Interpleader Hub |
+| **NC** | **12.2%** | 123 | $501,600 | $100,320 | N.C.G.S. § 105-374(q) | Judicial Foreclosure & Upset Bid Review |
 | **TN** | **10.2%** | 104 | $384,300 | $76,860 | T.C.A. § 67-5-2501 | Chancery Court Motion & Probate Expansion |
 
 ---

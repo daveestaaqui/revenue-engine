@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-10T12:29:45.889233+00:00",
+  "updated_at": "2026-10-11T12:47:03.814636+00:00",
   "state_weights_pct": {
-    "FL": 31.6,
+    "FL": 31.5,
     "TX": 15.5,
-    "CA": 14.8,
+    "CA": 14.9,
     "GA": 15.8,
     "NC": 12.2,
     "TN": 10.2
@@ -25,31 +25,31 @@
   },
   "state_performance_breakdown": {
     "FL": {
-      "score": 0.3065,
+      "score": 0.3056,
       "win_rate": 14.1,
       "smoothed_deliverability": 14.3,
       "surplus_pool": 1444800.0,
       "fee_pool": 288960.0,
       "lead_count": 20,
-      "addressable_firms": 392,
+      "addressable_firms": 385,
       "attempts": 163,
       "successes": 23,
-      "allocated_weight_pct": 31.6
+      "allocated_weight_pct": 31.5
     },
     "TX": {
-      "score": 0.1504,
+      "score": 0.1508,
       "win_rate": 16.4,
       "smoothed_deliverability": 16.7,
       "surplus_pool": 393200.0,
       "fee_pool": 98300.0,
       "lead_count": 5,
-      "addressable_firms": 252,
+      "addressable_firms": 251,
       "attempts": 67,
       "successes": 11,
       "allocated_weight_pct": 15.5
     },
     "CA": {
-      "score": 0.1438,
+      "score": 0.1444,
       "win_rate": 2.9,
       "smoothed_deliverability": 3.1,
       "surplus_pool": 686500.0,
@@ -58,34 +58,34 @@
       "addressable_firms": 206,
       "attempts": 551,
       "successes": 16,
-      "allocated_weight_pct": 14.8
+      "allocated_weight_pct": 14.9
     },
     "GA": {
-      "score": 0.1535,
+      "score": 0.1533,
       "win_rate": 30.0,
       "smoothed_deliverability": 26.7,
       "surplus_pool": 498700.0,
       "fee_pool": 99740.0,
       "lead_count": 5,
-      "addressable_firms": 150,
+      "addressable_firms": 148,
       "attempts": 10,
       "successes": 3,
       "allocated_weight_pct": 15.8
     },
     "NC": {
-      "score": 0.1183,
+      "score": 0.1181,
       "win_rate": 0.0,
       "smoothed_deliverability": 12.5,
       "surplus_pool": 501600.0,
       "fee_pool": 100320.0,
       "lead_count": 5,
-      "addressable_firms": 125,
+      "addressable_firms": 123,
       "attempts": 3,
       "successes": 0,
       "allocated_weight_pct": 12.2
     },
     "TN": {
-      "score": 0.0989,
+      "score": 0.0991,
       "win_rate": 0.0,
       "smoothed_deliverability": 12.5,
       "surplus_pool": 384300.0,

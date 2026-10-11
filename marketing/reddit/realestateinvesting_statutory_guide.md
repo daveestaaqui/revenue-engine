@@ -2,7 +2,7 @@
 **Target Subreddit:** `r/realestateinvesting`  
 **Flair:** `Tax Deeds / Foreclosures`  
 **Suggested Title:** `Tax Deed Surplus Overages: State-by-State Statutory Claim Windows & Deadlines`  
-**Generated Date:** 2026-10-10 12:29 UTC
+**Generated Date:** 2026-10-11 12:47 UTC
 
 ---
 
