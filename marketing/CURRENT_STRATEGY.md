@@ -1,12 +1,12 @@
 # 📊 Surplus Docket — Autonomous Marketing Strategy & Optimization Briefing
-**Last Updated:** October 13, 2026 at 14:09 UTC  
+**Last Updated:** October 14, 2026 at 11:49 UTC  
 **Optimization Mode:** Multi-Factor Empirical Model (Surplus Equity + Firm Density + Deliverability)
 
 ---
 
 ## 🚀 1. Executive Directive: High-Yield Resource Calibration
 
-Based on automated analysis of **832 technical outreach points**, **1217 addressable real estate & probate law practices**, and **$3,909,100.00 verified public registry surplus inventory** across 43 court dockets:
+Based on automated analysis of **856 technical outreach points**, **1217 addressable real estate & probate law practices**, and **$3,909,100.00 verified public registry surplus inventory** across 43 court dockets:
 
 1. **PRIMARY POWERHOUSE: FL (31.4% Resource Allocation)**
    - **Monitored Surplus Pool:** $1,444,800.00 across 20 verified dockets.
@@ -28,7 +28,7 @@ Based on automated analysis of **832 technical outreach points**, **1217 address
 | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **FL** | **31.4%** | 385 | $1,444,800 | $288,960 | Fla. Stat. § 197.582 | Core High-Volume Administrative Feed |
 | **TX** | **15.5%** | 251 | $393,200 | $98,300 | Tex. Tax Code § 34.04 | Judicial District Court Litigation Hub |
-| **CA** | **14.9%** | 206 | $686,500 | $137,300 | Cal. Rev. & Tax Code § 4675 | High-Equity Board of Supervisors Claims |
+| **CA** | **14.8%** | 206 | $686,500 | $137,300 | Cal. Rev. & Tax Code § 4675 | High-Equity Board of Supervisors Claims |
 | **GA** | **15.8%** | 148 | $498,700 | $99,740 | O.C.G.A. § 48-4-5 | Sheriff & Superior Court Interpleader Hub |
 | **NC** | **12.2%** | 123 | $501,600 | $100,320 | N.C.G.S. § 105-374(q) | Judicial Foreclosure & Upset Bid Review |
 | **TN** | **10.2%** | 104 | $384,300 | $76,860 | T.C.A. § 67-5-2501 | Chancery Court Motion & Probate Expansion |
