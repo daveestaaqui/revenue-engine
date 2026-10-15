@@ -507,3 +507,5 @@
 [2026-10-15 00:51:50]   ⏭️ Skipped non-prospect from AmericanExpress@welcome.americanexpress.com (Sub: 'Your October 2026 statement is ready – p'): Message identified as automated notification, bounce, or system alert
 [2026-10-15 00:51:52]   ⏭️ Skipped non-prospect from shipment-tracking@amazon.com (Sub: 'Shipped: 1 Nutrition & Wellness item'): Message identified as automated notification, bounce, or system alert
 [2026-10-15 00:51:54]   ⏭️ Skipped non-prospect from shipment-tracking@amazon.com (Sub: 'Shipped: 1 Pet item'): Message identified as automated notification, bounce, or system alert
+[2026-10-15 18:54:53]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your CVX Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
+[2026-10-15 18:54:55]   ⏭️ Skipped non-prospect from tracking@shipstation.com (Sub: 'Your order has been delivered!'): Sender 'tracking@shipstation.com' is not in verified target database and not a statutory inquiry
