@@ -40,6 +40,10 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - run: playwright install --with-deps chromium webkit
+      - name: Auto-synchronize and verify feed publications
+        run: |
+          python portal/feed_generator.py
+          python compliance/verify_all_publications.py
       - name: Run full unit test suite
         run: python -m unittest discover -s tests
       - name: Offline outcome and registry regressions

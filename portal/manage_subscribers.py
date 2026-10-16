@@ -36,6 +36,22 @@ def save_subscribers(subscribers, filepath=SUBSCRIBERS_FILE):
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(subscribers, f, indent=2)
 
+    # Automatically keep site/api/v1/auth_registry.json synchronized
+    try:
+        from portal.vault_security import generate_vault_and_auth_registry, AUTH_REGISTRY_FILE
+        master_json = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.json"
+        leads = []
+        if master_json.exists():
+            with open(master_json, "r", encoding="utf-8") as mj:
+                data = json.load(mj)
+                leads = data.get("data", [])
+        _, auth_registry = generate_vault_and_auth_registry(leads, subscribers)
+        AUTH_REGISTRY_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(AUTH_REGISTRY_FILE, "w", encoding="utf-8") as af:
+            json.dump(auth_registry, af, indent=2)
+    except Exception:
+        pass
+
 
 def get_jurisdictions_for_tier(tier):
     tier_lower = tier.lower()

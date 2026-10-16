@@ -268,9 +268,27 @@ def generate_b2b_exports():
                 "/api/v1/north-carolina.json",
                 "/api/v1/tennessee.json",
                 "/api/v1/california.json",
-                "/api/v1/health.json"
+                "/api/v1/health.json",
+                "/api/v1/vault.json",
+                "/api/v1/auth_registry.json"
             ]
         }, f, indent=2)
+
+    # Generate Cryptographic Vault & Subscriber Auth Registry for Protected Dockets
+    try:
+        from portal.vault_security import generate_vault_and_auth_registry
+        subs_file = BASE_DIR / "portal" / "subscribers.json"
+        subscribers = []
+        if subs_file.exists():
+            with open(subs_file, "r", encoding="utf-8") as sf:
+                subscribers = json.load(sf)
+        vault_payload, auth_registry = generate_vault_and_auth_registry(all_leads, subscribers)
+        with open(API_V1_DIR / "vault.json", "w", encoding="utf-8") as vf:
+            json.dump(vault_payload, vf, indent=2)
+        with open(API_V1_DIR / "auth_registry.json", "w", encoding="utf-8") as af:
+            json.dump(auth_registry, af, indent=2)
+    except Exception as e:
+        print(f"Warning: Failed to generate cryptographic vault: {e}")
 
     total_surplus = df_all["Surplus_Balance_USD"].sum()
     total_fees = df_all["Est_Finder_Fee_USD"].sum()

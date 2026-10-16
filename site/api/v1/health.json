@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
   "authentication": "Bearer <sd_live_api_key>",
-  "timestamp": "2026-10-16T09:56:14.431159",
+  "timestamp": "2026-10-16T10:17:39.074487",
   "endpoints": [
     "/api/v1/feed.json",
     "/api/v1/florida.json",
@@ -13,6 +13,8 @@
     "/api/v1/north-carolina.json",
     "/api/v1/tennessee.json",
     "/api/v1/california.json",
-    "/api/v1/health.json"
+    "/api/v1/health.json",
+    "/api/v1/vault.json",
+    "/api/v1/auth_registry.json"
   ]
 }

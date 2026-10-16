@@ -188,13 +188,21 @@ def compose_email_content(subscriber, stats, date_str):
 
     dockets_text = ""
     dockets_html = ""
+    sub_email = (subscriber.get("email") or "").strip().lower()
     for d in stats["top_dockets"]:
         clerk_url = d.get("clerk_url") or build_direct_clerk_url(d.get("county", ""), d.get("state", ""), d.get("docket", ""))
         docket_id_raw = str(d.get("docket", "")).strip()
-        portal_deep_url = (
-            f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(docket_id_raw)}&county={urllib.parse.quote(str(d.get('county', '')))}&state={urllib.parse.quote(str(d.get('state', '')))}"
-            if docket_id_raw else "https://surplusdocket.com/#live-docket"
-        )
+        if docket_id_raw and sub_email:
+            from portal.vault_security import build_subscriber_deep_url
+            portal_deep_url = build_subscriber_deep_url(
+                docket_id_raw, d.get("county", ""), d.get("state", ""), sub_email, date_str
+            )
+        elif docket_id_raw:
+            portal_deep_url = (
+                f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(docket_id_raw)}&county={urllib.parse.quote(str(d.get('county', '')))}&state={urllib.parse.quote(str(d.get('state', '')))}"
+            )
+        else:
+            portal_deep_url = "https://surplusdocket.com/#live-docket"
         urgency_label = f" [{d['urgency']}]" if d.get("urgency") else ""
         statute_label = f"\n    Statute: {d['statute']}" if d.get("statute") else ""
         link_word = "Registry Verification"

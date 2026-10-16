@@ -80,6 +80,19 @@
             <p class="text-xs text-slate-500">Cross-referencing verified county records and statutory claim windows.</p>
         </div>
 
+        <!-- Subscriber Status Bar (Visible when unlocked) -->
+        <div id="subscriber-auth-banner" class="hidden mb-6 bg-emerald-50 border border-emerald-300 rounded-xl px-4 py-3 flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-xs font-extrabold text-emerald-900 tracking-wide">
+                    ✓ Verified Subscriber Session: Active Practice Evaluation &bull; Priority Counsel Access
+                </span>
+            </div>
+            <button type="button" onclick="clearSubscriberSession()" class="text-[11px] font-bold text-slate-500 hover:text-rose-700 underline transition-colors">
+                Switch Account
+            </button>
+        </div>
+
         <!-- Docket Dossier Card -->
         <div id="docket-card" class="hidden bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
             
@@ -95,7 +108,10 @@
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                     <div>
-                        <div class="text-xs uppercase font-bold tracking-wider text-slate-300 mb-1">Official Docket / Case Matter</div>
+                        <div class="text-xs uppercase font-bold tracking-wider text-slate-300 mb-1 flex items-center gap-1.5">
+                            <span>Official Docket / Case Matter</span>
+                            <span id="lock-icon-docket" class="text-amber-300 text-xs hidden">🔒</span>
+                        </div>
                         <h1 id="docket-title" class="text-2xl sm:text-3xl font-mono font-black tracking-tight text-white flex items-center gap-3">
                             <span>--</span>
                         </h1>
@@ -138,6 +154,60 @@
                     </div>
                 </div>
 
+                <!-- Paywall / Protection Card (Shown when NOT authenticated) -->
+                <div id="paywall-card" class="bg-gradient-to-br from-slate-900 via-brand-navyDark to-brand-navy text-white rounded-2xl p-6 sm:p-8 shadow-xl border border-slate-700">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 font-bold text-lg shrink-0">
+                            🔒
+                        </div>
+                        <div>
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-1.5">
+                                Subscriber Access Only
+                            </div>
+                            <h2 class="text-lg sm:text-xl font-bold tracking-tight text-white">Court Registry Dossier Protected</h2>
+                            <p class="text-xs text-slate-300 mt-1">
+                                Unredacted court case numbers, verified titleholders of record, property street situs, and official county clerk verification PDFs are reserved exclusively for paying subscribers.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <!-- Option 1: Start 7-Day Evaluation -->
+                        <div class="bg-white/10 rounded-xl p-5 border border-white/10 flex flex-col justify-between">
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-brand-green text-white mb-2">New Practices</span>
+                                <h3 class="text-sm font-bold text-white mb-1">Start 7-Day Practice Evaluation</h3>
+                                <p class="text-[11px] text-slate-300 leading-relaxed mb-4">
+                                    Instant access to unredacted dossiers, daily 7:00 AM EST morning feeds across 6 state registries, and statutory motions. $0 due today.
+                                </p>
+                            </div>
+                            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="w-full text-center py-2.5 px-4 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-md transition-all">
+                                Activate 7-Day Access ($0 Due Today) &rarr;
+                            </a>
+                        </div>
+
+                        <!-- Option 2: Instant Zero-Password Email Unlock -->
+                        <div class="bg-white/10 rounded-xl p-5 border border-white/10 flex flex-col justify-between">
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-white/20 text-emerald-300 mb-2">Existing Subscribers</span>
+                                <h3 class="text-sm font-bold text-white mb-1">Zero-Password Subscriber Unlock</h3>
+                                <p class="text-[11px] text-slate-300 leading-relaxed mb-3">
+                                    Enter your subscriber billing email to instantly unlock, or click the direct listing link in your morning 7:00 AM email feed.
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex gap-2">
+                                    <input type="email" id="subscriber-email-input" placeholder="counsel@firm.com" class="flex-1 px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-xs text-white placeholder-slate-400 focus:outline-none focus:border-brand-green font-mono">
+                                    <button type="button" onclick="verifySubscriberEmail()" class="px-4 py-2 bg-brand-navyLight hover:bg-brand-navy border border-white/20 text-white text-xs font-bold rounded-lg shadow-sm transition-all whitespace-nowrap">
+                                        Unlock
+                                    </button>
+                                </div>
+                                <div id="email-verify-error" class="text-[11px] text-rose-300 mt-2 hidden"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Verification Details Box -->
                 <div class="border border-emerald-200 bg-brand-greenSoft/40 rounded-xl p-5">
                     <div class="flex items-start gap-3">
@@ -154,11 +224,11 @@
                                     <span>Open Official County Clerk Document (PDF)</span>
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                                 </a>
-                                <button type="button" onclick="downloadTxtDossier()" class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-slate-100 text-brand-navy text-xs font-bold rounded-lg border border-slate-300 shadow-sm transition-colors">
+                                <button type="button" id="btn-download-dossier" onclick="downloadTxtDossier()" class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-slate-100 text-brand-navy text-xs font-bold rounded-lg border border-slate-300 shadow-sm transition-colors">
                                     <span>Download Case Dossier (.txt)</span>
                                 </button>
                             </div>
-                            <p class="text-[11px] text-slate-500 mt-2.5">
+                            <p id="docket-subnote" class="text-[11px] text-slate-500 mt-2.5">
                                 Note: External clerk link opens the unedited county document directly on the clerk of court's server.
                             </p>
                         </div>
@@ -211,9 +281,15 @@
         </div>
     </footer>
 
+    <!-- Cryptographic Protection & Vault Engine -->
     <script>
+        const VAULT_SALT = "SD_SURPLUS_REGISTRY_2026_LEGAL_INTELLIGENCE";
         let currentRecord = null;
         let allFeedRecords = [];
+        let vaultData = null;
+        let authRegistry = null;
+        let activeVaultKey = null;
+        let isAuthenticated = false;
 
         function escapeHtml(str) {
             if (!str) return '';
@@ -227,8 +303,152 @@
             return '#';
         }
 
+        async function sha256Bytes(msgUint8) {
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+            return new Uint8Array(hashBuffer);
+        }
+
+        async function sha256Hex(str) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(str);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function xorCryptJs(dataBytes, keyBytes) {
+            const out = new Uint8Array(dataBytes.length);
+            const numBlocks = Math.ceil(dataBytes.length / 32);
+            for (let i = 0; i < numBlocks; i++) {
+                const counterBytes = new Uint8Array(4);
+                new DataView(counterBytes.buffer).setUint32(0, i, false);
+                const concat = new Uint8Array(keyBytes.length + 4);
+                concat.set(keyBytes, 0);
+                concat.set(counterBytes, keyBytes.length);
+                const keystream = await sha256Bytes(concat);
+                const start = i * 32;
+                const end = Math.min(start + 32, dataBytes.length);
+                for (let j = start; j < end; j++) {
+                    out[j] = dataBytes[j] ^ keystream[j - start];
+                }
+            }
+            return out;
+        }
+
+        function hexToBytes(hex) {
+            const clean = (hex || '').trim();
+            const bytes = new Uint8Array(clean.length / 2);
+            for (let i = 0; i < clean.length; i += 2) {
+                bytes[i / 2] = parseInt(clean.substr(i, 2), 16);
+            }
+            return bytes;
+        }
+
+        async function verifyVaultKey(keyCandidate) {
+            if (!keyCandidate || !authRegistry || !authRegistry.vault_sig) return false;
+            const sig = await sha256Hex(`SIG_${keyCandidate}_${VAULT_SALT}`);
+            return sig.substring(0, 16) === authRegistry.vault_sig;
+        }
+
+        async function initAuth() {
+            const params = new URLSearchParams(window.location.search);
+            const urlKey = (params.get('k') || params.get('key') || '').trim();
+            const storedKey = (localStorage.getItem('sd_subscriber_vault_key') || '').trim();
+
+            try {
+                const res = await fetch('/api/v1/auth_registry.json');
+                if (res.ok) {
+                    authRegistry = await res.json();
+                }
+            } catch (e) {
+                console.warn('Auth registry unavailable:', e);
+            }
+
+            // 1. Check URL key
+            if (urlKey && await verifyVaultKey(urlKey)) {
+                activeVaultKey = urlKey;
+                isAuthenticated = true;
+                localStorage.setItem('sd_subscriber_vault_key', urlKey);
+            }
+            // 2. Check stored key from previous email link or login
+            else if (storedKey && await verifyVaultKey(storedKey)) {
+                activeVaultKey = storedKey;
+                isAuthenticated = true;
+            }
+
+            if (isAuthenticated) {
+                document.getElementById('subscriber-auth-banner').classList.remove('hidden');
+                document.getElementById('paywall-card').classList.add('hidden');
+            }
+        }
+
+        async function verifySubscriberEmail() {
+            const input = document.getElementById('subscriber-email-input');
+            const errDiv = document.getElementById('email-verify-error');
+            const email = (input ? input.value : '').trim().toLowerCase();
+            
+            errDiv.classList.add('hidden');
+            errDiv.textContent = '';
+
+            if (!email || !email.includes('@')) {
+                errDiv.textContent = 'Please enter a valid subscriber email address.';
+                errDiv.classList.remove('hidden');
+                return;
+            }
+
+            if (!authRegistry || !authRegistry.subscribers) {
+                errDiv.textContent = 'Subscriber verification service is updating. Please try again shortly.';
+                errDiv.classList.remove('hidden');
+                return;
+            }
+
+            const emailHash = await sha256Hex(email);
+            const match = authRegistry.subscribers.find(s => s.email_hash === emailHash);
+
+            if (!match) {
+                errDiv.textContent = 'No active subscription or evaluation found for that email. Please check your spelling or activate access below.';
+                errDiv.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                // Decrypt subscriber's vault payload
+                const userKey = await sha256Bytes(new TextEncoder().encode(`SUB_KEY_${email}_${VAULT_SALT}`));
+                const payloadBytes = hexToBytes(match.vault_payload);
+                const decryptedBytes = await xorCryptJs(payloadBytes, userKey);
+                const decryptedVaultKey = new TextDecoder().decode(decryptedBytes);
+
+                if (await verifyVaultKey(decryptedVaultKey)) {
+                    activeVaultKey = decryptedVaultKey;
+                    isAuthenticated = true;
+                    localStorage.setItem('sd_subscriber_vault_key', decryptedVaultKey);
+                    
+                    document.getElementById('subscriber-auth-banner').classList.remove('hidden');
+                    document.getElementById('paywall-card').classList.add('hidden');
+
+                    // Re-render docket with unredacted vault data
+                    await reloadDocketAfterAuth();
+                } else {
+                    errDiv.textContent = 'Subscriber authentication failed. Please contact support or access via your morning email.';
+                    errDiv.classList.remove('hidden');
+                }
+            } catch (err) {
+                console.error('Error during email authentication:', err);
+                errDiv.textContent = 'Authentication error. Please try again.';
+                errDiv.classList.remove('hidden');
+            }
+        }
+
+        function clearSubscriberSession() {
+            localStorage.removeItem('sd_subscriber_vault_key');
+            activeVaultKey = null;
+            isAuthenticated = false;
+            window.location.reload();
+        }
+
         async function initDocketPage() {
             document.getElementById('year').textContent = new Date().getFullYear();
+            await initAuth();
+
             const params = new URLSearchParams(window.location.search);
             const rawDocket = (params.get('docket') || params.get('case') || params.get('id') || params.get('q') || '').trim();
             const rawCounty = (params.get('county') || '').trim().toLowerCase();
@@ -274,7 +494,7 @@
                 }
 
                 if (matched) {
-                    renderDocket(matched, rawDocket);
+                    await renderDocket(matched, rawDocket);
                 } else {
                     showNotFound(rawDocket);
                 }
@@ -284,25 +504,52 @@
             }
         }
 
-        function renderDocket(r, queriedDocket) {
+        async function reloadDocketAfterAuth() {
+            if (currentRecord) {
+                await renderDocket(currentRecord, currentRecord.docket_id || currentRecord.Case_or_TaxDeed_No);
+            } else {
+                await initDocketPage();
+            }
+        }
+
+        async function renderDocket(r, queriedDocket) {
             currentRecord = r;
             document.getElementById('loading-state').classList.add('hidden');
             document.getElementById('not-found-state').classList.add('hidden');
             document.getElementById('docket-card').classList.remove('hidden');
 
-            const docketDisplay = queriedDocket || r.docket_id || r.Case_or_TaxDeed_No || 'Matter';
-            document.getElementById('crumb-docket').textContent = `Docket ${docketDisplay}`;
-            document.getElementById('docket-title').textContent = docketDisplay;
-            document.getElementById('badge-jurisdiction').textContent = `${r.State || '--'} • ${r.County || '--'} County`;
+            const docketLookupId = r.docket_id || r.Case_or_TaxDeed_No || queriedDocket || '';
+            let unredactedLead = null;
+
+            // If subscriber is authenticated, retrieve & decrypt unredacted dossier from vault.json
+            if (isAuthenticated && activeVaultKey) {
+                try {
+                    if (!vaultData) {
+                        const vaultRes = await fetch('/api/v1/vault.json');
+                        if (vaultRes.ok) {
+                            vaultData = await vaultRes.json();
+                        }
+                    }
+
+                    if (vaultData && vaultData.dockets) {
+                        const entry = vaultData.dockets[docketLookupId.toLowerCase()] || 
+                                      (r.parcel_id_raw && vaultData.dockets[r.parcel_id_raw.toLowerCase()]);
+                        if (entry && entry.cipher) {
+                            const docketKey = await sha256Bytes(new TextEncoder().encode(activeVaultKey + entry.docket_id.toLowerCase()));
+                            const plainBytes = await xorCryptJs(hexToBytes(entry.cipher), docketKey);
+                            unredactedLead = JSON.parse(new TextDecoder().decode(plainBytes));
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Vault decryption error:', e);
+                }
+            }
 
             const bal = parseFloat(r.Surplus_Balance_USD) || 0;
-            document.getElementById('docket-balance').textContent = `$${bal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
-
             const fee = bal * 0.20;
-            document.getElementById('docket-fee').textContent = `$${fee.toLocaleString('en-US', {minimumFractionDigits: 2})} (20% Cap Benchmark)`;
-
-            document.getElementById('docket-owner').textContent = r.Owner_Name || 'Titleholder of Record';
-            document.getElementById('docket-address').textContent = r.Property_Address || `${r.County || ''} County Court Registry`;
+            document.getElementById('badge-jurisdiction').textContent = `${r.State || '--'} • ${r.County || '--'} County`;
+            document.getElementById('docket-balance').textContent = `$${bal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('docket-fee').textContent = `$${fee.toLocaleString('en-US', {minimumFractionDigits: 2})} (20% Benchmark)`;
             document.getElementById('docket-statute').textContent = r.Governing_Statute || 'Applicable State Surplus Statute';
             document.getElementById('docket-date').textContent = r.Sale_Date || 'Confirmed by County Clerk';
             document.getElementById('docket-deadline').textContent = r.Claim_Deadline_Date || 'Statutory Claim Filing Window Open';
@@ -311,15 +558,82 @@
                 document.getElementById('badge-urgency').textContent = r.Claim_Urgency_Tier;
             }
 
-            const note = r.Verify_Note || 'Listed on official county clerk registry source publication.';
-            document.getElementById('docket-note').textContent = note;
-
             const clerkBtn = document.getElementById('btn-clerk-url');
-            const verifyUrl = r.Clerk_Verification_URL || r.Source_URL;
-            if (verifyUrl) {
-                clerkBtn.href = sanitizeUrl(verifyUrl);
+            const downloadBtn = document.getElementById('btn-download-dossier');
+            const lockIcon = document.getElementById('lock-icon-docket');
+
+            if (isAuthenticated && unredactedLead) {
+                // ==========================================
+                // 1. UNLOCKED SUBSCRIBER STATE
+                // ==========================================
+                const fullDocketNo = unredactedLead.Case_or_TaxDeed_No || unredactedLead.docket_id || docketLookupId;
+                document.getElementById('crumb-docket').textContent = `Docket ${fullDocketNo}`;
+                document.getElementById('docket-title').innerHTML = `<span>${escapeHtml(fullDocketNo)}</span>`;
+                lockIcon.classList.add('hidden');
+
+                document.getElementById('docket-owner').innerHTML = `
+                    <span class="text-brand-navy">${escapeHtml(unredactedLead.Owner_Name || 'Titleholder of Record')}</span>
+                `;
+                document.getElementById('docket-address').textContent = unredactedLead.Property_Address || `${r.County || ''} County Court Registry`;
+
+                const note = unredactedLead.Verify_Note || r.Verify_Note || 'Listed on official county clerk registry source publication.';
+                document.getElementById('docket-note').textContent = note;
+
+                const verifyUrl = unredactedLead.Clerk_Verification_URL || r.Clerk_Verification_URL || r.Source_URL;
+                if (verifyUrl) {
+                    clerkBtn.href = sanitizeUrl(verifyUrl);
+                    clerkBtn.className = "inline-flex items-center gap-1.5 px-4 py-2.5 bg-brand-navy hover:bg-brand-navyLight text-white text-xs font-bold rounded-lg shadow-sm transition-colors";
+                    clerkBtn.innerHTML = `<span>Open Official County Clerk Document (PDF)</span> <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`;
+                }
+
+                downloadBtn.disabled = false;
+                downloadBtn.className = "inline-flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-slate-100 text-brand-navy text-xs font-bold rounded-lg border border-slate-300 shadow-sm transition-colors cursor-pointer";
+                downloadBtn.innerHTML = `<span>Download Case Dossier (.txt)</span>`;
+
+                document.getElementById('paywall-card').classList.add('hidden');
+                document.getElementById('subscriber-auth-banner').classList.remove('hidden');
+
+                // Cache unredacted record for TXT download
+                currentRecord = { ...r, ...unredactedLead };
+
             } else {
-                clerkBtn.classList.add('hidden');
+                // ==========================================
+                // 2. PROTECTED / PAYWALLED STATE
+                // ==========================================
+                const rawMask = r.Case_or_TaxDeed_No || docketLookupId || 'Matter';
+                const maskedDisplay = rawMask.includes('█') ? rawMask : `${rawMask.substring(0, 6)}••••••`;
+                
+                document.getElementById('crumb-docket').textContent = `Docket ${maskedDisplay}`;
+                document.getElementById('docket-title').innerHTML = `
+                    <span>${escapeHtml(maskedDisplay)}</span>
+                `;
+                lockIcon.classList.remove('hidden');
+
+                document.getElementById('docket-owner').innerHTML = `
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold">
+                        <span>🔒 Subscriber Access Required</span>
+                    </span>
+                `;
+                document.getElementById('docket-address').innerHTML = `
+                    <span class="text-slate-500 italic">Court Registry Situs & Property Address Restricted to Subscribers</span>
+                `;
+
+                document.getElementById('docket-note').textContent = 
+                    'Direct county clerk verification source and unredacted filing records are restricted to active subscribers.';
+
+                // Lock clerk button
+                clerkBtn.href = "#paywall-card";
+                clerkBtn.className = "inline-flex items-center gap-1.5 px-4 py-2.5 bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300 transition-colors";
+                clerkBtn.innerHTML = `<span>🔒 Unlock Official Clerk Record (PDF)</span>`;
+
+                // Lock download button
+                downloadBtn.disabled = true;
+                downloadBtn.className = "inline-flex items-center gap-1.5 px-4 py-2.5 bg-slate-100 text-slate-400 text-xs font-bold rounded-lg border border-slate-200 cursor-not-allowed";
+                downloadBtn.innerHTML = `<span>🔒 Subscriber Access Required</span>`;
+
+                // Show paywall card
+                document.getElementById('paywall-card').classList.remove('hidden');
+                document.getElementById('subscriber-auth-banner').classList.add('hidden');
             }
         }
 
@@ -357,13 +671,16 @@
         }
 
         function downloadTxtDossier() {
-            if (!currentRecord) return;
+            if (!isAuthenticated || !currentRecord) {
+                alert('Downloading unredacted case filing dossiers requires an active Surplus Docket subscription.');
+                return;
+            }
             const r = currentRecord;
             const bal = parseFloat(r.Surplus_Balance_USD) || 0;
             const fee = bal * 0.20;
             const content = `========================================================================
 SURPLUS DOCKET™ | STATUTORY CLAIM CALCULATION & FILING DOSSIER
-Docket: ${r.docket_id || r.Case_or_TaxDeed_No || 'N/A'}
+Docket: ${r.Case_or_TaxDeed_No || r.docket_id || 'N/A'}
 Generated: ${new Date().toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'})}
 ========================================================================
 
@@ -393,7 +710,7 @@ This dossier provides automated benchmark calculations for licensed counsel.
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Surplus_Docket_${r.State}_${(r.docket_id || 'matter').replace(/[^a-zA-Z0-9_-]/g, '_')}.txt`;
+            a.download = `Surplus_Docket_${r.State}_${(r.Case_or_TaxDeed_No || r.docket_id || 'matter').replace(/[^a-zA-Z0-9_-]/g, '_')}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
