@@ -72,6 +72,20 @@ jobs:
             python portal/manage_subscribers.py deactivate --email "$EMAIL"
           fi
 
+      - name: Dispatch Day 0 Practice Evaluation Starter Kit
+        if: github.event.inputs.action == 'add'
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          FROM_NAME: "Surplus Docket Intelligence"
+          FROM_EMAIL: "dockets@surplusdocket.com"
+          REPLY_TO: "dockets@surplusdocket.com"
+        run: |
+          EMAIL="${{ github.event.inputs.email }}"
+          if [ -n "$EMAIL" ]; then
+            python portal/dispatch_morning_feed.py --welcome --recipient "$EMAIL" || echo "Starter kit dispatch note: continuing..."
+          fi
+
       - name: Commit & Push Subscribers Update
         if: github.event.inputs.action != 'list'
         run: |

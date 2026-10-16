@@ -191,17 +191,20 @@ def compose_email_content(subscriber, stats, date_str):
     for d in stats["top_dockets"]:
         clerk_url = d.get("clerk_url") or build_direct_clerk_url(d.get("county", ""), d.get("state", ""), d.get("docket", ""))
         docket_id_raw = str(d.get("docket", "")).strip()
-        portal_deep_url = f"https://surplusdocket.com/?docket={urllib.parse.quote(docket_id_raw)}#live-docket" if docket_id_raw else "https://surplusdocket.com/#live-docket"
+        portal_deep_url = (
+            f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(docket_id_raw)}&county={urllib.parse.quote(str(d.get('county', '')))}&state={urllib.parse.quote(str(d.get('state', '')))}"
+            if docket_id_raw else "https://surplusdocket.com/#live-docket"
+        )
         urgency_label = f" [{d['urgency']}]" if d.get("urgency") else ""
         statute_label = f"\n    Statute: {d['statute']}" if d.get("statute") else ""
         link_word = "Registry Verification"
         note = f" ({d['verify_note']})" if d.get("verify_note") else ""
         clerk_label = f"\n    {link_word}: {clerk_url}{note}" if clerk_url else ""
-        portal_label = f"\n    Surplus Docket Link: {portal_deep_url}"
+        portal_label = f"\n    Docket Dossier: {portal_deep_url}"
         addr_label = f"\n    Property: {d['address']}" if d.get("address") else ""
         dockets_text += (
             f"• Docket {d['docket']} ({d['county']}, {d['state']}){urgency_label} — ${d['amount']:,.2f}\n"
-            f"    Owner: {d['owner']}{addr_label}{statute_label}{clerk_label}{portal_label}\n\n"
+            f"    Owner: {d['owner']}{addr_label}{statute_label}{portal_label}{clerk_label}\n\n"
         )
 
         esc_docket = html.escape(str(d.get("docket", "")))
@@ -234,17 +237,14 @@ def compose_email_content(subscriber, stats, date_str):
             </div>
         ''' if esc_address else ''
 
-        clerk_btn = f'''
-            <div style="margin-top: 12px;">
-                <a href="{esc_clerk_url}" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #1b365d; color: #ffffff; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 6px; text-decoration: none; margin-right: 8px; margin-bottom: 4px;">
+        actions_markup = f'''
+            <div style="margin-top: 14px;">
+                <a href="{esc_portal_url}" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #1b365d; color: #ffffff; font-size: 12px; font-weight: 700; padding: 9px 18px; border-radius: 6px; text-decoration: none; margin-right: 8px; margin-bottom: 6px;">
                     Open Direct Docket Listing &rarr;
                 </a>
-                <a href="{esc_portal_url}" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #f8fafc; color: #1b365d; border: 1px solid #cbd5e1; font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 6px; text-decoration: none; margin-bottom: 4px;">
-                    View on Surplus Docket &rarr;
-                </a>
-                {f'<div style="font-size: 11px; color: #64748b; margin-top: 6px;">{esc_note}</div>' if esc_note else ""}
+                {f'<div style="font-size: 11px; color: #64748b; margin-top: 4px;">Official County Record: <a href="{esc_clerk_url}" target="_blank" style="color: #365134; font-weight: 600; text-decoration: underline;">Open Clerk Source File (PDF) &nearr;</a>{f" &bull; <span>{esc_note}</span>" if esc_note else ""}</div>' if esc_clerk_url else ""}
             </div>
-        ''' if esc_clerk_url else ''
+        '''
 
         dockets_html += f"""
         <div class="docket-card" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
@@ -252,7 +252,7 @@ def compose_email_content(subscriber, stats, date_str):
                 <tr>
                     <td align="left" valign="middle" class="mobile-stack" style="padding-bottom: 4px;">
                         <span style="display: inline-block; background-color: #edf3ec; color: #365134; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; border: 1px solid #c2d9c0; margin-right: 8px;">{esc_state} &bull; {esc_county} County</span>
-                        <a href="{esc_clerk_url}" target="_blank" style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; font-weight: 700; color: #1b365d; text-decoration: none;">{esc_docket}</a>
+                        <a href="{esc_portal_url}" target="_blank" style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; font-weight: 700; color: #1b365d; text-decoration: none;">{esc_docket}</a>
                     </td>
                     <td align="right" valign="middle" class="mobile-stack mobile-amount" style="padding-bottom: 4px; text-align: right; white-space: nowrap;">
                         <span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 18px; font-weight: 900; color: #365134;">${d['amount']:,.2f}</span>
@@ -268,7 +268,7 @@ def compose_email_content(subscriber, stats, date_str):
                             {statute_markup}
                             {urgency_badge}
                         </div>
-                        {clerk_btn}
+                        {actions_markup}
                     </td>
                 </tr>
             </table>

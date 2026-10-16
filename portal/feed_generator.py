@@ -160,6 +160,10 @@ def generate_b2b_exports():
         else:
             redacted["Case_or_TaxDeed_No"] = "[REDACTED — SUBSCRIBER KEY REQUIRED]"
 
+        # Preserve exact lookup identifiers for URL deep-linking and verification
+        redacted["docket_id"] = raw_case
+        redacted["parcel_id_raw"] = str(lead.get("Parcel_ID", "")).strip()
+
         # Preserve the official county document / deep link for verification
         redacted["Clerk_Verification_URL"] = lead.get("Clerk_Verification_URL") or lead.get("Source_URL", "")
 

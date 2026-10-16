@@ -121,9 +121,11 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35",
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03",
       "Owner_Name_Redacted": "M. & C. E\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
+      "docket_id": "23-0416-IV-09213033100",
+      "parcel_id_raw": "09213033100",
       "Access_Status": "REDACTED_PREVIEW"
     },
     {

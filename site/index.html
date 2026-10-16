@@ -2019,7 +2019,7 @@
                 const amountMatch = rAmount >= minAmount;
                 if (!stateMatch || !amountMatch) return false;
                 if (!query) return true;
-                const text = `${r.County || ''} ${r.Case_or_TaxDeed_No || ''} ${r.Parcel_ID || ''} ${r.Verify_Note || ''} ${r.Owner_Name || ''} ${r.Property_Address || ''} ${r.State || ''} ${r.Governing_Statute || ''}`.toLowerCase();
+                const text = `${r.County || ''} ${r.docket_id || ''} ${r.parcel_id_raw || ''} ${r.Case_or_TaxDeed_No || ''} ${r.Parcel_ID || ''} ${r.Verify_Note || ''} ${r.Owner_Name || ''} ${r.Property_Address || ''} ${r.State || ''} ${r.Governing_Statute || ''}`.toLowerCase();
                 return text.includes(query);
             });
 

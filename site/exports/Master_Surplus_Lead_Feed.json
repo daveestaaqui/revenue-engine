@@ -1114,7 +1114,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -1144,7 +1144,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1174,7 +1174,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -1204,7 +1204,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -1234,7 +1234,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1264,7 +1264,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -1293,8 +1293,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1324,7 +1324,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1354,7 +1354,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -1384,7 +1384,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1414,7 +1414,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -1498,7 +1498,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1528,7 +1528,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -1558,7 +1558,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -1587,8 +1587,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1618,7 +1618,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -1648,7 +1648,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -1678,7 +1678,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:56Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1708,7 +1708,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:53Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1738,7 +1738,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -1767,8 +1767,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -1798,7 +1798,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -1828,7 +1828,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -1858,7 +1858,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -1888,7 +1888,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -1918,7 +1918,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -1947,8 +1947,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -1978,7 +1978,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -2008,7 +2008,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -2037,8 +2037,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2068,7 +2068,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -2098,7 +2098,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2128,7 +2128,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -2157,8 +2157,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2188,7 +2188,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -2218,7 +2218,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -2248,7 +2248,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2278,7 +2278,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -2308,7 +2308,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2338,7 +2338,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2368,7 +2368,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2398,7 +2398,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -2428,7 +2428,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -2457,8 +2457,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2488,7 +2488,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -2518,7 +2518,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -2548,7 +2548,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -2578,7 +2578,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2608,7 +2608,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -2637,8 +2637,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -2668,7 +2668,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -2698,7 +2698,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -2728,7 +2728,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2758,7 +2758,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -2788,7 +2788,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -2818,7 +2818,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -2848,7 +2848,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2878,7 +2878,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2908,7 +2908,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2938,7 +2938,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -2968,7 +2968,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -2998,7 +2998,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -3028,7 +3028,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -3058,7 +3058,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3088,7 +3088,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -3118,7 +3118,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -3147,8 +3147,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3178,7 +3178,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -3208,7 +3208,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -3238,7 +3238,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -3268,7 +3268,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -3298,7 +3298,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -3327,8 +3327,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -3358,7 +3358,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -3388,7 +3388,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -3418,7 +3418,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3448,7 +3448,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3478,7 +3478,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3508,7 +3508,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -3538,7 +3538,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3568,7 +3568,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3598,7 +3598,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3628,7 +3628,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3658,7 +3658,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3688,7 +3688,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -3718,7 +3718,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -3748,7 +3748,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -3778,7 +3778,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3808,7 +3808,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -3838,7 +3838,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3868,7 +3868,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -3898,7 +3898,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -3928,7 +3928,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3958,7 +3958,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -3988,7 +3988,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4018,7 +4018,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -4048,7 +4048,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -4078,7 +4078,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4108,7 +4108,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4138,7 +4138,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4168,7 +4168,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4198,7 +4198,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4228,7 +4228,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -4258,7 +4258,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:56Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4288,7 +4288,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -4318,7 +4318,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -4348,7 +4348,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4378,7 +4378,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4408,7 +4408,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -4438,7 +4438,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -4468,7 +4468,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:53Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4498,7 +4498,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -4528,7 +4528,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4558,7 +4558,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -4588,7 +4588,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -4618,7 +4618,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4648,7 +4648,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -4678,7 +4678,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4708,7 +4708,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -4738,7 +4738,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4768,7 +4768,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -4798,7 +4798,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:53Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4828,7 +4828,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4858,7 +4858,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4888,7 +4888,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -4918,7 +4918,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4948,7 +4948,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -4978,7 +4978,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -5008,7 +5008,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5038,7 +5038,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5068,7 +5068,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -5098,7 +5098,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5128,7 +5128,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -5158,7 +5158,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -5188,7 +5188,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5218,7 +5218,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -5248,7 +5248,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -5278,7 +5278,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:53Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -5308,7 +5308,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:53Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5338,7 +5338,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5368,7 +5368,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -5398,7 +5398,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -5428,7 +5428,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -5458,7 +5458,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5488,7 +5488,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5518,7 +5518,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5548,7 +5548,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -5578,7 +5578,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -5608,7 +5608,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:53Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -5638,7 +5638,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5668,7 +5668,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5698,7 +5698,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -5728,7 +5728,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -5758,7 +5758,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5788,7 +5788,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5818,7 +5818,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -5848,7 +5848,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -5878,7 +5878,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5908,7 +5908,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -5938,7 +5938,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -5968,7 +5968,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -5998,7 +5998,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -6028,7 +6028,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:53Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -6058,7 +6058,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6088,7 +6088,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6118,7 +6118,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -6148,7 +6148,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -6177,8 +6177,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6208,7 +6208,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6238,7 +6238,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6268,7 +6268,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -6297,8 +6297,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6328,7 +6328,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6358,7 +6358,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -6388,7 +6388,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6418,7 +6418,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -6448,7 +6448,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6478,7 +6478,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6508,7 +6508,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -6538,7 +6538,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6568,7 +6568,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6598,7 +6598,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -6628,7 +6628,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6658,7 +6658,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -6687,8 +6687,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -6718,7 +6718,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -6748,7 +6748,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -6778,7 +6778,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -6808,7 +6808,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6838,7 +6838,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6868,7 +6868,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6898,7 +6898,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6928,7 +6928,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -6958,7 +6958,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -6988,7 +6988,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -7018,7 +7018,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -7048,7 +7048,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7078,7 +7078,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7108,7 +7108,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -7138,7 +7138,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7168,7 +7168,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -7198,7 +7198,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -7228,7 +7228,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7258,7 +7258,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7288,7 +7288,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7318,7 +7318,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7348,7 +7348,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7378,7 +7378,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7408,7 +7408,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7438,7 +7438,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7468,7 +7468,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TN",
@@ -7497,8 +7497,8 @@
       "Statute_Citation": "T.C.A. \u00a7 67-5-2702",
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
-      "Retrieved_At": "2026-10-16T13:31:35Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Retrieved_At": "2026-10-16T13:45:03Z",
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -7528,7 +7528,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -7558,7 +7558,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7588,7 +7588,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -7618,7 +7618,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7648,7 +7648,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -7678,7 +7678,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -7708,7 +7708,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7738,7 +7738,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7768,7 +7768,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -7798,7 +7798,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7828,7 +7828,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7858,7 +7858,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7888,7 +7888,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7918,7 +7918,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -7948,7 +7948,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -7978,7 +7978,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8008,7 +8008,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8038,7 +8038,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -8068,7 +8068,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -8098,7 +8098,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -8128,7 +8128,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -8158,7 +8158,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8188,7 +8188,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8218,7 +8218,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -8248,7 +8248,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8278,7 +8278,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -8308,7 +8308,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8338,7 +8338,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8368,7 +8368,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8398,7 +8398,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8428,7 +8428,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8458,7 +8458,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8488,7 +8488,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8518,7 +8518,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -8548,7 +8548,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8578,7 +8578,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8608,7 +8608,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8638,7 +8638,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8668,7 +8668,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8698,7 +8698,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8728,7 +8728,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8758,7 +8758,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -8788,7 +8788,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -8818,7 +8818,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -8848,7 +8848,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8878,7 +8878,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -8908,7 +8908,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -8938,7 +8938,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -8968,7 +8968,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -8998,7 +8998,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -9028,7 +9028,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -9058,7 +9058,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -9088,7 +9088,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -9118,7 +9118,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -9148,7 +9148,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:57Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -9178,7 +9178,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -9208,7 +9208,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:51Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -9238,7 +9238,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:56Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -9268,7 +9268,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -9298,7 +9298,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -9328,7 +9328,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -9358,7 +9358,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -9388,7 +9388,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -9418,7 +9418,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -9448,7 +9448,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -9478,7 +9478,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -9508,7 +9508,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -9538,7 +9538,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -9568,7 +9568,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -9598,7 +9598,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:49Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -9628,7 +9628,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -9658,7 +9658,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -9688,7 +9688,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:53Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -9718,7 +9718,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:52Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "GA",
@@ -9748,7 +9748,7 @@
       "Record_Type": "Tax Deed Surplus",
       "TYPE": "TAX_DEED",
       "Retrieved_At": "2026-10-16T12:40:53Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -9778,7 +9778,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "CA",
@@ -9808,7 +9808,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "FL",
@@ -9838,7 +9838,7 @@
       "Record_Type": "Foreclosure Surplus",
       "TYPE": "FORECLOSURE",
       "Retrieved_At": "2026-10-16T12:40:50Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
@@ -9868,7 +9868,7 @@
       "Record_Type": "Tax Sale Excess Proceeds",
       "TYPE": "EXCESS_PROCEEDS",
       "Retrieved_At": "2026-10-16T12:40:55Z",
-      "Enriched_Timestamp": "2026-10-16 09:31:35"
+      "Enriched_Timestamp": "2026-10-16 09:45:03"
     },
     {
       "State": "TX",
