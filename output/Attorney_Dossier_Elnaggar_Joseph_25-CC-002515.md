@@ -5,18 +5,18 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** RICHARD HAWKINS
-- **Property Situs / Address:** 1420 PINEWOOD DR ORLANDO FL 32808
-- **Tax Deed / Court Case Docket:** 2024-TD-001248
+- **Target Claimant / Former Owner:** Elnaggar, Joseph
+- **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
+- **Tax Deed / Court Case Docket:** 25-CC-002515
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $48,250.00
+- **Gross Surplus Balance Held in Registry:** $115,000.00
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $9,650.00
+- **Estimated Gross Recoverable Equity:** $23,000.00
 - **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
 
 ---

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surplus Docket — Data Provenance &amp; Upstream Lien Scrubbing Methodology</title>
-    <meta name="description" content="Technical methodology detailing Surplus Docket's 4-stage public records ingestion, institutional lien scrubbing, and statutory compliance architecture.">
+    <title>Surplus Docket — Data Provenance &amp; Verification Methodology</title>
+    <meta name="description" content="Technical methodology detailing Surplus Docket's 4-stage public records ingestion, institutional entity filtering, and statutory compliance architecture.">
     <link rel="canonical" href="https://surplusdocket.com/methodology.html">
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <meta name="robots" content="index, follow">
@@ -12,8 +12,8 @@
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Surplus Docket">
-    <meta property="og:title" content="Surplus Docket — Data Provenance & Upstream Lien Scrubbing Methodology">
-    <meta property="og:description" content="Technical whitepaper detailing how Surplus Docket programmatically scrubs institutional mortgage encumbrances from court surplus registries.">
+    <meta property="og:title" content="Surplus Docket — Data Provenance &amp; Verification Methodology">
+    <meta property="og:description" content="Technical overview detailing how Surplus Docket indexes official county records, excludes institutional entities, and flags estates for recovery counsel.">
     <meta property="og:url" content="https://surplusdocket.com/methodology.html">
     <meta property="og:image" content="https://surplusdocket.com/assets/logo_surplus_docket.png">
     
@@ -218,9 +218,9 @@
                 <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex items-start gap-4">
                     <div class="w-8 h-8 rounded-lg bg-brand-greenSoft text-brand-green font-heading font-black text-sm flex items-center justify-center shrink-0">2</div>
                     <div>
-                        <h3 class="font-heading font-bold text-sm text-brand-navy mb-1">Stage 2: Official Encumbrance &amp; O.R. Cross-Referencing</h3>
+                        <h3 class="font-heading font-bold text-sm text-brand-navy mb-1">Stage 2: Institutional Entity Exclusion</h3>
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Automated scripts cross-reference the Official Records (O.R.) and clerk judgment indexes for the parcel, examining recorded Lis Pendens, Certificates of Title, and tax collector final judgment decrees to identify all named defendant lienholders.
+                            Our proprietary entity classifier identifies and removes corporate institutional records (commercial banks, corporate trusts, servicer loan pools, and government entities) to focus the feed strictly on individual owner and estate equity.
                       </p>
                     </div>
                 </div>
@@ -228,9 +228,9 @@
                 <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex items-start gap-4">
                     <div class="w-8 h-8 rounded-lg bg-brand-greenSoft text-brand-green font-heading font-black text-sm flex items-center justify-center shrink-0">3</div>
                     <div>
-                        <h3 class="font-heading font-bold text-sm text-brand-navy mb-1">Stage 3: Institutional Entity Purge (Lien Scrubbing)</h3>
+                        <h3 class="font-heading font-bold text-sm text-brand-navy mb-1">Stage 3: Estate &amp; Heir Search Flagging</h3>
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Our proprietary entity classifier identifies and removes corporate institutional claims (commercial banks, mortgage trusts, servicer loan pools, junior HOA assessment foreclosures). If recorded senior debt exceeds the surplus balance, the lead is suppressed from the feed.
+                            Deceased titleholders and estate records are flagged to indicate where probate or heir search may be recommended. Comprehensive recorded lien review remains the firm's responsibility (Surplus Docket does not search recorded liens in land records).
                       </p>
                     </div>
                 </div>

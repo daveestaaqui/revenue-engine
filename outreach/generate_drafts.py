@@ -312,18 +312,37 @@ def load_feed_data():
 
 
 def get_already_contacted():
-    """Read sent_log.csv to find emails that were actually SENT (not dry-run)."""
+    """Read sent_log.csv and form_submissions_log.csv to find targets already contacted."""
     contacted = set()
-    if not SENT_LOG_CSV.exists():
-        return contacted
+    if SENT_LOG_CSV.exists():
+        with open(SENT_LOG_CSV, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                status = row.get("Status", "").strip()
+                email = row.get("Email", "").strip().lower()
+                firm = row.get("Firm", "").strip().lower()
+                if "SENT" in status and "DRY_RUN" not in status:
+                    if email:
+                        contacted.add(email)
+                    if firm:
+                        contacted.add(firm)
 
-    with open(SENT_LOG_CSV, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            status = row.get("Status", "").strip()
-            email = row.get("Email", "").strip().lower()
-            if "SENT" in status and "DRY_RUN" not in status:
-                contacted.add(email)
+    form_log = OUTREACH_DIR / "form_submissions_log.csv"
+    if form_log.exists():
+        try:
+            with open(form_log, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    if row.get("status", "").upper() == "SUCCESS":
+                        firm = row.get("firm", "").strip().lower()
+                        form_url = row.get("form_url", "").strip().lower().rstrip("/")
+                        if firm:
+                            contacted.add(firm)
+                        if form_url:
+                            contacted.add(form_url)
+        except Exception:
+            pass
+
     return contacted
 
 
@@ -474,17 +493,11 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
     is_probate = any(k in combined_practice for k in ["probate", "estate", "heir", "trust", "decedent", "administration"])
     is_foreclosure = any(k in combined_practice for k in ["foreclosure", "mortgage", "lender", "servicing", "junior lien", "lien", "distressed"])
 
+    if not state_cases:
+        state_cases = load_feed_data()
     c = select_best_case(target, state_cases)
     if not c:
-        c = {
-            "case_no": "2024-TD-001955",
-            "county": "Orange",
-            "balance": 74300.0,
-            "owner_name": "Estate of James & Linda Chen",
-            "property_type": "Single Family Residential",
-            "governing_statute": STATE_STATUTES.get(state, "Fla. Stat. § 197.582"),
-            "statutory_window": "120-day claim window",
-        }
+        return None, None
 
     county = c["county"]
     case_no = c["case_no"]
@@ -595,6 +608,7 @@ def main():
     parser.add_argument("--from-email", type=str, default="", help="Override sender email address")
     parser.add_argument("--reply-to", type=str, default="", help="Override reply-to email address")
     parser.add_argument("--targets", type=str, default="", help="Path to targets CSV (default: high_conviction_attorneys.csv)")
+    parser.add_argument("--upload-drafts", action="store_true", help="Upload generated drafts directly to Gmail Drafts folder via IMAP")
 
     args = parser.parse_args()
 
@@ -639,7 +653,9 @@ def main():
     available_targets = []
     for t in targets:
         em = t.get("Email", "").strip().lower()
-        if em in already_contacted:
+        firm = t.get("Firm", "").strip().lower()
+        form_url = t.get("Form_URL", "").strip().lower().rstrip("/")
+        if em in already_contacted or firm in already_contacted or (form_url and form_url in already_contacted):
             continue
         dom = em.split("@")[1] if "@" in em else ""
         if dom in unsubscribed or any(u in em for u in unsubscribed):
@@ -727,6 +743,22 @@ def main():
         except Exception as e:
             print(f"❌ Failed to connect to SMTP server: {e}")
             return 1
+
+    imap_client = None
+    imap_box = "[Gmail]/Drafts"
+    if args.upload_drafts and GMAIL_APP_PASS and not is_live:
+        try:
+            import imaplib
+            imap_client = imaplib.IMAP4_SSL("imap.gmail.com")
+            imap_client.login(GMAIL_USER, GMAIL_APP_PASS)
+            status, _ = imap_client.select(imap_box)
+            if status != "OK":
+                imap_box = "Drafts"
+                imap_client.select(imap_box)
+            print(f"✓ Connected to Gmail IMAP. Drafts will be synced directly to '{imap_box}'.\n")
+        except Exception as e:
+            print(f"⚠️ Could not connect to Gmail IMAP ({e}). Drafts will be saved locally as .eml files.\n")
+            imap_client = None
 
     manifest = []
     sent_count = 0
@@ -824,13 +856,45 @@ def main():
                     print("   Terminating outreach run immediately to protect Gmail sender reputation.\n")
                     break
             else:
-                # Dry run — do not mutate production sent_log.csv
+                # Dry run / draft mode — do not mutate production sent_log.csv
                 print(f"  [{idx:02d}/{len(batch):02d}] 📝 DRAFT: {firm} <{to_email}> ({state}) -> {filename}")
+                if imap_client:
+                    try:
+                        import imaplib
+                        active_from_name = from_name
+                        active_from_email = from_email
+                        active_reply_to = reply_to
+                        if "elena" in str(active_from_name).lower() or "elena" in str(active_from_email).lower():
+                            active_from_name = "Elena Brooks"
+                            active_from_email = "elena.brooks@surplusdocket.com"
+                            active_reply_to = "elena.brooks@surplusdocket.com"
+
+                        draft_mime = MIMEText(body, "plain", "utf-8")
+                        draft_mime["From"] = f"{active_from_name} <{active_from_email}>"
+                        draft_mime["To"] = f"{name} <{to_email}>"
+                        draft_mime["Subject"] = subject
+                        draft_mime["Reply-To"] = f"{active_from_name} <{active_reply_to}>"
+                        draft_mime["Date"] = email.utils.formatdate(localtime=True)
+                        draft_mime["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
+
+                        raw_draft = draft_mime.as_bytes()
+                        status, _ = imap_client.append(imap_box, "\\Draft", imaplib.Time2Internaldate(time.time()), raw_draft)
+                        if status == "OK":
+                            print(f"       📬 Synced draft directly to Gmail Drafts folder")
+                        else:
+                            print(f"       ⚠️ IMAP draft append returned status: {status}")
+                    except Exception as imap_err:
+                        print(f"       ⚠️ IMAP upload error for {to_email}: {imap_err}")
 
     finally:
         if server:
             try:
                 server.quit()
+            except Exception:
+                pass
+        if imap_client:
+            try:
+                imap_client.logout()
             except Exception:
                 pass
 

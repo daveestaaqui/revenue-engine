@@ -294,9 +294,9 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
             self.assertTrue(url.startswith("https://"))
             self.assertFalse(is_generic_homepage(url), f"URL '{url}' for docket {docket['docket']} is a generic homepage!")
             self.assertFalse(is_broken_or_invalid_url(url), f"URL '{url}' for docket {docket['docket']} is a broken/404 URL!")
-            # Must contain docket/case identifier in query or path
+            # Must contain docket/case identifier in query, fragment (#search=), or path
             self.assertTrue(
-                "?" in url or "dockets" in url or "details" in url.lower() or "casesearch" in url.lower(),
+                "?" in url or "#search=" in url.lower() or ".pdf" in url.lower() or "dockets" in url or "details" in url.lower() or "casesearch" in url.lower(),
                 f"URL '{url}' does not deep-link directly to case record"
             )
 

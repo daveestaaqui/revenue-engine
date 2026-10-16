@@ -24,11 +24,6 @@ COUNTIES = [
         'fee_cap': '20% statutory limit for non-attorney filers',
         'clerk_name': 'Palm Beach County Clerk & Comptroller (Joseph Abruzzo)',
         'clerk_url': 'https://www.mypalmbeachclerk.com/',
-        'sample_case': '2024-TD-004501',
-        'sample_balance': '$145,000.00',
-        'sample_fee': '$29,000.00',
-        'sample_owner': 'A. & G. V████████',
-        'sample_address': '720 S Ocean Blvd, Palm Beach FL',
         'description': 'Daily automated Palm Beach County tax deed surplus lead feed. Pre-filtered individual surplus claims and court registry intelligence for Florida recovery practitioners.'
     },
     {
@@ -42,12 +37,7 @@ COUNTIES = [
         'fee_cap': '20% statutory limit under Florida law',
         'clerk_name': 'Broward County Clerk of the Circuit Court',
         'clerk_url': 'https://www.browardclerk.org/',
-        'sample_case': '2024-TD-005120',
-        'sample_balance': '$138,000.00',
-        'sample_fee': '$27,600.00',
-        'sample_owner': 'K. & D. M██████',
-        'sample_address': '1820 Las Olas Blvd, Fort Lauderdale FL',
-        'description': 'Daily automated Broward County / Fort Lauderdale tax deed surplus data feed. Verified clerk dockets and institutional lien scrubbing for recovery attorneys.'
+        'description': 'Daily automated Broward County / Fort Lauderdale tax deed surplus data feed. Verified clerk dockets and institutional entity filtering for recovery attorneys.'
     },
     {
         'slug': 'harris-county-excess-proceeds.html',
@@ -60,11 +50,6 @@ COUNTIES = [
         'fee_cap': '25% statutory cap on recovery contingency',
         'clerk_name': 'Harris County District Clerk (Court Registry Division)',
         'clerk_url': 'https://www.hcdistrictclerk.com/',
-        'sample_case': '2024-TX-04812',
-        'sample_balance': '$128,500.00',
-        'sample_fee': '$32,125.00',
-        'sample_owner': 'W. & M. H██████',
-        'sample_address': '5402 Braesvalley Dr, Houston TX',
         'description': 'Daily automated Harris County / Houston excess proceeds feed. Scrubbed court registry tax sale excess proceeds data for Texas recovery attorneys.'
     },
     {
@@ -78,11 +63,6 @@ COUNTIES = [
         'fee_cap': '20% statutory limit under Florida law',
         'clerk_name': 'Miami-Dade County Clerk of Courts (Tax Deed Unit)',
         'clerk_url': 'https://www.miamidadeclerk.gov/',
-        'sample_case': '2024-TD-004812',
-        'sample_balance': '$112,000.00',
-        'sample_fee': '$22,400.00',
-        'sample_owner': 'L. & M. H████████',
-        'sample_address': '340 SW 8th St, Miami FL',
         'description': 'Daily automated Miami-Dade County tax deed surplus data feed. Filtered individual surplus equity with verified docket IDs for asset recovery lawyers.'
     },
     {
@@ -96,11 +76,6 @@ COUNTIES = [
         'fee_cap': '20% statutory recovery limit',
         'clerk_name': 'Orange County Comptroller (Tax Deed Administration)',
         'clerk_url': 'https://www.myorangeclerk.com/',
-        'sample_case': '2024-TD-001955',
-        'sample_balance': '$94,300.00',
-        'sample_fee': '$18,860.00',
-        'sample_owner': 'J. & L. C████',
-        'sample_address': '8431 Bay Breeze Way, Orlando FL',
         'description': 'Daily Orange County / Orlando tax deed surplus leads. Case-verified dockets, statutory equity calculations, and filtered individual owner records.'
     },
     {
@@ -114,11 +89,6 @@ COUNTIES = [
         'fee_cap': '20% statutory limit under Florida law',
         'clerk_name': 'Hillsborough County Clerk of Court & Comptroller',
         'clerk_url': 'https://www.hillsclerk.com/',
-        'sample_case': '2024-TD-008912',
-        'sample_balance': '$92,400.00',
-        'sample_fee': '$18,480.00',
-        'sample_owner': 'R. & C. S██████',
-        'sample_address': '4502 W San Rafael St, Tampa FL',
         'description': 'Daily automated Hillsborough County / Tampa tax deed surplus feed. Instant CSV/Excel delivery of verified overage leads for asset recovery practitioners.'
     },
     {
@@ -132,11 +102,6 @@ COUNTIES = [
         'fee_cap': '25% statutory cap on recovery fee',
         'clerk_name': 'Dallas County District Clerk (Civil Court Registry)',
         'clerk_url': 'https://www.dallascounty.org/',
-        'sample_case': '2024-TX-02044',
-        'sample_balance': '$85,800.00',
-        'sample_fee': '$21,450.00',
-        'sample_owner': 'Est. of M. T████████',
-        'sample_address': '6412 Abrams Rd, Dallas TX',
         'description': 'Daily Dallas County tax sale excess proceeds records. Filtered court registry deposits, verified docket numbers, and statutory claim data.'
     },
     {
@@ -150,11 +115,6 @@ COUNTIES = [
         'fee_cap': '25% statutory cap on recovery fee',
         'clerk_name': 'Tarrant County District Clerk (Civil Registry)',
         'clerk_url': 'https://www.tarrantcountytx.gov/',
-        'sample_case': '2024-TX-03180',
-        'sample_balance': '$96,500.00',
-        'sample_fee': '$24,125.00',
-        'sample_owner': 'B. & T. W██████',
-        'sample_address': '3201 Camp Bowie Blvd, Fort Worth TX',
         'description': 'Daily Tarrant County / Fort Worth tax sale excess proceeds feed. Pre-filtered court registry intelligence and statutory recovery data.'
     },
     {
@@ -168,11 +128,6 @@ COUNTIES = [
         'fee_cap': '25% statutory cap on recovery fee',
         'clerk_name': 'Travis County District Clerk (Civil Trust Division)',
         'clerk_url': 'https://www.traviscountytx.gov/',
-        'sample_case': '2024-TX-01922',
-        'sample_balance': '$104,000.00',
-        'sample_fee': '$26,000.00',
-        'sample_owner': 'H. & J. G██████',
-        'sample_address': '1100 Congress Ave, Austin TX',
         'description': 'Daily Travis County / Austin excess proceeds leads. Filtered district court tax foreclosure registry surplus intelligence.'
     },
     {
@@ -186,11 +141,6 @@ COUNTIES = [
         'fee_cap': 'Statutory claim priority & non-contingent fee models',
         'clerk_name': 'Fulton County Tax Commissioner (Excess Funds Division)',
         'clerk_url': 'https://www.fultonclerk.org/',
-        'sample_case': '2024-GA-003810',
-        'sample_balance': '$134,000.00',
-        'sample_fee': '$26,800.00',
-        'sample_owner': 'M. & E. J███████',
-        'sample_address': '1420 Peachtree St NE, Atlanta GA',
         'description': 'Daily Fulton County / Atlanta tax sale excess funds leads. Pre-filtered sheriff tax sale surplus intelligence for Georgia recovery attorneys.'
     },
     {
@@ -204,11 +154,6 @@ COUNTIES = [
         'fee_cap': 'Statutory claim distribution rules',
         'clerk_name': 'Cobb County Sheriff & Superior Court Clerk',
         'clerk_url': 'https://www.cobbsheriff.org/',
-        'sample_case': '2024-GA-001550',
-        'sample_balance': '$118,000.00',
-        'sample_fee': '$23,600.00',
-        'sample_owner': 'Est. of R. V██████',
-        'sample_address': '892 Powers Ferry Rd, Marietta GA',
         'description': 'Daily Cobb County / Marietta tax sale excess funds data feed. Clean individual surplus claims delivered in CSV/Excel every morning at 7:00 AM EST.'
     },
     {
@@ -222,11 +167,6 @@ COUNTIES = [
         'fee_cap': 'Statutory claim distribution rules',
         'clerk_name': 'DeKalb County Tax Commissioner (Delinquent Tax Division)',
         'clerk_url': 'https://www.dekalbcountytax.org/',
-        'sample_case': '2024-GA-002490',
-        'sample_balance': '$77,400.00',
-        'sample_fee': '$15,480.00',
-        'sample_owner': 'T. & M. B██████',
-        'sample_address': '2340 Lavista Rd, Decatur GA',
         'description': 'Daily DeKalb County excess funds data feed. Clean, case-verified tax auction overages delivered in CSV/Excel every morning at 7:00 AM EST.'
     }
 ]
@@ -440,34 +380,34 @@ def generate_county_page(c):
             </div>
         </div>
 
-        <!-- Sample Case Record Card -->
+        <!-- Official County Verification & Directory Card -->
         <div class="bg-white border-2 border-brand-green rounded-3xl p-5 sm:p-8 shadow-xl mb-10">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-4 border-b border-slate-100">
                 <div>
-                    <span class="text-xs font-mono font-bold text-brand-green bg-brand-greenSoft px-2.5 py-1 rounded">VERIFIED DOCKET ENTRY</span>
-                    <h3 class="font-heading font-bold text-base sm:text-lg text-brand-navy mt-1">Case #{c['sample_case']}</h3>
+                    <span class="text-xs font-mono font-bold text-brand-green bg-brand-greenSoft px-2.5 py-1 rounded">OFFICIAL COUNTY SOURCE DIRECTORY</span>
+                    <h3 class="font-heading font-bold text-base sm:text-lg text-brand-navy mt-1">{c['county']} Official Records</h3>
                 </div>
                 <div class="text-left sm:text-right">
-                    <span class="text-[11px] sm:text-xs text-slate-400 block uppercase font-bold tracking-wider">Surplus Balance</span>
-                    <span class="font-mono font-black text-xl sm:text-2xl text-brand-green whitespace-nowrap">{c['sample_balance']}</span>
+                    <span class="text-[11px] sm:text-xs text-slate-400 block uppercase font-bold tracking-wider">County Registry</span>
+                    <span class="font-heading font-bold text-sm sm:text-base text-brand-navy">{c['city']}, {c['state']}</span>
                 </div>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mb-6">
                 <div>
-                    <span class="text-slate-400 block mb-0.5 font-medium">Record Owner</span>
-                    <span class="font-semibold text-slate-800">{c['sample_owner']} (Individual / Estate)</span>
+                    <span class="text-slate-400 block mb-0.5 font-medium">Registry Authority</span>
+                    <span class="font-semibold text-slate-800">{c['clerk_name']}</span>
                 </div>
                 <div>
-                    <span class="text-slate-400 block mb-0.5 font-medium">Property Situs</span>
-                    <span class="font-semibold text-slate-800">{c['sample_address']}</span>
+                    <span class="text-slate-400 block mb-0.5 font-medium">Governing Statute</span>
+                    <span class="font-semibold text-slate-800">{c['statute']}</span>
                 </div>
                 <div>
-                    <span class="text-slate-400 block mb-0.5 font-medium">Est. Statutory Finder Fee</span>
-                    <span class="font-bold text-brand-green font-mono whitespace-nowrap">{c['sample_fee']}</span>
+                    <span class="text-slate-400 block mb-0.5 font-medium">Statutory Claim Window</span>
+                    <span class="font-semibold text-slate-800">{c['deadline']}</span>
                 </div>
                 <div>
-                    <span class="text-slate-400 block mb-0.5">Official Verification</span>
+                    <span class="text-slate-400 block mb-0.5 font-medium">Official Portal Link</span>
                     <a href="{c['clerk_url']}" target="_blank" rel="noopener noreferrer" class="text-brand-navy hover:text-brand-green underline font-semibold">
                         {c['clerk_name']} Portal &rarr;
                     </a>
@@ -478,7 +418,6 @@ def generate_county_page(c):
                 Unlock Full {c['county']} Daily Lead Feed — $249/mo
             </a>
         </div>
-
         <!-- County Procedural Notes -->
         <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 mb-10 shadow-sm space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
             <h3 class="font-heading font-bold text-base text-brand-navy">{c['county']} Recovery Procedure & Verification</h3>
@@ -486,7 +425,7 @@ def generate_county_page(c):
                 When a tax deed auction or sheriff's tax sale closes above the upset bid in {c['county']}, the clerk deposits excess funds into the statutory court registry. Under {c['statute']}, junior lienholders have initial notice priority, after which remaining funds belong to the record titleholder or heirs.
             </p>
             <p>
-                Surplus Docket's automated crawler monitors {c['county']} filings daily, scrubs institutional mortgage and HOA claims, and formats an actionable CSV and Excel feed ready for immediate practitioner due diligence.
+                Surplus Docket's automated crawler monitors {c['county']} filings daily, excludes institutional and bank-owned records, flags estates for heir search, and formats an actionable CSV and Excel feed ready for practitioner due diligence (lien examination remains firm responsibility).
             </p>
         </div>
 

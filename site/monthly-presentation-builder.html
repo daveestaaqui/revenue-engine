@@ -742,7 +742,7 @@
             if (metricSelect && candidateNumericCols.length > 0) {
                 const currentVal = appState.primaryMetricOverride || metricSelect.value;
                 metricSelect.innerHTML = candidateNumericCols.map(c => `
-                    <option value="${c}" ${c === currentVal ? 'selected' : ''}>${c}</option>
+                    <option value="${escapeHtml(c)}" ${c === currentVal ? 'selected' : ''}>${escapeHtml(c)}</option>
                 `).join('');
             }
 
@@ -852,6 +852,16 @@
             selectSlide(appState.activeSlide || 0);
         }
 
+        function escapeHtml(str) {
+            if (str == null) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
         // Slide Navigation
         function selectSlide(idx) {
             appState.activeSlide = idx;
@@ -886,6 +896,7 @@
 
             const agg = appState.aggregated;
             const vCol = agg.valueCol;
+            const vColEsc = escapeHtml(vCol);
 
             if (idx === 0) {
                 stage.innerHTML = `
@@ -898,14 +909,14 @@
                             Consolidated 4-Week Activity Review
                         </div>
                         <h1 class="text-lg sm:text-2xl font-bold text-white leading-snug mb-2">
-                            ${agg.presentationTitle}
+                            ${escapeHtml(agg.presentationTitle)}
                         </h1>
                         <p class="text-xs text-slate-300 max-w-xl">
                             Derived strictly from Week 1 through Week 4 source datasets. Visually matches monthly template formatting.
                         </p>
                     </div>
                     <div class="flex items-center justify-between text-[10px] font-mono text-slate-400 border-t border-slate-800 pt-2">
-                        <span>Period: ${agg.reportDate}</span>
+                        <span>Period: ${escapeHtml(agg.reportDate)}</span>
                         <span>Source: 4 Audited Weekly Datasets</span>
                     </div>
                 `;
@@ -918,19 +929,19 @@
                     <div class="py-1 my-auto">
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-xs mb-3">
                             <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
-                                <span class="text-[9px] text-slate-400 uppercase">Total ${vCol}</span>
-                                <div class="text-sm font-bold text-emerald-400 mt-0.5">${formatMetricDisplay(agg.grandTotalVolume, vCol)}</div>
+                                <span class="text-[9px] text-slate-400 uppercase">Total ${vColEsc}</span>
+                                <div class="text-sm font-bold text-emerald-400 mt-0.5">${escapeHtml(formatMetricDisplay(agg.grandTotalVolume, vCol))}</div>
                                 <span class="text-[9px] text-slate-400">${agg.grandTotalRecords} records</span>
                             </div>
                             <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
                                 <span class="text-[9px] text-slate-400 uppercase">Weekly Average</span>
-                                <div class="text-sm font-bold text-indigo-400 mt-0.5">${formatMetricDisplay(agg.weeklyAvg, vCol)}</div>
+                                <div class="text-sm font-bold text-indigo-400 mt-0.5">${escapeHtml(formatMetricDisplay(agg.weeklyAvg, vCol))}</div>
                                 <span class="text-[9px] text-slate-400">4-week pacing</span>
                             </div>
                             <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
                                 <span class="text-[9px] text-slate-400 uppercase">Peak Period</span>
-                                <div class="text-sm font-bold text-amber-400 mt-0.5">${agg.peakWeek}</div>
-                                <span class="text-[9px] text-slate-400">${formatMetricDisplay(agg.peakWeekAmount, vCol)}</span>
+                                <div class="text-sm font-bold text-amber-400 mt-0.5">${escapeHtml(agg.peakWeek)}</div>
+                                <span class="text-[9px] text-slate-400">${escapeHtml(formatMetricDisplay(agg.peakWeekAmount, vCol))}</span>
                             </div>
                             <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
                                 <span class="text-[9px] text-slate-400 uppercase">Trajectory</span>
@@ -939,8 +950,8 @@
                             </div>
                         </div>
                         <div class="bg-slate-800/50 p-2.5 rounded border border-slate-700 text-xs text-slate-300 space-y-1">
-                            <p>• <strong>Consolidated Activity:</strong> Total of ${formatMetricDisplay(agg.grandTotalVolume, vCol)} generated across ${agg.grandTotalRecords} records.</p>
-                            <p>• <strong>Pacing &amp; Run-Rate:</strong> Normalized run-rate of ${formatMetricDisplay(agg.weeklyAvg, vCol)} per week, peaking during ${agg.peakWeek}.</p>
+                            <p>• <strong>Consolidated Activity:</strong> Total of ${escapeHtml(formatMetricDisplay(agg.grandTotalVolume, vCol))} generated across ${agg.grandTotalRecords} records.</p>
+                            <p>• <strong>Pacing &amp; Run-Rate:</strong> Normalized run-rate of ${escapeHtml(formatMetricDisplay(agg.weeklyAvg, vCol))} per week, peaking during ${escapeHtml(agg.peakWeek)}.</p>
                         </div>
                     </div>
                     <div class="text-[10px] font-mono text-slate-500">EXECUTIVE BENCHMARKS</div>
@@ -958,17 +969,17 @@
                                     <th class="py-1">Week</th>
                                     <th class="py-1">File Name</th>
                                     <th class="py-1 text-right">Items</th>
-                                    <th class="py-1 text-right">${vCol}</th>
+                                    <th class="py-1 text-right">${vColEsc}</th>
                                     <th class="py-1 text-right">Share (%)</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-800 text-[11px]">
                                 ${agg.weekStats.map(ws => `
                                     <tr>
-                                        <td class="py-1 font-bold text-white">${ws.week}</td>
-                                        <td class="py-1 text-slate-400 text-[10px]">${ws.filename}</td>
+                                        <td class="py-1 font-bold text-white">${escapeHtml(ws.week)}</td>
+                                        <td class="py-1 text-slate-400 text-[10px]">${escapeHtml(ws.filename)}</td>
                                         <td class="py-1 text-right text-slate-300">${ws.rowCount}</td>
-                                        <td class="py-1 text-right font-bold text-emerald-400">${formatMetricDisplay(ws.totalValue, vCol)}</td>
+                                        <td class="py-1 text-right font-bold text-emerald-400">${escapeHtml(formatMetricDisplay(ws.totalValue, vCol))}</td>
                                         <td class="py-1 text-right text-slate-400">${agg.grandTotalVolume > 0 ? ((ws.totalValue / agg.grandTotalVolume) * 100).toFixed(1) : 0}%</td>
                                     </tr>
                                 `).join('')}
@@ -976,7 +987,7 @@
                                     <td class="py-1.5">TOTAL</td>
                                     <td class="py-1.5 text-slate-400 text-[10px]">Combined 4-Week Sum</td>
                                     <td class="py-1.5 text-right">${agg.grandTotalRecords}</td>
-                                    <td class="py-1.5 text-right text-emerald-300">${formatMetricDisplay(agg.grandTotalVolume, vCol)}</td>
+                                    <td class="py-1.5 text-right text-emerald-300">${escapeHtml(formatMetricDisplay(agg.grandTotalVolume, vCol))}</td>
                                     <td class="py-1.5 text-right">100.0%</td>
                                 </tr>
                             </tbody>
@@ -989,7 +1000,7 @@
                 stage.innerHTML = `
                     <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[11px] font-mono text-slate-400">
                         <span>SLIDE 04 — SEGMENTATION BREAKDOWN</span>
-                        <span class="text-indigo-400">By ${agg.categoryCol}</span>
+                        <span class="text-indigo-400">By ${escapeHtml(agg.categoryCol)}</span>
                     </div>
                     <div class="py-1 my-auto">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
@@ -998,8 +1009,8 @@
                                 return `
                                     <div class="bg-slate-800/70 p-2 rounded border border-slate-700">
                                         <div class="flex justify-between mb-1">
-                                            <span class="text-slate-200 font-bold">${cat}</span>
-                                            <span class="text-emerald-400 font-bold">${formatMetricDisplay(val, vCol)} <span class="text-slate-400">(${pct}%)</span></span>
+                                            <span class="text-slate-200 font-bold">${escapeHtml(cat)}</span>
+                                            <span class="text-emerald-400 font-bold">${escapeHtml(formatMetricDisplay(val, vCol))} <span class="text-slate-400">(${pct}%)</span></span>
                                         </div>
                                         <div class="w-full bg-slate-900 rounded-full h-1">
                                             <div class="bg-indigo-500 h-1 rounded-full" style="width: ${Math.min(pct, 100)}%"></div>
@@ -1015,7 +1026,7 @@
                 stage.innerHTML = `
                     <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[11px] font-mono text-slate-400">
                         <span>SLIDE 05 — TOP CONTRIBUTING ITEMS</span>
-                        <span class="text-emerald-400">Ranked by ${vCol}</span>
+                        <span class="text-emerald-400">Ranked by ${vColEsc}</span>
                     </div>
                     <div class="py-1 overflow-x-auto my-auto">
                         <table class="w-full text-left text-xs font-mono">
@@ -1025,17 +1036,17 @@
                                     <th class="py-1">Item / Entity</th>
                                     <th class="py-1">Category</th>
                                     <th class="py-1">Week</th>
-                                    <th class="py-1 text-right">${vCol}</th>
+                                    <th class="py-1 text-right">${vColEsc}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-800 text-[11px]">
                                 ${agg.topOpportunities.slice(0, 5).map((o, idx) => `
                                     <tr>
                                         <td class="py-1 text-slate-400 font-bold">#${idx + 1}</td>
-                                        <td class="py-1 font-bold text-white">${o._Name}</td>
-                                        <td class="py-1 text-slate-300">${o._Category}</td>
-                                        <td class="py-1 text-indigo-400">${o._Source_Week}</td>
-                                        <td class="py-1 text-right font-bold text-emerald-300">${formatMetricDisplay(o._Numeric_Value, vCol)}</td>
+                                        <td class="py-1 font-bold text-white">${escapeHtml(o._Name)}</td>
+                                        <td class="py-1 text-slate-300">${escapeHtml(o._Category)}</td>
+                                        <td class="py-1 text-indigo-400">${escapeHtml(o._Source_Week)}</td>
+                                        <td class="py-1 text-right font-bold text-emerald-300">${escapeHtml(formatMetricDisplay(o._Numeric_Value, vCol))}</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
@@ -1055,14 +1066,14 @@
                             <thead>
                                 <tr class="border-b border-slate-700 text-slate-400">
                                     <th class="py-1">Week</th>
-                                    ${displayCols.map(c => `<th class="py-1">${c}</th>`).join('')}
+                                    ${displayCols.map(c => `<th class="py-1">${escapeHtml(c)}</th>`).join('')}
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-800 text-slate-300">
                                 ${agg.allRecords.slice(0, 6).map(r => `
                                     <tr>
-                                        <td class="py-1 text-indigo-400 font-bold">${r._Source_Week}</td>
-                                        ${displayCols.map(c => `<td class="py-1">${String(r[c] || '')}</td>`).join('')}
+                                        <td class="py-1 text-indigo-400 font-bold">${escapeHtml(r._Source_Week)}</td>
+                                        ${displayCols.map(c => `<td class="py-1">${escapeHtml(String(r[c] || ''))}</td>`).join('')}
                                     </tr>
                                 `).join('')}
                             </tbody>
@@ -1084,7 +1095,7 @@
                             </div>
                             <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
                                 <span class="text-[10px] text-slate-400">Monthly Volume Certified:</span>
-                                <div class="text-sm font-bold text-emerald-400">${formatMetricDisplay(agg.grandTotalVolume, vCol)}</div>
+                                <div class="text-sm font-bold text-emerald-400">${escapeHtml(formatMetricDisplay(agg.grandTotalVolume, vCol))}</div>
                             </div>
                         </div>
                         <div class="bg-emerald-950/40 border border-emerald-500/30 p-2 rounded text-emerald-300 text-[11px]">

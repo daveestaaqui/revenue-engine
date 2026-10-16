@@ -13,9 +13,14 @@ from datetime import datetime, timedelta
 
 EXCLUDED_INSTITUTIONS = [
     "BANK", "MORTGAGE", "TRUSTEE", "SERVICING", "LLC", "INC", "CORP", 
-    "ASSOCIATION", "HOA", "NATIONAL", "DEUTSCHE", "CITIBANK", "CHASE",
+    "ASSOCIATION", "HOA", "POA", "NATIONAL", "DEUTSCHE", "CITIBANK", "CHASE",
     "WELLS FARGO", "FANNIE MAE", "FREDDIE MAC", "INTERNAL REVENUE",
-    "CAPITAL", "INVESTMENTS", "HOLDINGS", "FUNDING", "LENDING"
+    "CAPITAL", "INVESTMENTS", "HOLDINGS", "FUNDING", "LENDING",
+    "WATER", "AUTHORITY", "DEPARTMENT", "CITY OF", "STATE OF", "SCHOOL",
+    "DISTRICT", "FBISD", "ISD", "MUD", "LID", "COMMISSION", "LAW OFFICE",
+    "LAW FIRM", "PLLC", "P.A.", "COMPANY", "LIMITED", "PARTNERS", "PARTNERSHIP",
+    "PROPERTIES", "ENTERPRISES", "VENTURES", "SERVICES", "SOLUTIONS",
+    "INSURANCE", "ADJUSTERS", "EDUCATION", "CHURCH", "MINISTRIES", "CREDIT UNION"
 ]
 
 def clean_currency(val):
@@ -415,3 +420,130 @@ def process_county_dataset(raw_records, county_meta):
 
     enriched.sort(key=lambda x: x["Surplus_Balance_USD"], reverse=True)
     return enriched
+
+
+# ==============================================================================
+# Real-record enrichment (records produced by scrapers/sources/*.py)
+# ==============================================================================
+# Only derives fields from what the county actually published. Links are the
+# official source document/page (or a tested per-case deep link supplied by the
+# scraper). Deadlines are only computed where the statute runs from the sale
+# date; otherwise the record says to confirm with the clerk.
+
+STATE_RULES = {
+    "FL": {"statute": "Fla. Stat. § 197.582", "window": "120 days from clerk's notice (Fla. Stat. § 197.582)", "days": None, "fee": 0.20},
+    "TX": {"statute": "Tex. Tax Code § 34.04", "window": "2 years from sale (Tex. Tax Code § 34.04)", "days": 730, "fee": 0.25},
+    "GA": {"statute": "O.C.G.A. § 48-4-5", "window": "5 years from sale (O.C.G.A. § 48-4-5)", "days": 1825, "fee": 0.20},
+    "NC": {"statute": "N.C.G.S. § 105-374", "window": "Held by Clerk of Superior Court (N.C.G.S. § 105-374) — confirm with clerk", "days": None, "fee": 0.20},
+    "TN": {"statute": "T.C.A. § 67-5-2702", "window": "1 year from order confirming sale (T.C.A. § 67-5-2702)", "days": 365, "fee": 0.20},
+    "CA": {"statute": "Cal. Rev. & Tax Code § 4675", "window": "1 year from tax deed recording (Cal. Rev. & Tax Code § 4675)", "days": 365, "fee": 0.20},
+}
+FL_FORECLOSURE_RULE = {"statute": "Fla. Stat. § 45.032", "window": "Claim with clerk per Fla. Stat. § 45.032 — confirm certificate of disbursements date", "days": None, "fee": 0.20}
+
+_INSTITUTION_RE = re.compile(r"\b(" + "|".join(re.escape(w) for w in EXCLUDED_INSTITUTIONS) + r")\b", re.I)
+
+
+def _parse_date(s):
+    s = str(s or "").strip()
+    for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%m/%d/%y", "%Y/%m/%d", "%m-%d-%Y"):
+        try:
+            return datetime.strptime(s, fmt)
+        except ValueError:
+            continue
+    return None
+
+
+def enrich_real_record(rec):
+    state = str(rec.get("State", "")).strip().upper()
+    record_type = str(rec.get("Record_Type", "TAX_DEED")).strip().upper()
+    amount = clean_currency(rec.get("Surplus_Balance_USD"))
+    if amount <= 0:
+        return None
+
+    rule = FL_FORECLOSURE_RULE if (state == "FL" and record_type == "FORECLOSURE") else STATE_RULES.get(
+        state, {"statute": "", "window": "Confirm claim window with clerk", "days": None, "fee": 0.20})
+
+    owner = str(rec.get("Owner_Name") or "").strip()
+    if owner and owner.upper() not in ("UNKNOWN", "N/A", "NONE", "NULL", "TBD"):
+        owner_upper = owner.upper()
+        is_inst = bool(_INSTITUTION_RE.search(owner)) or any(inst in owner_upper for inst in EXCLUDED_INSTITUTIONS)
+        entity = "Estate / Deceased" if is_deceased_or_estate(owner) else ("Institutional" if is_inst else "Individual / Estate")
+    else:
+        owner = "Assessed Titleholder of Record (See Official County File)"
+        is_inst = False
+        entity = "Individual / Estate"
+
+    parcel_id = str(rec.get("Parcel_ID") or "").strip()
+    case_no = str(rec.get("Case_or_TaxDeed_No") or "").strip()
+    if not case_no or case_no.upper() in ("N/A", "TBD", "UNKNOWN", "NONE") or not re.search(r"\d+", case_no):
+        case_no = f"APN-{parcel_id}" if (parcel_id and re.search(r"\d+", parcel_id)) else ""
+
+    if not case_no or not re.search(r"\d+", case_no):
+        return None
+
+    sale_dt = _parse_date(rec.get("Sale_Date"))
+    days_remaining, deadline, urgency = "", "", "Confirm window with clerk"
+    if sale_dt and rule["days"]:
+        deadline_dt = sale_dt + timedelta(days=rule["days"])
+        days_remaining = (deadline_dt - datetime.now()).days
+        deadline = deadline_dt.strftime("%Y-%m-%d")
+        if days_remaining < 0:
+            urgency = "Statutory window may have passed — confirm with clerk"
+        elif days_remaining <= 45:
+            urgency = "Tier 1: High Urgency (< 45 Days)"
+        elif days_remaining <= 120:
+            urgency = "Tier 2: Priority Window (45–120 Days)"
+        else:
+            urgency = "Tier 3: Active Claim Window (> 120 Days)"
+
+    address = str(rec.get("Property_Address") or "").strip()
+    source_url = str(rec.get("Source_URL") or "").strip()
+    verify_url = str(rec.get("Verify_URL") or "").strip() or source_url
+
+    return {
+        "State": state,
+        "County": str(rec.get("County", "")).strip(),
+        "Parcel_ID": parcel_id,
+        "Case_or_TaxDeed_No": case_no,
+        "Owner_Name": owner,
+        "Entity_Type": entity,
+        "Is_Individual": not is_inst,
+        "Heir_Search_Recommended": is_deceased_or_estate(owner) if owner else False,
+        "Property_Address": address,
+        "Property_Type": infer_property_class(address) if address else "Real Property",
+        "Surplus_Balance_USD": amount,
+        "Statutory_Fee_Rate": f"{int(rule['fee'] * 100)}%",
+        "Est_Finder_Fee_USD": round(amount * rule["fee"], 2),
+        "Opportunity_Tier": determine_tier(amount),
+        "Sale_Date": sale_dt.strftime("%Y-%m-%d") if sale_dt else "",
+        "Days_Remaining_To_Claim": days_remaining,
+        "Claim_Urgency_Tier": urgency,
+        "Claim_Deadline_Date": deadline,
+        "Statutory_Deadline_Window": rule["window"],
+        "Clerk_Verification_URL": verify_url,
+        "Verify_Note": str(rec.get("Verify_Note") or "").strip(),
+        "Source_URL": source_url,
+        "Governing_Statute": rule["statute"],
+        "Statute_Citation": rule["statute"],
+        "Record_Type": {"FORECLOSURE": "Foreclosure Surplus", "EXCESS_PROCEEDS": "Tax Sale Excess Proceeds",
+                        "TAX_FORECLOSURE": "Tax Foreclosure Surplus"}.get(record_type, "Tax Deed Surplus"),
+        "TYPE": record_type,
+        "Retrieved_At": str(rec.get("Retrieved_At") or ""),
+        "Enriched_Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    }
+
+
+def process_real_records(records, min_amount=0.0):
+    """Enrich real records, drop institutional owners and exact duplicates, sort by balance."""
+    out, seen = [], set()
+    for r in records:
+        item = enrich_real_record(r)
+        if not item or not item["Is_Individual"] or item["Surplus_Balance_USD"] < min_amount:
+            continue
+        key = (item["State"], item["County"], item["Case_or_TaxDeed_No"], item["Parcel_ID"], item["Surplus_Balance_USD"])
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(item)
+    out.sort(key=lambda x: x["Surplus_Balance_USD"], reverse=True)
+    return out

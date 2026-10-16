@@ -5,18 +5,18 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** JAMES & LINDA CHEN
-- **Property Situs / Address:** 8431 BAY BREEZE WAY ORLANDO FL 32836
-- **Tax Deed / Court Case Docket:** 2024-TD-001955
+- **Target Claimant / Former Owner:** Billing, Thelma Mae
+- **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
+- **Tax Deed / Court Case Docket:** 23-CA-016325
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $74,300.00
+- **Gross Surplus Balance Held in Registry:** $211,052.49
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $14,860.00
+- **Estimated Gross Recoverable Equity:** $42,210.50
 - **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
 
 ---

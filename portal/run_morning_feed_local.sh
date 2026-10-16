@@ -22,9 +22,12 @@ echo "======================================================================"
 
 cd "$REPO_DIR"
 
-# Ensure environment variables from .env are loaded
+# Ensure environment variables from .env are loaded safely
 if [ -f "$REPO_DIR/.env" ]; then
-    export $(grep -v '^#' "$REPO_DIR/.env" | xargs)
+    set -a
+    # shellcheck disable=SC1090
+    source "$REPO_DIR/.env"
+    set +a
 fi
 
 export PYTHONPATH="$REPO_DIR"
@@ -43,8 +46,8 @@ python3 portal/trial_retention_sentinel.py --send || true
 
 # Step 5: If log updated, push upstream so GitHub Actions knows it's done
 if git status --porcelain portal/daily_dispatch_log.json portal/trial_lifecycle_log.json | grep -q .; then
-    git config --global user.name "Surplus Docket Bot"
-    git config --global user.email "bot@surplusdocket.com"
+    git config user.name "Surplus Docket Bot"
+    git config user.email "bot@surplusdocket.com"
     git add portal/daily_dispatch_log.json portal/trial_lifecycle_log.json
     git commit -m "chore(feed): record local morning dispatch [skip ci]" || true
     git push origin main || true

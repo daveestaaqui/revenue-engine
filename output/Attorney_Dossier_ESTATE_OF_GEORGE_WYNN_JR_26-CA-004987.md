@@ -5,18 +5,18 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** ESTATE OF ELEANOR VANCE
-- **Property Situs / Address:** 3309 ROSEWOOD CT WINTER PARK FL 32792
-- **Tax Deed / Court Case Docket:** 2024-TD-001501
+- **Target Claimant / Former Owner:** ESTATE OF GEORGE WYNN, JR.
+- **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
+- **Tax Deed / Court Case Docket:** 26-CA-004987
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $61,800.00
+- **Gross Surplus Balance Held in Registry:** $101,369.32
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $12,360.00
+- **Estimated Gross Recoverable Equity:** $20,273.86
 - **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
 
 ---

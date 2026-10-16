@@ -13,7 +13,7 @@
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Surplus Docket">
     <meta property="og:title" content="Surplus Docket — Data Provider Comparison & Architecture Audit">
-    <meta property="og:description" content="Technical audit comparing institutional court registry data feeds with upstream lien scrubbing against raw auction dumps and legacy scrapers.">
+    <meta property="og:description" content="Technical audit comparing institutional court registry data feeds and entity filtering against raw auction dumps and legacy scrapers.">
     <meta property="og:url" content="https://surplusdocket.com/comparison.html">
     <meta property="og:image" content="https://surplusdocket.com/assets/logo_surplus_docket.png">
     
@@ -203,10 +203,10 @@
                 <div class="absolute top-0 right-0 bg-brand-green text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Surplus Docket</div>
                 <h3 class="text-lg font-heading font-bold text-brand-navy mb-2 flex items-center gap-2">
                     <span class="w-6 h-6 rounded-full bg-brand-greenSoft text-brand-green flex items-center justify-center text-xs font-bold shrink-0">&check;</span>
-                    Automated Lien Scrubbing
+                    Institutional Entity Filtering
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
-                    Our automated daily pipeline cross-references recorded judgments to remove senior mortgage foreclosures and corporate encumbrances before delivery.
+                    Our automated daily pipeline excludes institutional and bank-owned records and flags estates for heir search, while lien review remains the firm's responsibility.
               </p>
                 <p class="text-xs font-bold text-brand-green">Result: Pre-filtered dockets focused on individual owners and heirs with viable equity.</p>
             </div>

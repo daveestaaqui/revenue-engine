@@ -282,7 +282,7 @@
                         </div>
                         <div>
                             <label for="inq-docket" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Docket / Case # or Parcel ID <span class="text-slate-400 font-normal">(Optional)</span></label>
-                            <input type="text" id="inq-docket" name="docket" placeholder="e.g. 2024-TD-001955 or 28-23-29-..." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy placeholder:text-slate-400 focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
+                            <input type="text" id="inq-docket" name="docket" placeholder="e.g. Case # or Parcel ID" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs font-medium text-brand-navy placeholder:text-slate-400 focus:outline-none focus:border-brand-green focus:bg-white transition-colors">
                         </div>
                     </div>
 
@@ -574,15 +574,24 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
-            const plan = params.get('plan') || params.get('department');
-            if (plan && (plan.toLowerCase().includes('pilot') || plan === '49')) {
-                const catSelect = document.getElementById('inq-category');
+            const plan = params.get('plan') || '';
+            const dept = params.get('department') || '';
+            const catSelect = document.getElementById('inq-category');
+            if ((plan && (plan.toLowerCase().includes('pilot') || plan === '49')) || dept.toLowerCase().includes('pilot')) {
                 if (catSelect) {
                     catSelect.value = 'Single-County Pilot Dossier ($49)';
                 }
                 const msgField = document.getElementById('inq-message');
                 if (msgField && !msgField.value) {
-                    msgField.placeholder = "Please specify your target county (e.g. Palm Beach County, FL or Harris County, TX) and preferred delivery format (CSV / Excel)...";
+                    msgField.placeholder = "Please specify your target county (e.g. Hillsborough County, FL or Dallas County, TX) and preferred delivery format (CSV / Excel)...";
+                }
+            } else if (dept && catSelect) {
+                const decoded = decodeURIComponent(dept).trim().toLowerCase();
+                for (const opt of Array.from(catSelect.options)) {
+                    if (opt.value.toLowerCase() === decoded || opt.textContent.toLowerCase().includes(decoded)) {
+                        catSelect.value = opt.value;
+                        break;
+                    }
                 }
             }
         });

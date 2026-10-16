@@ -12,9 +12,9 @@
     "CA"
   ],
   "statistics": {
-    "total_feed_records_verified": 43,
-    "total_surplus_volume_verified_usd": 3909100.0,
-    "total_finder_fees_verified_usd": 801480.0,
+    "total_feed_records_verified": 611,
+    "total_surplus_volume_verified_usd": 30320804.24,
+    "total_finder_fees_verified_usd": 6347414.61,
     "mathematical_discrepancies": 0,
     "statutory_violations": 0,
     "institutional_bank_violations": 0,
@@ -54,9 +54,13 @@
     },
     "TN": {
       "statute": "T.C.A. \u00a7 67-5-2501",
+      "valid_statutes": [
+        "T.C.A. \u00a7 67-5-2501",
+        "T.C.A. \u00a7 67-5-2702"
+      ],
       "fee_cap": 0.2,
       "fee_label": "20%",
-      "window_desc": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501)"
+      "window_desc": "Chancery Court Motion Procedure (T.C.A. \u00a7 67-5-2501 / \u00a7 67-5-2702)"
     },
     "CA": {
       "statute": "Cal. Rev. & Tax Code \u00a7 4675",
@@ -95,24 +99,24 @@
     "site/api/v1/florida.json": "ffddd93c60b4c47f2eddbc7677210c74a9103ba4711e77be2fbe5d1e821f8a80",
     "site/api/v1/georgia.json": "78ea3eb03fbdf5feae1bde0bca37bad35dcc9a4197351c82bba33b69f9f89ce6",
     "site/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html": "94f87a56c1f0f1adefa05f676e453b39aa6010dbaa148928c815e84aa3a4cff8",
-    "site/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html": "65e21cc4a00c5afa4ea57f6dd8a1f406e7f5899b8bcc2147a2c387e92427e4d1",
-    "site/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html": "20966a6b9bab7d97bf4d37187a869a337fdc1eaf6c8bc6981f946b8748464cad",
     "site/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html": "f1c908444339651f564d84b4564e1f69eea97b7fb374613a674c52b2fbe4a757",
-    "site/blog/posts/institutional-lien-filtering-asset-recovery.html": "3fd53199929f5c74efd08339d5630274e3dfa42f9d31f8fec151a11385940f4d",
-    "site/blog/posts/tyler-v-hennepin-county-post-sale-notice-reforms.html": "29d9bd0be341316ce356c4bde1700c33f6d26e0e762f421ee7baab12e27c884c",
-    "site/blog/posts/mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions.html": "6b98333e207230977ee91f89dd2d1c10bc11d325b85026ba52408ce526b08418",
-    "site/blog/posts/tennessee-delinquent-tax-sale-surplus-guide-tca-67-5-2501.html": "573f58e5815be92ca5f01af2c5703900eae6bb9ad6f6b785d86812ddea36ccf8",
-    "site/blog/posts/probate-surplus-recovery-estate-administration-guide.html": "8c7ae54c1f5393ecda891eea4583461e63350b6c6ad7511582d6be29d3481e4a",
-    "site/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html": "89908eb93960b39b357104dc89f45bbe7a9a9ec369dee467ab653aa8b590a192",
-    "site/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html": "75b7d20d7f1cbcc312cbaa796d6aa89f3432eb9dd7d3c965ffbf1f71e0fabe2f",
     "site/blog/posts/probate-heirship-affidavit-surplus-recovery-guide.html": "f4aa434356b77632885ab37bdaaadfb4d4137741aaf5ba19cfe12d00a91202d4",
     "site/blog/posts/bankruptcy-automatic-stay-surplus-funds-11-usc-362.html": "e4ccebeb80d25e5388c6dcf66907b86fc34c5a2cabd42c302312b343bac4bf28",
-    "site/press/releases/surplus-docket-launches-evidence-graph-lien-screening.html": "0e3bf39579b9aaa5e9d86495727929d727e5dd23172897a93aaf4019d76d48a0",
+    "site/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html": "65e21cc4a00c5afa4ea57f6dd8a1f406e7f5899b8bcc2147a2c387e92427e4d1",
+    "site/blog/posts/tyler-v-hennepin-county-post-sale-notice-reforms.html": "29d9bd0be341316ce356c4bde1700c33f6d26e0e762f421ee7baab12e27c884c",
+    "site/blog/posts/probate-surplus-recovery-estate-administration-guide.html": "8c7ae54c1f5393ecda891eea4583461e63350b6c6ad7511582d6be29d3481e4a",
+    "site/blog/posts/mortgage-foreclosure-surplus-vs-tax-deed-surplus-distinctions.html": "6b98333e207230977ee91f89dd2d1c10bc11d325b85026ba52408ce526b08418",
+    "site/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html": "89908eb93960b39b357104dc89f45bbe7a9a9ec369dee467ab653aa8b590a192",
+    "site/blog/posts/tennessee-delinquent-tax-sale-surplus-guide-tca-67-5-2501.html": "573f58e5815be92ca5f01af2c5703900eae6bb9ad6f6b785d86812ddea36ccf8",
+    "site/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html": "20966a6b9bab7d97bf4d37187a869a337fdc1eaf6c8bc6981f946b8748464cad",
+    "site/blog/posts/institutional-lien-filtering-asset-recovery.html": "3fd53199929f5c74efd08339d5630274e3dfa42f9d31f8fec151a11385940f4d",
+    "site/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html": "75b7d20d7f1cbcc312cbaa796d6aa89f3432eb9dd7d3c965ffbf1f71e0fabe2f",
+    "site/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html": "f51f1844a6a19b936287ef76e6bde03126c8931a436588cf6f170a09bab339ee",
     "site/press/releases/surplus-docket-expands-six-state-registry-monitoring.html": "23949796d77c58877d8a8bda9f720333c1f85ac0b74599313c118917e6cd8825",
     "site/press/releases/surplus-docket-unveils-rest-api-for-law-practice-management.html": "0194a3980672cb0bdd1082d0d219ec7ec0d3e0b2743778cfd544570f03088a93",
-    "site/press/releases/surplus-docket-launches-autonomous-legal-intelligence-platform.html": "f51f1844a6a19b936287ef76e6bde03126c8931a436588cf6f170a09bab339ee",
-    "site/for/tax-sale-litigation.html": "97cc48c443607b45150c9470f3aec32cb4ef6d80b84b4093a6f4e617e16299ce",
-    "site/for/probate-estate-surplus.html": "e0c9f24b1643859457fe80c4aeac4d908893ad09f0a5fdef127093956ed2e47d",
-    "site/for/mortgage-foreclosure.html": "0112ca66b8f1bd100d1376582403564be72711939884e24eb64a7339c7afbbc4"
+    "site/press/releases/surplus-docket-launches-evidence-graph-lien-screening.html": "0e3bf39579b9aaa5e9d86495727929d727e5dd23172897a93aaf4019d76d48a0",
+    "site/for/tax-sale-litigation.html": "67dee34017f9589868fea4a2e3d0cd833eb79c809528791a960292d1bb2d2a6a",
+    "site/for/mortgage-foreclosure.html": "f8c0433b51d0b3371a7f0080c85c2b375309a932d660712ec43658d791a7844c",
+    "site/for/probate-estate-surplus.html": "449e39cfee3c43aacbfb3e804adaddefae415c69df44b1e5b625e55a8b2f2d1c"
   }
 }

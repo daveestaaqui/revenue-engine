@@ -5,18 +5,18 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** MARCOS & SOFIA ALVAREZ
-- **Property Situs / Address:** 510 LAKE BREEZE DR APOPKA FL 32703
-- **Tax Deed / Court Case Docket:** 2024-TD-001622
+- **Target Claimant / Former Owner:** Duarte, Alvaro
+- **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
+- **Tax Deed / Court Case Docket:** 26-CA-006185
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $29,400.00
+- **Gross Surplus Balance Held in Registry:** $103,924.28
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $5,880.00
+- **Estimated Gross Recoverable Equity:** $20,784.86
 - **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
 
 ---

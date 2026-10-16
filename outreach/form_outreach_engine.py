@@ -139,9 +139,9 @@ def compose_message(target):
 
 I'm following up from the research desk at Surplus Docket with our quarterly court registry update for {state_name}.
 
-Since our previous outreach, our automated crawlers have indexed substantial new tax deed surplus and excess proceeds filings across {state_name} county courts. As a reminder, we audit and filter out senior mortgages and institutional bank encumbrances upstream so your attorneys only receive clean, actionable equity balances.
+Since our previous outreach, our automated crawlers have indexed new official tax deed surplus and excess proceeds filings published by {state_name} county clerks and treasurers. Every record includes a direct link to the official county source PDF or spreadsheet alongside statutory claim windows and preliminary encumbrance status flags so your attorneys can verify priority before filing.
 
-You can inspect current live dockets and county metrics here:
+You can inspect current live dockets and county source links here:
 {recommended_link}
 
 Your practice can evaluate live morning filings anytime with a 7-day complimentary evaluation ($0 due today, daily 7:00 AM EST feeds, cancel anytime via Stripe portal):
@@ -163,9 +163,9 @@ dockets@surplusdocket.com"""
         subject = f"{state_name} surplus & excess proceeds intelligence"
         body = f"""{greeting}
 
-I'm reaching out from the public records research desk at Surplus Docket. We index tax deed surplus and excess proceeds dockets daily across {state_name}.
+I'm reaching out from the public records research desk at Surplus Docket. We index official tax deed surplus and excess proceeds dockets published by covered {state_name} county court registries.
 
-Most county surplus lists are a headache to work through because the majority of files are encumbered by senior mortgages or bank liens that wipe out the funds. We pull the dockets daily and filter out those institutional liens upstream, so your practice is only looking at clean individual and estate claims.
+Instead of manually checking scattered county clerk PDFs and spreadsheets each week, our pipeline normalizes active surplus balances into a single daily feed with direct `#search=` verification links to the official county source document, statutory citation tags, and preliminary encumbrance status flags.
 
 You can inspect the live {state_name} feed and sample cases directly here:
 {recommended_link}
@@ -186,7 +186,7 @@ dockets@surplusdocket.com"""
 
 Since the Supreme Court's unanimous ruling in Tyler v. Hennepin County, the surplus recovery landscape has fundamentally changed. Counties that previously retained foreclosure overages are now legally obligated to distribute them — and statutory claim filing deadlines are running.
 
-Our data intelligence desk indexes {state_name} tax deed surplus and excess proceeds cases daily. We pull the dockets directly from county registries and filter out institutional encumbrances upstream, so your attorneys only see clean, collectible balances with verified claim windows.
+Our data intelligence desk indexes official {state_name} tax deed surplus and excess proceeds cases directly from county registries, pairing each matter with its official clerk source document link, statutory claim window, and preliminary encumbrance review flags.
 
 You can review the live {state_name} feed here:
 {recommended_link}
@@ -1402,9 +1402,9 @@ def create_email_fallback_draft(target, failure_detail, is_dry_run=False):
     name = target.get("Name", "").strip() or "Counsel"
     first_name = name.split()[0] if name else "Counsel"
 
-    case_no = "2024-TD-004501"
-    county = "Palm Beach" if state == "FL" else ("Harris" if state == "TX" else ("Fulton" if state == "GA" else "Orange"))
-    balance = "$78,400"
+    case_no = ""
+    county = ""
+    balance = ""
     statute = STATE_STATUTES.get(state, "Fla. Stat. § 197.582")
 
     feed_path = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.csv"
@@ -1413,15 +1413,18 @@ def create_email_fallback_draft(target, failure_detail, is_dry_run=False):
             with open(feed_path, "r", encoding="utf-8") as ff:
                 for row in csv.DictReader(ff):
                     if row.get("State", "").upper() == state:
-                        case_no = row.get("Case_or_TaxDeed_No", case_no)
-                        county = row.get("County", county)
+                        case_no = (row.get("Case_or_TaxDeed_No") or "").strip()
+                        county = (row.get("County") or "").strip()
                         bal_val = float(row.get("Surplus_Balance_USD", 0) or 0)
-                        if bal_val > 0:
+                        if bal_val > 0 and case_no and county:
                             balance = f"${bal_val:,.0f}"
-                        statute = row.get("Governing_Statute", statute)
-                        break
+                            statute = row.get("Governing_Statute", statute)
+                            break
         except Exception:
             pass
+
+    if not (case_no and county and balance):
+        return None
 
     subject = f"{county} County surplus filing — {case_no}"
     greeting = f"Hi {first_name}," if first_name != "Counsel" else f"Hello {firm} team,"

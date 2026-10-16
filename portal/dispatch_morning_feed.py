@@ -10,6 +10,8 @@ and dispatches via authenticated SMTP.
 import os
 import sys
 import json
+import html
+import urllib.parse
 import smtplib
 import argparse
 import csv
@@ -29,7 +31,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
-from enrichment.processor import build_direct_clerk_url, is_generic_homepage, is_broken_or_invalid_url
 
 # Optional local .env loading
 ENV_FILE = BASE_DIR / ".env"
@@ -74,107 +75,96 @@ def load_active_subscribers():
     return [s for s in data if s.get("status", "").upper() == "ACTIVE"]
 
 
+STATE_NAMES = {"FL": "Florida", "TX": "Texas", "GA": "Georgia", "NC": "North Carolina", "TN": "Tennessee", "CA": "California"}
+
+
 def get_feed_statistics():
+    """Summarize the real master feed. Links come straight from the feed (official source or tested deep link)."""
+    stats = {"total_records": 0, "total_surplus": 0.0, "top_dockets": [], "jurisdiction_counts": {}}
     if not MASTER_CSV.exists():
-        return {
-            "total_records": 0,
-            "total_surplus": 0.0,
-            "top_dockets": [],
-            "jurisdiction_counts": {}
-        }
-    if pd is not None:
-        df = pd.read_csv(MASTER_CSV)
-        total_records = len(df)
-        surplus_col = "Surplus_Balance_USD" if "Surplus_Balance_USD" in df.columns else "AMOUNT"
-        total_surplus = float(df[surplus_col].sum()) if surplus_col in df.columns else 0.0
-
-        state_col = "State" if "State" in df.columns else "COUNTY"
-        jurisdiction_counts = df[state_col].value_counts().to_dict() if state_col in df.columns else {}
-
-        top_dockets = []
-        for _, r in df.head(6).iterrows():
-            docket_id = str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending")
-            st = str(r.get("State") or "FL")
-            cty = str(r.get("County") or r.get("COUNTY") or "")
-            rec_type = str(r.get("Record_Type") or r.get("TYPE") or "")
-            parcel_val = str(r.get("Parcel_ID") or "")
-            raw_clerk = str(r.get("Clerk_Verification_URL") or "")
-
-            if not raw_clerk or is_generic_homepage(raw_clerk) or is_broken_or_invalid_url(raw_clerk):
-                direct_url = build_direct_clerk_url(cty, st, docket_id, parcel_id=parcel_val, record_type=rec_type)
-            else:
-                direct_url = raw_clerk
-
-            top_dockets.append({
-                "docket": docket_id,
-                "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
-                "address": str(r.get("Property_Address") or r.get("SITUS") or ""),
-                "amount": float(r.get(surplus_col, 0.0)),
-                "state": st,
-                "county": cty,
-                "statute": str(r.get("Governing_Statute") or ""),
-                "deadline": str(r.get("Statutory_Deadline_Window") or r.get("Claim_Deadline_Date") or ""),
-                "clerk_url": direct_url,
-                "urgency": str(r.get("Claim_Urgency_Tier") or r.get("Opportunity_Tier") or ""),
-            })
-
-        return {
-            "total_records": total_records,
-            "total_surplus": total_surplus,
-            "top_dockets": top_dockets,
-            "jurisdiction_counts": jurisdiction_counts
-        }
-
-    # Built-in csv fallback when pandas is not installed
-    total_records = 0
-    total_surplus = 0.0
-    jurisdiction_counts = {}
-    top_dockets = []
+        return stats
     with open(MASTER_CSV, "r", encoding="utf-8", errors="ignore") as f:
-        reader = csv.DictReader(f)
-        for r in reader:
-            total_records += 1
-            val_str = r.get("Surplus_Balance_USD") or r.get("AMOUNT") or 0.0
-            try:
-                amt = float(val_str)
-            except (ValueError, TypeError):
-                amt = 0.0
-            total_surplus += amt
-            st = str(r.get("State") or r.get("COUNTY") or "").strip().upper()
-            if st:
-                jurisdiction_counts[st] = jurisdiction_counts.get(st, 0) + 1
-            if len(top_dockets) < 6:
-                docket_id = str(r.get("Case_or_TaxDeed_No") or r.get("Tax_Deed_Number") or r.get("TAX_DEED_NO") or "Pending")
-                st_val = str(r.get("State") or "FL")
-                cty_val = str(r.get("County") or r.get("COUNTY") or "")
-                rec_type = str(r.get("Record_Type") or r.get("TYPE") or "")
-                parcel_val = str(r.get("Parcel_ID") or "")
-                raw_clerk = str(r.get("Clerk_Verification_URL") or "")
+        rows = list(csv.DictReader(f))
 
-                if not raw_clerk or is_generic_homepage(raw_clerk) or is_broken_or_invalid_url(raw_clerk):
-                    direct_url = build_direct_clerk_url(cty_val, st_val, docket_id, parcel_id=parcel_val, record_type=rec_type)
-                else:
-                    direct_url = raw_clerk
+    def num(v):
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return 0.0
 
-                top_dockets.append({
-                    "docket": docket_id,
-                    "owner": str(r.get("Owner_Name") or r.get("DEFENDANT") or "Record Titleholder"),
-                    "address": str(r.get("Property_Address") or r.get("SITUS") or ""),
-                    "amount": amt,
-                    "state": st_val,
-                    "county": cty_val,
-                    "statute": str(r.get("Governing_Statute") or ""),
-                    "deadline": str(r.get("Statutory_Deadline_Window") or r.get("Claim_Deadline_Date") or ""),
-                    "clerk_url": direct_url,
-                    "urgency": str(r.get("Claim_Urgency_Tier") or r.get("Opportunity_Tier") or ""),
-                })
+    rows.sort(key=lambda r: num(r.get("Surplus_Balance_USD")), reverse=True)
+    stats["total_records"] = len(rows)
+    stats["total_surplus"] = sum(num(r.get("Surplus_Balance_USD")) for r in rows)
+    for r in rows:
+        st = (r.get("State") or "").strip().upper()
+        if st:
+            stats["jurisdiction_counts"][st] = stats["jurisdiction_counts"].get(st, 0) + 1
 
-    return {
-        "total_records": total_records,
-        "total_surplus": total_surplus,
-        "top_dockets": top_dockets,
-        "jurisdiction_counts": jurisdiction_counts
-    }
+    # Select top 6 dockets with diversity across active states/counties first,
+    # prioritizing records with named owners and direct #search= or case deep links
+    def _is_named_deep_docket(r):
+        ow = (r.get("Owner_Name") or "").strip()
+        vurl = (r.get("Clerk_Verification_URL") or "").strip()
+        surl = (r.get("Source_URL") or "").strip()
+        has_named_owner = bool(ow) and "Titleholder of Record" not in ow
+        has_deep = ("#search=" in vurl) or (bool(vurl) and vurl != surl)
+        return has_named_owner and has_deep
+
+    selected_rows = []
+    seen_states = set()
+    seen_counties = set()
+    # Pass 1: one named deep-linked docket per State (guarantees every active state is represented)
+    for r in rows:
+        if not _is_named_deep_docket(r):
+            continue
+        st = (r.get("State") or "").strip()
+        ckey = (st, (r.get("County") or "").strip())
+        if st not in seen_states:
+            seen_states.add(st)
+            seen_counties.add(ckey)
+            selected_rows.append(r)
+        if len(selected_rows) >= 6:
+            break
+    # Pass 2: one named deep-linked docket per remaining County
+    if len(selected_rows) < 6:
+        for r in rows:
+            if not _is_named_deep_docket(r):
+                continue
+            ckey = ((r.get("State") or "").strip(), (r.get("County") or "").strip())
+            if ckey not in seen_counties and r not in selected_rows:
+                seen_counties.add(ckey)
+                selected_rows.append(r)
+            if len(selected_rows) >= 6:
+                break
+    # Pass 3: fill any remaining slots
+    if len(selected_rows) < 6:
+        for r in rows:
+            if r not in selected_rows:
+                selected_rows.append(r)
+            if len(selected_rows) >= 6:
+                break
+    selected_rows.sort(key=lambda r: num(r.get("Surplus_Balance_USD")), reverse=True)
+
+    for r in selected_rows:
+        verify_url = (r.get("Clerk_Verification_URL") or "").strip()
+        source_url = (r.get("Source_URL") or "").strip()
+        case_no = (r.get("Case_or_TaxDeed_No") or "").strip()
+        parcel = (r.get("Parcel_ID") or "").strip()
+        stats["top_dockets"].append({
+            "docket": case_no or (f"Parcel {parcel}" if parcel else "Listed matter"),
+            "owner": (r.get("Owner_Name") or "").strip() or "Owner not published by county",
+            "address": (r.get("Property_Address") or "").strip(),
+            "amount": num(r.get("Surplus_Balance_USD")),
+            "state": (r.get("State") or "").strip(),
+            "county": (r.get("County") or "").strip(),
+            "statute": (r.get("Governing_Statute") or "").strip(),
+            "deadline": (r.get("Claim_Deadline_Date") or "").strip(),
+            "clerk_url": verify_url,
+            "is_deep_link": ("#search=" in verify_url) or (bool(verify_url) and verify_url != source_url),
+            "verify_note": (r.get("Verify_Note") or "").strip(),
+            "urgency": (r.get("Claim_Urgency_Tier") or "").strip(),
+        })
+    return stats
 
 
 def format_firm_suffix(subscriber):
@@ -185,77 +175,100 @@ def format_firm_suffix(subscriber):
 
 
 def compose_email_content(subscriber, stats, date_str):
+    from enrichment.processor import build_direct_clerk_url
     name = subscriber.get("name", "Counsel")
     firm_suffix = format_firm_suffix(subscriber)
     total_bal_fmt = f"${stats['total_surplus']:,.2f}"
     rec_count = stats["total_records"]
     year = datetime.now().year
+    jurisdiction_counts = stats.get("jurisdiction_counts") or {}
+    jurisdictions_line = ", ".join(
+        f"{STATE_NAMES.get(st, st)} ({n})" for st, n in sorted(jurisdiction_counts.items(), key=lambda kv: -kv[1])
+    ) or "Active Court Registries"
 
     dockets_text = ""
     dockets_html = ""
     for d in stats["top_dockets"]:
+        clerk_url = d.get("clerk_url") or build_direct_clerk_url(d.get("county", ""), d.get("state", ""), d.get("docket", ""))
+        docket_id_raw = str(d.get("docket", "")).strip()
+        portal_deep_url = f"https://surplusdocket.com/?docket={urllib.parse.quote(docket_id_raw)}#live-docket" if docket_id_raw else "https://surplusdocket.com/#live-docket"
         urgency_label = f" [{d['urgency']}]" if d.get("urgency") else ""
         statute_label = f"\n    Statute: {d['statute']}" if d.get("statute") else ""
-        clerk_label = f"\n    Registry Verification: {d['clerk_url']}" if d.get("clerk_url") else ""
+        link_word = "Registry Verification"
+        note = f" ({d['verify_note']})" if d.get("verify_note") else ""
+        clerk_label = f"\n    {link_word}: {clerk_url}{note}" if clerk_url else ""
+        portal_label = f"\n    Surplus Docket Link: {portal_deep_url}"
         addr_label = f"\n    Property: {d['address']}" if d.get("address") else ""
         dockets_text += (
             f"• Docket {d['docket']} ({d['county']}, {d['state']}){urgency_label} — ${d['amount']:,.2f}\n"
-            f"    Owner: {d['owner']}{addr_label}{statute_label}{clerk_label}\n\n"
+            f"    Owner: {d['owner']}{addr_label}{statute_label}{clerk_label}{portal_label}\n\n"
         )
+
+        esc_docket = html.escape(str(d.get("docket", "")))
+        esc_owner = html.escape(str(d.get("owner", "")))
+        esc_address = html.escape(str(d.get("address", "")))
+        esc_statute = html.escape(str(d.get("statute", "")))
+        esc_state = html.escape(str(d.get("state", "")))
+        esc_county = html.escape(str(d.get("county", "")))
+        esc_note = html.escape(str(d.get("verify_note", "")))
+        esc_clerk_url = html.escape(str(clerk_url or ""), quote=True)
+        esc_portal_url = html.escape(str(portal_deep_url), quote=True)
 
         urgency_val = d.get("urgency", "")
         if "Tier 1" in urgency_val:
-            urgency_badge = '<span style="display: inline-block; background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: -apple-system, sans-serif;">Tier 1: High Urgency (&lt; 45d)</span>'
+            urgency_badge = '<span style="display: inline-block; background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; font-family: -apple-system, sans-serif;">Tier 1: &lt; 45d Window</span>'
         elif "Tier 2" in urgency_val:
-            urgency_badge = '<span style="display: inline-block; background-color: #fffbeb; color: #92400e; border: 1px solid #fde68a; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: -apple-system, sans-serif;">Tier 2: Priority Window</span>'
+            urgency_badge = '<span style="display: inline-block; background-color: #fffbeb; color: #92400e; border: 1px solid #fde68a; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; font-family: -apple-system, sans-serif;">Tier 2: Priority Window</span>'
         elif "Tier 3" in urgency_val:
-            urgency_badge = '<span style="display: inline-block; background-color: #edf3ec; color: #365134; border: 1px solid #c2d9c0; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: -apple-system, sans-serif;">Tier 3: Active Window</span>'
+            urgency_badge = '<span style="display: inline-block; background-color: #edf3ec; color: #365134; border: 1px solid #c2d9c0; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; font-family: -apple-system, sans-serif;">Tier 3: Active Window</span>'
         else:
-            urgency_badge = '<span style="display: inline-block; background-color: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: -apple-system, sans-serif;">Verified Docket</span>'
+            urgency_badge = '<span style="display: inline-block; background-color: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; font-family: -apple-system, sans-serif;">Confirm Window With Clerk</span>'
 
         statute_markup = f'''
-            <span style="display: inline-block; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; font-weight: 600; color: #1b365d; background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 2px 6px; border-radius: 4px; margin-right: 6px;">{d["statute"]}</span>
-        ''' if d.get("statute") else ''
+            <span style="display: inline-block; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; font-weight: 600; color: #1b365d; background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 3px 8px; border-radius: 6px; margin-right: 6px;">{esc_statute}</span>
+        ''' if esc_statute else ''
 
         address_markup = f'''
-            <div style="color: #64748b; font-size: 13px; margin-top: 3px;">
-                <span style="font-size: 11px; text-transform: uppercase; font-weight: 600; color: #94a3b8;">Property:</span> {d["address"]}
+            <div style="color: #64748b; font-size: 12px; margin-top: 3px; line-height: 1.4;">
+                <span style="font-size: 10px; text-transform: uppercase; font-weight: 700; color: #94a3b8; letter-spacing: 0.04em;">Property:</span> {esc_address}
             </div>
-        ''' if d.get("address") else ''
+        ''' if esc_address else ''
 
-        clerk_markup = f'''
-            <div style="margin-top: 8px;">
-                <a href="{d['clerk_url']}" target="_blank" style="font-size: 12px; font-weight: 600; color: #1b365d; text-decoration: underline;">
+        clerk_btn = f'''
+            <div style="margin-top: 12px;">
+                <a href="{esc_clerk_url}" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #1b365d; color: #ffffff; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 6px; text-decoration: none; margin-right: 8px; margin-bottom: 4px;">
                     Open Direct Docket Listing &rarr;
                 </a>
+                <a href="{esc_portal_url}" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #f8fafc; color: #1b365d; border: 1px solid #cbd5e1; font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 6px; text-decoration: none; margin-bottom: 4px;">
+                    View on Surplus Docket &rarr;
+                </a>
+                {f'<div style="font-size: 11px; color: #64748b; margin-top: 6px;">{esc_note}</div>' if esc_note else ""}
             </div>
-        ''' if d.get("clerk_url") else ''
+        ''' if esc_clerk_url else ''
 
         dockets_html += f"""
-        <div style="padding: 22px 0; border-bottom: 1px solid #e2e8f0;">
+        <div class="docket-card" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                 <tr>
-                    <td align="left" valign="top" style="padding-bottom: 6px;">
-                        <span style="display: inline-block; background-color: #edf3ec; color: #365134; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 4px; border: 1px solid #c2d9c0; margin-right: 8px;">{d['state']}</span>
-                        <a href="{d['clerk_url']}" target="_blank" style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 15px; font-weight: 700; color: #1b365d; text-decoration: none;">{d['docket']}</a>
-                        <span style="color: #64748b; font-size: 13px; font-weight: 500; margin-left: 6px;">&bull; {d['county']} County</span>
+                    <td align="left" valign="middle" class="mobile-stack" style="padding-bottom: 4px;">
+                        <span style="display: inline-block; background-color: #edf3ec; color: #365134; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; border: 1px solid #c2d9c0; margin-right: 8px;">{esc_state} &bull; {esc_county} County</span>
+                        <a href="{esc_clerk_url}" target="_blank" style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; font-weight: 700; color: #1b365d; text-decoration: none;">{esc_docket}</a>
                     </td>
-                    <td align="right" valign="top" style="padding-bottom: 6px; text-align: right; white-space: nowrap;">
-                        <span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 17px; font-weight: 900; color: #365134;">${d['amount']:,.2f}</span>
+                    <td align="right" valign="middle" class="mobile-stack mobile-amount" style="padding-bottom: 4px; text-align: right; white-space: nowrap;">
+                        <span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 18px; font-weight: 900; color: #365134;">${d['amount']:,.2f}</span>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="font-size: 13px; color: #334155; line-height: 1.6; padding-top: 4px;">
-                        <div>
-                            <span style="color: #64748b; font-size: 11px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.03em;">Record Titleholder:</span>
-                            <strong style="color: #0f172a; font-size: 14px;">{d['owner']}</strong>
+                    <td colspan="2" style="font-size: 13px; color: #334155; line-height: 1.5; padding-top: 6px;">
+                        <div style="font-size: 14px; font-weight: 700; color: #0f172a;">
+                            {esc_owner}
                         </div>
                         {address_markup}
-                        <div style="margin-top: 6px;">
+                        <div style="margin-top: 8px;">
                             {statute_markup}
                             {urgency_badge}
                         </div>
-                        {clerk_markup}
+                        {clerk_btn}
                     </td>
                 </tr>
             </table>
@@ -264,9 +277,8 @@ def compose_email_content(subscriber, stats, date_str):
 
     text_body = f"""BENCHMARK SUMMARY ({date_str}):
 • Active Verified Records: {rec_count} files
-• Audited Surplus Pool: {total_bal_fmt}
-• Monitored Jurisdictions: Florida, Texas, Georgia, North Carolina, Tennessee, California
-• Upstream Status: Senior Mortgages & Liens Filtered
+• Total Listed Surplus: {total_bal_fmt}
+• Jurisdictions in Today's Feed: {jurisdictions_line}
 
 FEATURED COURT DOCKETS:
 {dockets_text}ATTACHED COURT INTELLIGENCE FILES:
@@ -301,7 +313,7 @@ surplusdocket.com • dockets@surplusdocket.com
             background-color: #ffffff !important;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             color: #1e293b;
-            line-height: 1.6;
+            line-height: 1.5;
         }}
         .email-outer {{
             width: 100% !important;
@@ -311,40 +323,57 @@ surplusdocket.com • dockets@surplusdocket.com
             padding: 0 !important;
         }}
         .content-cell {{
-            padding: 40px 48px !important;
-            max-width: 860px !important;
+            padding: 32px 24px !important;
+            max-width: 600px !important;
             margin: 0 auto !important;
             display: block !important;
+            background-color: #ffffff !important;
         }}
-        @media only screen and (max-width: 640px) {{
+        @media only screen and (max-width: 600px) {{
             .content-cell {{
-                padding: 20px 16px !important;
+                padding: 20px 14px !important;
+                max-width: 100% !important;
             }}
-            .summary-stat-cell {{
+            .docket-card {{
+                padding: 16px 14px !important;
+            }}
+            .mobile-stack {{
                 display: block !important;
                 width: 100% !important;
-                margin-bottom: 14px !important;
+                text-align: left !important;
             }}
-            .summary-stat-divider {{
-                display: none !important;
+            .mobile-amount {{
+                margin-top: 6px !important;
+            }}
+            .mobile-btn {{
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
+                box-sizing: border-box !important;
+                padding: 10px 14px !important;
+            }}
+            .stat-box {{
+                display: block !important;
+                width: 100% !important;
+                margin-bottom: 10px !important;
             }}
         }}
     </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+<body style="margin: 0; padding: 0; background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #1e293b; line-height: 1.5;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-outer" style="width: 100%; min-width: 100%; background-color: #ffffff; margin: 0; padding: 0;">
         <tr>
-            <td align="left" class="content-cell" style="padding: 40px 48px; max-width: 860px; margin: 0 auto; display: block; background-color: #ffffff;">
+            <td align="center" class="content-cell" style="padding: 32px 24px; max-width: 600px; margin: 0 auto; display: block; background-color: #ffffff;">
 
-                <!-- Masthead -->
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-bottom: 24px;">
+                <!-- Website-Matched Brand Header (Clean, Pure White, Zero Clutter) -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-bottom: 20px;">
                     <tr>
                         <td align="left" valign="middle">
                             <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
-                                    <td valign="middle" style="padding-right: 14px;">
+                                    <td valign="middle" style="padding-right: 12px;">
                                         <a href="https://surplusdocket.com" target="_blank" style="text-decoration: none; display: block;">
-                                            <img src="https://surplusdocket.com/assets/logo_surplus_docket.png" alt="Surplus Docket Crest" width="44" height="34" style="display: block; width: 44px; height: auto; border: 0;" />
+                                            <img src="https://surplusdocket.com/assets/logo_surplus_docket.png" alt="Surplus Docket" width="40" height="30" style="display: block; width: 40px; height: auto; border: 0;" />
                                         </a>
                                     </td>
                                     <td valign="middle">
@@ -353,78 +382,67 @@ surplusdocket.com • dockets@surplusdocket.com
                                                 <span style="color: #4c6d48; font-weight: 800;">SURPLUS</span> <span style="color: #1b365d; font-weight: 900;">DOCKET</span>
                                             </a>
                                         </div>
-                                        <div style="font-size: 11px; font-weight: 700; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 3px;">
-                                            Daily Court Intelligence Briefing &bull; {date_str}
+                                        <div style="font-size: 11px; font-weight: 700; color: #64748b; letter-spacing: 0.04em; text-transform: uppercase; margin-top: 3px;">
+                                            Court Registry Intelligence &bull; {date_str}
                                         </div>
                                     </td>
                                 </tr>
                             </table>
                         </td>
-                        <td align="right" valign="middle" style="text-align: right;">
-                            <span style="display: inline-block; background-color: #edf3ec; border: 1px solid #c2d9c0; color: #365134; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 9999px;">
-                                Verified Morning Feed
-                            </span>
-                        </td>
                     </tr>
                 </table>
 
-                <div style="height: 1px; background-color: #e2e8f0; margin: 0 0 28px 0;"></div>
+                <!-- Crisp 2-Stat Dynamic Pulse (Matching Website Header Cards) -->
+                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; margin-bottom: 22px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+                        <tr>
+                            <td width="50%" align="left" valign="top" class="stat-box" style="padding-right: 12px;">
+                                <div style="font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Audited Surplus Pool</div>
+                                <div style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 20px; font-weight: 900; color: #365134; margin-top: 2px;">{total_bal_fmt}</div>
+                            </td>
+                            <td width="50%" align="left" valign="top" class="stat-box" style="padding-left: 12px; border-left: 1px solid #e2e8f0;">
+                                <div style="font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Actionable Dockets</div>
+                                <div style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 20px; font-weight: 900; color: #1b365d; margin-top: 2px;">{rec_count} Files Active</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-                <!-- Briefing Operational Data Bar -->
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-bottom: 28px;">
-                    <tr>
-                        <td width="32%" class="summary-stat-cell" valign="top" style="padding-right: 16px;">
-                            <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.04em;">Audited Surplus Pool</div>
-                            <div style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 22px; font-weight: 900; color: #365134; margin-top: 3px;">{total_bal_fmt}</div>
-                            <div style="font-size: 11px; color: #94a3b8; margin-top: 2px;">Senior Liens Filtered</div>
-                        </td>
-                        <td width="1" class="summary-stat-divider" style="background-color: #e2e8f0; width: 1px;"></td>
-                        <td width="32%" class="summary-stat-cell" valign="top" style="padding: 0 16px;">
-                            <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.04em;">Verified Dockets</div>
-                            <div style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 22px; font-weight: 900; color: #1b365d; margin-top: 3px;">{rec_count} Files</div>
-                            <div style="font-size: 11px; color: #94a3b8; margin-top: 2px;">Ready For Immediate Intake</div>
-                        </td>
-                        <td width="1" class="summary-stat-divider" style="background-color: #e2e8f0; width: 1px;"></td>
-                        <td width="35%" class="summary-stat-cell" valign="top" style="padding-left: 16px;">
-                            <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.04em;">Ingestion Scope</div>
-                            <div style="font-size: 14px; font-weight: 800; color: #102238; margin-top: 6px;">FL &bull; TX &bull; GA &bull; NC &bull; TN &bull; CA</div>
-                            <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Direct Court Registry Ingestion</div>
-                        </td>
-                    </tr>
-                </table>
-
-                <div style="height: 1px; background-color: #e2e8f0; margin: 0 0 28px 0;"></div>
-
-                <!-- Verified Court Dockets List -->
-                <div style="margin-bottom: 8px;">
+                <!-- Priority Matters Section Heading -->
+                <div style="text-align: left; margin-bottom: 12px;">
                     <div style="font-size: 12px; font-weight: 800; color: #1b365d; text-transform: uppercase; letter-spacing: 0.06em;">
-                        Verified Court Dockets
-                    </div>
-                    <div style="font-size: 12px; color: #64748b; margin-top: 3px;">
-                        Featured priority matters. Complete unencumbered daily dockets are attached in CSV and Excel.
+                        Top Matters From Official County Lists
                     </div>
                 </div>
 
+                <!-- Card List -->
                 {dockets_html}
 
-                <!-- Attached Deliverables -->
-                <div style="margin-top: 32px; padding: 20px 24px; background-color: #f8fafc; border-left: 3px solid #1b365d; border-radius: 4px;">
-                    <div style="font-size: 12px; font-weight: 800; color: #1b365d; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">
-                        Attached Court Intelligence Files
+                <!-- Direct Web Portal & Attachments Access Bar -->
+                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; margin-top: 20px; text-align: left;">
+                    <div style="font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">
+                        Complete Intake Datasets Attached
                     </div>
-                    <div style="font-size: 13px; color: #475569; line-height: 1.6;">
-                        &bull; <strong>Master_Surplus_Lead_Feed.csv</strong> &mdash; Full unencumbered dataset ({rec_count} records) formatted for case management intake.<br>
-                        &bull; <strong>Master_Surplus_Lead_Feed.xlsx</strong> &mdash; Formatted workbook with statutory claim deadlines and fee calculations.
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.5; margin-bottom: 14px;">
+                        Full unencumbered court dockets ({rec_count} records) are attached in CSV and Excel workbooks with calculated claim deadlines.
+                    </div>
+                    <div>
+                        <a href="https://surplusdocket.com/#live-docket" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #4c6d48; color: #ffffff; font-size: 13px; font-weight: 700; padding: 10px 20px; border-radius: 8px; text-decoration: none;">
+                            Open Live Web Docket &rarr;
+                        </a>
                     </div>
                 </div>
 
-                <!-- Institutional Sign-off -->
-                <div style="margin-top: 36px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; line-height: 1.6;">
-                    <strong style="color: #1b365d; font-size: 13px;">Surplus Docket Intelligence</strong><br>
-                    Court Registry Ingestion Desk &bull; <a href="mailto:dockets@surplusdocket.com" style="color: #1b365d; text-decoration: none;">dockets@surplusdocket.com</a> &bull; <a href="https://surplusdocket.com" target="_blank" style="color: #4c6d48; text-decoration: none;">surplusdocket.com</a><br>
-                    <div style="margin-top: 12px; font-size: 11px; color: #94a3b8; line-height: 1.5;">
-                        {LEGAL_DISCLAIMER}<br>
-                        &copy; {year} Surplus Docket. All rights reserved.
+                <!-- Clean Minimal Footer -->
+                <div style="margin-top: 28px; padding-top: 18px; border-top: 1px solid #f1f5f9; text-align: center; font-size: 11px; color: #94a3b8; line-height: 1.5;">
+                    <div style="color: #64748b; font-weight: 600; margin-bottom: 4px;">
+                        Surplus Docket Intelligence &bull; Court Registry Ingestion Desk
+                    </div>
+                    <div>
+                        <a href="https://surplusdocket.com" target="_blank" style="color: #1b365d; text-decoration: none;">surplusdocket.com</a> &bull; <a href="mailto:dockets@surplusdocket.com" style="color: #1b365d; text-decoration: none;">dockets@surplusdocket.com</a>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 10px; color: #cbd5e1;">
+                        {LEGAL_DISCLAIMER} &bull; &copy; {year} Surplus Docket
                     </div>
                 </div>
 
@@ -631,6 +649,8 @@ def dispatch_feed(is_dry_run=False, recipient_override=None, force=False):
 def compose_activation_email(subscriber, stats, date_str):
     name = subscriber.get("name", "Counsel")
     firm_suffix = format_firm_suffix(subscriber)
+    esc_name = html.escape(str(name))
+    esc_firm_suffix = html.escape(str(firm_suffix))
     total_bal_fmt = f"${stats['total_surplus']:,.2f}"
     rec_count = stats["total_records"]
     year = datetime.now().year
@@ -639,10 +659,10 @@ def compose_activation_email(subscriber, stats, date_str):
 
 Your 7-day institutional practice evaluation with Surplus Docket is active for {date_str} under $0 due today.
 
-For the next 7 days, your practice has full access to daily 7:00 AM EST court record feeds indexing verified tax deed surplus and excess proceeds across Florida, Texas, Georgia, North Carolina, Tennessee, and California.
+For the next 7 days, your practice has full access to daily 7:00 AM EST court record feeds indexing verified tax deed surplus and excess proceeds from covered county registries in Florida, Texas, Georgia, Tennessee, and California.
 
 STARTER DATA WORKBOOKS (ATTACHED):
-• Master_Surplus_Lead_Feed.csv ({rec_count} files, {total_bal_fmt} gross unencumbered equity)
+• Master_Surplus_Lead_Feed.csv ({rec_count} files, {total_bal_fmt} total listed surplus)
 • Master_Surplus_Lead_Feed.xlsx (Structured workbook with claim urgency tiers and statutory calculation formulas)
 
 KEY PRACTICE ONBOARDING:
@@ -776,9 +796,9 @@ surplusdocket.com • dockets@surplusdocket.com
                     <!-- Body -->
                     <tr>
                         <td class="content-cell" style="padding: 28px 32px; background-color: #ffffff;">
-                            <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Welcome <b>{name}</b>{firm_suffix},</p>
+                            <p style="font-size: 15px; margin: 0 0 12px 0; color: #102238;">Welcome <b>{esc_name}</b>{esc_firm_suffix},</p>
                             <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 20px 0;">
-                                Your 7-day institutional practice evaluation is active. For the next 7 days, your firm has full access to verified court registry intelligence across 6 core states with senior mortgages, institutional liens, and junior municipal encumbrances filtered upstream.
+                                Your 7-day institutional practice evaluation is active. For the next 7 days, your firm has full access to verified court registry intelligence from covered counties across Florida, Texas, Georgia, Tennessee, and California, complete with direct source document links, statutory claim windows, and preliminary encumbrance review flags.
                             </p>
 
                             <!-- Attached Deliverables Card -->
@@ -790,7 +810,7 @@ surplusdocket.com • dockets@surplusdocket.com
                                                 📎 Attached Immediate Starter Datasets
                                             </div>
                                             <div style="font-size: 12px; color: #64748b; margin-top: 4px;">
-                                                Today's complete audited files ({rec_count} verified dockets, {total_bal_fmt} gross equity) are attached to this transmission:
+                                                Today's complete indexed files ({rec_count} verified dockets, {total_bal_fmt} total listed surplus) are attached to this transmission:
                                             </div>
                                         </td>
                                     </tr>

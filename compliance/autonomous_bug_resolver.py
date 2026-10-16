@@ -200,7 +200,7 @@ def audit_site_links_and_assets() -> dict:
         hrefs = re.findall(r'href=["\']([^"\']+)["\']', content)
         for href in hrefs:
             href_clean = href.split("?")[0].split("#")[0].strip()
-            if not href_clean or href_clean.startswith(("http://", "https://", "mailto:", "tel:", "javascript:", "//")):
+            if not href_clean or href_clean.startswith(("http://", "https://", "mailto:", "tel:", "javascript:", "//", "${")):
                 continue
             total_links_checked += 1
             if href_clean.startswith("/"):
@@ -219,7 +219,7 @@ def audit_site_links_and_assets() -> dict:
         srcs = re.findall(r'src=["\']([^"\']+)["\']', content)
         for src in srcs:
             src_clean = src.split("?")[0].strip()
-            if not src_clean or src_clean.startswith(("http://", "https://", "data:", "//")):
+            if not src_clean or src_clean.startswith(("http://", "https://", "data:", "//", "${")):
                 continue
             total_links_checked += 1
             if src_clean.startswith("/"):

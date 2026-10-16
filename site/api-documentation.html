@@ -382,7 +382,7 @@
                     <span class="font-mono font-bold text-brand-navy text-sm md:text-base">/api/v1/health.json</span>
                 </div>
                 <p class="text-sm text-slate-600 mb-4">
-                    Health check endpoint returning system uptime, API version manifest, and verified active endpoints.
+                    Health check endpoint returning system status, API version manifest, and active endpoints.
                 </p>
                 <div class="bg-slate-900 text-slate-200 font-mono text-xs p-4 rounded-lg overflow-x-auto">
 <pre><code>curl -s "https://surplusdocket.com/api/v1/health.json"</code></pre>
@@ -416,58 +416,100 @@
                     </thead>
                     <tbody class="divide-y divide-slate-100 font-mono text-[11px]">
                         <tr class="hover:bg-slate-50/50">
-                            <td class="py-3 px-4 font-bold text-brand-navy">docket_id</td>
+                            <td class="py-3 px-4 font-bold text-brand-navy">Case_or_TaxDeed_No</td>
                             <td class="py-3 px-4 text-emerald-700">String</td>
-                            <td class="py-3 px-4 text-slate-600">"2026-TD-004501"</td>
+                            <td class="py-3 px-4 text-slate-600">"EXAMPLE-0001"</td>
                             <td class="py-3 px-4 font-sans text-slate-600 text-xs">Official court case number, tax deed certificate number, or county clerk registry file ID.</td>
                         </tr>
                         <tr class="hover:bg-slate-50/50">
-                            <td class="py-3 px-4 font-bold text-brand-navy">state</td>
+                            <td class="py-3 px-4 font-bold text-brand-navy">State</td>
                             <td class="py-3 px-4 text-emerald-700">String (ISO-2)</td>
                             <td class="py-3 px-4 text-slate-600">"FL"</td>
                             <td class="py-3 px-4 font-sans text-slate-600 text-xs">Two-letter state postal abbreviation (FL, TX, GA, NC, TN, CA).</td>
                         </tr>
                         <tr class="hover:bg-slate-50/50">
-                            <td class="py-3 px-4 font-bold text-brand-navy">county</td>
+                            <td class="py-3 px-4 font-bold text-brand-navy">County</td>
                             <td class="py-3 px-4 text-emerald-700">String</td>
                             <td class="py-3 px-4 text-slate-600">"Palm Beach"</td>
-                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">County judicial district or municipal tax collector jurisdiction.</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">County judicial district or municipal clerk registry jurisdiction.</td>
                         </tr>
                         <tr class="hover:bg-slate-50/50">
-                            <td class="py-3 px-4 font-bold text-brand-navy">sale_date</td>
+                            <td class="py-3 px-4 font-bold text-brand-navy">Owner_Name</td>
+                            <td class="py-3 px-4 text-emerald-700">String</td>
+                            <td class="py-3 px-4 text-slate-600">"J. &amp; D. E████ [SUBSCRIBER KEY REQUIRED]"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Titleholder of record or assessed owner (redacted in evaluation sandbox).</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="py-3 px-4 font-bold text-brand-navy">Property_Address</td>
+                            <td class="py-3 px-4 text-emerald-700">String</td>
+                            <td class="py-3 px-4 text-slate-600">"100 EXAMPLE ST [REDACTED — SUBSCRIBER ACCESS ONLY]"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Property situs address and municipality (redacted in evaluation sandbox).</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="py-3 px-4 font-bold text-brand-navy">Surplus_Balance_USD</td>
+                            <td class="py-3 px-4 text-emerald-700">Float / Number</td>
+                            <td class="py-3 px-4 text-slate-600">145000.00</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Gross excess bid proceeds held in registry after satisfying statutory taxes and clerk costs.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="py-3 px-4 font-bold text-brand-navy">Sale_Date</td>
                             <td class="py-3 px-4 text-emerald-700">String (ISO-8601)</td>
                             <td class="py-3 px-4 text-slate-600">"2026-08-18"</td>
                             <td class="py-3 px-4 font-sans text-slate-600 text-xs">Date the tax foreclosure auction was confirmed or deed recorded.</td>
                         </tr>
                         <tr class="hover:bg-slate-50/50">
-                            <td class="py-3 px-4 font-bold text-brand-navy">surplus_amount</td>
-                            <td class="py-3 px-4 text-emerald-700">Float / Number</td>
-                            <td class="py-3 px-4 text-slate-600">145000.00</td>
-                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Gross excess bid proceeds held in registry after satisfying taxes, interest, and auction costs.</td>
-                        </tr>
-                        <tr class="hover:bg-slate-50/50">
-                            <td class="py-3 px-4 font-bold text-brand-navy">statutory_fee_cap_pct</td>
+                            <td class="py-3 px-4 font-bold text-brand-navy">Statutory_Fee_Rate</td>
                             <td class="py-3 px-4 text-emerald-700">String / Float</td>
-                            <td class="py-3 px-4 text-slate-600">"20%"</td>
-                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Governing statutory contingency fee limit or practitioner compensation ceiling.</td>
+                            <td class="py-3 px-4 text-slate-600">"Fla. Stat. § 197.582 (12%)"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Governing statutory contingency fee limit or statutory compensation ceiling.</td>
                         </tr>
                         <tr class="hover:bg-slate-50/50">
-                            <td class="py-3 px-4 font-bold text-brand-navy">filing_deadline</td>
-                            <td class="py-3 px-4 text-emerald-700">String (Date/Text)</td>
-                            <td class="py-3 px-4 text-slate-600">"2026-12-16"</td>
-                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Jurisdictional cutoff date calculated with court holiday & weekend roll-forward rules.</td>
+                            <td class="py-3 px-4 font-bold text-brand-navy">Est_Finder_Fee_USD</td>
+                            <td class="py-3 px-4 text-emerald-700">Float / Number</td>
+                            <td class="py-3 px-4 text-slate-600">17400.00</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Estimated statutory recovery compensation benchmark.</td>
                         </tr>
                         <tr class="hover:bg-slate-50/50">
-                            <td class="py-3 px-4 font-bold text-brand-navy">lien_scrub_status</td>
-                            <td class="py-3 px-4 text-emerald-700">String / Enum</td>
-                            <td class="py-3 px-4 text-slate-600">"CLEARED_INDIVIDUAL"</td>
-                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Institutional encumbrance verification flag confirming senior mortgages do not exhaust the balance.</td>
+                            <td class="py-3 px-4 font-bold text-brand-navy">Claim_Urgency_Tier</td>
+                            <td class="py-3 px-4 text-emerald-700">String</td>
+                            <td class="py-3 px-4 text-slate-600">"Priority Window (45–120 Days)"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Urgency tier classification based on statutory deadline window.</td>
                         </tr>
                         <tr class="hover:bg-slate-50/50">
-                            <td class="py-3 px-4 font-bold text-brand-navy">clerk_portal_url</td>
+                            <td class="py-3 px-4 font-bold text-brand-navy">Statutory_Deadline_Window</td>
+                            <td class="py-3 px-4 text-emerald-700">String</td>
+                            <td class="py-3 px-4 text-slate-600">"1 Year (Fla. Stat. § 197.582)"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Jurisdictional cutoff description calculated from auction or notice date.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="py-3 px-4 font-bold text-brand-navy">Governing_Statute</td>
+                            <td class="py-3 px-4 text-emerald-700">String</td>
+                            <td class="py-3 px-4 text-slate-600">"Fla. Stat. § 197.582"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">State legislative enactment governing excess proceeds disbursement.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="py-3 px-4 font-bold text-brand-navy">Record_Type</td>
+                            <td class="py-3 px-4 text-emerald-700">String</td>
+                            <td class="py-3 px-4 text-slate-600">"Tax Deed Surplus"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Surplus proceeding classification (e.g. Tax Deed Surplus).</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="py-3 px-4 font-bold text-brand-navy">Clerk_Verification_URL</td>
                             <td class="py-3 px-4 text-emerald-700">String (URL)</td>
-                            <td class="py-3 px-4 text-slate-600">"https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501"</td>
-                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Query-parameterized direct link to the official clerk docket or court case verification portal.</td>
+                            <td class="py-3 px-4 text-slate-600">"https://www.mypalmbeachclerk.com/"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Direct link to the public official county registry or clerk records portal.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="py-3 px-4 font-bold text-brand-navy">Verify_Note</td>
+                            <td class="py-3 px-4 text-emerald-700">String</td>
+                            <td class="py-3 px-4 text-slate-600">"Official County Source Registry"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Procedural verification note indicating official registry source.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="py-3 px-4 font-bold text-brand-navy">Retrieved_At</td>
+                            <td class="py-3 px-4 text-emerald-700">String (ISO-8601)</td>
+                            <td class="py-3 px-4 text-slate-600">"2026-10-15T07:00:00Z"</td>
+                            <td class="py-3 px-4 font-sans text-slate-600 text-xs">Timestamp when official clerk record was indexed.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -476,23 +518,27 @@
             <!-- Annotated JSON Record Sample -->
             <div class="bg-slate-900 rounded-xl p-5 border border-slate-800">
                 <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800 text-xs font-mono text-slate-400">
-                    <span>Canonical Record Schema Instance</span>
+                    <span>Canonical Record Schema Instance — Illustrative example (not a real record)</span>
                     <span class="text-emerald-400">application/json</span>
                 </div>
                 <pre class="text-xs font-mono text-slate-200 overflow-x-auto leading-relaxed"><code>{
-  "docket_id": "2026-TD-004501",
-  "state": "FL",
-  "county": "Palm Beach",
-  "sale_date": "2026-08-18",
-  "surplus_amount": 145000.00,
-  "statutory_fee_cap_pct": "20%",
-  "filing_deadline": "2026-12-16",
-  "lien_scrub_status": "CLEARED_INDIVIDUAL",
-  "clerk_portal_url": "https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501",
-  "owner_name": "A. & V. ████████",
-  "property_address": "720 S Ocean Blvd, Palm Beach FL 33480",
-  "est_finder_fee_usd": 29000.00,
-  "governing_statute": "Fla. Stat. § 197.582"
+  "State": "FL",
+  "County": "Palm Beach",
+  "Case_or_TaxDeed_No": "EXAMPLE-0001 [SUBSCRIBER KEY REQUIRED]",
+  "Owner_Name": "J. &amp; D. E████ [SUBSCRIBER KEY REQUIRED]",
+  "Property_Address": "100 EXAMPLE ST [REDACTED — SUBSCRIBER ACCESS ONLY], PALM BEACH, FL 33480",
+  "Surplus_Balance_USD": 145000.00,
+  "Sale_Date": "2026-08-18",
+  "Statutory_Fee_Rate": "Fla. Stat. § 197.582 (12%)",
+  "Est_Finder_Fee_USD": 17400.00,
+  "Claim_Urgency_Tier": "Priority Window (45–120 Days)",
+  "Statutory_Deadline_Window": "1 Year (Fla. Stat. § 197.582)",
+  "Governing_Statute": "Fla. Stat. § 197.582",
+  "Record_Type": "Tax Deed Surplus",
+  "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/",
+  "Verify_Note": "Official County Source Registry",
+  "Source_URL": "https://www.mypalmbeachclerk.com/",
+  "Retrieved_At": "2026-10-15T07:00:00Z"
 }</code></pre>
             </div>
         </div>
@@ -704,7 +750,7 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
             });
         }
 
-        // Mock fallback payloads if operating strictly offline / file:// sandbox
+        // Mock fallback payloads if operating strictly offline / file:// sandbox (Illustrative examples)
         const FALLBACK_PAYLOADS = {
             "/api/v1/feed.json": {
                 "status": "subscription_required",
@@ -712,12 +758,12 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
                 "message": "Full unredacted REST API access requires an active Surplus Docket Enterprise subscription with a valid Bearer API token. Production feeds deliver unredacted claimant identities, verified property situs, and court docket links every business morning (Mon–Fri) at 7:00 AM EST.",
                 "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
                 "api_version": "v1.0",
-                "generated_at": "2026-09-05T07:00:00Z",
-                "meta": { "total_records": 35, "total_surplus_volume_usd": 3244600.0, "jurisdictions": ["FL", "TX", "GA", "NC", "TN", "CA"] },
+                "generated_at": "2026-10-15T07:00:00Z",
+                "meta": { "total_records": 3, "total_surplus_volume_usd": 407500.0, "jurisdictions": ["FL", "TX", "GA"] },
                 "records": [
-                    { "docket_id": "2026-TD-004501", "state": "FL", "county": "Palm Beach", "sale_date": "2026-08-18", "surplus_amount": 145000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2026-12-16", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "A. & V. T███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "720 S OCEAN BLVD [REDACTED — SUBSCRIBER ACCESS ONLY], PALM BEACH, FL 33480", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" },
-                    { "docket_id": "2026-TX-04812", "state": "TX", "county": "Harris", "sale_date": "2026-08-04", "surplus_amount": 128500.0, "statutory_fee_cap_pct": "25%", "filing_deadline": "2028-08-04", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "W. & H. M████████ [SUBSCRIBER KEY REQUIRED]", "property_address": "5402 BRAESVALLEY DR [REDACTED — SUBSCRIBER ACCESS ONLY], HOUSTON, TX 77096", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" },
-                    { "docket_id": "2026-GA-003810", "state": "GA", "county": "Fulton", "sale_date": "2026-08-05", "surplus_amount": 134000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2031-08-05", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "M. & J. K███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "1420 PEACHTREE ST NE [REDACTED — SUBSCRIBER ACCESS ONLY], ATLANTA, GA 30309", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
+                    { "Case_or_TaxDeed_No": "EXAMPLE-0001", "State": "FL", "County": "Palm Beach", "Sale_Date": "2026-08-18", "Surplus_Balance_USD": 145000.0, "Statutory_Fee_Rate": "Fla. Stat. § 197.582 (12%)", "Est_Finder_Fee_USD": 17400.0, "Claim_Urgency_Tier": "Priority Window (45–120 Days)", "Statutory_Deadline_Window": "1 Year (Fla. Stat. § 197.582)", "Governing_Statute": "Fla. Stat. § 197.582", "Record_Type": "Tax Deed Surplus", "Owner_Name": "J. & D. E████ [SUBSCRIBER KEY REQUIRED]", "Property_Address": "100 EXAMPLE ST [REDACTED — SUBSCRIBER ACCESS ONLY], PALM BEACH, FL 33480", "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/", "Verify_Note": "Official County Source (Illustrative example)" },
+                    { "Case_or_TaxDeed_No": "EXAMPLE-0002", "State": "TX", "County": "Harris", "Sale_Date": "2026-08-04", "Surplus_Balance_USD": 128500.0, "Statutory_Fee_Rate": "Tex. Tax Code § 34.04 (25%)", "Est_Finder_Fee_USD": 32125.0, "Claim_Urgency_Tier": "Priority Window (45–120 Days)", "Statutory_Deadline_Window": "2 Years (Tex. Tax Code § 34.04)", "Governing_Statute": "Tex. Tax Code § 34.04", "Record_Type": "Excess Proceeds", "Owner_Name": "W. & H. M████████ [SUBSCRIBER KEY REQUIRED]", "Property_Address": "200 EXAMPLE AVE [REDACTED — SUBSCRIBER ACCESS ONLY], HOUSTON, TX 77096", "Clerk_Verification_URL": "https://www.cclerk.hctx.net/", "Verify_Note": "Official County Source (Illustrative example)" },
+                    { "Case_or_TaxDeed_No": "EXAMPLE-0003", "State": "GA", "County": "Fulton", "Sale_Date": "2026-08-05", "Surplus_Balance_USD": 134000.0, "Statutory_Fee_Rate": "O.C.G.A. § 48-4-5 (20%)", "Est_Finder_Fee_USD": 26800.0, "Claim_Urgency_Tier": "Priority Window (45–120 Days)", "Statutory_Deadline_Window": "5 Years (O.C.G.A. § 48-4-5)", "Governing_Statute": "O.C.G.A. § 48-4-5", "Record_Type": "Tax Sale Excess", "Owner_Name": "M. & J. K███████ [SUBSCRIBER KEY REQUIRED]", "Property_Address": "300 EXAMPLE RD [REDACTED — SUBSCRIBER ACCESS ONLY], ATLANTA, GA 30309", "Clerk_Verification_URL": "https://www.fultonclerk.org/", "Verify_Note": "Official County Source (Illustrative example)" }
                 ]
             },
             "/api/v1/florida.json": {
@@ -727,7 +773,7 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
                 "jurisdiction": "Florida",
                 "statute": "Fla. Stat. § 197.582",
                 "records": [
-                    { "docket_id": "2026-TD-004501", "state": "FL", "county": "Palm Beach", "sale_date": "2026-08-18", "surplus_amount": 145000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2026-12-16", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "A. & V. T███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "720 S OCEAN BLVD [REDACTED — SUBSCRIBER ACCESS ONLY], PALM BEACH, FL 33480", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
+                    { "Case_or_TaxDeed_No": "EXAMPLE-0001", "State": "FL", "County": "Palm Beach", "Sale_Date": "2026-08-18", "Surplus_Balance_USD": 145000.0, "Statutory_Fee_Rate": "Fla. Stat. § 197.582 (12%)", "Est_Finder_Fee_USD": 17400.0, "Claim_Urgency_Tier": "Priority Window (45–120 Days)", "Statutory_Deadline_Window": "1 Year (Fla. Stat. § 197.582)", "Governing_Statute": "Fla. Stat. § 197.582", "Record_Type": "Tax Deed Surplus", "Owner_Name": "J. & D. E████ [SUBSCRIBER KEY REQUIRED]", "Property_Address": "100 EXAMPLE ST [REDACTED — SUBSCRIBER ACCESS ONLY], PALM BEACH, FL 33480", "Clerk_Verification_URL": "https://www.mypalmbeachclerk.com/", "Verify_Note": "Official County Source (Illustrative example)" }
                 ]
             },
             "/api/v1/texas.json": {
@@ -737,7 +783,7 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
                 "jurisdiction": "Texas",
                 "statute": "Tex. Tax Code § 34.04",
                 "records": [
-                    { "docket_id": "2026-TX-04812", "state": "TX", "county": "Harris", "sale_date": "2026-08-04", "surplus_amount": 128500.0, "statutory_fee_cap_pct": "25%", "filing_deadline": "2028-08-04", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "W. & H. M████████ [SUBSCRIBER KEY REQUIRED]", "property_address": "5402 BRAESVALLEY DR [REDACTED — SUBSCRIBER ACCESS ONLY], HOUSTON, TX 77096", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
+                    { "Case_or_TaxDeed_No": "EXAMPLE-0002", "State": "TX", "County": "Harris", "Sale_Date": "2026-08-04", "Surplus_Balance_USD": 128500.0, "Statutory_Fee_Rate": "Tex. Tax Code § 34.04 (25%)", "Est_Finder_Fee_USD": 32125.0, "Claim_Urgency_Tier": "Priority Window (45–120 Days)", "Statutory_Deadline_Window": "2 Years (Tex. Tax Code § 34.04)", "Governing_Statute": "Tex. Tax Code § 34.04", "Record_Type": "Excess Proceeds", "Owner_Name": "W. & H. M████████ [SUBSCRIBER KEY REQUIRED]", "Property_Address": "200 EXAMPLE AVE [REDACTED — SUBSCRIBER ACCESS ONLY], HOUSTON, TX 77096", "Clerk_Verification_URL": "https://www.cclerk.hctx.net/", "Verify_Note": "Official County Source (Illustrative example)" }
                 ]
             },
             "/api/v1/georgia.json": {
@@ -747,7 +793,7 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
                 "jurisdiction": "Georgia",
                 "statute": "O.C.G.A. § 48-4-5",
                 "records": [
-                    { "docket_id": "2026-GA-003810", "state": "GA", "county": "Fulton", "sale_date": "2026-08-05", "surplus_amount": 134000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2031-08-05", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "M. & J. K███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "1420 PEACHTREE ST NE [REDACTED — SUBSCRIBER ACCESS ONLY], ATLANTA, GA 30309", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
+                    { "Case_or_TaxDeed_No": "EXAMPLE-0003", "State": "GA", "County": "Fulton", "Sale_Date": "2026-08-05", "Surplus_Balance_USD": 134000.0, "Statutory_Fee_Rate": "O.C.G.A. § 48-4-5 (20%)", "Est_Finder_Fee_USD": 26800.0, "Claim_Urgency_Tier": "Priority Window (45–120 Days)", "Statutory_Deadline_Window": "5 Years (O.C.G.A. § 48-4-5)", "Governing_Statute": "O.C.G.A. § 48-4-5", "Record_Type": "Tax Sale Excess", "Owner_Name": "M. & J. K███████ [SUBSCRIBER KEY REQUIRED]", "Property_Address": "300 EXAMPLE RD [REDACTED — SUBSCRIBER ACCESS ONLY], ATLANTA, GA 30309", "Clerk_Verification_URL": "https://www.fultonclerk.org/", "Verify_Note": "Official County Source (Illustrative example)" }
                 ]
             },
             "/api/v1/north-carolina.json": {
@@ -757,7 +803,7 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
                 "jurisdiction": "North Carolina",
                 "statute": "N.C.G.S. § 105-374",
                 "records": [
-                    { "docket_id": "2026-NC-003110", "state": "NC", "county": "Mecklenburg", "sale_date": "2026-08-11", "surplus_amount": 138000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2027-08-11", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "D. & M. S██████ [SUBSCRIBER KEY REQUIRED]", "property_address": "5820 SHARON RD [REDACTED — SUBSCRIBER ACCESS ONLY], CHARLOTTE, NC 28210", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
+                    { "Case_or_TaxDeed_No": "EXAMPLE-0004", "State": "NC", "County": "Mecklenburg", "Sale_Date": "2026-08-11", "Surplus_Balance_USD": 138000.0, "Statutory_Fee_Rate": "N.C.G.S. § 105-374 (20%)", "Est_Finder_Fee_USD": 27600.0, "Claim_Urgency_Tier": "Priority Window (45–120 Days)", "Statutory_Deadline_Window": "10-Day Upset Bid / Judicial Registry", "Governing_Statute": "N.C.G.S. § 105-374", "Record_Type": "Tax Foreclosure", "Owner_Name": "D. & M. S██████ [SUBSCRIBER KEY REQUIRED]", "Property_Address": "400 EXAMPLE RD [REDACTED — SUBSCRIBER ACCESS ONLY], CHARLOTTE, NC 28210", "Clerk_Verification_URL": "https://www.nccourts.gov/locations/mecklenburg-county", "Verify_Note": "Official County Source (Illustrative example)" }
                 ]
             },
             "/api/v1/tennessee.json": {
@@ -767,7 +813,7 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
                 "jurisdiction": "Tennessee",
                 "statute": "T.C.A. § 67-5-2501",
                 "records": [
-                    { "docket_id": "2026-TN-002190", "state": "TN", "county": "Davidson", "sale_date": "2026-08-14", "surplus_amount": 126000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2027-08-14", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "F. & M. P██████ [SUBSCRIBER KEY REQUIRED]", "property_address": "2418 WEST END AVE [REDACTED — SUBSCRIBER ACCESS ONLY], NASHVILLE, TN 37203", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
+                    { "Case_or_TaxDeed_No": "EXAMPLE-0005", "State": "TN", "County": "Davidson", "Sale_Date": "2026-08-14", "Surplus_Balance_USD": 126000.0, "Statutory_Fee_Rate": "T.C.A. § 67-5-2501 (20%)", "Est_Finder_Fee_USD": 25200.0, "Claim_Urgency_Tier": "Priority Window (45–120 Days)", "Statutory_Deadline_Window": "Chancery Court Action", "Governing_Statute": "T.C.A. § 67-5-2501", "Record_Type": "Chancery Surplus", "Owner_Name": "F. & M. P██████ [SUBSCRIBER KEY REQUIRED]", "Property_Address": "500 EXAMPLE AVE [REDACTED — SUBSCRIBER ACCESS ONLY], NASHVILLE, TN 37203", "Clerk_Verification_URL": "https://chanceryclerkandmaster.nashville.gov/", "Verify_Note": "Official County Source (Illustrative example)" }
                 ]
             },
             "/api/v1/california.json": {
@@ -777,14 +823,13 @@ console.log(`Ingested ${records.length} records generated at ${generated_at}`);
                 "jurisdiction": "California",
                 "statute": "Cal. Rev. & Tax Code § 4675",
                 "records": [
-                    { "docket_id": "2026-CA-008120", "state": "CA", "county": "Los Angeles", "sale_date": "2026-07-09", "surplus_amount": 215000.0, "statutory_fee_cap_pct": "20%", "filing_deadline": "2027-07-09", "lien_scrub_status": "CLEARED_INDIVIDUAL", "owner_name": "G. & E. T███████ [SUBSCRIBER KEY REQUIRED]", "property_address": "1420 WILSHIRE BLVD [REDACTED — SUBSCRIBER ACCESS ONLY], LOS ANGELES, CA 90017", "clerk_portal_url": "https://surplusdocket.com/#pricing [AUTHENTICATION REQUIRED]" }
+                    { "Case_or_TaxDeed_No": "EXAMPLE-0006", "State": "CA", "County": "Los Angeles", "Sale_Date": "2026-07-09", "Surplus_Balance_USD": 215000.0, "Statutory_Fee_Rate": "Cal. Rev. & Tax Code § 4675 (20%)", "Est_Finder_Fee_USD": 43000.0, "Claim_Urgency_Tier": "Priority Window (45–120 Days)", "Statutory_Deadline_Window": "1 Year (Cal. Rev. & Tax Code § 4675)", "Governing_Statute": "Cal. Rev. & Tax Code § 4675", "Record_Type": "Excess Proceeds", "Owner_Name": "G. & E. T███████ [SUBSCRIBER KEY REQUIRED]", "Property_Address": "600 EXAMPLE BLVD [REDACTED — SUBSCRIBER ACCESS ONLY], LOS ANGELES, CA 90017", "Clerk_Verification_URL": "https://ttc.lacounty.gov/", "Verify_Note": "Official County Source (Illustrative example)" }
                 ]
             },
             "/api/v1/health.json": {
                 "status": "healthy",
                 "api_version": "v1.0",
                 "system_status": "ONLINE",
-                "uptime_pct": 99.98,
                 "endpoints_active": 8
             }
         };

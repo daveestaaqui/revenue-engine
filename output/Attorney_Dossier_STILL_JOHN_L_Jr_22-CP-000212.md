@@ -5,18 +5,18 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** BEATRICE MONTGOMERY
-- **Property Situs / Address:** 220 W KALEY ST ORLANDO FL 32806
-- **Tax Deed / Court Case Docket:** 2024-TD-001844
+- **Target Claimant / Former Owner:** STILL, JOHN L, Jr
+- **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
+- **Tax Deed / Court Case Docket:** 22-CP-000212
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $18,900.00
+- **Gross Surplus Balance Held in Registry:** $112,484.69
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $3,780.00
+- **Estimated Gross Recoverable Equity:** $22,496.94
 - **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
 
 ---

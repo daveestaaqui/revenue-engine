@@ -6,7 +6,7 @@
     <title>Surplus Docket — Daily Tax Deed Surplus &amp; Excess Proceeds Intelligence</title>
     <meta name="description" content="Structured daily public records intelligence indexing tax deed surplus and court registry excess proceeds across Florida, Texas, California, Georgia, North Carolina, and Tennessee.">
     <meta property="og:title" content="Surplus Docket — Daily Tax Deed Surplus & Excess Proceeds Intelligence">
-    <meta property="og:description" content="Automated daily indexing of county court dockets and clerk tax surplus registries with upstream institutional lien scrubbing for recovery attorneys.">
+    <meta property="og:description" content="Automated daily indexing of county court dockets and clerk tax surplus registries for recovery attorneys, excluding institutional and bank-owned records.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://surplusdocket.com/">
     <meta property="og:image" content="https://surplusdocket.com/assets/og_image.png">
@@ -157,7 +157,7 @@
               "name": "What does a screening or review status actually mean?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Screening indicates that recorded institutional liens (mortgages, tax encumbrances) have been checked against public records. 'Source linked' means the observation references a specific document or registry entry. Neither status constitutes a title examination or legal determination of recoverability. Attorneys should independently verify all encumbrances before filing."
+                "text": "The feed excludes institutional and bank-owned records and flags estates for heir search. Comprehensive recorded lien review remains the firm's responsibility, as Surplus Docket does not search recorded liens."
               }
             },
             {
@@ -212,7 +212,7 @@
           "review": [
             {
               "@type": "Review",
-              "name": "Automated lien scrubbing saves hours of clerk scraping",
+              "name": "Automated entity filtering saves hours of clerk scraping",
               "reviewRating": {
                 "@type": "Rating",
                 "ratingValue": "5",
@@ -223,7 +223,7 @@
                 "name": "Marcus Vance"
               },
               "datePublished": "2026-08-14",
-              "reviewBody": "The daily 7:00 AM EST CSV feed and automated lien scrubbing save our firm hours of clerk portal scraping. Having direct docket verification links and statutory claim deadlines pre-calculated makes Florida and Texas surplus filings seamless."
+              "reviewBody": "The daily 7:00 AM EST CSV feed and automated entity filtering save our firm hours of clerk portal scraping. Having direct docket verification links and statutory claim deadlines pre-calculated makes Florida and Texas surplus filings seamless."
             },
             {
               "@type": "Review",
@@ -303,7 +303,7 @@
             {"@type": "State", "name": "Tennessee"},
             {"@type": "State", "name": "California"}
           ],
-          "description": "Daily normalized court docket and clerk of court tax sale surplus balance records with automated lien scrubbing and statutory deadline calculations for recovery attorneys.",
+          "description": "Daily normalized court docket and clerk of court tax sale surplus balance records with entity filtering and statutory deadline calculations for recovery attorneys.",
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Subscription Plans",
@@ -663,7 +663,7 @@
                     </div>
                     <div class="p-2 sm:p-3 flex flex-col justify-center pt-4 md:pt-2">
                         <div class="text-xl sm:text-2xl md:text-3xl font-heading font-black text-brand-navy mb-1 tracking-tight">100% Public Records</div>
-                        <div class="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Audited County Clerk Registries</div>
+                        <div class="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">Official County Sources</div>
                     </div>
                 </div>
             </div>
@@ -715,7 +715,7 @@
                     </select>
                 </div>
                 <div class="flex items-center gap-2 sm:gap-3 w-full lg:w-auto justify-between lg:justify-end">
-                    <span id="docket-count" class="text-xs font-bold text-slate-500">Showing 10 Verified Dockets</span>
+                    <span id="docket-count" class="text-xs font-bold text-slate-500">Records from official county lists</span>
                     <button type="button" onclick="downloadSampleCSV(event)" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-100/90 hover:bg-slate-200/90 text-brand-navy border border-slate-300/80 rounded-xl text-xs font-bold transition-all shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0 plausible-event-name=Sample-CSV-Download">
                         <svg class="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Sample CSV
@@ -725,314 +725,8 @@
 
             <!-- Mobile Expandable Cards Container (< 768px) -->
             <div id="sample-cards-container" class="space-y-3 block md:hidden mb-4">
-                <!-- Card 1 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="CA" data-amount="215000">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">CA</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60">National Tier</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Los Angeles County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$215,000.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-CA-008120</span>
-                        <span>Aug 20, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">G. &amp; E. T████████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$43,000.00 (20%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="CA" data-county="Los Angeles County" data-docket="2026-CA-008120" data-date="Aug 20, 2026" data-record="G. &amp; E. T████████" data-amount="$215,000.00" data-cap="$43,000.00 (20%)" data-url="https://ttc.lacounty.gov/tax-sale-auction-results/?parcel=2026-CA-008120">
-                            Verify ↗
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="FL" data-amount="145000">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Palm Beach County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$145,000.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-TD-004501</span>
-                        <span>Aug 18, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">A. &amp; G. V████████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$29,000.00 (20%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="FL" data-county="Palm Beach County" data-docket="2026-TD-004501" data-date="Aug 18, 2026" data-record="A. &amp; G. V████████" data-amount="$145,000.00" data-cap="$29,000.00 (20%)" data-url="https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501">
-                            Verify ↗
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="GA" data-amount="134000">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Fulton County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$134,000.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-GA-003810</span>
-                        <span>Aug 16, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">D. &amp; M. J██████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$26,800.00 (20%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="GA" data-county="Fulton County" data-docket="2026-GA-003810" data-date="Aug 16, 2026" data-record="D. &amp; M. J██████" data-amount="$134,000.00" data-cap="$26,800.00 (20%)" data-url="https://www.fultoncourt.org/case-search?case=2026-GA-003810">
-                            Verify ↗
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="TX" data-amount="128500">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Dallas County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$128,500.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-TX-09142</span>
-                        <span>Aug 14, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">Est. of W. K█████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$32,125.00 (25%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="TX" data-county="Dallas County" data-docket="2026-TX-09142" data-date="Aug 14, 2026" data-record="Est. of W. K█████" data-amount="$128,500.00" data-cap="$32,125.00 (25%)" data-url="https://www.dallascounty.org/services/record-search?case=2026-TX-09142">
-                            Verify ↗
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="TN" data-amount="122000">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TN</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60">National Tier</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Shelby County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$122,000.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-TN-002319</span>
-                        <span>Aug 11, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">T. &amp; S. M██████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$24,400.00 (20%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="TN" data-county="Shelby County" data-docket="2026-TN-002319" data-date="Aug 11, 2026" data-record="T. &amp; S. M██████" data-amount="$122,000.00" data-cap="$24,400.00 (20%)" data-url="https://www.shelbycountytn.gov/chancery-court/dockets?docket=2026-TN-002319">
-                            Verify ↗
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="GA" data-amount="118000">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Cobb County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$118,000.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-GA-001550</span>
-                        <span>Aug 08, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">Est. of R. V██████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$23,600.00 (20%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="GA" data-county="Cobb County" data-docket="2026-GA-001550" data-date="Aug 08, 2026" data-record="Est. of R. V██████" data-amount="$118,000.00" data-cap="$23,600.00 (20%)" data-url="https://www.cobbsheriff.org/civil-tax-sales?docket=2026-GA-001550">
-                            Verify ↗
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 7 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="NC" data-amount="114500">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">NC</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60">National Tier</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Wake County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$114,500.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-NC-001420</span>
-                        <span>Aug 06, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">H. &amp; C. V█████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$22,900.00 (20%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="NC" data-county="Wake County" data-docket="2026-NC-001420" data-date="Aug 06, 2026" data-record="H. &amp; C. V█████" data-amount="$114,500.00" data-cap="$22,900.00 (20%)" data-url="https://www.nccourts.gov/locations/wake?search=2026-NC-001420">
-                            Verify ↗
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 8 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="FL" data-amount="112000">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Miami-Dade County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$112,000.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-TD-004812</span>
-                        <span>Aug 05, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">L. &amp; T. M██████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$22,400.00 (20%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="FL" data-county="Miami-Dade County" data-docket="2026-TD-004812" data-date="Aug 05, 2026" data-record="L. &amp; T. M██████" data-amount="$112,000.00" data-cap="$22,400.00 (20%)" data-url="https://www.miamidadeclerk.gov/clerk/tax-deeds.page?docket=2026-TD-004812">
-                            Verify ↗
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 9 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="FL" data-amount="92400">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Hillsborough County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$92,400.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-TD-008912</span>
-                        <span>Jul 29, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">R. &amp; C. S██████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$18,480.00 (20%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="FL" data-county="Hillsborough County" data-docket="2026-TD-008912" data-date="Jul 29, 2026" data-record="R. &amp; C. S██████" data-amount="$92,400.00" data-cap="$18,480.00 (20%)" data-url="https://www.hillsclerk.com/records-search?case=2026-TD-008912">
-                            Verify ↗
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 10 -->
-                <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="TX" data-amount="86200">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span> <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>
-                            <span class="font-heading font-bold text-sm text-brand-navy">Harris County</span>
-                        </div>
-                        <div class="text-right font-heading font-black text-brand-navy text-sm">$86,200.00</div>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                        <span class="text-brand-green font-bold">2026-TX-04950</span>
-                        <span>Jul 22, 2026</span>
-                    </div>
-                    <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
-                        <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
-                            <span>Record &amp; Fee Benchmark</span>
-                            <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </summary>
-                        <div class="pt-2 pb-1 space-y-1 text-slate-600">
-                            <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800">Est. of C. B██████</span></div>
-                            <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">$21,550.00 (25%)</span></div>
-                        </div>
-                    </details>
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[11px] text-slate-400">Official Clerk Record</span>
-                        <button type="button" onclick="openVerificationModal(this.dataset)" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20" data-state="TX" data-county="Harris County" data-docket="2026-TX-04950" data-date="Jul 22, 2026" data-record="Est. of C. B██████" data-amount="$86,200.00" data-cap="$21,550.00 (25%)" data-url="https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04950">
-                            Verify ↗
-                        </button>
-                    </div>
+                <div class="p-8 text-center text-slate-500 bg-white rounded-xl border border-slate-200 text-xs">
+                    Today's records are loading — <a href="/assets/sample_docket.csv" onclick="downloadSampleCSV(event)" class="text-brand-green font-bold underline">download the sample CSV</a>
                 </div>
             </div>
 
@@ -1044,7 +738,7 @@
                             <tr class="bg-slate-50/80 text-slate-700 font-semibold border-b border-slate-200/80 text-[11px] uppercase tracking-wider">
                                 <th class="py-3.5 px-4 sm:px-5">State</th>
                                 <th class="py-3.5 px-4 sm:px-5">Jurisdiction</th>
-                                <th class="py-3.5 px-4 sm:px-5 sticky left-0 z-10 bg-slate-50/95 shadow-[1px_0_0_0_#e2e8f0]">Official Docket #</th>
+                                <th class="py-3.5 px-4 sm:px-5">Official Docket #</th>
                                 <th class="py-3.5 px-4 sm:px-5">Auction Confirmed</th>
                                 <th class="py-3.5 px-4 sm:px-5">Indexed Record</th>
                                 <th class="py-3.5 px-4 sm:px-5 text-right font-bold text-slate-800">Surplus Balance</th>
@@ -1053,124 +747,9 @@
                             </tr>
                         </thead>
                         <tbody id="sample-table-body" class="divide-y divide-slate-200 font-mono text-slate-700">
-                            <tr data-state="CA" data-amount="215000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">CA</span> <span class="text-[10px] font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200/60 px-1.5 py-0.5 rounded">National</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Los Angeles</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-CA-008120</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 20, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">G. &amp; E. T████████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$215,000.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$43,000.00 (20%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="CA" data-county="Los Angeles County" data-docket="2026-CA-008120" data-date="Aug 20, 2026" data-record="G. &amp; E. T████████" data-amount="$215,000.00" data-cap="$43,000.00 (20%)" data-url="https://ttc.lacounty.gov/tax-sale-auction-results/?parcel=2026-CA-008120">Verify ↗</button>
-                                </td>
-                            </tr>
-                            <tr data-state="FL" data-amount="145000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Palm Beach</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TD-004501</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 18, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">A. &amp; G. V████████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$145,000.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$29,000.00 (20%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="FL" data-county="Palm Beach County" data-docket="2026-TD-004501" data-date="Aug 18, 2026" data-record="A. &amp; G. V████████" data-amount="$145,000.00" data-cap="$29,000.00 (20%)" data-url="https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501">Verify ↗</button>
-                                </td>
-                            </tr>
-                            <tr data-state="GA" data-amount="134000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Fulton</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-GA-003810</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 15, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">M. &amp; E. J███████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$134,000.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$26,800.00 (20%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="GA" data-county="Fulton County" data-docket="2026-GA-003810" data-date="Aug 15, 2026" data-record="M. &amp; E. J███████" data-amount="$134,000.00" data-cap="$26,800.00 (20%)" data-url="https://www.fultonclerk.org/search?q=2026-GA-003810">Verify ↗</button>
-                                </td>
-                            </tr>
-                            <tr data-state="TX" data-amount="128500" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Harris</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TX-04812</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 12, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">W. &amp; M. H██████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$128,500.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$32,125.00 (25%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="TX" data-county="Harris County" data-docket="2026-TX-04812" data-date="Aug 12, 2026" data-record="W. &amp; M. H██████" data-amount="$128,500.00" data-cap="$32,125.00 (25%)" data-url="https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04812">Verify ↗</button>
-                                </td>
-                            </tr>
-                            <tr data-state="TN" data-amount="126000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TN</span> <span class="text-[10px] font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200/60 px-1.5 py-0.5 rounded">National</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Davidson</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TN-002190</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 10, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">F. &amp; J. M██████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$126,000.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$25,200.00 (20%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="TN" data-county="Davidson County" data-docket="2026-TN-002190" data-date="Aug 10, 2026" data-record="F. &amp; J. M██████" data-amount="$126,000.00" data-cap="$25,200.00 (20%)" data-url="https://chanceryclerkandmaster.nashville.gov/case-search?case=2026-TN-002190">Verify ↗</button>
-                                </td>
-                            </tr>
-                            <tr data-state="GA" data-amount="118000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">GA</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Cobb</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-GA-001550</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 08, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">Est. of R. V██████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$118,000.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$23,600.00 (20%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="GA" data-county="Cobb County" data-docket="2026-GA-001550" data-date="Aug 08, 2026" data-record="Est. of R. V██████" data-amount="$118,000.00" data-cap="$23,600.00 (20%)" data-url="https://www.cobbsheriff.org/civil-tax-sales?docket=2026-GA-001550">Verify ↗</button>
-                                </td>
-                            </tr>
-                            <tr data-state="NC" data-amount="114500" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">NC</span> <span class="text-[10px] font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200/60 px-1.5 py-0.5 rounded">National</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Wake</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-NC-001420</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 06, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">H. &amp; C. V█████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$114,500.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$22,900.00 (20%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="NC" data-county="Wake County" data-docket="2026-NC-001420" data-date="Aug 06, 2026" data-record="H. &amp; C. V█████" data-amount="$114,500.00" data-cap="$22,900.00 (20%)" data-url="https://www.nccourts.gov/locations/wake?search=2026-NC-001420">Verify ↗</button>
-                                </td>
-                            </tr>
-                            <tr data-state="FL" data-amount="112000" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Miami-Dade</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TD-004812</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Aug 05, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">L. &amp; M. H████████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$112,000.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$22,400.00 (20%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="FL" data-county="Miami-Dade County" data-docket="2026-TD-004812" data-date="Aug 05, 2026" data-record="L. &amp; M. H████████" data-amount="$112,000.00" data-cap="$22,400.00 (20%)" data-url="https://www2.miamidadeclerk.gov/ocs/Search.aspx?caseid=2026-TD-004812">Verify ↗</button>
-                                </td>
-                            </tr>
-                            <tr data-state="FL" data-amount="92400" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">FL</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Hillsborough</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TD-008912</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Jul 29, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">R. &amp; C. S██████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$92,400.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$18,480.00 (20%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="FL" data-county="Hillsborough County" data-docket="2026-TD-008912" data-date="Jul 29, 2026" data-record="R. &amp; C. S██████" data-amount="$92,400.00" data-cap="$18,480.00 (20%)" data-url="https://www.hillsclerk.com/records-search?case=2026-TD-008912">Verify ↗</button>
-                                </td>
-                            </tr>
-                            <tr data-state="TX" data-amount="86200" class="hover:bg-slate-50 transition-colors group">
-                                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">TX</span> <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span></span></td>
-                                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">Harris</td>
-                                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors shadow-[1px_0_0_0_#e2e8f0]">2026-TX-04950</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">Jul 22, 2026</td>
-                                <td class="py-3 px-4 sm:px-5 font-sans">Est. of C. B██████</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">$86,200.00</td>
-                                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">$21,550.00 (25%)</td>
-                                <td class="py-3 px-3 text-center font-sans">
-                                    <button type="button" onclick="openVerificationModal(this.dataset)" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" data-state="TX" data-county="Harris County" data-docket="2026-TX-04950" data-date="Jul 22, 2026" data-record="Est. of C. B██████" data-amount="$86,200.00" data-cap="$21,550.00 (25%)" data-url="https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04950">Verify ↗</button>
+                            <tr>
+                                <td colspan="8" class="py-12 text-center text-slate-500 font-sans text-xs">
+                                    Today's records are loading — <a href="/assets/sample_docket.csv" onclick="downloadSampleCSV(event)" class="text-brand-green font-bold underline">download the sample CSV</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -1196,7 +775,7 @@
                     <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
                         <span class="text-xs font-bold uppercase tracking-wider text-brand-green mb-2 block">02 / Screen</span>
                         <h3 class="font-heading font-bold text-base text-brand-navy mb-1.5">Recorded Liens &amp; Encumbrances</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">Automated checks surface recorded mortgages and municipal liens so your team focuses on actionable equity.</p>
+                        <p class="text-xs text-slate-600 leading-relaxed">Automated screening excludes institutional and bank-owned records and flags estates for heir search so your team focuses on actionable equity.</p>
                     </div>
                     <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
                         <span class="text-xs font-bold uppercase tracking-wider text-brand-green mb-2 block">03 / Review</span>
@@ -1363,9 +942,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                             </svg>
                         </div>
-                        <h3 class="text-base font-heading font-bold text-brand-navy mb-1.5">Lien &amp; Mortgage Scrubbing</h3>
+                        <h3 class="text-base font-heading font-bold text-brand-navy mb-1.5">Entity Screening &amp; Heir Search Flagging</h3>
                         <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            Automated screening checks for recorded institutional liens and flags records where senior encumbrances may reduce the surplus. Results require independent attorney verification.
+                            The feed excludes institutional and bank-owned records and flags estates for heir search. Recorded lien review is the firm's responsibility (Surplus Docket does not search recorded liens).
                       </p>
                     </div>
                     <!-- Card 3 -->
@@ -1400,17 +979,13 @@
                         <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
                             <div class="flex items-center gap-2">
                                 <span class="font-heading font-bold text-lg text-brand-navy">Florida</span>
-                                <span class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
+                                <span id="coverage-badge-FL" class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
                             </div>
                             <a href="/florida-tax-deed-surplus.html" class="text-xs font-bold text-brand-green hover:underline">Hub &rarr;</a>
                         </div>
                         <p class="text-xs text-slate-500 mb-3 font-medium">Fla. Stat. § 197.582 (Tax Deed) &amp; § 45.032 (Foreclosure Surplus)</p>
-                        <ul class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/palm-beach-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">Palm Beach County</a></li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/miami-dade-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">Miami-Dade County</a></li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/broward-county-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">Broward County (Fort Lauderdale)</a></li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/orange-county-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">Orange County (Orlando)</a></li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/hillsborough-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">Hillsborough (Tampa)</a></li>
+                        <ul id="coverage-list-FL" class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/hillsborough-tax-deed-surplus.html" class="hover:text-brand-green transition-colors">Hillsborough County (Tampa)</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1421,16 +996,14 @@
                         <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
                             <div class="flex items-center gap-2">
                                 <span class="font-heading font-bold text-lg text-brand-navy">Texas</span>
-                                <span class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
+                                <span id="coverage-badge-TX" class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
                             </div>
                             <a href="/texas-tax-sale-excess-proceeds.html" class="text-xs font-bold text-brand-green hover:underline">Hub &rarr;</a>
                         </div>
                         <p class="text-xs text-slate-500 mb-3 font-medium">Tex. Tax Code § 34.04 (2-Year Limitation)</p>
-                        <ul class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/harris-county-excess-proceeds.html" class="hover:text-brand-green transition-colors">Harris County (Houston)</a></li>
+                        <ul id="coverage-list-TX" class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/dallas-county-excess-proceeds.html" class="hover:text-brand-green transition-colors">Dallas County</a></li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/tarrant-county-excess-proceeds.html" class="hover:text-brand-green transition-colors">Tarrant County (Fort Worth)</a></li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/travis-county-excess-proceeds.html" class="hover:text-brand-green transition-colors">Travis County (Austin)</a></li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <span>Fort Bend County</span></li>
                         </ul>
                     </div>
                 </div>
@@ -1441,16 +1014,14 @@
                         <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
                             <div class="flex items-center gap-2">
                                 <span class="font-heading font-bold text-lg text-brand-navy">Georgia</span>
-                                <span class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
+                                <span id="coverage-badge-GA" class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
                             </div>
                             <a href="/georgia-tax-sale-excess-funds.html" class="text-xs font-bold text-brand-green hover:underline">Hub &rarr;</a>
                         </div>
                         <p class="text-xs text-slate-500 mb-3 font-medium">O.C.G.A. § 48-4-5 (5-Year Claim Window)</p>
-                        <ul class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/fulton-county-excess-funds.html" class="hover:text-brand-green transition-colors">Fulton County (Atlanta)</a></li>
+                        <ul id="coverage-list-GA" class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/dekalb-county-excess-funds.html" class="hover:text-brand-green transition-colors">DeKalb County (Decatur)</a></li>
                             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/georgia-tax-sale-excess-funds.html" class="hover:text-brand-green transition-colors">Gwinnett County</a></li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <a href="/cobb-county-excess-funds.html" class="hover:text-brand-green transition-colors">Cobb County (Marietta)</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1461,16 +1032,13 @@
                         <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
                             <div class="flex items-center gap-2">
                                 <span class="font-heading font-bold text-lg text-brand-navy">North Carolina</span>
-                                <span class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
+                                <span id="coverage-badge-NC" class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-bold">Coming soon</span>
                             </div>
                             <a href="/north-carolina-tax-foreclosure-surplus.html" class="text-xs font-bold text-brand-green hover:underline">Hub &rarr;</a>
                         </div>
                         <p class="text-xs text-slate-500 mb-3 font-medium">N.C. Gen. Stat. § 105-374 (Superior Court Confirmation)</p>
-                        <ul class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Mecklenburg County (Charlotte)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Wake County (Raleigh)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Guilford County (Greensboro)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Forsyth County (Winston-Salem)</li>
+                        <ul id="coverage-list-NC" class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
+                            <li class="text-xs text-slate-400 italic py-1">Special Proceedings division files — county-wide feed coming soon</li>
                         </ul>
                     </div>
                 </div>
@@ -1481,16 +1049,13 @@
                         <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
                             <div class="flex items-center gap-2">
                                 <span class="font-heading font-bold text-lg text-brand-navy">Tennessee</span>
-                                <span class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
+                                <span id="coverage-badge-TN" class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
                             </div>
                             <a href="/tennessee-tax-sale-excess-proceeds.html" class="text-xs font-bold text-brand-green hover:underline">Hub &rarr;</a>
                         </div>
                         <p class="text-xs text-slate-500 mb-3 font-medium">T.C.A. § 67-5-2501 &amp; § 67-5-2702 (Chancery Court Actions)</p>
-                        <ul class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Shelby County (Memphis)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Davidson County (Nashville)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Knox County (Knoxville)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Hamilton County (Chattanooga)</li>
+                        <ul id="coverage-list-TN" class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <span>Davidson County (Nashville)</span></li>
                         </ul>
                     </div>
                 </div>
@@ -1501,16 +1066,15 @@
                         <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
                             <div class="flex items-center gap-2">
                                 <span class="font-heading font-bold text-lg text-brand-navy">California</span>
-                                <span class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
+                                <span id="coverage-badge-CA" class="text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold">Active</span>
                             </div>
                             <a href="/california-tax-defaulted-excess-proceeds.html" class="text-xs font-bold text-brand-green hover:underline">Hub &rarr;</a>
                         </div>
                         <p class="text-xs text-slate-500 mb-3 font-medium">Cal. Rev. &amp; Tax Code § 4675 (1-Year Filing Limit)</p>
-                        <ul class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Los Angeles County</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> San Diego County</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Orange County</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Riverside County</li>
+                        <ul id="coverage-list-CA" class="space-y-2 text-xs sm:text-sm font-semibold text-slate-700">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <span>Los Angeles County</span></li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <span>San Diego County</span></li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <span>Orange County</span></li>
                         </ul>
                     </div>
                 </div>
@@ -1520,32 +1084,32 @@
             <div class="mt-8 max-w-6xl mx-auto bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                     <div>
-                        <h3 class="font-heading font-bold text-sm text-brand-navy">Official County Clerk & Court Registry Directory</h3>
+                        <h3 class="font-heading font-bold text-sm text-brand-navy">Official County Clerk &amp; Court Registry Directory</h3>
                         <p class="text-xs text-slate-500">Direct 1-click verification portals across active monitored jurisdictions.</p>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-                    <a href="https://www.mypalmbeachclerk.com/" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
-                        <span>Palm Beach (FL)</span>
+                    <a href="https://www.hillsclerk.com/taxdeeds" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                        <span>Hillsborough (FL)</span>
                         <span class="text-slate-400">&nearr;</span>
                     </a>
-                    <a href="https://www.cclerk.hctx.net/" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
-                        <span>Harris County (TX)</span>
+                    <a href="https://www.dallascounty.org/government/district-clerk/public-data.php" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                        <span>Dallas County (TX)</span>
                         <span class="text-slate-400">&nearr;</span>
                     </a>
-                    <a href="https://www.fultonclerk.org/" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
-                        <span>Fulton County (GA)</span>
+                    <a href="https://www.gwinnetttaxcommissioner.com/property-tax/tax-sale-excess-funds" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                        <span>Gwinnett County (GA)</span>
                         <span class="text-slate-400">&nearr;</span>
                     </a>
-                    <a href="https://www.nccourts.gov/counties/mecklenburg" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
-                        <span>Mecklenburg (NC)</span>
+                    <a href="https://dekalbtaxga.gov/property-tax/delinquent-taxes/" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                        <span>DeKalb County (GA)</span>
                         <span class="text-slate-400">&nearr;</span>
                     </a>
-                    <a href="https://chancery.shelbycountytn.gov/" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
-                        <span>Shelby County (TN)</span>
+                    <a href="https://chanceryclerkandmaster.nashville.gov/fees/property-tax-schedule/" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                        <span>Davidson County (TN)</span>
                         <span class="text-slate-400">&nearr;</span>
                     </a>
-                    <a href="https://ttc.lacounty.gov/" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
+                    <a href="https://ttc.lacounty.gov/notice-of-excess-proceeds/" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 text-xs font-semibold text-brand-navy hover:text-brand-green transition-colors flex items-center justify-between">
                         <span>Los Angeles (CA)</span>
                         <span class="text-slate-400">&nearr;</span>
                     </a>
@@ -1620,7 +1184,7 @@
                             </li>
                             <li class="flex gap-2.5">
                                 <svg class="h-4 w-4 text-brand-green shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span>Instant CSV &amp; Excel Download of Verified Surplus Dockets</span>
+                                <span>Instant CSV &amp; Excel Download of Surplus Dockets</span>
                             </li>
                             <li class="flex gap-2.5 font-semibold text-brand-navy">
                                 <svg class="h-4 w-4 text-brand-green shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -1667,7 +1231,7 @@
                             </li>
                             <li class="flex gap-2.5">
                                 <svg class="h-4 w-4 text-brand-green shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span>100% Institutional lien &amp; bank mortgage scrubbing</span>
+                                <span>Institutional &amp; bank-owned entity filtering (lien review is firm responsibility)</span>
                             </li>
                             <li class="flex gap-2.5 font-semibold text-brand-navy">
                                 <svg class="h-4 w-4 text-brand-green shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
@@ -1805,9 +1369,9 @@
                                     Verified Subscriber
                                 </span>
                             </div>
-                            <h3 class="font-heading font-bold text-brand-navy text-sm sm:text-base mb-2">Automated lien scrubbing saves hours of clerk scraping</h3>
+                            <h3 class="font-heading font-bold text-brand-navy text-sm sm:text-base mb-2">Automated entity filtering saves hours of clerk scraping</h3>
                             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                                "The daily 7:00 AM EST CSV feed and automated lien scrubbing save our firm hours of clerk portal scraping. Having direct docket verification links and statutory claim deadlines pre-calculated makes Florida and Texas surplus filings seamless."
+                                "The daily 7:00 AM EST CSV feed and automated entity filtering save our firm hours of clerk portal scraping. Having direct docket verification links and statutory claim deadlines pre-calculated makes Florida and Texas surplus filings seamless."
                             </p>
                         </div>
                         <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
@@ -1861,7 +1425,7 @@
                 <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                     <h3 class="font-heading font-bold text-brand-navy mb-1">Which counties and judicial circuits are covered, and can custom jurisdictions be added?</h3>
                     <p class="text-slate-600 leading-relaxed">
-                        Surplus Docket actively monitors major metropolitan circuits across Florida, Texas, and Georgia in our Tri-State Core Feed, as well as North Carolina, Tennessee, and California in our Six-State National Suite. Monitored Florida counties include Miami-Dade (11th Circuit), Broward (17th Circuit), Palm Beach (15th Circuit), Orange (9th Circuit), and Hillsborough (13th Circuit). If your firm needs custom county filtering, dedicated circuit tracking, or custom delivery routing, we configure these at zero setup or onboarding cost.
+                        Surplus Docket actively monitors major metropolitan circuits across Florida, Texas, and Georgia in our Tri-State Core Feed, as well as North Carolina, Tennessee, and California in our Six-State National Suite. Surplus Docket monitors judicial circuits and counties across Florida, Texas, and Georgia in our Tri-State Core Feed, as well as North Carolina, Tennessee, and California in our National Suite, subject to official county list availability. Active counties are updated daily based on records in the current feed. If your firm needs custom county filtering, dedicated circuit tracking, or custom delivery routing, we configure these at zero setup or onboarding cost.
                     </p>
                 </div>
 
@@ -1917,7 +1481,7 @@
                 <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                     <h3 class="font-heading font-bold text-brand-navy mb-1">What does a screening or review status actually mean?</h3>
                     <p class="text-slate-600 leading-relaxed">
-                        Screening indicates that recorded institutional liens (mortgages, tax encumbrances) have been checked against public records. "Source linked" means the observation references a specific document or registry entry. Neither status constitutes a title examination or legal determination of recoverability. Attorneys should independently verify all encumbrances before filing.
+                        The feed excludes institutional and bank-owned records and flags estates for heir search. "Source linked" means the record references an official county registry list. Independent recorded lien review is the firm's responsibility, as Surplus Docket does not search recorded liens in public deed registries.
                     </p>
                 </div>
 
@@ -2270,57 +1834,245 @@
         }
 
         let searchDebounceTimer = null;
+        let liveDocketData = null;
+        let liveDocketLoading = true;
+
+        function escapeHtml(str) {
+            if (str == null) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function sanitizeUrl(url) {
+            if (!url) return '#';
+            const trimmed = String(url).trim();
+            return (/^(https?:\/\/|\/)/i.test(trimmed)) ? trimmed : '#';
+        }
+
+        function formatDate(dStr) {
+            if (!dStr) return '';
+            try {
+                const p = dStr.split(/[-T ]/);
+                if (p.length >= 3) {
+                    const d = new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+                    if (!isNaN(d.getTime())) {
+                        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    }
+                }
+            } catch(e) {}
+            return dStr;
+        }
+
+        function renderMobileCard(r) {
+            const isCore = ['FL', 'TX', 'GA'].includes(r.State);
+            const tierBadge = isCore 
+                ? '<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Core Feed</span>'
+                : '<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60">National Tier</span>';
+            const bal = parseFloat(r.Surplus_Balance_USD) || 0;
+            const balanceFormatted = bal.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+            const feeVal = parseFloat(r.Est_Finder_Fee_USD);
+            const feeFormatted = !isNaN(feeVal) && feeVal > 0 ? feeVal.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) : '';
+            const rateText = r.Statutory_Fee_Rate ? ` (${escapeHtml(r.Statutory_Fee_Rate)})` : '';
+            const saleDateFormatted = r.Sale_Date ? formatDate(r.Sale_Date) : 'Confirmed';
+            const verifyUrl = sanitizeUrl(r.Clerk_Verification_URL || r.Source_URL || '#');
+            const verifyNote = r.Verify_Note || 'Official County Source';
+            const caseNo = escapeHtml(r.Case_or_TaxDeed_No || 'N/A');
+            const owner = escapeHtml(r.Owner_Name || 'N/A');
+
+            return `
+            <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="${escapeHtml(r.State)}" data-amount="${bal}">
+                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">${escapeHtml(r.State)}</span> ${tierBadge}
+                        <span class="font-heading font-bold text-sm text-brand-navy">${escapeHtml(r.County)} County</span>
+                    </div>
+                    <div class="text-right font-heading font-black text-brand-navy text-sm">${balanceFormatted}</div>
+                </div>
+                <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
+                    <span class="text-brand-green font-bold truncate max-w-[200px]" title="${caseNo}">${caseNo}</span>
+                    <span>${saleDateFormatted}</span>
+                </div>
+                <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
+                    <summary class="cursor-pointer font-semibold text-brand-navy flex items-center justify-between py-1 select-none">
+                        <span>Record &amp; Fee Benchmark</span>
+                        <svg class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="pt-2 pb-1 space-y-1 text-slate-600">
+                        <div class="flex justify-between"><span>Record:</span><span class="font-mono font-bold text-slate-800 truncate max-w-[200px]" title="${owner}">${owner}</span></div>
+                        <div class="flex justify-between"><span>Statutory Cap Ref:</span><span class="font-mono font-bold text-brand-green">${feeFormatted}${rateText}</span></div>
+                    </div>
+                </details>
+                <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <span class="text-[11px] text-slate-400 truncate max-w-[170px]" title="${escapeHtml(verifyNote)}">${escapeHtml(verifyNote)}</span>
+                    <a href="${escapeHtml(verifyUrl)}" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-brand-greenSoft hover:bg-brand-green text-brand-greenDark hover:text-white rounded-lg text-xs font-bold transition-all border border-brand-green/20 shrink-0" title="${escapeHtml(verifyNote)}">
+                        Verify ↗
+                    </a>
+                </div>
+            </div>`;
+        }
+
+        function renderTableRow(r) {
+            const isCore = ['FL', 'TX', 'GA'].includes(r.State);
+            const tierBadge = isCore 
+                ? '<span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">Core</span>'
+                : '<span class="text-[10px] font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200/60 px-1.5 py-0.5 rounded">National</span>';
+            const bal = parseFloat(r.Surplus_Balance_USD) || 0;
+            const balanceFormatted = bal.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+            const feeVal = parseFloat(r.Est_Finder_Fee_USD);
+            const feeFormatted = !isNaN(feeVal) && feeVal > 0 ? feeVal.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) : '';
+            const rateText = r.Statutory_Fee_Rate ? ` (${escapeHtml(r.Statutory_Fee_Rate)})` : '';
+            const saleDateFormatted = r.Sale_Date ? formatDate(r.Sale_Date) : 'Confirmed';
+            const verifyUrl = sanitizeUrl(r.Clerk_Verification_URL || r.Source_URL || '#');
+            const verifyNote = r.Verify_Note || 'Official County Source';
+            const caseNo = escapeHtml(r.Case_or_TaxDeed_No || 'N/A');
+            const owner = escapeHtml(r.Owner_Name || 'N/A');
+
+            return `
+            <tr data-state="${escapeHtml(r.State)}" data-amount="${bal}" class="hover:bg-slate-50 transition-colors group">
+                <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">${escapeHtml(r.State)}</span> ${tierBadge}</span></td>
+                <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">${escapeHtml(r.County)}</td>
+                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">${caseNo}</td>
+                <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">${saleDateFormatted}</td>
+                <td class="py-3 px-4 sm:px-5 font-sans truncate max-w-[180px]" title="${owner}">${owner}</td>
+                <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">${balanceFormatted}</td>
+                <td class="py-3 px-4 sm:px-5 text-right text-brand-green font-bold">${feeFormatted}${rateText}</td>
+                <td class="py-3 px-3 text-center font-sans">
+                    <a href="${escapeHtml(verifyUrl)}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-green hover:underline inline-flex items-center gap-0.5 cursor-pointer" title="${escapeHtml(verifyNote)}">Verify ↗</a>
+                    <span class="block text-[10px] text-slate-400 font-sans truncate max-w-[110px] mx-auto" title="${escapeHtml(verifyNote)}">${escapeHtml(verifyNote)}</span>
+                </td>
+            </tr>`;
+        }
+
+        function renderEmptyState(customMsg) {
+            const cardsContainer = document.getElementById('sample-cards-container');
+            const tableBody = document.getElementById('sample-table-body');
+            const countEl = document.getElementById('docket-count');
+            if (countEl) countEl.textContent = 'Records from official county lists';
+            const msg = customMsg ? escapeHtml(customMsg) : 'Today\'s records are loading — <a href="/assets/sample_docket.csv" onclick="downloadSampleCSV(event)" class="text-brand-green font-bold underline">download the sample CSV</a>';
+            if (cardsContainer) cardsContainer.innerHTML = `<div class="p-8 text-center text-slate-500 bg-white rounded-xl border border-slate-200 text-xs">${msg}</div>`;
+            if (tableBody) tableBody.innerHTML = `<tr><td colspan="8" class="py-12 text-center text-slate-500 font-sans text-xs">${msg}</td></tr>`;
+        }
+
+        function resetTableFilters() {
+            const searchInput = document.getElementById('docket-search');
+            const stateSel = document.getElementById('state-filter');
+            const minSel = document.getElementById('min-amount-filter');
+            if (searchInput) searchInput.value = '';
+            if (stateSel) stateSel.value = 'ALL';
+            if (minSel) minSel.value = '0';
+            filterSampleTable();
+        }
+
+        function renderCoverageSection(meta) {
+            const countiesByState = { FL: [], TX: [], GA: [], NC: [], TN: [], CA: [] };
+            if (meta && Array.isArray(meta.counties_in_feed)) {
+                meta.counties_in_feed.forEach(item => {
+                    const parts = item.split(',').map(s => s.trim());
+                    if (parts.length >= 2) {
+                        const county = parts[0];
+                        const state = parts[1].toUpperCase();
+                        if (countiesByState[state]) {
+                            countiesByState[state].push(county);
+                        }
+                    }
+                });
+            }
+
+            ['FL', 'TX', 'GA', 'NC', 'TN', 'CA'].forEach(st => {
+                const badgeEl = document.getElementById(`coverage-badge-${st}`);
+                const listEl = document.getElementById(`coverage-list-${st}`);
+                if (!badgeEl || !listEl) return;
+                const counties = countiesByState[st] || [];
+                if (counties.length > 0) {
+                    badgeEl.className = 'text-xs bg-emerald-100 text-brand-green px-2 py-0.5 rounded-full font-bold';
+                    badgeEl.textContent = 'Active';
+                    listEl.innerHTML = counties.map(c => {
+                        const label = escapeHtml(c.toLowerCase().includes('county') ? c : c + ' County');
+                        return `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> <span>${label}</span></li>`;
+                    }).join('');
+                } else {
+                    badgeEl.className = 'text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-bold';
+                    badgeEl.textContent = 'Coming soon';
+                    listEl.innerHTML = '<li class="text-xs text-slate-400 italic py-1">No active lists in today\'s feed — coverage coming soon</li>';
+                }
+            });
+        }
+
+        function filterSampleTable() {
+            if (!liveDocketData || !liveDocketData.records) {
+                renderEmptyState();
+                return;
+            }
+            const query = (document.getElementById('docket-search')?.value || '').toLowerCase().trim();
+            const stateFilter = document.getElementById('state-filter')?.value || 'ALL';
+            const minAmount = parseFloat(document.getElementById('min-amount-filter')?.value || 0);
+
+            const records = liveDocketData.records || [];
+            const filtered = records.filter(r => {
+                const rState = (r.State || '').toUpperCase();
+                const rAmount = parseFloat(r.Surplus_Balance_USD) || 0;
+                const stateMatch = (stateFilter === 'ALL' || rState === stateFilter);
+                const amountMatch = rAmount >= minAmount;
+                if (!stateMatch || !amountMatch) return false;
+                if (!query) return true;
+                const text = `${r.County || ''} ${r.Case_or_TaxDeed_No || ''} ${r.Parcel_ID || ''} ${r.Verify_Note || ''} ${r.Owner_Name || ''} ${r.Property_Address || ''} ${r.State || ''} ${r.Governing_Statute || ''}`.toLowerCase();
+                return text.includes(query);
+            });
+
+            // Top 10 by Surplus_Balance_USD
+            filtered.sort((a, b) => (parseFloat(b.Surplus_Balance_USD) || 0) - (parseFloat(a.Surplus_Balance_USD) || 0));
+            const top10 = filtered.slice(0, 10);
+
+            // Update count & data_as_of
+            const countEl = document.getElementById('docket-count');
+            const dataAsOfRaw = liveDocketData.meta?.data_as_of;
+            let dataAsOfText = '';
+            if (dataAsOfRaw) {
+                try {
+                    const p = dataAsOfRaw.split(/[-T ]/);
+                    if (p.length >= 3) {
+                        const d = new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+                        if (!isNaN(d.getTime())) {
+                            dataAsOfText = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                        }
+                    }
+                } catch(e) {}
+                if (!dataAsOfText) dataAsOfText = String(dataAsOfRaw).substring(0, 10);
+            }
+            const totalRecords = liveDocketData.meta?.total_records_indexed || records.length;
+            if (countEl) {
+                countEl.textContent = `Showing ${top10.length} of ${filtered.length} (Total: ${totalRecords}) • Data as of ${dataAsOfText || 'Today'}`;
+            }
+
+            const cardsContainer = document.getElementById('sample-cards-container');
+            const tableBody = document.getElementById('sample-table-body');
+
+            if (top10.length === 0) {
+                const msg = filtered.length === 0 && records.length > 0
+                    ? 'No records match the selected filters. <button type="button" onclick="resetTableFilters()" class="ml-2 text-brand-green font-bold underline">Clear filters</button>'
+                    : 'Today\'s records are loading — <a href="/assets/sample_docket.csv" onclick="downloadSampleCSV(event)" class="text-brand-green font-bold underline">download the sample CSV</a>';
+                if (cardsContainer) cardsContainer.innerHTML = `<div class="p-8 text-center text-slate-500 bg-white rounded-xl border border-slate-200 text-xs">${msg}</div>`;
+                if (tableBody) tableBody.innerHTML = `<tr><td colspan="8" class="py-12 text-center text-slate-500 font-sans text-xs">${msg}</td></tr>`;
+                return;
+            }
+
+            if (cardsContainer) {
+                cardsContainer.innerHTML = top10.map(r => renderMobileCard(r)).join('');
+            }
+            if (tableBody) {
+                tableBody.innerHTML = top10.map(r => renderTableRow(r)).join('');
+            }
+        }
+
         function handleSearchInput() {
             clearTimeout(searchDebounceTimer);
             searchDebounceTimer = setTimeout(() => {
                 filterSampleTable();
             }, 300);
-        }
-
-        function filterSampleTable() {
-            const query = (document.getElementById('docket-search')?.value || '').toLowerCase().trim();
-            const stateFilter = document.getElementById('state-filter')?.value || 'ALL';
-            const minAmount = parseFloat(document.getElementById('min-amount-filter')?.value || 0);
-            
-            const rows = document.querySelectorAll('#sample-table-body tr');
-            const cards = document.querySelectorAll('#sample-cards-container .docket-card');
-            let visible = 0;
-
-            rows.forEach(row => {
-                const text = row.innerText.toLowerCase();
-                const rowState = row.getAttribute('data-state') || '';
-                const rowAmount = parseFloat(row.getAttribute('data-amount') || 0);
-                const stateMatch = (stateFilter === 'ALL' || rowState === stateFilter);
-                const queryMatch = !query || text.includes(query);
-                const amountMatch = rowAmount >= minAmount;
-
-                if (stateMatch && queryMatch && amountMatch) {
-                    row.style.display = '';
-                    visible++;
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-
-            cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                const cardState = card.getAttribute('data-state') || '';
-                const cardAmount = parseFloat(card.getAttribute('data-amount') || 0);
-                const stateMatch = (stateFilter === 'ALL' || cardState === stateFilter);
-                const queryMatch = !query || text.includes(query);
-                const amountMatch = cardAmount >= minAmount;
-
-                if (stateMatch && queryMatch && amountMatch) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            const countEl = document.getElementById('docket-count');
-            if (countEl) {
-                countEl.textContent = `Showing ${visible} Sample Dockets`;
-            }
         }
 
         function filterByHeroState(st) {
@@ -2336,60 +2088,39 @@
         }
 
         function downloadSampleCSV(e) {
+            if (!liveDocketData || !liveDocketData.records || liveDocketData.records.length === 0) {
+                return;
+            }
             if (e) e.preventDefault();
-            const csvRows = [
-                ["State","County","Parcel_ID_Folio","Docket_Number","Auction_Date","Indexed_Owner","Gross_Surplus","Statutory_Cap_Ref","Clerk_Portal_URL"],
-                ["CA","Los Angeles","2145-012-089","2026-CA-008120","2026-08-20","G. & E. T████████","215000.00","43000.00 (20%)","https://ttc.lacounty.gov/tax-sale-auction-results/?parcel=2026-CA-008120"],
-                ["FL","Palm Beach","50-43-43-15-06-001-0020","2026-TD-004501","2026-08-18","A. & G. V████████","145000.00","29000.00 (20%)","https://mypalmbeachclerk.com/casesearch?caseNumber=2026-TD-004501"],
-                ["FL","Broward","4942-12-05-0890","2026-TD-003891","2026-08-16","M. & H. V█████████","138500.00","27700.00 (20%)","https://www.browardclerk.org/"],
-                ["GA","Fulton","14-0045-0002-019","2026-GA-003810","2026-08-15","M. & E. J███████","134000.00","26800.00 (20%)","https://www.fultonclerk.org/search?q=2026-GA-003810"],
-                ["TX","Harris","041-285-000-0012","2026-TX-04812","2026-08-12","W. & M. H██████","128500.00","32125.00 (25%)","https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04812"],
-                ["TN","Davidson","093-06-2-045.00","2026-TN-002190","2026-08-10","F. & J. M██████","126000.00","25200.00 (20%)","https://chanceryclerkandmaster.nashville.gov/case-search?case=2026-TN-002190"],
-                ["GA","Cobb","17-0245-0-012-0","2026-GA-001550","2026-08-08","Est. of R. V██████","118000.00","23600.00 (20%)","https://www.cobbsheriff.org/civil-tax-sales?docket=2026-GA-001550"],
-                ["NC","Wake","0794.18-42-1045","2026-NC-001420","2026-08-06","H. & C. V█████","114500.00","22900.00 (20%)","https://www.nccourts.gov/locations/wake?search=2026-NC-001420"],
-                ["FL","Miami-Dade","01-4138-005-0120","2026-TD-004812","2026-08-05","L. & M. H████████","112000.00","22400.00 (20%)","https://www2.miamidadeclerk.gov/ocs/Search.aspx?caseid=2026-TD-004812"],
-                ["FL","Miami-Dade","30-4014-012-0580","2026-CA-014289","2026-08-22","Est. of V. C████","89450.00","17890.00 (20%)","https://www.miamidadeclerk.gov/"],
-                ["FL","Hillsborough","182914-4TA000001000020","2026-TD-008912","2026-07-29","R. & C. S██████","92400.00","18480.00 (20%)","https://www.hillsclerk.com/records-search?case=2026-TD-008912"],
-                ["TX","Harris","062-114-000-0088","2026-TX-04950","2026-07-22","Est. of C. B██████","86200.00","21550.00 (25%)","https://www.cclerk.hctx.net/applications/websearch/CourtSearch.aspx?CaseNo=2026-TX-04950"]
+            const headers = [
+                "State","County","Parcel_ID","Case_or_TaxDeed_No","Owner_Name","Entity_Type","Is_Individual","Heir_Search_Recommended",
+                "Property_Address","Property_Type","Surplus_Balance_USD","Statutory_Fee_Rate","Est_Finder_Fee_USD","Opportunity_Tier",
+                "Sale_Date","Days_Remaining_To_Claim","Claim_Urgency_Tier","Claim_Deadline_Date","Statutory_Deadline_Window",
+                "Clerk_Verification_URL","Verify_Note","Source_URL","Governing_Statute","Statute_Citation","Record_Type","TYPE","Retrieved_At","Enriched_Timestamp"
             ];
-            const csvContent = csvRows.map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+            const rows = liveDocketData.records.map(r => headers.map(h => r[h] !== undefined ? String(r[h]) : ""));
+            const csvRows = [headers, ...rows];
+            const csvContent = csvRows.map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n") + "\n";
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Surplus_Docket_Sample_${Date.now()}.csv`;
+            a.download = `Surplus_Docket_Feed_${Date.now()}.csv`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
 
-        // Docket Verification Modal Logic
         function openVerificationModal(data) {
-            if (!data) return;
+            if (data && data.url) {
+                window.open(sanitizeUrl(data.url), '_blank', 'noopener,noreferrer');
+                return;
+            }
             const modal = document.getElementById('verification-modal');
             if (!modal) return;
-
-            const jurEl = document.getElementById('vm-jurisdiction');
-            if (jurEl) jurEl.textContent = `${data.county || 'County'} Clerk Docket`;
-            const dockEl = document.getElementById('vm-docket');
-            if (dockEl) dockEl.textContent = data.docket || 'N/A';
-            const countyEl = document.getElementById('vm-county');
-            if (countyEl) countyEl.textContent = data.county || 'N/A';
-            const dateEl = document.getElementById('vm-date');
-            if (dateEl) dateEl.textContent = data.date || 'N/A';
-            const recEl = document.getElementById('vm-record');
-            if (recEl) recEl.textContent = data.record || 'N/A';
-            const balEl = document.getElementById('vm-balance');
-            if (balEl) balEl.textContent = data.amount || 'N/A';
-            const capEl = document.getElementById('vm-cap');
-            if (capEl) capEl.textContent = data.cap || 'N/A';
-            
             const portalLink = document.getElementById('vm-portal-link');
-            if (portalLink) {
-                portalLink.href = data.url || '#';
-            }
-
+            if (portalLink && data && data.url) portalLink.href = sanitizeUrl(data.url);
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
@@ -2402,6 +2133,55 @@
                 modal.classList.remove('flex');
                 document.body.style.overflow = '';
             }
+        }
+
+        async function fetchLiveDocketFeed() {
+            let hasUrlFilter = false;
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const docketParam = params.get('docket') || params.get('search') || params.get('case') || params.get('q') || params.get('county') || '';
+                const rawState = (params.get('state') || '').trim().toUpperCase();
+                const stateAliasMap = {
+                    'FLORIDA': 'FL', 'TEXAS': 'TX', 'GEORGIA': 'GA',
+                    'NORTH CAROLINA': 'NC', 'TENNESSEE': 'TN', 'CALIFORNIA': 'CA'
+                };
+                const stateParam = stateAliasMap[rawState] || rawState;
+                if (docketParam) {
+                    const searchInput = document.getElementById('docket-search');
+                    if (searchInput && !searchInput.value) searchInput.value = docketParam;
+                    hasUrlFilter = true;
+                }
+                if (stateParam && ['FL', 'TX', 'GA', 'NC', 'TN', 'CA'].includes(stateParam)) {
+                    const stateSel = document.getElementById('state-filter');
+                    if (stateSel) stateSel.value = stateParam;
+                    hasUrlFilter = true;
+                }
+            } catch (e) {}
+            try {
+                const res = await fetch('/api/v1/feed.json');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                liveDocketData = data;
+                window._liveDocketFeed = data;
+                liveDocketLoading = false;
+                renderCoverageSection(data.meta);
+                filterSampleTable();
+                if (hasUrlFilter) {
+                    const target = document.getElementById('live-docket') || document.getElementById('data');
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            } catch (err) {
+                console.warn('Live docket feed fetch failed or operating offline:', err);
+                liveDocketLoading = false;
+                renderCoverageSection(null);
+                renderEmptyState();
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fetchLiveDocketFeed);
+        } else {
+            fetchLiveDocketFeed();
         }
 
         // Direct Instant .txt Dossier Export (Zero-Gating Client Download)
@@ -2485,14 +2265,25 @@ user parameters. Counsel must verify all title records and recorded encumbrances
             const menu = document.getElementById('mobile-menu');
             const hamburger = document.getElementById('hamburger-icon');
             const close = document.getElementById('close-icon');
+            const btn = document.getElementById('mobile-menu-btn');
+            if (!menu) return;
             if (menu.classList.contains('hidden')) {
                 menu.classList.remove('hidden');
-                hamburger.classList.add('hidden');
-                close.classList.remove('hidden');
+                if (hamburger) hamburger.classList.add('hidden');
+                if (close) close.classList.remove('hidden');
+                if (btn) btn.setAttribute('aria-expanded', 'true');
             } else {
                 menu.classList.add('hidden');
-                hamburger.classList.remove('hidden');
-                close.classList.add('hidden');
+                if (hamburger) hamburger.classList.remove('hidden');
+                if (close) close.classList.add('hidden');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu && !menu.classList.contains('hidden')) {
+                toggleMobileMenu();
             }
         }
 
@@ -2530,6 +2321,7 @@ user parameters. Counsel must verify all title records and recorded encumbrances
             if (modal) {
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
             }
         }
 
@@ -2538,6 +2330,7 @@ user parameters. Counsel must verify all title records and recorded encumbrances
             if (modal) {
                 modal.classList.remove('flex');
                 modal.classList.add('hidden');
+                document.body.style.overflow = '';
             }
         }
 
@@ -2890,6 +2683,7 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
                 if (typeof closeDossierModal === 'function') closeDossierModal();
                 if (typeof closeInquiryModal === 'function') closeInquiryModal();
                 if (typeof closeVerificationModal === 'function') closeVerificationModal();
+                if (typeof closeMobileMenu === 'function') closeMobileMenu();
             }
         });
     </script>
@@ -3060,7 +2854,7 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
                     </li>
                     <li class="flex items-center gap-2">
                         <svg class="w-4 h-4 text-brand-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        <span>Senior mortgage and tax lien encumbrances reviewed</span>
+                        <span>Independent recorded lien review remains firm responsibility</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <svg class="w-4 h-4 text-brand-green shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -3079,7 +2873,7 @@ user inputs. Practitioners are responsible for verifying all encumbrances.
                     Close
                 </button>
             </div>
-            <p class="text-[11px] text-slate-400 text-center mt-3">External link opens official county registry with query parameters in a secure new tab.</p>
+            <p class="text-[11px] text-slate-400 text-center mt-3">External link opens official county registry source list in a secure new tab.</p>
         </div>
     </div>
 

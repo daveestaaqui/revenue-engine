@@ -76,9 +76,10 @@ CANONICAL_STATUTES = {
     },
     "TN": {
         "statute": "T.C.A. § 67-5-2501",
+        "valid_statutes": ["T.C.A. § 67-5-2501", "T.C.A. § 67-5-2702"],
         "fee_cap": 0.20,
         "fee_label": "20%",
-        "window_desc": "Chancery Court Motion Procedure (T.C.A. § 67-5-2501)"
+        "window_desc": "Chancery Court Motion Procedure (T.C.A. § 67-5-2501 / § 67-5-2702)"
     },
     "CA": {
         "statute": "Cal. Rev. & Tax Code § 4675",
@@ -97,16 +98,19 @@ VERIFIED_CLERK_DOMAINS = [
     "browardclerk.org",
     "hcdistrictclerk.com",
     "dallascounty.org",
+    "fortbendcountytx.gov",
     "tarrantcountytx.gov",
     "traviscountytx.gov",
     "fultonclerk.org",
     "dekalbcountytax.org",
+    "dekalbtaxga.gov",
     "gwinnetttaxcommissioner.com",
     "cobbtax.org",
     "nccourts.gov",
     "nashville.gov",
     "shelbycountytn.gov",
     "lacounty.gov",
+    "octreasurer.gov",
     "sdttc.com",
     "surplusdocket.com"
 ]

@@ -76,15 +76,18 @@ def generate_rss_feed():
             for i, row in enumerate(reader):
                 if i >= 10:
                     break
+                docket = xml.sax.saxutils.escape(row.get("Case_or_TaxDeed_No", "").strip())
+                if not docket:
+                    continue
                 state = xml.sax.saxutils.escape(row.get("State", "US"))
                 county = xml.sax.saxutils.escape(row.get("County", ""))
-                docket = xml.sax.saxutils.escape(row.get("Case_or_TaxDeed_No", ""))
                 statute = xml.sax.saxutils.escape(row.get("Governing_Statute", "State Law"))
+                link_url = xml.sax.saxutils.escape(row.get("Clerk_Verification_URL", "").strip() or "https://surplusdocket.com/")
 
                 items_xml += f"""
     <item>
       <title>[{state} - {county}] Docket {docket} Excess Proceeds Filing</title>
-      <link>https://surplusdocket.com/?docket={docket}</link>
+      <link>{link_url}</link>
       <guid isPermaLink="false">{docket}-{state}</guid>
       <pubDate>{now_rfc822}</pubDate>
       <description>Public tax deed surplus docket filing in {county} County, {state}. Governed by {statute}. Indexed by Surplus Docket intelligence feed.</description>

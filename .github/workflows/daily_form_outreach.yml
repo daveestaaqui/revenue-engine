@@ -1,4 +1,4 @@
-name: Daily Autonomous Legal Outreach
+name: Elena's Daily Autonomous Legal Outreach Engine
 
 on:
   schedule:
@@ -17,13 +17,13 @@ on:
         type: boolean
         default: true
       channel:
-        description: 'Channel to execute: forms (Playwright - safe), email (SMTP drafts), or both'
+        description: 'Channel to execute: email (Elena drafts & IMAP sync), forms (Playwright manual), or both'
         required: false
-        default: 'forms'
+        default: 'email'
         type: choice
         options:
-          - forms
           - email
+          - forms
           - both
       confirm_live_send:
         description: 'Type CONFIRM_LIVE to authorize live SMTP transmission (ignored in dry-run)'
@@ -58,11 +58,11 @@ jobs:
           pip install -r requirements.txt
 
       - name: Install Playwright Headless Chromium (if forms channel selected)
-        if: github.event_name == 'schedule' || inputs.channel == 'forms' || inputs.channel == 'both' || inputs.channel == ''
+        if: github.event_name == 'workflow_dispatch' && (inputs.channel == 'forms' || inputs.channel == 'both')
         run: |
           playwright install --with-deps chromium
 
-      - name: Execute Automated Direct Email Outreach (Draft Mode & Zero-Spam Protection)
+      - name: Execute Elena's Legal Outreach & Draft Engine
         if: github.event_name == 'schedule' || inputs.channel == 'email' || inputs.channel == 'both' || inputs.channel == ''
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
@@ -76,20 +76,20 @@ jobs:
           # STRICT ZERO-SPAM POLICY: Scheduled automated runs NEVER dispatch live SMTP cold emails.
           # Live SMTP is strictly restricted to manual workflow_dispatch where dry_run is false AND confirm_live_send == 'CONFIRM_LIVE'.
           if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.dry_run }}" != "false" ] || [ "${{ github.event.inputs.confirm_live_send }}" != "CONFIRM_LIVE" ] || [ -z "$GMAIL_APP_PASS" ]; then
-            echo "🛡️ Zero-Spam Protection: Generating draft artifacts in dry-run mode (no SMTP transmission)..."
-            python outreach/generate_drafts.py --dry-run --limit="$LIMIT"
+            echo "🛡️ Zero-Spam Protection: Generating draft artifacts & syncing to Elena's Gmail Drafts..."
+            python outreach/generate_drafts.py --dry-run --upload-drafts --limit="$LIMIT"
           else
             echo "⚠️ Manual live SMTP dispatch explicitly authorized with confirmation..."
             python outreach/generate_drafts.py --send --limit="$LIMIT"
           fi
 
-      - name: Execute Form Outreach Batch (if selected)
-        if: github.event_name == 'schedule' || inputs.channel == 'forms' || inputs.channel == 'both'
+      - name: Execute Form Outreach Batch (if explicitly requested in workflow_dispatch)
+        if: github.event_name == 'workflow_dispatch' && (inputs.channel == 'forms' || inputs.channel == 'both')
         env:
           BATCH_LIMIT: ${{ inputs.limit || '12' }}
         run: |
           LIMIT="$BATCH_LIMIT"
-          if [ "${{ github.event_name }}" != "schedule" ] && [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             python outreach/form_outreach_engine.py --dry-run --limit="$LIMIT"
           else
             python outreach/form_outreach_engine.py --limit="$LIMIT" || {

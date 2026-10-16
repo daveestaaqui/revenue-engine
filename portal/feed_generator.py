@@ -17,7 +17,8 @@ from urllib.parse import urlsplit
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
-from enrichment.processor import process_county_dataset
+from enrichment.processor import process_real_records
+from scrapers.sources import collect_all
 from portal.pipeline_self_healer import (
     self_heal_record,
     generate_clio_matter_export,
@@ -33,69 +34,10 @@ def generate_b2b_exports():
     print(" 🚀 GENERATING B2B SURPLUS LEAD FEEDS (6-STATE NATIONAL SUITE)")
     print("==================================================================")
 
-    all_leads = []
-
-    # 1. Process Florida Dataset
-    fl_csv = DATA_DIR / "raw_florida_feed.csv"
-    if fl_csv.exists():
-        fl_raw = pd.read_csv(fl_csv).to_dict(orient="records")
-        for r in fl_raw:
-            healed_r = self_heal_record(r, default_state="FL", default_county="Orange")
-            r_type = str(healed_r.get("TYPE", "TAX_DEED")).strip().upper()
-            statute = "Fla. Stat. § 45.032" if r_type == "FORECLOSURE" else "Fla. Stat. § 197.582"
-            county_meta = {"state": "FL", "county": healed_r.get("County", "Orange"), "statute": statute, "record_type": r_type}
-            leads = process_county_dataset([healed_r], county_meta)
-            all_leads.extend(leads)
-
-    # 2. Process Texas Dataset
-    tx_csv = DATA_DIR / "raw_texas_feed.csv"
-    if tx_csv.exists():
-        tx_raw = pd.read_csv(tx_csv).to_dict(orient="records")
-        for r in tx_raw:
-            healed_r = self_heal_record(r, default_state="TX", default_county="Harris")
-            county_meta = {"state": "TX", "county": healed_r.get("County", "Harris"), "statute": "Tex. Tax Code § 34.04"}
-            leads = process_county_dataset([healed_r], county_meta)
-            all_leads.extend(leads)
-
-    # 3. Process Georgia Dataset
-    ga_csv = DATA_DIR / "raw_georgia_feed.csv"
-    if ga_csv.exists():
-        ga_raw = pd.read_csv(ga_csv).to_dict(orient="records")
-        for r in ga_raw:
-            healed_r = self_heal_record(r, default_state="GA", default_county="Fulton")
-            county_meta = {"state": "GA", "county": healed_r.get("County", "Fulton"), "statute": "O.C.G.A. § 48-4-5"}
-            leads = process_county_dataset([healed_r], county_meta)
-            all_leads.extend(leads)
-
-    # 4. Process North Carolina Dataset
-    nc_csv = DATA_DIR / "raw_nc_feed.csv"
-    if nc_csv.exists():
-        nc_raw = pd.read_csv(nc_csv).to_dict(orient="records")
-        for r in nc_raw:
-            healed_r = self_heal_record(r, default_state="NC", default_county="Wake")
-            county_meta = {"state": "NC", "county": healed_r.get("County", "Wake"), "statute": "N.C.G.S. § 105-374"}
-            leads = process_county_dataset([healed_r], county_meta)
-            all_leads.extend(leads)
-
-    # 5. Process Tennessee Dataset
-    tn_csv = DATA_DIR / "raw_tn_feed.csv"
-    if tn_csv.exists():
-        tn_raw = pd.read_csv(tn_csv).to_dict(orient="records")
-        for r in tn_raw:
-            healed_r = self_heal_record(r, default_state="TN", default_county="Davidson")
-            county_meta = {"state": "TN", "county": healed_r.get("County", "Davidson"), "statute": "T.C.A. § 67-5-2501"}
-            leads = process_county_dataset([healed_r], county_meta)
-            all_leads.extend(leads)
-
-    # 6. Process California Dataset
-    ca_csv = DATA_DIR / "raw_ca_feed.csv"
-    if ca_csv.exists():
-        ca_raw = pd.read_csv(ca_csv).to_dict(orient="records")
-        for r in ca_raw:
-            healed_r = self_heal_record(r, default_state="CA", default_county="Los Angeles")
-            county_meta = {"state": "CA", "county": healed_r.get("County", "Los Angeles"), "statute": "Cal. Rev. & Tax Code § 4675"}
-            leads = process_county_dataset([healed_r], county_meta)
-            all_leads.extend(leads)
+    # Real official county records, fetched live (with per-state last-good cache).
+    print("Fetching official county surplus lists...")
+    raw_records = collect_all()
+    all_leads = process_real_records(raw_records, min_amount=2500.0)
 
     if not all_leads:
         print("[!] No records processed.")
@@ -107,7 +49,7 @@ def generate_b2b_exports():
 
     def sanitize_for_spreadsheet(df: pd.DataFrame) -> pd.DataFrame:
         clean_df = df.copy()
-        for col in clean_df.select_dtypes(include=["object"]):
+        for col in clean_df.select_dtypes(include=["object", "string"]):
             clean_df[col] = clean_df[col].apply(
                 lambda x: f"'{x}" if isinstance(x, str) and x and x[0] in ("=", "+", "-", "@") else x
             )
@@ -144,14 +86,33 @@ def generate_b2b_exports():
         "CA": (df_all[df_all["State"] == "CA"], "California_Surplus_Feed", "Cal. Rev. & Tax Code § 4675", "california.json"),
     }
 
+    raw_file_map = {
+        "FL": DATA_DIR / "raw_florida_feed.csv",
+        "TX": DATA_DIR / "raw_texas_feed.csv",
+        "GA": DATA_DIR / "raw_georgia_feed.csv",
+        "NC": DATA_DIR / "raw_nc_feed.csv",
+        "TN": DATA_DIR / "raw_tn_feed.csv",
+        "CA": DATA_DIR / "raw_ca_feed.csv",
+    }
+
     for state_code, (df_state, file_base, statute, api_file) in state_dfs.items():
         if len(df_state) > 0:
             df_state_export = sanitize_for_spreadsheet(df_state)
             df_state_export.to_csv(EXPORTS_DIR / f"{file_base}.csv", index=False)
+            if state_code in raw_file_map:
+                df_state_export.to_csv(raw_file_map[state_code], index=False)
             try:
                 df_state_export.to_excel(EXPORTS_DIR / f"{file_base}.xlsx", index=False)
             except Exception:
                 pass
+        else:
+            # Write a clean header-only CSV for states with 0 active machine-readable records
+            empty_df = df_all.iloc[0:0]
+            empty_df.to_csv(EXPORTS_DIR / f"{file_base}.csv", index=False)
+            if state_code in raw_file_map:
+                empty_df.to_csv(raw_file_map[state_code], index=False)
+            for d in (EXPORTS_DIR, BASE_DIR / "site" / "exports"):
+                (d / f"{file_base}.xlsx").unlink(missing_ok=True)
 
     # Tri-State Core Feed (FL, TX, GA)
     df_tristate = df_all[df_all["State"].isin(["FL", "TX", "GA"])]
@@ -173,13 +134,14 @@ def generate_b2b_exports():
         redacted = lead.copy()
         raw_name = str(lead.get("Owner_Name", "")).strip()
         parts = raw_name.split()
-        if len(parts) >= 2:
+        if len(parts) >= 2 and "Assessed Titleholder" not in raw_name:
             initials = " & ".join([p[0] + "." for p in parts if p not in ("&", "AND", "OF", "THE", "ESTATE", "EST.")][:2])
             last_name = parts[-1]
             masked_last = last_name[0] + "█" * max(4, len(last_name) - 1)
             redacted["Owner_Name"] = f"{initials} {masked_last} [SUBSCRIBER KEY REQUIRED]"
         else:
             redacted["Owner_Name"] = "[REDACTED — SUBSCRIBER KEY REQUIRED]"
+        redacted["Owner_Name_Redacted"] = redacted["Owner_Name"]
 
         addr = str(lead.get("Property_Address", "")).strip()
         addr_parts = addr.split()
@@ -198,10 +160,8 @@ def generate_b2b_exports():
         else:
             redacted["Case_or_TaxDeed_No"] = "[REDACTED — SUBSCRIBER KEY REQUIRED]"
 
-        clerk_url = lead.get("Clerk_Verification_URL", "")
-        if clerk_url:
-            parsed = urlsplit(clerk_url)
-            redacted["Clerk_Verification_URL"] = f"{parsed.scheme}://{parsed.netloc}/"
+        # Preserve the official county document / deep link for verification
+        redacted["Clerk_Verification_URL"] = lead.get("Clerk_Verification_URL") or lead.get("Source_URL", "")
 
         redacted["Access_Status"] = "REDACTED_PREVIEW"
         return redacted
@@ -214,6 +174,22 @@ def generate_b2b_exports():
     api_health_path = API_V1_DIR / "health.json"
 
     redacted_leads = [redact_lead_for_public_sandbox(l) for l in all_leads]
+
+    # Also update public sample CSVs in site/assets/ with real redacted leads
+    site_assets = BASE_DIR / "site" / "assets"
+    site_assets.mkdir(parents=True, exist_ok=True)
+    df_sample = sanitize_for_spreadsheet(pd.DataFrame(redacted_leads[:25]))
+    for sample_name in ("sample_docket.csv", "sample_surplus_docket.csv", "sample_surplus_docket_feed.csv"):
+        df_sample.to_csv(site_assets / sample_name, index=False)
+    generate_clio_matter_export(redacted_leads[:15], site_assets / "clio_intake_template.csv")
+    generate_filevine_lead_export(redacted_leads[:15], site_assets / "filevine_intake_template.csv")
+
+    # Ensure legacy Florida sample filename in exports/ contains only real verified FL records
+    df_fl_real = df_all[df_all["State"] == "FL"]
+    if len(df_fl_real) > 0:
+        sanitize_for_spreadsheet(df_fl_real).to_csv(
+            EXPORTS_DIR / "Florida_Tri_County_Sample_MiamiDade_PalmBeach_Broward.csv", index=False
+        )
 
     api_payload = {
         "status": "subscription_required",
@@ -233,7 +209,9 @@ def generate_b2b_exports():
             "total_records_indexed": len(all_leads),
             "total_surplus_volume_usd": round(float(df_all["Surplus_Balance_USD"].sum()), 2),
             "preview_mode": "REDACTED_EVALUATION_SANDBOX",
-            "jurisdictions_monitored": ["FL", "TX", "GA", "NC", "TN", "CA"],
+            "jurisdictions_monitored": sorted(df_all["State"].unique().tolist()),
+            "counties_in_feed": sorted({f"{l['County']}, {l['State']}" for l in all_leads}),
+            "data_as_of": max((l.get("Retrieved_At") or "") for l in all_leads),
             "statutes": [
                 "Fla. Stat. § 197.582",
                 "Tex. Tax Code § 34.04",
@@ -278,7 +256,6 @@ def generate_b2b_exports():
             "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
             "authentication": "Bearer <sd_live_api_key>",
             "timestamp": datetime.now().isoformat(),
-            "uptime": "99.99%",
             "endpoints": [
                 "/api/v1/feed.json",
                 "/api/v1/florida.json",

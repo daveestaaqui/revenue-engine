@@ -65,17 +65,22 @@ export async function onRequestPost(context) {
     try {
         const payload = await request.text();
 
-        // Verify cryptographic signature if secret is configured in environment
-        if (env && env.STRIPE_WEBHOOK_SECRET) {
-            const signatureHeader = request.headers.get('stripe-signature');
-            const isValid = await verifyStripeSignature(payload, signatureHeader, env.STRIPE_WEBHOOK_SECRET);
-            if (!isValid) {
-                console.error('Invalid or unverified Stripe webhook signature.');
-                return new Response(JSON.stringify({ error: 'Invalid webhook signature.' }), {
-                    status: 401,
-                    headers: { 'Content-Type': 'application/json' }
-                });
-            }
+        // Verify cryptographic signature (fail-closed)
+        const signatureHeader = request.headers.get('stripe-signature');
+        if (!env || !env.STRIPE_WEBHOOK_SECRET || !signatureHeader) {
+            console.error('Missing Stripe webhook secret or signature header.');
+            return new Response(JSON.stringify({ error: 'Missing webhook signature or configuration.' }), {
+                status: 401,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+        const isValid = await verifyStripeSignature(payload, signatureHeader, env.STRIPE_WEBHOOK_SECRET);
+        if (!isValid) {
+            console.error('Invalid or unverified Stripe webhook signature.');
+            return new Response(JSON.stringify({ error: 'Invalid webhook signature.' }), {
+                status: 401,
+                headers: { 'Content-Type': 'application/json' }
+            });
         }
 
         const event = JSON.parse(payload);
