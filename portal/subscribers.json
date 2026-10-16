@@ -19,5 +19,27 @@
     ],
     "status": "ACTIVE",
     "subscribed_at": "2026-09-01T00:00:00Z"
+  },
+  {
+    "id": "SUB-20261016-002",
+    "email": "sandwichfitness@gmail.com",
+    "name": "David Mahler",
+    "firm": "Surplus Docket Executive",
+    "tier": "National Master Suite",
+    "jurisdictions": [
+      "FL",
+      "TX",
+      "GA",
+      "NC",
+      "TN",
+      "CA"
+    ],
+    "delivery_format": [
+      "CSV",
+      "Excel"
+    ],
+    "status": "ACTIVE",
+    "subscribed_at": "2026-10-16T14:36:58.017146+00:00",
+    "updated_at": "2026-10-16T14:36:58.017263+00:00"
   }
 ]

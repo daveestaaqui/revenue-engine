@@ -1,13 +1,18 @@
 {
   "status": "ready",
-  "generated_at": "2026-10-16T10:36:28.994004",
+  "generated_at": "2026-10-16T10:36:58.030769",
   "vault_sig": "5d868c224adfece9",
   "subscribers": [
     {
-      "email_hash": "f0d0f378f869f0b62b300ca7442ef4f7cde5d815f6f35174e0a6a56dffa24092",
-      "sub_token": "d23a5e244465159f5a6b6cbb",
-      "vault_payload": "595586f07d06d57be5a902b5ab9ea4a28da2ecc1da833596cb33b15e29409c47"
+      "email_hash": "e3020543ee04e8a60c441d69e2bc16bad5721808c890ac4836b516f7894d146c",
+      "sub_token": "88bc159edb03654d4e665a46",
+      "vault_payload": "9235d9881fd7d5d088070c15adb4f9babb96b1c0a815bcbd03ea33fb84436161"
+    },
+    {
+      "email_hash": "8a06a488d8fc6051dae95dcb925c77beeafb1af29245695822e3d869fb9f8617",
+      "sub_token": "b5a1c78ce2e05a000fa00921",
+      "vault_payload": "6e2f4fcbb8a74effc3f89457fe037b5f740fbfec651b09f96758b2fdcd25d32d"
     }
   ],
-  "active_subscriber_count": 1
+  "active_subscriber_count": 2
 }
