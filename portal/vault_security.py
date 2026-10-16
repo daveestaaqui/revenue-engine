@@ -43,11 +43,24 @@ def xor_crypt(data: bytes, key: bytes) -> bytes:
     return bytes(out)
 
 
+def normalize_date_token(date_str: Optional[str] = None) -> str:
+    """Normalizes any human-readable or machine date string to ISO YYYY-MM-DD."""
+    if not date_str:
+        return datetime.now().strftime("%Y-%m-%d")
+    clean = str(date_str).strip()
+    for fmt in ("%Y-%m-%d", "%B %d, %Y", "%b %d, %Y", "%Y%m%d"):
+        try:
+            return datetime.strptime(clean, fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            pass
+    return datetime.now().strftime("%Y-%m-%d")
+
+
 def get_current_vault_key(date_str: Optional[str] = None) -> str:
     """
     Derives deterministic 32-character hex vault key for the active publication cycle.
     """
-    date_token = date_str or datetime.now().strftime("%Y-%m-%d")
+    date_token = normalize_date_token(date_str)
     return hashlib.sha256(f"SD_VAULT_KEY_{date_token}_{VAULT_SALT}".encode("utf-8")).hexdigest()[:32]
 
 
@@ -90,7 +103,8 @@ def get_docket_unique_auth(email: str, docket_id: str, date_str: str) -> str:
     """
     normalized_email = email.strip().lower()
     normalized_docket = str(docket_id).strip().lower()
-    seed = f"{normalized_email}:{normalized_docket}:{date_str}:{VAULT_SALT}"
+    date_token = normalize_date_token(date_str)
+    seed = f"{normalized_email}:{normalized_docket}:{date_token}:{VAULT_SALT}"
     return hashlib.sha256(seed.encode("utf-8")).hexdigest()[:20]
 
 
