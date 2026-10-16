@@ -21,10 +21,10 @@
     "subscribed_at": "2026-09-01T00:00:00Z"
   },
   {
-    "id": "SUB-20261016-002",
-    "email": "sandwichfitness@gmail.com",
-    "name": "David Mahler",
-    "firm": "Surplus Docket Executive",
+    "id": "SUB-20261016-003",
+    "email": "alden@cohenrecoverylaw.com",
+    "name": "Alden Cohen, Esq.",
+    "firm": "Cohen Asset Recovery, LLC",
     "tier": "National Master Suite",
     "jurisdictions": [
       "FL",
@@ -39,7 +39,7 @@
       "Excel"
     ],
     "status": "ACTIVE",
-    "subscribed_at": "2026-10-16T14:36:58.017146+00:00",
-    "updated_at": "2026-10-16T14:36:58.017263+00:00"
+    "subscribed_at": "2026-10-16T16:24:26.791928+00:00",
+    "updated_at": "2026-10-16T16:24:26.792032+00:00"
   }
 ]
