@@ -45,16 +45,21 @@ REFERENCES = (
     "<179122056825.2170.16982405525916920611@surplusdocket.com>"
 )
 
+from portal.vault_security import build_subscriber_deep_url
+
+ALDEN_EMAIL = "alden@cohenrecoverylaw.com"
+DATE_TOKEN = "2026-10-16"
+
 # 100% Verified Deep Links with Alden's Active Subscriber Vault Token
 URL_CASE_1_CLERK = "https://publicrec.hillsclerk.com/Civil/registry_trust_balances/Registry_and_TrustAccounts_Balances_as_of_Wed_10_14_2026.pdf#search=22-CA-008975"
-URL_CASE_1_DOCKET = "https://surplusdocket.com/docket.html?docket=22-CA-008975&county=Hillsborough&state=FL&k=1b0126bb34b4be5152afad5521cd8f2c&auth=12b1651f2529a56e8bff&sub=9be441e88ead32528605f744"
+URL_CASE_1_DOCKET = build_subscriber_deep_url("22-CA-008975", "Hillsborough", "FL", ALDEN_EMAIL, DATE_TOKEN)
 
 URL_CASE_2_CLERK = "https://publicrec.hillsclerk.com/Civil/registry_trust_balances/Registry_and_TrustAccounts_Balances_as_of_Wed_10_14_2026.pdf#search=23-CA-016325"
-URL_CASE_2_DOCKET = "https://surplusdocket.com/docket.html?docket=23-CA-016325&county=Hillsborough&state=FL&k=1b0126bb34b4be5152afad5521cd8f2c&auth=034b645e4a7f75181faa&sub=9be441e88ead32528605f744"
+URL_CASE_2_DOCKET = build_subscriber_deep_url("23-CA-016325", "Hillsborough", "FL", ALDEN_EMAIL, DATE_TOKEN)
 
 URL_TAXDEED_CLERK = "https://www.hillsclerk.com/taxdeeds"
 URL_TAXDEED_XLSX = "https://www.hillsclerk.com/documents/d/guest/copy-of-weekly-tax-deed-spreadsheet-25-10-10-xlsx?download=true"
-URL_TAXDEED_DOCKET = "https://surplusdocket.com/docket.html?docket=18-LW-000360&county=Hillsborough&state=FL&k=1b0126bb34b4be5152afad5521cd8f2c&auth=ea97af465156e35e16db&sub=9be441e88ead32528605f744"
+URL_TAXDEED_DOCKET = build_subscriber_deep_url("18-LW-000360", "Hillsborough", "FL", ALDEN_EMAIL, DATE_TOKEN)
 
 TEXT_BODY = f"""Hi Alden, Phil, and Adam,
 

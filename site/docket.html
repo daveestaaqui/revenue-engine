@@ -258,7 +258,7 @@
             <div class="w-12 h-12 bg-amber-50 border border-amber-200 rounded-2xl flex items-center justify-center text-amber-600 mx-auto mb-4 font-bold text-xl">
                 !
             </div>
-            <h2 class="text-lg font-bold text-brand-navy mb-2">Docket Query Not Located in Current Active Sandbox</h2>
+            <h2 class="text-lg font-bold text-brand-navy mb-2">Docket Query Not Located in Active Registry</h2>
             <p class="text-xs text-slate-600 max-w-md mx-auto mb-6 leading-relaxed">
                 The specific case query may have been archived or is part of our full subscriber lead feed. You can search all current dockets below or inspect the live feed.
             </p>
@@ -533,6 +533,7 @@
 
                     if (vaultData && vaultData.dockets) {
                         const entry = vaultData.dockets[docketLookupId.toLowerCase()] || 
+                                      (r.Parcel_ID && vaultData.dockets[r.Parcel_ID.toLowerCase()]) ||
                                       (r.parcel_id_raw && vaultData.dockets[r.parcel_id_raw.toLowerCase()]);
                         if (entry && entry.cipher) {
                             const docketKey = await sha256Bytes(new TextEncoder().encode(activeVaultKey + entry.docket_id.toLowerCase()));

@@ -551,7 +551,6 @@ def dispatch_feed(is_dry_run=False, recipient_override=None, force=False):
 
     server = None
     sent_count = 0
-    server = None
     try:
         server = smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=30)
         server.starttls()

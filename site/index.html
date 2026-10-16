@@ -1882,6 +1882,10 @@
             const verifyNote = r.Verify_Note || 'Official County Source';
             const caseNo = escapeHtml(r.Case_or_TaxDeed_No || 'N/A');
             const owner = escapeHtml(r.Owner_Name || 'N/A');
+            const docketParam = encodeURIComponent(r.docket_id || r.Case_or_TaxDeed_No || '');
+            const countyParam = encodeURIComponent(r.County || '');
+            const stateParam = encodeURIComponent(r.State || '');
+            const docketLink = `/docket.html?docket=${docketParam}&county=${countyParam}&state=${stateParam}`;
 
             return `
             <div class="docket-card bg-white rounded-xl border border-slate-200 p-4 shadow-sm" data-state="${escapeHtml(r.State)}" data-amount="${bal}">
@@ -1893,7 +1897,7 @@
                     <div class="text-right font-heading font-black text-brand-navy text-sm">${balanceFormatted}</div>
                 </div>
                 <div class="flex items-center justify-between text-xs text-slate-500 font-mono mb-2.5">
-                    <span class="text-brand-green font-bold truncate max-w-[200px]" title="${caseNo}">${caseNo}</span>
+                    <a href="${docketLink}" class="text-brand-green font-bold truncate max-w-[200px] hover:underline" title="${caseNo}">${caseNo}</a>
                     <span>${saleDateFormatted}</span>
                 </div>
                 <details class="group text-xs text-slate-600 border-t border-slate-100 pt-2">
@@ -1930,12 +1934,16 @@
             const verifyNote = r.Verify_Note || 'Official County Source';
             const caseNo = escapeHtml(r.Case_or_TaxDeed_No || 'N/A');
             const owner = escapeHtml(r.Owner_Name || 'N/A');
+            const docketParam = encodeURIComponent(r.docket_id || r.Case_or_TaxDeed_No || '');
+            const countyParam = encodeURIComponent(r.County || '');
+            const stateParam = encodeURIComponent(r.State || '');
+            const docketLink = `/docket.html?docket=${docketParam}&county=${countyParam}&state=${stateParam}`;
 
             return `
             <tr data-state="${escapeHtml(r.State)}" data-amount="${bal}" class="hover:bg-slate-50 transition-colors group">
                 <td class="py-3 px-4 sm:px-5 font-sans"><span class="inline-flex items-center gap-1.5"><span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-brand-navy border border-slate-200">${escapeHtml(r.State)}</span> ${tierBadge}</span></td>
                 <td class="py-3 px-4 sm:px-5 font-sans font-semibold text-brand-navy">${escapeHtml(r.County)}</td>
-                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold">${caseNo}</td>
+                <td class="py-3 px-4 sm:px-5 text-brand-green font-bold"><a href="${docketLink}" class="hover:underline">${caseNo}</a></td>
                 <td class="py-3 px-4 sm:px-5 font-sans text-xs text-slate-600 font-semibold">${saleDateFormatted}</td>
                 <td class="py-3 px-4 sm:px-5 font-sans truncate max-w-[180px]" title="${owner}">${owner}</td>
                 <td class="py-3 px-4 sm:px-5 text-right text-brand-navy font-bold">${balanceFormatted}</td>

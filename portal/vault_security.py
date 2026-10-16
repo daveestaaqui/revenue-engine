@@ -48,7 +48,9 @@ def normalize_date_token(date_str: Optional[str] = None) -> str:
     if not date_str:
         return datetime.now().strftime("%Y-%m-%d")
     clean = str(date_str).strip()
-    for fmt in ("%Y-%m-%d", "%B %d, %Y", "%b %d, %Y", "%Y%m%d"):
+    if "T" in clean:
+        clean = clean.split("T")[0].strip()
+    for fmt in ("%Y-%m-%d", "%B %d, %Y", "%b %d, %Y", "%Y%m%d", "%m/%d/%Y", "%Y/%m/%d"):
         try:
             return datetime.strptime(clean, fmt).strftime("%Y-%m-%d")
         except ValueError:
@@ -135,7 +137,7 @@ def encrypt_docket_payload(lead: Dict[str, Any], vault_key: str) -> str:
     Encrypts unredacted sensitive docket dossier fields with the vault key.
     Returns hex-encoded ciphertext.
     """
-    docket_id = str(lead.get("Case_or_TaxDeed_No") or lead.get("Parcel_ID") or "").strip()
+    docket_id = str(lead.get("Case_or_TaxDeed_No") or lead.get("docket_id") or lead.get("Parcel_ID") or "").strip()
     raw_payload = {
         "docket_id": docket_id,
         "Case_or_TaxDeed_No": lead.get("Case_or_TaxDeed_No", ""),
@@ -204,7 +206,8 @@ def generate_vault_and_auth_registry(all_leads: list, subscribers: list,
     for lead in all_leads:
         case_no = str(lead.get("Case_or_TaxDeed_No", "")).strip()
         parcel = str(lead.get("Parcel_ID", "")).strip()
-        docket_id = case_no or parcel
+        docket_id_lead = str(lead.get("docket_id", "")).strip()
+        docket_id = case_no or docket_id_lead or parcel
         if not docket_id:
             continue
 
@@ -221,6 +224,8 @@ def generate_vault_and_auth_registry(all_leads: list, subscribers: list,
             "cipher": cipher_hex,
         }
         dockets_map[docket_id.lower()] = entry
+        if docket_id_lead and docket_id_lead.lower() not in dockets_map:
+            dockets_map[docket_id_lead.lower()] = entry
         if parcel and parcel.lower() not in dockets_map:
             dockets_map[parcel.lower()] = entry
 
