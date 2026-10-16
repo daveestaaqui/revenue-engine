@@ -461,7 +461,13 @@ def dispatch_feed(is_dry_run=False, recipient_override=None, force=False):
     print("=" * 70)
     print(f"Mode           : {'DRY RUN (Preview Only)' if is_dry_run else 'LIVE SMTP DISPATCH'}")
     print(f"From Sender    : {FROM_NAME} <{FROM_EMAIL}>")
-    print(f"SMTP Server    : {SMTP_HOST}:{SMTP_PORT}\n")
+    # Ensure any recent Stripe checkout subscribers are ingested before loading
+    if not is_dry_run and not recipient_override:
+        try:
+            from portal.sync_stripe_subscribers import run_sync
+            run_sync()
+        except Exception as sync_err:
+            print(f"Notice during Stripe subscriber sync: {sync_err}")
 
     subscribers = load_active_subscribers()
     if recipient_override:

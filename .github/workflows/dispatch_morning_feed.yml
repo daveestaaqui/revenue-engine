@@ -60,6 +60,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Synchronize Active Stripe Subscribers
+        env:
+          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
+        run: |
+          python portal/sync_stripe_subscribers.py || echo "Stripe sync note: continuing..."
+
       - name: Dispatch Verified Morning Intelligence Feed to Subscribers
         run: |
           ARGS=""

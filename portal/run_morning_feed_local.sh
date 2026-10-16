@@ -38,6 +38,9 @@ git pull --rebase origin main --quiet || true
 # Step 2: Run feed generation if raw files were updated
 python3 portal/feed_generator.py --quiet 2>/dev/null || python3 portal/feed_generator.py
 
+# Step 2.5: Synchronize recent Stripe subscribers
+python3 portal/sync_stripe_subscribers.py || true
+
 # Step 3: Dispatch Morning Feed (idempotent — skips if already sent today)
 python3 portal/dispatch_morning_feed.py --send
 
