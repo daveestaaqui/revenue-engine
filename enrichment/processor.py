@@ -475,10 +475,13 @@ def enrich_real_record(rec):
 
     parcel_id = str(rec.get("Parcel_ID") or "").strip()
     case_no = str(rec.get("Case_or_TaxDeed_No") or "").strip()
-    if not case_no or case_no.upper() in ("N/A", "TBD", "UNKNOWN", "NONE") or not re.search(r"\d+", case_no):
-        case_no = f"APN-{parcel_id}" if (parcel_id and re.search(r"\d+", parcel_id)) else ""
+    if case_no.upper() in ("N/A", "TBD", "UNKNOWN", "NONE") or not re.search(r"\d+", case_no):
+        case_no = ""
 
-    if not case_no or not re.search(r"\d+", case_no):
+    # Must have either a valid court case number or a valid parcel ID
+    has_valid_case = bool(case_no and re.search(r"\d+", case_no))
+    has_valid_parcel = bool(parcel_id and re.search(r"\d+", parcel_id))
+    if not has_valid_case and not has_valid_parcel:
         return None
 
     sale_dt = _parse_date(rec.get("Sale_Date"))

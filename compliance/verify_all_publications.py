@@ -186,11 +186,16 @@ def validate_single_record(record: dict, source_label: str = "Record") -> list:
     if not county or len(county) < 2:
         errors.append(f"[{source_label}] Missing or invalid County name: '{county}'")
 
-    # 3. Docket / Case Number Format Check
-    if not docket or docket in ["N/A", "TBD", "UNKNOWN", "TEST", "1234"]:
-        errors.append(f"[{source_label}] Invalid or placeholder docket number: '{docket}'")
-    elif not re.search(r'\d+', docket):
-        errors.append(f"[{source_label}] Docket number '{docket}' contains zero digits")
+    # 3. Docket / Case Number or Parcel ID Format Check
+    parcel_id = record.get("Parcel_ID", "").strip()
+    primary_identifier = docket or parcel_id
+    if not primary_identifier or primary_identifier in ["N/A", "TBD", "UNKNOWN", "TEST", "1234"]:
+        errors.append(f"[{source_label}] Record must have an authentic Case_or_TaxDeed_No or Parcel_ID, got case='{docket}', parcel='{parcel_id}'")
+    elif not re.search(r'\d+', primary_identifier):
+        errors.append(f"[{source_label}] Identifier '{primary_identifier}' contains zero digits")
+    for prefix in ("GW-", "DK-", "SD-7102-", "LA-ITEM-", "2022-A00807", "APN-", "OC-"):
+        if docket.startswith(prefix):
+            errors.append(f"[{source_label}] Synthetic case prefix '{prefix}' forbidden: '{docket}'")
 
     # 4. Owner & Institutional Lien Filter Check
     if not owner or owner in ["UNKNOWN", "N/A", "TEST", "JOHN DOE"]:

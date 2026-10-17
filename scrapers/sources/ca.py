@@ -83,7 +83,7 @@ def _fetch_los_angeles_county() -> list[dict]:
                 records.append({
                     "State": "CA",
                     "County": "Los Angeles",
-                    "Case_or_TaxDeed_No": f"LA-ITEM-{item_no}-{apn}",
+                    "Case_or_TaxDeed_No": "",
                     "Parcel_ID": apn,
                     "Owner_Name": f"Assessed Titleholder of Record (APN {apn})",
                     "Property_Address": f"Assessor Parcel {apn}, Los Angeles County, CA",
@@ -138,7 +138,7 @@ def _fetch_orange_county_ca() -> list[dict]:
         records.append({
             "State": "CA",
             "County": "Orange",
-            "Case_or_TaxDeed_No": f"OC-{tax_def_no}",
+            "Case_or_TaxDeed_No": "",
             "Parcel_ID": apn,
             "Owner_Name": owner,
             "Property_Address": addr,
@@ -196,7 +196,7 @@ def _fetch_san_diego_county() -> list[dict]:
             records.append({
                 "State": "CA",
                 "County": "San Diego",
-                "Case_or_TaxDeed_No": f"SD-7102-{item_no}",
+                "Case_or_TaxDeed_No": "",
                 "Parcel_ID": apn,
                 "Owner_Name": owner,
                 "Property_Address": f"Assessor Parcel {apn}, San Diego County, CA",

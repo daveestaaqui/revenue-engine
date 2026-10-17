@@ -3670,5 +3670,383 @@
     "cost_usd": 0.0,
     "estimated_cost_usd": 0.0,
     "status": "failed: HTTP Error 403: Forbidden"
+  },
+  {
+    "timestamp": "2026-10-17T18:30:12Z",
+    "provider": "google_gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "unit_test",
+    "input_tokens": 50,
+    "output_tokens": 25,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:30:12Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 120,
+    "output_tokens": 45,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:30:12Z",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "task_type": "text_generation",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "skipped_zero_cost_policy"
+  },
+  {
+    "timestamp": "2026-10-17T18:30:13Z",
+    "provider": "gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "test_golden_benchmark",
+    "input_tokens": 150,
+    "output_tokens": 50,
+    "audio_seconds": 0,
+    "cost_usd": 3.5e-05,
+    "estimated_cost_usd": 3.5e-05,
+    "status": "success",
+    "metadata": {
+      "test": "golden_benchmark"
+    }
+  },
+  {
+    "timestamp": "2026-10-17T18:30:13Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "failed: HTTP Error 403: Forbidden"
+  },
+  {
+    "timestamp": "2026-10-17T18:30:28Z",
+    "provider": "google_gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "unit_test",
+    "input_tokens": 50,
+    "output_tokens": 25,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:30:28Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 120,
+    "output_tokens": 45,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:30:28Z",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "task_type": "text_generation",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "skipped_zero_cost_policy"
+  },
+  {
+    "timestamp": "2026-10-17T18:30:30Z",
+    "provider": "gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "test_golden_benchmark",
+    "input_tokens": 150,
+    "output_tokens": 50,
+    "audio_seconds": 0,
+    "cost_usd": 3.5e-05,
+    "estimated_cost_usd": 3.5e-05,
+    "status": "success",
+    "metadata": {
+      "test": "golden_benchmark"
+    }
+  },
+  {
+    "timestamp": "2026-10-17T18:30:30Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "failed: HTTP Error 403: Forbidden"
+  },
+  {
+    "timestamp": "2026-10-17T18:32:41Z",
+    "provider": "google_gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "unit_test",
+    "input_tokens": 50,
+    "output_tokens": 25,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:32:41Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 120,
+    "output_tokens": 45,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:32:41Z",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "task_type": "text_generation",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "skipped_zero_cost_policy"
+  },
+  {
+    "timestamp": "2026-10-17T18:32:42Z",
+    "provider": "gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "test_golden_benchmark",
+    "input_tokens": 150,
+    "output_tokens": 50,
+    "audio_seconds": 0,
+    "cost_usd": 3.5e-05,
+    "estimated_cost_usd": 3.5e-05,
+    "status": "success",
+    "metadata": {
+      "test": "golden_benchmark"
+    }
+  },
+  {
+    "timestamp": "2026-10-17T18:32:42Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "failed: HTTP Error 403: Forbidden"
+  },
+  {
+    "timestamp": "2026-10-17T18:32:53Z",
+    "provider": "google_gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "unit_test",
+    "input_tokens": 50,
+    "output_tokens": 25,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:32:53Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 120,
+    "output_tokens": 45,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:32:54Z",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "task_type": "text_generation",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "skipped_zero_cost_policy"
+  },
+  {
+    "timestamp": "2026-10-17T18:32:55Z",
+    "provider": "gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "test_golden_benchmark",
+    "input_tokens": 150,
+    "output_tokens": 50,
+    "audio_seconds": 0,
+    "cost_usd": 3.5e-05,
+    "estimated_cost_usd": 3.5e-05,
+    "status": "success",
+    "metadata": {
+      "test": "golden_benchmark"
+    }
+  },
+  {
+    "timestamp": "2026-10-17T18:32:55Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "failed: HTTP Error 403: Forbidden"
+  },
+  {
+    "timestamp": "2026-10-17T18:33:19Z",
+    "provider": "google_gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "unit_test",
+    "input_tokens": 50,
+    "output_tokens": 25,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:33:19Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 120,
+    "output_tokens": 45,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:33:19Z",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "task_type": "text_generation",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "skipped_zero_cost_policy"
+  },
+  {
+    "timestamp": "2026-10-17T18:33:21Z",
+    "provider": "gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "test_golden_benchmark",
+    "input_tokens": 150,
+    "output_tokens": 50,
+    "audio_seconds": 0,
+    "cost_usd": 3.5e-05,
+    "estimated_cost_usd": 3.5e-05,
+    "status": "success",
+    "metadata": {
+      "test": "golden_benchmark"
+    }
+  },
+  {
+    "timestamp": "2026-10-17T18:33:21Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "failed: HTTP Error 403: Forbidden"
+  },
+  {
+    "timestamp": "2026-10-17T18:33:46Z",
+    "provider": "google_gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "unit_test",
+    "input_tokens": 50,
+    "output_tokens": 25,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:33:46Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 120,
+    "output_tokens": 45,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "success"
+  },
+  {
+    "timestamp": "2026-10-17T18:33:46Z",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "task_type": "text_generation",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "skipped_zero_cost_policy"
+  },
+  {
+    "timestamp": "2026-10-17T18:33:47Z",
+    "provider": "gemini",
+    "model": "gemini-1.5-flash",
+    "task_type": "test_golden_benchmark",
+    "input_tokens": 150,
+    "output_tokens": 50,
+    "audio_seconds": 0,
+    "cost_usd": 3.5e-05,
+    "estimated_cost_usd": 3.5e-05,
+    "status": "success",
+    "metadata": {
+      "test": "golden_benchmark"
+    }
+  },
+  {
+    "timestamp": "2026-10-17T18:33:47Z",
+    "provider": "google_gemini",
+    "model": "gemini-2.0-flash",
+    "task_type": "audio_transcription_and_extraction",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "failed: HTTP Error 403: Forbidden"
   }
 ]

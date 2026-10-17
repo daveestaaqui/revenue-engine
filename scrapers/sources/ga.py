@@ -117,7 +117,7 @@ def _fetch_dekalb_county() -> list[dict]:
         records.append({
             "State": "GA",
             "County": "DeKalb",
-            "Case_or_TaxDeed_No": f"DK-{parcel_compact}",
+            "Case_or_TaxDeed_No": "",
             "Parcel_ID": parcel_id,
             "Owner_Name": owner,
             "Property_Address": address,
@@ -181,7 +181,7 @@ def _fetch_gwinnett_county() -> list[dict]:
         records.append({
             "State": "GA",
             "County": "Gwinnett",
-            "Case_or_TaxDeed_No": f"GW-{parcel_compact}",
+            "Case_or_TaxDeed_No": "",
             "Parcel_ID": parcel_id,
             "Owner_Name": owner,
             "Property_Address": situs,

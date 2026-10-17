@@ -221,16 +221,7 @@ ADDITIONAL_TARGETS = [
         "Style_Notes": "Boutique Southern California firm",
         "Practice_Details": "Active in Riverside and San Bernardino county tax collector claims"
     },
-    {
-        "Name": "Dennis P. Block",
-        "Firm": "Dennis P. Block & Associates",
-        "Email": "dennis@evict123.com",
-        "State": "CA",
-        "Specialty": "Real Estate Litigation & Surplus",
-        "Source_URL": "https://evict123.com",
-        "Style_Notes": "High-volume real estate practice",
-        "Practice_Details": "Handles real estate property actions across Los Angeles County"
-    },
+
     {
         "Name": "Steven R. Lovett",
         "Firm": "Law Offices of Steven R. Lovett",
@@ -273,16 +264,7 @@ ADDITIONAL_TARGETS = [
         "Style_Notes": "Asset recovery practice",
         "Practice_Details": "Handles excess proceeds claims across Fulton, DeKalb, and Cobb counties"
     },
-    {
-        "Name": "Stephen M. Reba",
-        "Firm": "Reba Law LLC",
-        "Email": "stephen@rebalaw.com",
-        "State": "GA",
-        "Specialty": "Tax Sale Excess Funds & Real Estate",
-        "Source_URL": "https://rebalaw.com",
-        "Style_Notes": "Atlanta property litigator",
-        "Practice_Details": "Active in Gwinnett and Clayton County tax commissioner claims"
-    },
+
     {
         "Name": "J. William Pierce",
         "Firm": "Pierce Law Group, LLC",

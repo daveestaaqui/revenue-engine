@@ -55,9 +55,9 @@ GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 
-DEFAULT_FROM_NAME = os.getenv("TOOL_OUTREACH_FROM_NAME", "Elena Brooks")
-DEFAULT_FROM_EMAIL = os.getenv("TOOL_OUTREACH_FROM_EMAIL", "elena.brooks@surplusdocket.com")
-DEFAULT_REPLY_TO = os.getenv("TOOL_OUTREACH_REPLY_TO", "elena.brooks@surplusdocket.com")
+DEFAULT_FROM_NAME = os.getenv("TOOL_OUTREACH_FROM_NAME", "David Mahler")
+DEFAULT_FROM_EMAIL = os.getenv("TOOL_OUTREACH_FROM_EMAIL", "david@surplusdocket.com")
+DEFAULT_REPLY_TO = os.getenv("TOOL_OUTREACH_REPLY_TO", "david@surplusdocket.com")
 
 
 TOOLS_HUB_URL = "https://surplusdocket.com/tools.html"
@@ -307,22 +307,6 @@ def send_email_smtp(to_email: str, subject: str, text_body: str, html_body: str)
     msg["Reply-To"] = DEFAULT_REPLY_TO
     msg["Date"] = email.utils.formatdate(localtime=True)
     msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
-
-    # Strict Elena Brooks identity & anti-leak sanitization
-    text_body = (
-        text_body
-        .replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
-        .replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
-        .replace("Dave Mahler", "Elena Brooks")
-        .replace("David Mahler", "Elena Brooks")
-    )
-    html_body = (
-        html_body
-        .replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
-        .replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
-        .replace("Dave Mahler", "Elena Brooks")
-        .replace("David Mahler", "Elena Brooks")
-    )
 
     msg.attach(MIMEText(text_body, "plain", "utf-8"))
     msg.attach(MIMEText(html_body, "html", "utf-8"))

@@ -68,12 +68,11 @@ def _fetch_davidson_county() -> list[dict]:
         if balance <= 0:
             continue
 
-        docket_id = f"{case_no}-{parcel_id}"
         verify_url = f"{pdf_url}#search={urllib.parse.quote(parcel_id)}"
         records.append({
             "State": "TN",
             "County": "Davidson",
-            "Case_or_TaxDeed_No": docket_id,
+            "Case_or_TaxDeed_No": case_no,
             "Parcel_ID": parcel_id,
             "Owner_Name": re.sub(r"\s+", " ", taxpayer).strip(),
             "Property_Address": f"Parcel {parcel_id}, Metropolitan Nashville & Davidson County, TN",

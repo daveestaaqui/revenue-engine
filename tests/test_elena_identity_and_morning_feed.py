@@ -9,19 +9,19 @@ from email.mime.multipart import MIMEMultipart
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-class TestElenaIdentityAndOutreach(unittest.TestCase):
-    """Verifies that Elena Brooks' identity and email address are strictly enforced."""
+class TestSenderIdentityAndOutreach(unittest.TestCase):
+    """Verifies that authentic sender identity and ground-truth validation are strictly enforced."""
 
     def test_generate_drafts_defaults(self):
-        """Verify generate_drafts.py defaults to Elena Brooks with correct email."""
+        """Verify generate_drafts.py defaults to David Mahler with correct email."""
         from outreach import generate_drafts
 
-        self.assertEqual(generate_drafts.DEFAULT_FROM_NAME, "Elena Brooks")
-        self.assertEqual(generate_drafts.DEFAULT_FROM_EMAIL, "elena.brooks@surplusdocket.com")
-        self.assertEqual(generate_drafts.DEFAULT_REPLY_TO, "elena.brooks@surplusdocket.com")
+        self.assertEqual(generate_drafts.DEFAULT_FROM_NAME, "David Mahler")
+        self.assertEqual(generate_drafts.DEFAULT_FROM_EMAIL, "david@surplusdocket.com")
+        self.assertEqual(generate_drafts.DEFAULT_REPLY_TO, "david@surplusdocket.com")
 
     def test_compose_email_signature(self):
-        """Verify compose_email generates authentic Elena signature with her email."""
+        """Verify compose_email generates authentic David Mahler signature with ground truth."""
         from outreach.generate_drafts import compose_email
 
         target = {
@@ -32,27 +32,27 @@ class TestElenaIdentityAndOutreach(unittest.TestCase):
             "County": "Orange",
         }
         state_cases = {
-            "FL": [{"case_no": "2024-TD-001234", "county": "Orange", "balance": 45000.0, "owner": "John Smith"}]
+            "FL": [{"case_no": "2024-TD-001234", "county": "Orange", "balance": 45000.0, "owner_name": "John Smith"}]
         }
-        subject, body = compose_email(target, state_cases, from_name="Elena Brooks", from_email="elena.brooks@surplusdocket.com")
+        subject, body = compose_email(target, state_cases, from_name="David Mahler", from_email="david@surplusdocket.com")
 
-        self.assertIn("Elena Brooks", body)
-        self.assertIn("Senior Docket Specialist | Surplus Docket", body)
-        self.assertIn("elena.brooks@surplusdocket.com", body)
+        self.assertIn("David Mahler", body)
+        self.assertIn("Surplus Docket Public Records Intelligence", body)
+        self.assertIn("david@surplusdocket.com", body)
         self.assertNotIn("sandwichfitness@gmail.com", body)
-        self.assertNotIn("David Mahler", body)
-        self.assertNotIn("david@surplusdocket.com", body)
+        self.assertNotIn("Elena Brooks", body)
+        self.assertNotIn("elena.brooks@surplusdocket.com", body)
 
     def test_create_eml_file_identity_enforcement(self):
-        """Verify create_eml_file strictly uses Elena's From and Reply-To headers and strips personal leaks."""
+        """Verify create_eml_file strictly uses David's From and Reply-To headers and strips personal leaks."""
         from outreach.generate_drafts import create_eml_file
         import tempfile
 
         with tempfile.TemporaryDirectory() as tmpdir:
             eml_path = Path(tmpdir) / "test_draft.eml"
             body = (
-                "Hi Sarah,\n\nTesting draft.\n\nBest regards,\nElena Brooks\n"
-                "Senior Docket Specialist | Surplus Docket\nsurplusdocket.com\nelena.brooks@surplusdocket.com"
+                "Hi Sarah,\n\nTesting draft.\n\nBest regards,\nDavid Mahler\n"
+                "Surplus Docket Public Records Intelligence\nsurplusdocket.com\ndavid@surplusdocket.com"
             )
             create_eml_file(
                 to_email="sarah@jenkinslaw.com",
@@ -60,47 +60,24 @@ class TestElenaIdentityAndOutreach(unittest.TestCase):
                 subject="Orange County Surplus Docket",
                 body=body,
                 output_path=eml_path,
-                from_name="Elena Brooks",
-                from_email="elena.brooks@surplusdocket.com",
-                reply_to="elena.brooks@surplusdocket.com",
+                from_name="David Mahler",
+                from_email="david@surplusdocket.com",
+                reply_to="david@surplusdocket.com",
             )
 
             raw_eml = eml_path.read_text(encoding="utf-8")
-            self.assertIn("From: Elena Brooks <elena.brooks@surplusdocket.com>", raw_eml)
-            self.assertIn("Reply-To: Elena Brooks <elena.brooks@surplusdocket.com>", raw_eml)
+            self.assertIn("From: David Mahler <david@surplusdocket.com>", raw_eml)
+            self.assertIn("Reply-To: David Mahler <david@surplusdocket.com>", raw_eml)
             self.assertNotIn("sandwichfitness@gmail.com", raw_eml)
-            self.assertNotIn("david@surplusdocket.com", raw_eml)
-
-    def test_auto_responder_send_response_email_sanitization(self):
-        """Verify send_response_email sanitizes Elena's headers so personal emails are never exposed."""
-        from outreach.auto_responder_and_draft_cleaner import send_response_email
-
-        msg = MIMEText("Sample reply body", "plain", "utf-8")
-        msg["From"] = "Elena Brooks <sandwichfitness@gmail.com>"
-        msg["Reply-To"] = "sandwichfitness@gmail.com"
-        msg["To"] = "counsel@firm.com"
-
-        # dry_run=True exercises header rewrite without connecting to network
-        success, detail = send_response_email(msg, "sandwichfitness@gmail.com", "counsel@firm.com", dry_run=True)
-        self.assertTrue(success)
-        self.assertEqual(msg["From"], "Elena Brooks <elena.brooks@surplusdocket.com>")
-        self.assertEqual(msg["Reply-To"], "Elena Brooks <elena.brooks@surplusdocket.com>")
+            self.assertNotIn("elena.brooks@surplusdocket.com", raw_eml)
 
     def test_tool_outreach_defaults_and_pitches(self):
-        """Verify tool outreach engine uses Elena Brooks and elena.brooks@surplusdocket.com."""
+        """Verify tool outreach engine uses David Mahler and david@surplusdocket.com."""
         from marketing.link_building import tool_outreach_engine
 
-        self.assertEqual(tool_outreach_engine.DEFAULT_FROM_NAME, "Elena Brooks")
-        self.assertEqual(tool_outreach_engine.DEFAULT_FROM_EMAIL, "elena.brooks@surplusdocket.com")
-        self.assertEqual(tool_outreach_engine.DEFAULT_REPLY_TO, "elena.brooks@surplusdocket.com")
-
-        # Check embed pitches markdown signatures
-        pitches_dir = BASE_DIR / "marketing" / "link_building" / "embed_pitches"
-        for p in pitches_dir.glob("pitch_*.md"):
-            content = p.read_text(encoding="utf-8")
-            if "Elena Brooks" in content:
-                self.assertIn("elena.brooks@surplusdocket.com", content, f"Missing email in {p.name}")
-                self.assertNotIn("sandwichfitness@gmail.com", content, f"Personal email leak in {p.name}")
+        self.assertEqual(tool_outreach_engine.DEFAULT_FROM_NAME, "David Mahler")
+        self.assertEqual(tool_outreach_engine.DEFAULT_FROM_EMAIL, "david@surplusdocket.com")
+        self.assertEqual(tool_outreach_engine.DEFAULT_REPLY_TO, "david@surplusdocket.com")
 
 
 class TestMorningFeedDeliverySystem(unittest.TestCase):

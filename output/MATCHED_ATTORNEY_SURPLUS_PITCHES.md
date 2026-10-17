@@ -57,8 +57,6 @@ Surplus Docket | https://surplusdocket.com
 ```
 
 ### 3. Dennis P. Block — Dennis P. Block & Associates (CA)
-- **Direct Email:** `dennis@evict123.com`
-- **Contact Form URL (for Chrome Prompt):** https://evict123.com/contact/
 - **Matched Case Hook:** `SD-7102-0263` (San Diego County) — **$881,663.35 Surplus** ($176,332.67 Attorney Fee)
 - **Subject Line:** `Unclaimed San Diego County surplus docket SD-7102-0263 ($881,663 balance)`
 ```text

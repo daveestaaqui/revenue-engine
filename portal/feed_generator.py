@@ -151,18 +151,21 @@ def generate_b2b_exports():
             redacted["Property_Address"] = "[REDACTED — SUBSCRIBER ACCESS ONLY]"
 
         raw_case = str(lead.get("Case_or_TaxDeed_No", "")).strip()
+        raw_parcel = str(lead.get("Parcel_ID", "")).strip()
         if raw_case:
             if "-" in raw_case:
                 prefix = raw_case.rsplit("-", 1)[0]
                 redacted["Case_or_TaxDeed_No"] = f"{prefix}-████ [SUBSCRIBER KEY REQUIRED]"
             else:
                 redacted["Case_or_TaxDeed_No"] = raw_case[:4] + "████ [SUBSCRIBER KEY REQUIRED]"
+        elif raw_parcel:
+            redacted["Case_or_TaxDeed_No"] = f"Parcel {raw_parcel[:4]}████ [SUBSCRIBER KEY REQUIRED]"
         else:
             redacted["Case_or_TaxDeed_No"] = "[REDACTED — SUBSCRIBER KEY REQUIRED]"
 
         # Preserve exact lookup identifiers for URL deep-linking and verification
-        redacted["docket_id"] = raw_case
-        redacted["parcel_id_raw"] = str(lead.get("Parcel_ID", "")).strip()
+        redacted["docket_id"] = raw_case or raw_parcel
+        redacted["parcel_id_raw"] = raw_parcel
 
         # Preserve the official county document / deep link for verification
         redacted["Clerk_Verification_URL"] = lead.get("Clerk_Verification_URL") or lead.get("Source_URL", "")

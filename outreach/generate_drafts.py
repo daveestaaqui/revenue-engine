@@ -31,6 +31,10 @@ from email.mime.text import MIMEText
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+
+from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
+
 OUTREACH_DIR = BASE_DIR / "outreach"
 HIGH_CONVICTION_CSV = OUTREACH_DIR / "high_conviction_attorneys.csv"
 MASTER_TARGETS_CSV = OUTREACH_DIR / "master_ranked_attorney_targets.csv"
@@ -68,23 +72,9 @@ GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 
-raw_from_name = os.getenv("FROM_NAME", "Elena Brooks")
-if not raw_from_name or raw_from_name in ("Surplus Docket Intelligence", "Surplus Docket Compliance & Research Desk", "Surplus Docket"):
-    DEFAULT_FROM_NAME = "Elena Brooks"
-else:
-    DEFAULT_FROM_NAME = raw_from_name
-
-raw_from_email = os.getenv("FROM_EMAIL", "elena.brooks@surplusdocket.com")
-if not raw_from_email or raw_from_email in ("dockets@surplusdocket.com", "bot@surplusdocket.com", "sandwichfitness@gmail.com", "david@surplusdocket.com"):
-    DEFAULT_FROM_EMAIL = "elena.brooks@surplusdocket.com"
-else:
-    DEFAULT_FROM_EMAIL = raw_from_email
-
-raw_reply_to = os.getenv("REPLY_TO", "elena.brooks@surplusdocket.com")
-if not raw_reply_to or raw_reply_to in ("dockets@surplusdocket.com", "bot@surplusdocket.com", "sandwichfitness@gmail.com", "david@surplusdocket.com"):
-    DEFAULT_REPLY_TO = "elena.brooks@surplusdocket.com"
-else:
-    DEFAULT_REPLY_TO = raw_reply_to
+DEFAULT_FROM_NAME = os.getenv("FROM_NAME", "David Mahler")
+DEFAULT_FROM_EMAIL = os.getenv("FROM_EMAIL", "david@surplusdocket.com")
+DEFAULT_REPLY_TO = os.getenv("REPLY_TO", "david@surplusdocket.com")
 
 
 # Domains confirmed dead, unverified, no-MX/null-MX parked, or historical test entries
@@ -293,6 +283,7 @@ def load_feed_data():
                 state_cases[state] = []
             state_cases[state].append({
                 "case_no": row.get("Case_or_TaxDeed_No", "").strip(),
+                "parcel_id": row.get("Parcel_ID", "").strip(),
                 "county": row.get("County", "").strip(),
                 "balance": float(row.get("Surplus_Balance_USD", 0)),
                 "fee": float(row.get("Est_Finder_Fee_USD", 0)),
@@ -304,6 +295,7 @@ def load_feed_data():
                 "property_type": row.get("Property_Type", "").strip(),
                 "governing_statute": row.get("Governing_Statute", "").strip(),
                 "statutory_window": row.get("Statutory_Deadline_Window", "").strip(),
+                "clerk_url": row.get("Clerk_Verification_URL", "").strip() or row.get("Source_URL", "").strip(),
             })
 
     for state in state_cases:
@@ -477,12 +469,13 @@ def select_best_case(target, state_cases):
 
 def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=DEFAULT_FROM_EMAIL):
     """
-    Compose an authentic, concise 1-on-1 outreach email from Elena Brooks.
-    Researched specifically for the target firm and jurisdiction.
-    Zero ad copy, zero marketing links, no pricing pitch.
+    Compose an authentic, transparent 1-on-1 outreach email from David Mahler.
+    Accurately attributes official county records and verifies practice area alignment.
+    Enforces ground-truth validation before returning.
     """
-    first_name = get_first_name(target.get("Name", ""))
+    to_email = target.get("Email", "").strip().lower()
     firm_raw = target.get("Firm", "your firm").strip()
+    first_name = get_first_name(target.get("Name", ""))
     firm_prose = clean_firm_display_name(firm_raw)
     state = target.get("State", "FL").upper()
     state_full = STATE_NAMES.get(state, state)
@@ -500,9 +493,11 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
         return None, None
 
     county = c["county"]
-    case_no = c["case_no"]
+    case_no = c.get("case_no", "").strip()
+    parcel_id = c.get("parcel_id", "").strip()
     balance_fmt = f"${c['balance']:,.0f}"
     statute = c.get("governing_statute") or STATE_STATUTES.get(state, "applicable state statutes")
+    clerk_url = c.get("clerk_url", "").strip()
 
     raw_prop = c.get('property_type', '').lower()
     if 'commercial' in raw_prop:
@@ -520,16 +515,25 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
             clean_owner = c['owner_name'].title().replace(" Of ", " of ")
             owner_clause = f"tied to the {clean_owner}"
         else:
-            owner_clause = f"from a tax deed sale of a {prop_desc}"
+            owner_clause = f"from a tax sale of a {prop_desc}"
     elif is_foreclosure:
         practice_focus = "foreclosure and surplus litigation"
         owner_clause = f"from a post-foreclosure {prop_desc} sale"
     else:
-        practice_focus = "real property surplus and tax deed recovery"
-        owner_clause = f"from a recent tax deed sale of a {prop_desc}"
+        practice_focus = "real property surplus and tax sale recovery"
+        owner_clause = f"from a tax sale of a {prop_desc}"
 
-    # Subject line — simple, specific, looks like a direct legal inquiry about a case
-    subject = f"{county} County surplus filing — {case_no}"
+    # Truthful distinction: Judicial court case vs Administrative tax commissioner parcel
+    if case_no and re.search(r"\d+", case_no) and not case_no.startswith("APN-"):
+        identifier_phrase = f"Case {case_no}"
+        record_context = f"the county court registry lists a {balance_fmt} unclaimed balance on {identifier_phrase} {owner_clause}"
+        subject = f"{county} County surplus filing — {case_no}"
+    elif parcel_id:
+        identifier_phrase = f"Parcel {parcel_id}"
+        record_context = f"public tax sale excess proceeds records show a {balance_fmt} unclaimed balance on {identifier_phrase} {owner_clause}"
+        subject = f"{county} County tax sale surplus — Parcel {parcel_id}"
+    else:
+        return None, None
 
     # Salutation
     if first_name and first_name != "Counsel":
@@ -537,40 +541,53 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
     else:
         greeting = f"Hello {firm_prose} team," if firm_prose != "your practice" else "Hello,"
 
-    # Paragraph 1: Direct, human opener
-    opener = f"Came across {firm_prose} while looking at active {practice_focus} counsel in {state_full}."
+    # Paragraph 1: Direct, honest opener
+    opener = f"Came across {firm_prose} while reviewing active {practice_focus} counsel in {state_full}."
 
-    # Paragraph 2: Specific unencumbered docket finding
+    # Paragraph 2: Specific ground-truth finding with truthful title posture
     case_body = (
-        f"We track open court registry overages and recently flagged a {balance_fmt} surplus on Case {case_no} in {county} County {owner_clause}. "
-        f"Senior mortgages are cleared upstream and the claim window under {statute} is currently open."
+        f"We monitor public surplus ledgers across {state_full}. In {county} County, {record_context}. "
+        f"Under {statute}, excess proceeds remain subject to statutory lien priority and claim verification with the clerk/tax commissioner."
     )
 
-    # Paragraph 3: Direct question / conversation starter
-    closing_ask = (
-        f"Are you handling surplus recovery petitions in {county} County? "
-        f"If so, happy to send over the docket summary and filing notes."
-    )
+    # Paragraph 3: Verified verification URL and invitation
+    if clerk_url and not any(dead in clerk_url for dead in ["hillsclerk.com/records-and-reports/tax-deed-surplus"]):
+        closing_ask = (
+            f"If your firm handles surplus recovery petitions in {county} County, you can view the official public listing directly here: {clerk_url}\n\n"
+            f"We aggregate and verify these filings daily across Florida, Texas, Georgia, North Carolina, Tennessee, and California at surplusdocket.com. "
+            f"Please let me know if you would like regular surplus docket updates for {county} County."
+        )
+    else:
+        closing_ask = (
+            f"If your firm handles surplus recovery petitions in {county} County, you can track active filings on surplusdocket.com. "
+            f"Please let me know if you would like regular surplus docket updates for {county} County."
+        )
 
     # Clean signature
-    sig_email = "elena.brooks@surplusdocket.com" if "elena" in from_name.lower() or "elena" in from_email.lower() else from_email
-    sig = f"Best regards,\n\n{from_name}\nSenior Docket Specialist | Surplus Docket\nsurplusdocket.com\n{sig_email}"
+    sig = f"Best regards,\n\nDavid Mahler\nSurplus Docket Public Records Intelligence\nsurplusdocket.com\ndavid@surplusdocket.com"
 
     body = f"{greeting}\n\n{opener}\n\n{case_body}\n\n{closing_ask}\n\n{sig}"
+
+    # Enforce ground-truth gatekeeper
+    ok, errors = GroundTruthGatekeeper.validate_outreach_message(
+        to_email=to_email,
+        to_name=first_name,
+        firm=firm_raw,
+        subject=subject,
+        body=body,
+        lead=c,
+    )
+    if not ok:
+        print(f"  ⚠️ GroundTruthGatekeeper rejected target {to_email} ({firm_raw}):")
+        for e in errors:
+            print(f"     - {e}")
+        return None, None
 
     return subject, body
 
 
 def create_eml_file(to_email, to_name, subject, body, output_path, from_name=DEFAULT_FROM_NAME, from_email=DEFAULT_FROM_EMAIL, reply_to=DEFAULT_REPLY_TO):
-    """Create a standards-compliant .eml file marked as draft with strict identity enforcement."""
-    if "elena" in str(from_name).lower() or "elena" in str(from_email).lower():
-        from_name = "Elena Brooks"
-        from_email = "elena.brooks@surplusdocket.com"
-        reply_to = "elena.brooks@surplusdocket.com"
-        # Strict sanitization: ensure personal email is never exposed in Elena's communications
-        body = body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
-        body = body.replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
-
+    """Create a standards-compliant .eml file marked as draft."""
     msg = MIMEText(body, "plain", "utf-8")
     msg["From"] = f"{from_name} <{from_email}>"
     msg["To"] = f"{to_name} <{to_email}>"
@@ -691,21 +708,12 @@ def main():
                 server = smtplib.SMTP(SMTP_HOST, SMTP_PORT)
                 server.starttls()
                 server.login(GMAIL_USER, GMAIL_APP_PASS)
-                active_from_name = from_name
-                active_from_email = from_email
-                active_reply_to = reply_to
-                if "elena" in str(active_from_name).lower() or "elena" in str(active_from_email).lower():
-                    active_from_name = "Elena Brooks"
-                    active_from_email = "elena.brooks@surplusdocket.com"
-                    active_reply_to = "elena.brooks@surplusdocket.com"
-                    body = body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
-                    body = body.replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
 
                 msg = MIMEMultipart()
-                msg["From"] = f"{active_from_name} <{active_from_email}>"
+                msg["From"] = f"{from_name} <{from_email}>"
                 msg["To"] = args.test_recipient
                 msg["Subject"] = f"[TEST] {subject}"
-                msg["Reply-To"] = f"{active_from_name} <{active_reply_to}>"
+                msg["Reply-To"] = f"{from_name} <{reply_to}>"
                 msg["Date"] = email.utils.formatdate(localtime=True)
                 msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
                 msg.attach(MIMEText(body, "plain", "utf-8"))
@@ -772,6 +780,9 @@ def main():
             state = target.get("State", "").strip()
 
             subject, body = compose_email(target, state_cases, from_name, from_email)
+            if not subject or not body:
+                print(f"  [{idx:02d}/{len(batch):02d}] ⏭️ SKIPPED (Ground Truth Filter): {firm} <{to_email}>")
+                continue
 
             safe_name = re.sub(r"[^a-zA-Z0-9]", "_", to_email.split("@")[0])
             domain = to_email.split("@")[1].replace(".", "_") if "@" in to_email else "unknown"
@@ -794,21 +805,11 @@ def main():
 
             if is_live:
                 try:
-                    active_from_name = from_name
-                    active_from_email = from_email
-                    active_reply_to = reply_to
-                    if "elena" in str(active_from_name).lower() or "elena" in str(active_from_email).lower():
-                        active_from_name = "Elena Brooks"
-                        active_from_email = "elena.brooks@surplusdocket.com"
-                        active_reply_to = "elena.brooks@surplusdocket.com"
-                        body = body.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
-                        body = body.replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
-
                     msg = MIMEMultipart()
-                    msg["From"] = f"{active_from_name} <{active_from_email}>"
+                    msg["From"] = f"{from_name} <{from_email}>"
                     msg["To"] = f"{name} <{to_email}>"
                     msg["Subject"] = subject
-                    msg["Reply-To"] = f"{active_from_name} <{active_reply_to}>"
+                    msg["Reply-To"] = f"{from_name} <{reply_to}>"
                     msg["Date"] = email.utils.formatdate(localtime=True)
                     msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
                     msg.attach(MIMEText(body, "plain", "utf-8"))
@@ -861,19 +862,11 @@ def main():
                 if imap_client:
                     try:
                         import imaplib
-                        active_from_name = from_name
-                        active_from_email = from_email
-                        active_reply_to = reply_to
-                        if "elena" in str(active_from_name).lower() or "elena" in str(active_from_email).lower():
-                            active_from_name = "Elena Brooks"
-                            active_from_email = "elena.brooks@surplusdocket.com"
-                            active_reply_to = "elena.brooks@surplusdocket.com"
-
                         draft_mime = MIMEText(body, "plain", "utf-8")
-                        draft_mime["From"] = f"{active_from_name} <{active_from_email}>"
+                        draft_mime["From"] = f"{from_name} <{from_email}>"
                         draft_mime["To"] = f"{name} <{to_email}>"
                         draft_mime["Subject"] = subject
-                        draft_mime["Reply-To"] = f"{active_from_name} <{active_reply_to}>"
+                        draft_mime["Reply-To"] = f"{from_name} <{reply_to}>"
                         draft_mime["Date"] = email.utils.formatdate(localtime=True)
                         draft_mime["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
 

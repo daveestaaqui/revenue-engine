@@ -1,12 +1,12 @@
 {
   "status": "ready",
-  "generated_at": "2026-10-16T12:56:30.719956",
-  "vault_sig": "5d868c224adfece9",
+  "generated_at": "2026-10-17T14:33:47.971469",
+  "vault_sig": "e27cf41047243f98",
   "subscribers": [
     {
       "email_hash": "f0d0f378f869f0b62b300ca7442ef4f7cde5d815f6f35174e0a6a56dffa24092",
       "sub_token": "d23a5e244465159f5a6b6cbb",
-      "vault_payload": "595586f07d06d57be5a902b5ab9ea4a28da2ecc1da833596cb33b15e29409c47"
+      "vault_payload": "0e0585a42e00837fb3a952e4f89ef2abdea2bdc2d8df34c29f34b00272479713"
     }
   ],
   "active_subscriber_count": 1

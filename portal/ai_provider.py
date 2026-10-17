@@ -444,7 +444,7 @@ def _deterministic_text_fallback(prompt, system_instruction=None):
             f"",
             f"2. ESTIMATED RECOVERABLE EQUITY & PRIORITY:",
             f"   • Surplus Balance     : {amount_str}",
-            f"   • Title Status        : Senior institutional mortgages cleared upstream.",
+            f"   • Title & Encumbrances: Subject to independent title examination and statutory lien priority.",
             f"   • Statutory Priority  : {auth['priority']}",
             f"",
             f"3. PROCEDURAL POSTURE & NEXT STEPS FOR COUNSEL:",

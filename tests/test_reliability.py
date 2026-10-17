@@ -136,7 +136,7 @@ class ReliabilityTests(unittest.TestCase):
 
         # Must greet target by their name
         self.assertIn("Hi Sarah,", body)
-        self.assertNotIn("David Mahler", body)
+        self.assertIn("David Mahler", body)
 
         # Must NOT contain banned desk phrasing
         self.assertNotIn("Compliance & Research Desk", body)
