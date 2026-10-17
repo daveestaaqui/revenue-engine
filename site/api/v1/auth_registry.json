@@ -1,6 +1,6 @@
 {
   "status": "ready",
-  "generated_at": "2026-10-17T14:33:47.971469",
+  "generated_at": "2026-10-17T15:30:29.770336",
   "vault_sig": "e27cf41047243f98",
   "subscribers": [
     {
@@ -9,5 +9,5 @@
       "vault_payload": "0e0585a42e00837fb3a952e4f89ef2abdea2bdc2d8df34c29f34b00272479713"
     }
   ],
-  "active_subscriber_count": 2
+  "active_subscriber_count": 1
 }
