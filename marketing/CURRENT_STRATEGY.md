@@ -1,23 +1,23 @@
 # 📊 Surplus Docket — Autonomous Marketing Strategy & Optimization Briefing
-**Last Updated:** October 16, 2026 at 11:20 UTC  
+**Last Updated:** October 17, 2026 at 10:41 UTC  
 **Optimization Mode:** Multi-Factor Empirical Model (Surplus Equity + Firm Density + Deliverability)
 
 ---
 
 ## 🚀 1. Executive Directive: High-Yield Resource Calibration
 
-Based on automated analysis of **904 technical outreach points**, **1217 addressable real estate & probate law practices**, and **$3,909,100.00 verified public registry surplus inventory** across 43 court dockets:
+Based on automated analysis of **904 technical outreach points**, **1217 addressable real estate & probate law practices**, and **$29,684,180.97 verified public registry surplus inventory** across 610 court dockets:
 
-1. **PRIMARY POWERHOUSE: FL (31.4% Resource Allocation)**
-   - **Monitored Surplus Pool:** $1,444,800.00 across 20 verified dockets.
-   - **Potential Legal Recovery Fees:** $288,960.00 available to counsel under statutory guidelines.
-   - **Addressable Law Practice Market:** 385 licensed practitioner targets.
+1. **PRIMARY POWERHOUSE: CA (24.0% Resource Allocation)**
+   - **Monitored Surplus Pool:** $11,117,842.30 across 115 verified dockets.
+   - **Potential Legal Recovery Fees:** $2,223,568.49 available to counsel under statutory guidelines.
+   - **Addressable Law Practice Market:** 206 licensed practitioner targets.
    - **Strategic Focus:** In-depth procedural petition guides, title examination whitepapers, and direct 1-on-1 docket briefings.
 
-2. **SECONDARY DRIVER: GA (15.8% Resource Allocation)**
-   - **Monitored Surplus Pool:** $498,700.00 across 5 verified dockets.
-   - **Potential Legal Recovery Fees:** $99,740.00.
-   - **Addressable Law Practice Market:** 148 licensed practitioner targets.
+2. **SECONDARY DRIVER: FL (22.2% Resource Allocation)**
+   - **Monitored Surplus Pool:** $5,083,436.48 across 157 verified dockets.
+   - **Potential Legal Recovery Fees:** $1,016,687.31.
+   - **Addressable Law Practice Market:** 385 licensed practitioner targets.
    - **Strategic Focus:** Registry surveillance briefings and practitioner toolkit syndication.
 
 ---
@@ -26,12 +26,12 @@ Based on automated analysis of **904 technical outreach points**, **1217 address
 
 | State | Priority Weight | Addressable Firms | Active Surplus | Potential Legal Fees | Governing Statute | Strategic Role |
 | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **FL** | **31.4%** | 385 | $1,444,800 | $288,960 | Fla. Stat. § 197.582 | Core High-Volume Administrative Feed |
-| **TX** | **15.6%** | 251 | $393,200 | $98,300 | Tex. Tax Code § 34.04 | Judicial District Court Litigation Hub |
-| **CA** | **14.8%** | 206 | $686,500 | $137,300 | Cal. Rev. & Tax Code § 4675 | High-Equity Board of Supervisors Claims |
-| **GA** | **15.8%** | 148 | $498,700 | $99,740 | O.C.G.A. § 48-4-5 | Sheriff & Superior Court Interpleader Hub |
-| **NC** | **12.2%** | 123 | $501,600 | $100,320 | N.C.G.S. § 105-374(q) | Judicial Foreclosure & Upset Bid Review |
-| **TN** | **10.2%** | 104 | $384,300 | $76,860 | T.C.A. § 67-5-2501 | Chancery Court Motion & Probate Expansion |
+| **FL** | **22.2%** | 385 | $5,083,436 | $1,016,687 | Fla. Stat. § 197.582 | Core High-Volume Administrative Feed |
+| **TX** | **19.6%** | 251 | $5,566,119 | $1,391,530 | Tex. Tax Code § 34.04 | Judicial District Court Litigation Hub |
+| **CA** | **24.0%** | 206 | $11,117,842 | $2,223,568 | Cal. Rev. & Tax Code § 4675 | High-Equity Board of Supervisors Claims |
+| **GA** | **19.5%** | 148 | $6,116,771 | $1,223,354 | O.C.G.A. § 48-4-5 | Sheriff & Superior Court Interpleader Hub |
+| **NC** | **6.2%** | 123 | $0 | $0 | N.C.G.S. § 105-374(q) | Judicial Foreclosure & Upset Bid Review |
+| **TN** | **8.5%** | 104 | $1,800,012 | $360,002 | T.C.A. § 67-5-2501 | Chancery Court Motion & Probate Expansion |
 
 ---
 
