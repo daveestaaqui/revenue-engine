@@ -540,5 +540,23 @@
 [2026-10-17 15:30:28]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
 [2026-10-17 15:30:29]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
 [2026-10-17 15:30:29]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
-[2026-10-18 05:07:35]   ⏭️ Skipped non-prospect from imall4777@gmail.com (Sub: 'Re: Two days of Free Shipping!'): Message identified as automated notification, bounce, or system alert
-[2026-10-18 16:54:04]   ⏭️ Skipped non-prospect from no-reply-dhs@notice.mass.gov (Sub: 'MA Housing: Reminder to Submit Applicati'): Message identified as automated notification, bounce, or system alert
+[2026-10-18 14:42:46]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-10-18 14:42:46]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
+[2026-10-18 14:42:47]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-10-18 14:42:47]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-10-18 16:25:17]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-10-18 16:25:17]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
+[2026-10-18 16:25:18]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-10-18 16:25:18]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-10-18 16:25:26]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-10-18 16:25:26]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
+[2026-10-18 16:25:27]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-10-18 16:25:27]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-10-18 16:27:16]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-10-18 16:27:16]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
+[2026-10-18 16:27:17]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-10-18 16:27:17]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-10-18 16:27:53]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-10-18 16:27:53]   [DRY RUN] Would auto-send email to lawyer@example.com from elena.brooks@surplusdocket.com
+[2026-10-18 16:27:54]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-10-18 16:27:54]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.

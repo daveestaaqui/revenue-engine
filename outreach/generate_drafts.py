@@ -25,6 +25,8 @@ import re
 import smtplib
 import sys
 import time
+import urllib.parse
+import hashlib
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -550,18 +552,21 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
         f"Under {statute}, excess proceeds remain subject to statutory lien priority and claim verification with the clerk/tax commissioner."
     )
 
-    # Paragraph 3: Verified verification URL and invitation
-    if clerk_url and not any(dead in clerk_url for dead in ["hillsclerk.com/records-and-reports/tax-deed-surplus"]):
-        closing_ask = (
-            f"If your firm handles surplus recovery petitions in {county} County, you can view the official public listing directly here: {clerk_url}\n\n"
-            f"We aggregate and verify these filings daily across Florida, Texas, Georgia, North Carolina, Tennessee, and California at surplusdocket.com. "
-            f"Please let me know if you would like regular surplus docket updates for {county} County."
-        )
-    else:
-        closing_ask = (
-            f"If your firm handles surplus recovery petitions in {county} County, you can track active filings on surplusdocket.com. "
-            f"Please let me know if you would like regular surplus docket updates for {county} County."
-        )
+    # Unique reference token per email recipient and docket for zero-tamper unique link
+    identifier_param = parcel_id if (parcel_id and not case_no) else (case_no or parcel_id)
+    ref_seed = f"{to_email}:{identifier_param}:{county}:{state}:SD_OUTREACH_2026"
+    ref_token = hashlib.sha256(ref_seed.encode("utf-8")).hexdigest()[:12]
+    docket_url = (
+        f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(identifier_param)}"
+        f"&county={urllib.parse.quote(county)}&state={urllib.parse.quote(state)}&ref={ref_token}"
+    )
+
+    # Paragraph 3: Verified Surplus Docket custom dossier page and invitation
+    closing_ask = (
+        f"If your firm handles surplus recovery petitions in {county} County, you can inspect the verified docket dossier directly here: {docket_url}\n\n"
+        f"We aggregate and verify these filings daily across Florida, Texas, Georgia, North Carolina, Tennessee, and California at surplusdocket.com. "
+        f"Please let me know if you would like regular surplus docket updates for {county} County."
+    )
 
     # Clean signature
     sig = f"Best regards,\n\nDavid Mahler\nSurplus Docket Public Records Intelligence\nsurplusdocket.com\ndavid@surplusdocket.com"

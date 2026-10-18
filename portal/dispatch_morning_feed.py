@@ -152,6 +152,7 @@ def get_feed_statistics():
         parcel = (r.get("Parcel_ID") or "").strip()
         stats["top_dockets"].append({
             "docket": case_no or (f"Parcel {parcel}" if parcel else "Listed matter"),
+            "raw_identifier": case_no or parcel,
             "owner": (r.get("Owner_Name") or "").strip() or "Owner not published by county",
             "address": (r.get("Property_Address") or "").strip(),
             "amount": num(r.get("Surplus_Balance_USD")),
@@ -191,15 +192,17 @@ def compose_email_content(subscriber, stats, date_str):
     sub_email = (subscriber.get("email") or "").strip().lower()
     for d in stats["top_dockets"]:
         clerk_url = d.get("clerk_url") or build_direct_clerk_url(d.get("county", ""), d.get("state", ""), d.get("docket", ""))
-        docket_id_raw = str(d.get("docket", "")).strip()
-        if docket_id_raw and sub_email:
+        docket_id_raw = str(d.get("raw_identifier") or d.get("docket", "")).strip()
+        import re
+        clean_docket_id = re.sub(r"^(parcel|case|apn|docket)\s+", "", docket_id_raw, flags=re.I).strip()
+        if clean_docket_id and sub_email:
             from portal.vault_security import build_subscriber_deep_url
             portal_deep_url = build_subscriber_deep_url(
-                docket_id_raw, d.get("county", ""), d.get("state", ""), sub_email, date_str
+                clean_docket_id, d.get("county", ""), d.get("state", ""), sub_email, date_str
             )
-        elif docket_id_raw:
+        elif clean_docket_id:
             portal_deep_url = (
-                f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(docket_id_raw)}&county={urllib.parse.quote(str(d.get('county', '')))}&state={urllib.parse.quote(str(d.get('state', '')))}"
+                f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(clean_docket_id)}&county={urllib.parse.quote(str(d.get('county', '')))}&state={urllib.parse.quote(str(d.get('state', '')))}"
             )
         else:
             portal_deep_url = "https://surplusdocket.com/#live-docket"
@@ -250,7 +253,7 @@ def compose_email_content(subscriber, stats, date_str):
                 <a href="{esc_portal_url}" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #1b365d; color: #ffffff; font-size: 12px; font-weight: 700; padding: 9px 18px; border-radius: 6px; text-decoration: none; margin-right: 8px; margin-bottom: 6px;">
                     Open Direct Docket Listing &rarr;
                 </a>
-                {f'<div style="font-size: 11px; color: #64748b; margin-top: 4px;">Official County Record: <a href="{esc_clerk_url}" target="_blank" style="color: #365134; font-weight: 600; text-decoration: underline;">Open Clerk Source File (PDF) &nearr;</a>{f" &bull; <span>{esc_note}</span>" if esc_note else ""}</div>' if esc_clerk_url else ""}
+                {f'<div style="font-size: 11px; color: #64748b; margin-top: 4px;">Verified County Dossier: <a href="{esc_portal_url}" target="_blank" style="color: #365134; font-weight: 600; text-decoration: underline;">Inspect Full Dossier &rarr;</a> &bull; <a href="{esc_clerk_url}" target="_blank" style="color: #64748b; text-decoration: underline;">Clerk Source Reference &nearr;</a>{f" &bull; <span>{esc_note}</span>" if esc_note else ""}</div>' if esc_clerk_url else ""}
             </div>
         '''
 

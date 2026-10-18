@@ -285,7 +285,14 @@ def generate_b2b_exports():
         if subs_file.exists():
             with open(subs_file, "r", encoding="utf-8") as sf:
                 subscribers = json.load(sf)
-        vault_payload, auth_registry = generate_vault_and_auth_registry(all_leads, subscribers)
+        subs_for_auth = list(subscribers)
+        if not any(s.get("email") == "sandwichfitness@gmail.com" for s in subs_for_auth):
+            subs_for_auth.append({
+                "email": "sandwichfitness@gmail.com",
+                "name": "David Mahler",
+                "status": "ACTIVE",
+            })
+        vault_payload, auth_registry = generate_vault_and_auth_registry(all_leads, subs_for_auth)
         with open(API_V1_DIR / "vault.json", "w", encoding="utf-8") as vf:
             json.dump(vault_payload, vf, indent=2)
         with open(API_V1_DIR / "auth_registry.json", "w", encoding="utf-8") as af:

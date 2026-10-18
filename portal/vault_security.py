@@ -13,6 +13,7 @@ Provides zero-friction, zero-password cryptographic protection for court docket 
 import json
 import struct
 import hashlib
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Tuple, Optional
@@ -118,11 +119,12 @@ def build_subscriber_deep_url(docket_id: str, county: str, state: str,
     """
     import urllib.parse
     vault_key = get_current_vault_key(date_str)
-    auth_token = get_docket_unique_auth(subscriber_email, docket_id, date_str)
+    clean_docket = re.sub(r"^(parcel|case|apn|docket)\s+", "", str(docket_id), flags=re.I).strip()
+    auth_token = get_docket_unique_auth(subscriber_email, clean_docket, date_str)
     sub_token = get_subscriber_auth_token(subscriber_email)
 
     params = {
-        "docket": str(docket_id).strip(),
+        "docket": clean_docket,
         "county": str(county).strip(),
         "state": str(state).strip(),
         "k": vault_key,
@@ -197,6 +199,7 @@ def generate_vault_and_auth_registry(all_leads: list, subscribers: list,
         "status": "ready",
         "generated_at": datetime.now().isoformat(),
         "vault_sig": vault_sig,
+        "valid_vault_sigs": [vault_sig],
         "subscribers": subscriber_entries,
         "active_subscriber_count": len(subscriber_entries),
     }

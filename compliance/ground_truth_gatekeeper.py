@@ -195,6 +195,10 @@ class GroundTruthGatekeeper:
         if "david mahler" not in body_lower and "david@surplusdocket.com" not in body_lower and "dockets@surplusdocket.com" not in body_lower:
             errors.append("Outreach message must transparently identify sender (David Mahler / Surplus Docket Intelligence).")
 
+        # 8. No direct raw PDF links; must link to custom surplusdocket.com dossier page
+        if re.search(r"https?://[^\s]+\.pdf(\b|#|\?)", body, re.I):
+            errors.append("Outreach message must not link directly to raw county PDF; must link to custom surplusdocket.com docket dossier page.")
+
         return (len(errors) == 0, errors)
 
     @classmethod
