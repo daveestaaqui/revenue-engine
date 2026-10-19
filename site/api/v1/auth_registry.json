@@ -1,6 +1,6 @@
 {
   "status": "ready",
-  "generated_at": "2026-10-19T09:04:06.883075",
+  "generated_at": "2026-10-19T13:10:47.359808",
   "vault_sig": "54141a558f4832ab",
   "valid_vault_sigs": [
     "54141a558f4832ab",
@@ -21,10 +21,20 @@
   ],
   "subscribers": [
     {
-      "email_hash": "f0d0f378f869f0b62b300ca7442ef4f7cde5d815f6f35174e0a6a56dffa24092",
-      "sub_token": "d23a5e244465159f5a6b6cbb",
-      "vault_payload": "5d0185f52e078321b4f804e5fdcaa2a480a7bbc68ed0629acf32b45f2815cc10"
+      "email_hash": "e3020543ee04e8a60c441d69e2bc16bad5721808c890ac4836b516f7894d146c",
+      "sub_token": "88bc159edb03654d4e665a46",
+      "vault_payload": "9661da8d4cd6838ad9560a45fbe0ffbcb693e6c7fc46ebb107eb36fa85163136"
+    },
+    {
+      "email_hash": "9c0cb24969aa36ce435c07aab20cd0ac687a1276ffa17f14a21d50498a0442f4",
+      "sub_token": "9be441e88ead32528605f744",
+      "vault_payload": "b4bb1f7103a6bf78f41d2d50de6085b3a240b17c45de1228533b4d908b4525ed"
+    },
+    {
+      "email_hash": "8a06a488d8fc6051dae95dcb925c77beeafb1af29245695822e3d869fb9f8617",
+      "sub_token": "b5a1c78ce2e05a000fa00921",
+      "vault_payload": "6a7b4cceeba618a592a99207a8577d59790ae8eb31485ef56359b7fccc70837a"
     }
   ],
-  "active_subscriber_count": 1
+  "active_subscriber_count": 3
 }
