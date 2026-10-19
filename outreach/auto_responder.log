@@ -562,3 +562,5 @@
 [2026-10-18 16:27:54]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
 [2026-10-19 06:50:07]   ⏭️ Skipped non-prospect from info@aeternum.site (Sub: 'Re: Third-Party Certificate of Analysis '): Sender 'info@aeternum.site' is not in verified target database and not a statutory inquiry
 [2026-10-19 14:14:08]   ⏭️ Skipped non-prospect from noreply@pcomm.questdiagnostics.com (Sub: 'New lab results available in MyQuest®'): Message identified as automated notification, bounce, or system alert
+[2026-10-19 23:14:02]   ⏭️ Skipped non-prospect from normspringer@gmail.com (Sub: 'Re: Current Electrical Work'): Message identified as automated notification, bounce, or system alert
+[2026-10-19 23:14:02]   ⏭️ Skipped non-prospect from support@s.usa.experian.com (Sub: 'David, review your weekly financial aler'): Message identified as automated notification, bounce, or system alert
