@@ -2412,5 +2412,141 @@
       "cap_usd": 10.0,
       "utilization_pct": 95.0
     }
+  },
+  {
+    "event_id": "SNTL-20261018164634-0214",
+    "timestamp": "2026-10-18T20:46:34.172063+00:00",
+    "event_type": "TEST_BENCHMARK_PROBE",
+    "severity": "INFO",
+    "containment_action": "NONE_OBSERVATION_ONLY",
+    "details": {
+      "benchmark": "golden_evaluation"
+    }
+  },
+  {
+    "event_id": "SNTL-20261018164634-0215",
+    "timestamp": "2026-10-18T20:46:34.173526+00:00",
+    "event_type": "AI_BUDGET_THRESHOLD_WARNING",
+    "severity": "WARNING",
+    "containment_action": "OPERATOR_NOTIFICATION",
+    "details": {
+      "spend_usd": 8.0,
+      "cap_usd": 10.0,
+      "utilization_pct": 80.0
+    }
+  },
+  {
+    "event_id": "SNTL-20261018164634-0216",
+    "timestamp": "2026-10-18T20:46:34.174908+00:00",
+    "event_type": "AI_BUDGET_CAP_EXCEEDED",
+    "severity": "CRITICAL",
+    "containment_action": "DEFER_NON_ESSENTIAL_WORKFLOWS",
+    "details": {
+      "spend_usd": 9.5,
+      "cap_usd": 10.0,
+      "utilization_pct": 95.0
+    }
+  },
+  {
+    "event_id": "SNTL-20261019085131-0217",
+    "timestamp": "2026-10-19T12:51:31.295546+00:00",
+    "event_type": "TEST_BENCHMARK_PROBE",
+    "severity": "INFO",
+    "containment_action": "NONE_OBSERVATION_ONLY",
+    "details": {
+      "benchmark": "golden_evaluation"
+    }
+  },
+  {
+    "event_id": "SNTL-20261019085131-0218",
+    "timestamp": "2026-10-19T12:51:31.297051+00:00",
+    "event_type": "AI_BUDGET_THRESHOLD_WARNING",
+    "severity": "WARNING",
+    "containment_action": "OPERATOR_NOTIFICATION",
+    "details": {
+      "spend_usd": 8.0,
+      "cap_usd": 10.0,
+      "utilization_pct": 80.0
+    }
+  },
+  {
+    "event_id": "SNTL-20261019085131-0219",
+    "timestamp": "2026-10-19T12:51:31.298359+00:00",
+    "event_type": "AI_BUDGET_CAP_EXCEEDED",
+    "severity": "CRITICAL",
+    "containment_action": "DEFER_NON_ESSENTIAL_WORKFLOWS",
+    "details": {
+      "spend_usd": 9.5,
+      "cap_usd": 10.0,
+      "utilization_pct": 95.0
+    }
+  },
+  {
+    "event_id": "SNTL-20261019085745-0220",
+    "timestamp": "2026-10-19T12:57:45.351929+00:00",
+    "event_type": "TEST_BENCHMARK_PROBE",
+    "severity": "INFO",
+    "containment_action": "NONE_OBSERVATION_ONLY",
+    "details": {
+      "benchmark": "golden_evaluation"
+    }
+  },
+  {
+    "event_id": "SNTL-20261019085745-0221",
+    "timestamp": "2026-10-19T12:57:45.353320+00:00",
+    "event_type": "AI_BUDGET_THRESHOLD_WARNING",
+    "severity": "WARNING",
+    "containment_action": "OPERATOR_NOTIFICATION",
+    "details": {
+      "spend_usd": 8.0,
+      "cap_usd": 10.0,
+      "utilization_pct": 80.0
+    }
+  },
+  {
+    "event_id": "SNTL-20261019085745-0222",
+    "timestamp": "2026-10-19T12:57:45.354750+00:00",
+    "event_type": "AI_BUDGET_CAP_EXCEEDED",
+    "severity": "CRITICAL",
+    "containment_action": "DEFER_NON_ESSENTIAL_WORKFLOWS",
+    "details": {
+      "spend_usd": 9.5,
+      "cap_usd": 10.0,
+      "utilization_pct": 95.0
+    }
+  },
+  {
+    "event_id": "SNTL-20261019090406-0223",
+    "timestamp": "2026-10-19T13:04:06.749730+00:00",
+    "event_type": "TEST_BENCHMARK_PROBE",
+    "severity": "INFO",
+    "containment_action": "NONE_OBSERVATION_ONLY",
+    "details": {
+      "benchmark": "golden_evaluation"
+    }
+  },
+  {
+    "event_id": "SNTL-20261019090406-0224",
+    "timestamp": "2026-10-19T13:04:06.751123+00:00",
+    "event_type": "AI_BUDGET_THRESHOLD_WARNING",
+    "severity": "WARNING",
+    "containment_action": "OPERATOR_NOTIFICATION",
+    "details": {
+      "spend_usd": 8.0,
+      "cap_usd": 10.0,
+      "utilization_pct": 80.0
+    }
+  },
+  {
+    "event_id": "SNTL-20261019090406-0225",
+    "timestamp": "2026-10-19T13:04:06.752422+00:00",
+    "event_type": "AI_BUDGET_CAP_EXCEEDED",
+    "severity": "CRITICAL",
+    "containment_action": "DEFER_NON_ESSENTIAL_WORKFLOWS",
+    "details": {
+      "spend_usd": 9.5,
+      "cap_usd": 10.0,
+      "utilization_pct": 95.0
+    }
   }
 ]

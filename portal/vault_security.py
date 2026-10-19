@@ -195,11 +195,24 @@ def generate_vault_and_auth_registry(all_leads: list, subscribers: list,
             "vault_payload": encrypted_vault_key,
         })
 
+    valid_sigs = [vault_sig]
+    try:
+        from datetime import timedelta
+        base_dt = datetime.strptime(normalize_date_token(date_str), "%Y-%m-%d")
+        for delta in range(1, 15):
+            past_date = (base_dt - timedelta(days=delta)).strftime("%Y-%m-%d")
+            past_key = get_current_vault_key(past_date)
+            past_sig = get_vault_signature(past_key)
+            if past_sig not in valid_sigs:
+                valid_sigs.append(past_sig)
+    except Exception:
+        pass
+
     auth_registry = {
         "status": "ready",
         "generated_at": datetime.now().isoformat(),
         "vault_sig": vault_sig,
-        "valid_vault_sigs": [vault_sig],
+        "valid_vault_sigs": valid_sigs,
         "subscribers": subscriber_entries,
         "active_subscriber_count": len(subscriber_entries),
     }

@@ -201,8 +201,10 @@ def compose_email_content(subscriber, stats, date_str):
                 clean_docket_id, d.get("county", ""), d.get("state", ""), sub_email, date_str
             )
         elif clean_docket_id:
+            from portal.vault_security import get_current_vault_key
+            vk = get_current_vault_key(date_str)
             portal_deep_url = (
-                f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(clean_docket_id)}&county={urllib.parse.quote(str(d.get('county', '')))}&state={urllib.parse.quote(str(d.get('state', '')))}"
+                f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(clean_docket_id)}&county={urllib.parse.quote(str(d.get('county', '')))}&state={urllib.parse.quote(str(d.get('state', '')))}&k={vk}"
             )
         else:
             portal_deep_url = "https://surplusdocket.com/#live-docket"

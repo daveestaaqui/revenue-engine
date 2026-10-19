@@ -553,12 +553,14 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
     )
 
     # Unique reference token per email recipient and docket for zero-tamper unique link
+    from portal.vault_security import get_current_vault_key
+    vault_key = get_current_vault_key()
     identifier_param = parcel_id if (parcel_id and not case_no) else (case_no or parcel_id)
     ref_seed = f"{to_email}:{identifier_param}:{county}:{state}:SD_OUTREACH_2026"
     ref_token = hashlib.sha256(ref_seed.encode("utf-8")).hexdigest()[:12]
     docket_url = (
         f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(identifier_param)}"
-        f"&county={urllib.parse.quote(county)}&state={urllib.parse.quote(state)}&ref={ref_token}"
+        f"&county={urllib.parse.quote(county)}&state={urllib.parse.quote(state)}&k={vault_key}&ref={ref_token}"
     )
 
     # Paragraph 3: Verified Surplus Docket custom dossier page and invitation

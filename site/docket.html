@@ -54,7 +54,7 @@
                 <a href="/#live-docket" class="hidden sm:inline-flex text-xs font-bold text-slate-600 hover:text-brand-navy px-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors">
                     &larr; Live Feed
                 </a>
-                <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-sm transition-all">
+                <a id="btn-header-eval" href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-sm transition-all">
                     7-Day Practice Evaluation
                 </a>
             </div>
@@ -84,11 +84,11 @@
         <div id="subscriber-auth-banner" class="hidden mb-6 bg-emerald-50 border border-emerald-300 rounded-xl px-4 py-3 flex items-center justify-between shadow-sm">
             <div class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span class="text-xs font-extrabold text-emerald-900 tracking-wide">
+                <span id="subscriber-auth-text" class="text-xs font-extrabold text-emerald-900 tracking-wide">
                     ✓ Verified Subscriber Session: Active Practice Evaluation &bull; Priority Counsel Access
                 </span>
             </div>
-            <button type="button" onclick="clearSubscriberSession()" class="text-[11px] font-bold text-slate-500 hover:text-rose-700 underline transition-colors">
+            <button type="button" id="btn-switch-account" onclick="clearSubscriberSession()" class="text-[11px] font-bold text-slate-500 hover:text-rose-700 underline transition-colors">
                 Switch Account
             </button>
         </div>
@@ -241,10 +241,10 @@
                         &larr; Return to Full Multi-State Feed
                     </a>
                     <div class="flex items-center gap-3 w-full sm:w-auto">
-                        <a href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300 transition-colors">
+                        <a id="btn-subscriber-portal" href="https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300 transition-colors">
                             Subscriber Portal
                         </a>
-                        <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-5 py-2.5 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-extrabold uppercase tracking-wider rounded-lg shadow-md transition-colors">
+                        <a id="btn-activate-feeds" href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-5 py-2.5 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-extrabold uppercase tracking-wider rounded-lg shadow-md transition-colors">
                             Activate Daily Feeds ($0 Due Today)
                         </a>
                     </div>
@@ -352,10 +352,61 @@
             return false;
         }
 
+        function updateAccessUI() {
+            const params = new URLSearchParams(window.location.search);
+            const urlKey = (params.get('k') || params.get('key') || '').trim();
+            const refToken = (params.get('ref') || '').trim();
+            const subToken = (params.get('sub') || '').trim();
+            const authToken = (params.get('auth') || '').trim();
+            const isDirectEmail = Boolean(urlKey || refToken || subToken || authToken);
+
+            const activateBtn = document.getElementById('btn-activate-feeds');
+            const headerEvalBtn = document.getElementById('btn-header-eval');
+            const authBanner = document.getElementById('subscriber-auth-banner');
+            const authText = document.getElementById('subscriber-auth-text');
+            const paywallCard = document.getElementById('paywall-card');
+
+            // CRITICAL: Direct email links and authenticated subscribers must NEVER see sales/activation CTAs
+            if (isDirectEmail || isAuthenticated) {
+                if (activateBtn) {
+                    activateBtn.classList.add('hidden');
+                }
+                if (headerEvalBtn) {
+                    headerEvalBtn.textContent = 'Subscriber Portal';
+                    headerEvalBtn.href = 'https://billing.stripe.com/p/login/bJe28r4iagXN4LHb0i0ZW00';
+                    headerEvalBtn.className = 'px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300 transition-all';
+                }
+            } else {
+                if (activateBtn) {
+                    activateBtn.classList.remove('hidden');
+                }
+                if (headerEvalBtn) {
+                    headerEvalBtn.textContent = '7-Day Practice Evaluation';
+                    headerEvalBtn.href = 'https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21';
+                    headerEvalBtn.className = 'px-3.5 py-1.5 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-sm transition-all';
+                }
+            }
+
+            if (isAuthenticated) {
+                if (authBanner) authBanner.classList.remove('hidden');
+                if (paywallCard) paywallCard.classList.add('hidden');
+                if (authText) {
+                    if (refToken && !subToken) {
+                        authText.innerHTML = '✓ Verified Practice Evaluation: Priority Counsel Access &bull; Unlocked Docket Dossier';
+                    } else {
+                        authText.innerHTML = '✓ Verified Subscriber Session: Active Practice Evaluation &bull; Priority Counsel Access';
+                    }
+                }
+            }
+        }
+
         async function initAuth() {
             const params = new URLSearchParams(window.location.search);
             const urlKey = (params.get('k') || params.get('key') || '').trim();
+            const refToken = (params.get('ref') || '').trim();
             const storedKey = (localStorage.getItem('sd_subscriber_vault_key') || '').trim();
+
+            updateAccessUI();
 
             try {
                 const res = await fetch('/api/v1/auth_registry.json');
@@ -377,11 +428,12 @@
                 activeVaultKey = storedKey;
                 isAuthenticated = true;
             }
-
-            if (isAuthenticated) {
-                document.getElementById('subscriber-auth-banner').classList.remove('hidden');
-                document.getElementById('paywall-card').classList.add('hidden');
+            // 3. Evaluation reference token from direct outreach email grants unlocked evaluation access
+            else if (refToken) {
+                isAuthenticated = true;
             }
+
+            updateAccessUI();
         }
 
         async function verifySubscriberEmail() {
@@ -427,6 +479,7 @@
                     
                     document.getElementById('subscriber-auth-banner').classList.remove('hidden');
                     document.getElementById('paywall-card').classList.add('hidden');
+                    updateAccessUI();
 
                     // Re-render docket with unredacted vault data
                     await reloadDocketAfterAuth();
@@ -445,7 +498,7 @@
             localStorage.removeItem('sd_subscriber_vault_key');
             activeVaultKey = null;
             isAuthenticated = false;
-            window.location.reload();
+            window.location.href = window.location.pathname;
         }
 
         async function initDocketPage() {
@@ -606,24 +659,25 @@
             const downloadBtn = document.getElementById('btn-download-dossier');
             const lockIcon = document.getElementById('lock-icon-docket');
 
-            if (isAuthenticated && unredactedLead) {
+            if (isAuthenticated) {
+                const leadData = unredactedLead || r;
                 // ==========================================
                 // 1. UNLOCKED SUBSCRIBER STATE
                 // ==========================================
-                const fullDocketNo = unredactedLead.Case_or_TaxDeed_No || unredactedLead.docket_id || docketLookupId;
+                const fullDocketNo = leadData.Case_or_TaxDeed_No || leadData.docket_id || docketLookupId;
                 document.getElementById('crumb-docket').textContent = `Docket ${fullDocketNo}`;
                 document.getElementById('docket-title').innerHTML = `<span>${escapeHtml(fullDocketNo)}</span>`;
                 lockIcon.classList.add('hidden');
 
                 document.getElementById('docket-owner').innerHTML = `
-                    <span class="text-brand-navy">${escapeHtml(unredactedLead.Owner_Name || 'Titleholder of Record')}</span>
+                    <span class="text-brand-navy">${escapeHtml(leadData.Owner_Name || 'Titleholder of Record')}</span>
                 `;
-                document.getElementById('docket-address').textContent = unredactedLead.Property_Address || `${r.County || ''} County Court Registry`;
+                document.getElementById('docket-address').textContent = leadData.Property_Address || `${r.County || ''} County Court Registry`;
 
-                const note = unredactedLead.Verify_Note || r.Verify_Note || 'Listed on official county clerk registry source publication.';
+                const note = leadData.Verify_Note || r.Verify_Note || 'Listed on official county clerk registry source publication.';
                 document.getElementById('docket-note').textContent = note;
 
-                const verifyUrl = unredactedLead.Clerk_Verification_URL || r.Clerk_Verification_URL || r.Source_URL;
+                const verifyUrl = leadData.Clerk_Verification_URL || r.Clerk_Verification_URL || r.Source_URL;
                 if (verifyUrl) {
                     clerkBtn.href = sanitizeUrl(verifyUrl);
                     clerkBtn.className = "inline-flex items-center gap-1.5 px-4 py-2.5 bg-brand-navy hover:bg-brand-navyLight text-white text-xs font-bold rounded-lg shadow-sm transition-colors";
@@ -638,7 +692,8 @@
                 document.getElementById('subscriber-auth-banner').classList.remove('hidden');
 
                 // Cache unredacted record for TXT download
-                currentRecord = { ...r, ...unredactedLead };
+                currentRecord = { ...r, ...leadData };
+                updateAccessUI();
 
             } else {
                 // ==========================================
@@ -678,6 +733,7 @@
                 // Show paywall card
                 document.getElementById('paywall-card').classList.remove('hidden');
                 document.getElementById('subscriber-auth-banner').classList.add('hidden');
+                updateAccessUI();
             }
         }
 
