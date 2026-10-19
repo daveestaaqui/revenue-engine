@@ -1,9 +1,10 @@
 {
-  "last_dispatched_date": "2026-10-16",
-  "timestamp": "2026-10-16T09:23:45.899274-04:00",
-  "sent_count": 1,
+  "last_dispatched_date": "2026-10-19",
+  "timestamp": "2026-10-19T07:11:25.931180-04:00",
+  "sent_count": 2,
   "recipients": [
-    "david@surplusdocket.com"
+    "david@surplusdocket.com",
+    "alden@cohenrecoverylaw.com"
   ],
   "status": "SUCCESS"
 }
