@@ -570,3 +570,10 @@
 [2026-10-20 01:50:52] ✓ Expunged 3 sent draft(s) from [Gmail]/Drafts.
 [2026-10-20 12:26:35]   🗑️ IMAP: Removed sent draft for: normspringer@gmail.com
 [2026-10-20 12:26:35] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
+[2026-10-20 17:25:13]   🗑️ IMAP: Removed sent draft for: normspringer@gmail.com
+[2026-10-20 17:25:15] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
+[2026-10-20 17:25:16]   ⏭️ Skipped non-prospect from DoNotReply@MyHealth.AtriusHealth.org (Sub: 'MyHealth Online - New Message'): Message identified as automated notification, bounce, or system alert
+[2026-10-20 17:25:16]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your XOM Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
+[2026-10-20 17:25:17]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your CVX Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
+[2026-10-20 17:25:18]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your SOXS Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
+[2026-10-20 17:25:18]   ⏭️ Skipped non-prospect from help@walmart.com (Sub: 'Drop off your return in-store by Sun, No'): Sender 'help@walmart.com' is not in verified target database and not a statutory inquiry
