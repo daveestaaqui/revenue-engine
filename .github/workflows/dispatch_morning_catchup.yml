@@ -2,15 +2,12 @@ name: Morning Feed Catch-Up Redundancy Dispatch
 
 on:
   schedule:
-    # Staggered catch-up triggers (all Mon-Fri)
-    # These supplement the primary 7:00 AM triggers.
+    # Tight failover triggers within the 7:00 - 7:25 AM window (Mon-Fri)
     # The dispatch script's idempotency guard prevents duplicate sends.
-    # EDT (UTC-4): 7:30 AM = 11:30 UTC, 8:00 AM = 12:00 UTC, 9:00 AM = 13:00 UTC
-    # EST (UTC-5): 7:30 AM = 12:30 UTC, 8:00 AM = 13:00 UTC, 9:00 AM = 14:00 UTC
-    - cron: '30 11 * * 1-5'   # 7:30 AM EDT catch-up
-    - cron: '0 13 * * 1-5'    # 8:00 AM EST / 9:00 AM EDT catch-up
-    - cron: '30 13 * * 1-5'   # 8:30 AM EST / 9:30 AM EDT catch-up
-    - cron: '0 14 * * 1-5'    # 9:00 AM EST / 10:00 AM EDT catch-up
+    # EDT (UTC-4): 7:15 AM EDT = 11:15 UTC
+    - cron: '15 11 * * 1-5'
+    # EST (UTC-5): 7:15 AM EST = 12:15 UTC
+    - cron: '15 12 * * 1-5'
   workflow_dispatch:
     inputs:
       force:

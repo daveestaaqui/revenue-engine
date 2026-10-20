@@ -506,14 +506,13 @@ def dispatch_feed(is_dry_run=False, recipient_override=None, force=False):
     date_str = now_et.strftime("%B %d, %Y")
     subject = f"[Surplus Docket] Daily Morning Court Intelligence Feed — {date_str}"
 
-    # 1. Delivery Window Guard: Morning feed is strictly delivered Mon-Fri between 7:00 AM and 10:00 AM Eastern Time.
-    # If a runner triggers in the afternoon/evening (e.g. GitHub Actions delayed schedules or runner backlogs),
-    # or prematurely before 7:00 AM (e.g. 5:55 AM), abort live dispatch immediately unless --force or --recipient is explicitly specified.
+    # 1. Delivery Window Guard: Morning feed is strictly delivered Mon-Fri in a tight window: ideally 7:00 AM sharp (7:00 AM - 7:30 AM Eastern Time).
+    # Dispatches after 7:30 AM (e.g. 8:26 AM due to delayed cloud cron queues) are rejected to protect subscribers from late feeds.
     is_weekday = now_et.weekday() < 5
-    in_morning_window = is_weekday and (7 <= now_et.hour < 10)
+    in_morning_window = is_weekday and (now_et.hour == 7 and now_et.minute <= 30)
     if not is_dry_run and not recipient_override and not force and not in_morning_window:
         print(f"ℹ️ Delivery Window Guard: Current time is {now_et.strftime('%A %I:%M %p %Z')}.")
-        print("   Morning court intelligence feeds are strictly dispatched Mon–Fri between 7:00 AM and 10:00 AM EST.")
+        print("   Morning court intelligence feeds are strictly dispatched Mon–Fri between 7:00 AM and 7:30 AM EST.")
         print("   Aborting live dispatch to prevent premature or off-hours delivery. Use --force to override.")
         return 0
 

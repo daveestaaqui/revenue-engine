@@ -22,17 +22,13 @@ def check_and_failover():
     except Exception:
         now_et = datetime.now()
 
-    # Only run failover on weekdays (0=Mon, 4=Fri) between 7:05 AM and 10:00 AM EST.
+    # Only run failover on weekdays (0=Mon, 4=Fri) within a tight failover window: 7:05 AM to 7:25 AM EST.
     # This prevents premature dispatch before the official 7:00 AM primary schedule,
-    # allows the primary GitHub Action to complete cleanly, and supports local LaunchAgent (7:05/7:35 AM)
-    # and Elena sentinel runs (7:15 AM+).
-    in_window = (now_et.weekday() < 5 and (
-        (now_et.hour == 7 and now_et.minute >= 5) or
-        (8 <= now_et.hour < 10)
-    ))
+    # allows primary runners to complete cleanly, while strictly blocking late dispatches after 7:25 AM.
+    in_window = (now_et.weekday() < 5 and (now_et.hour == 7 and 5 <= now_et.minute <= 25))
 
     if not in_window:
-        print(f"ℹ️ Sentinel Failover Check: Outside 7:05-10:00 AM EST dispatch failover window ({now_et.strftime('%A %I:%M %p EST')}).")
+        print(f"ℹ️ Sentinel Failover Check: Outside 7:05-7:25 AM EST tight dispatch failover window ({now_et.strftime('%A %I:%M %p EST')}).")
         return 0
 
     date_key = now_et.strftime('%Y-%m-%d')

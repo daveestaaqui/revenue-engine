@@ -2,9 +2,13 @@ name: Dispatch 7:00 AM EST Morning Court Intelligence Feed
 
 on:
   schedule:
-    # Two triggers cover both US Eastern time zones year-round.
-    # The dispatch script's idempotency guard ensures only the first
-    # successful send on a given calendar day actually delivers email.
+    # Staging triggers: wake runner 5 minutes before 7:00 AM Eastern Time at minute :55
+    # (Off-peak minute avoids GitHub Actions queue delay so runner boots and preps dependencies)
+    # EDT (UTC-4): 6:55 AM EDT = 10:55 UTC
+    - cron: '55 10 * * 1-5'
+    # EST (UTC-5): 6:55 AM EST = 11:55 UTC
+    - cron: '55 11 * * 1-5'
+    # Standard top-of-hour schedules (preserved for compatibility)
     # Daylight Saving Time (EDT = UTC-4): 7:00 AM EDT = 11:00 UTC
     - cron: '0 11 * * 1-5'
     # Standard Time (EST = UTC-5): 7:00 AM EST = 12:00 UTC
@@ -65,6 +69,23 @@ jobs:
           STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
         run: |
           python portal/sync_stripe_subscribers.py || echo "Stripe sync note: continuing..."
+
+      - name: Synchronize to 7:00:00 AM EST Sharp
+        run: |
+          python -c "
+          import time, datetime
+          from zoneinfo import ZoneInfo
+          now_et = datetime.datetime.now(ZoneInfo('America/New_York'))
+          print(f'Current Eastern Time: {now_et.strftime(\"%A %I:%M:%S %p %Z\")}')
+          # If runner initialized during the 6:55 - 6:59 AM staging window, wait until 7:00:00 AM sharp
+          if now_et.hour == 6 and now_et.minute >= 55:
+              target_et = now_et.replace(hour=7, minute=0, second=0, microsecond=0)
+              wait_sec = (target_et - now_et).total_seconds()
+              if 0 < wait_sec <= 360:
+                  print(f'Staged early at {now_et.strftime(\"%I:%M:%S %p\")}. Countdown to 7:00:00 AM EST sharp ({wait_sec:.1f}s)...')
+                  time.sleep(wait_sec)
+                  print('Target 7:00:00 AM EST reached. Dispatching immediately!')
+          "
 
       - name: Dispatch Verified Morning Intelligence Feed to Subscribers
         run: |
