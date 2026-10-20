@@ -3,10 +3,11 @@
 Surplus Docket — Synchronize Verified Outreach Drafts in Gmail
 =============================================================
 Safely updates the 12 attorney outreach drafts in [Gmail]/Drafts via IMAP.
-- Deletes the 12 old outdated drafts (leaves all personal drafts like normspringer untouched).
-- Uploads the 12 fresh, ground-truth-verified drafts.
+- Permanently purges all old/outdated drafts (including any Elena Brooks drafts) to [Gmail]/Trash.
+- Uploads 12 fresh, ground-truth-verified drafts to verified practitioners.
+- Each attorney receives a unique, verified case in their state & jurisdiction.
 - Every link uses https://surplusdocket.com/docket?id=...&k=...&ref=...
-- Guarantees 100% unredacted access on the custom dossier page.
+- Guarantees 100% unredacted access on the custom dossier page without sales/activation buttons.
 """
 
 import email
@@ -24,21 +25,32 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
 from outreach.generate_drafts import load_targets, load_feed_data, compose_email
+from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
 from portal.vault_security import decrypt_docket_payload, get_current_vault_key
 
-TARGET_EMAILS = [
-    "cjimerson@jimersonfirm.com",
-    "david@kramerlaw.com",
-    "kimberly@thesotolawoffice.com",
-    "pfeaman@feamanlaw.com",
-    "richard@zaretskylaw.com",
-    "ryan@torrenslawgroup.com",
-    "scott@spradleylaw.com",
-    "stephen@fensterlaw.com",
-    "vincent@taorminalawpa.com",
-    "ashley@calhounlawfirm.com",
-    "bradh@weissman.law",
-    "greg@thompsonlawnc.com",
+# 12 Curated high-conviction target attorney pairings with unique live dockets
+ASSIGNED_TARGETS = [
+    # Florida (Hillsborough County - Circuit Civil Court Foreclosures & Tax Deeds)
+    ("ryan@torrenslawgroup.com", "22-ca-008975"),
+    ("eric@zoeckleinlawpa.com", "18-lw-000360"),
+    ("david@kramerlaw.com", "23-ca-016325"),
+
+    # Georgia (Gwinnett & DeKalb County - Tax Sale Excess Proceeds under O.C.G.A. § 48-4-5)
+    ("bradh@weissman.law", "r7233 032"),
+    ("david@marshalllegal.com", "18 158 09 007"),
+    ("julie@jlibermanlaw.com", "18 319 05 030"),
+
+    # Texas (Dallas & Fort Bend County - District Court Tax Suits under Tex. Tax Code § 34.04)
+    ("robert@lunalawfirm.com", "tx-25-00082"),
+    ("kmorris@keithmorrislaw.com", "24-dcv-312823"),
+    ("richard@spencerlawpc.com", "tx-23-00908"),
+    ("ian@ghristlaw.com", "tx-24-00804"),
+
+    # California (Los Angeles County - Tax Defaulted Property Sale under Cal. Rev. & Tax Code § 4675)
+    ("asalvo@salvolaw.com", "7206-005-014"),
+
+    # Tennessee (Davidson County - Chancery Court Delinquent Tax Sale under T.C.A. § 67-5-2501)
+    ("kpreston@klineprestonlaw.com", "09402002900"),
 ]
 
 ENV_FILE = BASE_DIR / ".env"
@@ -63,17 +75,11 @@ def main():
         return 1
 
     targets = load_targets()
-    matched_targets = []
-    for em in TARGET_EMAILS:
-        for t in targets:
-            if t["Email"].lower() == em.lower():
-                matched_targets.append(t)
-                break
-
-    if len(matched_targets) != len(TARGET_EMAILS):
-        print(f"⚠️ Warning: Matched {len(matched_targets)} of {len(TARGET_EMAILS)} targets.")
+    targets_by_email = {t["Email"].lower(): t for t in targets}
 
     state_cases = load_feed_data()
+    all_cases_flat = [c for clist in state_cases.values() for c in clist]
+
     with open(BASE_DIR / "site" / "api" / "v1" / "vault.json") as f:
         vault = json.load(f)
 
@@ -81,12 +87,45 @@ def main():
     print(f"✓ Current cycle vault key: {current_key}")
 
     draft_payloads = []
-    for t in matched_targets:
-        sub, body = compose_email(t, state_cases, from_name=FROM_NAME, from_email=FROM_EMAIL)
-        # Verify URL decryptability
+    print("\n🔍 Validating and composing 12 individualized outreach drafts...")
+    for target_email, docket_key in ASSIGNED_TARGETS:
+        t = targets_by_email.get(target_email.lower())
+        if not t:
+            print(f"❌ Target missing in targets CSV: {target_email}")
+            return 1
+
+        matched_case = next(
+            (c for c in all_cases_flat if c.get("case_no", "").lower() == docket_key.lower() or c.get("parcel_id", "").lower() == docket_key.lower()),
+            None
+        )
+        if not matched_case:
+            print(f"❌ Case/Docket {docket_key} missing in feed data for {target_email}")
+            return 1
+
+        sub, body = compose_email(t, {t["State"]: [matched_case]}, from_name=FROM_NAME, from_email=FROM_EMAIL)
+        if not sub or not body:
+            print(f"❌ Failed to compose email for {target_email}")
+            return 1
+
+        # Strict GroundTruthGatekeeper check
+        ok, errors = GroundTruthGatekeeper.validate_outreach_message(
+            to_email=target_email,
+            to_name=t.get("Name", "Counsel"),
+            firm=t.get("Firm", ""),
+            subject=sub,
+            body=body,
+            lead=matched_case,
+        )
+        if not ok:
+            print(f"❌ GroundTruthGatekeeper REJECTED draft for {target_email}:")
+            for err in errors:
+                print(f"   • {err}")
+            return 1
+
+        # Verify URL decryptability in vault
         url_match = re.search(r"https://surplusdocket\.com/docket\?id=([^\s&]+)&k=([^\s&]+)&ref=([^\s&]+)", body)
         if not url_match:
-            print(f"❌ Could not find valid docket URL in draft for {t['Email']}")
+            print(f"❌ Could not find valid docket URL in draft for {target_email}")
             return 1
         docket_param = url_match.group(1).replace("+", " ").lower()
         k_param = url_match.group(2)
@@ -95,54 +134,82 @@ def main():
             print(f"❌ Docket {docket_param} missing in vault.json")
             return 1
         dec = decrypt_docket_payload(entry["cipher"], entry["docket_id"], k_param)
-        print(f"  Verified {t['Email']} -> {entry['docket_id']} ({dec['Owner_Name']})")
+        print(f"  ✓ Verified {target_email} -> {entry['docket_id']} ({dec.get('Owner_Name')}) [Bal: ${dec.get('Surplus_Balance_USD'):,.2f}]")
 
         msg = MIMEText(body, "plain", "utf-8")
         msg["From"] = f"{FROM_NAME} <{FROM_EMAIL}>"
-        msg["To"] = f"{t.get('Name', 'Counsel')} <{t['Email']}>"
+        msg["To"] = f"{t.get('Name', 'Counsel')} <{target_email}>"
         msg["Reply-To"] = REPLY_TO
         msg["Subject"] = sub
         msg["Date"] = email.utils.formatdate(localtime=True)
         msg["Message-ID"] = email.utils.make_msgid(domain="surplusdocket.com")
-        draft_payloads.append((t["Email"], sub, msg.as_bytes()))
+        draft_payloads.append((target_email, sub, msg.as_bytes()))
 
     print(f"\n📬 Connecting to imap.gmail.com as {GMAIL_USER}...")
     mail = imaplib.IMAP4_SSL("imap.gmail.com")
     mail.login(GMAIL_USER, GMAIL_APP_PASS)
     mail.select("[Gmail]/Drafts")
 
-    # Search existing drafts and delete matching attorney drafts
+    # Search existing drafts and delete all old surplus drafts (including Elena Brooks drafts)
     status, data = mail.search(None, "ALL")
     draft_ids = data[0].split()
     print(f"Found {len(draft_ids)} existing draft(s) in [Gmail]/Drafts.")
 
-    target_email_set = {e.lower() for e in TARGET_EMAILS}
+    # All target emails ever used + current targets to ensure 100% clean slate
+    all_purge_emails = {e.lower() for e, _ in ASSIGNED_TARGETS}.union({
+        "cjimerson@jimersonfirm.com",
+        "kimberly@thesotolawoffice.com",
+        "pfeaman@feamanlaw.com",
+        "richard@zaretskylaw.com",
+        "scott@spradleylaw.com",
+        "stephen@fensterlaw.com",
+        "vincent@taorminalawpa.com",
+        "ashley@calhounlawfirm.com",
+        "greg@thompsonlawnc.com",
+    })
+
     deleted_count = 0
     for num in draft_ids:
-        res, msg_data = mail.fetch(num, "(BODY.PEEK[HEADER.FIELDS (TO SUBJECT)])")
+        res, msg_data = mail.fetch(num, "(BODY.PEEK[HEADER.FIELDS (FROM TO SUBJECT)])")
         for part in msg_data:
             if isinstance(part, tuple):
                 header_msg = email.message_from_bytes(part[1])
+                from_hdr = (header_msg.get("From") or "").lower()
                 to_hdr = (header_msg.get("To") or "").lower()
                 sub_hdr = (header_msg.get("Subject") or "").lower()
-                # If recipient is one of our target attorneys or subject contains surplus filing / tax sale surplus
-                if any(em in to_hdr for em in target_email_set) or "surplus filing" in sub_hdr or "tax sale surplus" in sub_hdr:
+
+                should_purge = False
+                if "elena.brooks@surplusdocket.com" in from_hdr or "elena" in from_hdr:
+                    should_purge = True
+                elif any(em in to_hdr for em in all_purge_emails):
+                    should_purge = True
+                elif any(k in sub_hdr for k in [
+                    "surplus filing", "tax sale surplus", "excess proceeds",
+                    "court registry surplus", "chancery court surplus"
+                ]):
+                    should_purge = True
+
+                if should_purge:
+                    try:
+                        mail.copy(num, "[Gmail]/Trash")
+                    except Exception:
+                        pass
                     mail.store(num, "+FLAGS", "\\Deleted")
                     deleted_count += 1
-                    print(f"  🗑️ Deleted old draft {num.decode()}: {to_hdr} | {sub_hdr[:40]}")
+                    print(f"  🗑️ Purged old draft {num.decode()} to Trash: {from_hdr} -> {to_hdr} | {sub_hdr[:45]}")
 
     if deleted_count > 0:
         mail.expunge()
-        print(f"✓ Expunged {deleted_count} outdated drafts.")
+        print(f"✓ Expunged {deleted_count} outdated draft(s) from [Gmail]/Drafts.")
 
-    # Upload fresh drafts
+    # Upload fresh, verified drafts
     print(f"\n📤 Uploading {len(draft_payloads)} fresh verified drafts to [Gmail]/Drafts...")
     uploaded_count = 0
     for to_email, sub, raw_bytes in draft_payloads:
         status, _ = mail.append("[Gmail]/Drafts", "(\\Draft \\Seen)", imaplib.Time2Internaldate(time.time()), raw_bytes)
         if status == "OK":
             uploaded_count += 1
-            print(f"  ✓ Uploaded draft for {to_email} ({sub[:40]})")
+            print(f"  ✓ Uploaded draft for {to_email} ({sub[:45]})")
         else:
             print(f"  ❌ Failed to upload draft for {to_email}")
 

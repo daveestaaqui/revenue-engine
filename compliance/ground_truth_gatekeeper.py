@@ -199,6 +199,32 @@ class GroundTruthGatekeeper:
         if re.search(r"https?://[^\s]+\.pdf(\b|#|\?)", body, re.I):
             errors.append("Outreach message must not link directly to raw county PDF; must link to custom surplusdocket.com docket dossier page.")
 
+        # 9. Geographic & County integrity check (No state/county cross-contamination)
+        county_state_map = {
+            "hillsborough": {"florida"},
+            "gwinnett": {"georgia"},
+            "dekalb": {"georgia"},
+            "dallas": {"texas"},
+            "fort bend": {"texas"},
+            "los angeles": {"california"},
+            "san diego": {"california"},
+            "orange": {"california", "florida"},
+            "davidson": {"tennessee"},
+        }
+        for county_name, valid_states in county_state_map.items():
+            if f"{county_name} county" in body_lower or f"{county_name} county" in subj_lower:
+                for other_state in ("north carolina", "california", "georgia", "florida", "texas", "tennessee"):
+                    if other_state not in valid_states and f"counsel in {other_state}" in body_lower:
+                        errors.append(
+                            f"Geographic contradiction: {county_name.title()} County is not in {other_state.title()}, "
+                            f"but recipient was identified as counsel in {other_state.title()}."
+                        )
+
+        # 10. Florida Statutory Differentiation: Court Registry foreclosure (45.032) vs Tax Deed (197.582)
+        if "18-lw-" in body_lower or "tax deed" in body_lower:
+            if "post-foreclosure" in body_lower:
+                errors.append("Inaccurate legal characterization: Tax deed surplus is administrative under Fla. Stat. § 197.582, not post-foreclosure court litigation.")
+
         return (len(errors) == 0, errors)
 
     @classmethod

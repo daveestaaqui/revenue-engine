@@ -382,6 +382,9 @@ def get_first_name(full_name):
     first = parts[0] if parts else "Counsel"
     if first.lower() in ("mr.", "ms.", "mrs.", "dr.", "atty.", "attorney"):
         first = parts[1] if len(parts) > 1 else "Counsel"
+    # If first is a single-letter initial like "G." or "J.", use the preferred given name
+    if len(first.rstrip(".")) == 1 and len(parts) > 1:
+        first = parts[1]
     return first
 
 
@@ -438,12 +441,7 @@ def select_best_case(target, state_cases):
     is_foreclosure = any(k in specialty for k in ["foreclosure", "mortgage", "lender", "servicing", "junior lien", "lien", "distressed"])
 
     candidates = state_cases.get(state, [])
-    if not candidates:
-        for s in ["FL", "CA", "TX", "GA", "NC", "TN"]:
-            if state_cases.get(s):
-                candidates = state_cases[s]
-                break
-
+    # Zero tolerance for out-of-state fallbacks: never assign another state's records to a target
     if not candidates:
         return None
 
@@ -456,9 +454,16 @@ def select_best_case(target, state_cases):
             if "estate" in c.get("owner_name", "").lower() or c.get("heir_search_recommended", False):
                 score += 80
         elif is_foreclosure:
+            case_lower = c.get("case_no", "").lower()
+            if "-ca-" in case_lower or "cause" in case_lower or "dcv" in case_lower:
+                score += 150
+            elif "-lw-" in case_lower:
+                score -= 50
             if "commercial" in c.get("property_type", "").lower() or c.get("balance", 0) >= 100000:
                 score += 60
         else:
+            if "-lw-" in c.get("case_no", "").lower() and "tax deed" in specialty:
+                score += 120
             if c.get("balance", 0) >= 75000:
                 score += 40
         score += min(c.get("balance", 0) / 10000.0, 20.0)
@@ -520,13 +525,47 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
             owner_clause = f"from a tax sale of a {prop_desc}"
     elif is_foreclosure:
         practice_focus = "foreclosure and surplus litigation"
-        owner_clause = f"from a post-foreclosure {prop_desc} sale"
+        if "-ca-" in case_no.lower() or "cause" in case_no.lower() or "dcv" in case_no.lower():
+            owner_clause = f"from a post-foreclosure {prop_desc} sale"
+        else:
+            owner_clause = f"from a tax sale of a {prop_desc}"
     else:
         practice_focus = "real property surplus and tax sale recovery"
         owner_clause = f"from a tax sale of a {prop_desc}"
 
-    # Truthful distinction: Judicial court case vs Administrative tax commissioner parcel
-    if case_no and re.search(r"\d+", case_no) and not case_no.startswith("APN-"):
+    # Truthful distinction based on governing jurisdiction and procedural posture
+    if state == "FL":
+        if case_no and "-CA-" in case_no:
+            statute = "Fla. Stat. § 45.032"
+            identifier_phrase = f"Case {case_no}"
+            record_context = f"the county court registry lists a {balance_fmt} unclaimed balance on {identifier_phrase} {owner_clause}"
+            subject = f"{county} County court registry surplus — Case {case_no}"
+        else:
+            statute = "Fla. Stat. § 197.582"
+            identifier_phrase = f"Tax Deed File {case_no}" if case_no else f"Parcel {parcel_id}"
+            record_context = f"official county clerk records show a {balance_fmt} unclaimed tax deed surplus on {identifier_phrase} {owner_clause}"
+            subject = f"{county} County tax deed surplus — {identifier_phrase}"
+    elif state == "TX":
+        statute = "Tex. Tax Code § 34.04"
+        identifier_phrase = f"Cause No. {case_no}" if case_no else f"Account {parcel_id}"
+        record_context = f"the county court registry lists a {balance_fmt} excess proceeds balance on {identifier_phrase} {owner_clause}"
+        subject = f"{county} County excess proceeds — {identifier_phrase}"
+    elif state == "GA":
+        statute = "O.C.G.A. § 48-4-5"
+        identifier_phrase = f"Parcel {parcel_id}"
+        record_context = f"public tax sale excess proceeds records show a {balance_fmt} unclaimed balance on {identifier_phrase} {owner_clause}"
+        subject = f"{county} County tax sale surplus — Parcel {parcel_id}"
+    elif state == "CA":
+        statute = "Cal. Rev. & Tax Code § 4675"
+        identifier_phrase = f"Parcel {parcel_id or case_no}"
+        record_context = f"the county tax collector's excess proceeds records report a {balance_fmt} surplus balance on {identifier_phrase} {owner_clause}"
+        subject = f"{county} County tax sale excess proceeds — {identifier_phrase}"
+    elif state == "TN":
+        statute = "T.C.A. § 67-5-2501"
+        identifier_phrase = f"Docket No. {case_no}" if case_no else f"Parcel {parcel_id}"
+        record_context = f"the Chancery Court registry lists a {balance_fmt} excess proceeds balance on {identifier_phrase} {owner_clause}"
+        subject = f"{county} County Chancery Court surplus — {identifier_phrase}"
+    elif case_no and re.search(r"\d+", case_no) and not case_no.startswith("APN-"):
         identifier_phrase = f"Case {case_no}"
         record_context = f"the county court registry lists a {balance_fmt} unclaimed balance on {identifier_phrase} {owner_clause}"
         subject = f"{county} County surplus filing — {case_no}"
