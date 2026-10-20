@@ -182,3 +182,16 @@ Timestamp,Email,Name,Firm,State,Subject,Status,Mode,Output_File
 2026-09-14T21:38:30.665096,jonathan@berkowitzlawgroup.com,Jonathan A. Berkowitz,Berkowitz & Associates,FL,Palm Beach County surplus filing — 2024-TD-004501,SENT,live,010_jonathan_at_berkowitzlawgroup_com.eml
 2026-09-14T21:38:39.091542,mark@cmapalaw.com,Mark Cmapa,Cmapa Law,FL,Palm Beach County surplus filing — 2024-TD-004501,SENT,live,011_mark_at_cmapalaw_com.eml
 2026-09-14T21:38:50.599724,craig@rothburdpa.com,Craig E. Rothburd,"Craig E. Rothburd, P.A.",FL,Hillsborough County surplus filing — 2024-TD-008912,SENT,live,012_craig_at_rothburdpa_com.eml
+2026-10-20T14:30:00.000000,ryan@torrenslawgroup.com,Ryan C. Torrens,"Torrens Law Group, P.A.",FL,Hillsborough County surplus filing — 22-CA-008975,SENT_DELIVERED,live,gmail_web
+2026-10-20T14:30:00.000000,bradh@weissman.law,Bradley A. Hutchins,Weissman PC,GA,Gwinnett County tax sale surplus — Parcel R7233 032,SENT_DELIVERED,live,gmail_web
+2026-10-20T14:30:00.000000,julie@jlibermanlaw.com,Julie A. Liberman,"Julie A. Liberman, LLC",GA,DeKalb County tax sale surplus — Parcel 18 319 05 030,SENT_DELIVERED,live,gmail_web
+2026-10-20T14:30:00.000000,kmorris@keithmorrislaw.com,Keith Morris,The Law Offices of Keith Morris,TX,Fort Bend County excess proceeds — 24-DCV-312823,SENT_DELIVERED,live,gmail_web
+2026-10-20T14:30:00.000000,ian@ghristlaw.com,Ian Ghrist,"Ghrist Law Firm, PLLC",TX,Dallas County excess proceeds — TX-24-00804,SENT_DELIVERED,live,gmail_web
+2026-10-20T14:30:00.000000,asalvo@salvolaw.com,Alice A. Salvo,Law Offices of Alice A. Salvo,CA,Los Angeles County tax sale surplus — Parcel 7206-005-014,SENT_DELIVERED,live,gmail_web
+2026-10-20T14:30:00.000000,kpreston@klineprestonlaw.com,G. Kline Preston IV,Kline Preston Law Group,TN,Davidson County chancery court surplus — 24-0388-I,SENT_DELIVERED,live,gmail_web
+2026-10-20T14:30:00.000000,alden@cohenrecoverylaw.com,Alden Cohen,Cohen Recovery Law,FL,Hillsborough County surplus filing — 24-CA-001841,SENT_DELIVERED,live,gmail_web
+2026-10-20T14:30:00.000000,richard@spencerlawpc.com,Richard L. Spencer,Spencer & Associates,TX,Dallas County excess proceeds — TX-23-00908,BOUNCED_REJECTED,live,550_5.4.1_access_denied
+2026-10-20T14:30:00.000000,robert@lunalawfirm.com,Robert E. Luna,"Law Offices of Robert E. Luna, P.C.",TX,Dallas County excess proceeds — TX-25-00082,BOUNCED_NULL_MX,live,rfc7505_null_mx
+2026-10-20T14:30:00.000000,david@marshalllegal.com,David C. Marshall,"Marshall Legal Group, LLC",GA,DeKalb County tax sale surplus — Parcel 18 158 09 007,BOUNCED_REJECTED,live,550_5.4.1_access_denied
+2026-10-20T14:30:00.000000,david@kramerlaw.com,David M. Kramer,Kramer Law,FL,Hillsborough County surplus filing — 23-CA-016325,BOUNCED_REJECTED,live,550_5.4.1_access_denied
+2026-10-20T14:30:00.000000,eric@zoeckleinlawpa.com,Eric Zoecklein,Zoecklein Law P.A.,FL,Hillsborough County surplus filing — 18-LW-000360,BOUNCED_REJECTED,live,550_5.4.1_access_denied
