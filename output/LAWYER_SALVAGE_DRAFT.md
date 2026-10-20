@@ -33,14 +33,14 @@ Over the past week, I personally purged every synthetic fixture and fallback acr
 3. Live Examples You Can Verify Right Now:
    • Case 22-CA-008975 (Hillsborough Circuit Civil) — Cindy Stuart — $226,740.20
      Direct Clerk PDF: https://publicrec.hillsclerk.com/Civil/registry_trust_balances/Registry_and_TrustAccounts_Balances_as_of_Wed_10_14_2026.pdf#search=22-CA-008975
-     Surplus Docket Dossier: https://surplusdocket.com/docket.html?docket=22-CA-008975&county=Hillsborough&state=FL&k=1b0126bb34b4be5152afad5521cd8f2c&auth=12b1651f2529a56e8bff&sub=9be441e88ead32528605f744
+     Surplus Docket Dossier: https://surplusdocket.com/docket.html?docket=22-CA-008975&county=Hillsborough&state=FL&k=a65adddbec62f259d76736470f06a3b7&auth=88f6e7bf4c048a1dc45f&sub=9be441e88ead32528605f744
    • Case 23-CA-016325 (Hillsborough Circuit Civil) — Thelma Mae Billing — $211,052.49
      Direct Clerk PDF: https://publicrec.hillsclerk.com/Civil/registry_trust_balances/Registry_and_TrustAccounts_Balances_as_of_Wed_10_14_2026.pdf#search=23-CA-016325
-     Surplus Docket Dossier: https://surplusdocket.com/docket.html?docket=23-CA-016325&county=Hillsborough&state=FL&k=1b0126bb34b4be5152afad5521cd8f2c&auth=034b645e4a7f75181faa&sub=9be441e88ead32528605f744
+     Surplus Docket Dossier: https://surplusdocket.com/docket.html?docket=23-CA-016325&county=Hillsborough&state=FL&k=a65adddbec62f259d76736470f06a3b7&auth=e658cf1b62b3ffce1f4a&sub=9be441e88ead32528605f744
    • Tax Deed File 18-LW-000360 (Hillsborough Tax Deed Surplus) — $521,651.56
      Official Clerk Portal: https://www.hillsclerk.com/taxdeeds
      Direct Clerk Spreadsheet: https://www.hillsclerk.com/documents/d/guest/copy-of-weekly-tax-deed-spreadsheet-25-10-10-xlsx?download=true
-     Surplus Docket Dossier: https://surplusdocket.com/docket.html?docket=18-LW-000360&county=Hillsborough&state=FL&k=1b0126bb34b4be5152afad5521cd8f2c&auth=ea97af465156e35e16db&sub=9be441e88ead32528605f744
+     Surplus Docket Dossier: https://surplusdocket.com/docket.html?docket=18-LW-000360&county=Hillsborough&state=FL&k=a65adddbec62f259d76736470f06a3b7&auth=93f65fa2e0d6f44af666&sub=9be441e88ead32528605f744
 
 I've attached today's verified Florida feed (Florida_Surplus_Feed.csv — 157 live Hillsborough Circuit Civil and Tax Deed records totaling $1.52M) as well as our full 611-record multi-state feed (Master_Surplus_Lead_Feed.csv totaling $30.3M), with no strings attached.
 

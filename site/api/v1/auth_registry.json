@@ -1,40 +1,23 @@
 {
   "status": "ready",
-  "generated_at": "2026-10-20T11:33:47.314309",
-  "vault_sig": "61e571b0bee30e0a",
+  "generated_at": "2026-10-20T13:31:34.139654",
+  "vault_sig": "e784bee0319f4dda",
   "valid_vault_sigs": [
-    "61e571b0bee30e0a",
-    "54141a558f4832ab",
-    "fd9c4634dcb66440",
-    "e27cf41047243f98",
-    "5d868c224adfece9",
-    "032ba7fe5986a36c",
-    "7f97e72235c3700b",
-    "5994f1d3a5a405bd",
-    "71afd8e33aea038a",
-    "6f808f8bb7140594",
-    "0b020d7c3723edfe",
-    "905530ae4750135a",
-    "0e5764f3bbc83094",
-    "33a220a0acda1c31",
-    "ec55c0265354fccc"
+    "e784bee0319f4dda",
+    "6b714cb53155a0ce",
+    "1b737c4ba242159e",
+    "7483108642fb5be6",
+    "5290c2949a2cdd18",
+    "3501c1ca5f6715f0",
+    "533b6eaa30018836"
   ],
+  "eval_vault_key": "a65adddbec62f259d76736470f06a3b7",
   "subscribers": [
     {
-      "email_hash": "e3020543ee04e8a60c441d69e2bc16bad5721808c890ac4836b516f7894d146c",
-      "sub_token": "88bc159edb03654d4e665a46",
-      "vault_payload": "9b348a8b1d8783d1da575917f7e3fdb2eb96b692fa42babf57ef67a78c1d3566"
-    },
-    {
-      "email_hash": "9c0cb24969aa36ce435c07aab20cd0ac687a1276ffa17f14a21d50498a0442f4",
-      "sub_token": "9be441e88ead32528605f744",
-      "vault_payload": "b9ee4f7752f7bf23f71c7e02d26387bdff45e12943da4326033f1ccd824e21bd"
-    },
-    {
-      "email_hash": "8a06a488d8fc6051dae95dcb925c77beeafb1af29245695822e3d869fb9f8617",
-      "sub_token": "b5a1c78ce2e05a000fa00921",
-      "vault_payload": "672e1cc8baf718fe91a8c155a4547f57240fb8be374c0ffb335de6a1c57b872a"
+      "email_hash": "f0d0f378f869f0b62b300ca7442ef4f7cde5d815f6f35174e0a6a56dffa24092",
+      "sub_token": "d23a5e244465159f5a6b6cbb",
+      "vault_payload": "090183a02b54d37bb3fe56b3afc9a4aadca7bb9088d13494c964e20c7015cc13"
     }
   ],
-  "active_subscriber_count": 3
+  "active_subscriber_count": 1
 }

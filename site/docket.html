@@ -431,6 +431,9 @@
             // 3. Evaluation reference token from direct outreach email grants unlocked evaluation access
             else if (refToken) {
                 isAuthenticated = true;
+                if (!activeVaultKey && authRegistry && authRegistry.eval_vault_key) {
+                    activeVaultKey = authRegistry.eval_vault_key;
+                }
             }
 
             updateAccessUI();

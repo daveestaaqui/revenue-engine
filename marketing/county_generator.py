@@ -154,7 +154,7 @@ COUNTIES = [
         'fee_cap': 'Statutory claim distribution rules',
         'clerk_name': 'Cobb County Sheriff & Superior Court Clerk',
         'clerk_url': 'https://www.cobbsheriff.org/',
-        'description': 'Daily Cobb County / Marietta tax sale excess funds data feed. Clean individual surplus claims delivered in CSV/Excel every morning at 7:00 AM EST.'
+        'description': 'Daily Cobb County / Marietta tax sale excess funds data feed. Clean individual surplus claims delivered in CSV/Excel every morning by 7:30 AM EST.'
     },
     {
         'slug': 'dekalb-county-excess-funds.html',
@@ -167,7 +167,7 @@ COUNTIES = [
         'fee_cap': 'Statutory claim distribution rules',
         'clerk_name': 'DeKalb County Tax Commissioner (Delinquent Tax Division)',
         'clerk_url': 'https://www.dekalbcountytax.org/',
-        'description': 'Daily DeKalb County excess funds data feed. Clean, case-verified tax auction overages delivered in CSV/Excel every morning at 7:00 AM EST.'
+        'description': 'Daily DeKalb County excess funds data feed. Clean, case-verified tax auction overages delivered in CSV/Excel every morning by 7:30 AM EST.'
     }
 ]
 
@@ -360,7 +360,7 @@ def generate_county_page(c):
                 {c['county']} Tax Deed Surplus & Excess Proceeds Feed
             </h1>
             <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
-                Automated daily intelligence for {c['county']} ({c['city']}, {c['state']}). Our pipeline ingests official filings from the {c['clerk_name']}, filters out institutional entities, and delivers verified individual owner surplus claims every morning at 7:00 AM EST.
+                Automated daily intelligence for {c['county']} ({c['city']}, {c['state']}). Our pipeline ingests official filings from the {c['clerk_name']}, filters out institutional entities, and delivers verified individual owner surplus claims every morning by 7:30 AM EST.
             </p>
         </div>
 
@@ -473,7 +473,7 @@ def generate_county_page(c):
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
-                            Daily 7:00 AM EST Dispatch
+                            Daily by 7:30 AM EST Delivery
                         </span>
                         <a href="/api-documentation.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors">
                             REST API v1

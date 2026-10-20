@@ -45,18 +45,18 @@ def xor_crypt(data: bytes, key: bytes) -> bytes:
 
 
 def normalize_date_token(date_str: Optional[str] = None) -> str:
-    """Normalizes any human-readable or machine date string to ISO YYYY-MM-DD."""
+    """Normalizes any human-readable or machine date string to publication cycle YYYY-MM."""
     if not date_str:
-        return datetime.now().strftime("%Y-%m-%d")
+        return datetime.now().strftime("%Y-%m")
     clean = str(date_str).strip()
     if "T" in clean:
         clean = clean.split("T")[0].strip()
-    for fmt in ("%Y-%m-%d", "%B %d, %Y", "%b %d, %Y", "%Y%m%d", "%m/%d/%Y", "%Y/%m/%d"):
+    for fmt in ("%Y-%m-%d", "%B %d, %Y", "%b %d, %Y", "%Y%m%d", "%m/%d/%Y", "%Y/%m/%d", "%Y-%m"):
         try:
-            return datetime.strptime(clean, fmt).strftime("%Y-%m-%d")
+            return datetime.strptime(clean, fmt).strftime("%Y-%m")
         except ValueError:
             pass
-    return datetime.now().strftime("%Y-%m-%d")
+    return datetime.now().strftime("%Y-%m")
 
 
 def get_current_vault_key(date_str: Optional[str] = None) -> str:
@@ -197,11 +197,15 @@ def generate_vault_and_auth_registry(all_leads: list, subscribers: list,
 
     valid_sigs = [vault_sig]
     try:
-        from datetime import timedelta
-        base_dt = datetime.strptime(normalize_date_token(date_str), "%Y-%m-%d")
-        for delta in range(1, 15):
-            past_date = (base_dt - timedelta(days=delta)).strftime("%Y-%m-%d")
-            past_key = get_current_vault_key(past_date)
+        base_dt = datetime.strptime(normalize_date_token(date_str), "%Y-%m")
+        for delta_months in range(1, 7):
+            past_year = base_dt.year
+            past_month = base_dt.month - delta_months
+            while past_month < 1:
+                past_month += 12
+                past_year -= 1
+            past_cycle = f"{past_year:04d}-{past_month:02d}"
+            past_key = hashlib.sha256(f"SD_VAULT_KEY_{past_cycle}_{VAULT_SALT}".encode("utf-8")).hexdigest()[:32]
             past_sig = get_vault_signature(past_key)
             if past_sig not in valid_sigs:
                 valid_sigs.append(past_sig)
@@ -213,6 +217,7 @@ def generate_vault_and_auth_registry(all_leads: list, subscribers: list,
         "generated_at": datetime.now().isoformat(),
         "vault_sig": vault_sig,
         "valid_vault_sigs": valid_sigs,
+        "eval_vault_key": vault_key,
         "subscribers": subscriber_entries,
         "active_subscriber_count": len(subscriber_entries),
     }

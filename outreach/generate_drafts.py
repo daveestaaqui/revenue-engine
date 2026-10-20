@@ -559,8 +559,8 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
     ref_seed = f"{to_email}:{identifier_param}:{county}:{state}:SD_OUTREACH_2026"
     ref_token = hashlib.sha256(ref_seed.encode("utf-8")).hexdigest()[:12]
     docket_url = (
-        f"https://surplusdocket.com/docket.html?docket={urllib.parse.quote(identifier_param)}"
-        f"&county={urllib.parse.quote(county)}&state={urllib.parse.quote(state)}&k={vault_key}&ref={ref_token}"
+        f"https://surplusdocket.com/docket?id={urllib.parse.quote_plus(identifier_param)}"
+        f"&k={vault_key}&ref={ref_token}"
     )
 
     # Paragraph 3: Verified Surplus Docket custom dossier page and invitation
