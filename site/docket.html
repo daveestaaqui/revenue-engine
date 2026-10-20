@@ -391,7 +391,7 @@
                 if (authBanner) authBanner.classList.remove('hidden');
                 if (paywallCard) paywallCard.classList.add('hidden');
                 if (authText) {
-                    if (refToken && !subToken) {
+                    if (!subToken) {
                         authText.innerHTML = '✓ Verified Practice Evaluation: Priority Counsel Access &bull; Unlocked Docket Dossier';
                     } else {
                         authText.innerHTML = '✓ Verified Subscriber Session: Active Practice Evaluation &bull; Priority Counsel Access';

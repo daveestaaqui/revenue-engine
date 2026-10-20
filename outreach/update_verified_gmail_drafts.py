@@ -18,6 +18,7 @@ import os
 import re
 import sys
 import time
+import urllib.parse
 from email.mime.text import MIMEText
 from pathlib import Path
 
@@ -47,6 +48,10 @@ ASSIGNED_TARGETS = [
     ("joe@taorminalawpa.com", "26-lw-000614"),
     # 8. Florida: Scott W. Spradley (FL Bar # 782467, Law Offices of Scott W. Spradley, P.A.) - Hillsborough Tax Deed
     ("scott@flaglerbeachlaw.com", "25-lw-000173"),
+    # 9. Tennessee: Brian L. Yoakum (TN Bar # 022904, Evans | Petree, P.C.) - Davidson Chancery
+    ("byoakum@evanspetree.com", "072060n00100co"),
+    # 10. Florida: Richard P. Zaretsky (FL Bar # 189196, Zaretsky Law Group) - Hillsborough Foreclosure
+    ("RPZ99@Florida-Counsel.com", "22-ca-008975"),
 ]
 
 ENV_FILE = BASE_DIR / ".env"
@@ -119,11 +124,11 @@ def main():
             return 1
 
         # Verify URL decryptability in vault
-        url_match = re.search(r"https://surplusdocket\.com/docket\?id=([^\s&]+)&k=([^\s&]+)&ref=([^\s&]+)", body)
+        url_match = re.search(r"https://surplusdocket\.com/docket\?id=([^\s&]+)&k=([^\s&]+)", body)
         if not url_match:
             print(f"❌ Could not find valid docket URL in draft for {target_email}")
             return 1
-        docket_param = url_match.group(1).replace("+", " ").lower()
+        docket_param = urllib.parse.unquote_plus(url_match.group(1)).lower()
         k_param = url_match.group(2)
         entry = vault["dockets"].get(docket_param)
         if not entry:

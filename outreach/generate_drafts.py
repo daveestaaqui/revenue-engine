@@ -364,6 +364,11 @@ def load_targets(target_path=None, allow_generic: bool = False):
             if not email:
                 continue
 
+            status = clean.get("Verified_Status", "").strip().upper()
+            if status and status != "VERIFIED_ACTIVE":
+                skipped_generic += 1
+                continue
+
             if not allow_generic and not is_valid_direct_email(email):
                 skipped_generic += 1
                 continue
@@ -595,11 +600,9 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
     from portal.vault_security import get_current_vault_key
     vault_key = get_current_vault_key()
     identifier_param = parcel_id if (parcel_id and not case_no) else (case_no or parcel_id)
-    ref_seed = f"{to_email}:{identifier_param}:{county}:{state}:SD_OUTREACH_2026"
-    ref_token = hashlib.sha256(ref_seed.encode("utf-8")).hexdigest()[:12]
     docket_url = (
         f"https://surplusdocket.com/docket?id={urllib.parse.quote_plus(identifier_param)}"
-        f"&k={vault_key}&ref={ref_token}"
+        f"&k={vault_key}"
     )
 
     # Paragraph 3: Verified Surplus Docket custom dossier page and invitation

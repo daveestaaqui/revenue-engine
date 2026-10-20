@@ -1442,9 +1442,9 @@ https://surplusdocket.com
 
 Best regards,
 
-Elena Brooks
-Senior Docket Specialist | Surplus Docket
-elena.brooks@surplusdocket.com
+David Mahler
+Surplus Docket Public Records Intelligence
+david@surplusdocket.com
 https://surplusdocket.com
 """
 
@@ -1453,11 +1453,10 @@ https://surplusdocket.com
     safe_email = re.sub(r"[^a-zA-Z0-9]", "_", email_addr)
     draft_file = drafts_dir / f"fallback_{safe_email}.eml"
 
-    # Strict Elena Brooks identity & anti-leak sanitization
-    clean_body = body_text.replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com").replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
+    clean_body = body_text.replace("sandwichfitness@gmail.com", "david@surplusdocket.com").replace("elena.brooks@surplusdocket.com", "david@surplusdocket.com")
 
-    eml_content = f"""From: Elena Brooks <elena.brooks@surplusdocket.com>
-Reply-To: Elena Brooks <elena.brooks@surplusdocket.com>
+    eml_content = f"""From: David Mahler <david@surplusdocket.com>
+Reply-To: david@surplusdocket.com
 To: {name} <{email_addr}>
 Subject: {subject}
 Date: {datetime.now().strftime('%a, %d %b %Y %H:%M:%S %z')}

@@ -1,11 +1,6 @@
-name: Elena's Daily Autonomous Legal Outreach Engine
+name: Surplus Docket Targeted Legal Outreach Engine
 
 on:
-  schedule:
-    # Morning Batch: Monday through Friday at 14:00 UTC (10:00 AM EST / 7:00 AM PST) — 12 messages
-    - cron: '0 14 * * 1-5'
-    # Afternoon Batch: Monday through Friday at 18:00 UTC (2:00 PM EST / 11:00 AM PST) — 12 messages
-    - cron: '0 18 * * 1-5'
   workflow_dispatch:
     inputs:
       limit:
@@ -17,7 +12,7 @@ on:
         type: boolean
         default: true
       channel:
-        description: 'Channel to execute: email (Elena drafts & IMAP sync), forms (Playwright manual), or both'
+        description: 'Channel to execute: email (drafts & IMAP sync), forms (Playwright manual), or both'
         required: false
         default: 'email'
         type: choice
@@ -25,6 +20,10 @@ on:
           - email
           - forms
           - both
+      upload_drafts:
+        description: 'Upload generated drafts to Gmail Drafts folder (dry-run only)'
+        type: boolean
+        default: false
       confirm_live_send:
         description: 'Type CONFIRM_LIVE to authorize live SMTP transmission (ignored in dry-run)'
         required: false
@@ -62,22 +61,27 @@ jobs:
         run: |
           playwright install --with-deps chromium
 
-      - name: Execute Elena's Legal Outreach & Draft Engine
-        if: github.event_name == 'schedule' || inputs.channel == 'email' || inputs.channel == 'both' || inputs.channel == ''
+      - name: Execute Legal Outreach & Draft Engine
+        if: inputs.channel == 'email' || inputs.channel == 'both' || inputs.channel == ''
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-          FROM_NAME: ${{ vars.FROM_NAME || 'Elena Brooks' }}
-          FROM_EMAIL: ${{ vars.FROM_EMAIL || 'elena.brooks@surplusdocket.com' }}
-          REPLY_TO: ${{ vars.REPLY_TO || 'elena.brooks@surplusdocket.com' }}
+          FROM_NAME: ${{ vars.FROM_NAME || 'David Mahler' }}
+          FROM_EMAIL: ${{ vars.FROM_EMAIL || 'david@surplusdocket.com' }}
+          REPLY_TO: ${{ vars.REPLY_TO || 'david@surplusdocket.com' }}
           BATCH_LIMIT: ${{ inputs.limit || '12' }}
         run: |
           LIMIT="$BATCH_LIMIT"
-          # STRICT ZERO-SPAM POLICY: Scheduled automated runs NEVER dispatch live SMTP cold emails.
+          # STRICT ZERO-SPAM POLICY: Automated runs NEVER dispatch live SMTP cold emails.
           # Live SMTP is strictly restricted to manual workflow_dispatch where dry_run is false AND confirm_live_send == 'CONFIRM_LIVE'.
-          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.dry_run }}" != "false" ] || [ "${{ github.event.inputs.confirm_live_send }}" != "CONFIRM_LIVE" ] || [ -z "$GMAIL_APP_PASS" ]; then
-            echo "🛡️ Zero-Spam Protection: Generating draft artifacts & syncing to Elena's Gmail Drafts..."
-            python outreach/generate_drafts.py --dry-run --upload-drafts --limit="$LIMIT"
+          if [ "${{ github.event.inputs.dry_run }}" != "false" ] || [ "${{ github.event.inputs.confirm_live_send }}" != "CONFIRM_LIVE" ] || [ -z "$GMAIL_APP_PASS" ]; then
+            if [ "${{ github.event.inputs.upload_drafts }}" = "true" ]; then
+              echo "🛡️ Generating verified draft artifacts & syncing to Gmail Drafts..."
+              python outreach/generate_drafts.py --dry-run --upload-drafts --limit="$LIMIT"
+            else
+              echo "🛡️ Generating verified draft artifacts locally without uploading..."
+              python outreach/generate_drafts.py --dry-run --limit="$LIMIT"
+            fi
           else
             echo "⚠️ Manual live SMTP dispatch explicitly authorized with confirmation..."
             python outreach/generate_drafts.py --send --limit="$LIMIT"

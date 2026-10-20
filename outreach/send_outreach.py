@@ -145,33 +145,29 @@ def send_email_smtp(to_email: str, subject: str, body_text: str) -> bool:
     smtp_port = int(os.getenv("SMTP_PORT", "587"))
     smtp_user = os.getenv("SMTP_USER", os.getenv("GMAIL_USER", "sandwichfitness@gmail.com"))
     smtp_pass = os.getenv("SMTP_PASS", os.getenv("GMAIL_APP_PASS", ""))
-    from_name = os.getenv("FROM_NAME", "Elena Brooks")
-    from_email = os.getenv("FROM_EMAIL", "elena.brooks@surplusdocket.com")
-    reply_to = os.getenv("REPLY_TO", "elena.brooks@surplusdocket.com")
+    from_name = os.getenv("FROM_NAME", "David Mahler")
+    from_email = os.getenv("FROM_EMAIL", "david@surplusdocket.com")
+    reply_to = os.getenv("REPLY_TO", "david@surplusdocket.com")
 
     if not smtp_user or not smtp_pass:
         print(f"  [!] SMTP credentials not set. Set SMTP_USER and SMTP_PASS env vars to send live email to {to_email}")
         return False
 
     try:
-        # Strict Elena Brooks identity enforcement & anti-leak sanitization
-        if "elena" in from_name.lower() or "elena" in from_email.lower():
-            from_name = "Elena Brooks"
-            from_email = "elena.brooks@surplusdocket.com"
-            body_text = (
-                body_text
-                .replace("sandwichfitness@gmail.com", "elena.brooks@surplusdocket.com")
-                .replace("david@surplusdocket.com", "elena.brooks@surplusdocket.com")
-                .replace("Dave Mahler", "Elena Brooks")
-                .replace("David Mahler", "Elena Brooks")
-            )
+        # Ground-truth verified identity enforcement
+        clean_body = (
+            body_text
+            .replace("sandwichfitness@gmail.com", "david@surplusdocket.com")
+            .replace("elena.brooks@surplusdocket.com", "david@surplusdocket.com")
+            .replace("Elena Brooks", "David Mahler")
+        )
 
         msg = MIMEMultipart()
         msg["From"] = f"{from_name} <{from_email}>"
         msg["To"] = to_email
         msg["Subject"] = subject
-        msg["Reply-To"] = f"{from_name} <{reply_to}>"
-        msg.attach(MIMEText(body_text, "plain"))
+        msg["Reply-To"] = reply_to
+        msg.attach(MIMEText(clean_body, "plain"))
 
         envelope_from = smtp_user if ("gmail.com" in smtp_host.lower() and smtp_user) else from_email
         with smtplib.SMTP(smtp_host, smtp_port) as server:

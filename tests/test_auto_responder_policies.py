@@ -259,11 +259,11 @@ class TestAutoResponderPolicies(unittest.TestCase):
                     f"AI tell phrase '{phrase}' found in draft for intent '{intent}'"
                 )
 
-            # Check that signature is always authentic Elena Brooks
-            self.assertIn("Elena Brooks", body)
-            self.assertIn("Senior Docket Specialist | Surplus Docket", body)
-            self.assertIn("elena.brooks@surplusdocket.com", body)
-            self.assertNotIn("David Mahler", body)
+            # Check that signature is always authentic David Mahler
+            self.assertIn("David Mahler", body)
+            self.assertIn("Surplus Docket Public Records Intelligence", body)
+            self.assertIn("david@surplusdocket.com", body)
+            self.assertNotIn("Elena Brooks", body)
 
     def test_in_house_paralegal_objection_handled(self):
         target_info = {"name": "Robert Vance", "firm": "Vance Law Group", "state": "FL"}
@@ -372,7 +372,7 @@ class TestAutoResponderPolicies(unittest.TestCase):
         self.assertIn("Fla. Stat. § 197.582", body)
         self.assertIn("County Clerk of Court / Tax Collector", body)
         self.assertIn("120-day statutory notice window", body)
-        self.assertIn("Elena Brooks", body)
+        self.assertIn("David Mahler", body)
 
     def test_legal_disclaimer_appended_to_substantive_responses(self):
         target_info = {"name": "Arthur Pendelton", "firm": "Pendelton Law", "state": "FL"}
@@ -436,7 +436,7 @@ class TestAutoResponderPolicies(unittest.TestCase):
         self.assertNotIn("Elena Brooks, Esq.", body)
         self.assertNotIn("Attorney at Law", body)
         self.assertNotIn("I am an attorney", body)
-        self.assertIn("Senior Docket Specialist | Surplus Docket", body)
+        self.assertIn("Surplus Docket Public Records Intelligence", body)
 
     def test_human_pacing_delay_calculation(self):
         """Verifies deterministic human response delay window (6 to 10 minutes)."""

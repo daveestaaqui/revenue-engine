@@ -149,76 +149,36 @@ def build_email_content(persona="david"):
     """
     Builds the tailored follow-up message. Default is David Mahler, Managing Director.
     """
-    if persona.lower() == "elena":
-        from_name = "Elena Brooks"
-        from_email = "elena.brooks@surplusdocket.com"
-        reply_to = "elena.brooks@surplusdocket.com"
+    from_name = "David Mahler"
+    from_email = "david@surplusdocket.com"
+    reply_to = "david@surplusdocket.com"
 
-        text_body = """Hi Alden,
+    text_body = """Hi Alden,
 
-Following up briefly to ensure the Florida sample dockets (Miami-Dade, Palm Beach, and Broward) imported cleanly into your case management system.
+Following up to ensure the Florida sample dockets (Miami-Dade, Palm Beach, and Broward) imported cleanly into your case management system.
 
 If you, Phil, or Adam have any questions regarding the court registry docket feeds or would like us to index a specific Florida judicial circuit before activating your 7-day evaluation, just let me know.
 
 Best regards,
 
-Elena Brooks
-Director of Practice Relations
-Surplus Docket
-elena.brooks@surplusdocket.com
+David Mahler
+Surplus Docket Public Records Intelligence
+david@surplusdocket.com
 https://surplusdocket.com
 """
-        html_body = """<!DOCTYPE html>
+    html_body = """<!DOCTYPE html>
 <html>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #1e293b;">
 <p>Hi Alden,</p>
 
-<p>Following up briefly to ensure the Florida sample dockets (Miami-Dade, Palm Beach, and Broward) imported cleanly into your case management system.</p>
+<p>Following up to ensure the Florida sample dockets (Miami-Dade, Palm Beach, and Broward) imported cleanly into your case management system.</p>
 
 <p>If you, Phil, or Adam have any questions regarding the court registry docket feeds or would like us to index a specific Florida judicial circuit before activating your 7-day evaluation, just let me know.</p>
 
 <p>Best regards,</p>
 
-<p><strong>Elena Brooks</strong><br>
-Director of Practice Relations<br>
-Surplus Docket<br>
-<a href="mailto:elena.brooks@surplusdocket.com" style="color: #1b365d;">elena.brooks@surplusdocket.com</a><br>
-<a href="https://surplusdocket.com" style="color: #4c6d48;">surplusdocket.com</a></p>
-</body>
-</html>
-"""
-    else:
-        # Default: David Mahler, Managing Director
-        from_name = "David Mahler"
-        from_email = "david@surplusdocket.com"
-        reply_to = "david@surplusdocket.com"
-
-        text_body = """Hi Alden,
-
-Following up on Elena's note below to ensure the Florida sample dockets (Miami-Dade, Palm Beach, and Broward) imported cleanly into your system.
-
-If you, Phil, or Adam have any questions on the data feed architecture or would like us to run a sample for any specific Florida judicial circuit before activating the 7-day trial, I'm glad to help directly.
-
-Best regards,
-
-David Mahler
-Managing Director | Surplus Docket
-david@surplusdocket.com
-https://surplusdocket.com
-"""
-        html_body = """<!DOCTYPE html>
-<html>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #1e293b;">
-<p>Hi Alden,</p>
-
-<p>Following up on Elena's note below to ensure the Florida sample dockets (Miami-Dade, Palm Beach, and Broward) imported cleanly into your system.</p>
-
-<p>If you, Phil, or Adam have any questions on the data feed architecture or would like us to run a sample for any specific Florida judicial circuit before activating the 7-day trial, I'm glad to help directly.</p>
-
-<p>Best regards,</p>
-
 <p><strong>David Mahler</strong><br>
-Managing Director | Surplus Docket<br>
+Surplus Docket Public Records Intelligence<br>
 <a href="mailto:david@surplusdocket.com" style="color: #1b365d;">david@surplusdocket.com</a><br>
 <a href="https://surplusdocket.com" style="color: #4c6d48;">surplusdocket.com</a></p>
 </body>

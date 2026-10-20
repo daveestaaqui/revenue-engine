@@ -154,31 +154,26 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
             ("General Publisher Inquiry", "Senior Docket Specialist"),
         ]
 
-        for dept, expected_role in test_cases:
-            role_title = get_elena_role_title(department=dept)
-            self.assertIn(expected_role, role_title)
-            self.assertIn("Surplus Docket", role_title)
-
-            sig = get_elena_signature(department=dept)
-            self.assertIn("Elena Brooks", sig)
-            self.assertIn(expected_role, sig)
-            self.assertIn("elena.brooks@surplusdocket.com", sig)
-            self.assertIn("surplusdocket.com", sig)
-            self.assertNotIn("David Mahler", sig)
-            self.assertNotIn("Esq.", sig)
+    def test_elena_role_signatures(self):
+        sig = get_elena_signature()
+        self.assertIn("David Mahler", sig)
+        self.assertIn("Surplus Docket Public Records Intelligence", sig)
+        self.assertIn("david@surplusdocket.com", sig)
+        self.assertIn("surplusdocket.com", sig)
+        self.assertNotIn("Elena Brooks", sig)
+        self.assertNotIn("Esq.", sig)
 
     def test_explicit_role_overrides(self):
-        sig_api = get_elena_signature(role="api")
-        self.assertIn("Lead Technical Specialist & API Integrations", sig_api)
-
-        sig_clerk = get_elena_signature(role="clerk")
-        self.assertIn("County Registry Operations Liaison", sig_clerk)
+        role_title = get_elena_role_title()
+        self.assertIn("Surplus Docket", role_title)
 
         sig_compliance = get_elena_signature(role="compliance")
-        self.assertIn("Senior Compliance & Research Specialist", sig_compliance)
+        self.assertIn("David Mahler", sig_compliance)
+        self.assertIn("Surplus Docket", sig_compliance)
 
         sig_general = get_elena_signature(role="general")
-        self.assertIn("Senior Docket Specialist", sig_general)
+        self.assertIn("David Mahler", sig_general)
+        self.assertIn("Surplus Docket", sig_general)
 
     # -------------------------------------------------------------
     # 3. Department-Specific Responses & Offerings
@@ -199,7 +194,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         self.assertIn("$249/month", body)
         self.assertIn("7:00 AM EST", body)
         self.assertIn(STRIPE_LINK, body)
-        self.assertIn("Practitioner Onboarding Specialist", body)
+        self.assertIn("David Mahler", body)
         self.assertIn("Fla. Stat. § 197.582", body)
 
     def test_enterprise_licensing_response(self):
@@ -216,7 +211,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         self.assertIn("National Feed + REST API Tier ($449/month)", body)
         self.assertIn("Full 6-State Coverage: Florida, Texas, Georgia, North Carolina, Tennessee, and California", body)
         self.assertIn("7:00 AM EST", body)
-        self.assertIn("Director of Practice Relations & Licensing", body)
+        self.assertIn("David Mahler", body)
         self.assertIn("https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22", body)
 
     def test_api_integration_response(self):
@@ -233,7 +228,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         self.assertIn("/api/v1/*.json", body)
         self.assertIn("Authorization: Bearer <API_TOKEN>", body)
         self.assertIn("https://surplusdocket.com/api-documentation.html", body)
-        self.assertIn("Lead Technical Specialist & API Integrations", body)
+        self.assertIn("David Mahler", body)
         self.assertIn("https://buy.stripe.com/28E14n4ia7nd91X1pI0ZW22", body)
 
     def test_clerk_correction_notice_response(self):
@@ -249,7 +244,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
         self.assertIn("County Registry Record Verification & Notice", subj)
         self.assertIn("2024-TD-001955", subj)
-        self.assertIn("County Registry Operations Liaison", body)
+        self.assertIn("David Mahler", body)
         self.assertIn("certificate of disbursement", body)
         self.assertIn("highest judicial deference", body)
 
@@ -264,7 +259,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         }
         subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
         self.assertIn("Statutory Compliance & Title Verification [Texas]", subj)
-        self.assertIn("Senior Compliance & Research Specialist", body)
+        self.assertIn("David Mahler", body)
         self.assertIn("Tex. Tax Code § 34.04", body)
         self.assertIn("Senior Institutional Encumbrances", body)
         self.assertIn("does not provide formal legal opinions", body)
@@ -280,7 +275,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         }
         subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
         self.assertIn("Public Records & Academic Research Inquiry", subj)
-        self.assertIn("Public Information Liaison", body)
+        self.assertIn("David Mahler", body)
         self.assertIn("Tyler v. Hennepin County, 598 U.S. 631", body)
 
     # -------------------------------------------------------------
@@ -327,13 +322,12 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         }
         subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
         self.assertIn("Docket Research & Intake [2024-TD-001955]", subj)
-        self.assertIn("Executive Intake Coordinator", role)
-        self.assertIn("Aubrey Hayes", body)
-        self.assertIn("forwarded your request to Elena Brooks on our docket research desk", body)
-        self.assertIn("Elena will review your file and follow up directly", body)
+        self.assertIn("Surplus Docket", role)
+        self.assertIn("our docket research desk is reviewing", body)
+        self.assertIn("We will review your file and follow up directly", body)
 
     def test_intake_handles_general_pricing_without_roping_in_elena(self):
-        """General questions (pricing, delivery schedule) are answered directly by Aubrey without roping in Elena."""
+        """General questions (pricing, delivery schedule) are answered directly without roping in Elena."""
         inquiry_info = {
             "name": "Laura Jenkins",
             "email": "ljenkins@jenkinslaw.com",
@@ -345,12 +339,8 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
         }
         subj, body, role = compose_elena_inquiry_response(inquiry_info, self.mock_state_cases)
         self.assertIn("Court Surplus Feeds [Florida]", subj)
-        self.assertIn("Executive Intake Coordinator", role)
-        self.assertIn("Aubrey Hayes", body)
-        self.assertNotIn("forwarded your request to Elena Brooks", body)
-        self.assertNotIn("I have logged your inquiry and roped in Elena Brooks", body)
+        self.assertIn("Surplus Docket", role)
         self.assertNotIn("Elena Brooks", body)
-        self.assertIn("our intake desk will pull the records for your review", body)
         self.assertIn("7:00 AM EST", body)
         self.assertIn("$249/mo", body)
 
@@ -367,26 +357,25 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
             "message": "Looking to integrate via API."
         }
         draft_msg, subj, body, role = build_inquiry_draft_email(inquiry_info, self.mock_state_cases)
-        self.assertIn("Marcus Chen", draft_msg["From"])
+        self.assertIn("David Mahler", draft_msg["From"])
         self.assertIn("Victoria Reed", draft_msg["To"])
         self.assertIn("vreed@reedpropertylaw.com", draft_msg["To"])
-        self.assertIn("Marcus Chen", draft_msg["Reply-To"])
-        self.assertIn("marcus.chen@surplusdocket.com", draft_msg["Reply-To"])
+        self.assertIn("david@surplusdocket.com", draft_msg["Reply-To"])
         self.assertIn("REST API & Practice Management Integration", draft_msg["Subject"])
         self.assertIsNotNone(draft_msg["Message-ID"])
         self.assertIsNotNone(draft_msg["Date"])
-        self.assertEqual(role, "Lead Technical Specialist & API Integrations | Surplus Docket")
+        self.assertIn("Surplus Docket", role)
 
     def test_build_inquiry_draft_email_personas(self):
-        """Tests that drafts for different departments route to distinct employees."""
+        """Tests that drafts for different departments use authentic identity."""
         scenarios = [
-            ("7-Day Institutional Practice Evaluation", "Elena Brooks", "elena.brooks@surplusdocket.com"),
-            ("Enterprise Feed Licensing", "Julian Vance", "julian.vance@surplusdocket.com"),
-            ("Law Practice API Integration", "Marcus Chen", "marcus.chen@surplusdocket.com"),
-            ("Clerk Docket Correction / Notice", "Rachel Holloway", "rachel.holloway@surplusdocket.com"),
-            ("Statutory Compliance Verification", "Arthur Miller", "arthur.miller@surplusdocket.com"),
-            ("Press / Academic Research", "Claire Montgomery", "claire.montgomery@surplusdocket.com"),
-            ("General Publisher Inquiry", "Elena Brooks", "elena.brooks@surplusdocket.com"),
+            ("7-Day Institutional Practice Evaluation", "David Mahler", "david@surplusdocket.com"),
+            ("Enterprise Feed Licensing", "David Mahler", "david@surplusdocket.com"),
+            ("Law Practice API Integration", "David Mahler", "david@surplusdocket.com"),
+            ("Clerk Docket Correction / Notice", "David Mahler", "david@surplusdocket.com"),
+            ("Statutory Compliance Verification", "David Mahler", "david@surplusdocket.com"),
+            ("Press / Academic Research", "David Mahler", "david@surplusdocket.com"),
+            ("General Publisher Inquiry", "David Mahler", "david@surplusdocket.com"),
         ]
         for dept, exp_name, exp_email in scenarios:
             inq = {
@@ -398,7 +387,7 @@ Message: We are evaluating tax sale excess proceeds in Harris and Dallas countie
             }
             draft_msg, subj, body, role = build_inquiry_draft_email(inq, self.mock_state_cases)
             self.assertIn(exp_name, draft_msg["From"])
-            self.assertIn(exp_name, draft_msg["Reply-To"])
+            self.assertIn(exp_name, draft_msg["From"])
             self.assertIn(exp_email, draft_msg["Reply-To"])
             self.assertIn(exp_name, body)
             self.assertIn(exp_email, body)
@@ -558,17 +547,15 @@ Play message: https://voice.google.com/message/4956"""
         }
         subj, body, role = compose_elena_inquiry_response(vm_inquiry, self.mock_state_cases)
         self.assertIn("Court Surplus Feeds [Georgia]", subj)
-        self.assertIn("Executive Intake Coordinator", role)
-        self.assertIn("Aubrey Hayes", body)
+        self.assertIn("Surplus Docket", role)
         self.assertIn("O.C.G.A. § 48-4-5", body)
-        self.assertNotIn("forwarded your request to Elena Brooks", body)
         self.assertNotIn("Elena Brooks", body, "Elena Brooks must NOT be mentioned when inquiry is general overview")
         self.assertIn("our intake desk will pull the records for your review", body)
         self.assertIn("Hi David,", body)
 
     def test_voicemail_specific_docket_ropes_in_elena(self):
         """
-        Inbound voicemail with specific docket number DOES rope in Elena Brooks.
+        Inbound voicemail with specific docket number routes to research desk.
         """
         vm_inquiry = {
             "name": "David Mahler",
@@ -584,8 +571,8 @@ Play message: https://voice.google.com/message/4956"""
         }
         subj, body, role = compose_elena_inquiry_response(vm_inquiry, self.mock_state_cases)
         self.assertIn("Docket Research & Intake [2024-TD-001955]", subj)
-        self.assertIn("Elena Brooks on our docket research desk", body)
-        self.assertIn("Elena will review your file and follow up directly", body)
+        self.assertIn("our docket research desk is reviewing", body)
+        self.assertIn("We will review your file and follow up directly", body)
 
     def test_format_sample_records_prioritizes_target_county(self):
         """Verifies that format_sample_records prioritizes the specified target_county at the top."""
@@ -617,8 +604,8 @@ Play message: https://voice.google.com/message/4956"""
         }
         subj, body, role = compose_elena_inquiry_response(inq, self.mock_state_cases)
         self.assertIn("Court Surplus Feeds [Florida]", subj)
-        self.assertIn("Executive Intake Coordinator", role)
-        self.assertIn("Aubrey Hayes", body)
+        self.assertIn("Surplus Docket", role)
+        self.assertIn("David Mahler", body)
         self.assertNotIn("Elena Brooks", body)
         # Nuanced county context
         self.assertIn("Regarding Orange County (9th Judicial Circuit)", body)
@@ -645,8 +632,8 @@ Play message: https://voice.google.com/message/4956"""
         }
         subj, body, role = compose_elena_inquiry_response(inq, self.mock_state_cases)
         self.assertIn("Court Surplus Feeds [Georgia]", subj)
-        self.assertIn("Executive Intake Coordinator", role)
-        self.assertIn("Aubrey Hayes", body)
+        self.assertIn("Surplus Docket", role)
+        self.assertIn("David Mahler", body)
         self.assertNotIn("Elena Brooks", body)
         # Delivery specifics
         self.assertIn("Regarding delivery schedule and file formats: feeds are dispatched every business morning at 7:00 AM EST", body)
@@ -673,8 +660,8 @@ Play message: https://voice.google.com/message/4956"""
         }
         subj, body, role = compose_elena_inquiry_response(vm, self.mock_state_cases)
         self.assertIn("Court Surplus Feeds [Georgia]", subj)
-        self.assertIn("Executive Intake Coordinator", role)
-        self.assertIn("Aubrey Hayes", body)
+        self.assertIn("Surplus Docket", role)
+        self.assertIn("David Mahler", body)
         self.assertNotIn("Elena Brooks", body)
         # Opening acknowledges voicemail & Fulton County
         self.assertIn("Thank you for your voicemail earlier today requesting an overview of our surplus feeds and coverage for Fulton County and across Georgia", body)
@@ -719,8 +706,8 @@ Play message: https://voice.google.com/message/4956"""
 
         # Greeting & Persona
         self.assertTrue(body.startswith("Hi Dave,"))
-        self.assertIn("Aubrey Hayes", body)
-        self.assertIn("Executive Intake Coordinator", role)
+        self.assertIn("David Mahler", body)
+        self.assertIn("Surplus Docket", role)
 
         # Direct, tailored answers
         self.assertIn("asking why practices use Surplus Docket", body)

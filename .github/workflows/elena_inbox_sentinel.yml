@@ -43,9 +43,9 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
           STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
-          FROM_NAME: 'Elena Brooks'
-          SENDER_EMAIL: 'elena.brooks@surplusdocket.com'
-          REPLY_TO: 'elena.brooks@surplusdocket.com'
+          FROM_NAME: 'David Mahler'
+          SENDER_EMAIL: 'david@surplusdocket.com'
+          REPLY_TO: 'david@surplusdocket.com'
         run: |
           if [ -z "$GMAIL_APP_PASS" ]; then
             echo "ℹ️ GMAIL_APP_PASS secret not configured in repository. Skipping IMAP pass."
@@ -94,6 +94,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: elena-sentinel-log
+          name: inbox-sentinel-log
           path: outreach/auto_responder.log
           retention-days: 14

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Surplus Docket — AI Voice Customer Service Server (Elena Brooks Persona)
-========================================================================
+Surplus Docket — Voice Customer Service Server (Public Records Intelligence)
+============================================================================
 Interactive Voice Response (IVR) & Speech-to-Speech AI Telephony Engine.
 
 Architecture:
@@ -110,10 +110,10 @@ def generate_voice_response(speech_text):
     """
     intent, county_info, state_code = classify_speech_intent(speech_text)
 
-    if intent == "SPEAK_WITH_ELENA":
+    if intent == "SPEAK_WITH_ELENA" or intent == "SPEAK_WITH_RESEARCH":
         return (
-            "Elena Brooks coordinates docket research and registry filings for our subscribing practices. "
-            "I can log your case number, county, and contact details for Elena to review, "
+            "Our research desk coordinates docket research and registry filings for our subscribing practices. "
+            "I can log your case number, county, and contact details for our research desk to review, "
             "or assist you directly with subscription terms and county coverage. "
             "Can I answer a question about our feeds, or would you like to leave your details for docket research?",
             False,
@@ -282,8 +282,8 @@ class VoiceAgentHTTPHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps({
                 "status": "online",
-                "service": "Surplus Docket AI Voice Customer Service",
-                "persona": "Audrey Hayes (Executive Assistant to Elena Brooks)",
+                "service": "Surplus Docket Voice Customer Service",
+                "department": "Public Records Intelligence",
                 "phone": BUSINESS_PHONE_NUMBER,
                 "voice": VOICE_NAME,
             }).encode("utf-8"))
@@ -357,15 +357,15 @@ class VoiceAgentHTTPHandler(BaseHTTPRequestHandler):
 def run_voice_server(port=8080):
     server_address = ("", port)
     httpd = HTTPServer(server_address, VoiceAgentHTTPHandler)
-    print(f"🚀 Surplus Docket AI Voice Customer Service Server active on port {port}")
-    print(f"   Persona: Elena Brooks | Synthetic Voice: {VOICE_NAME}")
+    print(f"🚀 Surplus Docket Voice Customer Service Server active on port {port}")
+    print(f"   Department: Public Records Intelligence | Synthetic Voice: {VOICE_NAME}")
     print(f"   Incoming Webhook URL: http://localhost:{port}/voice/incoming")
     print(f"   Tunnel with cloudflared: cloudflared tunnel --url http://localhost:{port}")
     httpd.serve_forever()
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Surplus Docket AI Voice Telephony Agent")
+    parser = argparse.ArgumentParser(description="Surplus Docket Voice Telephony Agent")
     parser.add_argument("--port", type=int, default=8080, help="Local HTTP port to bind")
     parser.add_argument("--simulate", type=str, help="Simulate a spoken phrase and view AI response")
     args = parser.parse_args()
@@ -374,8 +374,8 @@ if __name__ == "__main__":
         print(f"Caller: \"{args.simulate}\"")
         reply, offer_sms, record_vm = generate_voice_response(args.simulate)
         intent, county, state = classify_speech_intent(args.simulate)
-        print(f"Intent:  {intent}")
-        print(f"Elena:   \"{reply}\"")
+        print(f"Intent:   {intent}")
+        print(f"Response: \"{reply}\"")
         print(f"Offer SMS: {offer_sms} | Record VM: {record_vm}")
     else:
         run_voice_server(args.port)

@@ -19,9 +19,9 @@ If this is an active practice area for your firm, happy to send over the docket 
 
 Best regards,
 
-Elena Brooks
-Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
+David Mahler
+Surplus Docket Public Records Intelligence
+david@surplusdocket.com | https://surplusdocket.com
 
 Surplus Docket | 100 S. Biscayne Blvd, Suite 2800, Miami, FL 33131
 Opt-Out: Reply "unsubscribe" to opt out or visit https://surplusdocket.com/opt-out.html
@@ -41,9 +41,9 @@ Happy to send over a quick sample of active, unclaimed surplus dockets in {{stat
 
 Best,
 
-Elena Brooks
-Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
+David Mahler
+Surplus Docket Public Records Intelligence
+david@surplusdocket.com | https://surplusdocket.com
 
 Surplus Docket | 100 S. Biscayne Blvd, Suite 2800, Miami, FL 33131
 Opt-Out: Reply "unsubscribe" to opt out or visit https://surplusdocket.com/opt-out.html
@@ -63,9 +63,9 @@ If you ever want to check out our public tools or search dockets, they're always
 
 Best,
 
-Elena Brooks
-Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
+David Mahler
+Surplus Docket Public Records Intelligence
+david@surplusdocket.com | https://surplusdocket.com
 
 Surplus Docket | 100 S. Biscayne Blvd, Suite 2800, Miami, FL 33131
 Opt-Out: Reply "unsubscribe" to opt out or visit https://surplusdocket.com/opt-out.html

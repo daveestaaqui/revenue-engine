@@ -83,9 +83,9 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-          TOOL_OUTREACH_FROM_NAME: ${{ vars.TOOL_OUTREACH_FROM_NAME || 'Elena Brooks' }}
-          TOOL_OUTREACH_FROM_EMAIL: ${{ vars.TOOL_OUTREACH_FROM_EMAIL || 'elena.brooks@surplusdocket.com' }}
-          TOOL_OUTREACH_REPLY_TO: ${{ vars.TOOL_OUTREACH_REPLY_TO || 'elena.brooks@surplusdocket.com' }}
+          TOOL_OUTREACH_FROM_NAME: ${{ vars.TOOL_OUTREACH_FROM_NAME || 'David Mahler' }}
+          TOOL_OUTREACH_FROM_EMAIL: ${{ vars.TOOL_OUTREACH_FROM_EMAIL || 'david@surplusdocket.com' }}
+          TOOL_OUTREACH_REPLY_TO: ${{ vars.TOOL_OUTREACH_REPLY_TO || 'david@surplusdocket.com' }}
         run: |
           OUTREACH_LIMIT="${{ github.event.inputs.outreach_limit || 6 }}"
           if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ -z "$GMAIL_APP_PASS" ]; then

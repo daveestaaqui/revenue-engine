@@ -35,7 +35,7 @@ class TestVoiceAgent(unittest.TestCase):
 
     def test_speak_with_elena_intent(self):
         reply, offer_sms, record_vm = generate_voice_response("Can I speak with Elena Brooks?")
-        self.assertIn("Elena Brooks coordinates docket research", reply)
+        self.assertIn("docket research", reply)
         self.assertIn("leave your details for docket research", reply)
         self.assertNotIn("currently reviewing today's court certificates", reply)
 

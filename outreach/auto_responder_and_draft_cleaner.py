@@ -460,18 +460,18 @@ def send_response_email(msg_obj, from_email, recipient_email, dry_run=False):
     Returns: (success: bool, detail: str)
     """
     # Strict Persona & Anti-Leak Sanitization (SD-POL-OUTREACH-2026-V1)
-    # Ensure Elena's correspondence strictly uses elena.brooks@surplusdocket.com and never leaks personal/operator email
+    # Ensure all correspondence strictly uses verified sender identity and never leaks personal/operator email
     from_header = str(msg_obj.get("From", ""))
     if "elena" in from_header.lower() or "elena" in str(from_email).lower():
-        from_email = "elena.brooks@surplusdocket.com"
+        from_email = "david@surplusdocket.com"
         if "From" in msg_obj:
-            msg_obj.replace_header("From", "Elena Brooks <elena.brooks@surplusdocket.com>")
+            msg_obj.replace_header("From", "David Mahler <david@surplusdocket.com>")
         else:
-            msg_obj["From"] = "Elena Brooks <elena.brooks@surplusdocket.com>"
+            msg_obj["From"] = "David Mahler <david@surplusdocket.com>"
         if "Reply-To" in msg_obj:
-            msg_obj.replace_header("Reply-To", "Elena Brooks <elena.brooks@surplusdocket.com>")
+            msg_obj.replace_header("Reply-To", "david@surplusdocket.com")
         else:
-            msg_obj["Reply-To"] = "Elena Brooks <elena.brooks@surplusdocket.com>"
+            msg_obj["Reply-To"] = "david@surplusdocket.com"
 
     if dry_run:
         log(f"  [DRY RUN] Would auto-send email to {recipient_email} from {from_email}")
@@ -1295,59 +1295,59 @@ def format_sample_records(cases, target_county=None):
 
 DEPARTMENT_PERSONAS = {
     "ONBOARDING": {
-        "name": "Elena Brooks",
-        "title": "Practitioner Onboarding Specialist",
-        "full_title": "Practitioner Onboarding Specialist | Surplus Docket",
-        "email": "elena.brooks@surplusdocket.com",
+        "name": "David Mahler",
+        "title": "Public Records Intelligence",
+        "full_title": "Surplus Docket Public Records Intelligence",
+        "email": "david@surplusdocket.com",
         "department": "7-Day Institutional Practice Evaluation",
     },
     "ENTERPRISE": {
-        "name": "Julian Vance",
-        "title": "Director of Practice Relations & Licensing",
-        "full_title": "Director of Practice Relations & Licensing | Surplus Docket",
-        "email": "julian.vance@surplusdocket.com",
+        "name": "David Mahler",
+        "title": "Public Records Intelligence",
+        "full_title": "Surplus Docket Public Records Intelligence",
+        "email": "david@surplusdocket.com",
         "department": "Enterprise Feed Licensing",
     },
     "TECHNICAL": {
-        "name": "Marcus Chen",
-        "title": "Lead Technical Specialist & API Integrations",
-        "full_title": "Lead Technical Specialist & API Integrations | Surplus Docket",
-        "email": "marcus.chen@surplusdocket.com",
+        "name": "David Mahler",
+        "title": "Public Records Intelligence",
+        "full_title": "Surplus Docket Public Records Intelligence",
+        "email": "david@surplusdocket.com",
         "department": "Law Practice API Integration",
     },
     "REGISTRY": {
-        "name": "Rachel Holloway",
-        "title": "County Registry Operations Liaison",
-        "full_title": "County Registry Operations Liaison | Surplus Docket",
-        "email": "rachel.holloway@surplusdocket.com",
+        "name": "David Mahler",
+        "title": "Public Records Intelligence",
+        "full_title": "Surplus Docket Public Records Intelligence",
+        "email": "david@surplusdocket.com",
         "department": "Clerk Docket Correction / Notice",
     },
     "COMPLIANCE": {
-        "name": "Arthur Miller",
-        "title": "Senior Compliance & Research Specialist",
-        "full_title": "Senior Compliance & Research Specialist | Surplus Docket",
-        "email": "arthur.miller@surplusdocket.com",
+        "name": "David Mahler",
+        "title": "Public Records Intelligence",
+        "full_title": "Surplus Docket Public Records Intelligence",
+        "email": "david@surplusdocket.com",
         "department": "Statutory Compliance Verification",
     },
     "RESEARCH": {
-        "name": "Claire Montgomery",
-        "title": "Public Information Liaison",
-        "full_title": "Public Information Liaison | Surplus Docket",
-        "email": "claire.montgomery@surplusdocket.com",
+        "name": "David Mahler",
+        "title": "Public Records Intelligence",
+        "full_title": "Surplus Docket Public Records Intelligence",
+        "email": "david@surplusdocket.com",
         "department": "Press / Academic Research",
     },
     "GENERAL": {
-        "name": "Elena Brooks",
-        "title": "Senior Docket Specialist",
-        "full_title": "Senior Docket Specialist | Surplus Docket",
-        "email": "elena.brooks@surplusdocket.com",
+        "name": "David Mahler",
+        "title": "Public Records Intelligence",
+        "full_title": "Surplus Docket Public Records Intelligence",
+        "email": "david@surplusdocket.com",
         "department": "General Publisher Inquiry",
     },
     "INTAKE": {
-        "name": "Aubrey Hayes",
-        "title": "Executive Intake Coordinator",
-        "full_title": "Executive Intake Coordinator | Surplus Docket",
-        "email": "aubrey.hayes@surplusdocket.com",
+        "name": "David Mahler",
+        "title": "Public Records Intelligence",
+        "full_title": "Surplus Docket Public Records Intelligence",
+        "email": "david@surplusdocket.com",
         "department": "Inquiries & Intake Desk",
     },
 }
@@ -1484,27 +1484,21 @@ def get_gmail_drafts_mailbox(mail):
 
 def get_elena_role_title(role=None, department=None, intent=None):
     """
-    Returns the dynamic institutional role title for Elena Brooks based on
-    explicit role, inquiry department, or intent context.
-    Defaults to Senior Docket Specialist for general outreach follow-ups.
+    Returns the institutional role title for communications.
     """
-    if role or department:
-        persona = get_department_persona(role=role, department=department)
-        return persona["full_title"]
-    return "Senior Docket Specialist | Surplus Docket"
+    return "Public Records Intelligence | Surplus Docket"
 
 
 def get_elena_signature(role=None, department=None, intent=None):
     """
-    Generates an authentic Elena Brooks signature reflecting her dynamic institutional role.
+    Generates an authentic signature in David Mahler's verified identity.
     """
-    role_title = get_elena_role_title(role=role, department=department, intent=intent)
     return f"""Best regards,
 
-Elena Brooks
-{role_title}
+David Mahler
+Surplus Docket Public Records Intelligence
 surplusdocket.com
-elena.brooks@surplusdocket.com"""
+david@surplusdocket.com"""
 
 
 def compose_elena_response(intent, target_info, sender_name, sender_email, subject_raw, text_body, state_cases, role=None, department=None):
@@ -2618,10 +2612,10 @@ Please reply with the specific scope, academic institution, or research paramete
             jur_clause = f" in {state_name}" if state_name else ""
             status_paragraph = (
                 f"Because your inquiry involves specific county court filings{docket_clause}, "
-                f"I have forwarded your request to Elena Brooks on our docket research desk to review active registry balances{jur_clause}."
+                f"our docket research desk is reviewing active registry balances{jur_clause}."
             )
             followup_clause = (
-                f"Elena will review your file and follow up directly regarding the specific court records{jur_clause}. "
+                f"We will review your file and follow up directly regarding the specific court records{jur_clause}. "
                 f"If you have additional docket numbers or parcel references, please feel free to reply directly to this email."
             )
         elif wants_talk:
@@ -2873,10 +2867,10 @@ VERIFIED TRANSCRIPT:
 OPERATIONAL FINDINGS:
 - Caller did not provide an email address during the call.
 - Automated email reply to caller withheld until contact email is confirmed.
-- Suggested intake routing: Aubrey Hayes (Intake) / Elena Brooks (Docket Research).
+- Suggested intake routing: David Mahler (Surplus Docket Intelligence).
 
 SUGGESTED IMMEDIATE CALLBACK SCRIPT:
-"Hello, this is Aubrey Hayes with Surplus Docket returning your call to our intake desk regarding our {state_name if state_name != 'Unspecified' else 'court'} excess proceeds feeds. I reviewed your voicemail recording from earlier today. What is the best email address to send over our trial docket dossier for your practice?"
+"Hello, this is Surplus Docket returning your call regarding our {state_name if state_name != 'Unspecified' else 'court'} excess proceeds feeds. I reviewed your voicemail recording from earlier today. What is the best email address to send over our trial docket dossier for your practice?"
 
 SUGGESTED SMS FOLLOW-UP (if phone accepts SMS):
 "{sms_script}"
@@ -3483,14 +3477,14 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
             state_cases=state_cases,
         )
 
-        # Elena Brooks identity enforcement (SD-POL-OUTREACH-2026-V1)
-        elena_name = "Elena Brooks"
-        elena_email = "elena.brooks@surplusdocket.com"
+        # Authentic verified identity enforcement (David Mahler / Surplus Docket Intelligence)
+        sender_name_identity = "David Mahler"
+        sender_email_identity = "david@surplusdocket.com"
         draft_msg = MIMEText(reply_body, "plain", "utf-8")
-        draft_msg["From"] = f"{elena_name} <{elena_email}>"
+        draft_msg["From"] = f"{sender_name_identity} <{sender_email_identity}>"
         draft_msg["To"] = sender_raw
         draft_msg["Subject"] = reply_subject
-        draft_msg["Reply-To"] = f"{elena_name} <{elena_email}>"
+        draft_msg["Reply-To"] = sender_email_identity
         if message_id:
             draft_msg["In-Reply-To"] = message_id
             draft_msg["References"] = message_id
@@ -3499,17 +3493,17 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         draft_msg["Message-ID"] = make_msgid()
 
         if AUTO_SEND:
-            sent_ok, send_detail = send_response_email(draft_msg, elena_email, sender_email)
+            sent_ok, send_detail = send_response_email(draft_msg, sender_email_identity, sender_email)
 
             if sent_ok:
                 save_created_draft(draft_key)
                 already_drafted.add(draft_key)
                 mail.store(mid, "+FLAGS", r"(\Seen)")
-                log(f"  🚀 Elena Brooks response AUTO-SENT to {sender_email} (Intent: {intent}) via SMTP!")
+                log(f"  🚀 Response AUTO-SENT to {sender_email} (Intent: {intent}) via SMTP!")
 
                 summary_text = (
                     f"Law firm reply from {sender_name} ({target_info.get('firm', sender_email) if target_info else sender_email}). "
-                    f"Intent: {intent}. Elena Brooks auto-responded with tailored statutory analysis."
+                    f"Intent: {intent}. Auto-responded with tailored statutory analysis."
                 )
                 record_notable_email_activity({
                     "id": f"ACT-{abs(hash(draft_key)) % 10000000}",
@@ -3526,7 +3520,7 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                     "inbound_snippet": text_body[:160].replace("\n", " ").strip(),
                     "summary": summary_text,
                     "action_taken": "AUTO_SENT_REPLY",
-                    "persona": "Elena Brooks (Senior Docket Specialist)",
+                    "persona": "David Mahler (Surplus Docket Intelligence)",
                     "notable": True,
                 })
             else:

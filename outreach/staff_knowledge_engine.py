@@ -1,14 +1,14 @@
 """
 Surplus Docket — Autonomous Staff Knowledge & Fact Verification Engine
 ======================================================================
-Provides a single, dynamically updated source of truth for Elena Brooks
-and all Surplus Docket institutional staff personas.
+Provides a single, dynamically updated source of truth for all Surplus Docket
+communications and operations.
 
 Key Capabilities:
 1. Dynamically syncs with `portal/monetization_config.json` (pricing, tiers, trials, Stripe links).
 2. Dynamically syncs with `compliance/statutory_rules.json` (statutes, deadlines, fee caps, court procedures).
 3. Auto-reloads in real time whenever underlying configuration files change on disk.
-4. Pre-flight verification engine to ensure Elena and all staff ALWAYS speak 100% verified truth
+4. Pre-flight verification engine to ensure all communications ALWAYS speak 100% verified truth
    with zero false claims (e.g. no 6:00 AM claims, no 12-month operating history claims, no trial scope errors).
 """
 
