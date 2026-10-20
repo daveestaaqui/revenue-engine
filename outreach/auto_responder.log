@@ -599,3 +599,12 @@
 [2026-10-20 18:39:22]   [DRY RUN] Would auto-send email to lawyer@example.com from david@surplusdocket.com
 [2026-10-20 18:39:23]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
 [2026-10-20 18:39:23]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-10-20 23:33:08]   🗑️ IMAP: Removed sent draft for: brice@zoeckleinlawpa.com
+[2026-10-20 23:33:09]   🗑️ IMAP: Removed sent draft for: cjimerson@jimersonfirm.com
+[2026-10-20 23:33:10]   🗑️ IMAP: Removed sent draft for: leon@lvglaw.com
+[2026-10-20 23:33:10]   🗑️ IMAP: Removed sent draft for: brett@bighamlaw.com
+[2026-10-20 23:33:11]   🗑️ IMAP: Removed sent draft for: manfred@manfredlaw.com
+[2026-10-20 23:33:12]   🗑️ IMAP: Removed sent draft for: ksoto@thesotolawoffice.com
+[2026-10-20 23:33:13]   🗑️ IMAP: Removed sent draft for: joe@taorminalawpa.com
+[2026-10-20 23:33:14]   🗑️ IMAP: Removed sent draft for: scott@flaglerbeachlaw.com
+[2026-10-20 23:33:15] ✓ Expunged 8 sent draft(s) from [Gmail]/Drafts.
