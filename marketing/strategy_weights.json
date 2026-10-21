@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-20T11:33:49.614456+00:00",
+  "updated_at": "2026-10-21T11:46:28.147310+00:00",
   "state_weights_pct": {
     "FL": 22.2,
-    "TX": 19.5,
-    "CA": 24.1,
-    "GA": 19.5,
+    "TX": 19.6,
+    "CA": 24.0,
+    "GA": 19.4,
     "NC": 6.2,
     "TN": 8.5
   },
@@ -25,7 +25,7 @@
   },
   "state_performance_breakdown": {
     "FL": {
-      "score": 0.2154,
+      "score": 0.2153,
       "win_rate": 13.5,
       "smoothed_deliverability": 13.6,
       "surplus_pool": 5089460.1000000015,
@@ -37,19 +37,19 @@
       "allocated_weight_pct": 22.2
     },
     "TX": {
-      "score": 0.1894,
+      "score": 0.19,
       "win_rate": 16.4,
       "smoothed_deliverability": 16.7,
-      "surplus_pool": 5518904.359999998,
-      "fee_pool": 1379726.0499999993,
-      "lead_count": 171,
+      "surplus_pool": 5564648.799999998,
+      "fee_pool": 1391162.1599999992,
+      "lead_count": 172,
       "addressable_firms": 251,
       "attempts": 67,
       "successes": 11,
-      "allocated_weight_pct": 19.5
+      "allocated_weight_pct": 19.6
     },
     "CA": {
-      "score": 0.2331,
+      "score": 0.2328,
       "win_rate": 2.5,
       "smoothed_deliverability": 2.6,
       "surplus_pool": 11117842.300000008,
@@ -58,10 +58,10 @@
       "addressable_firms": 205,
       "attempts": 639,
       "successes": 16,
-      "allocated_weight_pct": 24.1
+      "allocated_weight_pct": 24.0
     },
     "GA": {
-      "score": 0.1885,
+      "score": 0.1884,
       "win_rate": 30.0,
       "smoothed_deliverability": 26.7,
       "surplus_pool": 6116771.470000004,
@@ -70,7 +70,7 @@
       "addressable_firms": 147,
       "attempts": 10,
       "successes": 3,
-      "allocated_weight_pct": 19.5
+      "allocated_weight_pct": 19.4
     },
     "NC": {
       "score": 0.0604,
@@ -85,7 +85,7 @@
       "allocated_weight_pct": 6.2
     },
     "TN": {
-      "score": 0.0823,
+      "score": 0.0822,
       "win_rate": 0.0,
       "smoothed_deliverability": 12.5,
       "surplus_pool": 1800011.85,
