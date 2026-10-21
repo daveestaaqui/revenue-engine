@@ -33,6 +33,8 @@ jobs:
     if: github.event_name != 'schedule'
     runs-on: ubuntu-22.04
     timeout-minutes: 10
+    env:
+      PYTHONPATH: .
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

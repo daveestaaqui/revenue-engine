@@ -195,3 +195,11 @@ Timestamp,Email,Name,Firm,State,Subject,Status,Mode,Output_File
 2026-10-20T14:30:00.000000,david@marshalllegal.com,David C. Marshall,"Marshall Legal Group, LLC",GA,DeKalb County tax sale surplus — Parcel 18 158 09 007,BOUNCED_REJECTED,live,550_5.4.1_access_denied
 2026-10-20T14:30:00.000000,david@kramerlaw.com,David M. Kramer,Kramer Law,FL,Hillsborough County surplus filing — 23-CA-016325,BOUNCED_REJECTED,live,550_5.4.1_access_denied
 2026-10-20T14:30:00.000000,eric@zoeckleinlawpa.com,Eric Zoecklein,Zoecklein Law P.A.,FL,Hillsborough County surplus filing — 18-LW-000360,BOUNCED_REJECTED,live,550_5.4.1_access_denied
+2026-10-20T16:40:04.000000,joe@taorminalawpa.com,Joseph Vincent Taormina,"Taormina Law, P.A.",FL,Hillsborough County tax deed surplus — Tax Deed File 26-LW-000614,SENT_DELIVERED,live,gmail_web
+2026-10-20T16:40:08.000000,scott@flaglerbeachlaw.com,Scott W. Spradley,"Law Offices of Scott W. Spradley, P.A.",FL,Hillsborough County tax deed surplus — Tax Deed File 25-LW-000173,SENT_DELIVERED,live,gmail_web
+2026-10-20T16:40:12.000000,ksoto@thesotolawoffice.com,Kimberly M. Soto,"The Soto Law Office, P.A.",FL,Hillsborough County tax deed surplus — Tax Deed File 24-CP-003835,SENT_DELIVERED,live,gmail_web
+2026-10-20T16:40:16.000000,manfred@manfredlaw.com,Manfred Sternberg,Manfred Law,TX,Dallas County excess proceeds — Cause No. TX-23-00908,SENT_DELIVERED,live,gmail_web
+2026-10-20T16:40:20.000000,brett@bighamlaw.com,Brett Bigham,Law Offices of Brett L. Bigham,TX,Dallas County excess proceeds — Cause No. TX-25-00082,SENT_DELIVERED,live,gmail_web
+2026-10-20T16:40:29.000000,leon@lvglaw.com,Leon Van Gelderen,"Leon Van Gelderen, P.C.",GA,DeKalb County tax sale surplus — Parcel 18 158 09 007,SENT_DELIVERED,live,gmail_web
+2026-10-20T16:40:35.000000,brice@zoeckleinlawpa.com,Brice Zoecklein,Zoecklein Law P.A.,FL,Hillsborough County tax deed surplus — Tax Deed File 18-LW-000360,SENT_DELIVERED,live,gmail_web
+2026-10-20T16:40:39.000000,cjimerson@jimersonfirm.com,Charles B. Jimerson,"Jimerson Birr, P.A.",FL,Hillsborough County court registry surplus — Case 23-CA-016325,SENT_DELIVERED,live,gmail_web

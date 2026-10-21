@@ -9,9 +9,12 @@ Tests for:
 """
 
 import csv
+import sys
 import tempfile
 import unittest
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from marketing.link_building.auto_directory_submitter import (
     COMPANY_DATA,

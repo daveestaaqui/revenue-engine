@@ -608,10 +608,11 @@
                     }
 
                     if (vaultData && vaultData.dockets) {
-                        let entry = vaultData.dockets[docketLookupId.toLowerCase()] || 
-                                    (r.docket_id && vaultData.dockets[r.docket_id.toLowerCase()]) ||
+                        let entry = (queriedDocket && vaultData.dockets[queriedDocket.toLowerCase()]) ||
                                     (r.Parcel_ID && vaultData.dockets[r.Parcel_ID.toLowerCase()]) ||
-                                    (r.parcel_id_raw && vaultData.dockets[r.parcel_id_raw.toLowerCase()]);
+                                    (r.parcel_id_raw && vaultData.dockets[r.parcel_id_raw.toLowerCase()]) ||
+                                    vaultData.dockets[docketLookupId.toLowerCase()] || 
+                                    (r.docket_id && vaultData.dockets[r.docket_id.toLowerCase()]);
                         if (!entry) {
                             const targetClean = String(docketLookupId || r.docket_id || r.Parcel_ID || '')
                                 .toLowerCase()

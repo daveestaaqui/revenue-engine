@@ -4,6 +4,7 @@ import hashlib
 import hmac
 import json
 import socket
+import sys
 import tempfile
 import unittest
 from concurrent.futures import ThreadPoolExecutor
@@ -11,6 +12,8 @@ from dataclasses import FrozenInstanceError, replace
 from datetime import date, datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from outreach.email_sentinel_firewall import EmailSentinel
 from portal.legal_rules_registry import (

@@ -10,8 +10,12 @@ Tests:
 
 import json
 import os
+import sys
+from pathlib import Path
 import unittest
 from unittest.mock import patch, MagicMock
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from portal.ai_provider import (
     get_active_provider,

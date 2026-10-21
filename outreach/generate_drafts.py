@@ -599,7 +599,7 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
     # Unique reference token per email recipient and docket for zero-tamper unique link
     from portal.vault_security import get_current_vault_key
     vault_key = get_current_vault_key()
-    identifier_param = parcel_id if (parcel_id and not case_no) else (case_no or parcel_id)
+    identifier_param = parcel_id if (parcel_id and (not case_no or state == "TN")) else (case_no or parcel_id)
     docket_url = (
         f"https://surplusdocket.com/docket?id={urllib.parse.quote_plus(identifier_param)}"
         f"&k={vault_key}"

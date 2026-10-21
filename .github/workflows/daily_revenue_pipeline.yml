@@ -58,6 +58,18 @@ jobs:
         run: |
           python portal/feed_generator.py
 
+      - name: 3. Synchronize Verified Outreach Drafts in Gmail
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          FROM_NAME: 'David Mahler'
+          FROM_EMAIL: 'david@surplusdocket.com'
+          REPLY_TO: 'david@surplusdocket.com'
+        run: |
+          if [ -n "$GMAIL_APP_PASS" ]; then
+            python outreach/update_verified_gmail_drafts.py || echo "Draft update note: continuing..."
+          fi
+
       - name: 4. Generate Programmatic County SEO Landing Pages
         run: |
           python marketing/county_generator.py
