@@ -3561,11 +3561,6 @@ def run_single_check(enforce_delay=True, enforce_hours=True):
         mail.login(GMAIL_USER, GMAIL_APP_PASS)
         sync_voicemails_to_inbox(mail)
         clean_imap_drafts(mail)
-        try:
-            from outreach.update_verified_gmail_drafts import replenish_gmail_drafts_if_needed
-            replenish_gmail_drafts_if_needed(mail, target_count=12)
-        except Exception as e:
-            log(f"Draft replenishment warning: {e}")
         check_and_create_auto_responses(mail, state_cases, enforce_delay=enforce_delay, enforce_hours=enforce_hours)
         mail.logout()
     except Exception as e:

@@ -614,3 +614,7 @@
 [2026-10-21 12:34:56]   [DRY RUN] Would auto-send email to lawyer@example.com from david@surplusdocket.com
 [2026-10-21 12:34:57]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
 [2026-10-21 12:34:57]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-10-21 12:59:34]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-10-21 12:59:34]   [DRY RUN] Would auto-send email to lawyer@example.com from david@surplusdocket.com
+[2026-10-21 12:59:35]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-10-21 12:59:35]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.

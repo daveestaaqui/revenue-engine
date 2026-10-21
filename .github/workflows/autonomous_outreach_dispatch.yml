@@ -1,0 +1,87 @@
+name: Autonomous Verified Legal Outreach Dispatch
+
+on:
+  schedule:
+    # Runs Monday through Friday at 13:30 UTC (9:30 AM EDT / 8:30 AM EST)
+    # Prime morning window for law firm and legal practitioner outreach.
+    - cron: '30 13 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: 'Number of verified emails to dispatch (default: 10)'
+        required: false
+        default: '10'
+      dry_run:
+        description: 'Run in preview mode without sending live emails'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: autonomous-outreach-dispatch
+  cancel-in-progress: false
+
+jobs:
+  dispatch-verified-outreach:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    env:
+      PYTHONPATH: .
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute Autonomous Verified Outreach Dispatch
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          SMTP_HOST: 'smtp.gmail.com'
+          SMTP_PORT: '587'
+          FROM_NAME: 'David Mahler'
+          FROM_EMAIL: 'david@surplusdocket.com'
+          REPLY_TO: 'david@surplusdocket.com'
+          BATCH_SIZE: ${{ inputs.batch_size || '10' }}
+          DRY_RUN: ${{ inputs.dry_run || false }}
+        run: |
+          if [ -z "$GMAIL_APP_PASS" ]; then
+            echo "ℹ️ GMAIL_APP_PASS secret not configured. Skipping SMTP dispatch."
+            exit 0
+          fi
+
+          FLAGS="--auto-send --batch-size $BATCH_SIZE --delay 4.0"
+          if [ "$DRY_RUN" = "true" ]; then
+            FLAGS="$FLAGS --dry-run"
+          fi
+
+          python outreach/send_verified_queue.py $FLAGS
+
+      - name: Commit & Push Updated Sent Logs
+        run: |
+          git config --global user.name "Surplus Docket Outreach Bot"
+          git config --global user.email "outreach@surplusdocket.com"
+          if [ -f outreach/sent_log.csv ]; then
+            git add outreach/sent_log.csv outreach/bounced_emails.json
+          fi
+
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(outreach): autonomous daily legal outreach sent log update [skip ci]"
+            git checkout -- . || true
+            git clean -fd || true
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && break || { git rebase --abort 2>/dev/null || true; echo "Retry push $attempt..."; sleep 5; }
+            done
+          fi
