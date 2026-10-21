@@ -107,13 +107,7 @@ VERIFIED_BAR_REGISTRY = {
         "state": "GA",
         "specialty": "Tax Deed Surplus & Quiet Title (O.C.G.A. § 48-4-5)",
     },
-    "brett@bighamlaw.com": {
-        "name": "Brett L. Bigham",
-        "bar_id": "TX Bar # 02312720",
-        "firm": "Law Offices of Brett L. Bigham, PLLC",
-        "state": "TX",
-        "specialty": "Property Tax Sale Excess Proceeds (Tex. Tax Code § 34.04)",
-    },
+
     "manfred@manfredlaw.com": {
         "name": "Manfred Sternberg",
         "bar_id": "TX Bar # 19175775",
@@ -177,20 +171,7 @@ VERIFIED_BAR_REGISTRY = {
         "state": "FL",
         "specialty": "Board-Certified Real Estate Litigation & Surplus Recovery",
     },
-    "evan@evanmrosen.com": {
-        "name": "Evan M. Rosen",
-        "bar_id": "FL Bar # 120103",
-        "firm": "Law Offices of Evan M. Rosen, P.A.",
-        "state": "FL",
-        "specialty": "Foreclosure Defense & Surplus Funds Recovery",
-    },
-    "neil@tygarlaw.com": {
-        "name": "Neil B. Tygar",
-        "bar_id": "FL Bar # 911100",
-        "firm": "Law Office of Neil Tygar, P.A.",
-        "state": "FL",
-        "specialty": "Real Estate Litigation, Probate & Surplus Funds",
-    },
+
     "michael@heiderlaw.com": {
         "name": "Michael T. Heider",
         "bar_id": "FL Bar # 30364",
@@ -382,6 +363,12 @@ KNOWN_MISMATCHED_TARGETS = {
     "mkelly@kellylegalgroup.com": "Incorrect first-initial email (verified principal is jkelly@kellylegalgroup.com)",
     "farren@sheehanlawpllc.com": "Unrouted domain alias (verified address is fsheehan@farrensheehanlaw.com)",
     "stephen@winterlawgroup.com": "Outdated domain (verified address is sawinter@wczlaw.com)",
+    "neil@tygarlaw.com": "Bounced: 550 5.1.0 Recipient not found (tygarlaw.com)",
+    "tygarlaw.com": "Bounced: 550 5.1.0 Recipient not found (tygarlaw.com)",
+    "evan@evanmrosen.com": "Bounced: NoSuchUser (evanmrosen.com)",
+    "evanmrosen.com": "Bounced: NoSuchUser (evanmrosen.com)",
+    "brett@bighamlaw.com": "Bounced: 550 5.7.9 Yahoo/DKIM authentication policy (bighamlaw.com)",
+    "bighamlaw.com": "Bounced: 550 5.7.9 Yahoo/DKIM authentication policy (bighamlaw.com)",
 }
 
 # Whitelist of valid state surplus governing statutes

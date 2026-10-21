@@ -3560,6 +3560,11 @@ def run_single_check(enforce_delay=True, enforce_hours=True):
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
         mail.login(GMAIL_USER, GMAIL_APP_PASS)
         sync_voicemails_to_inbox(mail)
+        try:
+            from outreach.bounce_processor import scan_and_learn_bounces
+            scan_and_learn_bounces(mail)
+        except Exception as e:
+            log(f"Bounce processor warning: {e}")
         clean_imap_drafts(mail)
         check_and_create_auto_responses(mail, state_cases, enforce_delay=enforce_delay, enforce_hours=enforce_hours)
         mail.logout()

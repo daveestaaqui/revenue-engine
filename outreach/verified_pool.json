@@ -1,16 +1,5 @@
 [
   {
-    "email": "evan@evanmrosen.com",
-    "name": "Evan M. Rosen",
-    "firm": "Law Offices of Evan M. Rosen, P.A.",
-    "state": "FL",
-    "docket_key": "23-ca-016325",
-    "docket_id": "23-CA-016325",
-    "owner": "Billing, Thelma Mae",
-    "balance": 211052.49,
-    "subject": "Hillsborough County court registry surplus \u2014 Case 23-CA-016325"
-  },
-  {
     "email": "j.salcines@salcineslaw.com",
     "name": "Jacqueline A. Salcines",
     "firm": "Salcines Law P.A.",
@@ -31,17 +20,6 @@
     "owner": "CHINNERY, PATRICE",
     "balance": 75684.4,
     "subject": "Hillsborough County court registry surplus \u2014 Case 24-CA-001841"
-  },
-  {
-    "email": "neil@tygarlaw.com",
-    "name": "Neil B. Tygar",
-    "firm": "Law Office of Neil Tygar, P.A.",
-    "state": "FL",
-    "docket_key": "23-ca-017541",
-    "docket_id": "23-CA-017541",
-    "owner": "Riffey, Carolyn E",
-    "balance": 42527.06,
-    "subject": "Hillsborough County court registry surplus \u2014 Case 23-CA-017541"
   },
   {
     "email": "RPZ99@Florida-Counsel.com",

@@ -74,7 +74,7 @@ jobs:
           git config --global user.name "Surplus Docket Outreach Bot"
           git config --global user.email "outreach@surplusdocket.com"
           if [ -f outreach/sent_log.csv ]; then
-            git add outreach/sent_log.csv outreach/bounced_emails.json
+            git add outreach/sent_log.csv outreach/bounced_emails.json outreach/high_conviction_attorneys.csv outreach/verified_pool.json
           fi
 
           if ! git diff --staged --quiet; then

@@ -622,3 +622,15 @@
 [2026-10-21 18:03:19]   🗑️ Learned from bounce (neil@tygarlaw.com) and auto-deleting bounce notice from INBOX
 [2026-10-21 18:03:20]   🛑 Recorded 1 bounced address(es) to blocklist: evan@evanmrosen.com
 [2026-10-21 18:03:20]   🗑️ Learned from bounce (evan@evanmrosen.com) and auto-deleting bounce notice from INBOX
+[2026-10-21 16:33:58]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-10-21 16:33:58]   [DRY RUN] Would auto-send email to lawyer@example.com from david@surplusdocket.com
+[2026-10-21 16:34:00]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-10-21 16:34:00]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-10-21 16:34:57]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-10-21 16:34:57]   [DRY RUN] Would auto-send email to lawyer@example.com from david@surplusdocket.com
+[2026-10-21 16:34:58]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-10-21 16:34:58]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-10-21 16:44:51]   🛡️ Sentinel Firewall Quarantined inbound message from eric@zoeckleinlawpa.com [prompt_injection]: Instruction override or secret extraction
+[2026-10-21 16:44:51]   [DRY RUN] Would auto-send email to lawyer@example.com from david@surplusdocket.com
+[2026-10-21 16:44:52]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
+[2026-10-21 16:44:52]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.

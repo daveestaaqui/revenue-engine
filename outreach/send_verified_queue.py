@@ -198,6 +198,13 @@ def send_existing_drafts(dry_run: bool = False, delay_seconds: float = 4.0) -> i
             pass
     pool_by_email = {p["email"].lower(): p for p in pool}
 
+    # 0. Automatically scan and learn from any new bounces in Gmail before dispatching
+    try:
+        from outreach.bounce_processor import scan_and_learn_bounces
+        scan_and_learn_bounces()
+    except Exception as e:
+        print(f"⚠️ Bounce processor notice: {e}")
+
     excluded = load_sent_and_bounced_recipients()
 
     # Open SMTP connection
@@ -342,6 +349,13 @@ def auto_send_verified_batch(batch_size: int = 10, dry_run: bool = False, delay_
     print(f"    Sender: {FROM_NAME} <{FROM_EMAIL}>")
     print("=" * 70)
 
+    # 0. Automatically scan and learn from any new bounces in Gmail before dispatching
+    try:
+        from outreach.bounce_processor import scan_and_learn_bounces
+        scan_and_learn_bounces()
+    except Exception as e:
+        print(f"⚠️ Bounce processor notice: {e}")
+
     excluded = load_sent_and_bounced_recipients()
     pool = []
     if POOL_JSON.exists():
@@ -356,12 +370,18 @@ def auto_send_verified_batch(batch_size: int = 10, dry_run: bool = False, delay_
     feed = load_feed_data()
     all_cases_flat = [c for clist in feed.values() for c in clist]
 
+    from outreach.deliverability_guard import validate_recipient_deliverability
+
     # Find candidates
     candidates = []
     for item in pool:
         em = item.get("email", "").strip().lower()
         dom = em.split("@")[-1] if "@" in em else ""
         if em in excluded or dom in excluded:
+            continue
+        deliv_ok, deliv_msg = validate_recipient_deliverability(em, check_dns=True)
+        if not deliv_ok:
+            print(f"  🛡️ Deliverability Guard filtered {em}: {deliv_msg}")
             continue
         candidates.append(item)
         if len(candidates) >= batch_size:
@@ -379,6 +399,10 @@ def auto_send_verified_batch(batch_size: int = 10, dry_run: bool = False, delay_
             if status != "VERIFIED_ACTIVE" or em in excluded or dom in excluded:
                 continue
             if any(c.get("email", "").lower() == em for c in candidates):
+                continue
+            deliv_ok, deliv_msg = validate_recipient_deliverability(em, check_dns=True)
+            if not deliv_ok:
+                print(f"  🛡️ Deliverability Guard filtered {em}: {deliv_msg}")
                 continue
 
             att_state = t.get("State", "FL").upper()
