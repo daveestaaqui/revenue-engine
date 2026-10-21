@@ -618,3 +618,7 @@
 [2026-10-21 12:59:34]   [DRY RUN] Would auto-send email to lawyer@example.com from david@surplusdocket.com
 [2026-10-21 12:59:35]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
 [2026-10-21 12:59:35]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
+[2026-10-21 18:03:19]   🛑 Recorded 1 bounced address(es) to blocklist: neil@tygarlaw.com
+[2026-10-21 18:03:19]   🗑️ Learned from bounce (neil@tygarlaw.com) and auto-deleting bounce notice from INBOX
+[2026-10-21 18:03:20]   🛑 Recorded 1 bounced address(es) to blocklist: evan@evanmrosen.com
+[2026-10-21 18:03:20]   🗑️ Learned from bounce (evan@evanmrosen.com) and auto-deleting bounce notice from INBOX
