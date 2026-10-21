@@ -244,7 +244,8 @@ def generate_vault_and_auth_registry(all_leads: list, subscribers: list,
             "Sale_Date": lead.get("Sale_Date", ""),
             "cipher": cipher_hex,
         }
-        dockets_map[docket_id.lower()] = entry
+        if docket_id.lower() not in dockets_map:
+            dockets_map[docket_id.lower()] = entry
         if docket_id_lead and docket_id_lead.lower() not in dockets_map:
             dockets_map[docket_id_lead.lower()] = entry
         if parcel and parcel.lower() not in dockets_map:
