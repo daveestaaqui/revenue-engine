@@ -1,7 +1,7 @@
 {
   "manifest_version": "1.0.0",
   "publisher": "Surplus Docket \u2014 Autonomous Public Records Intelligence",
-  "generated_at": "2026-10-21T15:13:27.447376+00:00",
+  "generated_at": "2026-10-21T15:23:43.809007+00:00",
   "audit_status": "PASSED_100_PERCENT",
   "jurisdictions_verified": [
     "FL",
@@ -91,8 +91,8 @@
     "exports/Tennessee_Surplus_Feed.xlsx": "dba1a61face6dfa63645633907fdfa9b4d3db3dad6e9a4334658f62813ce879b",
     "site/api/v1/texas.json": "10e1de673264d30352a40fa51ca67948fe7bfd818df5c7e96de6feacc30efcf8",
     "site/api/v1/georgia.json": "94521eb8e562faafc666fa8b195de5585e42b6d3d141859c3f9a1f690db1f10d",
-    "site/api/v1/vault.json": "8130142275c073792ed2422281b1be7d9bc9c026b97ba943b74a52dd615b91e2",
-    "site/api/v1/auth_registry.json": "e3ac2ddcc357c162ef818d3fbf3d343be69546e30ca7d36fc65c7e148faf8514",
+    "site/api/v1/vault.json": "6d1211c989e47e03be7fbd353ce8661c982ca75b1c421170a3fc54515e900040",
+    "site/api/v1/auth_registry.json": "6fc2ae414e4be098e9b5136be6a9a30e2fa07ff2af90b746338a692c30090fda",
     "site/api/v1/health.json": "6004234fb1d75951c617a320189d58900809bfa2ee120e728186dd262a20f49b",
     "site/api/v1/california.json": "87f8de8bf0f66b0f5f6b7c9913cd9a883c44e02d4377c73e7689cd9b623c2fa3",
     "site/api/v1/florida.json": "7c019fa4fd11b88c0bc9295aca37b790b7b5cceeba513d09bf6d39d8c2788395",
