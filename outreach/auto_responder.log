@@ -610,3 +610,7 @@
 [2026-10-20 23:33:15] ✓ Expunged 8 sent draft(s) from [Gmail]/Drafts.
 [2026-10-21 02:01:17]   ⏭️ Skipped non-prospect from support@s.usa.experian.com (Sub: 'Heads up Lena! You have new alerts on yo'): Message identified as automated notification, bounce, or system alert
 [2026-10-21 07:34:03]   ⏭️ Skipped non-prospect from support@magicbag.co (Sub: 'Re: Mold?'): Message identified as automated notification, bounce, or system alert
+[2026-10-21 13:13:40]   ⏭️ Skipped non-prospect from no.reply.alerts@chase.com (Sub: 'Your credit card statement is available'): Message identified as automated notification, bounce, or system alert
+[2026-10-21 13:13:40]   ⏭️ Skipped non-prospect from discover@airbnb.com (Sub: 'Important changes to house rules'): Sender 'discover@airbnb.com' is not in verified target database and not a statutory inquiry
+[2026-10-21 13:13:40]   ⏭️ Skipped non-prospect from xfinity@account.xfinity.com (Sub: 'Thanks, here is your Xfinity order confi'): Message identified as automated notification, bounce, or system alert
+[2026-10-21 13:13:41]   ⏭️ Skipped non-prospect from hello@omre.co (Sub: 'Your order #106264 just shipped!'): Sender 'hello@omre.co' is not in verified target database and not a statutory inquiry
