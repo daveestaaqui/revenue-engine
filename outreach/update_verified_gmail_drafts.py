@@ -32,8 +32,8 @@ from portal.vault_security import decrypt_docket_payload, get_current_vault_key
 # Curated high-conviction target attorney pairings with unique live dockets
 # 100% verified against State Bar directories and active DNS MX records.
 ASSIGNED_TARGETS = [
-    # 1. Florida: Brice Zoecklein (FL Bar # 85615, Zoecklein Law, P.A.) - Hillsborough Tax Deed
-    ("brice@zoeckleinlawpa.com", "18-lw-000360"),
+    # 1. Florida: Brice Zoecklein (FL Bar # 85615, Zoecklein Law, P.A.) - Hillsborough Circuit Civil
+    ("brice@zoeckleinlawpa.com", "23-ca-017541"),
     # 2. Florida: Charles B. Jimerson (FL Bar # 21750, Jimerson Birr, P.A.) - Hillsborough Foreclosure
     ("cjimerson@jimersonfirm.com", "23-ca-016325"),
     # 3. Georgia: Leon Van Gelderen (GA Bar # 724750, Leon Van Gelderen, P.C.) - DeKalb Tax Sale
@@ -43,15 +43,15 @@ ASSIGNED_TARGETS = [
     # 5. Texas: Manfred Sternberg (TX Bar # 19175775, Manfred Sternberg & Associates PC) - Dallas Tax Suit
     ("manfred@manfredlaw.com", "tx-23-00908"),
     # 6. Florida: Kimberly M. Soto (FL Bar # 93641, The Soto Law Office, P.A.) - Hillsborough Circuit Civil
-    ("ksoto@thesotolawoffice.com", "24-cp-002386"),
-    # 7. Florida: Joseph Vincent Taormina (FL Bar # 126224, Taormina Law, P.A.) - Hillsborough Tax Deed
-    ("joe@taorminalawpa.com", "26-lw-000614"),
-    # 8. Florida: Scott W. Spradley (FL Bar # 782467, Law Offices of Scott W. Spradley, P.A.) - Hillsborough Tax Deed
-    ("scott@flaglerbeachlaw.com", "25-lw-000173"),
+    ("ksoto@thesotolawoffice.com", "26-ca-006185"),
+    # 7. Florida: Joseph Vincent Taormina (FL Bar # 126224, Taormina Law, P.A.) - Hillsborough Circuit Civil
+    ("joe@taorminalawpa.com", "21-ca-005559"),
+    # 8. Florida: Scott W. Spradley (FL Bar # 782467, Law Offices of Scott W. Spradley, P.A.) - Hillsborough Circuit Civil
+    ("scott@flaglerbeachlaw.com", "21-ca-004936"),
     # 9. Tennessee: Brian L. Yoakum (TN Bar # 022904, Evans | Petree, P.C.) - Davidson Chancery
     ("byoakum@evanspetree.com", "072060n00100co"),
     # 10. Florida: Richard P. Zaretsky (FL Bar # 189196, Zaretsky Law Group) - Hillsborough Foreclosure
-    ("RPZ99@Florida-Counsel.com", "22-ca-008975"),
+    ("RPZ99@Florida-Counsel.com", "24-ca-001841"),
 ]
 
 ENV_FILE = BASE_DIR / ".env"
@@ -175,23 +175,31 @@ def main():
     })
 
     deleted_count = 0
-    for num in draft_ids:
+    for num in reversed(draft_ids):
         res, msg_data = mail.fetch(num, "(BODY.PEEK[HEADER.FIELDS (FROM TO SUBJECT)])")
         for part in msg_data:
             if isinstance(part, tuple):
                 header_msg = email.message_from_bytes(part[1])
                 from_hdr = (header_msg.get("From") or "").lower()
                 to_hdr = (header_msg.get("To") or "").lower()
-                sub_hdr = (header_msg.get("Subject") or "").lower()
+                raw_sub = header_msg.get("Subject") or ""
+                try:
+                    decoded_parts = email.header.decode_header(raw_sub)
+                    sub_hdr = "".join(
+                        p.decode(enc or "utf-8", errors="replace") if isinstance(p, bytes) else str(p)
+                        for p, enc in decoded_parts
+                    ).lower()
+                except Exception:
+                    sub_hdr = raw_sub.lower()
 
                 should_purge = False
-                if "elena.brooks@surplusdocket.com" in from_hdr or "elena" in from_hdr:
+                if "surplusdocket.com" in from_hdr or "elena" in from_hdr:
                     should_purge = True
                 elif any(em in to_hdr for em in all_purge_emails):
                     should_purge = True
                 elif any(k in sub_hdr for k in [
-                    "surplus filing", "tax sale surplus", "excess proceeds",
-                    "court registry surplus", "chancery court surplus"
+                    "surplus", "excess proceeds", "excess funds",
+                    "court registry", "chancery court"
                 ]):
                     should_purge = True
 

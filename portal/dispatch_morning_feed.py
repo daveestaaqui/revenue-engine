@@ -106,9 +106,12 @@ def get_feed_statistics():
         ow = (r.get("Owner_Name") or "").strip()
         vurl = (r.get("Clerk_Verification_URL") or "").strip()
         surl = (r.get("Source_URL") or "").strip()
+        days_rem = str(r.get("Days_Remaining_To_Claim") or "").strip()
+        urgency = str(r.get("Claim_Urgency_Tier") or "").lower()
+        is_expired = days_rem.startswith("-") or "passed" in urgency
         has_named_owner = bool(ow) and "Titleholder of Record" not in ow
         has_deep = ("#search=" in vurl) or (bool(vurl) and vurl != surl)
-        return has_named_owner and has_deep
+        return has_named_owner and has_deep and not is_expired
 
     selected_rows = []
     seen_states = set()
@@ -506,13 +509,13 @@ def dispatch_feed(is_dry_run=False, recipient_override=None, force=False):
     date_str = now_et.strftime("%B %d, %Y")
     subject = f"[Surplus Docket] Daily Morning Court Intelligence Feed — {date_str}"
 
-    # 1. Delivery Window Guard: Morning feed is strictly delivered Mon-Fri in a tight window: ideally 7:00 AM sharp (7:00 AM - 7:30 AM Eastern Time).
-    # Dispatches after 7:30 AM (e.g. 8:26 AM due to delayed cloud cron queues) are rejected to protect subscribers from late feeds.
+    # 1. Delivery Window Guard: Morning feed is delivered Mon-Fri in the 7:00 AM - 9:59 AM Eastern Time window.
+    # Tolerates GitHub Actions schedule queue delays while strictly blocking early morning (< 7:00 AM), afternoon (>= 10:00 AM), and weekend sends.
     is_weekday = now_et.weekday() < 5
-    in_morning_window = is_weekday and (now_et.hour == 7 and now_et.minute <= 30)
+    in_morning_window = is_weekday and (7 <= now_et.hour < 10)
     if not is_dry_run and not recipient_override and not force and not in_morning_window:
         print(f"ℹ️ Delivery Window Guard: Current time is {now_et.strftime('%A %I:%M %p %Z')}.")
-        print("   Morning court intelligence feeds are strictly dispatched Mon–Fri between 7:00 AM and 7:30 AM EST.")
+        print("   Morning court intelligence feeds are strictly dispatched Mon–Fri between 7:00 AM and 10:00 AM ET.")
         print("   Aborting live dispatch to prevent premature or off-hours delivery. Use --force to override.")
         return 0
 

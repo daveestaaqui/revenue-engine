@@ -22,6 +22,8 @@ jobs:
   monitor-inbox-and-draft:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
+    env:
+      PYTHONPATH: .
 
     steps:
       - name: Checkout Repository
@@ -62,31 +64,23 @@ jobs:
           FROM_NAME: 'Surplus Docket Intelligence'
         run: |
           if [ -n "$GMAIL_APP_PASS" ]; then
+            git pull --rebase origin main || git rebase --abort 2>/dev/null || true
             # Executes failover sentinel; safely dispatches via portal/dispatch_morning_feed.py only if inside morning window
             python portal/sentinel_morning_failover.py
-          fi
-
-      - name: Scheduled Client Follow-Up Sentinel (Cohen Asset Recovery)
-        env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
-          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-        run: |
-          if [ -n "$GMAIL_APP_PASS" ]; then
-            python outreach/schedule_alden_followup.py
           fi
 
       - name: Commit & Push Updated Logs & Tracking
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          for f in data/notable_email_activity.json outreach/bounced_emails.json outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log outreach/alden_followup_log.json marketing/link_building/tool_outreach_targets.csv portal/subscribers.json portal/processed_stripe_events.json portal/daily_dispatch_log.json portal/trial_lifecycle_log.json; do if [ -f "$f" ]; then git add "$f"; fi; done
+          for f in data/notable_email_activity.json outreach/bounced_emails.json outreach/created_drafts_log.json outreach/unsubscribed_urls.json outreach/auto_responder.log marketing/link_building/tool_outreach_targets.csv portal/subscribers.json site/api/v1/auth_registry.json portal/processed_stripe_events.json portal/daily_dispatch_log.json portal/trial_lifecycle_log.json; do if [ -f "$f" ]; then git add "$f"; fi; done
 
           if ! git diff --staged --quiet; then
             git commit -m "chore(inbox): updated auto-responses & notable activity [skip ci]"
             git checkout -- . || true
             git clean -fd || true
             for attempt in 1 2 3; do
-              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
+              git pull --rebase origin main && git push && break || { git rebase --abort 2>/dev/null || true; echo "Retry push $attempt..."; sleep 5; }
             done
           fi
 

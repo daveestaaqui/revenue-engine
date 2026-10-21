@@ -2,10 +2,10 @@ name: Daily Autonomous Revenue Pipeline
 
 on:
   schedule:
-    # Runs daily overnight at 06:18 UTC (2:18 AM EDT / 1:18 AM EST)
-    # Off-peak hours guarantee zero runner congestion, completing all B2B data generation,
-    # compliance audits, and Stripe sync before morning dispatch.
-    - cron: '18 6 * * *'
+    # Runs daily overnight at 04:15 UTC (12:15 AM EDT / 11:15 PM EST)
+    # Guarantees B2B data generation, cryptographic vault, and manifest verification
+    # complete well before the 7:00 AM ET morning subscriber dispatch.
+    - cron: '15 4 * * *'
   workflow_dispatch: # Allows manual 1-click trigger from GitHub web UI
 
 permissions:
@@ -46,13 +46,17 @@ jobs:
           python compliance/autonomous_bug_resolver.py --self-repair --dry-run || true
           python portal/pipeline_self_healer.py --audit-all || true
 
-      - name: 2. Generate B2B Surplus Data Feeds (FL, TX & GA)
+      - name: 1c. Autonomous Stripe Subscriber & Trial Intake
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
+          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
+        run: |
+          python portal/sync_stripe_subscribers.py || echo "Stripe sync note: continuing..."
+
+      - name: 2. Generate B2B Surplus Data Feeds (6-State National Suite)
         run: |
           python portal/feed_generator.py
-
-      - name: 3. Run Expired Domain Arbitrage Scanner
-        run: |
-          python domain_arbitrage/run_domain_pipeline.py
 
       - name: 4. Generate Programmatic County SEO Landing Pages
         run: |
@@ -74,55 +78,22 @@ jobs:
         run: |
           python marketing/social_syndicator.py
 
-      - name: 8b. Run Upgraded Authority, Link Building & Search Engine Syndication
-        env:
-          DEV_TO_API_KEY: ${{ secrets.DEV_TO_API_KEY }}
-          MEDIUM_TOKEN: ${{ secrets.MEDIUM_TOKEN }}
-          SYNDICATION_WEBHOOK_URL: ${{ secrets.SYNDICATION_WEBHOOK_URL }}
-        run: |
-          python marketing/link_building/pr_pitcher.py
-          python marketing/link_building/clerk_outreach_generator.py
-          python marketing/link_building/syndication_publisher.py
-          python marketing/link_building/directory_citations.py
-          python marketing/link_building/auto_article_submitter.py || true
-          python marketing/link_building/embed_promoter.py
-          python marketing/strategy_optimizer.py
-          python marketing/reddit_publisher.py
-
-      - name: 9. Update Dynamic Repository Showcase
+      - name: 9. Update Dynamic Repository Showcase & Verification Manifest
         run: |
           python marketing/readme_updater.py
+          python compliance/verify_all_publications.py
 
-      - name: 10. Commit & Push Updated Feeds, Blog Posts, REST API, Compliance & Syndications
+      - name: 10. Commit & Push Updated Feeds, Blog Posts, REST API, Compliance & Subscribers
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          git add README.md exports/ site/ domain_arbitrage/listings/ marketing/syndicate/ compliance/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/ marketing/reddit/ marketing/strategy_weights.json marketing/CURRENT_STRATEGY.md
+          git add README.md data/ exports/ site/ marketing/syndicate/ compliance/ portal/subscribers.json portal/processed_stripe_events.json
           if ! git diff --staged --quiet; then
             git commit -m "chore(auto): daily B2B surplus feeds, REST API, compliance, PRs, SEO & strategy refresh"
             git checkout -- . || true
             git clean -fd || true
             for attempt in 1 2 3; do
-              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
-            done
-          fi
-
-      - name: 10b. Autonomous Stripe Subscriber & Trial Intake
-        env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
-          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
-        run: |
-          python portal/sync_stripe_subscribers.py
-          git config --global user.name "Surplus Docket Bot"
-          git config --global user.email "bot@surplusdocket.com"
-          for f in portal/subscribers.json portal/processed_stripe_events.json; do if [ -f "$f" ]; then git add "$f"; fi; done
-          if ! git diff --staged --quiet; then
-            git commit -m "chore(subscribers): auto-sync Stripe trial subscribers [skip ci]"
-            git checkout -- . || true
-            git clean -fd || true
-            for attempt in 1 2 3; do
-              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
+              git pull --rebase origin main && git push && break || { git rebase --abort 2>/dev/null || true; echo "Retry push $attempt..."; sleep 5; }
             done
           fi
 
@@ -130,37 +101,11 @@ jobs:
         run: |
           python portal/dispatch_morning_feed.py --dry-run
 
-      - name: 11b. Run Institutional 7-Day Trial Retention Sentinel (Day 3 & Day 6)
-        env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
-          GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-          FROM_EMAIL: 'dockets@surplusdocket.com'
-          FROM_NAME: 'Surplus Docket Intelligence'
-        run: |
-          if [ -n "$GMAIL_APP_PASS" ]; then
-            python portal/trial_retention_sentinel.py --send
-          else
-            echo "GMAIL_APP_PASS secret not set; running dry-run preview."
-            python portal/trial_retention_sentinel.py --dry-run
-          fi
-          git config --global user.name "Surplus Docket Bot"
-          git config --global user.email "bot@surplusdocket.com"
-          for f in portal/trial_lifecycle_log.json; do if [ -f "$f" ]; then git add "$f"; fi; done
-          if ! git diff --staged --quiet; then
-            git commit -m "chore(trials): update trial retention lifecycle log [skip ci]"
-            git checkout -- . || true
-            git clean -fd || true
-            for attempt in 1 2 3; do
-              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
-            done
-          fi
-
       - name: 12. Upload Delivery Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: daily-revenue-deliverables
           path: |
             exports/
-            domain_arbitrage/listings/
           retention-days: 30
 

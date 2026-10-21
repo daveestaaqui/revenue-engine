@@ -19,3 +19,7 @@
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS, POST
   Access-Control-Allow-Headers: Content-Type, Authorization, User-Agent
   Cache-Control: public, max-age=1800, s-maxage=3600, stale-while-revalidate=600
+
+/embed/*
+  X-Frame-Options: ALLOWALL
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; frame-ancestors *;

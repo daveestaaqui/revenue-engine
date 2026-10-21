@@ -20,7 +20,9 @@ EXCLUDED_INSTITUTIONS = [
     "DISTRICT", "FBISD", "ISD", "MUD", "LID", "COMMISSION", "LAW OFFICE",
     "LAW FIRM", "PLLC", "P.A.", "COMPANY", "LIMITED", "PARTNERS", "PARTNERSHIP",
     "PROPERTIES", "ENTERPRISES", "VENTURES", "SERVICES", "SOLUTIONS",
-    "INSURANCE", "ADJUSTERS", "EDUCATION", "CHURCH", "MINISTRIES", "CREDIT UNION"
+    "INSURANCE", "ADJUSTERS", "EDUCATION", "CHURCH", "MINISTRIES", "CREDIT UNION",
+    "HOUSING ASSISTANCE", "HOUSING AUTHORITY", "CLERK OF THE CIRCUIT COURT",
+    "STUART, CINDY", "CINDY STUART", "PAT FRANK", "VICTOR CRIST", "GENERAL FUND"
 ]
 
 def clean_currency(val):
@@ -238,12 +240,22 @@ def build_direct_clerk_url(county: str, state: str, case_no: str = "", parcel_id
     return f"https://surplusdocket.com/practitioner-toolkit.html?docket={case_encoded}" if case_encoded else "https://surplusdocket.com/practitioner-toolkit.html"
 
 def infer_property_class(address):
-    street_segment = address.split(",")[0].upper().strip()
+    addr_upper = (address or "").upper().strip()
+    street_segment = addr_upper.split(",")[0].strip()
+    if (
+        "ASSESSOR PARCEL" in street_segment
+        or street_segment.startswith("PARCEL ")
+        or street_segment.startswith("APN ")
+        or "REGISTRY PARCEL" in street_segment
+        or "COURT REGISTRY" in street_segment
+        or "FORECLOSURE REGISTRY" in street_segment
+    ):
+        return "Single Family Residential"
     if re.search(r"\b(LOT|TRACT|PARCEL|ACRE|VACANT|BLK)\b", street_segment):
         return "Vacant Land / Acreage"
-    elif re.search(r"\b(UNIT|APT|CONDO|#|SUITE)\b", address.upper()):
+    elif re.search(r"\b(UNIT|APT|CONDO|#|SUITE)\b", addr_upper):
         return "Condo / Multi-Family"
-    elif re.search(r"\b(COMMERCIAL|INDUSTRIAL|PLAZA|OFFICE|RETAIL)\b", address.upper()):
+    elif re.search(r"\b(COMMERCIAL|INDUSTRIAL|PLAZA|OFFICE|RETAIL)\b", addr_upper):
         return "Commercial / Mixed Use"
     else:
         return "Single Family Residential"
@@ -265,8 +277,8 @@ def classify_owner(owner_raw):
 
 def is_deceased_or_estate(owner_raw):
     """Checks whether the record owner involves an estate, heirs, or deceased party."""
-    upper = owner_raw.upper()
-    return "ESTATE" in upper or "HEIR" in upper or "DECEASED" in upper
+    upper = (owner_raw or "").upper()
+    return bool(re.search(r"\b(ESTATE|EST\s+OF|EST\.|HEIRS?|DECEASED|DEC'D|INTESTATE)\b", upper))
 
 def calculate_days_remaining(sale_date_str, state="FL", record_type="TAX_DEED"):
     window_days_map = {
@@ -460,10 +472,28 @@ def enrich_real_record(rec):
     if amount <= 0:
         return None
 
-    rule = FL_FORECLOSURE_RULE if (state == "FL" and record_type == "FORECLOSURE") else STATE_RULES.get(
+    parcel_id = str(rec.get("Parcel_ID") or "").strip()
+    case_no = str(rec.get("Case_or_TaxDeed_No") or "").strip()
+    if case_no.upper() in ("N/A", "TBD", "UNKNOWN", "NONE") or not re.search(r"\d+", case_no):
+        case_no = ""
+
+    # Filter out non-surplus County Civil (-CC- rent registry) and Probate (-CP- depository) accounts in FL
+    if state == "FL" and case_no and re.match(r"^\d{2}-(?:CC|CP)-\d+$", case_no, re.I):
+        return None
+
+    rule = FL_FORECLOSURE_RULE if (state == "FL" and (record_type == "FORECLOSURE" or "-CA-" in case_no.upper())) else STATE_RULES.get(
         state, {"statute": "", "window": "Confirm claim window with clerk", "days": None, "fee": 0.20})
 
     owner = str(rec.get("Owner_Name") or "").strip()
+    if "/" in owner:
+        clean_parts = [
+            p.strip(" .,-;")
+            for p in owner.split("/")
+            if p.strip(" .,-;") and not re.fullmatch(r"FBC(?:\s+General\s+Fund)?", p.strip(), re.I)
+        ]
+        owner = " / ".join(clean_parts)
+    owner = owner.strip(" .,-;")
+
     if owner and owner.upper() not in ("UNKNOWN", "N/A", "NONE", "NULL", "TBD"):
         owner_upper = owner.upper()
         is_inst = bool(_INSTITUTION_RE.search(owner)) or any(inst in owner_upper for inst in EXCLUDED_INSTITUTIONS)
@@ -473,11 +503,6 @@ def enrich_real_record(rec):
         is_inst = False
         entity = "Individual / Estate"
 
-    parcel_id = str(rec.get("Parcel_ID") or "").strip()
-    case_no = str(rec.get("Case_or_TaxDeed_No") or "").strip()
-    if case_no.upper() in ("N/A", "TBD", "UNKNOWN", "NONE") or not re.search(r"\d+", case_no):
-        case_no = ""
-
     # Must have either a valid court case number or a valid parcel ID
     has_valid_case = bool(case_no and re.search(r"\d+", case_no))
     has_valid_parcel = bool(parcel_id and re.search(r"\d+", parcel_id))
@@ -485,6 +510,21 @@ def enrich_real_record(rec):
         return None
 
     sale_dt = _parse_date(rec.get("Sale_Date"))
+    now_dt = datetime.now()
+    if sale_dt and sale_dt > now_dt:
+        m_yr = re.match(r"^(?:TX|DC)-(\d{2})-", case_no, re.I)
+        if m_yr:
+            candidate_yr = 2000 + int(m_yr.group(1))
+            if candidate_yr <= now_dt.year:
+                try:
+                    sale_dt = sale_dt.replace(year=candidate_yr)
+                except ValueError:
+                    sale_dt = sale_dt.replace(year=candidate_yr, day=28)
+        if sale_dt > now_dt:
+            try:
+                sale_dt = sale_dt.replace(year=now_dt.year - 1)
+            except ValueError:
+                sale_dt = sale_dt.replace(year=now_dt.year - 1, day=28)
     days_remaining, deadline, urgency = "", "", "Confirm window with clerk"
     if sale_dt and rule["days"]:
         deadline_dt = sale_dt + timedelta(days=rule["days"])

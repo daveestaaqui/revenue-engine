@@ -5,12 +5,15 @@ Generates laser-focused, hyper-targeted County Landing Pages for top tax deed & 
 """
 
 import os
+import html
 import json
+import urllib.parse
 from pathlib import Path
 from datetime import datetime
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SITE_DIR = BASE_DIR / 'site'
+FEED_JSON_PATH = SITE_DIR / 'api' / 'v1' / 'feed.json'
 
 COUNTIES = [
     {
@@ -168,6 +171,97 @@ COUNTIES = [
         'clerk_name': 'DeKalb County Tax Commissioner (Delinquent Tax Division)',
         'clerk_url': 'https://www.dekalbcountytax.org/',
         'description': 'Daily DeKalb County excess funds data feed. Clean, case-verified tax auction overages delivered in CSV/Excel every morning by 7:30 AM EST.'
+    },
+    {
+        'slug': 'gwinnett-county-excess-funds.html',
+        'county': 'Gwinnett County',
+        'state': 'GA',
+        'state_full': 'Georgia',
+        'city': 'Lawrenceville',
+        'statute': 'O.C.G.A. § 48-4-5',
+        'deadline': '5 Years from Date of Tax Sale',
+        'fee_cap': '20% statutory recovery benchmark',
+        'clerk_name': 'Gwinnett County Tax Commissioner (Delinquent Tax & Excess Funds)',
+        'clerk_url': 'https://www.gwinnetttaxcommissioner.com/property-tax-delinquent-tax-excess-funds',
+        'description': 'Daily Gwinnett County / Lawrenceville tax sale excess funds feed. Verified parcel IDs, record owners, and official Tax Commissioner excess funds ledger intelligence.'
+    },
+    {
+        'slug': 'san-diego-county-excess-proceeds.html',
+        'county': 'San Diego County',
+        'state': 'CA',
+        'state_full': 'California',
+        'city': 'San Diego',
+        'statute': 'Cal. Rev. & Tax Code § 4675',
+        'deadline': '1 Year from Tax Deed Recordation',
+        'fee_cap': '20% practitioner fee benchmark',
+        'clerk_name': 'San Diego County Treasurer-Tax Collector',
+        'clerk_url': 'https://www.sdttc.com/content/ttc/en/tax-collection/Avail_Excess_Proceeds.html',
+        'description': 'Daily San Diego County Chapter 7 tax sale excess proceeds feed. Verified Assessor Parcel Numbers (APNs), deed recordation windows, and excess proceeds pools.'
+    },
+    {
+        'slug': 'los-angeles-county-excess-proceeds.html',
+        'county': 'Los Angeles County',
+        'state': 'CA',
+        'state_full': 'California',
+        'city': 'Los Angeles',
+        'statute': 'Cal. Rev. & Tax Code § 4675',
+        'deadline': '1 Year from Tax Deed Recordation',
+        'fee_cap': '20% practitioner fee benchmark',
+        'clerk_name': 'Los Angeles County Treasurer and Tax Collector',
+        'clerk_url': 'https://ttc.lacounty.gov/public-auction-excess-proceeds/',
+        'description': 'Daily Los Angeles County tax-defaulted auction excess proceeds feed. Verified APNs, statutory claim deadlines under RTC § 4675, and filtered individual records.'
+    },
+    {
+        'slug': 'orange-county-ca-excess-proceeds.html',
+        'county': 'Orange County',
+        'state': 'CA',
+        'state_full': 'California',
+        'city': 'Santa Ana',
+        'statute': 'Cal. Rev. & Tax Code § 4675',
+        'deadline': '1 Year from Tax Deed Recordation',
+        'fee_cap': '20% practitioner fee benchmark',
+        'clerk_name': 'Orange County Treasurer-Tax Collector (Santa Ana, CA)',
+        'clerk_url': 'https://www.octreasurer.gov/tax-auction-results',
+        'description': 'Daily Orange County, California tax auction excess proceeds feed. Verified APNs and statutory claim windows under California Revenue & Taxation Code § 4675.'
+    },
+    {
+        'slug': 'fort-bend-county-excess-proceeds.html',
+        'county': 'Fort Bend County',
+        'state': 'TX',
+        'state_full': 'Texas',
+        'city': 'Richmond',
+        'statute': 'Tex. Tax Code § 34.04',
+        'deadline': '2 Years from Date of Tax Sale',
+        'fee_cap': '25% statutory cap (Tex. Tax Code § 34.04(i))',
+        'clerk_name': 'Fort Bend County District Clerk (Trust & Excess Proceeds Registry)',
+        'clerk_url': 'https://www.fortbendcountytx.gov/government/departments/district-clerk',
+        'description': 'Daily Fort Bend County / Richmond Texas district court excess proceeds feed. Verified DCV cause numbers, registry balances, and 2-year statutory claim windows.'
+    },
+    {
+        'slug': 'davidson-county-excess-proceeds.html',
+        'county': 'Davidson County',
+        'state': 'TN',
+        'state_full': 'Tennessee',
+        'city': 'Nashville',
+        'statute': 'T.C.A. § 67-5-2501 & § 67-5-2702',
+        'deadline': '1 Year Redemption / Chancery Court Registry Window',
+        'fee_cap': '10% statutory finder cap / Attorney fee schedule',
+        'clerk_name': 'Metropolitan Nashville & Davidson County Chancery Court Clerk & Master',
+        'clerk_url': 'https://chanceryclerkandmaster.nashville.gov/delinquent-taxes/excess-proceeds/',
+        'description': 'Daily Nashville / Davidson County Chancery Court tax sale excess proceeds feed. Verified Chancery Court docket numbers, parcels, and registry balances.'
+    },
+    {
+        'slug': 'mecklenburg-county-tax-foreclosure-surplus.html',
+        'county': 'Mecklenburg County',
+        'state': 'NC',
+        'state_full': 'North Carolina',
+        'city': 'Charlotte',
+        'statute': 'N.C.G.S. § 105-374(q) & § 1-339.71',
+        'deadline': '10-Day Upset Bid + Special Proceeding Window',
+        'fee_cap': 'Statutory attorney special proceeding schedule',
+        'clerk_name': 'Mecklenburg County Clerk of Superior Court (Special Proceedings)',
+        'clerk_url': 'https://www.nccourts.gov/locations/mecklenburg-county',
+        'description': 'Daily Mecklenburg County / Charlotte judicial tax foreclosure surplus and special proceeding registry intelligence under N.C.G.S. § 105-374(q).'
     }
 ]
 
@@ -180,8 +274,110 @@ STATE_HUBS = {
     'CA': '/california-tax-defaulted-excess-proceeds.html',
 }
 
-def generate_county_page(c):
+STATE_BLOG_GUIDES = {
+    'FL': ('Florida § 197.582 & § 45.032 Statutory Guide', '/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html'),
+    'TX': ('Texas Tax Code § 34.04 District Court Guide', '/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html'),
+    'GA': ('Georgia O.C.G.A. § 48-4-5 Excess Funds Guide', '/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html'),
+    'NC': ('North Carolina N.C.G.S. § 105-374 Surplus Guide', '/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html'),
+    'TN': ('Tennessee T.C.A. § 67-5-2501 Chancery Guide', '/blog/posts/tennessee-delinquent-tax-sale-surplus-guide-tca-67-5-2501.html'),
+    'CA': ('California RTC § 4675 Excess Proceeds Guide', '/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html'),
+}
+
+
+def load_live_feed_records():
+    if not FEED_JSON_PATH.exists():
+        return []
+    try:
+        data = json.loads(FEED_JSON_PATH.read_text(encoding='utf-8'))
+        return data.get('records', [])
+    except Exception:
+        return []
+
+
+def render_county_live_table(c, all_records):
+    county_short = c['county'].replace(' County', '').strip().lower()
+    state_code = c['state'].upper()
+    matches = [
+        r for r in all_records
+        if str(r.get('State', '')).upper() == state_code
+        and county_short in str(r.get('County', '')).lower()
+    ]
+    is_state_fallback = False
+    if not matches:
+        matches = [r for r in all_records if str(r.get('State', '')).upper() == state_code]
+        is_state_fallback = True
+
+    if not matches:
+        return ""
+
+    matches = sorted(matches, key=lambda r: float(r.get('Surplus_Balance_USD', 0) or 0), reverse=True)[:8]
+    heading_label = (
+        f"Verified {c['county']} Registry Filings (Live Sample)"
+        if not is_state_fallback
+        else f"Verified {c['state_full']} Statewide Registry Filings (Live Sample)"
+    )
+
+    rows_html = ""
+    for r in matches:
+        docket_id = str(r.get('docket_id') or r.get('Case_or_TaxDeed_No') or '').strip()
+        display_case = html.escape(str(r.get('Case_or_TaxDeed_No') or docket_id))
+        owner_redacted = html.escape(str(r.get('Owner_Name') or 'Redacted Owner'))
+        county_name = html.escape(str(r.get('County') or county_short.title()))
+        bal = float(r.get('Surplus_Balance_USD', 0) or 0)
+        fee = float(r.get('Est_Finder_Fee_USD', 0) or (bal * (0.25 if state_code == 'TX' else 0.20)))
+        docket_href = f"/docket.html?docket={urllib.parse.quote(docket_id)}"
+
+        rows_html += f"""
+                    <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition-colors">
+                        <td class="py-3 px-4 font-mono text-xs font-bold text-brand-navy">
+                            <a href="{docket_href}" class="hover:text-brand-green underline">{display_case}</a>
+                        </td>
+                        <td class="py-3 px-4 text-xs text-slate-600">{county_name} Co., {state_code}</td>
+                        <td class="py-3 px-4 text-xs text-slate-600 font-mono">{owner_redacted}</td>
+                        <td class="py-3 px-4 text-xs font-mono font-bold text-emerald-700 text-right">${bal:,.2f}</td>
+                        <td class="py-3 px-4 text-xs font-mono text-slate-600 text-right">${fee:,.2f}</td>
+                        <td class="py-3 px-4 text-right">
+                            <a href="{docket_href}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-brand-navy hover:bg-brand-green text-white text-[11px] font-bold transition-colors">
+                                View Dossier &rarr;
+                            </a>
+                        </td>
+                    </tr>"""
+
+    return f"""
+        <!-- Live Verified County Docket Table -->
+        <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden mb-10">
+            <div class="p-5 sm:p-6 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-slate-50">
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-green">Ground-Truth Verified Records</span>
+                    <h2 class="font-heading font-bold text-base sm:text-lg text-brand-navy">{heading_label}</h2>
+                </div>
+                <a href="/#live-docket" class="text-xs font-bold text-brand-green hover:underline">
+                    Browse All 170+ Verified Dockets &rarr;
+                </a>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-200 bg-slate-100/70 text-[11px] font-mono uppercase text-slate-500">
+                            <th class="py-2.5 px-4">Docket / Parcel ID</th>
+                            <th class="py-2.5 px-4">Jurisdiction</th>
+                            <th class="py-2.5 px-4">Record Titleholder</th>
+                            <th class="py-2.5 px-4 text-right">Surplus Pool</th>
+                            <th class="py-2.5 px-4 text-right">Fee Benchmark</th>
+                            <th class="py-2.5 px-4 text-right">Dossier</th>
+                        </tr>
+                    </thead>
+                    <tbody>{rows_html}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+"""
+
+def generate_county_page(c, all_records=None):
     state_hub_url = STATE_HUBS.get(c['state'], '/')
+    guide_title, guide_url = STATE_BLOG_GUIDES.get(c['state'], ('Statutory Surplus Practice Guide', '/blog/'))
+    live_table_html = render_county_live_table(c, all_records or [])
     return f"""<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -418,6 +614,7 @@ def generate_county_page(c):
                 Unlock Full {c['county']} Daily Lead Feed — $249/mo
             </a>
         </div>
+{live_table_html}
         <!-- County Procedural Notes -->
         <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 mb-10 shadow-sm space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
             <h3 class="font-heading font-bold text-base text-brand-navy">{c['county']} Recovery Procedure & Verification</h3>
@@ -427,28 +624,40 @@ def generate_county_page(c):
             <p>
                 Surplus Docket's automated crawler monitors {c['county']} filings daily, excludes institutional and bank-owned records, flags estates for heir search, and formats an actionable CSV and Excel feed ready for practitioner due diligence (lien examination remains firm responsibility).
             </p>
+            <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center gap-4 text-xs font-bold">
+                <a href="{guide_url}" class="text-brand-green hover:underline">Read {guide_title} &rarr;</a>
+                <a href="/tools.html" class="text-brand-navy hover:text-brand-green hover:underline">Open Statutory Deadline Calculator &amp; Clio/Filevine Tools &rarr;</a>
+            </div>
         </div>
 
         <!-- Cross-Jurisdiction Matrix Links -->
         <div class="bg-brand-canvas border border-slate-300 rounded-2xl p-6 text-center text-xs text-slate-600">
             <p class="font-bold text-brand-navy mb-3">Explore Monitored Jurisdictions &amp; Resources</p>
             <div class="flex flex-wrap items-center justify-center gap-2 font-semibold mb-3">
-                <a href="/palm-beach-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Palm Beach</a>
-                <a href="/broward-county-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Broward</a>
-                <a href="/miami-dade-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Miami-Dade</a>
-                <a href="/orange-county-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Orange</a>
-                <a href="/hillsborough-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Hillsborough</a>
-                <a href="/harris-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Harris</a>
-                <a href="/dallas-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Dallas</a>
-                <a href="/tarrant-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Tarrant</a>
-                <a href="/travis-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Travis</a>
-                <a href="/fulton-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Fulton</a>
-                <a href="/cobb-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Cobb</a>
-                <a href="/dekalb-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">DeKalb</a>
+                <a href="/palm-beach-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Palm Beach, FL</a>
+                <a href="/broward-county-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Broward, FL</a>
+                <a href="/miami-dade-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Miami-Dade, FL</a>
+                <a href="/orange-county-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Orange, FL</a>
+                <a href="/hillsborough-tax-deed-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Hillsborough, FL</a>
+                <a href="/harris-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Harris, TX</a>
+                <a href="/dallas-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Dallas, TX</a>
+                <a href="/fort-bend-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Fort Bend, TX</a>
+                <a href="/tarrant-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Tarrant, TX</a>
+                <a href="/travis-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Travis, TX</a>
+                <a href="/gwinnett-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Gwinnett, GA</a>
+                <a href="/fulton-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Fulton, GA</a>
+                <a href="/dekalb-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">DeKalb, GA</a>
+                <a href="/cobb-county-excess-funds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Cobb, GA</a>
+                <a href="/san-diego-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">San Diego, CA</a>
+                <a href="/los-angeles-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Los Angeles, CA</a>
+                <a href="/orange-county-ca-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Orange, CA</a>
+                <a href="/davidson-county-excess-proceeds.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Davidson, TN</a>
+                <a href="/mecklenburg-county-tax-foreclosure-surplus.html" class="px-2.5 py-1 bg-white rounded-lg border border-slate-200 hover:border-brand-green hover:text-brand-green">Mecklenburg, NC</a>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-2 pt-2 border-t border-slate-200/60 font-semibold">
                 <a href="{state_hub_url}" class="px-3 py-1 bg-brand-greenSoft text-brand-greenDark rounded-lg border border-brand-green/30 hover:bg-brand-green hover:text-white transition-all">{c['state_full']} Statewide Registry &rarr;</a>
                 <a href="/practitioner-toolkit.html" class="px-3 py-1 bg-brand-greenSoft text-brand-greenDark rounded-lg border border-brand-green/30 hover:bg-brand-green hover:text-white transition-all">Practitioner Toolkit &rarr;</a>
+                <a href="/tools.html" class="px-3 py-1 bg-brand-greenSoft text-brand-greenDark rounded-lg border border-brand-green/30 hover:bg-brand-green hover:text-white transition-all">Free Practice Tools &rarr;</a>
             </div>
         </div>
     </main>
@@ -540,9 +749,10 @@ def run():
     print("============================================================")
     print(" 🏛️ GENERATING PROGRAMMATIC COUNTY SEO HUBS")
     print("============================================================")
+    all_records = load_live_feed_records()
     for c in COUNTIES:
         out_path = SITE_DIR / c['slug']
-        out_path.write_text(generate_county_page(c), encoding='utf-8')
+        out_path.write_text(generate_county_page(c, all_records), encoding='utf-8')
         print(f"  [✓] Generated County Hub: {c['slug']}")
     print("============================================================")
 

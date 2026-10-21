@@ -98,6 +98,18 @@ def _fetch_dallas_county() -> list[dict]:
         m_vs = re.split(r"\b(?:vs\.?|v\.?)\b", cleaned, maxsplit=1, flags=re.IGNORECASE)
         if len(m_vs) == 2 and m_vs[1].strip():
             owner = m_vs[1].strip()
+        owner = owner.strip(" .,-;")
+
+        parsed_sale = _parse_mmddyyyy(sale_date_raw)
+        parsed_rcvd = _parse_mmddyyyy(_rcvd_date)
+        today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        if parsed_sale > today_iso:
+            if parsed_rcvd and parsed_rcvd <= today_iso:
+                parsed_sale = parsed_rcvd
+            else:
+                m_yr = re.match(r"^(?:TX|DC)-(\d{2})-", case_no)
+                if m_yr:
+                    parsed_sale = f"20{m_yr.group(1)}{parsed_sale[4:]}"
 
         verify_url = f"{pdf_url}#search={urllib.parse.quote(case_no)}"
         records.append({
@@ -108,7 +120,7 @@ def _fetch_dallas_county() -> list[dict]:
             "Owner_Name": owner,
             "Property_Address": "Dallas County Tax Foreclosure Registry, Dallas, TX",
             "Surplus_Balance_USD": round(balance, 2),
-            "Sale_Date": _parse_mmddyyyy(sale_date_raw),
+            "Sale_Date": parsed_sale,
             "Record_Type": "EXCESS_PROCEEDS",
             "Source_URL": pdf_url,
             "Verify_URL": verify_url,
@@ -135,7 +147,7 @@ def _fetch_fort_bend_county() -> list[dict]:
 
     blocks = re.split(r"(?=\b\d{2}-DCV-\d{5,7}\b)", full_text)
     taxing_unit_re = re.compile(
-        r"\b(FBISD|ISD|INDEPENDENT\s+SCHOOL|FORT\s+BEND|CITY\s+OF|STATE\s+OF|MUD\b|LID\b|WCID\b|CAD\b|TAX\s+ASSESSOR|COUNTY|LEVEE|DRAINAGE|MUNICIPAL|UTILITY|ASSOCIATION|HOA|POA|INC\b|LLC\b|CORP\b|BANK\b|MORTGAGE)\b",
+        r"\b(FBISD|ISD|INDEPENDENT\s+SCHOOL|FORT\s+BEND|FBC\b|GENERAL\s+FUND|CITY\s+OF|STATE\s+OF|MUD\b|LID\b|WCID\b|CAD\b|TAX\s+ASSESSOR|COUNTY|LEVEE|DRAINAGE|MUNICIPAL|UTILITY|ASSOCIATION|HOA|POA|INC\b|LLC\b|CORP\b|BANK\b|MORTGAGE)\b",
         re.IGNORECASE,
     )
     prefix_re = re.compile(

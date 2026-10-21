@@ -3,8 +3,11 @@
 # Revenue Engine Master CLI (B2B Surplus Feeds & Domain Arbitrage)
 #
 
-BASE_DIR="/Users/davidmahler/revenue-engine"
-PYTHON="$BASE_DIR/.venv/bin/python3"
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+PYTHON="${BASE_DIR}/.venv/bin/python3"
+if [ ! -x "$PYTHON" ]; then
+    PYTHON="python3"
+fi
 
 case "$1" in
     surplus|feed)

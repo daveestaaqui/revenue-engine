@@ -13,6 +13,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
 SUBSCRIBERS_FILE = BASE_DIR / "portal" / "subscribers.json"
 
 CORE_JURISDICTIONS = ["FL", "TX", "GA"]
@@ -36,21 +38,22 @@ def save_subscribers(subscribers, filepath=SUBSCRIBERS_FILE):
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(subscribers, f, indent=2)
 
-    # Automatically keep site/api/v1/auth_registry.json synchronized
-    try:
-        from portal.vault_security import generate_vault_and_auth_registry, AUTH_REGISTRY_FILE
-        master_json = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.json"
-        leads = []
-        if master_json.exists():
-            with open(master_json, "r", encoding="utf-8") as mj:
-                data = json.load(mj)
-                leads = data.get("data", [])
-        _, auth_registry = generate_vault_and_auth_registry(leads, subscribers)
-        AUTH_REGISTRY_FILE.parent.mkdir(parents=True, exist_ok=True)
-        with open(AUTH_REGISTRY_FILE, "w", encoding="utf-8") as af:
-            json.dump(auth_registry, af, indent=2)
-    except Exception:
-        pass
+    # Automatically keep site/api/v1/auth_registry.json synchronized when updating production subscribers
+    if Path(filepath).resolve() == SUBSCRIBERS_FILE.resolve():
+        try:
+            from portal.vault_security import generate_vault_and_auth_registry, AUTH_REGISTRY_FILE
+            master_json = BASE_DIR / "exports" / "Master_Surplus_Lead_Feed.json"
+            leads = []
+            if master_json.exists():
+                with open(master_json, "r", encoding="utf-8") as mj:
+                    data = json.load(mj)
+                    leads = data.get("data", [])
+            _, auth_registry = generate_vault_and_auth_registry(leads, subscribers)
+            AUTH_REGISTRY_FILE.parent.mkdir(parents=True, exist_ok=True)
+            with open(AUTH_REGISTRY_FILE, "w", encoding="utf-8") as af:
+                json.dump(auth_registry, af, indent=2)
+        except Exception:
+            pass
 
 
 def get_jurisdictions_for_tier(tier):
@@ -82,8 +85,14 @@ def add_subscriber(email, name="Counsel", firm="", tier="Core Plan (7-Day Evalua
             save_subscribers(subscribers, filepath)
             return sub, False  # updated, not created new
 
-    # Generate unique ID
-    sub_id = f"SUB-{datetime.now().strftime('%Y%m%d')}-{len(subscribers) + 1:03d}"
+    # Generate collision-safe unique ID
+    existing_ids = {s.get("id", "") for s in subscribers}
+    seq = len(subscribers) + 1
+    while True:
+        sub_id = f"SUB-{datetime.now().strftime('%Y%m%d')}-{seq:03d}"
+        if sub_id not in existing_ids:
+            break
+        seq += 1
 
     new_sub = {
         "id": sub_id,

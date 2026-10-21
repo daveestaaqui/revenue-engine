@@ -5,19 +5,19 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** ESTATE OF GEORGE WYNN, JR.
+- **Target Claimant / Former Owner:** LOMOGLIO, KAREN
 - **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
-- **Tax Deed / Court Case Docket:** 26-CA-004987
+- **Tax Deed / Court Case Docket:** 21-CA-005559
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $101,369.32
+- **Gross Surplus Balance Held in Registry:** $39,392.50
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $20,273.86
-- **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
+- **Estimated Gross Recoverable Equity:** $7,878.50
+- **Institutional Claimant Screening:** Institutional banks, mortgage servicers, and taxing units excluded; independent title and encumbrance search required prior to filing.
 
 ---
 

@@ -57,6 +57,54 @@ CLERK_TARGETS = [
         "department": "Delinquent Tax Division",
         "page_context": "Tax Sale Surplus Distribution Information",
         "recipient_title": "Chief Deputy Clerk & Master"
+    },
+    {
+        "county": "Hillsborough County",
+        "state": "FL",
+        "agency": "Clerk of the Court and Comptroller",
+        "department": "Tax Deed & Circuit Civil Court Registry Division",
+        "page_context": "Tax Deed Surplus & Registry Balances Portal",
+        "recipient_title": "Director of Civil Court & Tax Deed Registry Services"
+    },
+    {
+        "county": "Gwinnett County",
+        "state": "GA",
+        "agency": "Office of the Gwinnett County Tax Commissioner",
+        "department": "Delinquent Tax & Excess Funds Administration",
+        "page_context": "Tax Sale Excess Funds All-Years Registry",
+        "recipient_title": "Delinquent Tax & Excess Funds Administrator"
+    },
+    {
+        "county": "San Diego County",
+        "state": "CA",
+        "agency": "Office of the Treasurer-Tax Collector",
+        "department": "Tax Collection & Public Auction Excess Proceeds Division",
+        "page_context": "Chapter 7 Tax Sale Final Report & Excess Proceeds Portal",
+        "recipient_title": "Tax Sale & Excess Proceeds Supervisor"
+    },
+    {
+        "county": "Fort Bend County",
+        "state": "TX",
+        "agency": "Office of the District Clerk",
+        "department": "Trust & Eligible Unclaimed Excess Proceeds Registry",
+        "page_context": "Eligible Unclaimed Excess Proceeds Public Disclosures",
+        "recipient_title": "District Court Registry & Accounting Supervisor"
+    },
+    {
+        "county": "Davidson County",
+        "state": "TN",
+        "agency": "Metropolitan Nashville & Davidson County Chancery Court Clerk & Master",
+        "department": "Delinquent Property Tax & Excess Proceeds Registry",
+        "page_context": "Chancery Court Tax Sale Excess Proceeds Registry",
+        "recipient_title": "Clerk & Master Delinquent Tax Coordinator"
+    },
+    {
+        "county": "Orange County",
+        "state": "CA",
+        "agency": "Office of the Treasurer-Tax Collector",
+        "department": "Property Tax Auction & Excess Proceeds Unit",
+        "page_context": "Public Tax Auction Results & Excess Proceeds Claims",
+        "recipient_title": "Excess Proceeds Claims Supervisor"
     }
 ]
 

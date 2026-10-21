@@ -59,7 +59,7 @@ GMAIL_USER = os.getenv("GMAIL_USER", "sandwichfitness@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASS", "")
 DEFAULT_RECIPIENT = os.getenv("REPORT_RECIPIENT", "sandwichfitness@gmail.com")
 FROM_NAME = os.getenv("FROM_NAME", "Surplus Docket Intelligence")
-FROM_EMAIL = os.getenv("FROM_EMAIL", "elena.brooks@surplusdocket.com")
+FROM_EMAIL = os.getenv("FROM_EMAIL", "dockets@surplusdocket.com")
 
 STATE_NAMES = {
     "FL": "Florida", "TX": "Texas", "GA": "Georgia",

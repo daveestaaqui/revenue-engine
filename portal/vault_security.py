@@ -11,6 +11,7 @@ Provides zero-friction, zero-password cryptographic protection for court docket 
 """
 
 import json
+import os
 import struct
 import hashlib
 import re
@@ -23,8 +24,8 @@ SUBSCRIBERS_FILE = BASE_DIR / "portal" / "subscribers.json"
 VAULT_FILE = BASE_DIR / "site" / "api" / "v1" / "vault.json"
 AUTH_REGISTRY_FILE = BASE_DIR / "site" / "api" / "v1" / "auth_registry.json"
 
-# Fixed salt for deterministic subscriber key derivation across system
-VAULT_SALT = "SD_SURPLUS_REGISTRY_2026_LEGAL_INTELLIGENCE"
+# Salt for deterministic subscriber key derivation across system (configurable via environment)
+VAULT_SALT = os.environ.get("SD_VAULT_SALT", "SD_SURPLUS_REGISTRY_2026_LEGAL_INTELLIGENCE")
 
 
 def xor_crypt(data: bytes, key: bytes) -> bytes:
@@ -217,7 +218,6 @@ def generate_vault_and_auth_registry(all_leads: list, subscribers: list,
         "generated_at": datetime.now().isoformat(),
         "vault_sig": vault_sig,
         "valid_vault_sigs": valid_sigs,
-        "eval_vault_key": vault_key,
         "subscribers": subscriber_entries,
         "active_subscriber_count": len(subscriber_entries),
     }

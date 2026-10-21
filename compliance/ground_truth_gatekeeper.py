@@ -265,6 +265,16 @@ class GroundTruthGatekeeper:
             if dead in clerk_url:
                 errors.append(f"Record contains known dead/404 URL: {dead}")
 
+        # 6. Check for government officials / housing authorities / clerks listed as individual owners
+        owner_upper = str(lead.get("Owner_Name", "")).strip().upper()
+        for bad_owner in ("STUART, CINDY", "CINDY STUART", "PAT FRANK", "CLERK OF THE CIRCUIT COURT", "HOUSING ASSISTANCE", "FBC GENERAL FUND"):
+            if bad_owner in owner_upper:
+                errors.append(f"Government official or institutional fund '{bad_owner}' misclassified as individual claimant: '{lead.get('Owner_Name')}'")
+
+        # 7. Check for FL County Civil (-CC-) or Probate (-CP-) misclassified in surplus feed
+        if state == "FL" and re.match(r"^\d{2}-(?:CC|CP)-\d+$", case_no, re.I):
+            errors.append(f"Non-surplus FL division case '{case_no}' (CC/CP) found in surplus lead feed.")
+
         return (len(errors) == 0, errors)
 
     _dns_cache: Dict[str, Tuple[bool, Optional[str]]] = {}

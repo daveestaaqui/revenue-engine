@@ -33,13 +33,32 @@ function getTodayET() {
 }
 
 /**
- * Checks if the feed for today was already successfully dispatched.
+ * Returns current hour (0-23) in America/New_York (EST/EDT)
  */
-async function isAlreadyDispatchedToday(todayET) {
+function getHourET() {
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    hour: "numeric",
+    hour12: false
+  });
+  return parseInt(formatter.format(new Date()), 10);
+}
+
+/**
+ * Checks if the feed for today was already successfully dispatched (via uncached GitHub API when token available).
+ */
+async function isAlreadyDispatchedToday(todayET, token = "") {
   try {
-    const res = await fetch(`${DISPATCH_LOG_URL}?_t=${Date.now()}`, {
-      headers: { "User-Agent": "SurplusDocket-Cloudflare-Sentinel/1.0" }
-    });
+    const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/portal/daily_dispatch_log.json`;
+    const headers = {
+      "User-Agent": "SurplusDocket-Cloudflare-Sentinel/1.0",
+      "Accept": "application/vnd.github.raw+json"
+    };
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+    const targetUrl = token ? apiUrl : `${DISPATCH_LOG_URL}?_t=${Date.now()}`;
+    const res = await fetch(targetUrl, { headers });
     if (!res.ok) {
       console.warn(`Could not fetch dispatch log (HTTP ${res.status}). Assuming not dispatched.`);
       return false;
@@ -84,10 +103,16 @@ export default {
    */
   async scheduled(event, env, ctx) {
     const todayET = getTodayET();
+    const hourET = getHourET();
     const now = new Date().toISOString();
-    console.log(`[${now}] Cloudflare Sentinel triggered for date: ${todayET}`);
+    console.log(`[${now}] Cloudflare Sentinel triggered for date: ${todayET} (ET hour: ${hourET})`);
 
-    const alreadySent = await isAlreadyDispatchedToday(todayET);
+    if (hourET < 7 || hourET >= 10) {
+      console.log(`[${now}] Current ET hour (${hourET}) is outside 7:00-9:59 AM ET dispatch window. Skipping.`);
+      return;
+    }
+
+    const alreadySent = await isAlreadyDispatchedToday(todayET, env.GITHUB_TOKEN);
     if (alreadySent) {
       console.log(`[${now}] Morning feed for ${todayET} was ALREADY successfully dispatched. Skipping duplicate send.`);
       return;

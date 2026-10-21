@@ -185,8 +185,13 @@ def authenticate_bearer_token(auth_header: Optional[str]) -> Dict[str, Any]:
     token_digest = hash_token(raw_token)
     registry = load_api_keys()
 
-    # Built-in developer mock bypass for testing
-    if raw_token == "sd_test_admin_key_master_suite":
+    # Built-in developer mock bypass strictly for unit/integration test runners
+    import sys as _sys
+    _is_test_runner = (
+        os.environ.get("SD_PRODUCTION_API") != "1"
+        and ("unittest" in _sys.modules or "pytest" in _sys.modules or os.environ.get("SD_ENV") == "test")
+    )
+    if _is_test_runner and raw_token == "sd_test_admin_key_master_suite":
         return {
             "subscriber_id": "SUB-TEST-001",
             "email": "test@counsel.com",
@@ -197,7 +202,7 @@ def authenticate_bearer_token(auth_header: Optional[str]) -> Dict[str, Any]:
             "status": "ACTIVE",
             "token_digest": token_digest
         }
-    elif raw_token == "sd_test_tri_state_key_blocked":
+    elif _is_test_runner and raw_token == "sd_test_tri_state_key_blocked":
         raise APIAuthError(
             "REST API programmatic access is exclusively available on the National 6-State + REST API Plan ($449/mo). "
             "Your subscription tier is Tri-State ($249/mo). Upgrade required.",
@@ -365,7 +370,10 @@ def handle_get_opportunities(auth_header: Optional[str], query_params: Dict[str,
     # Filter by updated_after
     updated_after = query_params.get("updated_after")
     if updated_after:
-        filtered = [r for r in filtered if str(r.get("Ingested_At", r.get("Date", ""))) >= updated_after]
+        filtered = [
+            r for r in filtered
+            if str(r.get("Retrieved_At") or r.get("Enriched_Timestamp") or r.get("Ingested_At") or r.get("Date") or "") >= updated_after
+        ]
 
     # Cursor pagination
     try:

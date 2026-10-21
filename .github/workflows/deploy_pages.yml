@@ -5,7 +5,11 @@ on:
     branches: [main]
     paths: ['site/**']
   workflow_run:
-    workflows: ["Daily Autonomous Revenue Pipeline"]
+    workflows:
+      - "Daily Autonomous Revenue Pipeline"
+      - "Manage Subscribers"
+      - "Autonomous Bug Resolver & Self-Healing Sentinel"
+      - "Automated Content Syndication & Backlink Engine"
     types:
       - completed
   workflow_dispatch:
@@ -21,6 +25,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

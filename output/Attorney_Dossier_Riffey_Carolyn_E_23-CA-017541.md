@@ -5,19 +5,19 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** Tindell, Linda Suean
+- **Target Claimant / Former Owner:** Riffey, Carolyn E
 - **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
-- **Tax Deed / Court Case Docket:** 24-CP-002619
+- **Tax Deed / Court Case Docket:** 23-CA-017541
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $127,119.07
+- **Gross Surplus Balance Held in Registry:** $42,527.06
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $25,423.81
-- **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
+- **Estimated Gross Recoverable Equity:** $8,505.41
+- **Institutional Claimant Screening:** Institutional banks, mortgage servicers, and taxing units excluded; independent title and encumbrance search required prior to filing.
 
 ---
 

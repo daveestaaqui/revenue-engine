@@ -134,7 +134,12 @@ def generate_b2b_exports():
         redacted = lead.copy()
         raw_name = str(lead.get("Owner_Name", "")).strip()
         parts = raw_name.split()
-        if len(parts) >= 2 and "Assessed Titleholder" not in raw_name:
+        if (
+            len(parts) >= 2
+            and "Assessed Titleholder" not in raw_name
+            and "Titleholder of Record" not in raw_name
+            and "Court Registry" not in raw_name
+        ):
             initials = " & ".join([p[0] + "." for p in parts if p not in ("&", "AND", "OF", "THE", "ESTATE", "EST.")][:2])
             last_name = parts[-1]
             masked_last = last_name[0] + "█" * max(4, len(last_name) - 1)
@@ -318,13 +323,41 @@ def generate_b2b_exports():
     print(f"   - {api_master_path.name}")
     print(f"   - {api_health_path.name}")
 
-    # Sync generated feed files to site/exports/ for web distribution
+    # Sync strictly REDACTED evaluation feeds to site/exports/ for public schema & web distribution
+    # (Never copy unredacted EXPORTS_DIR files into site/exports/)
     site_exports = BASE_DIR / "site" / "exports"
     site_exports.mkdir(parents=True, exist_ok=True)
-    import shutil
-    for f in EXPORTS_DIR.glob("*.*"):
-        shutil.copy2(f, site_exports / f.name)
-    print(f"📦 Synchronized public distribution feeds to: {site_exports}")
+    df_redacted_all = sanitize_for_spreadsheet(pd.DataFrame(redacted_leads))
+    df_redacted_all.to_csv(site_exports / "Master_Surplus_Lead_Feed.csv", index=False)
+    try:
+        df_redacted_all.to_excel(site_exports / "Master_Surplus_Lead_Feed.xlsx", index=False)
+    except Exception:
+        pass
+    with open(site_exports / "Master_Surplus_Lead_Feed.json", "w", encoding="utf-8") as f:
+        json.dump(api_payload, f, indent=2)
+
+    df_redacted_tri = df_redacted_all[df_redacted_all["State"].isin(["FL", "TX", "GA"])]
+    if len(df_redacted_tri) > 0:
+        df_redacted_tri.to_csv(site_exports / "Tri_State_Core_Surplus_Feed.csv", index=False)
+        try:
+            df_redacted_tri.to_excel(site_exports / "Tri_State_Core_Surplus_Feed.xlsx", index=False)
+        except Exception:
+            pass
+
+    for state_code, (_df_state, file_base, _statute, _api_file) in state_dfs.items():
+        df_state_red = df_redacted_all[df_redacted_all["State"] == state_code]
+        df_state_red.to_csv(site_exports / f"{file_base}.csv", index=False)
+        try:
+            df_state_red.to_excel(site_exports / f"{file_base}.xlsx", index=False)
+        except Exception:
+            pass
+
+    generate_clio_matter_export(redacted_leads[:25], site_exports / "Clio_Matter_Import.csv")
+    generate_filevine_lead_export(redacted_leads[:25], site_exports / "Filevine_Lead_Import.csv")
+    df_fl_red = df_redacted_all[df_redacted_all["State"] == "FL"]
+    if len(df_fl_red) > 0:
+        df_fl_red.to_csv(site_exports / "Florida_Tri_County_Sample_MiamiDade_PalmBeach_Broward.csv", index=False)
+    print(f"📦 Synchronized redacted evaluation feeds to: {site_exports}")
 
 if __name__ == "__main__":
     generate_b2b_exports()

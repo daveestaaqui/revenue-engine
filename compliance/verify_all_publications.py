@@ -135,10 +135,12 @@ BANNED_PHRASES = [
     r'\bautomatic millionaire\b'
 ]
 
-# Prohibited Institutional Bank / Lender Claimants
+# Prohibited Institutional Bank / Lender / Government Claimants
 EXCLUDED_CLAIMANTS = [
     "BANK", "MORTGAGE", "WELLS FARGO", "CHASE", "CITIBANK",
-    "DEUTSCHE", "FANNIE MAE", "FREDDIE MAC", "INTERNAL REVENUE"
+    "DEUTSCHE", "FANNIE MAE", "FREDDIE MAC", "INTERNAL REVENUE",
+    "HOUSING ASSISTANCE", "STUART, CINDY", "CINDY STUART",
+    "PAT FRANK", "CLERK OF THE CIRCUIT COURT", "FBC GENERAL FUND"
 ]
 
 class VerificationError(Exception):

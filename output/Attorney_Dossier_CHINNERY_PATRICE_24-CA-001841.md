@@ -5,19 +5,19 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** STILL, JOHN L, Jr
+- **Target Claimant / Former Owner:** CHINNERY, PATRICE
 - **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
-- **Tax Deed / Court Case Docket:** 22-CP-000212
+- **Tax Deed / Court Case Docket:** 24-CA-001841
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $112,484.69
+- **Gross Surplus Balance Held in Registry:** $75,684.40
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $22,496.94
-- **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
+- **Estimated Gross Recoverable Equity:** $15,136.88
+- **Institutional Claimant Screening:** Institutional banks, mortgage servicers, and taxing units excluded; independent title and encumbrance search required prior to filing.
 
 ---
 

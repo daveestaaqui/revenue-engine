@@ -28,7 +28,7 @@ ATTORNEY_DOSSIER_TEMPLATE = """# CONFIDENTIAL ATTORNEY WORK-PRODUCT // SURPLUS R
 - **Gross Surplus Balance Held in Registry:** ${surplus_amount:,.2f}
 - **Statutory Benchmark Recovery Rate:** {fee_rate}
 - **Estimated Gross Recoverable Equity:** ${estimated_fee:,.2f}
-- **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
+- **Institutional Claimant Screening:** Institutional banks, mortgage servicers, and taxing units excluded; independent title and encumbrance search required prior to filing.
 
 ---
 

@@ -270,8 +270,8 @@ Manage Subscription in Stripe Portal: {STRIPE_PORTAL_URL}
                                         <td style="padding: 6px 0;">Freshly audited court filings delivered every weekday morning with attached CSV &amp; Excel sheets.</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding: 6px 0; font-weight: 700; color: #1b365d;">Zero Bank Liens:</td>
-                                        <td style="padding: 6px 0;">Upstream verification filters senior mortgages and tax deeds so only recoverable surplus reaches your desk.</td>
+                                        <td style="padding: 6px 0; font-weight: 700; color: #1b365d;">Entity Screening:</td>
+                                        <td style="padding: 6px 0;">Upstream claimant screening excludes institutional banks, servicers, and government taxing units from individual/estate leads.</td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 6px 0; font-weight: 700; color: #1b365d;">Clio / Filevine Ready:</td>

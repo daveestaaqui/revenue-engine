@@ -60,7 +60,7 @@ def get_docket_url(docket_id: str) -> str:
     ref_token = hashlib.sha256(ref_seed.encode("utf-8")).hexdigest()[:12]
     return f"https://surplusdocket.com/docket?id={urllib.parse.quote_plus(docket_id)}&k={VAULT_KEY}&ref={ref_token}"
 
-URL_CASE_1_DOCKET = get_docket_url("22-CA-008975")
+URL_CASE_1_DOCKET = get_docket_url("26-CA-006185")
 URL_CASE_2_DOCKET = get_docket_url("23-CA-016325")
 URL_TAXDEED_DOCKET = get_docket_url("18-LW-000360")
 
@@ -77,7 +77,7 @@ Over the past week, I personally purged every synthetic fixture and fallback acr
 1. Direct Clerk Source Verification: Every record in our feed now carries a direct verification source linking directly to the clerk's docket and official documents on the clerk's server.
 2. Honest Coverage Boundaries: If a county clerk gates its surplus list behind interactive session portals or CAPTCHAs (as Miami-Dade, Palm Beach, and Broward currently do for bulk exports), we do not fabricate or extrapolate rows for them. In Florida today, our automated feed indexes Hillsborough County Clerk (hillsclerk.com), where both the Daily Circuit Civil Court Registry Balances and Weekly Tax Deed Surplus listings are published openly.
 3. Live Examples You Can Verify Right Now:
-   • Case 22-CA-008975 (Hillsborough Circuit Civil) — Cindy Stuart — $226,740.20
+   • Case 26-CA-006185 (Hillsborough Circuit Civil) — Alvaro Duarte — $103,924.28
      Verified Docket Dossier: {URL_CASE_1_DOCKET}
    • Case 23-CA-016325 (Hillsborough Circuit Civil) — Thelma Mae Billing — $211,052.49
      Verified Docket Dossier: {URL_CASE_2_DOCKET}
@@ -114,7 +114,7 @@ HTML_BODY = f"""<!DOCTYPE html>
   <li style="margin-bottom: 10px;"><strong>Honest Coverage Boundaries:</strong> If a county clerk gates its surplus list behind interactive session portals or CAPTCHAs (as Miami-Dade, Palm Beach, and Broward currently do for bulk exports), we do not fabricate or extrapolate rows for them. In Florida today, our automated feed indexes Hillsborough County Clerk (<code>hillsclerk.com</code>), where both the Daily Circuit Civil Court Registry Balances and Weekly Tax Deed Surplus listings are published openly.</li>
   <li style="margin-bottom: 10px;"><strong>Live Examples You Can Verify in One Click:</strong>
     <ul style="margin-top: 6px; line-height: 1.7;">
-      <li style="margin-bottom: 8px;">Case <strong>22-CA-008975</strong> (Hillsborough Circuit Civil) &mdash; Cindy Stuart &mdash; <strong>$226,740.20</strong><br>
+      <li style="margin-bottom: 8px;">Case <strong>26-CA-006185</strong> (Hillsborough Circuit Civil) &mdash; Alvaro Duarte &mdash; <strong>$103,924.28</strong><br>
         <span style="font-size: 12px;">&bull; <a href="{URL_CASE_1_DOCKET}" target="_blank" style="color: #1b365d; font-weight: 600;">Open Verified Docket Dossier on Surplus Docket &rarr;</a></span>
       </li>
       <li style="margin-bottom: 8px;">Case <strong>23-CA-016325</strong> (Hillsborough Circuit Civil) &mdash; Thelma Mae Billing &mdash; <strong>$211,052.49</strong><br>

@@ -30,6 +30,11 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
+
 LINK_BUILDING_DIR = BASE_DIR / "marketing" / "link_building"
 TARGETS_CSV = LINK_BUILDING_DIR / "tool_outreach_targets.csv"
 LOG_CSV = LINK_BUILDING_DIR / "tool_outreach_log.csv"
@@ -215,10 +220,10 @@ def get_pitch_template_content(target_type: str) -> Tuple[str, str]:
     }
     path = template_map.get(target_type.strip().lower(), PITCHES_DIR / "pitch_legaltech_bloggers.md")
     if not path.exists():
-        subject = "Free Open-Access Statutory Surplus & Court Deadline Calculator"
+        subject = "Free statutory deadline calculator for legal tech readers"
         body = (
             "Hi {Recipient},\n\nWe recently released a free, zero-tracking statutory surplus deadline calculator "
-            "and legal practice tools hub: https://surplusdocket.com/tools.html\n\nBest regards,\nSurplus Docket Editorial Team"
+            "and legal practice tools hub: https://surplusdocket.com/tools.html\n\nBest regards,\n\nDavid Mahler\nSurplus Docket\ndavid@surplusdocket.com | https://surplusdocket.com"
         )
         return subject, body
 
@@ -419,6 +424,7 @@ def run_tool_outreach_pipeline(
 
     mode_label = "LIVE SMTP DISPATCH" if live_send else "DRY-RUN / DRAFT GENERATION"
     print(f"[*] Starting Autonomous Link-Building Tool Outreach ({len(selected)} targets, mode={mode_label})...")
+    gatekeeper = GroundTruthGatekeeper()
 
     results = []
     for t in selected:
@@ -429,6 +435,21 @@ def run_tool_outreach_pipeline(
         print(f"  -> Pitching [{t_type}] {org} ({email_addr}, DA {da})...")
 
         subject, text_body, html_body = build_personalized_email(t)
+
+        is_valid, reasons = GroundTruthGatekeeper.validate_outreach_message(
+            to_email=email_addr,
+            to_name=t.get("name", ""),
+            firm=org,
+            subject=subject,
+            body=text_body,
+        )
+        if not is_valid:
+            reason_str = "; ".join(reasons)
+            print(f"     🛑 GroundTruthGatekeeper blocked {email_addr}: {reason_str}")
+            log_outreach_event(t, subject, "BLOCKED_GATEKEEPER", reason_str, message_id="")
+            update_target_status(email_addr, "BLOCKED_GATEKEEPER")
+            results.append({"organization": org, "email": email_addr, "status": "BLOCKED_GATEKEEPER", "info": reason_str})
+            continue
 
         if live_send and GMAIL_APP_PASS:
             success, info = send_email_smtp(email_addr, subject, text_body, html_body)

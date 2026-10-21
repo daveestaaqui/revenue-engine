@@ -5,19 +5,19 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** NAILIE, ELIZABETH CHAMPION
+- **Target Claimant / Former Owner:** Vega, Luis Orlando
 - **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
-- **Tax Deed / Court Case Docket:** 24-CP-002386
+- **Tax Deed / Court Case Docket:** 21-CA-004936
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $207,392.75
+- **Gross Surplus Balance Held in Registry:** $29,749.43
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $41,478.55
-- **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
+- **Estimated Gross Recoverable Equity:** $5,949.89
+- **Institutional Claimant Screening:** Institutional banks, mortgage servicers, and taxing units excluded; independent title and encumbrance search required prior to filing.
 
 ---
 

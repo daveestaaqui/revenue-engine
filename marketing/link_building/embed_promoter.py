@@ -38,9 +38,9 @@ There are no paywalls, accounts, or tracking. Thought your readers might find it
 
 Hope it's helpful,
 
-Elena Brooks
+David Mahler
 Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
+david@surplusdocket.com | https://surplusdocket.com
 """
     },
     {
@@ -58,9 +58,9 @@ Zero paywalls, logins, or ads. Feel free to share it with your members if you th
 
 Best,
 
-Elena Brooks
+David Mahler
 Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
+david@surplusdocket.com | https://surplusdocket.com
 """
     },
     {
@@ -78,9 +78,9 @@ Zero ads, accounts, or tracking. Thought it might be a handy practical reference
 
 Hope it's helpful,
 
-Elena Brooks
+David Mahler
 Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com/tools.html
+david@surplusdocket.com | https://surplusdocket.com/tools.html
 """
     },
     {
@@ -98,9 +98,9 @@ Everything is free and open-access with no account required. If you ever highlig
 
 Best regards,
 
-Elena Brooks
+David Mahler
 Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
+david@surplusdocket.com | https://surplusdocket.com
 """
     }
 ]

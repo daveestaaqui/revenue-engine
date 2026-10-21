@@ -14,6 +14,6 @@ Everything is free and open-access with no account required. If you ever highlig
 
 Best regards,
 
-Elena Brooks
+David Mahler
 Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
+david@surplusdocket.com | https://surplusdocket.com

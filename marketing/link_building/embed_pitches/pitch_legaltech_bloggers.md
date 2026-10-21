@@ -14,6 +14,6 @@ There are no paywalls, accounts, or tracking. Thought your readers might find it
 
 Hope it's helpful,
 
-Elena Brooks
+David Mahler
 Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
+david@surplusdocket.com | https://surplusdocket.com

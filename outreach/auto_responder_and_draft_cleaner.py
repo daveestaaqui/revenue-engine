@@ -2933,6 +2933,8 @@ def clean_apple_mail_drafts():
     Tells Apple Mail (Mail.app) directly via AppleScript to delete drafts
     whose recipients have already been sent to.
     """
+    if sys.platform != "darwin":
+        return 0
     applescript = """
     tell application "System Events"
         set isRunning to (name of processes) contains "Mail"

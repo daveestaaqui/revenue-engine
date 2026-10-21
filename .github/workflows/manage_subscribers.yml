@@ -39,6 +39,8 @@ jobs:
   manage-subscribers:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
+    env:
+      PYTHONPATH: .
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -47,6 +49,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Execute Subscriber Management
         run: |
@@ -91,12 +99,16 @@ jobs:
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          git add portal/subscribers.json
+          for f in portal/subscribers.json site/api/v1/auth_registry.json; do
+            if [ -f "$f" ]; then
+              git add "$f"
+            fi
+          done
           if ! git diff --staged --quiet; then
             git commit -m "chore(subscribers): update subscriber registry [skip ci]"
             git checkout -- . || true
             git clean -fd || true
             for attempt in 1 2 3; do
-              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
+              git pull --rebase origin main && git push && break || { git rebase --abort 2>/dev/null || true; echo "Retry push $attempt..."; sleep 5; }
             done
           fi

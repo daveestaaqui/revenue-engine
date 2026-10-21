@@ -17,7 +17,7 @@
 - **Gross Surplus Balance Held in Registry:** $211,052.49
 - **Statutory Benchmark Recovery Rate:** 20%
 - **Estimated Gross Recoverable Equity:** $42,210.50
-- **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
+- **Institutional Claimant Screening:** Institutional banks, mortgage servicers, and taxing units excluded; independent title and encumbrance search required prior to filing.
 
 ---
 

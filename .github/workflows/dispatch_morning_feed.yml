@@ -2,13 +2,6 @@ name: Dispatch 7:00 AM EST Morning Court Intelligence Feed
 
 on:
   schedule:
-    # Staging triggers: wake runner 5 minutes before 7:00 AM Eastern Time at minute :55
-    # (Off-peak minute avoids GitHub Actions queue delay so runner boots and preps dependencies)
-    # EDT (UTC-4): 6:55 AM EDT = 10:55 UTC
-    - cron: '55 10 * * 1-5'
-    # EST (UTC-5): 6:55 AM EST = 11:55 UTC
-    - cron: '55 11 * * 1-5'
-    # Standard top-of-hour schedules (preserved for compatibility)
     # Daylight Saving Time (EDT = UTC-4): 7:00 AM EDT = 11:00 UTC
     - cron: '0 11 * * 1-5'
     # Standard Time (EST = UTC-5): 7:00 AM EST = 12:00 UTC
@@ -35,7 +28,7 @@ permissions:
 
 concurrency:
   group: dispatch-morning-feed-primary
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 
 jobs:
@@ -70,25 +63,9 @@ jobs:
         run: |
           python portal/sync_stripe_subscribers.py || echo "Stripe sync note: continuing..."
 
-      - name: Synchronize to 7:00:00 AM EST Sharp
-        run: |
-          python -c "
-          import time, datetime
-          from zoneinfo import ZoneInfo
-          now_et = datetime.datetime.now(ZoneInfo('America/New_York'))
-          print(f'Current Eastern Time: {now_et.strftime(\"%A %I:%M:%S %p %Z\")}')
-          # If runner initialized during the 6:55 - 6:59 AM staging window, wait until 7:00:00 AM sharp
-          if now_et.hour == 6 and now_et.minute >= 55:
-              target_et = now_et.replace(hour=7, minute=0, second=0, microsecond=0)
-              wait_sec = (target_et - now_et).total_seconds()
-              if 0 < wait_sec <= 360:
-                  print(f'Staged early at {now_et.strftime(\"%I:%M:%S %p\")}. Countdown to 7:00:00 AM EST sharp ({wait_sec:.1f}s)...')
-                  time.sleep(wait_sec)
-                  print('Target 7:00:00 AM EST reached. Dispatching immediately!')
-          "
-
       - name: Dispatch Verified Morning Intelligence Feed to Subscribers
         run: |
+          git pull --rebase origin main || git rebase --abort 2>/dev/null || true
           ARGS=""
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
             ARGS="$ARGS --force"
@@ -117,7 +94,7 @@ jobs:
         run: |
           git config --global user.name "Surplus Docket Bot"
           git config --global user.email "bot@surplusdocket.com"
-          for f in portal/daily_dispatch_log.json portal/trial_lifecycle_log.json; do
+          for f in portal/daily_dispatch_log.json portal/trial_lifecycle_log.json portal/subscribers.json site/api/v1/auth_registry.json; do
             if [ -f "$f" ]; then
               git add "$f"
             fi
@@ -125,6 +102,6 @@ jobs:
           if ! git diff --staged --quiet; then
             git commit -m "chore(feed): update morning dispatch and trial retention logs [skip ci]"
             for attempt in 1 2 3; do
-              git pull --rebase origin main && git push && break || { echo "Retry push $attempt..."; sleep 5; }
+              git pull --rebase origin main && git push && break || { git rebase --abort 2>/dev/null || true; echo "Retry push $attempt..."; sleep 5; }
             done
           fi

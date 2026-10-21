@@ -121,8 +121,12 @@ def _fetch_hillsborough_court_registry() -> list[dict]:
         report_date = f"{yyyy}-{mm}-{dd}"
 
     line_re = re.compile(
-        r"^(\d{2}-(?:CA|CC|CP)-\d{6})\s+(.+?)\s*\$?([\d,]+\.\d{2})(?:\s+\$?([\d,]+\.\d{2}))?(?:\s+\$?([\d,]+\.\d{2}))?$",
+        r"^(\d{2}-CA-\d{6})\s+(.+?)\s*\$?([\d,]+\.\d{2})(?:\s+\$?([\d,]+\.\d{2}))?(?:\s+\$?([\d,]+\.\d{2}))?$",
         re.MULTILINE,
+    )
+    clerk_officials_re = re.compile(
+        r"\b(STUART,\s*CINDY|CINDY\s+STUART|PAT\s+FRANK|VICTOR\s+CRIST|CLERK\s+OF\s+THE\s+CIRCUIT\s+COURT)\b",
+        re.IGNORECASE,
     )
 
     records: list[dict] = []
@@ -133,7 +137,9 @@ def _fetch_hillsborough_court_registry() -> list[dict]:
             case_no = m.group(1).strip()
             if case_no in seen_cases:
                 continue
-            party = re.sub(r"\s+", " ", m.group(2)).strip()
+            party = re.sub(r"\s+", " ", m.group(2)).strip(" .,-;")
+            if clerk_officials_re.search(party):
+                continue
             # Net credit balance is the last monetary column on the line
             amounts = [g for g in (m.group(3), m.group(4), m.group(5)) if g]
             if not amounts:

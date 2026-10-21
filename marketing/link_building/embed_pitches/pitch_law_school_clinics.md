@@ -14,6 +14,6 @@ Zero ads, accounts, or tracking. Thought it might be a handy practical reference
 
 Hope it's helpful,
 
-Elena Brooks
+David Mahler
 Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com/tools.html
+david@surplusdocket.com | https://surplusdocket.com/tools.html

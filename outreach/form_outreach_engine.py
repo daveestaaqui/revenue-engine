@@ -24,7 +24,7 @@ import socket
 import sys
 import tempfile
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 from playwright.async_api import async_playwright
@@ -91,6 +91,16 @@ COUNTY_URLS = {
     "atlanta": "https://surplusdocket.com/fulton-county-excess-funds.html",
     "dekalb": "https://surplusdocket.com/dekalb-county-excess-funds.html",
     "cobb": "https://surplusdocket.com/cobb-county-excess-funds.html",
+    "gwinnett": "https://surplusdocket.com/gwinnett-county-excess-funds.html",
+    "lawrenceville": "https://surplusdocket.com/gwinnett-county-excess-funds.html",
+    "san diego": "https://surplusdocket.com/san-diego-county-excess-proceeds.html",
+    "los angeles": "https://surplusdocket.com/los-angeles-county-excess-proceeds.html",
+    "santa ana": "https://surplusdocket.com/orange-county-ca-excess-proceeds.html",
+    "fort bend": "https://surplusdocket.com/fort-bend-county-excess-proceeds.html",
+    "davidson": "https://surplusdocket.com/davidson-county-excess-proceeds.html",
+    "nashville": "https://surplusdocket.com/davidson-county-excess-proceeds.html",
+    "mecklenburg": "https://surplusdocket.com/mecklenburg-county-tax-foreclosure-surplus.html",
+    "charlotte": "https://surplusdocket.com/mecklenburg-county-tax-foreclosure-surplus.html",
 }
 
 
@@ -639,10 +649,7 @@ async def find_contact_page(page, base_url, explicit_form_url=None):
         except Exception:
             continue
 
-    res_url = page.url or base_url
-    if "chrome-error://" in res_url.lower() or "chromewebdata" in res_url.lower():
-        return None
-    return res_url
+    return None
 
 
 async def fill_and_submit_form(page, target, is_dry_run=False):
@@ -1433,7 +1440,7 @@ def create_email_fallback_draft(target, failure_detail, is_dry_run=False):
 
 I was reviewing recent {county} County court registry filings and came across {firm} while tracking active foreclosure and surplus recovery counsel in {state}.
 
-We track unencumbered surplus funds across clerk registries, and we recently identified a {balance} surplus balance on Case {case_no} in {county} County. We verified upstream that senior institutional mortgages have been cleared, and the claim window under {statute} is currently open.
+We track unencumbered surplus funds across clerk registries, and we recently identified a {balance} surplus balance on Case {case_no} in {county} County. Public county clerk records reflect an active unclaimed balance subject to statutory lien priority, and the claim window under {statute} is currently open.
 
 Are you currently handling surplus recovery petitions or excess proceeds claims in {county} County?
 
@@ -1583,9 +1590,12 @@ async def run_engine(is_dry_run=False, limit=35, state_filter=None):
         for i, target in enumerate(candidate_list, 1):
             print(f"[{i:02d}/{len(candidate_list):02d}] Processing {target.get('Firm')} ({target.get('State')})...")
             res = await process_target(browser, target, is_dry_run=is_dry_run)
+            res.setdefault("timestamp", datetime.now(timezone.utc).isoformat())
             res["firm"] = target.get("Firm", "")
             res["name"] = target.get("Name", "")
             res["state"] = target.get("State", "")
+            res.setdefault("target_url", target.get("Source_URL", "").strip())
+            res.setdefault("form_url", target.get("Form_URL", "").strip() or target.get("Source_URL", "").strip())
             results.append(res)
 
             # AUTOMATIC FALLBACK ACCELERATOR: If web form fails or is unviable, generate direct 1-on-1 legal email draft

@@ -29,12 +29,12 @@ PITCH_TEMPLATES = [
             "— Research & Regulatory Analysis Desk, Surplus Docket"
         ),
         "citeable_data": [
-            "Over $3.24M in verified unencumbered surplus funds identified across 35 major county registries in FL, TX, and CA alone.",
+            "Over $19.2M in verified unencumbered surplus funds identified across major county registries in FL, TX, GA, CA, and TN.",
             "Florida § 197.582 sets a strict 120-day notice window post-certificate of title before claims are barred.",
             "California Revenue & Taxation Code § 4675 provides 1 year from deed recordation, requiring complex junior lien prioritization.",
             "Texas Tax Code § 34.04 mandates district court petition with formal service on all previous title holders."
         ],
-        "resource_url": "https://surplusdocket.com/data",
+        "resource_url": "https://surplusdocket.com/#live-docket",
         "call_to_action": (
             "We have mapped county-by-county registry balances and statutory deadlines across all 6 key jurisdictions. "
             "Happy to provide raw docket data, anonymized court case case-studies, or executive commentary for your upcoming feature."

@@ -5,19 +5,19 @@
 ---
 
 ## 1. DOCKET & PROPERTY IDENTIFICATION
-- **Target Claimant / Former Owner:** STUART, CINDY
+- **Target Claimant / Former Owner:** Reid, Morris Anthony
 - **Property Situs / Address:** Hillsborough County Circuit Civil Registry, Tampa, FL
-- **Tax Deed / Court Case Docket:** 22-CA-008975
+- **Tax Deed / Court Case Docket:** 23-CA-014882
 - **Jurisdiction / Registry:** FL — County Clerk of Circuit Court / Comptroller
 - **Governing Legal Authority:** Florida Statute § 197.582
 
 ---
 
 ## 2. AUDITED PROCEEDS & STATUTORY RECOVERY CALCULATION
-- **Gross Surplus Balance Held in Registry:** $226,740.20
+- **Gross Surplus Balance Held in Registry:** $24,750.00
 - **Statutory Benchmark Recovery Rate:** 20%
-- **Estimated Gross Recoverable Equity:** $45,348.04
-- **Institutional Lien Status:** 100% Upstream Bank / Senior Mortgage Filter Applied (Clean Individual/Estate Equity)
+- **Estimated Gross Recoverable Equity:** $4,950.00
+- **Institutional Claimant Screening:** Institutional banks, mortgage servicers, and taxing units excluded; independent title and encumbrance search required prior to filing.
 
 ---
 

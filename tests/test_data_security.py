@@ -62,8 +62,13 @@ class TestDataSecurityAndAntiLeak(unittest.TestCase):
 
         self.assertGreater(len(real_names), 10, "Should have real names to check against")
 
-        # Scan site/api/v1/*.json and site/assets/*.csv
-        files_to_scan = list((SITE_DIR / "api" / "v1").glob("*.json")) + list((SITE_DIR / "assets").glob("*.csv"))
+        # Scan site/api/v1/*.json, site/assets/*.csv, and site/exports/*.csv
+        files_to_scan = (
+            list((SITE_DIR / "api" / "v1").glob("*.json"))
+            + list((SITE_DIR / "assets").glob("*.csv"))
+            + list((SITE_DIR / "exports").glob("*.csv"))
+            + list((SITE_DIR / "exports").glob("*.json"))
+        )
         for f in files_to_scan:
             content = f.read_text(encoding="utf-8")
             for name in real_names:

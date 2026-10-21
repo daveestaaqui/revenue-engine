@@ -30,7 +30,7 @@ EXCLUDED_NAMES = {
     "toolkit.html", "checklist.html", "live-docket.html", "api.html",
     "googleadb6429ca7be1cf6.html", "monthly-presentation-builder.html"
 }
-EXCLUDED_PARTS = {"components", "embed", ".well-known"}
+EXCLUDED_PARTS = {"components", ".well-known"}
 
 
 def get_all_site_urls() -> list[tuple[str, str]]:
@@ -63,51 +63,10 @@ ALL_SITE_URLS = [u for u, _ in ALL_SITE_URL_DATA]
 
 
 def generate_rss_feed():
-    feed_path = SITE_DIR / "feed.xml"
-    master_csv = EXPORTS_DIR / "Master_Surplus_Lead_Feed.csv"
-
-    items_xml = ""
-    now_rfc822 = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
-
-    if master_csv.exists():
-        import xml.sax.saxutils
-        with open(master_csv, mode="r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for i, row in enumerate(reader):
-                if i >= 10:
-                    break
-                docket = xml.sax.saxutils.escape(row.get("Case_or_TaxDeed_No", "").strip())
-                if not docket:
-                    continue
-                state = xml.sax.saxutils.escape(row.get("State", "US"))
-                county = xml.sax.saxutils.escape(row.get("County", ""))
-                statute = xml.sax.saxutils.escape(row.get("Governing_Statute", "State Law"))
-                link_url = xml.sax.saxutils.escape(row.get("Clerk_Verification_URL", "").strip() or "https://surplusdocket.com/")
-
-                items_xml += f"""
-    <item>
-      <title>[{state} - {county}] Docket {docket} Excess Proceeds Filing</title>
-      <link>{link_url}</link>
-      <guid isPermaLink="false">{docket}-{state}</guid>
-      <pubDate>{now_rfc822}</pubDate>
-      <description>Public tax deed surplus docket filing in {county} County, {state}. Governed by {statute}. Indexed by Surplus Docket intelligence feed.</description>
-    </item>"""
-
-    rss_content = f"""<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Surplus Docket — Daily Tax Deed Surplus &amp; Excess Proceeds Feed</title>
-    <link>https://surplusdocket.com/</link>
-    <description>Daily public records intelligence tracking tax deed surplus and excess proceeds court dockets across Florida, Texas, and Georgia jurisdictions.</description>
-    <language>en-us</language>
-    <lastBuildDate>{now_rfc822}</lastBuildDate>
-    <atom:link href="https://surplusdocket.com/feed.xml" rel="self" type="application/rss+xml" />
-{items_xml}
-  </channel>
-</rss>"""
-
-    feed_path.write_text(rss_content.strip(), encoding="utf-8")
-    print(f"  [✓] Generated RSS Syndication Feed: {feed_path.name}")
+    if str(BASE_DIR) not in sys.path:
+        sys.path.insert(0, str(BASE_DIR))
+    from scripts.generate_rss_feed import generate_rss
+    generate_rss()
 
 def update_sitemap():
     sitemap_path = SITE_DIR / "sitemap.xml"

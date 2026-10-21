@@ -122,11 +122,11 @@ class TestMorningFeedDeliverySystem(unittest.TestCase):
 
         # Primary concurrency
         self.assertIn("group: dispatch-morning-feed-primary", primary_wf)
-        self.assertIn("cancel-in-progress: true", primary_wf)
+        self.assertIn("cancel-in-progress: false", primary_wf)
 
         # Backup concurrency
         self.assertIn("group: dispatch-morning-feed-backup", backup_wf)
-        self.assertIn("cancel-in-progress: true", backup_wf)
+        self.assertIn("cancel-in-progress: false", backup_wf)
 
         # Simplified EDT/EST dual-trigger schedule
         self.assertIn("'0 11 * * 1-5'", primary_wf)

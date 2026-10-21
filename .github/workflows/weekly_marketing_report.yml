@@ -1,9 +1,9 @@
 name: Weekly Autonomous Marketing Progress Report
 
 on:
-  # schedule:
-  #   # Every Monday at 12:00 UTC (8:00 AM EST / 5:00 AM PST)
-  #   - cron: '0 12 * * 1'
+  schedule:
+    # Every Monday at 12:00 UTC (8:00 AM EST / 5:00 AM PST)
+    - cron: '0 12 * * 1'
   workflow_dispatch:
     inputs:
       recipient:
@@ -40,13 +40,14 @@ jobs:
 
       - name: Compile & Email Weekly Marketing Progress Report
         env:
+          PYTHONPATH: .
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
           REPORT_RECIPIENT: ${{ github.event.inputs.recipient || secrets.REPORT_RECIPIENT || 'sandwichfitness@gmail.com' }}
           SMTP_HOST: 'smtp.gmail.com'
           SMTP_PORT: '587'
           FROM_NAME: 'Surplus Docket Intelligence'
-          FROM_EMAIL: 'elena.brooks@surplusdocket.com'
+          FROM_EMAIL: 'dockets@surplusdocket.com'
         run: |
           RECIPIENT="${{ github.event.inputs.recipient || secrets.REPORT_RECIPIENT || 'sandwichfitness@gmail.com' }}"
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then

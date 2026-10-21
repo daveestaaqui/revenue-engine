@@ -134,7 +134,7 @@ class TestClerkOutreachGenerator(unittest.TestCase):
 
     def test_generate_all_clerk_letters(self):
         files = generate_all_clerk_letters()
-        self.assertEqual(len(files), 6)
+        self.assertGreaterEqual(len(files), 6)
         for f in files:
             p = Path(f)
             self.assertTrue(p.exists())
@@ -216,6 +216,52 @@ class TestAutoArticleSubmitter(unittest.TestCase):
         self.assertEqual(summary["urls_submitted"], 0)
         self.assertEqual(summary["indexnow_status"], "dry_run_success")
         self.assertIn("google", summary["search_engine_pings"])
+
+
+class TestEmbedPromoterAndToolOutreach(unittest.TestCase):
+    def test_embed_pitches_have_no_elena_persona(self):
+        from marketing.link_building.embed_promoter import generate_embed_pitches, EMBED_PITCHES_DIR
+        generate_embed_pitches()
+        for md_file in EMBED_PITCHES_DIR.glob("*.md"):
+            content = md_file.read_text(encoding="utf-8")
+            self.assertNotIn("Elena Brooks", content)
+            self.assertNotIn("elena.brooks@surplusdocket.com", content)
+            self.assertIn("David Mahler", content)
+            self.assertIn("david@surplusdocket.com", content)
+
+    def test_tool_outreach_gatekeeper_integration(self):
+        from marketing.link_building.tool_outreach_engine import (
+            load_targets,
+            select_outreach_targets,
+            build_personalized_email,
+        )
+        from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
+
+        targets = load_targets()
+        selected = select_outreach_targets(targets, limit=6)
+        self.assertGreaterEqual(len(selected), 4)
+        for t in selected:
+            subj, text_body, _ = build_personalized_email(t)
+            ok, errs = GroundTruthGatekeeper.validate_outreach_message(
+                to_email=t["contact_email"],
+                to_name=t["name"],
+                firm=t["organization"],
+                subject=subj,
+                body=text_body,
+            )
+            self.assertTrue(ok, f"Target {t['contact_email']} failed gatekeeper: {errs}")
+
+    def test_programmatic_county_pages_and_live_docket_links(self):
+        from marketing.county_generator import COUNTIES, SITE_DIR
+        self.assertGreaterEqual(len(COUNTIES), 19)
+        for c in COUNTIES:
+            page_path = SITE_DIR / c["slug"]
+            self.assertTrue(page_path.exists(), f"Missing county page: {c['slug']}")
+            html_text = page_path.read_text(encoding="utf-8")
+            self.assertIn("/tools.html", html_text)
+            self.assertIn("/blog/posts/", html_text)
+            if c["state"] in ("FL", "TX", "GA", "CA", "TN"):
+                self.assertIn("/docket.html?docket=", html_text)
 
 
 if __name__ == "__main__":

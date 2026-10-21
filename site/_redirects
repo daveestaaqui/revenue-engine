@@ -1,7 +1,12 @@
 /docket /docket.html 200
 /live-docket /#data 302
+/data /#data 302
+/tools /tools.html 301
 /toolkit /practitioner-toolkit.html 302
 /checklist /assets/Statutory_Surplus_Filing_Checklist.txt 302
+/calculator-embed /embed/surplus-calculator.html 301
+/homeowner-guide /resources/homeowner-surplus-guide.html 301
+/opt-out.html /inquiry.html?topic=opt-out 302
 /pricing /#pricing 302
 /calculator /#calculator 302
 /florida /florida-tax-deed-surplus.html 301

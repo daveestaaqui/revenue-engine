@@ -399,10 +399,10 @@ def reconcile_and_repair_subscribers(subscribers: list = None, write_back: bool 
             continue
         norm_email = raw_email.strip().lower()
 
-        # Check trial expiration
+        # Check trial expiration (strictly for accounts in TRIAL/TRIALING status or explicitly marked is_trial=True)
         status = sub.get("status", "ACTIVE").upper()
         is_eval_tier = any(k in str(sub.get("tier", "")).lower() for k in ["evaluation", "trial"])
-        if status in ("TRIAL", "TRIALING") or (is_eval_tier and status == "ACTIVE"):
+        if status in ("TRIAL", "TRIALING") or (is_eval_tier and status == "ACTIVE" and sub.get("is_trial") is True):
             days_active = None
             if sub.get("days_active") is not None:
                 try:

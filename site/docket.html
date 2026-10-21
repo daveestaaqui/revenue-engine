@@ -109,7 +109,7 @@
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                     <div>
                         <div class="text-xs uppercase font-bold tracking-wider text-slate-300 mb-1 flex items-center gap-1.5">
-                            <span>Official Docket / Case Matter</span>
+                            <span id="label-docket-type">Official Docket / Case Matter</span>
                             <span id="lock-icon-docket" class="text-amber-300 text-xs hidden">🔒</span>
                         </div>
                         <h1 id="docket-title" class="text-2xl sm:text-3xl font-mono font-black tracking-tight text-white flex items-center gap-3">
@@ -133,7 +133,7 @@
                         <div id="docket-owner" class="text-sm font-bold text-brand-navy">--</div>
                     </div>
                     <div>
-                        <div class="text-slate-500 font-bold uppercase tracking-wider text-[11px] mb-1">Statutory 20% Fee Benchmark</div>
+                        <div id="label-fee-benchmark" class="text-slate-500 font-bold uppercase tracking-wider text-[11px] mb-1">Statutory 20% Fee Benchmark</div>
                         <div id="docket-fee" class="text-sm font-mono font-bold text-brand-green">--</div>
                     </div>
                     <div>
@@ -178,7 +178,7 @@
                                 <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-brand-green text-white mb-2">New Practices</span>
                                 <h3 class="text-sm font-bold text-white mb-1">Start 7-Day Practice Evaluation</h3>
                                 <p class="text-[11px] text-slate-300 leading-relaxed mb-4">
-                                    Instant access to unredacted dossiers, daily 7:00 AM EST morning feeds across 6 state registries, and statutory motions. $0 due today.
+                                    Instant access to unredacted dossiers, daily morning feeds (by 7:30 AM EST) across 6 state registries, and statutory motions. $0 due today.
                                 </p>
                             </div>
                             <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="w-full text-center py-2.5 px-4 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-md transition-all">
@@ -192,7 +192,7 @@
                                 <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-white/20 text-emerald-300 mb-2">Existing Subscribers</span>
                                 <h3 class="text-sm font-bold text-white mb-1">Zero-Password Subscriber Unlock</h3>
                                 <p class="text-[11px] text-slate-300 leading-relaxed mb-3">
-                                    Enter your subscriber billing email to instantly unlock, or click the direct listing link in your morning 7:00 AM email feed.
+                                    Enter your subscriber billing email to instantly unlock, or click the direct listing link in your morning email feed.
                                 </p>
                             </div>
                             <div>
@@ -215,7 +215,7 @@
                             ✓
                         </div>
                         <div>
-                            <div class="text-xs font-extrabold uppercase tracking-wider text-brand-green mb-1">Official County Clerk Verification Source</div>
+                            <div id="label-verification-source" class="text-xs font-extrabold uppercase tracking-wider text-brand-green mb-1">Official County Clerk Verification Source</div>
                             <p id="docket-note" class="text-xs text-slate-700 mb-3 leading-relaxed">
                                 This matter was retrieved directly from official county clerk registry publications.
                             </p>
@@ -428,13 +428,6 @@
                 activeVaultKey = storedKey;
                 isAuthenticated = true;
             }
-            // 3. Evaluation reference token from direct outreach email grants unlocked evaluation access
-            else if (refToken) {
-                isAuthenticated = true;
-                if (!activeVaultKey && authRegistry && authRegistry.eval_vault_key) {
-                    activeVaultKey = authRegistry.eval_vault_key;
-                }
-            }
 
             updateAccessUI();
         }
@@ -646,12 +639,53 @@
             }
 
             const bal = parseFloat(r.Surplus_Balance_USD) || 0;
-            const fee = bal * 0.20;
+            const stateCode = String(r.State || '').toUpperCase();
+            const isTexas = stateCode === 'TX';
+            const feeRate = isTexas ? 0.25 : 0.20;
+            const feePctLabel = isTexas ? '25%' : '20%';
+            const feeBenchmarkTitle = isTexas ? 'Statutory 25% Fee Cap (Tex. Tax Code § 34.04)' : 'Statutory 20% Fee Benchmark';
+            const fee = bal * feeRate;
+
+            let docketTypeLabel = 'Official Docket / Case Matter';
+            let crumbPrefix = 'Docket';
+            let authoritySourceLabel = 'Official County Clerk Verification Source';
+            const idProbe = String(r.docket_id || r.Case_or_TaxDeed_No || '').toUpperCase();
+            const statProbe = String(r.Governing_Statute || '');
+
+            if (stateCode === 'GA') {
+                docketTypeLabel = 'Official Tax Sale Parcel ID';
+                crumbPrefix = 'Parcel';
+                authoritySourceLabel = 'Official County Tax Commissioner Verification Source';
+            } else if (stateCode === 'CA') {
+                docketTypeLabel = 'Official Assessor Parcel Number (APN)';
+                crumbPrefix = 'APN';
+                authoritySourceLabel = 'Official Treasurer-Tax Collector Verification Source';
+            } else if (stateCode === 'FL' && (idProbe.includes('-LW-') || statProbe.includes('197.582'))) {
+                docketTypeLabel = 'Official Tax Deed File Number';
+                crumbPrefix = 'Tax Deed';
+                authoritySourceLabel = 'Official County Clerk & Comptroller Verification Source';
+            } else if (stateCode === 'TX') {
+                docketTypeLabel = 'Official District Court Cause Number';
+                crumbPrefix = 'Cause';
+                authoritySourceLabel = 'Official County District Clerk Verification Source';
+            } else if (stateCode === 'TN') {
+                docketTypeLabel = 'Official Chancery Court Docket & Parcel';
+                crumbPrefix = 'Docket';
+                authoritySourceLabel = 'Official Chancery Court Clerk & Master Verification Source';
+            }
+
+            const labelDocketEl = document.getElementById('label-docket-type');
+            if (labelDocketEl) labelDocketEl.textContent = docketTypeLabel;
+            const labelFeeEl = document.getElementById('label-fee-benchmark');
+            if (labelFeeEl) labelFeeEl.textContent = feeBenchmarkTitle;
+            const labelSourceEl = document.getElementById('label-verification-source');
+            if (labelSourceEl) labelSourceEl.textContent = authoritySourceLabel;
+
             document.getElementById('badge-jurisdiction').textContent = `${r.State || '--'} • ${r.County || '--'} County`;
             document.getElementById('docket-balance').textContent = `$${bal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
-            document.getElementById('docket-fee').textContent = `$${fee.toLocaleString('en-US', {minimumFractionDigits: 2})} (20% Benchmark)`;
+            document.getElementById('docket-fee').textContent = `$${fee.toLocaleString('en-US', {minimumFractionDigits: 2})} (${feePctLabel} Benchmark)`;
             document.getElementById('docket-statute').textContent = r.Governing_Statute || 'Applicable State Surplus Statute';
-            document.getElementById('docket-date').textContent = r.Sale_Date || 'Confirmed by County Clerk';
+            document.getElementById('docket-date').textContent = r.Sale_Date || 'Confirmed by County Authority';
             document.getElementById('docket-deadline').textContent = r.Claim_Deadline_Date || 'Statutory Claim Filing Window Open';
 
             if (r.Claim_Urgency_Tier) {
@@ -667,24 +701,33 @@
                 // ==========================================
                 // 1. UNLOCKED SUBSCRIBER STATE
                 // ==========================================
-                const fullDocketNo = leadData.Case_or_TaxDeed_No || leadData.docket_id || docketLookupId;
-                document.getElementById('crumb-docket').textContent = `Docket ${fullDocketNo}`;
+                const fullDocketNo = leadData.Case_or_TaxDeed_No || leadData.Parcel_ID || leadData.docket_id || docketLookupId;
+                document.getElementById('crumb-docket').textContent = `${crumbPrefix} ${fullDocketNo}`;
                 document.getElementById('docket-title').innerHTML = `<span>${escapeHtml(fullDocketNo)}</span>`;
                 lockIcon.classList.add('hidden');
 
                 document.getElementById('docket-owner').innerHTML = `
                     <span class="text-brand-navy">${escapeHtml(leadData.Owner_Name || 'Titleholder of Record')}</span>
                 `;
-                document.getElementById('docket-address').textContent = leadData.Property_Address || `${r.County || ''} County Court Registry`;
+                document.getElementById('docket-address').textContent = leadData.Property_Address || `${r.County || ''} County Registry`;
 
-                const note = leadData.Verify_Note || r.Verify_Note || 'Listed on official county clerk registry source publication.';
+                const note = leadData.Verify_Note || r.Verify_Note || 'Listed on official county registry source publication.';
                 document.getElementById('docket-note').textContent = note;
 
                 const verifyUrl = leadData.Clerk_Verification_URL || r.Clerk_Verification_URL || r.Source_URL;
                 if (verifyUrl) {
+                    const lowUrl = String(verifyUrl).toLowerCase();
+                    let btnLabel = 'Open Official County Clerk Document (PDF)';
+                    if (lowUrl.includes('.xlsx') || lowUrl.includes('.xls')) {
+                        btnLabel = 'Open Official County Registry Ledger (.XLSX)';
+                    } else if (stateCode === 'GA') {
+                        btnLabel = 'Open Official Tax Commissioner Excess Funds PDF';
+                    } else if (stateCode === 'CA') {
+                        btnLabel = 'Open Official Treasurer-Tax Collector Report (PDF)';
+                    }
                     clerkBtn.href = sanitizeUrl(verifyUrl);
                     clerkBtn.className = "inline-flex items-center gap-1.5 px-4 py-2.5 bg-brand-navy hover:bg-brand-navyLight text-white text-xs font-bold rounded-lg shadow-sm transition-colors";
-                    clerkBtn.innerHTML = `<span>Open Official County Clerk Document (PDF)</span> <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`;
+                    clerkBtn.innerHTML = `<span>${btnLabel}</span> <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`;
                 }
 
                 downloadBtn.disabled = false;
@@ -695,7 +738,7 @@
                 document.getElementById('subscriber-auth-banner').classList.remove('hidden');
 
                 // Cache unredacted record for TXT download
-                currentRecord = { ...r, ...leadData };
+                currentRecord = { ...r, ...leadData, Case_or_TaxDeed_No: fullDocketNo };
                 updateAccessUI();
 
             } else {
@@ -705,7 +748,7 @@
                 const rawMask = r.Case_or_TaxDeed_No || docketLookupId || 'Matter';
                 const maskedDisplay = rawMask.includes('█') ? rawMask : `${rawMask.substring(0, 6)}••••••`;
                 
-                document.getElementById('crumb-docket').textContent = `Docket ${maskedDisplay}`;
+                document.getElementById('crumb-docket').textContent = `${crumbPrefix} ${maskedDisplay}`;
                 document.getElementById('docket-title').innerHTML = `
                     <span>${escapeHtml(maskedDisplay)}</span>
                 `;
@@ -780,10 +823,13 @@
             }
             const r = currentRecord;
             const bal = parseFloat(r.Surplus_Balance_USD) || 0;
-            const fee = bal * 0.20;
+            const isTexas = String(r.State || '').toUpperCase() === 'TX';
+            const feeRate = isTexas ? 0.25 : 0.20;
+            const feePct = isTexas ? '25%' : '20%';
+            const fee = bal * feeRate;
             const content = `========================================================================
 SURPLUS DOCKET™ | STATUTORY CLAIM CALCULATION & FILING DOSSIER
-Docket: ${r.Case_or_TaxDeed_No || r.docket_id || 'N/A'}
+Docket: ${r.Case_or_TaxDeed_No || r.Parcel_ID || r.docket_id || 'N/A'}
 Generated: ${new Date().toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'})}
 ========================================================================
 
@@ -794,7 +840,7 @@ Governing Legal Authority:   ${r.Governing_Statute || 'Applicable State Surplus 
 Reported Titleholder:        ${r.Owner_Name || 'Titleholder of Record'}
 Property Situs:              ${r.Property_Address || 'N/A'}
 Gross Surplus Balance:       $${bal.toLocaleString('en-US', {minimumFractionDigits: 2})}
-Statutory 20% Fee Benchmark: $${fee.toLocaleString('en-US', {minimumFractionDigits: 2})}
+Statutory ${feePct} Fee Benchmark: $${fee.toLocaleString('en-US', {minimumFractionDigits: 2})}
 Auction / Confirmation Date: ${r.Sale_Date || 'N/A'}
 Statutory Claim Window:      ${r.Claim_Deadline_Date || 'Active Window'}
 

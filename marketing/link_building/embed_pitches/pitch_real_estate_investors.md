@@ -14,6 +14,6 @@ Zero paywalls, logins, or ads. Feel free to share it with your members if you th
 
 Best,
 
-Elena Brooks
+David Mahler
 Surplus Docket
-elena.brooks@surplusdocket.com | https://surplusdocket.com
+david@surplusdocket.com | https://surplusdocket.com
