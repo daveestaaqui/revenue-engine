@@ -1,13 +1,17 @@
-name: Surplus Docket Inbound Sentinel & Auto-Responder Engine
+name: Surplus Docket Inbound Sentinel & Autonomous Draft Creator
 
 on:
   schedule:
-    # Runs every 15 minutes 24/7 in GitHub Actions
-    - cron: '*/15 * * * *'
+    # Runs continually every 10 minutes 24/7 across business and off-hours
+    - cron: '*/10 * * * *'
   workflow_dispatch:
     inputs:
+      auto_send:
+        description: 'Auto-send replies via SMTP instead of staging Gmail drafts (default: false creates drafts)'
+        type: boolean
+        default: false
       dry_run:
-        description: 'Dry run check without creating drafts or auto-sending'
+        description: 'Dry run check without creating drafts or sending'
         type: boolean
         default: false
 
@@ -40,10 +44,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Execute Inbound Inbox Scan & Auto-Responder Pass
+      - name: Execute Inbound Inbox Scan & Draft Creator
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
+          AUTO_SEND: ${{ (inputs.auto_send == true) && 'true' || secrets.AUTO_SEND || 'false' }}
           STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
           FROM_NAME: 'David Mahler'
           SENDER_EMAIL: 'david@surplusdocket.com'
@@ -53,7 +58,12 @@ jobs:
             echo "ℹ️ GMAIL_APP_PASS secret not configured in repository. Skipping IMAP pass."
             exit 0
           fi
-          python outreach/auto_responder_and_draft_cleaner.py --single-pass
+          CMD_ARGS="--single-pass"
+          if [ "${{ inputs.auto_send }}" != "true" ] && [ "${AUTO_SEND}" != "true" ]; then
+            CMD_ARGS="$CMD_ARGS --drafts-only"
+          fi
+          echo "Running inbox scan with args: $CMD_ARGS (AUTO_SEND=${AUTO_SEND})"
+          python outreach/auto_responder_and_draft_cleaner.py $CMD_ARGS
           python portal/sync_stripe_subscribers.py
 
       - name: 7:00 AM EST Morning Court Feed Autonomous Failover Check

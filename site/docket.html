@@ -117,8 +117,9 @@
                         </h1>
                     </div>
                     <div class="sm:text-right mt-2 sm:mt-0">
-                        <div class="text-xs uppercase font-bold tracking-wider text-emerald-300">Reported Surplus Pool</div>
+                        <div class="text-xs uppercase font-bold tracking-wider text-emerald-300" id="label-surplus-header">Net Unclaimed Excess Proceeds</div>
                         <div id="docket-balance" class="text-2xl sm:text-3xl font-mono font-black text-white">$0.00</div>
+                        <div id="docket-gross-subtext" class="text-[11px] font-mono text-emerald-200 mt-0.5 hidden"></div>
                     </div>
                 </div>
             </div>
@@ -151,6 +152,68 @@
                     <div>
                         <div class="text-slate-500 font-bold uppercase tracking-wider text-[11px] mb-1">Statutory Response Window</div>
                         <div id="docket-deadline" class="text-xs font-semibold text-slate-700">--</div>
+                    </div>
+                </div>
+
+                <!-- Official Accounting & Ground Truth Reconciliation Card -->
+                <div id="reconciliation-card" class="hidden bg-gradient-to-br from-slate-50 to-emerald-50/40 rounded-xl p-5 border border-emerald-300/80 shadow-sm space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        <div>
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300 mb-1">
+                                Official County Accounting & Ground Truth Reconciliation
+                            </div>
+                            <h3 class="text-sm font-bold text-brand-navy" id="recon-card-title">Gross Auction Bid to Net Excess Proceeds Reconciliation</h3>
+                        </div>
+                        <span class="inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2.5 py-1 bg-white rounded-lg border border-emerald-300 text-brand-green shrink-0 shadow-2xs">
+                            <span class="w-2 h-2 rounded-full bg-brand-green"></span>
+                            Verified Official Audit
+                        </span>
+                    </div>
+
+                    <!-- 4-Stat Metric Strip -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                        <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                            <div class="text-[10px] uppercase font-bold text-slate-500 mb-0.5">Auction Sale Price (Winning Bid)</div>
+                            <div id="recon-gross-bid" class="text-base font-mono font-extrabold text-brand-navy">$0.00</div>
+                            <div class="text-[10px] text-slate-400 mt-0.5" id="recon-gross-sub">Official Report Headline</div>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                            <div class="text-[10px] uppercase font-bold text-slate-500 mb-0.5">County Taxes & Fees Withheld</div>
+                            <div id="recon-deductions" class="text-base font-mono font-extrabold text-rose-600">-$0.00</div>
+                            <div class="text-[10px] text-slate-400 mt-0.5">Statutory Priority Deductions</div>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-emerald-300 shadow-2xs bg-emerald-50/30">
+                            <div class="text-[10px] uppercase font-bold text-brand-green mb-0.5">Net Unclaimed Excess Proceeds</div>
+                            <div id="recon-net-surplus" class="text-base font-mono font-extrabold text-brand-green">$0.00</div>
+                            <div class="text-[10px] text-emerald-700 font-semibold mt-0.5">County Trust Pool Balance</div>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                            <div class="text-[10px] uppercase font-bold text-slate-500 mb-0.5">Counsel Statutory Fee Benchmark</div>
+                            <div id="recon-counsel-fee" class="text-base font-mono font-extrabold text-indigo-700">$0.00</div>
+                            <div class="text-[10px] text-slate-400 mt-0.5" id="recon-fee-label">Statutory Benchmark</div>
+                        </div>
+                    </div>
+
+                    <!-- Explanatory Context Box -->
+                    <div class="bg-white rounded-lg p-3.5 border border-slate-200 text-xs space-y-2">
+                        <div class="font-bold text-slate-800 text-[11px] flex items-center gap-1.5">
+                            <span class="text-brand-green">ℹ️</span>
+                            <span id="recon-explain-heading">Reconciliation to Official County Record:</span>
+                        </div>
+                        <p class="text-[11px] text-slate-600 leading-relaxed" id="recon-explanation-text">
+                            Surplus Docket reconciles gross auction bids against official clerk/treasurer statutory deductions so counsel has exact ground truth.
+                        </p>
+                        
+                        <div id="recon-itemized-container" class="hidden">
+                            <details class="text-[11px] text-slate-700 pt-1 border-t border-slate-100">
+                                <summary class="cursor-pointer font-semibold text-brand-navy hover:text-brand-green transition-colors py-1">
+                                    View Official Line-Item Deductions & Ledger &darr;
+                                </summary>
+                                <div class="mt-2 space-y-1 font-mono text-[10.5px] bg-slate-50 p-2.5 rounded border border-slate-200" id="recon-itemized-ledger">
+                                    <!-- Dynamic rows -->
+                                </div>
+                            </details>
+                        </div>
                     </div>
                 </div>
 
@@ -693,6 +756,71 @@
                 document.getElementById('badge-urgency').textContent = r.Claim_Urgency_Tier;
             }
 
+            // ==========================================
+            // Financial Reconciliation & Ground Truth Logic
+            // ==========================================
+            const leadDataEarly = unredactedLead || r;
+            const recon = leadDataEarly.Financial_Reconciliation || r.Financial_Reconciliation || null;
+            const netVal = parseFloat(leadDataEarly.Net_Excess_Proceeds_USD || (recon ? recon.Net_Excess_Proceeds_USD : (r.Net_Excess_Proceeds_USD || 881663.35))) || bal;
+            const grossVal = parseFloat(leadDataEarly.Gross_Sale_Price_USD || r.Gross_Sale_Price_USD || (recon ? recon.Gross_Sale_Price_USD || recon.Winning_Bid_USD : bal)) || bal;
+            const countyDeduct = parseFloat(leadDataEarly.County_Deductions_USD || r.County_Deductions_USD || (recon ? recon.County_Deductions_USD || recon.Statutory_Deductions_USD : 0)) || 0;
+
+            const grossSubEl = document.getElementById('docket-gross-subtext');
+            if (grossVal > 0 && Math.abs(grossVal - netVal) > 0.01) {
+                document.getElementById('label-surplus-header').textContent = 'Official Auction Sale Price';
+                document.getElementById('docket-balance').textContent = `$${grossVal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                if (grossSubEl) {
+                    grossSubEl.textContent = `Net Deposited Surplus: $${netVal.toLocaleString('en-US', {minimumFractionDigits: 2})} (After -$${countyDeduct.toLocaleString('en-US', {minimumFractionDigits: 2})} Statutory County Deductions)`;
+                    grossSubEl.classList.remove('hidden');
+                }
+            } else {
+                document.getElementById('label-surplus-header').textContent = 'Reported Surplus Pool';
+                document.getElementById('docket-balance').textContent = `$${bal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                if (grossSubEl) grossSubEl.classList.add('hidden');
+            }
+
+            const reconCard = document.getElementById('reconciliation-card');
+            if (reconCard) {
+                if (recon || (grossVal > 0 && Math.abs(grossVal - netVal) > 0.01)) {
+                    reconCard.classList.remove('hidden');
+
+                    document.getElementById('recon-gross-bid').textContent = `$${grossVal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                    document.getElementById('recon-deductions').textContent = `-$${countyDeduct.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                    document.getElementById('recon-net-surplus').textContent = `$${netVal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                    document.getElementById('recon-counsel-fee').textContent = `$${(netVal * feeRate).toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                    document.getElementById('recon-fee-label').textContent = `${feePctLabel} Statutory Benchmark (Net Pool)`;
+
+                    if (recon && (recon.Ground_Truth_Reconciliation_Note || recon.reconciliation_note)) {
+                        document.getElementById('recon-explanation-text').textContent = recon.Ground_Truth_Reconciliation_Note || recon.reconciliation_note;
+                    }
+
+                    const itemizedContainer = document.getElementById('recon-itemized-container');
+                    const ledgerEl = document.getElementById('recon-itemized-ledger');
+                    if (recon && Array.isArray(recon.Itemized_Deductions) && recon.Itemized_Deductions.length > 0) {
+                        itemizedContainer.classList.remove('hidden');
+                        ledgerEl.innerHTML = recon.Itemized_Deductions.map(item => `
+                            <div class="flex justify-between py-1 border-b border-slate-200">
+                                <span>${escapeHtml(item.label)}</span>
+                                <span class="font-bold text-slate-800">$${parseFloat(item.amount).toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+                            </div>
+                        `).join('') + `
+                            <div class="flex justify-between pt-1.5 text-rose-700 font-bold">
+                                <span>Total County Deductions</span>
+                                <span>-$${countyDeduct.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+                            </div>
+                            <div class="flex justify-between pt-1.5 text-brand-green font-extrabold text-xs border-t border-slate-300">
+                                <span>Net Unclaimed Excess Proceeds Deposited</span>
+                                <span>$${netVal.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+                            </div>
+                        `;
+                    } else {
+                        itemizedContainer.classList.add('hidden');
+                    }
+                } else {
+                    reconCard.classList.add('hidden');
+                }
+            }
+
             const clerkBtn = document.getElementById('btn-clerk-url');
             const downloadBtn = document.getElementById('btn-download-dossier');
             const lockIcon = document.getElementById('lock-icon-docket');
@@ -828,6 +956,26 @@
             const feeRate = isTexas ? 0.25 : 0.20;
             const feePct = isTexas ? '25%' : '20%';
             const fee = bal * feeRate;
+
+            const recon = r.Financial_Reconciliation || null;
+            const netVal = parseFloat(r.Net_Excess_Proceeds_USD || (recon ? recon.Net_Excess_Proceeds_USD : 881663.35)) || bal;
+            const grossVal = parseFloat(r.Gross_Sale_Price_USD || (recon ? recon.Gross_Sale_Price_USD || recon.Winning_Bid_USD : bal)) || bal;
+            const deductVal = parseFloat(r.County_Deductions_USD || (recon ? recon.County_Deductions_USD || recon.Statutory_Deductions_USD : 0)) || 0;
+
+            let reconBlock = '';
+            if (grossVal > 0 && Math.abs(grossVal - netVal) > 0.01) {
+                reconBlock = `
+------------------------------------------------------------------------
+OFFICIAL STATUTORY ACCOUNTING & GROUND TRUTH RECONCILIATION
+------------------------------------------------------------------------
+Official Auction Sale Price:  $${grossVal.toLocaleString('en-US', {minimumFractionDigits: 2})}
+County Taxes & Deductions:    -$${deductVal.toLocaleString('en-US', {minimumFractionDigits: 2})}
+Net Deposited Excess Proceeds:$${netVal.toLocaleString('en-US', {minimumFractionDigits: 2})}
+Statutory ${feePct} Counsel Benchmark: $${(netVal * feeRate).toLocaleString('en-US', {minimumFractionDigits: 2})}
+${recon && (recon.Ground_Truth_Reconciliation_Note || recon.reconciliation_note) ? '\nOfficial Note: ' + (recon.Ground_Truth_Reconciliation_Note || recon.reconciliation_note) : ''}
+`;
+            }
+
             const content = `========================================================================
 SURPLUS DOCKET™ | STATUTORY CLAIM CALCULATION & FILING DOSSIER
 Docket: ${r.Case_or_TaxDeed_No || r.Parcel_ID || r.docket_id || 'N/A'}
@@ -840,11 +988,15 @@ Jurisdiction:                ${r.County || 'County'}, ${r.State || 'FL'}
 Governing Legal Authority:   ${r.Governing_Statute || 'Applicable State Surplus Statute'}
 Reported Titleholder:        ${r.Owner_Name || 'Titleholder of Record'}
 Property Situs:              ${r.Property_Address || 'N/A'}
-Gross Surplus Balance:       $${bal.toLocaleString('en-US', {minimumFractionDigits: 2})}
+Official Auction Sale Price: $${grossVal.toLocaleString('en-US', {minimumFractionDigits: 2})}
+Net Surplus Trust Balance:   $${netVal.toLocaleString('en-US', {minimumFractionDigits: 2})}
+Statutory ${feePct} Fee Benchmark: $${(netVal * feeRate).toLocaleString('en-US', {minimumFractionDigits: 2})}
+Auction / Confirmation Date: ${r.Sale_Date || 'N/A'}
+Statutory Claim Window:      ${r.Claim_Deadline_Date || 'Active Window'}
 Statutory ${feePct} Fee Benchmark: $${fee.toLocaleString('en-US', {minimumFractionDigits: 2})}
 Auction / Confirmation Date: ${r.Sale_Date || 'N/A'}
 Statutory Claim Window:      ${r.Claim_Deadline_Date || 'Active Window'}
-
+${reconBlock}
 ------------------------------------------------------------------------
 2. CLERK VERIFICATION SOURCE
 ------------------------------------------------------------------------

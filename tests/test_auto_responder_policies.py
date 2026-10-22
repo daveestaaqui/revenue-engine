@@ -374,6 +374,34 @@ class TestAutoResponderPolicies(unittest.TestCase):
         self.assertIn("120-day statutory notice window", body)
         self.assertIn("David Mahler", body)
 
+    def test_property_address_inquiry_handled(self):
+        # 1. Intent analysis check
+        intent = analyze_prospect_intent(
+            "RE: San Diego County tax sale excess proceeds — Parcel 360-150-12-00",
+            "Do you have a property address?"
+        )
+        self.assertEqual(intent, "PROPERTY_ADDRESS")
+
+        # 2. Response composition check
+        target_info = {"name": "Kayo Manson-Tompkins", "firm": "Steele LLP", "state": "CA"}
+        subj, body = compose_elena_response(
+            "PROPERTY_ADDRESS", target_info, "Kayo Manson-Tompkins", "kmtompkins@steelellp.com",
+            "RE: San Diego County tax sale excess proceeds — Parcel 360-150-12-00",
+            "Do you have a property address?",
+            self.mock_state_cases
+        )
+        self.assertIn("4850 Jennifer Ct, San Diego, CA 92117", body)
+        self.assertIn("Parcel 360-150-12-00", body)
+        self.assertIn("DISE LEONARD L 1999 TRUST ET AL", body)
+        self.assertIn("$890,100.00", body)
+        self.assertIn("-$8,436.65", body)
+        self.assertIn("$881,663.35", body)
+        self.assertIn("$176,332.67", body)
+        self.assertIn("Official Ground Truth Reconciliation Note", body)
+        self.assertIn("David Mahler", body)
+        self.assertIn("surplusdocket.com", body)
+        self.assertIn(LEGAL_DISCLAIMER, body)
+
     def test_legal_disclaimer_appended_to_substantive_responses(self):
         target_info = {"name": "Arthur Pendelton", "firm": "Pendelton Law", "state": "FL"}
         intents_to_test = [
@@ -381,7 +409,7 @@ class TestAutoResponderPolicies(unittest.TestCase):
             "TAX_DEED_VS_MORTGAGE", "PROBATE_HEIR_RECOVERY", "TITLE_LIEN_SCRUBBING",
             "DATA_FRESHNESS_TIMING", "SKIP_TRACING_CONTACT", "LEGAL_TOOLKIT_MOTIONS",
             "JURISDICTION", "DATA_FORMAT", "SAMPLE_DATA", "PRICING", "GENERAL",
-            "LEGAL_REPRESENTATION_OR_ADVICE_REQUEST"
+            "LEGAL_REPRESENTATION_OR_ADVICE_REQUEST", "PROPERTY_ADDRESS"
         ]
         for intent in intents_to_test:
             subj, body = compose_elena_response(

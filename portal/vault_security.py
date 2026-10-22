@@ -244,6 +244,12 @@ def generate_vault_and_auth_registry(all_leads: list, subscribers: list,
             "Sale_Date": lead.get("Sale_Date", ""),
             "cipher": cipher_hex,
         }
+        if lead.get("Gross_Sale_Price_USD"):
+            entry["Gross_Sale_Price_USD"] = float(lead["Gross_Sale_Price_USD"])
+        if lead.get("County_Deductions_USD"):
+            entry["County_Deductions_USD"] = float(lead["County_Deductions_USD"])
+        if lead.get("Financial_Reconciliation"):
+            entry["Financial_Reconciliation"] = lead["Financial_Reconciliation"]
         if docket_id.lower() not in dockets_map:
             dockets_map[docket_id.lower()] = entry
         if docket_id_lead and docket_id_lead.lower() not in dockets_map:

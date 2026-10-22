@@ -538,45 +538,67 @@ def compose_email(target, state_cases, from_name=DEFAULT_FROM_NAME, from_email=D
         practice_focus = "real property surplus and tax sale recovery"
         owner_clause = f"from a tax sale of a {prop_desc}"
 
+    # Incorporate ground-truth property address for transparency and complete context
+    prop_addr = c.get("property_address", "").strip()
+    if not prop_addr or prop_addr.lower().startswith("assessor parcel"):
+        try:
+            from scrapers.sources.ca import SAN_DIEGO_APN_ADDRESS_MAP
+            if parcel_id in SAN_DIEGO_APN_ADDRESS_MAP:
+                prop_addr = SAN_DIEGO_APN_ADDRESS_MAP[parcel_id]
+        except Exception:
+            pass
+
+    addr_clause = ""
+    if prop_addr and not prop_addr.lower().startswith("situs na"):
+        is_generic_placeholder = (
+            prop_addr.lower().startswith("assessor parcel") or
+            "registry parcel" in prop_addr.lower() or
+            "court registry" in prop_addr.lower()
+        )
+        if not is_generic_placeholder:
+            addr_clause = f" (Property Address: {prop_addr})"
+        else:
+            addr_clause = f" (Situs: {prop_addr})"
+
     # Truthful distinction based on governing jurisdiction and procedural posture
     if state == "FL":
         if case_no and "-CA-" in case_no:
             statute = "Fla. Stat. § 45.032"
             identifier_phrase = f"Case {case_no}"
-            record_context = f"the county court registry lists a {balance_fmt} unclaimed balance on {identifier_phrase} {owner_clause}"
+            record_context = f"the county court registry lists a {balance_fmt} unclaimed balance on {identifier_phrase}{addr_clause} {owner_clause}"
             subject = f"{county} County court registry surplus — Case {case_no}"
         else:
             statute = "Fla. Stat. § 197.582"
             identifier_phrase = f"Tax Deed File {case_no}" if case_no else f"Parcel {parcel_id}"
-            record_context = f"official county clerk records show a {balance_fmt} unclaimed tax deed surplus on {identifier_phrase} {owner_clause}"
+            record_context = f"official county clerk records show a {balance_fmt} unclaimed tax deed surplus on {identifier_phrase}{addr_clause} {owner_clause}"
             subject = f"{county} County tax deed surplus — {identifier_phrase}"
     elif state == "TX":
         statute = "Tex. Tax Code § 34.04"
         identifier_phrase = f"Cause No. {case_no}" if case_no else f"Account {parcel_id}"
-        record_context = f"the county court registry lists a {balance_fmt} excess proceeds balance on {identifier_phrase} {owner_clause}"
+        record_context = f"the county court registry lists a {balance_fmt} excess proceeds balance on {identifier_phrase}{addr_clause} {owner_clause}"
         subject = f"{county} County excess proceeds — {identifier_phrase}"
     elif state == "GA":
         statute = "O.C.G.A. § 48-4-5"
         identifier_phrase = f"Parcel {parcel_id}"
-        record_context = f"public tax sale excess proceeds records show a {balance_fmt} unclaimed balance on {identifier_phrase} {owner_clause}"
+        record_context = f"public tax sale excess proceeds records show a {balance_fmt} unclaimed balance on {identifier_phrase}{addr_clause} {owner_clause}"
         subject = f"{county} County tax sale surplus — Parcel {parcel_id}"
     elif state == "CA":
         statute = "Cal. Rev. & Tax Code § 4675"
         identifier_phrase = f"Parcel {parcel_id or case_no}"
-        record_context = f"the county tax collector's excess proceeds records report a {balance_fmt} surplus balance on {identifier_phrase} {owner_clause}"
+        record_context = f"the county tax collector's excess proceeds records report a {balance_fmt} surplus balance on {identifier_phrase}{addr_clause} {owner_clause}"
         subject = f"{county} County tax sale excess proceeds — {identifier_phrase}"
     elif state == "TN":
         statute = "T.C.A. § 67-5-2501"
         identifier_phrase = f"Docket No. {case_no}" if case_no else f"Parcel {parcel_id}"
-        record_context = f"the Chancery Court registry lists a {balance_fmt} excess proceeds balance on {identifier_phrase} {owner_clause}"
+        record_context = f"the Chancery Court registry lists a {balance_fmt} excess proceeds balance on {identifier_phrase}{addr_clause} {owner_clause}"
         subject = f"{county} County Chancery Court surplus — {identifier_phrase}"
     elif case_no and re.search(r"\d+", case_no) and not case_no.startswith("APN-"):
         identifier_phrase = f"Case {case_no}"
-        record_context = f"the county court registry lists a {balance_fmt} unclaimed balance on {identifier_phrase} {owner_clause}"
+        record_context = f"the county court registry lists a {balance_fmt} unclaimed balance on {identifier_phrase}{addr_clause} {owner_clause}"
         subject = f"{county} County surplus filing — {case_no}"
     elif parcel_id:
         identifier_phrase = f"Parcel {parcel_id}"
-        record_context = f"public tax sale excess proceeds records show a {balance_fmt} unclaimed balance on {identifier_phrase} {owner_clause}"
+        record_context = f"public tax sale excess proceeds records show a {balance_fmt} unclaimed balance on {identifier_phrase}{addr_clause} {owner_clause}"
         subject = f"{county} County tax sale surplus — Parcel {parcel_id}"
     else:
         return None, None
