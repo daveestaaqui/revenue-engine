@@ -663,3 +663,9 @@
 [2026-10-22 16:19:32]   🚀 Aubrey Hayes (Executive Intake Coordinator) response AUTO-SENT to sandwichfitness@gmail.com via SMTP!
 [2026-10-22 16:19:32]   🎙️ Audio-First: Transcribed voicemail audio 'call.mp3' via OpenAI Whisper fallback.
 [2026-10-22 17:02:14]   [DRY RUN] Would auto-send email to lawyer@example.com from david@surplusdocket.com
+[2026-10-22 23:59:06]   🗑️ IMAP: Removed sent draft for: kmtompkins@steelellp.com
+[2026-10-22 23:59:07] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
+[2026-10-22 23:59:09]   ⏭️ Skipped non-prospect from cs@tvape.com (Sub: 'Re: Warranty Replacement Request - Zeus '): Message identified as automated notification, bounce, or system alert
+[2026-10-22 23:59:09]   ⏭️ Skipped non-prospect from help@walmart.com (Sub: 'Shipped: Nitecore Digicharger D...'): Sender 'help@walmart.com' is not in verified target database and not a statutory inquiry
+[2026-10-22 23:59:11]   📩 Processing verified prospect reply from: Kayo Manson-Tompkins <kmtompkins@steelellp.com> | Intent: PROPERTY_ADDRESS (Sub: RE: San Diego County tax sale excess proceeds — Parcel 360-150-12-00)
+[2026-10-22 23:59:13]   🎉 Contextual [PROPERTY_ADDRESS] follow-up draft created in Gmail for kmtompkins@steelellp.com!
