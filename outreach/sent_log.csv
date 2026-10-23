@@ -225,3 +225,5 @@ Timestamp,Email,Name,Firm,State,Subject,Status,Mode,Output_File
 2026-10-22T18:05:07.566854+00:00,kristina@krhess.com,Kristina R. Hess,"KR Hess Law, PC",CA,San Diego County tax sale excess proceeds — Parcel 583-810-27-00,SENT_DELIVERED,AUTONOMOUS_SMTP,live_smtp_1792692307.txt
 2026-10-22T18:05:13.677336+00:00,tcole@colelawgrouppc.com,Todd G. Cole,"Cole Law Group, PC",TN,Davidson County Chancery Court surplus — Docket No. 25-0490-II,SENT_DELIVERED,AUTONOMOUS_SMTP,live_smtp_1792692313.txt
 2026-10-22T18:05:19.318712+00:00,wharbison@srvhlaw.com,William L. Harbison,"Sherrard Roe Voigt & Harbison, PLC",TN,Davidson County Chancery Court surplus — Docket No. 23-0416-IV,SENT_DELIVERED,AUTONOMOUS_SMTP,live_smtp_1792692319.txt
+2026-10-23T17:55:26.703509+00:00,hughentre@tewlawfirm.com,Hugh W. Entrekin,"Tune, Entrekin & White, P.C.",TN,Davidson County Chancery Court surplus — Docket No. 24-0388-I,SENT_DELIVERED,AUTONOMOUS_SMTP,live_smtp_1792778126.txt
+2026-10-23T17:55:31.444202+00:00,wesley.love@bassberry.com,Wesley S. Love,"Bass, Berry & Sims PLC",TN,Davidson County Chancery Court surplus — Docket No. 25-0490-II,SENT_DELIVERED,AUTONOMOUS_SMTP,live_smtp_1792778131.txt
