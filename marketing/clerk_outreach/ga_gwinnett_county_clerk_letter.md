@@ -3,7 +3,7 @@
 **To:** Delinquent Tax & Excess Funds Administrator  
 **Agency:** Office of the Gwinnett County Tax Commissioner, Gwinnett County, GA  
 **Department:** Delinquent Tax & Excess Funds Administration  
-**Date:** October 21, 2026  
+**Date:** October 23, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Gwinnett County Web Portal)
 
 ---

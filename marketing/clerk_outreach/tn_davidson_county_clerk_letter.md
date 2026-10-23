@@ -3,7 +3,7 @@
 **To:** Clerk & Master Delinquent Tax Coordinator  
 **Agency:** Metropolitan Nashville & Davidson County Chancery Court Clerk & Master, Davidson County, TN  
 **Department:** Delinquent Property Tax & Excess Proceeds Registry  
-**Date:** October 21, 2026  
+**Date:** October 23, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Davidson County Web Portal)
 
 ---

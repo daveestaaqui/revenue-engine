@@ -3,7 +3,7 @@
 **To:** District Court Registry & Accounting Supervisor  
 **Agency:** Office of the District Clerk, Fort Bend County, TX  
 **Department:** Trust & Eligible Unclaimed Excess Proceeds Registry  
-**Date:** October 21, 2026  
+**Date:** October 23, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Fort Bend County Web Portal)
 
 ---

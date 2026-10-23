@@ -3,7 +3,7 @@
 **To:** Director of Civil Court & Tax Deed Registry Services  
 **Agency:** Clerk of the Court and Comptroller, Hillsborough County, FL  
 **Department:** Tax Deed & Circuit Civil Court Registry Division  
-**Date:** October 21, 2026  
+**Date:** October 23, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Hillsborough County Web Portal)
 
 ---
