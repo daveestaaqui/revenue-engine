@@ -3160,5 +3160,39 @@
       "cap_usd": 10.0,
       "utilization_pct": 95.0
     }
+  },
+  {
+    "event_id": "SNTL-20261023091825-0280",
+    "timestamp": "2026-10-23T09:18:25.176642+00:00",
+    "event_type": "TEST_BENCHMARK_PROBE",
+    "severity": "INFO",
+    "containment_action": "NONE_OBSERVATION_ONLY",
+    "details": {
+      "benchmark": "golden_evaluation"
+    }
+  },
+  {
+    "event_id": "SNTL-20261023091825-0281",
+    "timestamp": "2026-10-23T09:18:25.179947+00:00",
+    "event_type": "AI_BUDGET_THRESHOLD_WARNING",
+    "severity": "WARNING",
+    "containment_action": "OPERATOR_NOTIFICATION",
+    "details": {
+      "spend_usd": 8.0,
+      "cap_usd": 10.0,
+      "utilization_pct": 80.0
+    }
+  },
+  {
+    "event_id": "SNTL-20261023091825-0282",
+    "timestamp": "2026-10-23T09:18:25.183235+00:00",
+    "event_type": "AI_BUDGET_CAP_EXCEEDED",
+    "severity": "CRITICAL",
+    "containment_action": "DEFER_NON_ESSENTIAL_WORKFLOWS",
+    "details": {
+      "spend_usd": 9.5,
+      "cap_usd": 10.0,
+      "utilization_pct": 95.0
+    }
   }
 ]
