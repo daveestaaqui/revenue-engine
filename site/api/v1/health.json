@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "delivery_schedule": "Monday through Friday (Court Business Days) at 7:00 AM EST",
   "authentication": "Bearer <sd_live_api_key>",
-  "timestamp": "2026-10-23T09:19:05.930940",
+  "timestamp": "2026-10-24T08:50:42.314854",
   "endpoints": [
     "/api/v1/feed.json",
     "/api/v1/florida.json",
