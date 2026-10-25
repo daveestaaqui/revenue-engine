@@ -681,3 +681,4 @@
 [2026-10-24 19:04:33]   ⏭️ Skipped non-prospect from hello@omre.co (Sub: 'Your order #106264 is out for delivery!'): Sender 'hello@omre.co' is not in verified target database and not a statutory inquiry
 [2026-10-25 01:45:48]   🧹 Auto-unsubscribed and cleared marketing email from hello@omre.co
 [2026-10-25 16:42:26]   ⏭️ Skipped non-prospect from noreply@careforth.com (Sub: 'Missing Massachusetts Daily Check In'): Message identified as automated notification, bounce, or system alert
+[2026-10-25 21:55:32]   ⏭️ Skipped non-prospect from digital-no-reply@amazon.com (Sub: 'Amazon.com order of What About Bob?.'): Message identified as automated notification, bounce, or system alert
