@@ -9,13 +9,13 @@
 
 ---
 
-### 📊 Live Pipeline Statistics *(Updated October 25, 2026)*
+### 📊 Live Pipeline Statistics *(Updated October 26, 2026)*
 
 | Metric | Active Production Value | Statutory Provenance |
 | :--- | :--- | :--- |
-| **Active Monitored Surplus** | **$25,955,487.93 USD** | 6-State Multi-Jurisdiction District/Circuit Dockets |
-| **Available Statutory Fees** | **$5,462,094.88 USD** | Governed by State Open Records & Recovery Codes |
-| **Active Indexed Records** | **503 Verified Cases** | 100% Pre-filtered (Institutional Liens Removed) |
+| **Active Monitored Surplus** | **$26,001,232.37 USD** | 6-State Multi-Jurisdiction District/Circuit Dockets |
+| **Available Statutory Fees** | **$5,473,530.99 USD** | Governed by State Open Records & Recovery Codes |
+| **Active Indexed Records** | **504 Verified Cases** | 100% Pre-filtered (Institutional Liens Removed) |
 | **Monitored Metro Hubs** | **18 Major Judicial Circuits** | Palm Beach, Harris, Fulton, Wake, Davidson, Los Angeles, etc. |
 | **Delivery Frequency** | **Daily at 7:00 AM EST** | CSV, XLSX, and Live REST JSON API |
 
