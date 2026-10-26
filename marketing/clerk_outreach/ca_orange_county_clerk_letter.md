@@ -3,7 +3,7 @@
 **To:** Excess Proceeds Claims Supervisor  
 **Agency:** Office of the Treasurer-Tax Collector, Orange County, CA  
 **Department:** Property Tax Auction & Excess Proceeds Unit  
-**Date:** October 23, 2026  
+**Date:** October 26, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Orange County Web Portal)
 
 ---
