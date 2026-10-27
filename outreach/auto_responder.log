@@ -686,3 +686,6 @@
 [2026-10-26 20:05:25]   ⏭️ Skipped non-prospect from noreply@careforth.com (Sub: 'New Message from Your Care Team'): Message identified as automated notification, bounce, or system alert
 [2026-10-26 20:05:26]   ⏭️ Skipped non-prospect from no-reply@mailer.alpaca.markets (Sub: 'Scheduled maintenance on October 31, 202'): Message identified as automated notification, bounce, or system alert
 [2026-10-26 20:05:27]   ⏭️ Skipped non-prospect from em@em1.cloudflare.com (Sub: '[Action Required] Upgrade your Cloudflar'): Sender 'em@em1.cloudflare.com' is not in verified target database and not a statutory inquiry
+[2026-10-27 19:41:44]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Anie McAdams wants to be friends with yo'): Sender 'venmo@venmo.com' is not in verified target database and not a statutory inquiry
+[2026-10-27 19:41:44]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Anie McAdams paid you $3,000.00'): Sender 'venmo@venmo.com' is not in verified target database and not a statutory inquiry
+[2026-10-27 19:41:45]   🧹 Auto-unsubscribed and cleared marketing email from support@magicbag.co
