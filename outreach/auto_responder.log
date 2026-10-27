@@ -689,3 +689,5 @@
 [2026-10-27 19:41:44]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Anie McAdams wants to be friends with yo'): Sender 'venmo@venmo.com' is not in verified target database and not a statutory inquiry
 [2026-10-27 19:41:44]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Anie McAdams paid you $3,000.00'): Sender 'venmo@venmo.com' is not in verified target database and not a statutory inquiry
 [2026-10-27 19:41:45]   🧹 Auto-unsubscribed and cleared marketing email from support@magicbag.co
+[2026-10-27 23:16:02]   ⏭️ Skipped non-prospect from xfinity@account.xfinity.com (Sub: 'We haven't received your payment'): Message identified as automated notification, bounce, or system alert
+[2026-10-27 23:16:03]   ⏭️ Skipped non-prospect from xfinity@account.xfinity.com (Sub: 'Your bill is available to view'): Sender 'xfinity@account.xfinity.com' is not in verified target database and not a statutory inquiry
