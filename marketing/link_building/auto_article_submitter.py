@@ -138,6 +138,7 @@ def ping_search_engines(sitemap_url: str = f"https://{DEFAULT_HOST}/sitemap.xml"
 def ping_pingomatic(feed_url: str = f"https://{DEFAULT_HOST}/feed.xml", dry_run: bool = False) -> Dict[str, Any]:
     """
     Pings Ping-O-Matic XML-RPC protocol to notify major blog spiders and crawlers.
+    Uses a custom Transport with socket timeout so xmlrpc.client.ServerProxy never hangs or raises TypeError.
     """
     if dry_run:
         return {
@@ -148,17 +149,79 @@ def ping_pingomatic(feed_url: str = f"https://{DEFAULT_HOST}/feed.xml", dry_run:
 
     try:
         import xmlrpc.client
-        proxy = xmlrpc.client.ServerProxy("http://rpc.pingomatic.com", timeout=10)
+
+        class TimeoutTransport(xmlrpc.client.Transport):
+            def __init__(self, timeout: int = 10, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+                self.timeout = timeout
+
+            def make_connection(self, host):
+                conn = super().make_connection(host)
+                conn.timeout = self.timeout
+                return conn
+
+        proxy = xmlrpc.client.ServerProxy("http://rpc.pingomatic.com", transport=TimeoutTransport(timeout=10))
         res = proxy.weblogUpdates.ping("Surplus Docket — Court Registry Intelligence", f"https://{DEFAULT_HOST}/", feed_url)
         return {
             "status": "success",
-            "flerror": res.get("flerror", False),
-            "message": res.get("message", "Ping sent")
+            "flerror": res.get("flerror", False) if isinstance(res, dict) else False,
+            "message": res.get("message", "Ping sent") if isinstance(res, dict) else str(res)
         }
     except Exception as e:
         return {
             "status": "error",
             "error": str(e)
+        }
+
+
+def ping_websub(feed_url: str = f"https://{DEFAULT_HOST}/feed.xml", dry_run: bool = False) -> Dict[str, Any]:
+    """
+    Notifies Google's WebSub / PubSubHubbub hub (https://pubsubhubbub.appspot.com/)
+    of updated RSS/Atom feeds for immediate real-time feed discovery and crawling.
+    """
+    hub_endpoint = "https://pubsubhubbub.appspot.com/"
+    if dry_run:
+        return {
+            "status": "dry_run_success",
+            "endpoint": hub_endpoint,
+            "feed_url": feed_url,
+            "message": "[DRY RUN] Google WebSub hub publish notification queued."
+        }
+
+    data = urllib.parse.urlencode({
+        "hub.mode": "publish",
+        "hub.url": feed_url
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        hub_endpoint,
+        data=data,
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded",
+            "User-Agent": "SurplusDocket-Submitter/1.2"
+        },
+        method="POST"
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            code = resp.getcode()
+            return {
+                "status": "success" if code in (200, 204) else f"code_{code}",
+                "status_code": code,
+                "endpoint": hub_endpoint,
+                "feed_url": feed_url
+            }
+    except urllib.error.HTTPError as e:
+        return {
+            "status": "success" if e.code in (200, 204) else f"http_error_{e.code}",
+            "status_code": e.code,
+            "endpoint": hub_endpoint,
+            "feed_url": feed_url
+        }
+    except Exception as ex:
+        return {
+            "status": "network_error",
+            "endpoint": hub_endpoint,
+            "error": str(ex)
         }
 
 
@@ -209,14 +272,15 @@ def submit_dev_to_article(
     canonical_url = article_meta.get("canonical_url", "")
     body = article_meta.get("body", "")
 
-    # Deprecated by default: Dev.to is developer-focused and inappropriate for legaltech/court data
-    if os.environ.get("ENABLE_DEVTO_SYNDICATION", "false").lower() != "true":
+    # Dev.to is developer-focused: allow open-source SDK/OpenAPI articles by default, skip non-developer legal articles unless overridden
+    is_sdk_article = "sdk" in canonical_url.lower() or "openapi" in canonical_url.lower() or "open-source" in title.lower()
+    if not is_sdk_article and os.environ.get("ENABLE_DEVTO_SYNDICATION", "false").lower() != "true":
         return {
             "platform": "dev.to",
             "title": title,
             "canonical_url": canonical_url,
             "status": "deprecated_skipped",
-            "note": "Dev.to syndication deprecated for judicial registry content to protect brand authority. Set ENABLE_DEVTO_SYNDICATION=true to override."
+            "note": "Dev.to syndication skipped for non-SDK judicial registry content to protect brand authority. Open-source SDK articles are enabled."
         }
 
     # Dev.to supports up to 4 lowercase alphanumeric tags
@@ -467,6 +531,9 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
     pingomatic_res = ping_pingomatic(dry_run=dry_run)
     print(f"    -> Ping-O-Matic: {pingomatic_res.get('status')} ({pingomatic_res.get('message', 'N/A')})")
 
+    websub_res = ping_websub(dry_run=dry_run)
+    print(f"    -> Google WebSub Hub: {websub_res.get('status')} (Code: {websub_res.get('status_code', 'N/A')})")
+
     # 3. Read syndication articles with deduplication
     syndication_results = []
     if SYNDICATE_DIR.exists():
@@ -510,6 +577,7 @@ def run_article_and_link_pipeline(dry_run: bool = False) -> Dict[str, Any]:
         "indexnow": indexnow_res,
         "search_engine_pings": ping_res,
         "pingomatic": pingomatic_res,
+        "websub": websub_res,
         "syndications": syndication_results,
         "webhook": webhook_res
     }

@@ -58,8 +58,9 @@ jobs:
           pip install -r requirements.txt
           playwright install chromium --with-deps
 
-      - name: 1. Generate Latest RSS Feeds & Syndication Articles
+      - name: 1. Generate Latest Blog Posts, RSS Feeds & Syndication Articles
         run: |
+          python marketing/blog_generator.py
           python scripts/generate_rss_feed.py
           python marketing/link_building/syndication_publisher.py
 
@@ -88,11 +89,11 @@ jobs:
           TOOL_OUTREACH_REPLY_TO: ${{ vars.TOOL_OUTREACH_REPLY_TO || 'david@surplusdocket.com' }}
         run: |
           OUTREACH_LIMIT="${{ github.event.inputs.outreach_limit || 6 }}"
-          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ -z "$GMAIL_APP_PASS" ]; then
-            echo "🛡️ Zero-Spam Protection / Dry-Run Mode: Generating outreach drafts and updating target log..."
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ -z "$GMAIL_APP_PASS" ]; then
+            echo "🛡️ Dry-Run Mode: Generating outreach drafts and updating target log..."
             python marketing/link_building/tool_outreach_engine.py --dry-run --limit "$OUTREACH_LIMIT"
           else
-            echo "🚀 Live Outreach Mode: Dispatching authenticated pitches via SMTP..."
+            echo "🚀 Live Outreach Mode: Dispatching DeliverabilityGuard + GroundTruthGatekeeper verified pitches via SMTP..."
             python marketing/link_building/tool_outreach_engine.py --live --limit "$OUTREACH_LIMIT" || true
           fi
 
@@ -118,9 +119,10 @@ jobs:
 
       - name: 8. Commit & Push Updated Submission Logs, Citations, Targets & Syndications
         run: |
+          python compliance/verify_all_publications.py
           git config --global user.name "Surplus Docket Link Building Bot"
           git config --global user.email "bot@surplusdocket.com"
-          git add site/feed.xml site/rss.xml marketing/syndicate/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/ || true
+          git add site/blog/ site/sitemap.xml site/feed.xml site/rss.xml site/sdk/ site/openapi.json site/llms.txt site/.well-known/verification-manifest.json marketing/syndicate/ marketing/link_building/ marketing/pitches/ marketing/clerk_outreach/ outreach/bounced_emails.json || true
           if ! git diff --staged --quiet; then
             git commit -m "chore(linkbuilding): autonomous directory submissions & tool outreach [skip ci]"
             git checkout -- . || true

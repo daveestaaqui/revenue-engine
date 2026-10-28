@@ -232,7 +232,7 @@ ARTICLES = [
         <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
             <h3 class="text-2xl font-heading font-black mb-2">Automate Your Georgia Excess Proceeds Pipeline</h3>
             <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
-                Receive case-verified excess proceeds dockets across Fulton, DeKalb, Cobb, and Gwinnett counties with senior mortgage liens pre-scrubbed. Delivered daily at 7:00 AM EST.
+                Receive case-verified excess proceeds dockets across Fulton, DeKalb, Cobb, and Gwinnett counties with institutional bank claimants filtered and statutory claim windows verified. Delivered daily at 7:00 AM EST.
             </p>
             <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
                 Subscribe to Tri-State Feed ($249/mo) — Instant Setup
@@ -571,8 +571,149 @@ ARTICLES = [
             </a>
         </div>
         """
+    },
+    {
+        "slug": "open-source-surplus-statute-calculator-and-openapi-sdk",
+        "title": "OpenSurplus SDK: Open-Source Statutory Deadline Calculator & OpenAPI 3.1 Schema for Legal Practice Management",
+        "excerpt": "How law firms, legal aid clinics, and legal-tech developers can embed our MIT-licensed statutory surplus deadline Web Component, Python CLI, and OpenAPI 3.1 court registry specification.",
+        "category": "Data Intelligence & Workflow",
+        "date": "2026-10-28",
+        "read_time": "6 min read",
+        "keywords": "OpenSurplus SDK, statutory surplus calculator, legal tech open source, OpenAPI 3.1 court docket API, Clio Filevine surplus integration",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Calculating statutory forfeiture deadlines across multiple state foreclosure and tax sale regimes requires strict adherence to distinct statutory triggers. While <strong>Florida Statute § 197.582</strong> measures its 120-day claim period from the Clerk's notice of surplus, <strong>Texas Tax Code § 34.04</strong> enforces a 2-year statute of limitations from the sheriff or constable sale date, and <strong>California Revenue and Taxation Code § 4675</strong> enforces a 1-year deadline from the recordation of the tax deed to the purchaser.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. Zero-Dependency Web Component &amp; Python CLI</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            To standardize deadline computation across law firm intake portals, university housing clinics, and Bar practice management hubs, Surplus Docket has released the MIT-licensed <a href="/sdk/" class="text-brand-green font-bold underline">OpenSurplus SDK (v1.2.0)</a>. The package includes both a drop-in HTML Web Component (<code>&lt;surplus-statute-calculator&gt;</code>) and a standalone Python 3 command-line utility (<a href="/sdk/surplus_statute_cli.py" class="text-brand-green font-bold underline">surplus_statute_cli.py</a>).
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. OpenAPI 3.1 &amp; Machine-Readable Verification</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Legal engineering teams integrating daily 7:00 AM EST court registry feeds into Clio Manage, Filevine, MyCase, or custom practice databases can now inspect our formal <a href="/openapi.json" class="text-brand-green font-bold underline">OpenAPI 3.1.0 Specification</a> and <a href="/.well-known/verification-manifest.json" class="text-brand-green font-bold underline">SHA-256 Cryptographic Verification Manifest</a>. Every record is paired with its official county clerk or tax collector portal link.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Explore the OpenSurplus SDK &amp; Daily Registry Feeds</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Embed the free statutory calculator on your practice site or evaluate our daily 7:00 AM EST multi-state court registry feeds.
+            </p>
+            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Start 7-Day Evaluation — $249/mo
+            </a>
+        </div>
+        """
+    },
+    {
+        "slug": "san-diego-and-los-angeles-rtc-4675-excess-proceeds-reconciliation-guide",
+        "title": "Reconciling Gross Auction Bids vs. Net Excess Proceeds Under Cal. Rev. & Tax Code § 4675",
+        "excerpt": "How California County Treasurer-Tax Collectors deduct defaulted taxes, penalties, and administrative costs under R&TC §§ 4672–4674 before certifying net excess proceeds under § 4675.",
+        "category": "California Legal Framework",
+        "date": "2026-10-28",
+        "read_time": "6 min read",
+        "keywords": "California excess proceeds reconciliation, Cal. Rev. & Tax Code 4675, San Diego tax sale excess proceeds, Los Angeles excess proceeds claim",
+        "content_html": """
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            When a tax-defaulted parcel is sold at a California Chapter 7 public auction, practitioners frequently encounter two distinct dollar figures across county publications: the <strong>winning gross auction bid</strong> announced at the close of bidding, and the <strong>net deposited excess proceeds balance</strong> certified by the County Treasurer-Tax Collector after statutory distributions under <strong>California Revenue and Taxation Code §§ 4672 through 4674</strong>.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. Statutory Deductions Under Cal. Rev. &amp; Tax Code §§ 4672–4673.1</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Before excess proceeds are transferred to the delinquent tax sale trust fund for claims under <strong>Cal. Rev. &amp; Tax Code § 4675</strong>, the county deducts statutory costs of sale, publication fees, notice-of-power-to-sell recording fees, and defaulted property taxes, assessments, penalties, and statutory interest. By contrast, documentary transfer taxes under Cal. Rev. &amp; Tax Code § 11911 are paid by the winning bidder on top of the purchase price rather than deducted from the former owner's excess proceeds pool.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. The Strict One-Year Filing Window</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Under Cal. Rev. &amp; Tax Code § 4675(a), any party of interest—including recorded lienholders of record prior to the tax deed and former titleholders or their probate successors—must file a verified claim with the County Auditor-Controller or Board of Supervisors within <strong>one (1) year following the recordation of the tax collector's deed to the purchaser</strong>.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Track California Chapter 7 Excess Proceeds Dockets</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Inspect reconciled San Diego, Los Angeles, and Orange County excess proceeds filings delivered every morning at 7:00 AM EST.
+            </p>
+            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Start 7-Day Evaluation — $249/mo
+            </a>
+        </div>
+        """
     }
 ]
+
+
+def build_dynamic_market_report_article():
+    """Dynamically builds a data-driven multi-state market intelligence article from Master_Surplus_Lead_Feed.csv."""
+    feed_csv = EXPORTS_DIR / "Master_Surplus_Lead_Feed.csv"
+    state_counts = {}
+    state_totals = {}
+    total_records = 0
+    total_usd = 0.0
+    if feed_csv.exists():
+        with open(feed_csv, "r", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                st = (row.get("State") or "").strip().upper()
+                try:
+                    bal = float(row.get("Surplus_Balance_USD") or 0)
+                except (ValueError, TypeError):
+                    bal = 0.0
+                if st and bal > 0:
+                    state_counts[st] = state_counts.get(st, 0) + 1
+                    state_totals[st] = state_totals.get(st, 0.0) + bal
+                    total_records += 1
+                    total_usd += bal
+
+    if total_records == 0:
+        return None
+
+    rows_html = []
+    state_labels = {"CA": "California (§ 4675)", "FL": "Florida (§ 197.582)", "TX": "Texas (§ 34.04)", "GA": "Georgia (§ 48-4-5)", "TN": "Tennessee (§ 67-5-2501)", "NC": "North Carolina (§ 105-374)"}
+    for st in sorted(state_totals.keys(), key=lambda k: state_totals[k], reverse=True):
+        cnt = state_counts[st]
+        tot = state_totals[st]
+        avg = tot / cnt if cnt else 0.0
+        rows_html.append(
+            f"<li><strong>{state_labels.get(st, st)}:</strong> {cnt:,} verified dockets totaling <strong>${tot:,.2f}</strong> (average docket balance: ${avg:,.2f}).</li>"
+        )
+
+    return {
+        "slug": "multi-state-surplus-market-intelligence-report",
+        "title": "Multi-State Court Registry Surplus Market Intelligence Report: Verified Docket Volume & Statutory Breakdown",
+        "excerpt": f"Empirical breakdown of {total_records:,} active county tax sale and court registry surplus dockets totaling ${total_usd:,.2f} across covered jurisdictions.",
+        "category": "Data Intelligence & Workflow",
+        "date": "2026-10-28",
+        "read_time": "5 min read",
+        "keywords": "surplus funds market report, tax deed surplus statistics, excess proceeds court registry volume, foreclosure surplus analytics",
+        "content_html": f"""
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Surplus Docket continuously indexes official county court registries, clerk tax deed ledgers, and treasurer-tax collector excess proceeds schedules. Across our current multi-state verification index, public records reflect <strong>{total_records:,} verified individual and estate surplus dockets</strong> representing <strong>${total_usd:,.2f}</strong> in reported registry balances.
+        </p>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">1. Jurisdictional Distribution of Verified Surplus Balances</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            Every record in the Surplus Docket index is filtered to exclude institutional bank claimants and verified against official county portal source records:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-sm text-slate-700 mb-6">
+            {"".join(rows_html)}
+        </ul>
+
+        <h2 class="text-2xl font-heading font-black text-brand-navy mt-8 mb-4">2. Verification Provenance &amp; Daily 7:00 AM EST Dispatch</h2>
+        <p class="text-base text-slate-700 leading-relaxed mb-6">
+            All published dockets remain subject to statutory lien priority, recorded encumbrance review, and formal claim verification with the respective county clerk or tax collector. Subscribers and legal researchers can inspect live programmatic feeds via our <a href="/api-documentation.html" class="text-brand-green font-bold underline">REST API v1</a> or embed our <a href="/sdk/" class="text-brand-green font-bold underline">OpenSurplus SDK</a>.
+        </p>
+
+        <div class="bg-brand-navy text-white rounded-2xl p-8 my-10 shadow-xl text-center">
+            <h3 class="text-2xl font-heading font-black mb-2">Access the Complete Multi-State Docket Feed</h3>
+            <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
+                Evaluate live morning filings across covered county registries at 7:00 AM EST in CSV, Excel, and JSON formats.
+            </p>
+            <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3.5 bg-brand-green hover:bg-brand-greenDark text-white font-heading font-bold rounded-lg shadow-lg transition-all">
+                Start 7-Day Evaluation — $249/mo
+            </a>
+        </div>
+        """
+    }
 
 
 def render_article_page(article):
@@ -1007,7 +1148,7 @@ def render_blog_index():
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
-                            Daily 7:00 AM ET Dispatch
+                            Daily 7:00 AM EST Dispatch
                         </span>
                         <a href="/api-documentation.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors">
                             REST API v1
@@ -1121,13 +1262,44 @@ def render_blog_index():
     print(f"  [✓] Generated Blog Index: {index_file.name}")
 
 
+def sync_sitemap_urls(articles_list):
+    """Ensures all blog articles, SDK pages, OpenAPI spec, and llms.txt are indexed in site/sitemap.xml."""
+    sitemap_path = SITE_DIR / "sitemap.xml"
+    if not sitemap_path.exists():
+        return
+    content = sitemap_path.read_text(encoding="utf-8")
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    required_urls = [
+        ("https://surplusdocket.com/sdk/", "0.85"),
+        ("https://surplusdocket.com/openapi.json", "0.80"),
+        ("https://surplusdocket.com/llms.txt", "0.80"),
+    ]
+    for art in articles_list:
+        required_urls.append((f"https://surplusdocket.com/blog/posts/{art['slug']}.html", "0.80"))
+
+    new_entries = []
+    for url, prio in required_urls:
+        if f"<loc>{url}</loc>" not in content:
+            new_entries.append(
+                f"  <url>\n    <loc>{url}</loc>\n    <lastmod>{today_str}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>{prio}</priority>\n  </url>"
+            )
+    if new_entries and "</urlset>" in content:
+        content = content.replace("</urlset>", "\n".join(new_entries) + "\n</urlset>")
+        sitemap_path.write_text(content, encoding="utf-8")
+        print(f"  [✓] Added {len(new_entries)} new URL(s) to sitemap.xml")
+
+
 def main():
     print("=" * 60)
     print(" 📚 SURPLUS DOCKET — AUTONOMOUS BLOG & CONTENT ENGINE")
     print("=" * 60)
+    dyn_art = build_dynamic_market_report_article()
+    if dyn_art and not any(a["slug"] == dyn_art["slug"] for a in ARTICLES):
+        ARTICLES.append(dyn_art)
     for art in ARTICLES:
         render_article_page(art)
     render_blog_index()
+    sync_sitemap_urls(ARTICLES)
     print("=" * 60)
 
 

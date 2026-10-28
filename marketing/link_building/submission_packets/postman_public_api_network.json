@@ -1,0 +1,27 @@
+{
+  "directory_name": "Postman Public API Network",
+  "domain_authority": "89",
+  "category": "API Registry",
+  "submission_url": "https://www.postman.com/explore",
+  "company_name": "Surplus Docket",
+  "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
+  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
+  "website_url": "https://surplusdocket.com/",
+  "tools_url": "https://surplusdocket.com/tools.html",
+  "sdk_url": "https://surplusdocket.com/sdk/",
+  "openapi_url": "https://surplusdocket.com/openapi.json",
+  "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
+  "api_docs_url": "https://surplusdocket.com/api-documentation.html",
+  "keywords": [
+    "LegalTech",
+    "Legal Software",
+    "OpenSurplus SDK",
+    "OpenAPI 3.1",
+    "Tax Deed Surplus",
+    "Excess Proceeds",
+    "Court Dockets",
+    "Foreclosure Intelligence"
+  ],
+  "target_anchor": "Surplus Docket OpenAPI 3.1 Court Registry Spec",
+  "status": "READY_FOR_SUBMISSION"
+}

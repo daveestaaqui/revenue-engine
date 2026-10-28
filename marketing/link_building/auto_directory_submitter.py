@@ -57,10 +57,12 @@ COMPANY_DATA = {
     ),
     "website_url": "https://surplusdocket.com/",
     "tools_url": "https://surplusdocket.com/tools.html",
+    "sdk_url": "https://surplusdocket.com/sdk/",
+    "openapi_url": "https://surplusdocket.com/openapi.json",
     "embed_url": "https://surplusdocket.com/embed/surplus-calculator.html",
     "contact_email": "contact@surplusdocket.com",
-    "categories": ["LegalTech", "Legal Software", "Real Estate Intelligence", "B2B SaaS"],
-    "pricing": "$249/mo (Subscription SaaS)"
+    "categories": ["LegalTech", "Legal Software", "Open Source SDK", "Real Estate Intelligence", "B2B SaaS"],
+    "pricing": "Free Open-Source SDK / $249/mo Pro Data Feeds"
 }
 
 CHROMIUM_LAUNCH_ARGS = [
@@ -328,6 +330,8 @@ def submit_to_directory_http_fallback(citation: Dict[str, Any], dry_run: bool = 
         "company_name": COMPANY_DATA["name"],
         "website_url": COMPANY_DATA["website_url"],
         "tools_url": COMPANY_DATA["tools_url"],
+        "sdk_url": COMPANY_DATA["sdk_url"],
+        "openapi_url": COMPANY_DATA["openapi_url"],
         "embed_url": COMPANY_DATA["embed_url"],
         "tagline": COMPANY_DATA["tagline"],
         "short_description": COMPANY_DATA["short_description"],

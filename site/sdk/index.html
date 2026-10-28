@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenSurplus SDK &amp; OpenAPI 3.1 Specification — Surplus Docket</title>
+    <meta name="description" content="Open-source Multi-State Statutory Deadline Calculator SDK, Web Component (<surplus-statute-calculator>), Python CLI, and OpenAPI 3.1 Specification for FL, TX, CA, GA, NC, and TN excess proceeds.">
+    <link rel="canonical" href="https://surplusdocket.com/sdk/">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Surplus Docket">
+    <meta property="og:title" content="OpenSurplus SDK &amp; OpenAPI 3.1 Specification — Surplus Docket">
+    <meta property="og:description" content="Free, open-source JavaScript Web Component, Python CLI, and OpenAPI 3.1 schema for statutory surplus claim deadlines across 6 states.">
+    <meta property="og:url" content="https://surplusdocket.com/sdk/">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "OpenSurplus Statutory Deadline & Fee Benchmark SDK",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform (Web, Node.js, Python 3)",
+      "softwareVersion": "1.2.0",
+      "license": "https://opensource.org/licenses/MIT",
+      "url": "https://surplusdocket.com/sdk/",
+      "downloadUrl": "https://surplusdocket.com/sdk/surplus_statute_cli.py",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Surplus Docket",
+        "url": "https://surplusdocket.com/"
+      },
+      "description": "Open-source JavaScript Web Component, Python 3 CLI, and OpenAPI 3.1 specification for computing statutory surplus claim windows and fee caps across FL (§ 197.582), TX (§ 34.04), CA (§ 4675), GA (§ 48-4-5), NC (§ 105-374), and TN (§ 67-5-2501)."
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/sdk/surplus-statute-sdk.js" defer></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="/" class="font-bold text-lg text-slate-900">SURPLUS DOCKET <span class="text-xs font-mono text-emerald-700 ml-2">OpenSurplus SDK v1.2.0</span></a>
+            <nav class="flex items-center gap-5 text-xs sm:text-sm font-semibold text-slate-600">
+                <a href="/tools.html" class="hover:text-slate-900">Free Tools</a>
+                <a href="/api-documentation.html" class="hover:text-slate-900">REST API</a>
+                <a href="/openapi.json" class="hover:text-slate-900">OpenAPI 3.1</a>
+                <a href="/blog/" class="hover:text-slate-900">Legal Guides</a>
+                <a href="https://buy.stripe.com/4gM14n8yq9vl0vrb0i0ZW21" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 bg-emerald-700 text-white rounded-lg">Start 7-Day Trial</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12 flex-grow space-y-12">
+        <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+            <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">MIT Open-Source LegalTech Utility</span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">OpenSurplus SDK &amp; Statutory Deadline Engine</h1>
+            <p class="text-slate-600 text-base leading-relaxed max-w-3xl mb-6">
+                A zero-dependency JavaScript Web Component (<code>&lt;surplus-statute-calculator&gt;</code>), Python 3 CLI utility, and OpenAPI 3.1 specification for computing statutory surplus claim limitation periods and fee benchmarks across Florida, Texas, California, Georgia, North Carolina, and Tennessee. Built for law firm intake portals, law school clinics, and practice management integrations.
+            </p>
+            <div class="flex flex-wrap gap-3 text-xs font-bold">
+                <a href="/sdk/surplus-statute-sdk.js" class="px-4 py-2.5 bg-slate-900 text-white rounded-lg">Download JS SDK (surplus-statute-sdk.js)</a>
+                <a href="/sdk/surplus_statute_cli.py" class="px-4 py-2.5 bg-emerald-700 text-white rounded-lg">Download Python CLI (surplus_statute_cli.py)</a>
+                <a href="/openapi.json" class="px-4 py-2.5 border border-slate-300 text-slate-800 rounded-lg bg-white">View OpenAPI 3.1 JSON</a>
+                <a href="/llms.txt" class="px-4 py-2.5 border border-slate-300 text-slate-800 rounded-lg bg-white">AI / LLMs.txt Index</a>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-8 items-start">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-900 mb-2">1. Live Web Component Preview</h2>
+                <p class="text-xs text-slate-500 mb-4">Embed this interactive calculator on any law firm resource page or legal blog with two lines of HTML:</p>
+                <surplus-statute-calculator state="CA"></surplus-statute-calculator>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-5">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 mb-2">2. One-Line Web Component Embed</h2>
+                    <pre id="sdk-embed-code" class="bg-slate-900 text-slate-100 p-4 rounded-xl text-xs overflow-x-auto">&lt;script src="https://surplusdocket.com/sdk/surplus-statute-sdk.js" defer&gt;&lt;/script&gt;
+&lt;surplus-statute-calculator state="FL"&gt;&lt;/surplus-statute-calculator&gt;</pre>
+                    <button type="button" onclick="copySdkSnippet()" class="mt-2 px-3 py-1.5 bg-slate-800 text-white text-xs font-semibold rounded-lg">Copy Embed Snippet</button>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 mb-2">3. Python 3 CLI &amp; Library Usage</h2>
+                    <pre class="bg-slate-900 text-slate-100 p-4 rounded-xl text-xs overflow-x-auto">curl -sO https://surplusdocket.com/sdk/surplus_statute_cli.py
+python3 surplus_statute_cli.py --state CA --date 2026-06-15 --balance 881663.35</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 px-4 text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between gap-4">
+            <p>&copy; 2026 Surplus Docket. Daily court registry feeds dispatched at 7:00 AM EST. <a href="/inquiry.html" class="underline">Publisher &amp; Legal Inquiries</a></p>
+            <p>Surplus Docket is a public records data compiler, not a law firm or Consumer Reporting Agency (15 U.S.C. § 1681).</p>
+        </div>
+    </footer>
+
+    <script>
+        function copySdkSnippet() {
+            const el = document.getElementById('sdk-embed-code');
+            if (el && navigator.clipboard) {
+                navigator.clipboard.writeText(el.innerText);
+            }
+        }
+    </script>
+</body>
+</html>

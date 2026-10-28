@@ -34,6 +34,11 @@ if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
 from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
+from outreach.deliverability_guard import DeliverabilityGuard
+try:
+    from outreach.bounce_processor import scan_and_learn_bounces
+except Exception:
+    scan_and_learn_bounces = None
 
 LINK_BUILDING_DIR = BASE_DIR / "marketing" / "link_building"
 TARGETS_CSV = LINK_BUILDING_DIR / "tool_outreach_targets.csv"
@@ -413,12 +418,21 @@ def run_tool_outreach_pipeline(
 ) -> List[Dict[str, Any]]:
     """
     Executes the autonomous tool outreach pipeline:
-    1. Loads target pool and filters out previously contacted entities.
-    2. Sorts uncontacted targets by DA descending.
-    3. Builds personalized pitch with free tools hub, embed calculator, and CRM schemas.
-    4. Dispatches via SMTP (if live_send=True and credentials present) or generates audit drafts.
-    5. Logs every action to tool_outreach_log.csv and updates target registry.
+    1. Scans Gmail inbox for any new DSN bounces and updates bounced_emails.json.
+    2. Loads target pool and filters out previously contacted or bounced entities.
+    3. Sorts uncontacted targets by DA descending.
+    4. Validates each recipient via DeliverabilityGuard (syntax, role-prefix block, DNS MX check)
+       and GroundTruthGatekeeper before sending.
+    5. Builds personalized pitch with free tools hub, OpenSurplus SDK, embed calculator, and CRM schemas.
+    6. Dispatches via SMTP (if live_send=True and credentials present) or generates audit drafts.
+    7. Logs every action to tool_outreach_log.csv and updates target registry.
     """
+    if live_send and scan_and_learn_bounces is not None:
+        try:
+            scan_and_learn_bounces()
+        except Exception as e:
+            print(f"  [!] Warning: pre-send bounce scan skipped ({e})")
+
     targets = load_targets()
     selected = select_outreach_targets(targets, limit=limit, target_type=target_type, specific_email=specific_email)
 
@@ -435,6 +449,16 @@ def run_tool_outreach_pipeline(
         print(f"  -> Pitching [{t_type}] {org} ({email_addr}, DA {da})...")
 
         subject, text_body, html_body = build_personalized_email(t)
+
+        is_deliv, deliv_reason = DeliverabilityGuard.validate_recipient_deliverability(
+            email_addr, check_dns=True
+        )
+        if not is_deliv:
+            print(f"     🛑 DeliverabilityGuard blocked {email_addr}: {deliv_reason}")
+            log_outreach_event(t, subject, "BLOCKED_DELIVERABILITY", deliv_reason, message_id="")
+            update_target_status(email_addr, "BLOCKED_DELIVERABILITY")
+            results.append({"organization": org, "email": email_addr, "status": "BLOCKED_DELIVERABILITY", "info": deliv_reason})
+            continue
 
         is_valid, reasons = GroundTruthGatekeeper.validate_outreach_message(
             to_email=email_addr,

@@ -41,6 +41,8 @@ Excess proceeds resulting from a delinquent tax sale are held by the Chancery Co
 This analysis was authored by the research team at **[Surplus Docket](https://surplusdocket.com)**. Surplus Docket provides real-time court docket intelligence, junior lien title scrubbing, and statutory deadline automation for legal practices in foreclosure defense, probate, and real estate litigation.
 
 - **Interactive Calculator Widget:** [Statutory Surplus Calculator](https://surplusdocket.com/embed/surplus-calculator.html)
+- **Open-Source SDK & Python CLI:** [OpenSurplus SDK v1.2.0 & Web Component](https://surplusdocket.com/sdk/)
+- **OpenAPI 3.1.0 Specification:** [Public Records & Statutory Intelligence API](https://surplusdocket.com/openapi.json)
 - **Public Educational Resource:** [Homeowner's Guide to Foreclosure Surplus](https://surplusdocket.com/resources/homeowner-surplus-guide.html)
 - **Live Court Registry Feeds:** [Surplus Docket Intelligence](https://surplusdocket.com/#data)
 

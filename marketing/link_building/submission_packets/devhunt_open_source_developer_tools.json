@@ -1,0 +1,27 @@
+{
+  "directory_name": "DevHunt Open Source Developer Tools",
+  "domain_authority": "66",
+  "category": "Open Source",
+  "submission_url": "https://devhunt.org/",
+  "company_name": "Surplus Docket",
+  "tagline": "Real-Time Court Registry Feeds for Foreclosure Surplus Recovery",
+  "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
+  "website_url": "https://surplusdocket.com/",
+  "tools_url": "https://surplusdocket.com/tools.html",
+  "sdk_url": "https://surplusdocket.com/sdk/",
+  "openapi_url": "https://surplusdocket.com/openapi.json",
+  "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
+  "api_docs_url": "https://surplusdocket.com/api-documentation.html",
+  "keywords": [
+    "LegalTech",
+    "Legal Software",
+    "OpenSurplus SDK",
+    "OpenAPI 3.1",
+    "Tax Deed Surplus",
+    "Excess Proceeds",
+    "Court Dockets",
+    "Foreclosure Intelligence"
+  ],
+  "target_anchor": "OpenSurplus SDK & Python CLI",
+  "status": "READY_FOR_SUBMISSION"
+}

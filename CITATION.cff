@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "OpenSurplus SDK & Surplus Docket Statutory Intelligence Engine"
+message: "If you use this software or statutory dataset in legal research, clinical practice, or practice management software, please cite it using the metadata below."
+type: software
+authors:
+  - name: "Surplus Docket Public Records Intelligence"
+    website: "https://surplusdocket.com"
+repository-code: "https://github.com/daveestaaqui/revenue-engine"
+url: "https://surplusdocket.com/sdk/"
+abstract: "Open-source multi-state statutory deadline calculator, Web Component widget, and OpenAPI 3.1 court registry surplus schema covering Florida (§ 197.582), Texas (§ 34.04), California (§ 4675), Georgia (§ 48-4-5), North Carolina (§ 105-374), and Tennessee (§ 67-5-2501)."
+keywords:
+  - legaltech
+  - foreclosure-surplus
+  - tax-deed-surplus
+  - excess-proceeds
+  - court-docket-api
+  - tyler-v-hennepin-county
+license: MIT
+version: 1.2.0
+date-released: "2026-10-28"

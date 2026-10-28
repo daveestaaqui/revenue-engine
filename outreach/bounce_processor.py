@@ -69,7 +69,11 @@ def record_bounced_entity(email_addr: str, error_diag: str = "") -> bool:
     if clean_em not in current_data:
         current_data.append(clean_em)
         changed = True
-    if domain not in current_data and domain not in ("gmail.com", "googlemail.com", "yahoo.com", "outlook.com"):
+    is_shared_or_institutional = (
+        domain in ("gmail.com", "googlemail.com", "yahoo.com", "outlook.com", "americanbar.org", "ncbar.org", "gabar.org", "floridabar.org", "texasbar.com", "nysba.org", "okbar.org", "azbar.org")
+        or domain.endswith(".edu")
+    )
+    if domain not in current_data and not is_shared_or_institutional:
         current_data.append(domain)
         changed = True
 

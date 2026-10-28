@@ -27,13 +27,16 @@ COMPANY_PROFILE = {
     ),
     "website_url": "https://surplusdocket.com",
     "tools_url": "https://surplusdocket.com/tools.html",
+    "sdk_url": "https://surplusdocket.com/sdk/",
+    "openapi_url": "https://surplusdocket.com/openapi.json",
     "embed_url": "https://surplusdocket.com/embed/",
     "data_feed_url": "https://surplusdocket.com/#live-docket",
     "resource_guide_url": "https://surplusdocket.com/resources/homeowner-surplus-guide",
-    "categories": ["LegalTech", "Legal Practice Software", "Real Estate Intelligence", "Court Docket Research"],
+    "categories": ["LegalTech", "Legal Practice Software", "Open-Source SDK", "Real Estate Intelligence", "Court Docket Research"],
     "keywords": [
         "tax deed surplus", "excess proceeds", "foreclosure surplus", "court registry feeds",
-        "legal intelligence", "junior lien title scrub", "probate asset recovery", "Tyler v. Hennepin County"
+        "legal intelligence", "junior lien title scrub", "probate asset recovery", "Tyler v. Hennepin County",
+        "OpenSurplus SDK", "OpenAPI 3.1", "statutory deadline calculator"
     ],
     "pricing_model": "Professional SaaS / Monthly Subscription ($249/mo)",
     "contact_email": "press@surplusdocket.com"

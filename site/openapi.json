@@ -1,0 +1,113 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Surplus Docket Public Records & Statutory Intelligence API",
+    "version": "1.2.0",
+    "summary": "Multi-state court registry tax deed surplus and excess proceeds intelligence feed API (FL, TX, CA, GA, NC, TN).",
+    "description": "Programmatic REST API and static JSON endpoints indexing verified county court registry and tax collector surplus dockets across Florida (§ 197.582), Texas (§ 34.04), California (§ 4675), Georgia (§ 48-4-5), North Carolina (§ 105-374), and Tennessee (§ 67-5-2501). Dispatched daily at 7:00 AM EST.",
+    "contact": {
+      "name": "Surplus Docket Public Records Intelligence",
+      "url": "https://surplusdocket.com/inquiry.html"
+    },
+    "license": {
+      "name": "MIT (SDK & Schemas) / Commercial Feed Subscription",
+      "url": "https://surplusdocket.com/terms.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://surplusdocket.com",
+      "description": "Production Static & REST Intelligence Gateway"
+    }
+  ],
+  "paths": {
+    "/api/v1/health.json": {
+      "get": {
+        "operationId": "getSystemHealth",
+        "summary": "Retrieve pipeline health and daily ingestion status",
+        "responses": {
+          "200": {
+            "description": "Healthy pipeline status payload"
+          }
+        }
+      }
+    },
+    "/api/v1/feed.json": {
+      "get": {
+        "operationId": "getMultiStateFeed",
+        "summary": "Retrieve multi-state court registry surplus docket feed",
+        "responses": {
+          "200": {
+            "description": "Normalized multi-state surplus records with clerk verification URLs and statutory citations"
+          }
+        }
+      }
+    },
+    "/api/v1/florida.json": {
+      "get": {
+        "operationId": "getFloridaSurplusFeed",
+        "summary": "Florida tax deed & circuit court registry surplus feed (Fla. Stat. § 197.582)",
+        "responses": {
+          "200": {
+            "description": "Florida surplus docket records"
+          }
+        }
+      }
+    },
+    "/api/v1/texas.json": {
+      "get": {
+        "operationId": "getTexasSurplusFeed",
+        "summary": "Texas district court registry excess proceeds feed (Tex. Tax Code § 34.04)",
+        "responses": {
+          "200": {
+            "description": "Texas excess proceeds docket records"
+          }
+        }
+      }
+    },
+    "/api/v1/california.json": {
+      "get": {
+        "operationId": "getCaliforniaSurplusFeed",
+        "summary": "California Chapter 8 / Chapter 7 tax-defaulted excess proceeds feed (Cal. Rev. & Tax Code § 4675)",
+        "responses": {
+          "200": {
+            "description": "California excess proceeds parcel records"
+          }
+        }
+      }
+    },
+    "/api/v1/georgia.json": {
+      "get": {
+        "operationId": "getGeorgiaSurplusFeed",
+        "summary": "Georgia county tax sale excess funds feed (O.C.G.A. § 48-4-5)",
+        "responses": {
+          "200": {
+            "description": "Georgia tax sale excess funds records"
+          }
+        }
+      }
+    },
+    "/api/v1/tennessee.json": {
+      "get": {
+        "operationId": "getTennesseeSurplusFeed",
+        "summary": "Tennessee Chancery Court delinquent tax sale surplus feed (T.C.A. § 67-5-2501)",
+        "responses": {
+          "200": {
+            "description": "Tennessee Chancery Court excess proceeds records"
+          }
+        }
+      }
+    },
+    "/api/v1/north-carolina.json": {
+      "get": {
+        "operationId": "getNorthCarolinaSurplusFeed",
+        "summary": "North Carolina Superior Court tax foreclosure surplus feed (N.C.G.S. § 105-374)",
+        "responses": {
+          "200": {
+            "description": "North Carolina surplus docket records"
+          }
+        }
+      }
+    }
+  }
+}

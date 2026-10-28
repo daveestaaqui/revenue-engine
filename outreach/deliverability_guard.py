@@ -62,7 +62,7 @@ def load_bounced_blacklist() -> set:
                             blacklist.add(em)
                             if "@" in em:
                                 dom = em.split("@")[-1]
-                                if dom not in ("gmail.com", "outlook.com", "yahoo.com"):
+                                if dom not in ("gmail.com", "outlook.com", "yahoo.com", "americanbar.org", "ncbar.org", "gabar.org", "floridabar.org", "texasbar.com", "nysba.org", "okbar.org", "azbar.org") and not dom.endswith(".edu"):
                                     blacklist.add(dom)
         except Exception:
             pass
@@ -192,6 +192,13 @@ def validate_recipient_deliverability(email_str: str, check_dns: bool = True) ->
             return False, f"Deliverability Guard rejected '{clean_email}': {mx_msg}"
 
     return True, "Deliverable"
+
+
+class DeliverabilityGuard:
+    """Class wrapper for deliverability verification utilities."""
+    validate_recipient_deliverability = staticmethod(validate_recipient_deliverability)
+    check_domain_mx = staticmethod(check_domain_mx)
+    load_bounced_blacklist = staticmethod(load_bounced_blacklist)
 
 
 if __name__ == "__main__":

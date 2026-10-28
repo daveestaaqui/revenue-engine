@@ -25,16 +25,17 @@ EMBED_PITCHES_DIR.mkdir(parents=True, exist_ok=True)
 EMBED_PROFILES = [
     {
         "target_type": "LegalTech Bloggers & Legal Podcasters",
-        "subject": "Free statutory deadline calculator for legal tech readers",
+        "subject": "Free open-source statutory deadline calculator & SDK for legal tech readers",
         "file_name": "pitch_legaltech_bloggers.md",
         "body": """Hi {Editor / Webmaster},
 
 Follow your writing on legal technology and practice workflows.
 
-We put together a free, open-access statutory deadline calculator for foreclosure and tax deed surplus claims across six states (FL, TX, CA, GA, NC, TN):
-https://surplusdocket.com/tools.html
+We recently released a free, open-access statutory deadline calculator and MIT-licensed open-source SDK (Web Component, Python 3 CLI, and OpenAPI 3.1.0 spec) for foreclosure and tax deed surplus claims across six states (FL, TX, CA, GA, NC, TN):
+- Practice Tools Hub: https://surplusdocket.com/tools.html
+- OpenSurplus SDK & Python CLI: https://surplusdocket.com/sdk/
 
-There are no paywalls, accounts, or tracking. Thought your readers might find it useful as a quick reference, and it's also set up so anyone can link or embed it directly if they want.
+There are no paywalls, accounts, or tracking. Thought your readers might find it useful as a quick reference, and anyone can link or embed the calculator directly on their own site.
 
 Hope it's helpful,
 
@@ -45,16 +46,17 @@ david@surplusdocket.com | https://surplusdocket.com
     },
     {
         "target_type": "Real Estate Investor & Tax Sale Communities",
-        "subject": "Free tax deed surplus deadline calculator",
+        "subject": "Free tax deed surplus deadline calculator & open SDK",
         "file_name": "pitch_real_estate_investors.md",
         "body": """Hi {Community Lead},
 
 Wanted to share a quick free resource for your community working with tax deeds and excess funds.
 
-We put together an open calculator that maps out statutory claim deadlines and finder fee caps across Florida, Texas, California, Georgia, North Carolina, and Tennessee:
-https://surplusdocket.com/tools.html
+We put together an open calculator and standalone SDK that map out statutory claim deadlines and finder fee caps across Florida, Texas, California, Georgia, North Carolina, and Tennessee:
+- Calculator & Practice Tools: https://surplusdocket.com/tools.html
+- Embed & SDK Hub: https://surplusdocket.com/sdk/
 
-Zero paywalls, logins, or ads. Feel free to share it with your members if you think it'd save them some time.
+Zero paywalls, logins, or ads. Feel free to share or embed it for your members if you think it'd save them some time.
 
 Best,
 
@@ -65,16 +67,17 @@ david@surplusdocket.com | https://surplusdocket.com
     },
     {
         "target_type": "Law School Legal Clinics & Access-to-Justice Centers",
-        "subject": "Free statutory surplus calculator for clinical programs",
+        "subject": "Free statutory surplus calculator & open SDK for clinical programs",
         "file_name": "pitch_law_school_clinics.md",
         "body": """Hi {Clinical Director & Faculty Advisors},
 
-Came across your clinic's foreclosure and housing advocacy work.
+Came across your clinic's consumer, foreclosure, and housing advocacy work.
 
-Following Tyler v. Hennepin County, we put together a free, open-access statutory surplus calculator tracking claim deadlines and fee caps across six states ({statute_citation}):
-https://surplusdocket.com/tools.html
+Following Tyler v. Hennepin County, we released a free, open-access statutory surplus calculator and MIT-licensed Python/JS toolkit tracking claim deadlines and non-attorney fee caps across six states ({statute_citation}):
+- Free Practice Tools: https://surplusdocket.com/tools.html
+- OpenSurplus SDK & Citation Spec: https://surplusdocket.com/sdk/
 
-Zero ads, accounts, or tracking. Thought it might be a handy practical reference for your students and staff assisting distressed property owners.
+Zero ads, accounts, or tracking. Thought it might be a handy practical reference for your clinical students and staff assisting property owners.
 
 Hope it's helpful,
 
@@ -85,14 +88,15 @@ david@surplusdocket.com | https://surplusdocket.com/tools.html
     },
     {
         "target_type": "State & Local Bar Association LPM (Law Practice Management) Editors",
-        "subject": "Free surplus recovery practice utilities & Clio/Filevine schemas",
+        "subject": "Free surplus recovery practice utilities, Clio/Filevine schemas & open SDK",
         "file_name": "pitch_bar_association_lpm.md",
         "body": """Hi {Editor / Practice Management Advisor},
 
 Follow your practice management resources for solo and small-firm practitioners.
 
-We recently released a set of free practice utilities for attorneys handling post-foreclosure surplus claims, including multi-state statutory deadline calculation and pre-mapped Clio and Filevine intake schemas:
-https://surplusdocket.com/tools.html
+We recently released a set of free practice utilities for attorneys handling post-foreclosure surplus claims, including multi-state statutory deadline calculation, pre-mapped Clio and Filevine intake schemas, and an open-source Web Component / Python CLI:
+- Practice Tools Hub: https://surplusdocket.com/tools.html
+- OpenSurplus SDK & OpenAPI 3.1 Spec: https://surplusdocket.com/sdk/
 
 Everything is free and open-access with no account required. If you ever highlight member tools or tech tips in your LPM column or directory, thought this might be of interest.
 
@@ -143,9 +147,11 @@ def generate_directory_submission_packets():
                 "short_description": "Surplus Docket aggregates daily tax deed surplus and excess proceeds court filings for asset recovery and real estate counsel, with automated public record indexing and statutory deadline calculations.",
                 "website_url": "https://surplusdocket.com/",
                 "tools_url": "https://surplusdocket.com/tools.html",
+                "sdk_url": "https://surplusdocket.com/sdk/",
+                "openapi_url": "https://surplusdocket.com/openapi.json",
                 "embed_tool_url": "https://surplusdocket.com/embed/surplus-calculator.html",
                 "api_docs_url": "https://surplusdocket.com/api-documentation.html",
-                "keywords": ["LegalTech", "Legal Software", "Tax Deed Surplus", "Excess Proceeds", "Court Dockets", "Foreclosure Intelligence"],
+                "keywords": ["LegalTech", "Legal Software", "OpenSurplus SDK", "OpenAPI 3.1", "Tax Deed Surplus", "Excess Proceeds", "Court Dockets", "Foreclosure Intelligence"],
                 "target_anchor": row.get("anchor_target", "Surplus Docket Legal Intelligence"),
                 "status": "READY_FOR_SUBMISSION"
             }

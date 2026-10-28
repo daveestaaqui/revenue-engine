@@ -1,0 +1,30 @@
+# Surplus Docket — Public Records & Court Registry Surplus Intelligence
+
+> Surplus Docket (https://surplusdocket.com) is an automated legal intelligence and public records compilation platform that indexes county tax deed surplus and foreclosure excess proceeds dockets across Florida, Texas, California, Georgia, North Carolina, and Tennessee. Every record is linked to its official county clerk or tax collector source portal and verified against state statutory claim windows.
+
+## Open-Access Software, SDKs & Calculators
+- [OpenSurplus SDK & CLI (v1.2.0)](https://surplusdocket.com/sdk/): MIT-licensed JavaScript Web Component (`<surplus-statute-calculator>`) and Python 3 CLI for calculating statutory surplus claim deadlines and fee caps across FL, TX, CA, GA, NC, and TN.
+- [Free Legal Practice Tools Hub](https://surplusdocket.com/tools.html): Interactive statutory deadline calculator, court petition templates, and Clio/Filevine CRM custom field schemas.
+- [Embeddable Surplus Calculator Widget](https://surplusdocket.com/embed/surplus-calculator.html): Zero-tracking iframe and Web Component calculator for law firm websites and legal clinics.
+- [1-Click Statutory Petition & Dossier Builder](https://surplusdocket.com/practitioner-toolkit.html): Automated statutory claim dossier generator for attorneys of record.
+- [OpenAPI 3.1 Specification](https://surplusdocket.com/openapi.json): Machine-readable API specification for the Surplus Docket REST API.
+- [Cryptographic Verification Manifest](https://surplusdocket.com/.well-known/verification-manifest.json): SHA-256 ground-truth verification manifest for all published feeds and guides.
+
+## State Statutory Surplus Feeds & Hubs
+- [Florida Tax Deed Surplus Feed (Fla. Stat. § 197.582)](https://surplusdocket.com/florida-tax-deed-surplus.html): 120-day claim window from Clerk's statutory notice; 20% representative fee benchmark.
+- [Texas Tax Sale Excess Proceeds Feed (Tex. Tax Code § 34.04)](https://surplusdocket.com/texas-tax-sale-excess-proceeds.html): 2-year statute of limitations from sheriff/constable sale date in District Court registries; 25% fee benchmark.
+- [California Tax-Defaulted Excess Proceeds Feed (Cal. Rev. & Tax Code § 4675)](https://surplusdocket.com/california-tax-defaulted-excess-proceeds.html): 1-year limitation from tax deed recordation before County Auditor-Controller / Board of Supervisors.
+- [Georgia Tax Sale Excess Funds Feed (O.C.G.A. § 48-4-5)](https://surplusdocket.com/georgia-tax-sale-excess-funds.html): 5-year statutory claim horizon and Superior Court interpleader procedures.
+- [Tennessee Delinquent Tax Sale Surplus Feed (T.C.A. § 67-5-2501)](https://surplusdocket.com/tennessee-tax-sale-excess-proceeds.html): Chancery Court Clerk & Master motion procedure.
+- [North Carolina Tax Foreclosure Surplus Feed (N.C.G.S. § 105-374)](https://surplusdocket.com/north-carolina-tax-foreclosure-surplus.html): Clerk of Superior Court special proceedings after 10-day upset bid window.
+
+## Legal Research Guides & Jurisprudence (`site/blog/posts/`)
+- [Tyler v. Hennepin County (598 U.S. 631): Supreme Court Takings Clause Analysis](https://surplusdocket.com/blog/posts/tyler-v-hennepin-county-surplus-recovery-opportunity.html)
+- [Florida Tax Deed Surplus Guide (Fla. Stat. § 197.582)](https://surplusdocket.com/blog/posts/florida-tax-deed-surplus-guide-fl-197-582.html)
+- [Texas Tax Sale Excess Proceeds Guide (Tex. Tax Code § 34.04)](https://surplusdocket.com/blog/posts/texas-tax-sale-excess-proceeds-court-registry-guide.html)
+- [California Excess Proceeds Guide (Cal. Rev. & Tax Code § 4675)](https://surplusdocket.com/blog/posts/california-tax-defaulted-excess-proceeds-guide-rtc-4675.html)
+- [Georgia Tax Sale Excess Funds Guide (O.C.G.A. § 48-4-5)](https://surplusdocket.com/blog/posts/georgia-tax-sale-excess-funds-guide-ocga-48-4-5.html)
+- [Tennessee Delinquent Tax Sale Surplus Guide (T.C.A. § 67-5-2501)](https://surplusdocket.com/blog/posts/tennessee-delinquent-tax-sale-surplus-guide-tca-67-5-2501.html)
+- [North Carolina Tax Foreclosure Surplus Guide (N.C.G.S. § 105-374)](https://surplusdocket.com/blog/posts/north-carolina-tax-foreclosure-surplus-guide-ncgs-105-374.html)
+- [Probate & Heirship Affidavit Surplus Recovery Guide](https://surplusdocket.com/blog/posts/probate-heirship-affidavit-surplus-recovery-guide.html)
+- [Bankruptcy Automatic Stay & Surplus Funds (11 U.S.C. § 362)](https://surplusdocket.com/blog/posts/bankruptcy-automatic-stay-surplus-funds-11-usc-362.html)

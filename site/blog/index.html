@@ -91,7 +91,7 @@
             <div class="flex flex-wrap gap-2 items-center justify-center sm:justify-start" id="blog-category-filters" role="group" aria-label="Blog topic filters">
                 
         <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-brand-navy text-white shadow-sm" data-category="all" onclick="filterCategory('all', this)">
-            All Topics <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-white/20 text-white font-mono">13</span>
+            All Topics <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-white/20 text-white font-mono">16</span>
         </button>
         <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Florida Legal Framework" onclick="filterCategory('Florida Legal Framework', this)">
             Florida Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
@@ -100,7 +100,7 @@
             Texas Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
         </button>
         <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="California Legal Framework" onclick="filterCategory('California Legal Framework', this)">
-            California Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+            California Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">2</span>
         </button>
         <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Georgia Legal Framework" onclick="filterCategory('Georgia Legal Framework', this)">
             Georgia Legal Framework <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
@@ -124,7 +124,7 @@
             Supreme Court Jurisprudence <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">2</span>
         </button>
         <button type="button" class="filter-btn px-4 py-2 rounded-xl text-xs font-heading font-bold transition-all bg-white text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-navy shadow-xs" data-category="Data Intelligence & Workflow" onclick="filterCategory('Data Intelligence & Workflow', this)">
-            Data Intelligence & Workflow <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">1</span>
+            Data Intelligence & Workflow <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-mono">3</span>
         </button>
             </div>
         </div>
@@ -132,6 +132,57 @@
         <!-- Blog Cards Grid -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
             
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Data Intelligence & Workflow" data-date="2026-10-28">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    Data Intelligence & Workflow
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/open-source-surplus-statute-calculator-and-openapi-sdk.html">OpenSurplus SDK: Open-Source Statutory Deadline Calculator & OpenAPI 3.1 Schema for Legal Practice Management</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    How law firms, legal aid clinics, and legal-tech developers can embed our MIT-licensed statutory surplus deadline Web Component, Python CLI, and OpenAPI 3.1 court registry specification.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-10-28 • 6 min read</span>
+                <a href="/blog/posts/open-source-surplus-statute-calculator-and-openapi-sdk.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="California Legal Framework" data-date="2026-10-28">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    California Legal Framework
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/san-diego-and-los-angeles-rtc-4675-excess-proceeds-reconciliation-guide.html">Reconciling Gross Auction Bids vs. Net Excess Proceeds Under Cal. Rev. & Tax Code § 4675</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    How California County Treasurer-Tax Collectors deduct defaulted taxes, penalties, and administrative costs under R&TC §§ 4672–4674 before certifying net excess proceeds under § 4675.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-10-28 • 6 min read</span>
+                <a href="/blog/posts/san-diego-and-los-angeles-rtc-4675-excess-proceeds-reconciliation-guide.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Data Intelligence & Workflow" data-date="2026-10-28">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
+                    Data Intelligence & Workflow
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-brand-navy mb-3 hover:text-brand-green transition-colors">
+                    <a href="/blog/posts/multi-state-surplus-market-intelligence-report.html">Multi-State Court Registry Surplus Market Intelligence Report: Verified Docket Volume & Statutory Breakdown</a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    Empirical breakdown of 504 active county tax sale and court registry surplus dockets totaling $26,001,232.37 across covered jurisdictions.
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500">
+                <span>2026-10-28 • 5 min read</span>
+                <a href="/blog/posts/multi-state-surplus-market-intelligence-report.html" class="text-brand-green font-bold hover:underline">Read Analysis &rarr;</a>
+            </div>
+        </div>
         <div class="blog-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="Supreme Court Jurisprudence" data-date="2026-09-14">
             <div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-green/30 bg-brand-greenSoft text-brand-greenDark text-xs font-bold uppercase tracking-wider mb-4">
@@ -386,7 +437,7 @@
                     <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-greenSoft text-brand-greenDark font-mono font-bold text-[11px]">
                             <span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span>
-                            Daily 7:00 AM ET Dispatch
+                            Daily 7:00 AM EST Dispatch
                         </span>
                         <a href="/api-documentation.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors">
                             REST API v1
