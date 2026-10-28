@@ -1909,7 +1909,7 @@ Key property and official county accounting details from the San Diego County Tr
 • Benchmark 20% Statutory Recovery for Counsel: $176,332.67
 
 Official Ground Truth Reconciliation Note:
-On Page 9 of the official San Diego County Final Report of Sale (PA-7102, Item 0263), the prominent column lists the gross winning auction bid of $890,100.00. Under California Revenue & Taxation Code §§ 4672-4674, the county withheld current taxes and statutory costs totaling $8,436.65 (including current taxes of $5,270.39, Teeter funds of $1,284.38, doc transfer tax of $979.55, redemption fee of $506.00, personal contact fee of $461.74, and county fees of $434.50). The remaining balance of exactly $881,663.35 was deposited into the county trust fund as the net unclaimed excess proceeds subject to claim under § 4675.
+On Page 9 of the official San Diego County Final Report of Sale (PA-7102, Item 0263), the prominent column lists the gross winning auction bid of $890,100.00. Under California Revenue & Taxation Code §§ 4672-4674, the county withheld current taxes and statutory costs totaling $8,436.65 (including current taxes of $5,270.39, Teeter funds of $1,284.38, redemption fee of $506.00, personal contact fee of $461.74, and statutory county claim/notice/recording fees of $914.14). The remaining balance of exactly $881,663.35 was deposited into the county trust fund as the net unclaimed excess proceeds subject to claim under § 4675.
 
 You can inspect the full verified docket dossier and official county verification source directly on the portal here:
 {docket_url}
@@ -3130,15 +3130,21 @@ def clean_imap_drafts(mail):
         return
 
     sent_emails = set()
+    sent_reply_emails = set()
     msg_ids = messages[0].split()
     for mid in reversed(msg_ids[-50:]):
-        res, data = mail.fetch(mid, "(BODY[HEADER.FIELDS (TO CC SUBJECT)])")
+        res, data = mail.fetch(mid, "(BODY[HEADER.FIELDS (TO CC SUBJECT IN-REPLY-TO)])")
         if res == "OK" and data and isinstance(data[0], tuple):
             msg = email.message_from_bytes(data[0][1])
             to_raw = decode_str(msg.get("To", ""))
+            subj_raw = decode_str(msg.get("Subject", "")).strip().lower()
+            in_rep = msg.get("In-Reply-To", "")
             _, to_addr = parseaddr(to_raw)
             if to_addr:
-                sent_emails.add(to_addr.lower().strip())
+                addr_clean = to_addr.lower().strip()
+                sent_emails.add(addr_clean)
+                if subj_raw.startswith("re:") or in_rep:
+                    sent_reply_emails.add(addr_clean)
 
     if not sent_emails:
         return
@@ -3157,14 +3163,18 @@ def clean_imap_drafts(mail):
     removed_count = 0
 
     for did in draft_ids:
-        res, data = mail.fetch(did, "(BODY[HEADER.FIELDS (TO SUBJECT)])")
+        res, data = mail.fetch(did, "(BODY[HEADER.FIELDS (TO SUBJECT IN-REPLY-TO)])")
         if res == "OK" and data and isinstance(data[0], tuple):
             msg = email.message_from_bytes(data[0][1])
             to_raw = decode_str(msg.get("To", ""))
+            subj_raw = decode_str(msg.get("Subject", "")).strip().lower()
+            in_rep = msg.get("In-Reply-To", "")
             _, to_addr = parseaddr(to_raw)
             to_clean = to_addr.lower().strip() if to_addr else ""
+            is_reply_draft = subj_raw.startswith("re:") or bool(in_rep)
 
-            if to_clean in sent_emails:
+            should_purge = (to_clean in sent_reply_emails) if is_reply_draft else (to_clean in sent_emails)
+            if should_purge:
                 mail.store(did, "+FLAGS", r"(\Deleted)")
                 removed_count += 1
                 log(f"  🗑️ IMAP: Removed sent draft for: {to_clean}")
@@ -3403,18 +3413,23 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                     body=body_to_check
                 )
                 if not is_safe:
-                    log(f"  🛡️ Sentinel Firewall Quarantined inbound message from {sender_email} [{cat}]: {sentinel_reason}")
-                    record_notable_email_activity({
-                        "id": f"sentinel_{hashlib.sha256((message_id or sender_email + subject_raw).encode()).hexdigest()[:16]}",
-                        "type": "security_quarantine",
-                        "category": cat,
-                        "sender": sender_email,
-                        "sender_name": sender_name,
-                        "subject": subject_raw,
-                        "reason": sentinel_reason,
-                        "timestamp": datetime.now(timezone.utc).isoformat(),
-                        "status": "quarantined_by_sentinel"
-                    })
+                    q_hash = hashlib.sha256((message_id or sender_email + subject_raw).encode()).hexdigest()[:16]
+                    quarantine_key = f"quarantine:{sender_email}:{q_hash}"
+                    if quarantine_key not in already_drafted:
+                        log(f"  🛡️ Sentinel Firewall Quarantined inbound message from {sender_email} [{cat}]: {sentinel_reason}")
+                        record_notable_email_activity({
+                            "id": f"sentinel_{q_hash}",
+                            "type": "security_quarantine",
+                            "category": cat,
+                            "sender": sender_email,
+                            "sender_name": sender_name,
+                            "subject": subject_raw,
+                            "reason": sentinel_reason,
+                            "timestamp": datetime.now(timezone.utc).isoformat(),
+                            "status": "quarantined_by_sentinel"
+                        })
+                        save_created_draft(quarantine_key)
+                        already_drafted.add(quarantine_key)
                     if not is_already_seen:
                         mail.store(mid, "+FLAGS", r"(\Seen)")
                     continue
@@ -3606,6 +3621,24 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
             state_cases=state_cases,
         )
 
+        # Ground-truth & deliverability gatekeeper verification before auto-response
+        if intent != "OPT_OUT":
+            try:
+                from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
+                gt_ok, gt_errs = GroundTruthGatekeeper.validate_outreach_message(
+                    to_email=sender_email,
+                    to_name=sender_name,
+                    firm=(target_info.get("firm", "") if target_info else ""),
+                    subject=reply_subject,
+                    body=reply_body,
+                    check_dns=False,
+                )
+                if not gt_ok:
+                    log(f"  🛡️ GroundTruthGatekeeper blocked auto-response to {sender_email}: {gt_errs}")
+                    continue
+            except Exception as gt_exc:
+                log(f"  ⚠️ GroundTruthGatekeeper check warning: {gt_exc}")
+
         # Authentic verified identity enforcement (David Mahler / Surplus Docket Intelligence)
         sender_name_identity = "David Mahler"
         sender_email_identity = "david@surplusdocket.com"
@@ -3674,6 +3707,24 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                 already_drafted.add(draft_key)
                 mail.store(mid, "+FLAGS", r"(\Seen)")
                 log(f"  🎉 Contextual [{intent}] follow-up draft created in Gmail for {sender_email}!")
+                record_notable_email_activity({
+                    "id": f"ACT-{abs(hash(draft_key)) % 10000000}",
+                    "timestamp": datetime.now().isoformat(),
+                    "sender_name": sender_name,
+                    "sender_email": sender_email,
+                    "phone": "",
+                    "channel": "DIRECT_EMAIL",
+                    "jurisdiction": target_info.get("state", "FL") if target_info else "FL",
+                    "county": "",
+                    "docket": "",
+                    "category": intent,
+                    "subject": reply_subject,
+                    "inbound_snippet": text_body[:160].replace("\n", " ").strip(),
+                    "summary": f"Law firm reply from {sender_name} ({target_info.get('firm', sender_email) if target_info else sender_email}). Intent: {intent}.",
+                    "action_taken": "DRAFT_CREATED",
+                    "persona": "David Mahler (Surplus Docket Intelligence)",
+                    "notable": True,
+                })
 
 
 def run_single_check(enforce_delay=True, enforce_hours=True):

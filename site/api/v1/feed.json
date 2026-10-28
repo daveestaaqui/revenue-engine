@@ -73,7 +73,64 @@
       "Owner_Name_Redacted": "D. & L. A\u2588\u2588\u2588\u2588 [SUBSCRIBER KEY REQUIRED]",
       "docket_id": "360-150-12-00",
       "parcel_id_raw": "360-150-12-00",
-      "Access_Status": "REDACTED_PREVIEW"
+      "Access_Status": "REDACTED_PREVIEW",
+      "Gross_Sale_Price_USD": 890100.0,
+      "Net_Excess_Proceeds_USD": 881663.35,
+      "County_Deductions_USD": 8436.65,
+      "Financial_Reconciliation": {
+        "Property_Address": "4850 Jennifer Ct, San Diego, CA 92117",
+        "Gross_Sale_Price_USD": 890100.0,
+        "Minimum_Bid_USD": 31000.0,
+        "County_Deductions_USD": 8436.65,
+        "Net_Excess_Proceeds_USD": 881663.35,
+        "Counsel_Fee_Benchmark_USD": 178020.0,
+        "Itemized_Deductions": [
+          {
+            "label": "Current & Delinquent Taxes (Cal. Rev. & Tax Code \u00a7 4672)",
+            "amount": 5270.39
+          },
+          {
+            "label": "Teeter Fund Tax Reimbursement",
+            "amount": 1284.38
+          },
+          {
+            "label": "Redemption Processing Fee",
+            "amount": 506.0
+          },
+          {
+            "label": "Personal Contact Notice Fee",
+            "amount": 461.74
+          },
+          {
+            "label": "County Claim Processing Fee",
+            "amount": 421.0
+          },
+          {
+            "label": "State & County Publication Notice",
+            "amount": 336.0
+          },
+          {
+            "label": "Tax Sale Notice Fee",
+            "amount": 117.0
+          },
+          {
+            "label": "Publication Advertising Fee",
+            "amount": 21.64
+          },
+          {
+            "label": "Recording Fee",
+            "amount": 17.0
+          },
+          {
+            "label": "State Controller Fee",
+            "amount": 1.5
+          }
+        ],
+        "Deed_Recording_Doc": "Doc #2026-0111958 recorded 4/22/2026",
+        "Purchaser": "Benjamin Baker & Angela M. Guerrero",
+        "Official_Item": "Item 0263 (Page 9)",
+        "Ground_Truth_Reconciliation_Note": "On Page 9 of the official San Diego County Final Report of Sale (PA-7102, Item 0263), the prominent column lists the gross winning auction bid of $890,100.00. Under California Revenue & Taxation Code \u00a7\u00a7 4672-4674, the county withheld current taxes and statutory costs totaling $8,436.65, leaving the net surplus of $881,663.35 deposited into the county trust fund for claimant distribution under \u00a7 4675."
+      }
     },
     {
       "State": "CA",

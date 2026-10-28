@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       auto_send:
-        description: 'Auto-send replies via SMTP instead of staging Gmail drafts (default: false creates drafts)'
+        description: 'Auto-send replies via SMTP instead of staging Gmail drafts (default: true)'
         type: boolean
-        default: false
+        default: true
       dry_run:
         description: 'Dry run check without creating drafts or sending'
         type: boolean
@@ -48,7 +48,7 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER || 'sandwichfitness@gmail.com' }}
           GMAIL_APP_PASS: ${{ secrets.GMAIL_APP_PASS }}
-          AUTO_SEND: ${{ (inputs.auto_send == true) && 'true' || secrets.AUTO_SEND || 'false' }}
+          AUTO_SEND: ${{ (inputs.auto_send == false) && 'false' || secrets.AUTO_SEND || 'true' }}
           STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
           FROM_NAME: 'David Mahler'
           SENDER_EMAIL: 'david@surplusdocket.com'

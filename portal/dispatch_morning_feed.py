@@ -84,7 +84,12 @@ def get_feed_statistics():
     if not MASTER_CSV.exists():
         return stats
     with open(MASTER_CSV, "r", encoding="utf-8", errors="ignore") as f:
-        rows = list(csv.DictReader(f))
+        raw_rows = list(csv.DictReader(f))
+    try:
+        from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
+        rows = [r for r in raw_rows if GroundTruthGatekeeper.validate_lead_record(r)[0]]
+    except Exception:
+        rows = raw_rows
 
     def num(v):
         try:

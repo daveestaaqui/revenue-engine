@@ -12,7 +12,64 @@
       "Claim_Urgency_Tier": "Tier 3: Active Claim Window (> 120 Days)",
       "Claim_Deadline_Date": "2027-04-22",
       "Sale_Date": "2026-04-22",
-      "cipher": "76963bea33a52ce84caf1b79245d0b05282c0c7225eaa48c5b752ecc3cb7c7605383901f9404eb69b634e30198f3156195f58423b9e1899c86cdc53c4cb709cdc3f0dd8bc54c10ba5cf4ca5faac7cefc8cbc6aec692a37decec989e268b784479d7fbd1fdd5c72e49f4143e4fefdc94356799feaca4f5bd0192a944a60a4e4b7b23afbbb30074155acb792098c746ef40be21e29932d5bc3820f9175cbfc3be6963ef552818c9272846a9fd72c063829611239c0779c91e584f64dff356641d86a07236b526d81bf045dff0557cb8c973569ad6e4930fdf3d5151e3e6ac3c5d591f1a49d9a904936d475c80c4ce60c61f16ff256cc3117336cce821c0022b873427c7e09b71b2e5676c9faf56aa37966b8f9e870429712b647911332d014a50a264c735c6f7f3db655e2581b21484d6995373f3ba6dc17b5c2b8ac91b464cec6c292089f5e0fe3bbe62421256985671fa727c85ddf188f650a4252a02b26763ae0fc18da2bb030960432bd2f63b9f5805880112e713f26265c7793ea4edcafacfe1de11ce256fbf264a26303c1792f32ccaf3cb7aff7f751c4170626e658b890aa118434d50fbdb11aa394072d9a8f21701ede0d637d323c38af8a3fc5030c43d09fe8299eb0559613a4680915e7ea661c05af94e069a4d73a827af1568692ee692076d348e6d093caefe02934d18fc8cd9c66bcd706f05c05d75053ea7f4091de42958a5c645d9b793ddd5ccb39f83774bf437aa344b6e198eafcecc699a86e2dddf45a89f1eda36e47791587d0f8f09c2c1ab6b2fa48f689f53fe7a64ca602ff6dae0c6b6dfd30520abf39a9d49718988f5b98aa09e811b18e96d079adacf0e62136022e57a99632829cb3ddc3966b35b4093b24c0998773843c02b2d4a41df05f90f9606b252b47f2457aa41329bd1e4594926a4b82138e95e7d67de4636cbf131ee724aaf55081dc181b69310b7fe710ec890670e399ab5b75ecb208fe88f0429c20703418366a06043e2c0fba5ca759b93a228d1fce55ba521242fa624fb8677fd5fc23a67f5d10b9d1d6fb9fb05831856f2409edc178a38fda687eb4ba6d7386b1bc4a961619316e4a7b6602c3fe17268e1eda"
+      "cipher": "525f362d3f306394bc87b4feaa23bef1358b25f5e0798774530276e4f667d5720b29c70a1138df0b692edfb777db5433b76cab246df9a822965c5cbcbf3a447aa2721e3686ce47bb0f49120732632d8abdedc3e92144aabef809c47f3ff135eecfe39b6d2b6ffa6bed38925c9956936a984b1f133c18947efad0f44516ab6465ea801f290b407d9234756feabe6ed53da903a2f03fbcde803c6d644bf5ebf3fcc64ee191dfafad373879522db1f1511aa6fda107ca1132f662a2b1616bf1cf51ca129dbf4cb36e4fbe388cf44268081bb2bdaacb378aff5b2ec7e4864d2d06beae29a70da1a4a4f8f485d86a1d3d4ca6f4c567a5c44bee862d2b00451f74c4487afefb22b368a69dc4b220c2691646b6f0d629dcafc0c1ba7812ee6b0c988fca1313d613f35ebb44ce1a3da3f8279cac8dfff080f97fea8bd255b5c3e9601cb92c4c21d6db615298bd697b975ccf8dfe533c6fdc4808922001d95fa748ef56407a46883e9fa7a94193fcdcc4646d3c258e2c76930045c66d5815c52e0a83315f5668ad5240e919944e3d553b70c547366de11cbf25fdab1a31ac56507cc2d25b46449b03921a7c464874ac54c0045b9c5395c2be172efa27755cba9ede23d9927fdac724ae1e41549d81b9cc8c246310a37dba8bcb753a04ec2c89272dcd6eba639eb5a22af4aba7138195eeec8e7d9316151ef50877339b7f856d6181f94c44b418918909a00c6170d458562a420db474e1c50b4584c950f18078d072a46c380e58924be6fd90a107392d460ff41534249e91f3cba6edad57ad23090edd1870b2647d37fada70c5536c7a492c771d0ca25e1638d815bc99bb16883cdc818d2e4a1b673a3deae7571572ecccd73c7d49b4ee315a0b5cdb34a84e79f843dfb28168a5b975153dedd141499566683602214870b357da5c9e525e1cd70f5899dbfc43ce244850a79c2f0f706871f79e1dcfa032d50dc539365346b2d6667d8ff5850ac5af7a507b0eb334499cda8440e0bd1f925b72a16f9a80a8482e2ca135ed2948068f9f766218d93bdde411df0a90377b2b3991779c78015b755e34106f450ba280f7941def52596969c527c8b4448538755ea5983a6b6156a727103b79f6d3d7ed453c22f1819cb7b87670cbc31fac8acb8d78aef796db0627810edee230e01a26b9d865d768ed4c8393ff4849d6f3250831240890f54bc585b3c221d7b0e97944cd53a8e753c00d78287c9438860f8c18a747e824ce222b5258c9f6af628e3e13a6",
+      "Gross_Sale_Price_USD": 890100.0,
+      "Net_Excess_Proceeds_USD": 881663.35,
+      "County_Deductions_USD": 8436.65,
+      "Financial_Reconciliation": {
+        "Property_Address": "4850 Jennifer Ct, San Diego, CA 92117",
+        "Gross_Sale_Price_USD": 890100.0,
+        "Minimum_Bid_USD": 31000.0,
+        "County_Deductions_USD": 8436.65,
+        "Net_Excess_Proceeds_USD": 881663.35,
+        "Counsel_Fee_Benchmark_USD": 178020.0,
+        "Itemized_Deductions": [
+          {
+            "label": "Current & Delinquent Taxes (Cal. Rev. & Tax Code \u00a7 4672)",
+            "amount": 5270.39
+          },
+          {
+            "label": "Teeter Fund Tax Reimbursement",
+            "amount": 1284.38
+          },
+          {
+            "label": "Redemption Processing Fee",
+            "amount": 506.0
+          },
+          {
+            "label": "Personal Contact Notice Fee",
+            "amount": 461.74
+          },
+          {
+            "label": "County Claim Processing Fee",
+            "amount": 421.0
+          },
+          {
+            "label": "State & County Publication Notice",
+            "amount": 336.0
+          },
+          {
+            "label": "Tax Sale Notice Fee",
+            "amount": 117.0
+          },
+          {
+            "label": "Publication Advertising Fee",
+            "amount": 21.64
+          },
+          {
+            "label": "Recording Fee",
+            "amount": 17.0
+          },
+          {
+            "label": "State Controller Fee",
+            "amount": 1.5
+          }
+        ],
+        "Deed_Recording_Doc": "Doc #2026-0111958 recorded 4/22/2026",
+        "Purchaser": "Benjamin Baker & Angela M. Guerrero",
+        "Official_Item": "Item 0263 (Page 9)",
+        "Ground_Truth_Reconciliation_Note": "On Page 9 of the official San Diego County Final Report of Sale (PA-7102, Item 0263), the prominent column lists the gross winning auction bid of $890,100.00. Under California Revenue & Taxation Code \u00a7\u00a7 4672-4674, the county withheld current taxes and statutory costs totaling $8,436.65, leaving the net surplus of $881,663.35 deposited into the county trust fund for claimant distribution under \u00a7 4675."
+      }
     },
     "583-810-27-00": {
       "docket_id": "583-810-27-00",

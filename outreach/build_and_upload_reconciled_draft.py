@@ -43,7 +43,7 @@ Key property and official county accounting details from the San Diego County Tr
 • Statutory 20% Benchmark Recovery for Counsel: $176,332.67
 
 Official Ground Truth Reconciliation Note:
-On Page 9 of the official San Diego County Final Report of Sale (PA-7102, Item 0263), the prominent column lists the gross winning auction bid of $890,100.00. Under California Revenue & Taxation Code §§ 4672-4674, the county withheld current taxes and statutory costs totaling $8,436.65 (including current taxes of $5,270.39, Teeter funds of $1,284.38, doc transfer tax of $979.55, redemption fee of $506.00, personal contact fee of $461.74, and county fees of $434.50). The remaining balance of exactly $881,663.35 was deposited into the county trust fund as the net unclaimed excess proceeds subject to claim under § 4675.
+On Page 9 of the official San Diego County Final Report of Sale (PA-7102, Item 0263), the prominent column lists the gross winning auction bid of $890,100.00. Under California Revenue & Taxation Code §§ 4672-4674, the county withheld current taxes and statutory costs totaling $8,436.65 (including current taxes of $5,270.39, Teeter funds of $1,284.38, redemption fee of $506.00, personal contact fee of $461.74, and statutory county claim/notice/recording fees of $914.14). The remaining balance of exactly $881,663.35 was deposited into the county trust fund as the net unclaimed excess proceeds subject to claim under § 4675.
 
 You can inspect the full verified docket dossier, official reconciliation breakdown, and the direct county tax collector PDF report on our portal here:
 https://surplusdocket.com/docket.html?docket=360-150-12-00&county=San+Diego&state=CA&k=a65adddbec62f259d76736470f06a3b7

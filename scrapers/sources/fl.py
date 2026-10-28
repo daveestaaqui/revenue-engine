@@ -172,10 +172,14 @@ def _fetch_hillsborough_court_registry() -> list[dict]:
 
 def fetch() -> list[dict]:
     """Download current official Florida county surplus/registry lists and parse them."""
+    from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
     out: list[dict] = []
     for fn in (_fetch_hillsborough_tax_deed_surplus, _fetch_hillsborough_court_registry):
         try:
-            out.extend(fn())
+            for rec in fn():
+                ok, _ = GroundTruthGatekeeper.validate_lead_record(rec)
+                if ok:
+                    out.append(rec)
         except Exception as exc:
             print(f"[fl.{fn.__name__}] skipped due to error: {exc}")
     return out

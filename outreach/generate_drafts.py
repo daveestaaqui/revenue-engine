@@ -280,10 +280,14 @@ def load_feed_data():
     with open(FEED_CSV, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
+            ok, _ = GroundTruthGatekeeper.validate_lead_record(row)
+            if not ok:
+                continue
             state = row.get("State", "").strip().upper()
             if state not in state_cases:
                 state_cases[state] = []
             state_cases[state].append({
+                "state": state,
                 "case_no": row.get("Case_or_TaxDeed_No", "").strip(),
                 "parcel_id": row.get("Parcel_ID", "").strip(),
                 "county": row.get("County", "").strip(),

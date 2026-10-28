@@ -250,8 +250,23 @@ def send_existing_drafts(dry_run: bool = False, delay_seconds: float = 4.0) -> i
                 purged_ids.append(did)
                 continue
 
-            if to_clean in excluded or domain in excluded:
-                print(f"[{idx}/{len(draft_ids)}] 🛡️ Skipping already contacted or bounced recipient: {to_clean}")
+            is_reply_draft = bool(msg.get("In-Reply-To")) or subject.strip().lower().startswith("re:")
+            from outreach.deliverability_guard import validate_recipient_deliverability, load_bounced_blacklist
+            bounced_set = load_bounced_blacklist()
+
+            if to_clean in bounced_set or domain in bounced_set:
+                print(f"[{idx}/{len(draft_ids)}] 🛡️ Skipping bounced recipient: {to_clean}")
+                purged_ids.append(did)
+                continue
+
+            if not is_reply_draft and (to_clean in excluded or domain in excluded):
+                print(f"[{idx}/{len(draft_ids)}] 🛡️ Skipping already contacted recipient: {to_clean}")
+                purged_ids.append(did)
+                continue
+
+            deliv_ok, deliv_msg = validate_recipient_deliverability(to_clean, check_dns=True)
+            if not deliv_ok:
+                print(f"[{idx}/{len(draft_ids)}] 🛡️ Deliverability Guard rejected draft to {to_clean}: {deliv_msg}")
                 purged_ids.append(did)
                 continue
 
@@ -260,6 +275,20 @@ def send_existing_drafts(dry_run: bool = False, delay_seconds: float = 4.0) -> i
             attorney_name = to_name or meta.get("Name") or meta.get("name") or "Counsel"
             firm_name = meta.get("Firm") or meta.get("firm") or ""
             state = meta.get("State") or meta.get("state") or "FL"
+
+            # Enforce GroundTruthGatekeeper on every draft before sending
+            gt_ok, gt_errors = GroundTruthGatekeeper.validate_outreach_message(
+                to_email=to_clean,
+                to_name=attorney_name,
+                firm=firm_name,
+                subject=subject,
+                body=body,
+                require_bar_verified=(not is_reply_draft),
+            )
+            if not gt_ok:
+                print(f"[{idx}/{len(draft_ids)}] 🛡️ GroundTruthGatekeeper rejected draft to {to_clean}: {gt_errors}")
+                purged_ids.append(did)
+                continue
 
             print(f"[{idx}/{len(draft_ids)}] 📤 Dispatching to {attorney_name} <{to_clean}> ({firm_name})...")
             print(f"       Subject: {subject[:65]}")
@@ -290,31 +319,6 @@ def send_existing_drafts(dry_run: bool = False, delay_seconds: float = 4.0) -> i
                 smtp_server.quit()
             except Exception:
                 pass
-
-    # Ensure [Gmail]/Drafts has no lingering drafts for contacted recipients
-    if sent_count > 0 and not dry_run:
-        try:
-            mail = imaplib.IMAP4_SSL("imap.gmail.com")
-            mail.login(GMAIL_USER, GMAIL_APP_PASS)
-            drafts_box = get_gmail_drafts_mailbox(mail)
-            mail.select(drafts_box)
-            status, messages = mail.search(None, "ALL")
-            if status == "OK" and messages[0]:
-                purged = 0
-                for did in messages[0].split():
-                    res, data = mail.fetch(did, "(BODY.PEEK[HEADER.FIELDS (TO)])")
-                    if res == "OK" and data and isinstance(data[0], tuple):
-                        hdr = email.message_from_bytes(data[0][1])
-                        _, to_addr = parseaddr(hdr.get("To", ""))
-                        if to_addr and to_addr.lower().strip() in excluded:
-                            mail.store(did, "+FLAGS", r"(\Deleted)")
-                            purged += 1
-                if purged > 0:
-                    mail.expunge()
-                    print(f"✓ Purged {purged} residual draft(s) from {drafts_box}.")
-            mail.logout()
-        except Exception as e:
-            print(f"⚠️ Residual draft clean notice: {e}")
 
     # Clean up drafts folder
     if purged_ids and not dry_run:
@@ -470,7 +474,7 @@ def auto_send_verified_batch(batch_size: int = 10, dry_run: bool = False, delay_
                 print(f"[{idx}/{len(candidates)}] ⚠️ Failed to compose email for {em}. Skipping.")
                 continue
 
-            # Ground-truth gatekeeper check
+            # Ground-truth gatekeeper check (enforces State Bar verification, lead math, identifier match, and DNS MX)
             ok, errors = GroundTruthGatekeeper.validate_outreach_message(
                 to_email=em,
                 to_name=name,
@@ -478,6 +482,7 @@ def auto_send_verified_batch(batch_size: int = 10, dry_run: bool = False, delay_
                 subject=sub,
                 body=body,
                 lead=matched_case,
+                require_bar_verified=True,
             )
             if not ok:
                 print(f"[{idx}/{len(candidates)}] 🛡️ GroundTruthGatekeeper rejected {em}: {errors}")
@@ -521,10 +526,13 @@ def auto_send_verified_batch(batch_size: int = 10, dry_run: bool = False, delay_
             if status == "OK" and messages[0]:
                 purged = 0
                 for did in messages[0].split():
-                    res, data = mail.fetch(did, "(BODY.PEEK[HEADER.FIELDS (TO)])")
+                    res, data = mail.fetch(did, "(BODY.PEEK[HEADER.FIELDS (TO SUBJECT)])")
                     if res == "OK" and data and isinstance(data[0], tuple):
                         hdr = email.message_from_bytes(data[0][1])
                         _, to_addr = parseaddr(hdr.get("To", ""))
+                        subj_hdr = decode_mime_header(hdr.get("Subject", "")).strip()
+                        if subj_hdr.lower().startswith("re:"):
+                            continue
                         if to_addr and to_addr.lower().strip() in excluded:
                             mail.store(did, "+FLAGS", r"(\Deleted)")
                             purged += 1

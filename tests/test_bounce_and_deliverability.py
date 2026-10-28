@@ -68,6 +68,21 @@ class TestDeliverabilityGuard(unittest.TestCase):
             self.assertFalse(ok)
             self.assertIn("Yahoo/AOL MX", msg)
 
+    def test_invalid_placeholder_mx_rejection(self):
+        fake_dns = MagicMock()
+        fake_resolver = MagicMock()
+        fake_dns.resolver = fake_resolver
+        fake_resolver.NXDOMAIN = type("NXDOMAIN", (Exception,), {})
+        fake_resolver.NoAnswer = type("NoAnswer", (Exception,), {})
+        fake_resolver.NoNameservers = type("NoNameservers", (Exception,), {})
+        fake_mx = MagicMock()
+        fake_mx.exchange = "ms16397215.msv1.invalid.outlook.com."
+        fake_resolver.resolve.return_value = [fake_mx]
+        with patch.dict("sys.modules", {"dns": fake_dns, "dns.resolver": fake_resolver}):
+            ok, msg = check_domain_mx("vondranlegal.com")
+            self.assertFalse(ok)
+            self.assertIn("null/invalid MX", msg)
+
 
 class TestBounceProcessor(unittest.TestCase):
     def test_extract_bounce_metadata(self):

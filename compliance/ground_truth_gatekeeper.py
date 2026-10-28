@@ -33,6 +33,7 @@ DEAD_DOMAINS = {
     "kramerlaw.com": "M365 DBEB: Non-existent recipient domain / invalid mailbox",
     "spencerlawpc.com": "M365 DBEB: Non-existent recipient mailbox",
     "marshalllegal.com": "M365 DBEB: Unrelated Indiana firm / non-existent Georgia mailbox",
+    "vondranlegal.com": "Unconfigured M365 placeholder MX (ms16397215.msv1.invalid.outlook.com)",
 }
 
 # Authoritative directory of pre-verified practitioners confirmed against State Bar records
@@ -298,6 +299,97 @@ VERIFIED_BAR_REGISTRY = {
         "state": "TN",
         "specialty": "Commercial Real Estate & Chancery Litigation",
     },
+    "daniel@drlawfl.com": {
+        "name": "Daniel Rudoy",
+        "bar_id": "FL Bar # 1020231",
+        "firm": "The Real Estate Law Firm",
+        "state": "FL",
+        "specialty": "Real Estate Litigation & Property Claims",
+    },
+    "lferrer@ferrerlawgroup.com": {
+        "name": "Lourdes E. Ferrer",
+        "bar_id": "FL Bar # 528536",
+        "firm": "Ferrer Law Group, PLLC",
+        "state": "FL",
+        "specialty": "Real Estate, Association & Civil Litigation",
+    },
+    "fred@kwglawoffices.com": {
+        "name": "Fred E. Glickman",
+        "bar_id": "FL Bar # 340766",
+        "firm": "KWG Law Offices",
+        "state": "FL",
+        "specialty": "Real Property, Probate & Trust Law",
+    },
+    "weidner@mattweidnerlaw.com": {
+        "name": "Matthew D. Weidner",
+        "bar_id": "FL Bar # 185957",
+        "firm": "Matthew D. Weidner, P.A.",
+        "state": "FL",
+        "specialty": "Foreclosure Defense, Real Estate & Surplus Litigation",
+    },
+    "jblevy@jblevylaw.com": {
+        "name": "Jennifer B. Levy",
+        "bar_id": "FL Bar # 32717",
+        "firm": "The Law Office of Jennifer B. Levy, LLC",
+        "state": "FL",
+        "specialty": "Real Estate, Probate & Trust Litigation",
+    },
+    "rbryant@miamiprobatefirm.com": {
+        "name": "Randy A. Bryant",
+        "bar_id": "FL Bar # 157945",
+        "firm": "Randy A. Bryant, P.A.",
+        "state": "FL",
+        "specialty": "Probate, Estate Administration & Real Property",
+    },
+    "hamid@lawwiz.net": {
+        "name": "Hamid Soleimanian",
+        "bar_id": "CA Bar # 218020",
+        "firm": "Law Offices of Hamid Soleimanian",
+        "state": "CA",
+        "specialty": "Surplus Funds & Real Estate Litigation",
+    },
+    "lisa@frisellalaw.com": {
+        "name": "Lisa J. Frisella",
+        "bar_id": "CA Bar # 216504",
+        "firm": "Frisella Neilson, APC",
+        "state": "CA",
+        "specialty": "Estate Planning, Probate & Excess Proceeds Recovery",
+    },
+    "nshenon@grantshenon.com": {
+        "name": "Natela Shenon",
+        "bar_id": "CA Bar # 261115",
+        "firm": "Grant Shenon Almaraz, APLC",
+        "state": "CA",
+        "specialty": "Real Estate Litigation & Foreclosure Surplus Funds",
+    },
+    "mansour@ayoubmansour.com": {
+        "name": "John G. Mansour",
+        "bar_id": "GA Bar # 469698",
+        "firm": "Ayoub, Mansour & Bryant, LLC",
+        "state": "GA",
+        "specialty": "Tax Deed Foreclosures, Quiet Title & Excess Funds",
+    },
+    "cpayton@canteyhanger.com": {
+        "name": "Cassandra M. Payton",
+        "bar_id": "TX Bar # 24102811",
+        "firm": "Cantey Hanger LLP",
+        "state": "TX",
+        "specialty": "Probate, Fiduciary Litigation & Real Estate Litigation",
+    },
+    "eboddy@pmbglaw.com": {
+        "name": "Elizabeth Boddy",
+        "bar_id": "TX Bar # 24027347",
+        "firm": "Person, Mohrer, Morales, Boddy, Garcia & Gutierrez, PLLC",
+        "state": "TX",
+        "specialty": "Real Estate, Probate & Commercial Litigation",
+    },
+    "wturner@gsrm.com": {
+        "name": "Wesley D. Turner",
+        "bar_id": "TN Bar Verified",
+        "firm": "Gullett Sanford Robinson & Martin PLLC",
+        "state": "TN",
+        "specialty": "Real Estate, Title & Foreclosure Law",
+    },
 }
 
 # Banned synthetic or fabricated prefixes
@@ -448,6 +540,30 @@ class GroundTruthGatekeeper:
         if state == "FL" and re.match(r"^\d{2}-(?:CC|CP)-\d+$", case_no, re.I):
             errors.append(f"Non-surplus FL division case '{case_no}' (CC/CP) found in surplus lead feed.")
 
+        # 8. Financial reconciliation arithmetic verification (when present)
+        recon = lead.get("Financial_Reconciliation") if isinstance(lead.get("Financial_Reconciliation"), dict) else {}
+        gross_raw = lead.get("Gross_Sale_Price_USD") or recon.get("Gross_Sale_Price_USD")
+        deduct_raw = lead.get("County_Deductions_USD") or recon.get("County_Deductions_USD")
+        net_raw = lead.get("Net_Excess_Proceeds_USD") or recon.get("Net_Excess_Proceeds_USD")
+        if gross_raw is not None and deduct_raw is not None and net_raw is not None:
+            try:
+                g_val = float(gross_raw)
+                d_val = float(deduct_raw)
+                n_val = float(net_raw)
+                if abs((g_val - d_val) - n_val) > 0.05:
+                    errors.append(
+                        f"Reconciliation math mismatch: Gross ({g_val:.2f}) - Deductions ({d_val:.2f}) != Net ({n_val:.2f})"
+                    )
+                itemized = recon.get("Itemized_Deductions")
+                if isinstance(itemized, list) and itemized:
+                    item_sum = sum(float(i.get("amount", 0)) for i in itemized if isinstance(i, dict))
+                    if abs(item_sum - d_val) > 0.05:
+                        errors.append(
+                            f"Itemized deductions sum ({item_sum:.2f}) does not equal County_Deductions_USD ({d_val:.2f})"
+                        )
+            except (ValueError, TypeError) as exc:
+                errors.append(f"Invalid financial reconciliation numeric values: {exc}")
+
         return (len(errors) == 0, errors)
 
     _dns_cache: Dict[str, Tuple[bool, Optional[str]]] = {}
@@ -504,6 +620,7 @@ class GroundTruthGatekeeper:
         firm: str = "",
         name: str = "",
         check_dns: bool = True,
+        require_bar_verified: bool = False,
     ) -> Tuple[bool, List[str]]:
         """
         Strict deliverability & ground-truth validation for email recipients:
@@ -511,10 +628,12 @@ class GroundTruthGatekeeper:
         2. Known mismatched practice check
         3. Bounced emails & dead domains blacklist
         4. DNS MX record validation (including RFC 7505 Null MX detection)
-        5. State Bar verified practitioner check
+        5. State Bar verified practitioner check (when require_bar_verified=True)
         """
         errors = []
         if not email_str or not email_str.strip():
+            if require_bar_verified:
+                return False, ["Recipient email is required for bar-verified outreach."]
             return True, []  # Email is optional in template composition/unit test contexts
 
         em = email_str.strip().lower()
@@ -547,6 +666,14 @@ class GroundTruthGatekeeper:
             except Exception:
                 pass
 
+        # State Bar registry check when required for autonomous cold attorney outreach
+        if require_bar_verified:
+            verified_lower = {k.strip().lower() for k in VERIFIED_BAR_REGISTRY.keys()}
+            if em not in verified_lower:
+                errors.append(
+                    f"Recipient '{email_str}' is not in VERIFIED_BAR_REGISTRY. Autonomous outreach requires State Bar verification."
+                )
+
         # Check DNS MX
         if check_dns and domain not in DEAD_DOMAINS and em not in errors:
             mx_ok, mx_reason = cls.check_domain_mx(domain)
@@ -565,11 +692,13 @@ class GroundTruthGatekeeper:
         body: str,
         lead: Optional[Dict[str, Any]] = None,
         check_dns: bool = True,
+        require_bar_verified: bool = False,
     ) -> Tuple[bool, List[str]]:
         """
         Validates an outreach email draft for absolute ground-truth accuracy:
         - Rejects mismatched practice areas and bounced addresses
-        - Validates recipient email syntax and DNS MX records
+        - Validates recipient email syntax, DNS MX records, and State Bar membership (when required)
+        - Validates the underlying lead record, identifier match, and dollar balance fidelity
         - Rejects fictitious case numbers
         - Rejects unverified title claims ('cleared upstream')
         - Rejects deceptive persona referral hooks
@@ -583,10 +712,60 @@ class GroundTruthGatekeeper:
 
         # 1. Recipient deliverability & ground-truth gate
         email_ok, email_errors = cls.validate_recipient_email(
-            to_email, firm=firm, name=to_name, check_dns=check_dns
+            to_email,
+            firm=firm,
+            name=to_name,
+            check_dns=check_dns,
+            require_bar_verified=require_bar_verified,
         )
         if not email_ok:
             errors.extend(email_errors)
+
+        # 1b. Lead ground-truth cross-verification (identifier, math, and dollar balance fidelity)
+        if lead and isinstance(lead, dict):
+            norm_lead = {
+                "State": lead.get("State") or lead.get("state") or "",
+                "County": lead.get("County") or lead.get("county") or "",
+                "Case_or_TaxDeed_No": lead.get("Case_or_TaxDeed_No") if "Case_or_TaxDeed_No" in lead else lead.get("case_no", ""),
+                "Parcel_ID": lead.get("Parcel_ID") if "Parcel_ID" in lead else lead.get("parcel_id", ""),
+                "Surplus_Balance_USD": lead.get("Surplus_Balance_USD") if "Surplus_Balance_USD" in lead else lead.get("balance", 0),
+                "Owner_Name": lead.get("Owner_Name") or lead.get("owner_name") or "",
+                "Clerk_Verification_URL": lead.get("Clerk_Verification_URL") or lead.get("Source_URL") or lead.get("verify_url") or "",
+                "Gross_Sale_Price_USD": lead.get("Gross_Sale_Price_USD"),
+                "County_Deductions_USD": lead.get("County_Deductions_USD"),
+                "Net_Excess_Proceeds_USD": lead.get("Net_Excess_Proceeds_USD"),
+                "Financial_Reconciliation": lead.get("Financial_Reconciliation"),
+            }
+            lead_ok, lead_errs = cls.validate_lead_record(norm_lead)
+            if not lead_ok:
+                errors.extend([f"Lead record ground-truth failure: {e}" for e in lead_errs])
+
+            cid = str(norm_lead["Case_or_TaxDeed_No"] or "").strip().lower()
+            pid = str(norm_lead["Parcel_ID"] or "").strip().lower()
+            if (cid or pid) and not ((cid and (cid in subj_lower or cid in body_lower)) or (pid and (pid in subj_lower or pid in body_lower))):
+                errors.append(
+                    f"Outreach message does not reference the underlying docket identifier (case='{cid}', parcel='{pid}')."
+                )
+
+            try:
+                bal_val = float(norm_lead["Surplus_Balance_USD"] or 0)
+                if bal_val > 0:
+                    candidate_amounts = {
+                        f"${bal_val:,.0f}",
+                        f"${bal_val:,.2f}",
+                        f"${int(bal_val):,}",
+                    }
+                    for extra_k in ("Net_Excess_Proceeds_USD", "Gross_Sale_Price_USD"):
+                        ev = norm_lead.get(extra_k)
+                        if ev:
+                            ev_f = float(ev)
+                            candidate_amounts.update({f"${ev_f:,.0f}", f"${ev_f:,.2f}", f"${int(ev_f):,}"})
+                    if not any(amt in body for amt in candidate_amounts):
+                        errors.append(
+                            f"Outreach body dollar amount does not match lead ground-truth balance ({sorted(candidate_amounts)})."
+                        )
+            except (ValueError, TypeError):
+                pass
 
         # 2. Check for banned synthetic case numbers in subject and body
         for prefix in BANNED_CASE_PREFIXES:

@@ -173,11 +173,12 @@ class TestDeduplicationStress(unittest.TestCase):
         submitted = get_already_submitted()
         self.assertIsInstance(submitted, set)
         
-        # Verify that DNS dead domains are excluded
+        # Verify that DNS dead domains and bounced domains are excluded
         self.assertIn("rainslawfirm.com", submitted)
+        self.assertIn("kramerlaw.com", submitted)
         
         # Verify that temporary retryable errors are NOT excluded
-        self.assertNotIn("kramerlaw.com", submitted)
+        self.assertNotIn("thelopezlawgroup.com", submitted)
 
 
 class TestPipelineExecutionStress(unittest.TestCase):

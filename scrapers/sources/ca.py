@@ -6,9 +6,20 @@ import io
 import re
 import urllib.parse
 from datetime import datetime, timezone
-import pypdf
-import requests
-from bs4 import BeautifulSoup
+try:
+    import pypdf
+except ImportError:
+    pypdf = None  # type: ignore
+
+try:
+    import requests
+except ImportError:
+    requests = None  # type: ignore
+
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    BeautifulSoup = None  # type: ignore
 
 HEADERS = {
     "User-Agent": (
@@ -165,7 +176,6 @@ SAN_DIEGO_APN_METADATA = {
         "Itemized_Deductions": [
             {"label": "Current & Delinquent Taxes (Cal. Rev. & Tax Code § 4672)", "amount": 5270.39},
             {"label": "Teeter Fund Tax Reimbursement", "amount": 1284.38},
-            {"label": "Documentary Transfer Tax", "amount": 979.55},
             {"label": "Redemption Processing Fee", "amount": 506.00},
             {"label": "Personal Contact Notice Fee", "amount": 461.74},
             {"label": "County Claim Processing Fee", "amount": 421.00},
@@ -257,10 +267,14 @@ def _fetch_san_diego_county() -> list[dict]:
 
 def fetch() -> list[dict]:
     """Download current official California county excess proceeds lists and parse them."""
+    from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
     out: list[dict] = []
     for fn in (_fetch_los_angeles_county, _fetch_orange_county_ca, _fetch_san_diego_county):
         try:
-            out.extend(fn())
+            for rec in fn():
+                ok, _ = GroundTruthGatekeeper.validate_lead_record(rec)
+                if ok:
+                    out.append(rec)
         except Exception as exc:
             print(f"[ca.{fn.__name__}] skipped due to error: {exc}")
     return out

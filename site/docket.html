@@ -761,7 +761,7 @@
             // ==========================================
             const leadDataEarly = unredactedLead || r;
             const recon = leadDataEarly.Financial_Reconciliation || r.Financial_Reconciliation || null;
-            const netVal = parseFloat(leadDataEarly.Net_Excess_Proceeds_USD || (recon ? recon.Net_Excess_Proceeds_USD : (r.Net_Excess_Proceeds_USD || 881663.35))) || bal;
+            const netVal = parseFloat(leadDataEarly.Net_Excess_Proceeds_USD || r.Net_Excess_Proceeds_USD || (recon ? recon.Net_Excess_Proceeds_USD : bal)) || bal;
             const grossVal = parseFloat(leadDataEarly.Gross_Sale_Price_USD || r.Gross_Sale_Price_USD || (recon ? recon.Gross_Sale_Price_USD || recon.Winning_Bid_USD : bal)) || bal;
             const countyDeduct = parseFloat(leadDataEarly.County_Deductions_USD || r.County_Deductions_USD || (recon ? recon.County_Deductions_USD || recon.Statutory_Deductions_USD : 0)) || 0;
 
@@ -958,7 +958,7 @@
             const fee = bal * feeRate;
 
             const recon = r.Financial_Reconciliation || null;
-            const netVal = parseFloat(r.Net_Excess_Proceeds_USD || (recon ? recon.Net_Excess_Proceeds_USD : 881663.35)) || bal;
+            const netVal = parseFloat(r.Net_Excess_Proceeds_USD || (recon ? recon.Net_Excess_Proceeds_USD : bal)) || bal;
             const grossVal = parseFloat(r.Gross_Sale_Price_USD || (recon ? recon.Gross_Sale_Price_USD || recon.Winning_Bid_USD : bal)) || bal;
             const deductVal = parseFloat(r.County_Deductions_USD || (recon ? recon.County_Deductions_USD || recon.Statutory_Deductions_USD : 0)) || 0;
 
@@ -991,9 +991,6 @@ Property Situs:              ${r.Property_Address || 'N/A'}
 Official Auction Sale Price: $${grossVal.toLocaleString('en-US', {minimumFractionDigits: 2})}
 Net Surplus Trust Balance:   $${netVal.toLocaleString('en-US', {minimumFractionDigits: 2})}
 Statutory ${feePct} Fee Benchmark: $${(netVal * feeRate).toLocaleString('en-US', {minimumFractionDigits: 2})}
-Auction / Confirmation Date: ${r.Sale_Date || 'N/A'}
-Statutory Claim Window:      ${r.Claim_Deadline_Date || 'Active Window'}
-Statutory ${feePct} Fee Benchmark: $${fee.toLocaleString('en-US', {minimumFractionDigits: 2})}
 Auction / Confirmation Date: ${r.Sale_Date || 'N/A'}
 Statutory Claim Window:      ${r.Claim_Deadline_Date || 'Active Window'}
 ${reconBlock}

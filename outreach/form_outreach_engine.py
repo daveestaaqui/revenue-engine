@@ -1420,10 +1420,11 @@ def create_email_fallback_draft(target, failure_detail, is_dry_run=False):
             with open(feed_path, "r", encoding="utf-8") as ff:
                 for row in csv.DictReader(ff):
                     if row.get("State", "").upper() == state:
-                        case_no = (row.get("Case_or_TaxDeed_No") or "").strip()
+                        c_id = (row.get("Case_or_TaxDeed_No") or row.get("Parcel_ID") or "").strip()
                         county = (row.get("County") or "").strip()
                         bal_val = float(row.get("Surplus_Balance_USD", 0) or 0)
-                        if bal_val > 0 and case_no and county:
+                        if bal_val > 0 and c_id and county:
+                            case_no = c_id
                             balance = f"${bal_val:,.0f}"
                             statute = row.get("Governing_Statute", statute)
                             break
@@ -1433,18 +1434,19 @@ def create_email_fallback_draft(target, failure_detail, is_dry_run=False):
     if not (case_no and county and balance):
         return None
 
-    subject = f"{county} County surplus filing — {case_no}"
+    id_label = f"Parcel {case_no}" if state in ("GA", "CA") else f"Docket {case_no}"
+    subject = f"{county} County surplus filing — {id_label}"
     greeting = f"Hi {first_name}," if first_name != "Counsel" else f"Hello {firm} team,"
 
     body_text = f"""{greeting}
 
-I was reviewing recent {county} County court registry filings and came across {firm} while tracking active foreclosure and surplus recovery counsel in {state}.
+I was reviewing recent {county} County public surplus records and came across {firm} while tracking active foreclosure and excess proceeds recovery counsel in {state}.
 
-We track unencumbered surplus funds across clerk registries, and we recently identified a {balance} surplus balance on Case {case_no} in {county} County. Public county clerk records reflect an active unclaimed balance subject to statutory lien priority, and the claim window under {statute} is currently open.
+We monitor public surplus ledgers across county registries, and official records currently reflect a {balance} unclaimed surplus balance on {id_label} in {county} County. Under {statute}, the statutory claim filing window is currently open.
 
-Are you currently handling surplus recovery petitions or excess proceeds claims in {county} County?
+Would a quick look at the {id_label} docket summary be useful for your practice in {county} County?
 
-If helpful, we offer a Single-County 14-Day Pilot Dossier ($49 one-time, 100% money-back guarantee) or a 7-day practice evaluation for our multi-state feeds at:
+You can inspect our live multi-state docket feeds and statutory verification links at:
 https://surplusdocket.com
 
 Best regards,
@@ -1455,12 +1457,27 @@ david@surplusdocket.com
 https://surplusdocket.com
 """
 
+    clean_body = body_text.replace("sandwichfitness@gmail.com", "david@surplusdocket.com").replace("elena.brooks@surplusdocket.com", "david@surplusdocket.com")
+
+    try:
+        from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
+        gt_ok, gt_errs = GroundTruthGatekeeper.validate_outreach_message(
+            to_email=email_addr,
+            to_name=name,
+            firm=firm,
+            subject=subject,
+            body=clean_body,
+            check_dns=False,
+        )
+        if not gt_ok:
+            return None
+    except Exception:
+        pass
+
     drafts_dir = OUTREACH_DIR / "preview_artifacts" / "drafts" if is_dry_run else OUTREACH_DIR / "drafts"
     drafts_dir.mkdir(parents=True, exist_ok=True)
     safe_email = re.sub(r"[^a-zA-Z0-9]", "_", email_addr)
     draft_file = drafts_dir / f"fallback_{safe_email}.eml"
-
-    clean_body = body_text.replace("sandwichfitness@gmail.com", "david@surplusdocket.com").replace("elena.brooks@surplusdocket.com", "david@surplusdocket.com")
 
     eml_content = f"""From: David Mahler <david@surplusdocket.com>
 Reply-To: david@surplusdocket.com

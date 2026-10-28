@@ -89,10 +89,14 @@ def _fetch_davidson_county() -> list[dict]:
 
 def fetch() -> list[dict]:
     """Download current official Tennessee county excess proceeds lists and parse them."""
+    from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
     out: list[dict] = []
     for fn in (_fetch_davidson_county,):
         try:
-            out.extend(fn())
+            for rec in fn():
+                ok, _ = GroundTruthGatekeeper.validate_lead_record(rec)
+                if ok:
+                    out.append(rec)
         except Exception as exc:
             print(f"[tn.{fn.__name__}] skipped due to error: {exc}")
     return out

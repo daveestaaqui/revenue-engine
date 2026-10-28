@@ -200,6 +200,86 @@ class TestGroundTruthGatekeeper(unittest.TestCase):
         )
         self.assertTrue(ok, f"Expected clean outreach to pass, got: {errors}")
 
+    def test_require_bar_verified_enforcement(self):
+        clean_subject = "Hillsborough County surplus filing — 24-CA-001234"
+        clean_body = (
+            "Hi Counsel,\n\n"
+            "In Hillsborough County, the county court registry lists a $125,000.00 unclaimed balance on Case 24-CA-001234. "
+            "Under Fla. Stat. § 197.582, excess proceeds remain subject to statutory lien priority.\n\n"
+            "Best regards,\nDavid Mahler\nsurplusdocket.com\ndavid@surplusdocket.com"
+        )
+        # Unverified recipient must fail when require_bar_verified=True
+        ok, errors = GroundTruthGatekeeper.validate_outreach_message(
+            to_email="unverified@randomlawfirm.com",
+            to_name="Counsel",
+            firm="Random Law Firm",
+            subject=clean_subject,
+            body=clean_body,
+            require_bar_verified=True,
+        )
+        self.assertFalse(ok)
+        self.assertTrue(any("not in VERIFIED_BAR_REGISTRY" in e for e in errors))
+
+        # Verified Bar recipient must pass when require_bar_verified=True
+        ok2, errors2 = GroundTruthGatekeeper.validate_outreach_message(
+            to_email="weidner@mattweidnerlaw.com",
+            to_name="Matthew D. Weidner",
+            firm="Matthew D. Weidner, P.A.",
+            subject=clean_subject,
+            body=clean_body,
+            require_bar_verified=True,
+        )
+        self.assertTrue(ok2, f"Expected verified Bar attorney to pass, got: {errors2}")
+
+    def test_lead_cross_check_in_outreach(self):
+        lead = {
+            "State": "FL",
+            "County": "Hillsborough",
+            "Case_or_TaxDeed_No": "24-CA-001234",
+            "Parcel_ID": "",
+            "Surplus_Balance_USD": 125000.0,
+            "Clerk_Verification_URL": "https://www.hillsclerk.com/taxdeeds",
+        }
+        # Mismatched dollar amount ($999,999.00 vs $125,000.00) must fail
+        bad_body = (
+            "Hi Matthew,\n\n"
+            "In Hillsborough County, the court registry lists a $999,999.00 balance on Case 24-CA-001234.\n\n"
+            "Best regards,\nDavid Mahler\nsurplusdocket.com\ndavid@surplusdocket.com"
+        )
+        ok, errors = GroundTruthGatekeeper.validate_outreach_message(
+            to_email="weidner@mattweidnerlaw.com",
+            to_name="Matthew D. Weidner",
+            firm="Matthew D. Weidner, P.A.",
+            subject="Hillsborough County surplus — Case 24-CA-001234",
+            body=bad_body,
+            lead=lead,
+        )
+        self.assertFalse(ok)
+        self.assertTrue(any("Outreach body dollar amount does not match lead ground-truth balance" in e for e in errors))
+
+    def test_reconciliation_math_validation(self):
+        # Mismatched itemized deductions sum must be caught by validate_lead_record
+        bad_lead = {
+            "State": "CA",
+            "County": "San Diego",
+            "Case_or_TaxDeed_No": "",
+            "Parcel_ID": "360-150-12-00",
+            "Surplus_Balance_USD": 881663.35,
+            "Clerk_Verification_URL": "https://www.sdttc.com",
+            "Financial_Reconciliation": {
+                "Gross_Sale_Price_USD": 890100.00,
+                "County_Deductions_USD": 8436.65,
+                "Net_Excess_Proceeds_USD": 881663.35,
+                "Itemized_Deductions": [
+                    {"label": "Property Taxes", "amount": 5000.00},
+                    {"label": "Extra Erroneous Tax", "amount": 4416.20},
+                ],
+            },
+        }
+        ok, errors = GroundTruthGatekeeper.validate_lead_record(bad_lead)
+        self.assertFalse(ok)
+        self.assertTrue(any("Itemized deductions sum" in e for e in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

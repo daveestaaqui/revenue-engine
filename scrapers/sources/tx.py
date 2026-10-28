@@ -217,10 +217,14 @@ def _fetch_fort_bend_county() -> list[dict]:
 
 def fetch() -> list[dict]:
     """Download current official Texas county excess proceeds lists and parse them."""
+    from compliance.ground_truth_gatekeeper import GroundTruthGatekeeper
     out: list[dict] = []
     for fn in (_fetch_dallas_county, _fetch_fort_bend_county):
         try:
-            out.extend(fn())
+            for rec in fn():
+                ok, _ = GroundTruthGatekeeper.validate_lead_record(rec)
+                if ok:
+                    out.append(rec)
         except Exception as exc:
             print(f"[tx.{fn.__name__}] skipped due to error: {exc}")
     return out

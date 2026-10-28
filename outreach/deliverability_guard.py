@@ -10,10 +10,12 @@ before any outreach email can be queued or dispatched:
 4. Yahoo / strict DMARC gateway detection: flags strict authentication requirements.
 """
 
+import csv
 import ipaddress
 import json
 import re
 import socket
+import subprocess
 import sys
 from pathlib import Path
 
@@ -21,11 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
 BOUNCED_JSON = BASE_DIR / "outreach" / "bounced_emails.json"
+SENT_LOG_CSV = BASE_DIR / "outreach" / "sent_log.csv"
 
 GENERIC_ROLE_PREFIXES = (
     "info@", "contact@", "admin@", "support@", "editor@", "compliance@",
     "legal@", "help@", "office@", "billing@", "sales@", "inquiries@",
-    "media@", "press@", "team@", "careers@", "jobs@", "feedback@"
+    "media@", "press@", "team@", "careers@", "jobs@", "feedback@",
+    "consultations@", "intake@", "reception@", "general@", "mail@"
 )
 
 # Providers known to reject unauthenticated relays with 550 5.7.9
@@ -37,7 +41,7 @@ STRICT_DKIM_MX_PROVIDERS = (
 
 
 def load_bounced_blacklist() -> set:
-    """Loads all blacklisted emails and domains from bounced_emails.json."""
+    """Loads all blacklisted emails and domains from bounced_emails.json and sent_log.csv."""
     blacklist = set()
     if BOUNCED_JSON.exists():
         try:
@@ -45,6 +49,21 @@ def load_bounced_blacklist() -> set:
                 for item in json.load(f):
                     if isinstance(item, str):
                         blacklist.add(item.strip().lower())
+        except Exception:
+            pass
+    if SENT_LOG_CSV.exists():
+        try:
+            with open(SENT_LOG_CSV, "r", encoding="utf-8") as f:
+                for row in csv.DictReader(f):
+                    st = (row.get("Status") or "").upper()
+                    if "BOUNCE" in st:
+                        em = (row.get("Email") or "").strip().lower()
+                        if em:
+                            blacklist.add(em)
+                            if "@" in em:
+                                dom = em.split("@")[-1]
+                                if dom not in ("gmail.com", "outlook.com", "yahoo.com"):
+                                    blacklist.add(dom)
         except Exception:
             pass
     return blacklist
@@ -70,9 +89,9 @@ def check_domain_mx(domain: str) -> tuple[bool, str]:
             mx_hosts = []
             for r in answers:
                 exchange = str(r.exchange).rstrip(".").lower()
-                # RFC 7505 null MX check
-                if exchange in ("", ".", "0"):
-                    return False, f"Domain '{clean_domain}' publishes null MX record (explicitly rejects mail)"
+                # RFC 7505 null MX or unconfigured placeholder MX check
+                if exchange in ("", ".", "0") or ".invalid." in exchange or exchange.endswith(".invalid"):
+                    return False, f"Domain '{clean_domain}' publishes null/invalid MX record ({exchange})"
                 mx_hosts.append(exchange)
 
             # Check if domain uses strict Yahoo MX without custom DKIM
@@ -93,7 +112,35 @@ def check_domain_mx(domain: str) -> tuple[bool, str]:
     except ImportError:
         pass
 
-    # 2. Fallback to socket getaddrinfo
+    # 2. Fallback to system `host -t MX` utility for accurate MX inspection without dnspython
+    try:
+        proc = subprocess.run(
+            ["host", "-t", "MX", clean_domain],
+            capture_output=True,
+            text=True,
+            timeout=3.0,
+        )
+        out = (proc.stdout or "").strip().lower()
+        if "mail is handled by 0 ." in out:
+            return False, f"Domain '{clean_domain}' publishes null MX record (explicitly rejects mail)"
+        if "not found: 3(nxdomain)" in out or ("host " in out and "not found" in out):
+            return False, f"Domain '{clean_domain}' does not exist (NXDOMAIN)"
+        if "has no mail handler" in out:
+            return False, f"Domain '{clean_domain}' has no active MX records"
+        mx_matches = re.findall(r"mail is handled by \d+\s+([^\s\n]+)", out)
+        if mx_matches:
+            mx_hosts = [m.rstrip(".") for m in mx_matches if m.rstrip(".") not in ("", "0")]
+            for mx in mx_hosts:
+                if ".invalid." in mx or mx.endswith(".invalid"):
+                    return False, f"Domain '{clean_domain}' publishes invalid placeholder MX record ({mx})"
+                if any(p in mx for p in STRICT_DKIM_MX_PROVIDERS):
+                    return False, f"Domain '{clean_domain}' routes through Yahoo/AOL MX ({mx}) which rejects relay without custom domain DKIM"
+            if mx_hosts:
+                return True, f"MX verified: {mx_hosts[0]}"
+    except Exception:
+        pass
+
+    # 3. Fallback to socket getaddrinfo
     try:
         addrinfo = socket.getaddrinfo(clean_domain, 25, proto=socket.IPPROTO_TCP)
         if not addrinfo:
