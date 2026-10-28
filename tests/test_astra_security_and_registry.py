@@ -645,7 +645,8 @@ class AutoResponderSentinelIntegrationTests(unittest.TestCase):
 
         with patch("outreach.auto_responder_and_draft_cleaner.send_response_email") as mock_send, \
              patch("outreach.auto_responder_and_draft_cleaner.load_created_drafts", return_value=set()), \
-             patch("outreach.auto_responder_and_draft_cleaner.save_created_draft"):
+             patch("outreach.auto_responder_and_draft_cleaner.save_created_draft"), \
+             patch("outreach.auto_responder_and_draft_cleaner.log"):
             check_and_create_auto_responses(
                 mock_mail, {}, enforce_delay=False, enforce_hours=False
             )

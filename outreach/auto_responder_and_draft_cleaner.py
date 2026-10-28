@@ -379,12 +379,17 @@ def load_created_drafts():
     return set()
 
 
+def _stable_hash_int(val, mod=10000000):
+    digest = hashlib.sha256(str(val).encode("utf-8", errors="ignore")).hexdigest()
+    return int(digest[:12], 16) % max(1, int(mod))
+
+
 def save_created_draft(draft_key):
     drafts = load_created_drafts()
     drafts.add(draft_key)
     try:
         with open(CREATED_DRAFTS_LOG, "w", encoding="utf-8") as f:
-            json.dump(list(drafts), f, indent=2)
+            json.dump(sorted(drafts), f, indent=2)
     except Exception:
         pass
 
@@ -400,7 +405,7 @@ def get_required_human_delay(message_id, sender_email, text_body):
     """
     seed = f"{message_id}_{sender_email}_{text_body[:40]}"
     jitter_range = max(1, MAX_HUMAN_RESPONSE_DELAY_SECONDS - MIN_HUMAN_RESPONSE_DELAY_SECONDS)
-    jitter = abs(hash(seed)) % jitter_range
+    jitter = _stable_hash_int(seed, jitter_range)
     return MIN_HUMAN_RESPONSE_DELAY_SECONDS + jitter
 
 
@@ -911,7 +916,7 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
             "jurisdiction": state_name,
             "state_code": det_state or "",
             "docket": "",
-            "ref": f"DIRECT-INQ-{hash(s_email + text_body[:40]) % 10000000}",
+            "ref": f"DIRECT-INQ-{_stable_hash_int(s_email + text_body[:40], 10000000)}",
             "message": text_body.strip(),
             "is_direct_inbound": True,
         }
@@ -2321,7 +2326,7 @@ def parse_google_voice_voicemail(sender_email, subject_raw, text_body, msg=None)
         else:
             caller_name = f"Inquiring Counsel ({caller_phone})"
 
-    ref_hash = abs(hash(transcript[:60])) % 1000000
+    ref_hash = _stable_hash_int(transcript[:60], 1000000)
     return {
         "name": caller_name,
         "email": caller_email,
@@ -3555,7 +3560,7 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                             f"{persona['name']} auto-dispatched concise follow-up addressing inquiry directly."
                         )
                     record_notable_email_activity({
-                        "id": f"ACT-{abs(hash(draft_key)) % 10000000}",
+                        "id": f"ACT-{_stable_hash_int(draft_key, 10000000)}",
                         "timestamp": datetime.now().isoformat(),
                         "sender_name": prospect_name,
                         "sender_email": prospect_email,
@@ -3601,7 +3606,7 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
         # -------------------------------------------------------------
         # 4. VERIFIED LAW FIRM OUTREACH REPLY HANDLING
         # -------------------------------------------------------------
-        msg_uid = re.sub(r"[^a-zA-Z0-9_\-]", "", message_id) if message_id else f"{sender_email}_{hash(text_body[:80])}"
+        msg_uid = re.sub(r"[^a-zA-Z0-9_\-]", "", message_id) if message_id else f"{sender_email}_{_stable_hash_int(text_body[:80], 10000000)}"
         draft_key = f"reply:{sender_email}:{msg_uid}"
         if draft_key in already_drafted:
             if not is_already_seen:
@@ -3668,7 +3673,7 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                     f"Intent: {intent}. Auto-responded with tailored statutory analysis."
                 )
                 record_notable_email_activity({
-                    "id": f"ACT-{abs(hash(draft_key)) % 10000000}",
+                    "id": f"ACT-{_stable_hash_int(draft_key, 10000000)}",
                     "timestamp": datetime.now().isoformat(),
                     "sender_name": sender_name,
                     "sender_email": sender_email,
@@ -3708,7 +3713,7 @@ def check_and_create_auto_responses(mail, state_cases, enforce_delay=True, enfor
                 mail.store(mid, "+FLAGS", r"(\Seen)")
                 log(f"  🎉 Contextual [{intent}] follow-up draft created in Gmail for {sender_email}!")
                 record_notable_email_activity({
-                    "id": f"ACT-{abs(hash(draft_key)) % 10000000}",
+                    "id": f"ACT-{_stable_hash_int(draft_key, 10000000)}",
                     "timestamp": datetime.now().isoformat(),
                     "sender_name": sender_name,
                     "sender_email": sender_email,

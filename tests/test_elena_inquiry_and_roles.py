@@ -929,7 +929,9 @@ Play message: https://voice.google.com/message/4956"""
         msg.attach(audio_part)
 
         whisper_output = "Hi, this is Sarah Jenkins with Jenkins Property Law in Fulton County Georgia. My email is sarah at jenkins law dot com. Please send your surplus feed."
-        with patch("outreach.auto_responder_and_draft_cleaner.transcribe_voicemail_audio", return_value=whisper_output):
+        with patch("outreach.auto_responder_and_draft_cleaner.transcribe_voicemail_audio", return_value=whisper_output), \
+             patch("outreach.auto_responder_and_draft_cleaner.log"), \
+             patch("portal.ai_provider.record_ai_usage"):
             inq = parse_google_voice_voicemail(sender, subject, body, msg=msg)
             self.assertIsNotNone(inq)
             self.assertTrue(inq["audio_reviewed"])
@@ -1027,6 +1029,9 @@ Play message: https://voice.google.com/message/4956"""
         with patch("outreach.auto_responder_and_draft_cleaner.send_response_email") as mock_send, \
              patch("outreach.auto_responder_and_draft_cleaner.is_within_sending_hours", return_value=(False, "Closed")), \
              patch("outreach.auto_responder_and_draft_cleaner.record_notable_email_activity"), \
+             patch("outreach.auto_responder_and_draft_cleaner.load_created_drafts", return_value=set()), \
+             patch("outreach.auto_responder_and_draft_cleaner.save_created_draft"), \
+             patch("outreach.auto_responder_and_draft_cleaner.log"), \
              patch("outreach.auto_responder_and_draft_cleaner.AUTO_SEND", True), \
              patch("outreach.auto_responder_and_draft_cleaner.SEND_VOICEMAIL_MEMOS", True):
             mock_send.return_value = (True, "Delivered")
@@ -1078,6 +1083,9 @@ Play message: https://voice.google.com/message/4956"""
         with patch("outreach.auto_responder_and_draft_cleaner.send_response_email") as mock_send, \
              patch("outreach.auto_responder_and_draft_cleaner.is_within_sending_hours", return_value=(False, "Closed")), \
              patch("outreach.auto_responder_and_draft_cleaner.record_notable_email_activity"), \
+             patch("outreach.auto_responder_and_draft_cleaner.load_created_drafts", return_value=set()), \
+             patch("outreach.auto_responder_and_draft_cleaner.save_created_draft"), \
+             patch("outreach.auto_responder_and_draft_cleaner.log"), \
              patch("outreach.auto_responder_and_draft_cleaner.AUTO_SEND", True):
             mock_send.return_value = (True, "Delivered")
             check_and_create_auto_responses(

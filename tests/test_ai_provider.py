@@ -88,7 +88,8 @@ class TestAIProvider(unittest.TestCase):
         mock_resp.read.return_value = json.dumps(mock_payload).encode("utf-8")
         mock_resp.__enter__.return_value = mock_resp
 
-        with patch("urllib.request.urlopen", return_value=mock_resp):
+        with patch("urllib.request.urlopen", return_value=mock_resp), \
+             patch("portal.ai_provider.record_ai_usage"):
             res = transcribe_audio_with_gemini(b"fake_audio", mime_type="audio/mp3", api_key="fake-gemini-key")
             self.assertIsNotNone(res)
             self.assertEqual(res["name"], "Sarah Jenkins")
@@ -99,14 +100,23 @@ class TestAIProvider(unittest.TestCase):
 
     def test_record_ai_usage(self):
         """Verifies that record_ai_usage logs correctly to data/ai_usage_ledger.json."""
-        record_ai_usage("google_gemini", "gemini-1.5-flash", "unit_test", input_tokens=50, output_tokens=25, cost_usd=0.0)
-        self.assertTrue(LEDGER_FILE.exists())
-        with open(LEDGER_FILE, "r", encoding="utf-8") as f:
-            ledger = json.load(f)
-            self.assertTrue(len(ledger) > 0)
-            last = ledger[-1]
-            self.assertEqual(last["provider"], "google_gemini")
-            self.assertEqual(last["task_type"], "unit_test")
+        import tempfile
+        with tempfile.NamedTemporaryFile("w+", suffix=".json", delete=False) as tf:
+            tf.write("[]")
+            tf.flush()
+            tmp_ledger = Path(tf.name)
+        try:
+            with patch("portal.ai_provider.LEDGER_FILE", tmp_ledger):
+                record_ai_usage("google_gemini", "gemini-1.5-flash", "unit_test", input_tokens=50, output_tokens=25, cost_usd=0.0)
+                self.assertTrue(tmp_ledger.exists())
+                with open(tmp_ledger, "r", encoding="utf-8") as f:
+                    ledger = json.load(f)
+                    self.assertTrue(len(ledger) > 0)
+                    last = ledger[-1]
+                    self.assertEqual(last["provider"], "google_gemini")
+                    self.assertEqual(last["task_type"], "unit_test")
+        finally:
+            tmp_ledger.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":

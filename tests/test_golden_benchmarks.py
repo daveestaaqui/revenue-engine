@@ -217,27 +217,39 @@ class TestGoldenAIProviderBudget(unittest.TestCase):
     """Verifies Gemini-first AI Provider and Atomic Budget Ledger."""
 
     def test_ai_budget_recording(self):
-        initial_ledger = load_ai_usage_ledger()
-        initial_count = len(initial_ledger.get("transactions", []))
+        import tempfile
+        from unittest.mock import patch
+        with tempfile.NamedTemporaryFile("w+", suffix=".json", delete=False) as tf:
+            tf.write("[]")
+            tf.flush()
+            tmp_ledger = Path(tf.name)
+        try:
+            with patch("portal.ai_provider.LEDGER_FILE", tmp_ledger):
+                initial_ledger = load_ai_usage_ledger()
+                initial_count = len(initial_ledger.get("transactions", []))
 
-        record = record_ai_usage(
-            provider="gemini",
-            model="gemini-1.5-flash",
-            operation="test_golden_benchmark",
-            prompt_tokens=150,
-            completion_tokens=50,
-            cost_usd=0.000035,
-            metadata={"test": "golden_benchmark"}
-        )
-        self.assertEqual(record["provider"], "gemini")
-        self.assertGreater(record["cost_usd"], 0)
+                record = record_ai_usage(
+                    provider="gemini",
+                    model="gemini-1.5-flash",
+                    operation="test_golden_benchmark",
+                    prompt_tokens=150,
+                    completion_tokens=50,
+                    cost_usd=0.000035,
+                    metadata={"test": "golden_benchmark"}
+                )
+                self.assertEqual(record["provider"], "gemini")
+                self.assertGreater(record["cost_usd"], 0)
 
-        updated_ledger = load_ai_usage_ledger()
-        self.assertEqual(len(updated_ledger.get("transactions", [])), initial_count + 1)
+                updated_ledger = load_ai_usage_ledger()
+                self.assertEqual(len(updated_ledger.get("transactions", [])), initial_count + 1)
+        finally:
+            tmp_ledger.unlink(missing_ok=True)
 
     def test_gemini_multimodal_audio_fallback(self):
         """Audio transcription should gracefully fall back to Whisper when Gemini mock returns None."""
-        res = transcribe_audio_with_gemini(b"FAKE_AUDIO_DATA_FOR_TEST", "audio/mp3", "test_call.mp3")
+        from unittest.mock import patch
+        with patch("portal.ai_provider.record_ai_usage"):
+            res = transcribe_audio_with_gemini(b"FAKE_AUDIO_DATA_FOR_TEST", "audio/mp3", "test_call.mp3")
         # In test mode without API keys, returns None or Whisper fallback dict
         if res is not None:
             self.assertIn("transcript", res)
@@ -309,6 +321,21 @@ class TestGoldenLienScreening(unittest.TestCase):
 
 class TestGoldenSentinel(unittest.TestCase):
     """Verifies bounded autonomous sentinel containment and audit logging."""
+
+    def setUp(self):
+        import tempfile
+        from unittest.mock import patch
+        self._tf = tempfile.NamedTemporaryFile("w+", suffix=".json", delete=False)
+        self._tf.write("[]")
+        self._tf.flush()
+        self._tf.close()
+        self._tmp_sentinel = Path(self._tf.name)
+        self._patcher = patch("portal.sentinel.SENTINEL_LOG_FILE", self._tmp_sentinel)
+        self._patcher.start()
+
+    def tearDown(self):
+        self._patcher.stop()
+        self._tmp_sentinel.unlink(missing_ok=True)
 
     def test_sentinel_records_event(self):
         event = record_sentinel_event(
