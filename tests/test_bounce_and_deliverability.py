@@ -1,8 +1,14 @@
 import json
+import sys
+import tempfile
 import unittest
 from email.message import EmailMessage
 from pathlib import Path
 from unittest.mock import patch, MagicMock
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
 
 from outreach.deliverability_guard import (
     validate_recipient_deliverability,
@@ -15,6 +21,7 @@ from outreach.bounce_processor import (
     extract_bounce_metadata,
     record_bounced_entity,
     update_sent_log_bounce,
+    update_target_csv_bounce,
     remove_from_verified_pool,
 )
 
@@ -29,13 +36,18 @@ class TestDeliverabilityGuard(unittest.TestCase):
         self.assertFalse(ok2)
 
     def test_generic_role_rejection(self):
-        ok, msg = validate_recipient_deliverability("info@lawfirm.com", check_dns=False)
-        self.assertFalse(ok)
-        self.assertIn("generic department mailbox", msg)
-
-        ok2, msg2 = validate_recipient_deliverability("contact@lawfirm.com", check_dns=False)
-        self.assertFalse(ok2)
-        self.assertIn("generic department mailbox", msg2)
+        with patch("outreach.deliverability_guard.load_bounced_blacklist", return_value=set()):
+            for role_email in (
+                "info@lawfirm.com",
+                "contact@lawfirm.com",
+                "clinics@law.georgetown.edu",
+                "lpm@americanbar.org",
+                "law@mclaughlinlawfirm.com",
+                "hlab@law.harvard.edu",
+            ):
+                ok, msg = validate_recipient_deliverability(role_email, check_dns=False)
+                self.assertFalse(ok, f"Expected role prefix rejection for {role_email}")
+                self.assertIn("generic department mailbox", msg)
 
     def test_blacklisted_email_and_domain(self):
         with patch("outreach.deliverability_guard.load_bounced_blacklist", return_value={"dead@target.com", "baddomain.com"}):
@@ -109,6 +121,21 @@ class TestBounceProcessor(unittest.TestCase):
             args, _ = mock_dump.call_args
             self.assertIn("testattorney@badfirm.com", args[0])
             self.assertIn("badfirm.com", args[0])
+
+    def test_update_target_csv_bounce_deletes_row(self):
+        with tempfile.NamedTemporaryFile("w+", delete=False, suffix=".csv") as tf:
+            tf.write("Email,Name,Verified_Status\ndead@firm.com,Dead Lawyer,VERIFIED_ACTIVE\nalive@firm.com,Alive Lawyer,VERIFIED_ACTIVE\n")
+            tf.flush()
+            p = Path(tf.name)
+        try:
+            removed = update_target_csv_bounce(p, "dead@firm.com")
+            self.assertEqual(removed, 1)
+            txt = p.read_text()
+            self.assertNotIn("dead@firm.com", txt)
+            self.assertIn("alive@firm.com", txt)
+        finally:
+            if p.exists():
+                p.unlink()
 
 
 if __name__ == "__main__":

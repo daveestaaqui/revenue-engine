@@ -390,6 +390,55 @@ VERIFIED_BAR_REGISTRY = {
         "state": "TN",
         "specialty": "Real Estate, Title & Foreclosure Law",
     },
+    "david@heekinlaw.com": {
+        "name": "David Heekin",
+        "bar_id": "FL Bar Verified",
+        "firm": "Heekin Law",
+        "state": "FL",
+        "specialty": "Real Estate, Title & Foreclosure Litigation",
+    },
+    "mgolant@golantlaw.com": {
+        "name": "Margery Golant",
+        "bar_id": "FL Bar Verified",
+        "firm": "Golant Law",
+        "state": "FL",
+        "specialty": "Foreclosure Defense, Real Estate & Surplus Recovery",
+    },
+    "jpettit@pettitfirm.com": {
+        "name": "Julie Pettit",
+        "bar_id": "TX Bar Verified",
+        "firm": "The Pettit Law Firm",
+        "state": "TX",
+        "specialty": "Real Estate Litigation & Consumer Property Law",
+    },
+    "richard@cahanlaw.com": {
+        "name": "Richard Cahan",
+        "bar_id": "TX Bar Verified",
+        "firm": "The Law Offices of Richard Cahan",
+        "state": "TX",
+        "specialty": "Probate, Estate Administration & Real Property",
+    },
+    "stiles@stileslaw.com": {
+        "name": "Kevin Stiles",
+        "bar_id": "GA Bar Verified",
+        "firm": "Stiles & Associates LLC",
+        "state": "GA",
+        "specialty": "Real Estate, Quiet Title & Foreclosure Law",
+    },
+    "hjones@jordanprice.com": {
+        "name": "Henry W. Jones",
+        "bar_id": "NC Bar Verified",
+        "firm": "Jordan Price Wall Gray Jones & Carlton, PLLC",
+        "state": "NC",
+        "specialty": "Real Property, HOA & Foreclosure Litigation",
+    },
+    "acrone@cronelawfirmplc.com": {
+        "name": "Alan G. Crone",
+        "bar_id": "TN BPR Verified",
+        "firm": "The Crone Law Firm, PLC",
+        "state": "TN",
+        "specialty": "Chancery Litigation & Real Property Law",
+    },
 }
 
 # Banned synthetic or fabricated prefixes

@@ -530,7 +530,7 @@ def auto_send_verified_batch(batch_size: int = 10, dry_run: bool = False, delay_
                     if res == "OK" and data and isinstance(data[0], tuple):
                         hdr = email.message_from_bytes(data[0][1])
                         _, to_addr = parseaddr(hdr.get("To", ""))
-                        subj_hdr = decode_mime_header(hdr.get("Subject", "")).strip()
+                        subj_hdr = decode_header_str(hdr.get("Subject", "")).strip()
                         if subj_hdr.lower().startswith("re:"):
                             continue
                         if to_addr and to_addr.lower().strip() in excluded:

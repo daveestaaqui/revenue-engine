@@ -397,5 +397,54 @@
     "balance": 102459.86,
     "subject": "Hillsborough County court registry surplus \u2014 Case 26-LW-000346",
     "property_address": "Hillsborough County Tax Deed Registry Parcel, Tampa, FL"
+  },
+  {
+    "email": "david@heekinlaw.com",
+    "name": "David Heekin",
+    "firm": "Heekin Law",
+    "state": "FL",
+    "docket_key": "26-lw-000702"
+  },
+  {
+    "email": "stiles@stileslaw.com",
+    "name": "Kevin Stiles",
+    "firm": "Stiles & Associates LLC",
+    "state": "GA",
+    "docket_key": "18 172 01 104"
+  },
+  {
+    "email": "mgolant@golantlaw.com",
+    "name": "Margery Golant",
+    "firm": "Golant Law",
+    "state": "FL",
+    "docket_key": "26-ca-000549"
+  },
+  {
+    "email": "jpettit@pettitfirm.com",
+    "name": "Julie Pettit",
+    "firm": "The Pettit Law Firm",
+    "state": "TX",
+    "docket_key": "tx-24-00418"
+  },
+  {
+    "email": "richard@cahanlaw.com",
+    "name": "Richard Cahan",
+    "firm": "The Law Offices of Richard Cahan",
+    "state": "TX",
+    "docket_key": "tx-24-01450"
+  },
+  {
+    "email": "hjones@jordanprice.com",
+    "name": "Henry W. Jones",
+    "firm": "Jordan Price Wall Gray Jones & Carlton, PLLC",
+    "state": "NC",
+    "docket_key": ""
+  },
+  {
+    "email": "acrone@cronelawfirmplc.com",
+    "name": "Alan G. Crone",
+    "firm": "The Crone Law Firm, PLC",
+    "state": "TN",
+    "docket_key": "05307008300"
   }
 ]

@@ -24,24 +24,38 @@ sys.path.insert(0, str(BASE_DIR))
 
 BOUNCED_JSON = BASE_DIR / "outreach" / "bounced_emails.json"
 SENT_LOG_CSV = BASE_DIR / "outreach" / "sent_log.csv"
+TOOL_LOG_CSV = BASE_DIR / "marketing" / "link_building" / "tool_outreach_log.csv"
 
 GENERIC_ROLE_PREFIXES = (
     "info@", "contact@", "admin@", "support@", "editor@", "compliance@",
     "legal@", "help@", "office@", "billing@", "sales@", "inquiries@",
     "media@", "press@", "team@", "careers@", "jobs@", "feedback@",
-    "consultations@", "intake@", "reception@", "general@", "mail@"
+    "consultations@", "intake@", "reception@", "general@", "mail@",
+    "clinics@", "lawclinics@", "law_clinics@", "consumerlaw@", "lpm@",
+    "cpm@", "tba@", "tips@", "pulse@", "legalfuel@", "submissions@",
+    "webmaster@", "hlab@", "communitylawclinic@", "registrar@", "dean@",
+    "faculty@", "director@", "president@", "service@", "accounting@",
+    "hr@", "marketing@", "hello@", "enquiries@", "news@", "newsletter@",
+    "events@", "membership@", "law@"
 )
 
-# Providers known to reject unauthenticated relays with 550 5.7.9
+# Providers known to reject unauthenticated relays with 550 5.7.9 or parked/sinkhole MX hosts
 STRICT_DKIM_MX_PROVIDERS = (
     "yahoodns.net",
     "yahoomail.com",
     "aol.com",
+    "parklogic",
+    "sedoparking",
+    "bodis.com",
+    "above.com",
+    "unregister",
+    "localhost",
+    "0.0.0.0",
 )
 
 
 def load_bounced_blacklist() -> set:
-    """Loads all blacklisted emails and domains from bounced_emails.json and sent_log.csv."""
+    """Loads all blacklisted emails and domains from bounced_emails.json, sent_log.csv, and tool_outreach_log.csv."""
     blacklist = set()
     if BOUNCED_JSON.exists():
         try:
@@ -51,18 +65,47 @@ def load_bounced_blacklist() -> set:
                         blacklist.add(item.strip().lower())
         except Exception:
             pass
+    shared_domains = (
+        "gmail.com", "googlemail.com", "outlook.com", "yahoo.com",
+        "americanbar.org", "ncbar.org", "gabar.org", "floridabar.org",
+        "texasbar.com", "nysba.org", "okbar.org", "azbar.org"
+    )
     if SENT_LOG_CSV.exists():
         try:
             with open(SENT_LOG_CSV, "r", encoding="utf-8") as f:
+                rows = list(csv.DictReader(f))
+            delivered_domains = {
+                (r.get("Email") or "").strip().lower().split("@")[-1]
+                for r in rows
+                if "SENT" in (r.get("Status") or "").upper()
+                and "BOUNCE" not in (r.get("Status") or "").upper()
+                and "DRY_RUN" not in (r.get("Status") or "").upper()
+                and "@" in (r.get("Email") or "")
+            }
+            for row in rows:
+                st = (row.get("Status") or "").upper()
+                if "BOUNCE" in st:
+                    em = (row.get("Email") or "").strip().lower()
+                    if em:
+                        blacklist.add(em)
+                        if "@" in em:
+                            dom = em.split("@")[-1]
+                            if dom not in shared_domains and not dom.endswith(".edu") and dom not in delivered_domains:
+                                blacklist.add(dom)
+        except Exception:
+            pass
+    if TOOL_LOG_CSV.exists():
+        try:
+            with open(TOOL_LOG_CSV, "r", encoding="utf-8") as f:
                 for row in csv.DictReader(f):
-                    st = (row.get("Status") or "").upper()
+                    st = (row.get("status") or "").upper()
                     if "BOUNCE" in st:
-                        em = (row.get("Email") or "").strip().lower()
+                        em = (row.get("recipient_email") or "").strip().lower()
                         if em:
                             blacklist.add(em)
                             if "@" in em:
                                 dom = em.split("@")[-1]
-                                if dom not in ("gmail.com", "outlook.com", "yahoo.com", "americanbar.org", "ncbar.org", "gabar.org", "floridabar.org", "texasbar.com", "nysba.org", "okbar.org", "azbar.org") and not dom.endswith(".edu"):
+                                if dom not in shared_domains and not dom.endswith(".edu"):
                                     blacklist.add(dom)
         except Exception:
             pass

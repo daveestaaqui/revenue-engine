@@ -32,6 +32,9 @@ BOUNCED_JSON = BASE_DIR / "outreach" / "bounced_emails.json"
 SENT_LOG_CSV = BASE_DIR / "outreach" / "sent_log.csv"
 HIGH_CONVICTION_CSV = BASE_DIR / "outreach" / "high_conviction_attorneys.csv"
 VERIFIED_TARGETS_CSV = BASE_DIR / "outreach" / "verified_attorney_targets.csv"
+MASTER_TARGETS_CSV = BASE_DIR / "outreach" / "master_ranked_attorney_targets.csv"
+TOOL_TARGETS_CSV = BASE_DIR / "marketing" / "link_building" / "tool_outreach_targets.csv"
+TOOL_LOG_CSV = BASE_DIR / "marketing" / "link_building" / "tool_outreach_log.csv"
 POOL_JSON = BASE_DIR / "outreach" / "verified_pool.json"
 
 ENV_FILE = BASE_DIR / ".env"
@@ -121,27 +124,59 @@ def update_sent_log_bounce(bounced_email: str, error_diag: str = "") -> int:
 
 
 def update_target_csv_bounce(csv_path: Path, bounced_email: str) -> int:
-    """Marks attorney status in target CSV as BOUNCED_DEAD_ADDRESS."""
+    """Removes bounced/dead email rows directly from target CSV registries."""
     if not csv_path.exists() or not bounced_email:
+        return 0
+
+    clean_target = bounced_email.strip().lower()
+    kept_rows = []
+    removed_count = 0
+
+    with open(csv_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        for row in reader:
+            em = (row.get("Email") or row.get("contact_email") or "").strip().lower()
+            if em == clean_target:
+                removed_count += 1
+                print(f"  🗑️ Deleted bounced target {em} from {csv_path.name}")
+            else:
+                kept_rows.append(row)
+
+    if removed_count > 0 and fieldnames:
+        with open(csv_path, "w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(kept_rows)
+
+    return removed_count
+
+
+def update_tool_log_bounce(bounced_email: str, error_diag: str = "") -> int:
+    """Updates status of matching records in tool_outreach_log.csv to BOUNCED_REJECTED."""
+    if not TOOL_LOG_CSV.exists() or not bounced_email:
         return 0
 
     clean_target = bounced_email.strip().lower()
     updated_rows = []
     matched_count = 0
 
-    with open(csv_path, "r", encoding="utf-8") as f:
+    with open(TOOL_LOG_CSV, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames
         for row in reader:
-            em = row.get("Email", "").strip().lower()
-            if em == clean_target:
-                row["Verified_Status"] = "BOUNCED_DEAD_ADDRESS"
+            em = (row.get("recipient_email") or "").strip().lower()
+            status = (row.get("status") or "").upper()
+            if em == clean_target and status == "SENT":
+                row["status"] = "BOUNCED_INVALID_ADDRESS"
+                if error_diag:
+                    row["notes"] = f"Bounced: {error_diag[:80]}"
                 matched_count += 1
-                print(f"  🏷️ Updated {csv_path.name} status for {em} -> BOUNCED_DEAD_ADDRESS")
+                print(f"  🔄 Updated tool_outreach_log.csv status for {em} -> BOUNCED_INVALID_ADDRESS")
             updated_rows.append(row)
 
     if matched_count > 0 and fieldnames:
-        with open(csv_path, "w", encoding="utf-8", newline="") as f:
+        with open(TOOL_LOG_CSV, "w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(updated_rows)
@@ -171,16 +206,27 @@ def remove_from_verified_pool(bounced_email: str) -> bool:
 def extract_bounce_metadata(msg: Message) -> tuple[list[str], str]:
     """Parses an RFC822 message for failed recipient addresses and diagnostic reasons."""
     body = ""
+    hdr_failed = msg.get_all("X-Failed-Recipients") or []
+    for hf in hdr_failed:
+        body += f"\nFailed-Recipients: {hf}\n"
+
     for part in msg.walk():
         ct = part.get_content_type()
-        if ct in ("text/plain", "message/delivery-status"):
+        if ct in ("text/plain", "text/html"):
             p = part.get_payload(decode=True)
             if p:
                 body += "\n" + p.decode("utf-8", errors="replace")
+        elif ct in ("message/delivery-status", "text/rfc822-headers", "message/rfc822"):
+            try:
+                body += "\n" + part.as_string()
+            except Exception:
+                pass
 
     # Diagnostic error regexes
     err_match = re.search(r"(5\d{2}\s+5\.\d+\.\d+[^<\n\r]+)", body) or \
                 re.search(r"(The email account that you tried to reach does not exist[^<\n\r]*)", body) or \
+                re.search(r"(Your message wasn't delivered to[^<\n\r]*)", body) or \
+                re.search(r"(Address not found[^<\n\r]*)", body) or \
                 re.search(r"(\*\* Address not found \*\*)", body) or \
                 re.search(r"Diagnostic-Code:[^;]+;\s*([^\n\r]+)", body, re.IGNORECASE)
 
@@ -195,6 +241,7 @@ def extract_bounce_metadata(msg: Message) -> tuple[list[str], str]:
         r"Failed-Recipients:\s*<?([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)>?",
         r"<([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)>:\s*5\d\d",
         r"<([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)> Recipient not found",
+        r"Your message to\s+<?([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)>?\s+couldn't be delivered",
     ]
 
     for pat in patterns:
@@ -206,8 +253,8 @@ def extract_bounce_metadata(msg: Message) -> tuple[list[str], str]:
     return list(found), err_str
 
 
-def process_mailbox_bounces(mail, mailbox="INBOX") -> int:
-    """Scans the specified mailbox on IMAP for bounce notifications."""
+def process_mailbox_bounces(mail, mailbox="INBOX", delete_messages: bool = True) -> int:
+    """Scans the specified mailbox on IMAP for bounce notifications, records them, and deletes the bounce emails."""
     try:
         status, _ = mail.select(mailbox)
         if status != "OK":
@@ -217,7 +264,9 @@ def process_mailbox_bounces(mail, mailbox="INBOX") -> int:
             '(FROM "mailer-daemon")',
             '(FROM "postmaster")',
             '(SUBJECT "Delivery Status Notification")',
-            '(SUBJECT "Undeliverable")'
+            '(SUBJECT "Undeliverable")',
+            '(SUBJECT "Mail delivery failed")',
+            '(SUBJECT "Delivery Failure")',
         ]
 
         bounce_mids = set()
@@ -231,6 +280,8 @@ def process_mailbox_bounces(mail, mailbox="INBOX") -> int:
             return 0
 
         processed = 0
+        deleted_mids = 0
+        is_trash = "trash" in mailbox.lower()
         for mid in sorted(bounce_mids, key=lambda x: int(x), reverse=True):
             res, data = mail.fetch(mid, "(RFC822)")
             if res != "OK" or not data or not isinstance(data[0], tuple):
@@ -246,20 +297,38 @@ def process_mailbox_bounces(mail, mailbox="INBOX") -> int:
                 # 1. Add to blacklist
                 record_bounced_entity(target_email, error_diag)
 
-                # 2. Update sent_log
+                # 2. Update sent_log & tool_outreach_log
                 update_sent_log_bounce(target_email, error_diag)
+                update_tool_log_bounce(target_email, error_diag)
 
-                # 3. Update target registries
+                # 3. Delete bounced target from all target CSV registries
                 update_target_csv_bounce(HIGH_CONVICTION_CSV, target_email)
                 update_target_csv_bounce(VERIFIED_TARGETS_CSV, target_email)
+                update_target_csv_bounce(MASTER_TARGETS_CSV, target_email)
+                update_target_csv_bounce(TOOL_TARGETS_CSV, target_email)
 
                 # 4. Remove from active pool
                 remove_from_verified_pool(target_email)
 
                 processed += 1
 
-            # Mark message as read
-            mail.store(mid, "+FLAGS", r"(\Seen)")
+            if delete_messages:
+                if not is_trash:
+                    try:
+                        mail.store(mid, "+X-GM-LABELS", "\\Trash")
+                    except Exception:
+                        try:
+                            mail.copy(mid, '"[Gmail]/Trash"')
+                        except Exception:
+                            pass
+                mail.store(mid, "+FLAGS", r"(\Deleted)")
+                deleted_mids += 1
+            else:
+                mail.store(mid, "+FLAGS", r"(\Seen)")
+
+        if deleted_mids > 0:
+            mail.expunge()
+            print(f"  🗑️ Permanently deleted & expunged {deleted_mids} bounce notification message(s) from {mailbox}.")
 
         return processed
     except Exception as e:
@@ -267,10 +336,78 @@ def process_mailbox_bounces(mail, mailbox="INBOX") -> int:
         return 0
 
 
+def delete_sent_messages_to_bounced(mail) -> int:
+    """Deletes outbound sent messages addressed to any known bounced recipient across Sent Mail, All Mail, and Trash."""
+    bounced_addrs = set()
+    if BOUNCED_JSON.exists():
+        try:
+            with open(BOUNCED_JSON, "r", encoding="utf-8") as f:
+                for item in json.load(f):
+                    if isinstance(item, str) and "@" in item:
+                        bounced_addrs.add(item.strip().lower())
+        except Exception:
+            pass
+    if SENT_LOG_CSV.exists():
+        try:
+            with open(SENT_LOG_CSV, "r", encoding="utf-8") as f:
+                for r in csv.DictReader(f):
+                    if "BOUNCE" in (r.get("Status") or "").upper():
+                        em = (r.get("Email") or "").strip().lower()
+                        if em and "@" in em:
+                            bounced_addrs.add(em)
+        except Exception:
+            pass
+    if TOOL_LOG_CSV.exists():
+        try:
+            with open(TOOL_LOG_CSV, "r", encoding="utf-8") as f:
+                for r in csv.DictReader(f):
+                    if "BOUNCE" in (r.get("status") or "").upper():
+                        em = (r.get("recipient_email") or "").strip().lower()
+                        if em and "@" in em:
+                            bounced_addrs.add(em)
+        except Exception:
+            pass
+
+    if not bounced_addrs:
+        return 0
+
+    total_deleted = 0
+    for box in ('"[Gmail]/Sent Mail"', '"[Gmail]/All Mail"', '"[Gmail]/Trash"'):
+        try:
+            st, _ = mail.select(box)
+            if st != "OK":
+                continue
+            is_trash = "trash" in box.lower()
+            mids_to_delete = set()
+            for b_em in sorted(bounced_addrs):
+                s, data = mail.search(None, f'(TO "{b_em}")')
+                if s == "OK" and data and data[0]:
+                    for mid in data[0].split():
+                        mids_to_delete.add(mid)
+            if mids_to_delete:
+                for mid in sorted(mids_to_delete, key=lambda x: int(x), reverse=True):
+                    if not is_trash:
+                        try:
+                            mail.store(mid, "+X-GM-LABELS", "\\Trash")
+                        except Exception:
+                            try:
+                                mail.copy(mid, '"[Gmail]/Trash"')
+                            except Exception:
+                                pass
+                    mail.store(mid, "+FLAGS", r"(\Deleted)")
+                mail.expunge()
+                total_deleted += len(mids_to_delete)
+                print(f"  🗑️ Permanently deleted & expunged {len(mids_to_delete)} outbound message(s) to bounced recipients from {box}.")
+        except Exception as e:
+            print(f"  ⚠️ Error cleaning bounced outbound messages in {box}: {e}")
+    return total_deleted
+
+
 def scan_and_learn_bounces(mail=None) -> int:
     """
     Main entry point for bounce learning engine.
-    Connects to IMAP (or uses existing session) and processes all pending bounces.
+    Connects to IMAP (or uses existing session), learns from all pending bounces,
+    purges bounced targets from registries, and permanently deletes bounce emails from Gmail.
     """
     should_logout = False
     if not mail:
@@ -284,15 +421,21 @@ def scan_and_learn_bounces(mail=None) -> int:
     total_processed = 0
     try:
         print("🔍 Scanning INBOX for delivery failures & bounce notifications...")
-        total_processed += process_mailbox_bounces(mail, "INBOX")
+        total_processed += process_mailbox_bounces(mail, "INBOX", delete_messages=True)
 
-        print("🔍 Scanning [Gmail]/Trash for delivery failures...")
-        total_processed += process_mailbox_bounces(mail, '"[Gmail]/Trash"')
+        print("🔍 Scanning [Gmail]/All Mail for delivery failures...")
+        total_processed += process_mailbox_bounces(mail, '"[Gmail]/All Mail"', delete_messages=True)
 
         print("🔍 Scanning [Gmail]/Spam for delivery failures...")
-        total_processed += process_mailbox_bounces(mail, '"[Gmail]/Spam"')
+        total_processed += process_mailbox_bounces(mail, '"[Gmail]/Spam"', delete_messages=True)
 
-        print(f"✓ Bounce scanning complete. Processed {total_processed} bounce event(s).")
+        print("🔍 Scanning [Gmail]/Trash to learn & permanently expunge bounce notifications...")
+        total_processed += process_mailbox_bounces(mail, '"[Gmail]/Trash"', delete_messages=True)
+
+        print("🔍 Purging outbound sent messages to bounced recipients...")
+        delete_sent_messages_to_bounced(mail)
+
+        print(f"✓ Bounce scanning & cleanup complete. Processed {total_processed} bounce event(s).")
     finally:
         if should_logout:
             try:

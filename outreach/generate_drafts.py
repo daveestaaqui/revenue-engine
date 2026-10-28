@@ -142,7 +142,7 @@ GENERIC_EMAIL_PREFIXES = (
     "careers@", "marketing@", "legal@", "clinics@", "lawclinics@",
     "law_clinics@", "consumerlaw@", "lpm@", "cpm@", "tba@", "editor@",
     "legalfuel@", "tips@", "pulse@", "submissions@", "directory@",
-    "newsletter@", "webmaster@", "postmaster@"
+    "newsletter@", "webmaster@", "postmaster@", "law@"
 )
 
 # Big-law firms that reject unsolicited emails or require web contact forms
