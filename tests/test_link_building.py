@@ -154,8 +154,8 @@ class TestSyndicationPublisher(unittest.TestCase):
 
     def test_build_all_syndication_files(self):
         files = build_all_syndication_files()
-        # 2 articles x 4 platforms = 8 files
-        self.assertEqual(len(files), 8)
+        # N articles x 4 platforms = 4N files
+        self.assertEqual(len(files), len(ARTICLES_TO_SYNDICATE) * 4)
         for f in files:
             p = Path(f)
             self.assertTrue(p.exists())

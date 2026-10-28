@@ -643,7 +643,9 @@ class AutoResponderSentinelIntegrationTests(unittest.TestCase):
         )
         mock_mail.fetch.return_value = ("OK", [(b"1 (RFC822 {120})", raw_injection)])
 
-        with patch("outreach.auto_responder_and_draft_cleaner.send_response_email") as mock_send:
+        with patch("outreach.auto_responder_and_draft_cleaner.send_response_email") as mock_send, \
+             patch("outreach.auto_responder_and_draft_cleaner.load_created_drafts", return_value=set()), \
+             patch("outreach.auto_responder_and_draft_cleaner.save_created_draft"):
             check_and_create_auto_responses(
                 mock_mail, {}, enforce_delay=False, enforce_hours=False
             )
