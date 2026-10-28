@@ -451,12 +451,13 @@ def run_tool_outreach_pipeline(
         subject, text_body, html_body = build_personalized_email(t)
 
         is_deliv, deliv_reason = DeliverabilityGuard.validate_recipient_deliverability(
-            email_addr, check_dns=True
+            email_addr, check_dns=live_send
         )
         if not is_deliv:
             print(f"     🛑 DeliverabilityGuard blocked {email_addr}: {deliv_reason}")
-            log_outreach_event(t, subject, "BLOCKED_DELIVERABILITY", deliv_reason, message_id="")
-            update_target_status(email_addr, "BLOCKED_DELIVERABILITY")
+            if "gaierror" not in deliv_reason:
+                log_outreach_event(t, subject, "BLOCKED_DELIVERABILITY", deliv_reason, message_id="")
+                update_target_status(email_addr, "BLOCKED_DELIVERABILITY")
             results.append({"organization": org, "email": email_addr, "status": "BLOCKED_DELIVERABILITY", "info": deliv_reason})
             continue
 
@@ -481,6 +482,10 @@ def run_tool_outreach_pipeline(
                 print(f"     ✅ Successfully sent email to {email_addr} (Message-ID: {info})")
                 log_outreach_event(t, subject, "SENT", "Live SMTP transmission successful", message_id=info)
                 update_target_status(email_addr, "SENT")
+                if DRAFTS_DIR.exists():
+                    slug = re.sub(r'[^a-zA-Z0-9_]', '_', org.lower())
+                    for old_draft in DRAFTS_DIR.glob(f"*_{slug}.eml"):
+                        old_draft.unlink(missing_ok=True)
                 results.append({"organization": org, "email": email_addr, "status": "SENT", "info": info})
             else:
                 print(f"     ❌ SMTP send failed ({info}). Saving draft fallback...")

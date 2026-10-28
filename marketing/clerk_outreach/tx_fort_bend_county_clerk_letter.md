@@ -3,7 +3,7 @@
 **To:** District Court Registry & Accounting Supervisor  
 **Agency:** Office of the District Clerk, Fort Bend County, TX  
 **Department:** Trust & Eligible Unclaimed Excess Proceeds Registry  
-**Date:** October 26, 2026  
+**Date:** October 28, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Fort Bend County Web Portal)
 
 ---
@@ -25,7 +25,7 @@ To assist taxpayers and support public education regarding court registry proced
 1. **Constitutional Basis:** Clear explanation of *Tyler v. Hennepin County*, 598 U.S. 631 (2023), confirming homeowners' constitutional rights to excess equity under the Fifth Amendment.
 2. **Scam Avoidance & Fee Caps:** Explicit warnings alerting homeowners to never sign over deeds or blanket powers of attorney to unlicensed finders, highlighting statutory protections and UPL statutes.
 3. **Direct Filing Procedures:** Instructions explaining how claimants may petition the District Court directly under Tex. Tax Code § 34.04 without surrendering equity to predatory locators.
-4. **Statutory Filing Deadlines:** Exact statutory windows under TX law and an open-access statutory deadline calculator ([https://surplusdocket.com/embed/surplus-calculator.html](https://surplusdocket.com/embed/surplus-calculator.html)).
+4. **Statutory Filing Deadlines & Open-Source Web Component:** Exact statutory windows under TX law, an open-access statutory deadline calculator ([https://surplusdocket.com/embed/surplus-calculator.html](https://surplusdocket.com/embed/surplus-calculator.html)), and the MIT-licensed zero-tracking OpenSurplus SDK ([https://surplusdocket.com/sdk/](https://surplusdocket.com/sdk/)).
 
 ### Request for Resource Inclusion
 Would your department consider linking to this public guide as a helpful external educational resource under the **"Eligible Unclaimed Excess Proceeds Public Disclosures"** section of your official website? 

@@ -1,7 +1,7 @@
 # PRESS PITCH: Post-Tyler v. Hennepin County: The $2.4B State Compliance Gap in Tax Deed Surplus Recovery
 **Category:** Constitutional Property Rights & Foreclosure Law
 **Suggested Outlets:** Law360, Bloomberg Law, National Law Journal, ABA Journal
-**Date:** October 26, 2026
+**Date:** October 28, 2026
 
 ---
 
@@ -12,7 +12,7 @@ Following the Supreme Court's unanimous ruling in Tyler v. Hennepin County (598 
 "While the Supreme Court ended statutory equity forfeiture on paper, county court registries remain administrative black boxes. Without specialized bar admission and encumbrance screening, junior lienholders and former owners regularly forfeit millions to state general funds simply because statutory windows close unnoticed." — Research & Regulatory Analysis Desk, Surplus Docket
 
 ### VERIFIED STATS & CITEABLE DATA
-- Over $19.2M in verified unencumbered surplus funds identified across major county registries in FL, TX, GA, CA, and TN.
+- Over $26.0M+ in verified unencumbered surplus funds identified across 504 court registry records in FL, TX, GA, CA, and TN.
 - Florida § 197.582 sets a strict 120-day notice window post-certificate of title before claims are barred.
 - California Revenue & Taxation Code § 4675 provides 1 year from deed recordation, requiring complex junior lien prioritization.
 - Texas Tax Code § 34.04 mandates district court petition with formal service on all previous title holders.

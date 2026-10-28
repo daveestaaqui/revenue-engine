@@ -111,8 +111,10 @@ def generate_b2b_exports():
             empty_df.to_csv(EXPORTS_DIR / f"{file_base}.csv", index=False)
             if state_code in raw_file_map:
                 empty_df.to_csv(raw_file_map[state_code], index=False)
-            for d in (EXPORTS_DIR, BASE_DIR / "site" / "exports"):
-                (d / f"{file_base}.xlsx").unlink(missing_ok=True)
+            try:
+                empty_df.to_excel(EXPORTS_DIR / f"{file_base}.xlsx", index=False)
+            except Exception:
+                pass
 
     # Tri-State Core Feed (FL, TX, GA)
     df_tristate = df_all[df_all["State"].isin(["FL", "TX", "GA"])]

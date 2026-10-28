@@ -1,7 +1,7 @@
 # PRESS PITCH: Automating the Court Registry: How Judicial Feeds Eliminate Blind Spots in Excess Proceeds Recovery
 **Category:** Legal Technology & Registry Intelligence
 **Suggested Outlets:** Legal IT Insider, Artificial Lawyer, LawSites by Bob Ambrogi, Legaltech News
-**Date:** October 26, 2026
+**Date:** October 28, 2026
 
 ---
 
@@ -12,12 +12,13 @@ For decades, foreclosure surplus recovery was the domain of manual courthouse le
 "Attorneys handling foreclosure defense or probate previously spent 10 to 15 hours per file just validating whether surplus funds existed and calculating subordinate mortgage priority. Automated registry intelligence now surfaces unencumbered funds within hours of certificate disbursement." — Systems Engineering & Data Architecture Lead, Surplus Docket
 
 ### VERIFIED STATS & CITEABLE DATA
-- Surplus Docket processes daily registry feeds across FL, TX, CA, GA, NC, and TN court registries.
+- Surplus Docket processes daily registry feeds across FL, TX, CA, GA, NC, and TN court registries ($26.0M+ across 504 verified records).
+- Open-source OpenSurplus SDK v1.2.0 (MIT License) with zero-dependency Web Component and Python CLI: https://surplusdocket.com/sdk/
+- Machine-readable OpenAPI 3.1.0 specification for court registry feeds: https://surplusdocket.com/openapi.json
 - Interactive statutory deadline calculator available for publisher embedding: https://surplusdocket.com/embed/surplus-calculator.html
-- Algorithmic pre-screening of recorded liens and municipal encumbrances across 35 county registries.
 
 ### CANONICAL REFERENCE & RESOURCE ASSETS
-- **Primary Reference:** [https://surplusdocket.com/embed/](https://surplusdocket.com/embed/)
+- **Primary Reference:** [https://surplusdocket.com/sdk/](https://surplusdocket.com/sdk/)
 - **Platform Domain:** [Surplus Docket](https://surplusdocket.com)
 
 ### MEDIA CONTACT & CALL TO ACTION
