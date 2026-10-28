@@ -1,5 +1,5 @@
 # Surplus Docket — Daily Market Intelligence Briefing
-**Published:** October 27, 2026
+**Published:** October 28, 2026
 **Coverage:** 35 High-Volume County Court Registries (CA, FL, GA, TN, TX)
 
 ---
