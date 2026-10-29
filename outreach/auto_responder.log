@@ -694,3 +694,6 @@
 [2026-10-28 08:52:23]   ⏭️ Skipped non-prospect from support@magicbag.co (Sub: 'Re: Mold?'): Message identified as automated notification, bounce, or system alert
 [2026-10-28 08:52:30]   ⏭️ Skipped non-prospect from noreply@sunrun.com (Sub: 'Your Sunrun bill, plus a video explainin'): Message identified as automated notification, bounce, or system alert
 [2026-10-28 20:36:50]   ⏭️ Skipped non-prospect from notifications@github.com (Sub: '[daveestaaqui/revenue-engine] Run failed'): Message identified as automated notification, bounce, or system alert
+[2026-10-29 13:17:18]   ⏭️ Skipped non-prospect from aliexpress@notice.aliexpress.com (Sub: 'Tell us about your AliExpress experience'): Sender 'aliexpress@notice.aliexpress.com' is not in verified target database and not a statutory inquiry
+[2026-10-29 13:17:21]   📩 Processing verified prospect reply from: Heather DelleCave <hdellecave@bsheriff.net> | Intent: SKIP_TRACING_CONTACT (Sub: RE: Capias Service Request — Shamier A. Nesbeth (Docket #2425SC000130))
+[2026-10-29 13:17:25]   🎉 Contextual [SKIP_TRACING_CONTACT] follow-up draft created in Gmail for hdellecave@bsheriff.net!
