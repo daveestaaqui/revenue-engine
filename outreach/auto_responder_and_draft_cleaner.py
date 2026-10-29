@@ -876,17 +876,61 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
     """
     s_email = sender_email.lower().strip()
     s_dom = clean_domain_str(s_email)
+    subj_lower = (subject_raw or "").lower()
+    body_lower = (text_body or "").lower()
 
     # 1. Filter self-sent or internal domain emails immediately
     if s_dom == "surplusdocket.com" or s_email == "sandwichfitness@gmail.com":
         return False, "Self-sent or internal domain transmission", None, None
 
     # 2. Hard bounce and delivery failure filter immediately (short-circuit before parsing)
-    is_gv = (s_email == "voice-noreply@google.com" and "voicemail" in subject_raw.lower())
+    is_gv = (s_email == "voice-noreply@google.com" and "voicemail" in subj_lower)
     is_form = any(k in s_dom for k in ("formsubmit.co", "formspree.io"))
     if not (is_gv or is_form) and is_automated_receipt_or_bounce(msg, s_email, subject_raw):
         record_bounced_recipient(text_body, msg)
         return False, "Message identified as automated notification, bounce, or system alert", None, None
+
+    # 2b. Court, Clerk of Court, Judicial Entity, and Government Agency filter
+    # Surplus Docket is a B2B legal intelligence service for practicing attorneys.
+    # Court clerks, judicial assistants, judges, official court notices, and government entities
+    # must NEVER receive automated commercial outreach pitches or draft responses.
+    court_gov_endings = (".gov", ".mil", ".fed.us")
+    court_gov_domains = (
+        "uscourts.gov", "courts.gov", "flcourts.org", "flcourts.gov", "txcourts.gov",
+        "cacourts.ca.gov", "georgiacourts.gov", "tncourts.gov", "nccourts.gov",
+        "circuit9.org", "circuit7.org", "jud11.flcourts.org", "browardclerk.org",
+        "mypalmbeachclerk.com", "hillsclerk.com", "miamidadeclerk.gov"
+    )
+    is_court_domain = s_dom.endswith(court_gov_endings) or any(
+        kw in s_dom for kw in court_gov_domains
+    ) or any(
+        s_dom.startswith(prefix) for prefix in ("court.", "courts.", "clerk.", "jud.", "judicial.")
+    ) or any(
+        kw in s_dom for kw in ("countyclerk", "districtclerk", "circuitclerk", "probatecourt", "courthouse")
+    )
+
+    court_entity_keywords = [
+        "court", "clerk", "judge", "judicial", "judiciary", "magistrate", "bailiff",
+        "chancery court", "superior court", "district court", "circuit court",
+        "county clerk", "district clerk", "circuit clerk", "clerk of court", "prothonotary",
+        "hearing officer", "judicial assistant", "court administrator", "court reporter",
+        "docketing", "records custodian", "records department"
+    ]
+    s_name_lower = (sender_name or "").lower()
+    is_court_sender = any(kw in s_email for kw in ["court", "clerk", "judge", "judicial", "judic"]) or \
+                      any(kw in s_name_lower for kw in court_entity_keywords)
+
+    court_subject_cues = [
+        "notice of hearing", "notice of filing", "court order", "order of the court",
+        "summons", "subpoena", "court appearance", "entry of appearance", "certificate of service",
+        "docket sheet", "order to show cause", "calendar notice", "case management",
+        "cm/ecf", "pacer", "notice of electronic filing", "court date", "jury duty",
+        "trial notice", "hearing notice", "citation"
+    ]
+    is_court_subject = any(c in subj_lower for c in court_subject_cues)
+
+    if is_court_domain or is_court_sender or is_court_subject:
+        return False, "Message is from a court, clerk, judicial entity, or official legal proceeding (non-commercial communication)", None, None
 
     # 3. Check if it is an official statutory website inquiry from surplusdocket.com/inquiry.html
     # (Checked first among valid senders because third-party delivery relays forward these)
@@ -940,12 +984,22 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
 
     # 8. Check if email is concerning Surplus Docket (replies, alias delivery, thread references)
     in_reply_to = (msg.get("In-Reply-To", "") + " " + msg.get("References", "")).lower()
-    is_concerning_surplus = (
+    # Check if this is an explicit reply thread to an outreach message sent by us
+    is_direct_thread_reply = (
         "@surplusdocket.com" in in_reply_to or
-        "surplusdocket.com" in msg_to or
-        "surplus docket" in subject_raw.lower() or
-        "surplusdocket.com" in text_body.lower() or
-        any(k in subject_raw.lower() for k in ["tax sale excess proceeds", "court registry surplus", "tax deed surplus", "chancery court surplus"])
+        "re: " in subj_lower or
+        "fwd: " in subj_lower
+    ) and any(kw in subj_lower or kw in body_lower for kw in [
+        "surplus", "tax deed", "excess proceeds", "foreclosure", "docket", "registry"
+    ])
+
+    # To prevent unrelated cold emails sent to personal aliases (like david@surplusdocket.com)
+    # from triggering commercial drafts, mere delivery to the domain (msg_to contains surplusdocket.com) is NOT enough!
+    is_concerning_surplus = is_direct_thread_reply or (
+        "surplus docket" in subj_lower or
+        "surplusdocket" in subj_lower or
+        "surplus docket" in body_lower or
+        "surplusdocket" in body_lower
     )
     if is_concerning_surplus:
         det_state, c_name, c_circ = extract_jurisdiction_context(subject_raw, text_body, default_state=None)
@@ -960,7 +1014,7 @@ def is_prospect_eligible(msg, sender_email, sender_name, subject_raw, text_body,
         }
         return True, f"Inbound message concerning Surplus Docket ({inferred_firm})", concerning_info, None
 
-    return False, f"Sender '{s_email}' is not in verified target database and not a statutory inquiry", None, None
+    return False, f"Sender '{s_email}' is not messaging about Surplus Docket related matters", None, None
 
 
 # County & Judicial Circuit / Court Registry Directory
@@ -1054,6 +1108,30 @@ def extract_jurisdiction_context(subject_raw, text_body, default_state=None):
     return default_state, None, None
 
 
+def clean_body_for_intent(text_body):
+    """
+    Strips thread history and common email signatures so signature footers
+    (e.g. phone numbers, firm addresses, disclaimer notices) do not pollute
+    prospect intent classification.
+    """
+    if not text_body:
+        return ""
+    thread_data = extract_thread_history(text_body)
+    latest = thread_data.get("latest_message", "") or text_body
+
+    sig_patterns = [
+        r"\n\s*--\s*\n.*",
+        r"\n\s*(?:best\s+regards|warm\s+regards|kind\s+regards|regards|sincerely|thank\s+you|thanks|cheers|yours\s+truly)[\s,]*\n.*",
+    ]
+    cleaned = latest
+    for pat in sig_patterns:
+        parts = re.split(pat, cleaned, maxsplit=1, flags=re.IGNORECASE | re.DOTALL)
+        if parts:
+            cleaned = parts[0]
+
+    return cleaned.strip() or latest.strip()
+
+
 def analyze_prospect_intent(subject_raw, text_body):
     """
     Multi-factor semantic pattern classifier for law firm replies and objections.
@@ -1073,7 +1151,8 @@ def analyze_prospect_intent(subject_raw, text_body):
     - 'PRICING'
     - 'GENERAL'
     """
-    content = f"{subject_raw} {text_body}".lower()
+    cleaned_body = clean_body_for_intent(text_body)
+    content = f"{subject_raw} {cleaned_body}".lower()
 
     # 1. Opt-out check takes absolute precedence
     opt_out_cues = [
@@ -1212,23 +1291,30 @@ def analyze_prospect_intent(subject_raw, text_body):
         if c in content:
             scores["DATA_FRESHNESS_TIMING"] += 4
 
-    # 8. SKIP_TRACING_CONTACT cues
+    # 8. SKIP_TRACING_CONTACT cues (Explicit questions about skip tracing or owner phone/contact info)
     skip_trace_strong = [
-        "skip trace", "skip-trace", "skip tracing", "phone number", "phone numbers",
-        "owner contact", "contact information", "reach the owner", "locate the owner",
-        "mailing address", "mailing addresses", "how do we reach", "do you provide phone",
-        "cold call", "direct mail", "skip-tracing"
+        "skip trace", "skip-trace", "skip tracing", "skip-tracing",
+        "do you provide phone", "do you have phone", "provide phone numbers",
+        "include phone numbers", "are phone numbers included", "phone numbers included",
+        "get phone numbers", "provide phone number", "include phone number",
+        "do you provide contact", "how do we reach the owner", "how to contact the owner",
+        "locate the owner", "reach the owner", "cold call list", "cold call lists",
+        "cold calling", "direct telephone solicitation", "phone numbers of owners",
+        "contact info for owners", "contact information for the owner"
     ]
     for c in skip_trace_strong:
         if c in content:
             scores["SKIP_TRACING_CONTACT"] += 4
 
-    # 9. LEGAL_TOOLKIT_MOTIONS cues
+    # 9. LEGAL_TOOLKIT_MOTIONS cues (Templates, motions, petitions, pleading forms)
     toolkit_strong = [
-        "motion", "motions", "pleading", "pleadings", "template", "templates",
-        "toolkit", "petition", "petitions", "affidavit", "affidavits",
-        "retainer", "retainer agreement", "claim form", "court forms",
-        "claim packet", "motion for distribution", "legal templates"
+        "toolkit", "legal toolkit", "motion template", "motion templates",
+        "pleading template", "pleading templates", "petition template", "petition templates",
+        "affidavit template", "sample motion", "sample petition", "sample affidavit",
+        "retainer template", "retainer agreement", "claim packet", "court forms",
+        "motion for distribution", "legal templates", "petition templates",
+        "include petition templates", "include motion", "provide templates",
+        "provide motions", "do you provide forms"
     ]
     for c in toolkit_strong:
         if c in content:

@@ -155,6 +155,79 @@ class TestAutoResponderPolicies(unittest.TestCase):
         self.assertTrue(eligible, "Target law firm replies must be eligible")
         self.assertIsNotNone(target_info)
 
+    def test_court_and_clerk_emails_strictly_rejected(self):
+        msg = Message()
+        msg["To"] = "david@surplusdocket.com"
+        sender_email = "heather@circuit9.org"
+        subject = "Notice of Hearing - Case No. 2026-CA-001234"
+        text_body = """Good morning,
+
+Please find attached the court's notice of hearing scheduled for next Tuesday.
+
+Best regards,
+Heather Welch
+Judicial Assistant to Judge Martinez
+Ninth Judicial Circuit Court
+Phone number: (407) 836-2000
+Mailing address: 425 N Orange Ave, Orlando, FL 32801"""
+
+        eligible, reason, target_info, inq_info = is_prospect_eligible(
+            msg, sender_email, "Heather Welch", subject, text_body,
+            self.directory, self.email_directory, self.domains
+        )
+        self.assertFalse(eligible, "Court emails must NEVER be eligible for automated sales drafts")
+        self.assertIn("court", reason.lower())
+
+    def test_court_clerk_gov_domain_rejected(self):
+        msg = Message()
+        msg["To"] = "david@surplusdocket.com"
+        sender_email = "heather.clerk@orangeclerk.flcourts.gov"
+        subject = "Registry Deposit Record"
+        text_body = "The certificate of disbursement has been filed."
+
+        eligible, reason, target_info, inq_info = is_prospect_eligible(
+            msg, sender_email, "Heather", subject, text_body,
+            self.directory, self.email_directory, self.domains
+        )
+        self.assertFalse(eligible, "Government court domains must be rejected")
+        self.assertIn("court", reason.lower())
+
+    def test_non_surplus_emails_to_david_rejected(self):
+        msg = Message()
+        msg["To"] = "david@surplusdocket.com"
+        sender_email = "heather@examplelegal.com"
+        subject = "Draft Agreement for Review"
+        text_body = """Hi David,
+
+Attached is the draft document we discussed yesterday. Let me know when you have time to connect.
+
+Thanks,
+Heather"""
+
+        eligible, reason, target_info, inq_info = is_prospect_eligible(
+            msg, sender_email, "Heather", subject, text_body,
+            self.directory, self.email_directory, self.domains
+        )
+        self.assertFalse(eligible, "Emails to david@surplusdocket.com not concerning Surplus Docket must NOT be eligible")
+
+    def test_signature_contact_info_does_not_trigger_skip_tracing_intent(self):
+        subject = "Question regarding filings"
+        text_body = """Hello David,
+
+Thanks for your email. Can you clarify how often the reports are updated?
+
+Sincerely,
+Heather
+Phone number: (555) 123-4567
+Contact information: heather@firm.com
+Mailing address: 100 Main Street, Suite 200, Tampa, FL 33602"""
+
+        intent = analyze_prospect_intent(subject, text_body)
+        self.assertNotEqual(
+            intent, "SKIP_TRACING_CONTACT",
+            "Signature block with 'Phone number' or 'Mailing address' must NEVER trigger SKIP_TRACING_CONTACT"
+        )
+
     def test_banned_greetings_prevented(self):
         target_info = {"name": "Gmail Team", "firm": "Google Inc", "state": "CA"}
         subj, body = compose_elena_response(

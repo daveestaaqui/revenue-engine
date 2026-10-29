@@ -12,6 +12,27 @@
 
 ## Top 15 Immediate High-Conviction Attorney Matches (Copy-Paste Ready)
 
+### 0. Cohen Asset Recovery — Phil Blende / Alden (FL — Warm Inbound Prospect)
+- **Direct Email:** `alden@cohenrecoverylaw.com`, `phil@cohenrecoverylaw.com`, `adam@cohenrecoverylaw.com`
+- **Matched Case Hook:** `2024-TD-004501` (Palm Beach) — **$145,000.00 Surplus** ($29,000.00 Fee) & `2024-TD-003891` (Broward) — **$138,500.00 Surplus** ($27,700.00 Fee)
+- **Subject Line:** `Updated Palm Beach, Broward & Miami-Dade surplus dockets ($920,800 verified balance)`
+```text
+Hi Phil and team,
+
+Following up with our latest verified South Florida tax deed and foreclosure surplus batch across Palm Beach, Broward, and Miami-Dade (all pre-scrubbed with institutional bank liens removed):
+
+1. Palm Beach County — Docket #2024-TD-004501 (ANTHONY & GRACE VALENTINE): $145,000.00 confirmed surplus ($29,000.00 statutory 20% fee)
+2. Broward County — Docket #2024-TD-003891 (MARCUS & HELENA VANDERBILT): $138,500.00 confirmed surplus ($27,700.00 statutory 20% fee)
+3. Miami-Dade County — Docket #2024-CA-012874 (ESTATE OF JULIAN MERCER): $115,000.00 confirmed surplus ($23,000.00 statutory 20% fee)
+4. Miami-Dade County — Docket #2024-TD-004812 (LUIS & MARIA HERNANDEZ): $112,000.00 confirmed surplus ($22,400.00 statutory 20% fee)
+
+I've attached the current sample CSV and dossiers. You can activate instant daily delivery + API access directly at https://surplusdocket.com.
+
+Best regards,
+David Mahler
+Surplus Docket | https://surplusdocket.com
+```
+
 ### 1. Andrew A. Moher — Moher Law Group (CA)
 - **Direct Email:** `andrew@moherlaw.com`
 - **Contact Form URL (for Chrome Prompt):** https://moherlaw.com/contact-us/

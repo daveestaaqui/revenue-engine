@@ -80,19 +80,6 @@
             <p class="text-xs text-slate-500">Cross-referencing verified county records and statutory claim windows.</p>
         </div>
 
-        <!-- Subscriber Status Bar (Visible when unlocked) -->
-        <div id="subscriber-auth-banner" class="hidden mb-6 bg-emerald-50 border border-emerald-300 rounded-xl px-4 py-3 flex items-center justify-between shadow-sm">
-            <div class="flex items-center gap-2.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span id="subscriber-auth-text" class="text-xs font-extrabold text-emerald-900 tracking-wide">
-                    ✓ Verified Subscriber Session: Active Practice Evaluation &bull; Priority Counsel Access
-                </span>
-            </div>
-            <button type="button" id="btn-switch-account" onclick="clearSubscriberSession()" class="text-[11px] font-bold text-slate-500 hover:text-rose-700 underline transition-colors">
-                Switch Account
-            </button>
-        </div>
-
         <!-- Docket Dossier Card -->
         <div id="docket-card" class="hidden bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
             
@@ -425,8 +412,6 @@
 
             const activateBtn = document.getElementById('btn-activate-feeds');
             const headerEvalBtn = document.getElementById('btn-header-eval');
-            const authBanner = document.getElementById('subscriber-auth-banner');
-            const authText = document.getElementById('subscriber-auth-text');
             const paywallCard = document.getElementById('paywall-card');
 
             // CRITICAL: Direct email links and authenticated subscribers must NEVER see sales/activation CTAs
@@ -451,15 +436,7 @@
             }
 
             if (isAuthenticated) {
-                if (authBanner) authBanner.classList.remove('hidden');
                 if (paywallCard) paywallCard.classList.add('hidden');
-                if (authText) {
-                    if (!subToken) {
-                        authText.innerHTML = '✓ Verified Practice Evaluation: Priority Counsel Access &bull; Unlocked Docket Dossier';
-                    } else {
-                        authText.innerHTML = '✓ Verified Subscriber Session: Active Practice Evaluation &bull; Priority Counsel Access';
-                    }
-                }
             }
         }
 
@@ -536,7 +513,6 @@
                     isAuthenticated = true;
                     localStorage.setItem('sd_subscriber_vault_key', decryptedVaultKey);
                     
-                    document.getElementById('subscriber-auth-banner').classList.remove('hidden');
                     document.getElementById('paywall-card').classList.add('hidden');
                     updateAccessUI();
 
@@ -864,7 +840,6 @@
                 downloadBtn.innerHTML = `<span>Download Case Dossier (.txt)</span>`;
 
                 document.getElementById('paywall-card').classList.add('hidden');
-                document.getElementById('subscriber-auth-banner').classList.remove('hidden');
 
                 // Cache unredacted record for TXT download
                 currentRecord = { ...r, ...leadData, Case_or_TaxDeed_No: fullDocketNo };
@@ -907,7 +882,6 @@
 
                 // Show paywall card
                 document.getElementById('paywall-card').classList.remove('hidden');
-                document.getElementById('subscriber-auth-banner').classList.add('hidden');
                 updateAccessUI();
             }
         }
