@@ -706,3 +706,5 @@
 [2026-10-30 09:04:06]   ⏭️ Skipped non-prospect from noreply@x.com (Sub: 'You've got 𝕏 Money'): Message identified as automated notification, bounce, or system alert
 [2026-10-30 15:52:29]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your CRV/USD Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
 [2026-10-30 15:52:30]   🧹 Auto-unsubscribed and cleared marketing email from citicards@info6.citi.com
+[2026-10-30 23:57:42]   🗑️ IMAP: Removed sent draft for: mashpeewampanoag@msn.com
+[2026-10-30 23:57:42] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
