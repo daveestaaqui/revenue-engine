@@ -1,7 +1,7 @@
 # PRESS PITCH: Surplus Docket Releases 'OpenSurplus SDK v1.2.0': Open-Source Statutory Calculator, Python CLI & OpenAPI 3.1.0 Spec for Court Registries
 **Category:** Open-Source Legal Engineering & Access to Justice
 **Suggested Outlets:** LawSites by Bob Ambrogi, Artificial Lawyer, MIT Computational Law Report, GitHub Open Source LegalTech
-**Date:** October 28, 2026
+**Date:** October 30, 2026
 
 ---
 
