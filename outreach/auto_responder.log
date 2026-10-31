@@ -710,3 +710,5 @@
 [2026-10-30 23:57:42] ✓ Expunged 1 sent draft(s) from [Gmail]/Drafts.
 [2026-10-31 10:38:12]   ⏭️ Skipped non-prospect from team@info.hostinger.com (Sub: 'You have domain(s) expiring soon'): Message identified as automated notification, bounce, or system alert
 [2026-10-31 10:38:12]   ⏭️ Skipped non-prospect from customerservice@emcom.bankofamerica.com (Sub: 'Lena, do you know about these 4 scams?'): Message identified as automated notification, bounce, or system alert
+[2026-10-31 15:53:11]   ⏭️ Skipped non-prospect from noreply@careforth.com (Sub: 'Missing Massachusetts Daily Check In'): Message identified as automated notification, bounce, or system alert
+[2026-10-31 15:53:12]   🧹 Auto-unsubscribed and cleared marketing email from Information@update.ssa.gov
