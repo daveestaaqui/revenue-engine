@@ -1,5 +1,43 @@
 [
   {
+    "timestamp": "2026-10-31T10:20:57.673611+00:00",
+    "issue_number": null,
+    "issue_title": "System Integrity & Link Audit",
+    "issue_body": "",
+    "issue_url": "",
+    "reporter": "User Submission",
+    "categories": [
+      "general_integrity"
+    ],
+    "resolution_status": "TRIAGED / ATTENTION REQUIRED",
+    "resolution_summary": "Anomalies detected requiring manual review. Full diagnostic log attached below.",
+    "healed_actions": [],
+    "test_results": {
+      "passed": false,
+      "test_count": 366,
+      "elapsed_seconds": 6.75,
+      "output": "article_submitter.py:531: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=6, laddr=('10.1.0.203', 33306), raddr=('66.6.42.254', 80)>\n  pingomatic_res = ping_pingomatic(dry_run=dry_run)\nResourceWarning: Enable tracemalloc to get the object allocation traceback\n..........................................\n======================================================================\nFAIL: test_tool_outreach_gatekeeper_integration (test_link_building.TestEmbedPromoterAndToolOutreach.test_tool_outreach_gatekeeper_integration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/runner/work/revenue-engine/revenue-engine/tests/test_link_building.py\", line 242, in test_tool_outreach_gatekeeper_integration\n    self.assertGreaterEqual(len(selected), 4)\nAssertionError: 0 not greater than or equal to 4\n\n----------------------------------------------------------------------\nRan 366 tests in 5.248s\n\nFAILED (failures=1)\n"
+    },
+    "link_results": {
+      "html_pages_scanned": 77,
+      "total_links_checked": 3096,
+      "broken_links": [],
+      "broken_assets": [],
+      "is_healthy": true
+    },
+    "python_health": {
+      "files_checked": 113,
+      "errors": [],
+      "is_healthy": true
+    },
+    "statutory_health": {
+      "status": "verified",
+      "jurisdictions_count": 7,
+      "missing_states": [],
+      "is_healthy": true
+    }
+  },
+  {
     "timestamp": "2026-10-30T10:50:26.410737+00:00",
     "issue_number": null,
     "issue_title": "System Integrity & Link Audit",

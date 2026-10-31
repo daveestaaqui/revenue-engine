@@ -1231,5 +1231,17 @@
     "cost_usd": 0.0,
     "estimated_cost_usd": 0.0,
     "status": "skipped_zero_cost_policy"
+  },
+  {
+    "timestamp": "2026-10-31T10:20:52Z",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "task_type": "text_generation",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "audio_seconds": 0,
+    "cost_usd": 0.0,
+    "estimated_cost_usd": 0.0,
+    "status": "skipped_zero_cost_policy"
   }
 ]

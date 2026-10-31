@@ -2,7 +2,7 @@
 PLATFORM: SUBSTACK
 TITLE: Open-Source LegalTech: Introducing the OpenSurplus Statutory Calculator SDK, Python CLI & OpenAPI 3.1 Spec
 CANONICAL_URL: https://surplusdocket.com/blog/posts/open-source-surplus-statute-calculator-and-openapi-sdk.html
-DATE: October 30, 2026
+DATE: October 31, 2026
 TAGS: LegalTech, OpenSource, Python, WebComponents, OpenAPI
 -->
 
