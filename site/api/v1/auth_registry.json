@@ -1,31 +1,31 @@
 {
   "status": "ready",
-  "generated_at": "2026-10-31T10:21:15.161011",
-  "vault_sig": "e784bee0319f4dda",
+  "generated_at": "2026-11-01T11:14:07.015708",
+  "vault_sig": "a0fbf4e8eb0598b0",
   "valid_vault_sigs": [
+    "a0fbf4e8eb0598b0",
     "e784bee0319f4dda",
     "6b714cb53155a0ce",
     "1b737c4ba242159e",
     "7483108642fb5be6",
     "5290c2949a2cdd18",
-    "3501c1ca5f6715f0",
-    "533b6eaa30018836"
+    "3501c1ca5f6715f0"
   ],
   "subscribers": [
     {
       "email_hash": "e3020543ee04e8a60c441d69e2bc16bad5721808c890ac4836b516f7894d146c",
       "sub_token": "88bc159edb03654d4e665a46",
-      "vault_payload": "c261dcd84985d3d0de505813a9e3f9b2ea93e691fa47bdbf01bd60a9dd163135"
+      "vault_payload": "92658ad814858f8ad8025812fce6aeedbc96e796fd49b0ba00eb33f98f156761"
     },
     {
       "email_hash": "9c0cb24969aa36ce435c07aab20cd0ac687a1276ffa17f14a21d50498a0442f4",
       "sub_token": "9be441e88ead32528605f744",
-      "vault_payload": "e0bb192406f5ef22f31b7f068c6383bdfe40b12a43df4426556d1bc3d34525ee"
+      "vault_payload": "b0bf4f245bf5b378f5497f07d966d4e2a845b02d44d14923543b4893814673ba"
     },
     {
       "email_hash": "8a06a488d8fc6051dae95dcb925c77beeafb1af29245695822e3d869fb9f8617",
       "sub_token": "b5a1c78ce2e05a000fa00921",
-      "vault_payload": "3e7b4a9beef548ff95afc051fa547b57250ae8bd374908fb650fe1af94708379"
+      "vault_payload": "6e7f1c9bb3f514a593fdc050af512c08730fe9ba304705fe6459b2ffc673d52d"
     }
   ],
   "active_subscriber_count": 3
