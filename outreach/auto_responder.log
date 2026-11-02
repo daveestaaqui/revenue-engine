@@ -714,3 +714,5 @@
 [2026-10-31 15:53:12]   🧹 Auto-unsubscribed and cleared marketing email from Information@update.ssa.gov
 [2026-11-01 08:44:46]   🧹 Auto-unsubscribed and cleared marketing email from info@aeternum.site
 [2026-11-02 02:41:13]   🧹 Auto-unsubscribed and cleared marketing email from NAR@info.nar.realtor
+[2026-11-02 10:04:21]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Amanda Milano paid you $1,175.00'): Sender 'venmo@venmo.com' is not messaging about Surplus Docket related matters
+[2026-11-02 10:04:21]   ⏭️ Skipped non-prospect from cash@square.com (Sub: 'Your October statements'): Message identified as automated notification, bounce, or system alert
