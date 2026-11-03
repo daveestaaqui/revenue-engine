@@ -721,3 +721,5 @@
 [2026-11-03 09:57:09]   ⏭️ Skipped non-prospect from tracking@shipstation.com (Sub: 'Your package is estimated to arrive Wedn'): Sender 'tracking@shipstation.com' is not messaging about Surplus Docket related matters
 [2026-11-03 09:57:09]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your CRV/USD Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
 [2026-11-03 09:57:10]   ⏭️ Skipped non-prospect from googledevelopers-noreply@google.com (Sub: '[Action Advised] Manage your unused OAut'): Message identified as automated notification, bounce, or system alert
+[2026-11-03 22:30:59]   ⏭️ Skipped non-prospect from noreply@robinhood.com (Sub: 'Reminder: Avoid tax withholding on your '): Message identified as automated notification, bounce, or system alert
+[2026-11-03 22:31:00]   ⏭️ Skipped non-prospect from auto-confirm@amazon.com (Sub: 'Ordered 1 item: Skin Care'): Message identified as automated notification, bounce, or system alert
