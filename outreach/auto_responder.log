@@ -717,3 +717,7 @@
 [2026-11-02 10:04:21]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'Amanda Milano paid you $1,175.00'): Sender 'venmo@venmo.com' is not messaging about Surplus Docket related matters
 [2026-11-02 10:04:21]   ⏭️ Skipped non-prospect from cash@square.com (Sub: 'Your October statements'): Message identified as automated notification, bounce, or system alert
 [2026-11-02 20:19:57]   ⏭️ Skipped non-prospect from zdeposit@zdeposit.net (Sub: 'Request 115195 Is Awaiting Your Response'): Message identified as automated notification, bounce, or system alert
+[2026-11-03 09:57:08]   ⏭️ Skipped non-prospect from info@angelcam.com (Sub: '7 days left! Don't leave us hanging... ⏳'): Sender 'info@angelcam.com' is not messaging about Surplus Docket related matters
+[2026-11-03 09:57:09]   ⏭️ Skipped non-prospect from tracking@shipstation.com (Sub: 'Your package is estimated to arrive Wedn'): Sender 'tracking@shipstation.com' is not messaging about Surplus Docket related matters
+[2026-11-03 09:57:09]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your CRV/USD Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
+[2026-11-03 09:57:10]   ⏭️ Skipped non-prospect from googledevelopers-noreply@google.com (Sub: '[Action Advised] Manage your unused OAut'): Message identified as automated notification, bounce, or system alert
