@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-02T12:18:07.634879",
+  "fetched_at": "2026-11-03T11:53:31.709654",
   "records": [
     {
       "State": "TN",
@@ -11,10 +11,10 @@
       "Surplus_Balance_USD": 61953.44,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=053120B03500CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=053120B03500CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 053120B03500CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -26,10 +26,10 @@
       "Surplus_Balance_USD": 69953.44,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=053120B03600CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=053120B03600CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 053120B03600CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -41,10 +41,10 @@
       "Surplus_Balance_USD": 41385.74,
       "Sale_Date": "2025-10-06",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=17500000100",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=17500000100",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 17500000100",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -56,10 +56,10 @@
       "Surplus_Balance_USD": 6455.83,
       "Sale_Date": "2025-09-29",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=02200014100",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=02200014100",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 02200014100",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -71,25 +71,25 @@
       "Surplus_Balance_USD": 8423.98,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=01700026000",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=01700026000",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 01700026000",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
       "County": "Davidson",
-      "Case_or_TaxDeed_No": "24-0388-I",
-      "Parcel_ID": "04115010000",
-      "Owner_Name": "Estate & Heirs of England, Linda & Lee, Fredda",
-      "Property_Address": "Parcel 04115010000, Metropolitan Nashville & Davidson County, TN",
-      "Surplus_Balance_USD": 5156.19,
-      "Sale_Date": "2025-03-28",
+      "Case_or_TaxDeed_No": "25-0490-II",
+      "Parcel_ID": "02200007600",
+      "Owner_Name": "Estate and Heirs of Burgess, Bobby J",
+      "Property_Address": "Parcel 02200007600, Metropolitan Nashville & Davidson County, TN",
+      "Surplus_Balance_USD": 38940.56,
+      "Sale_Date": "2026-10-28",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=04115010000",
-      "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 04115010000",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=02200007600",
+      "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 02200007600",
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -101,10 +101,10 @@
       "Surplus_Balance_USD": 1201.43,
       "Sale_Date": "2024-09-17",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=03100005800",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=03100005800",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 23-0416-IV, Parcel 03100005800",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -116,10 +116,10 @@
       "Surplus_Balance_USD": 6408.49,
       "Sale_Date": "2024-08-02",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=09413005200",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=09413005200",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 23-0416-IV, Parcel 09413005200",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -131,10 +131,10 @@
       "Surplus_Balance_USD": 6303.6,
       "Sale_Date": "2025-09-29",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=08415005400",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=08415005400",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 08415005400",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -146,10 +146,10 @@
       "Surplus_Balance_USD": 66829.17,
       "Sale_Date": "2024-08-02",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=04307003500",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=04307003500",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 23-0416-IV, Parcel 04307003500",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -161,10 +161,10 @@
       "Surplus_Balance_USD": 60054.63,
       "Sale_Date": "2023-08-11",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=04900036700",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=04900036700",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 22-0464-III, Parcel 04900036700",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -176,10 +176,25 @@
       "Surplus_Balance_USD": 157744.3,
       "Sale_Date": "2025-09-29",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=01816006300",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=01816006300",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 01816006300",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
+    },
+    {
+      "State": "TN",
+      "County": "Davidson",
+      "Case_or_TaxDeed_No": "25-0490-II",
+      "Parcel_ID": "03900007300",
+      "Owner_Name": "Estate and Heirs of Todd, Sarah E",
+      "Property_Address": "Parcel 03900007300, Metropolitan Nashville & Davidson County, TN",
+      "Surplus_Balance_USD": 89765.74,
+      "Sale_Date": "2026-10-28",
+      "Record_Type": "EXCESS_PROCEEDS",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=03900007300",
+      "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 03900007300",
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -191,10 +206,10 @@
       "Surplus_Balance_USD": 248942.87,
       "Sale_Date": "2025-09-29",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=09402002900",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=09402002900",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 09402002900",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -206,10 +221,10 @@
       "Surplus_Balance_USD": 106024.97,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=051100E01800CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=051100E01800CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 051100E01800CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -221,25 +236,10 @@
       "Surplus_Balance_USD": 1326.8,
       "Sale_Date": "2025-10-23",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=08614D90300CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=08614D90300CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 08614D90300CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
-    },
-    {
-      "State": "TN",
-      "County": "Davidson",
-      "Case_or_TaxDeed_No": "24-0388-I",
-      "Parcel_ID": "05209018900",
-      "Owner_Name": "Herman, Donna A",
-      "Property_Address": "Parcel 05209018900, Metropolitan Nashville & Davidson County, TN",
-      "Surplus_Balance_USD": 794.23,
-      "Sale_Date": "2025-03-28",
-      "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=05209018900",
-      "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 05209018900",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -251,10 +251,10 @@
       "Surplus_Balance_USD": 2950.62,
       "Sale_Date": "2025-03-28",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=03100000100",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=03100000100",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 03100000100",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -266,10 +266,10 @@
       "Surplus_Balance_USD": 22622.32,
       "Sale_Date": "2024-08-02",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=069160A01100CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=069160A01100CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 23-0416-IV, Parcel 069160A01100CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -281,10 +281,10 @@
       "Surplus_Balance_USD": 51019.95,
       "Sale_Date": "2025-09-29",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=164080A04400CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=164080A04400CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 164080A04400CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -296,10 +296,10 @@
       "Surplus_Balance_USD": 19476.35,
       "Sale_Date": "2025-09-29",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=17602016300",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=17602016300",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 17602016300",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -311,10 +311,10 @@
       "Surplus_Balance_USD": 1806.5,
       "Sale_Date": "2025-09-29",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=05915018900",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=05915018900",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 05915018900",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -326,10 +326,10 @@
       "Surplus_Balance_USD": 78923.68,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=107130A04000CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=107130A04000CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 107130A04000CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -341,10 +341,10 @@
       "Surplus_Balance_USD": 205482.52,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=072060N00100CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=072060N00100CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 072060N00100CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -353,13 +353,13 @@
       "Parcel_ID": "09213033100",
       "Owner_Name": "Mayes, Charles E.",
       "Property_Address": "Parcel 09213033100, Metropolitan Nashville & Davidson County, TN",
-      "Surplus_Balance_USD": 203147.52,
+      "Surplus_Balance_USD": 135431.68,
       "Sale_Date": "2024-08-02",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=09213033100",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=09213033100",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 23-0416-IV, Parcel 09213033100",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -371,10 +371,10 @@
       "Surplus_Balance_USD": 71852.92,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=043100B10200CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=043100B10200CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 043100B10200CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -386,10 +386,10 @@
       "Surplus_Balance_USD": 4333.27,
       "Sale_Date": "2024-08-02",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=05916016200",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=05916016200",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 23-0416-IV, Parcel 05916016200",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -401,25 +401,10 @@
       "Surplus_Balance_USD": 1171.74,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=05916011200",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=05916011200",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 05916011200",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
-    },
-    {
-      "State": "TN",
-      "County": "Davidson",
-      "Case_or_TaxDeed_No": "23-0416-IV",
-      "Parcel_ID": "05300013500",
-      "Owner_Name": "Old Hickory Centre Property Owners Association",
-      "Property_Address": "Parcel 05300013500, Metropolitan Nashville & Davidson County, TN",
-      "Surplus_Balance_USD": 21514.92,
-      "Sale_Date": "2024-08-02",
-      "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=05300013500",
-      "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 23-0416-IV, Parcel 05300013500",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -431,10 +416,10 @@
       "Surplus_Balance_USD": 3759.87,
       "Sale_Date": "2023-08-11",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=12810020100",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=12810020100",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 22-0464-III, Parcel 12810020100",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -446,10 +431,10 @@
       "Surplus_Balance_USD": 84881.28,
       "Sale_Date": "2026-03-06",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=10803019800",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=10803019800",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 10803019800",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -461,10 +446,10 @@
       "Surplus_Balance_USD": 19507.85,
       "Sale_Date": "2025-09-29",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=172050B11400CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=172050B11400CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 172050B11400CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -476,10 +461,10 @@
       "Surplus_Balance_USD": 17624.03,
       "Sale_Date": "2024-08-02",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=06400003600",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=06400003600",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 23-0416-IV, Parcel 06400003600",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -491,55 +476,25 @@
       "Surplus_Balance_USD": 22820.36,
       "Sale_Date": "2025-02-05",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=08112007400",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=08112007400",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 08112007400",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
       "County": "Davidson",
-      "Case_or_TaxDeed_No": "22-0464-III",
-      "Parcel_ID": "14714018100",
-      "Owner_Name": "Sundance of Nashville LTD",
-      "Property_Address": "Parcel 14714018100, Metropolitan Nashville & Davidson County, TN",
-      "Surplus_Balance_USD": 17501.33,
-      "Sale_Date": "2023-03-10",
+      "Case_or_TaxDeed_No": "25-0490-II",
+      "Parcel_ID": "092100B00500CO",
+      "Owner_Name": "UP Partnership GP",
+      "Property_Address": "Parcel 092100B00500CO, Metropolitan Nashville & Davidson County, TN",
+      "Surplus_Balance_USD": 71568.77,
+      "Sale_Date": "2026-10-28",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=14714018100",
-      "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 22-0464-III, Parcel 14714018100",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
-    },
-    {
-      "State": "TN",
-      "County": "Davidson",
-      "Case_or_TaxDeed_No": "20-0464-III",
-      "Parcel_ID": "14714017800",
-      "Owner_Name": "Sundance of Nashville LTD",
-      "Property_Address": "Parcel 14714017800, Metropolitan Nashville & Davidson County, TN",
-      "Surplus_Balance_USD": 418.07,
-      "Sale_Date": "2023-03-10",
-      "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=14714017800",
-      "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 20-0464-III, Parcel 14714017800",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
-    },
-    {
-      "State": "TN",
-      "County": "Davidson",
-      "Case_or_TaxDeed_No": "22-0464-III",
-      "Parcel_ID": "14714015300",
-      "Owner_Name": "Sundance of Nashville LTD",
-      "Property_Address": "Parcel 14714015300, Metropolitan Nashville & Davidson County, TN",
-      "Surplus_Balance_USD": 485.0,
-      "Sale_Date": "2023-03-10",
-      "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=14714015300",
-      "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 22-0464-III, Parcel 14714015300",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=092100B00500CO",
+      "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 092100B00500CO",
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -551,10 +506,10 @@
       "Surplus_Balance_USD": 157388.41,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=051150C00700CO",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=051150C00700CO",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 051150C00700CO",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -566,10 +521,10 @@
       "Surplus_Balance_USD": 48009.02,
       "Sale_Date": "2019-08-26",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=05307008300",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=05307008300",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 19-360-IV, Parcel 05307008300",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -581,10 +536,10 @@
       "Surplus_Balance_USD": 22546.79,
       "Sale_Date": "2026-09-01",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=10100020100",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=10100020100",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 25-0490-II, Parcel 10100020100",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -596,10 +551,10 @@
       "Surplus_Balance_USD": 1358.39,
       "Sale_Date": "2024-08-02",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=12815001100",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=12815001100",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 23-0416-IV, Parcel 12815001100",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     },
     {
       "State": "TN",
@@ -611,10 +566,10 @@
       "Surplus_Balance_USD": 21143.4,
       "Sale_Date": "2025-09-29",
       "Record_Type": "EXCESS_PROCEEDS",
-      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf",
-      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-updated-10-15.pdf#search=14900034000",
+      "Source_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf",
+      "Verify_URL": "https://chanceryclerkandmaster.nashville.gov/wp-content/uploads/Excess-Proceeds-11-2-2026.pdf#search=14900034000",
       "Verify_Note": "Listed on Davidson County Chancery Court Excess Proceeds PDF \u2014 Case 24-0388-I, Parcel 14900034000",
-      "Retrieved_At": "2026-11-02T12:18:07Z"
+      "Retrieved_At": "2026-11-03T11:53:31Z"
     }
   ]
 }
