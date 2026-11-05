@@ -730,3 +730,5 @@
 [2026-11-04 22:55:29]   ⏭️ Skipped non-prospect from googleplay-noreply@google.com (Sub: 'Declare your trader status to continue d'): Message identified as automated notification, bounce, or system alert
 [2026-11-05 10:55:41]   ⏭️ Skipped non-prospect from shipment-tracking@amazon.com (Sub: 'Shipped 1 item: Snacks'): Message identified as automated notification, bounce, or system alert
 [2026-11-05 10:55:41]   ⏭️ Skipped non-prospect from shipment-tracking@amazon.com (Sub: 'Shipped 2 items: Battery Chargers, Healt'): Message identified as automated notification, bounce, or system alert
+[2026-11-05 18:32:50]   ⏭️ Skipped non-prospect from store-news@amazon.com (Sub: 'Introducing Uber Eats with Prime ✨'): Message identified as automated notification, bounce, or system alert
+[2026-11-05 18:32:50]   ⏭️ Skipped non-prospect from tracking@shipstation.com (Sub: 'Your package has been delivered'): Sender 'tracking@shipstation.com' is not messaging about Surplus Docket related matters
