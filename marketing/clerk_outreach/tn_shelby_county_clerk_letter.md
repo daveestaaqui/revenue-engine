@@ -3,7 +3,7 @@
 **To:** Chief Deputy Clerk & Master  
 **Agency:** Shelby County Chancery Court Clerk & Master, Shelby County, TN  
 **Department:** Delinquent Tax Division  
-**Date:** November 04, 2026  
+**Date:** November 06, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: Shelby County Web Portal)
 
 ---
