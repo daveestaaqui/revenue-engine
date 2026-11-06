@@ -732,3 +732,4 @@
 [2026-11-05 10:55:41]   ⏭️ Skipped non-prospect from shipment-tracking@amazon.com (Sub: 'Shipped 2 items: Battery Chargers, Healt'): Message identified as automated notification, bounce, or system alert
 [2026-11-05 18:32:50]   ⏭️ Skipped non-prospect from store-news@amazon.com (Sub: 'Introducing Uber Eats with Prime ✨'): Message identified as automated notification, bounce, or system alert
 [2026-11-05 18:32:50]   ⏭️ Skipped non-prospect from tracking@shipstation.com (Sub: 'Your package has been delivered'): Sender 'tracking@shipstation.com' is not messaging about Surplus Docket related matters
+[2026-11-06 03:44:48]   🧹 Auto-unsubscribed and cleared marketing email from hannah@vagal.com
