@@ -739,3 +739,4 @@
 [2026-11-06 11:36:50]   ⏭️ Skipped non-prospect from homedepot@order.homedepot.com (Sub: 'Prep for Appliance Delivery! - Order # W'): Sender 'homedepot@order.homedepot.com' is not messaging about Surplus Docket related matters
 [2026-11-07 09:58:51]   ⏭️ Skipped non-prospect from shipment-tracking@amazon.com (Sub: 'Shipped 1 item: Hardware'): Message identified as automated notification, bounce, or system alert
 [2026-11-07 09:58:52]   ⏭️ Skipped non-prospect from no-reply-dhs@notice.mass.gov (Sub: 'MA Housing:Application Timeout Due to Mi'): Message identified as automated notification, bounce, or system alert
+[2026-11-07 16:14:14]   ⏭️ Skipped non-prospect from notifications@github.com (Sub: '[daveestaaqui/revenue-engine] Run failed'): Message identified as automated notification, bounce, or system alert
