@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow, noarchive">
+<title>How SeparaTie™ Works — Clear Visual Explainer</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --border: #334155;
+    --text: #f8fafc;
+    --muted: #cbd5e1;
+    --sub: #94a3b8;
+    --blue: #38bdf8;
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  /* Top Step Progress Header */
+  header {
+    background: #090f1d;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-pill {
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  /* 5-Step Story Bar */
+  .steps-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .step-tab {
+    background: #162033;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .step-tab:hover { border-color: #64748b; }
+  .step-tab.active {
+    background: rgba(56, 189, 248, 0.14);
+    border-color: var(--blue);
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.2);
+  }
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #334155;
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-tab.active .step-num {
+    background: var(--blue);
+    color: #090f1d;
+  }
+  .step-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    line-height: 1.25;
+  }
+  .step-tab.active .step-label { color: #fff; }
+
+  /* Narrative Explain Banner */
+  .story-banner {
+    background: linear-gradient(90deg, #1e293b 0%, #172554 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .story-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .story-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .story-desc {
+    font-size: 14px;
+    color: #e2e8f0;
+    line-height: 1.4;
+  }
+  .ww-badge {
+    background: rgba(34, 197, 94, 0.14);
+    border: 1px solid rgba(34, 197, 94, 0.45);
+    border-radius: 10px;
+    padding: 8px 14px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-width: 340px;
+  }
+  .ww-badge-title {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #4ade80;
+  }
+  .ww-badge-text {
+    font-size: 12px;
+    color: #dcfce7;
+    font-weight: 600;
+  }
+
+  /* Main Visual Canvas Area */
+  .stage {
+    flex: 1;
+    position: relative;
+    min-height: 0;
+    background: #0b1120;
+  }
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Playback Controls Footer */
+  footer {
+    background: #090f1d;
+    border-top: 1px solid var(--border);
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .btn {
+    background: var(--blue);
+    color: #090f1d;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    min-width: 105px;
+  }
+  .btn:hover { filter: brightness(1.1); }
+  .scrubber-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  input[type="range"] {
+    flex: 1;
+    accent-color: var(--blue);
+    height: 6px;
+    cursor: pointer;
+  }
+  .time-readout {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    min-width: 110px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top-row">
+    <div class="brand">
+      SeparaTie™ Smart Tie-Layer Glue
+      <span class="brand-pill">Wastewater &amp; Wash-Plant Explainer</span>
+    </div>
+    <div style="font-size:12px; color:#94a3b8; font-weight:600;">
+      Click any step below or drag the slider to inspect the process
+    </div>
+  </div>
+
+  <div class="steps-bar">
+    <div class="step-tab active" id="tab-0" onclick="jumpToStep(0)">
+      <div class="step-num">1</div>
+      <div class="step-label">Normal Use (Up to 60°C)<br><span style="color:#94a3b8;font-weight:500;">Wax Gates Locked Solid</span></div>
+    </div>
+    <div class="step-tab" id="tab-1" onclick="jumpToStep(1)">
+      <div class="step-num">2</div>
+      <div class="step-label">85°C Wash Tank Switch<br><span style="color:#94a3b8;font-weight:500;">Wax Gates Melt at 78°C</span></div>
+    </div>
+    <div class="step-tab" id="tab-2" onclick="jumpToStep(2)">
+      <div class="step-num">3</div>
+      <div class="step-label">Water Softeners Active<br><span style="color:#94a3b8;font-weight:500;">Traps Hard-Water Calcium</span></div>
+    </div>
+    <div class="step-tab" id="tab-3" onclick="jumpToStep(3)">
+      <div class="step-num">4</div>
+      <div class="step-label">Water Unhooks the Seam<br><span style="color:#94a3b8;font-weight:500;">Clean Peel in 4 Minutes</span></div>
+    </div>
+    <div class="step-tab" id="tab-4" onclick="jumpToStep(4)">
+      <div class="step-num">5</div>
+      <div class="step-label">Float–Sink Clarifier<br><span style="color:#94a3b8;font-weight:500;">PET Sinks, PE+Glue Floats</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="story-banner">
+  <div class="story-left">
+    <div class="story-title" id="story-title">Step 1: Normal Food Storage &amp; Hot Filling (25°C – 60°C) — Glue is Locked Tight</div>
+    <div class="story-desc" id="story-desc">Solid crystalline "Wax Gates" inside the Smart Glue block water from entering. The top Polyethylene (PE) film and bottom PET tray stay firmly bonded together.</div>
+  </div>
+  <div class="ww-badge">
+    <div class="ww-badge-title">✓ Zero Wastewater Pollution</div>
+    <div class="ww-badge-text" id="ww-text">The glue never dissolves into the wash water — it stays 100% solid attached to the floating PE film.</div>
+  </div>
+</div>
+
+<div class="stage">
+  <canvas id="canvas"></canvas>
+</div>
+
+<footer>
+  <button class="btn" id="play-btn" onclick="togglePlay()">⏸ Pause</button>
+  <div class="scrubber-wrap">
+    <span style="font-size:12px;color:#94a3b8;font-weight:700;">START</span>
+    <input type="range" id="scrubber" min="0" max="1000" value="0" oninput="onScrub(this.value)">
+    <span style="font-size:12px;color:#94a3b8;font-weight:700;">COMPLETE</span>
+  </div>
+  <div class="time-readout" id="time-readout">Wash Time: 0.0 min</div>
+</footer>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+let progress = 0; // 0.0 to 1.0
+let playing = true;
+let lastTime = performance.now();
+const DURATION = 22.0; // 22 seconds full cycle so every step is easy to read
+
+const STEPS = [
+  {
+    range: [0.0, 0.20],
+    title: "Step 1: Normal Food Storage & Hot Filling (25°C – 60°C) — Glue is Locked Solid",
+    desc: "Inside the middle Smart Glue layer, solid 'Wax Gates' (white blocks) plug the water channels shut. Even in hot 60°C water, water cannot get inside and the layers stay tightly bonded.",
+    ww: "Wastewater Impact: None (Package in normal consumer use)."
+  },
+  {
+    range: [0.20, 0.40],
+    title: "Step 2: Shredded Flakes Enter the 85°C Wash Tank — The 78°C Thermal Switch",
+    desc: "When the wash water heats past 78°C, the solid Wax Gates inside the glue melt away! This opens up microscopic sponge-like water tunnels from the cut edges of the flake.",
+    ww: "Standard 85°C caustic wash water — no special solvents or new plant tanks needed."
+  },
+  {
+    range: [0.40, 0.60],
+    title: "Step 3: Built-In Water Softeners Catch Hard-Water Calcium (Ca²⁺)",
+    desc: "Plant water contains hard-water Calcium (red dots) that would normally clog the glue. Built-in Water Softener pockets (purple rings) grab and lock up the calcium so wash water flows freely.",
+    ww: "Works in hard municipal or recycled plant water (up to 300 ppm hardness)."
+  },
+  {
+    range: [0.60, 0.82],
+    title: "Step 4: Wash Water Wicks Along the Seam & Unhooks the Bottom PET Layer",
+    desc: "Blue wash water rushes down the open tunnels and releases the grip anchors along the bottom PET layer one by one. The top PE film + glue peels away cleanly in 4 minutes!",
+    ww: "Glue stays 100% solid & attached to the green PE film — zero glue dissolves into effluent!"
+  },
+  {
+    range: [0.82, 1.00],
+    title: "Step 5: Gravity Float–Sink Clarifier — 100% Pure Separation",
+    desc: "Just like a wastewater settling tank: Heavy, clean PET plastic (density 1.34) sinks to the bottom hopper, while Light PE film + attached glue (density 0.92) floats to the top skimmer.",
+    ww: "Zero sludge, zero dissolved polymer COD spike, and 100% reusable PET & PE streams."
+  }
+];
+
+function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+function smoothstep(a, b, x) {
+  const t = clamp((x - a) / (b - a), 0, 1);
+  return t * t * (3 - 2 * t);
+}
+
+function jumpToStep(idx) {
+  const starts = [0.05, 0.28, 0.48, 0.68, 0.88];
+  progress = starts[idx];
+  document.getElementById('scrubber').value = Math.round(progress * 1000);
+  updateUI();
+}
+
+function togglePlay() {
+  playing = !playing;
+  document.getElementById('play-btn').textContent = playing ? '⏸ Pause' : '▶ Play';
+}
+
+function onScrub(val) {
+  progress = val / 1000;
+  updateUI();
+}
+
+function updateUI() {
+  let stepIdx = 0;
+  for (let i = 0; i < STEPS.length; i++) {
+    if (progress >= STEPS[i].range[0] && progress <= STEPS[i].range[1]) {
+      stepIdx = i;
+      break;
+    }
+  }
+  for (let i = 0; i < 5; i++) {
+    document.getElementById('tab-' + i).classList.toggle('active', i === stepIdx);
+  }
+  document.getElementById('story-title').textContent = STEPS[stepIdx].title;
+  document.getElementById('story-desc').textContent = STEPS[stepIdx].desc;
+  document.getElementById('ww-text').textContent = STEPS[stepIdx].ww;
+
+  const washMin = (progress * 10).toFixed(1);
+  document.getElementById('time-readout').textContent = `Cycle Time: ${washMin} min`;
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, r);
+}
+
+function drawScene(p) {
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.clientWidth;
+  const H = canvas.clientHeight;
+  if (canvas.width !== W * dpr || canvas.height !== H * dpr) {
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+  }
+  ctx.save();
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, W, H);
+
+  let tempC = 25;
+  if (p < 0.10) tempC = 25;
+  else if (p < 0.20) tempC = 25 + 35 * smoothstep(0.10, 0.18, p);
+  else tempC = 60 + 25 * smoothstep(0.20, 0.32, p);
+
+  const gateMelt = smoothstep(0.23, 0.36, p);
+  const caCapture = smoothstep(0.36, 0.56, p);
+  const waterWick = smoothstep(0.35, 0.78, p);
+  const peelFrac = smoothstep(0.55, 0.85, p);
+  const sepFrac = smoothstep(0.80, 0.96, p);
+
+  const pad = 16;
+  const col1W = Math.max(195, W * 0.17);
+  const col3W = Math.max(270, W * 0.27);
+  const col2W = W - col1W - col3W - pad * 4;
+
+  const col1X = pad;
+  const col2X = col1X + col1W + pad;
+  const col3X = col2X + col2W + pad;
+  const panelY = pad;
+  const panelH = H - pad * 2;
+
+  // =========================================================================
+  // COLUMN 1: THERMOMETER & SIMPLE METERS
+  // =========================================================================
+  ctx.fillStyle = '#131c31';
+  ctx.strokeStyle = '#293548';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, col1X, panelY, col1W, panelH, 12);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#f8fafc';
+  ctx.font = 'bold 14px -apple-system, sans-serif';
+  ctx.fillText('1. WASH TEMPERATURE', col1X + 16, panelY + 28);
+
+  const thX = col1X + 42;
+  const thTop = panelY + 52;
+  const thBot = panelY + panelH * 0.56;
+  const thH = thBot - thTop;
+
+  ctx.fillStyle = '#090f1d';
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2;
+  roundRect(ctx, thX - 12, thTop, 24, thH, 12);
+  ctx.fill();
+  ctx.stroke();
+
+  const fillFrac = clamp(tempC / 100, 0, 1);
+  const fillY = thBot - fillFrac * thH;
+  const thColor = tempC >= 78 ? '#ef4444' : (tempC >= 55 ? '#f59e0b' : '#38bdf8');
+
+  ctx.fillStyle = thColor;
+  roundRect(ctx, thX - 8, fillY, 16, thBot - fillY + 10, 8);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(thX, thBot + 14, 20, 0, Math.PI * 2);
+  ctx.fillStyle = thColor;
+  ctx.fill();
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 22px -apple-system, sans-serif';
+  ctx.fillText(`${Math.round(tempC)}°C`, thX + 32, thBot + 14);
+  ctx.fillStyle = tempC >= 78 ? '#fca5a5' : '#94a3b8';
+  ctx.font = 'bold 11px -apple-system, sans-serif';
+  ctx.fillText(tempC >= 78 ? 'MELT SWITCH ON!' : 'WAX GATES SOLID', thX + 32, thBot + 30);
+
+  const y78 = thBot - 0.78 * thH;
+  ctx.strokeStyle = '#f43f5e';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([4, 3]);
+  ctx.beginPath();
+  ctx.moveTo(thX - 18, y78);
+  ctx.lineTo(col1X + col1W - 14, y78);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#fda4af';
+  ctx.font = 'bold 11px -apple-system, sans-serif';
+  ctx.fillText('78°C Melt Switch', thX + 20, y78 - 5);
+
+  const y60 = thBot - 0.60 * thH;
+  ctx.strokeStyle = '#f59e0b';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(thX - 14, y60);
+  ctx.lineTo(thX + 18, y60);
+  ctx.stroke();
+  ctx.fillStyle = '#fcd34d';
+  ctx.font = '11px -apple-system, sans-serif';
+  ctx.fillText('60°C Hot-Food Safe', thX + 22, y60 + 4);
+
+  const y25 = thBot - 0.25 * thH;
+  ctx.fillStyle = '#94a3b8';
+  ctx.fillText('25°C Room Temp', thX + 22, y25 + 4);
+
+  const card1Y = thBot + 48;
+  const gripPct = Math.round((1 - peelFrac) * 100);
+  ctx.fillStyle = '#090f1d';
+  ctx.strokeStyle = '#334155';
+  roundRect(ctx, col1X + 14, card1Y, col1W - 28, 72, 8);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = 'bold 11px -apple-system, sans-serif';
+  ctx.fillText('GLUE GRIP ON PET TRAY', col1X + 24, card1Y + 20);
+  ctx.fillStyle = gripPct === 0 ? '#4ade80' : '#f8fafc';
+  ctx.font = 'bold 20px -apple-system, sans-serif';
+  ctx.fillText(gripPct === 0 ? '0% (RELEASED!)' : `${gripPct}% Hold`, col1X + 24, card1Y + 44);
+
+  ctx.fillStyle = '#1e293b';
+  roundRect(ctx, col1X + 24, card1Y + 52, col1W - 48, 8, 4);
+  ctx.fill();
+  ctx.fillStyle = gripPct > 20 ? '#38bdf8' : '#22c55e';
+  roundRect(ctx, col1X + 24, card1Y + 52, (col1W - 48) * (gripPct / 100), 8, 4);
+  ctx.fill();
+
+  const card2Y = card1Y + 84;
+  if (card2Y + 68 < panelY + panelH) {
+    ctx.fillStyle = 'rgba(34, 197, 94, 0.1)';
+    ctx.strokeStyle = 'rgba(34, 197, 94, 0.4)';
+    roundRect(ctx, col1X + 14, card2Y, col1W - 28, 68, 8);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#4ade80';
+    ctx.font = 'bold 11px -apple-system, sans-serif';
+    ctx.fillText('WASH WATER QUALITY', col1X + 24, card2Y + 20);
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = '12px -apple-system, sans-serif';
+    ctx.fillText('0% Dissolved Plastic', col1X + 24, card2Y + 40);
+    ctx.fillStyle = '#86efac';
+    ctx.font = 'bold 11px -apple-system, sans-serif';
+    ctx.fillText('✓ No Sludge / COD Spike', col1X + 24, card2Y + 56);
+  }
+
+  // =========================================================================
+  // COLUMN 2: MAIN ZOOMED CROSS-SECTION OF ONE PACKAGING FLAKE
+  // =========================================================================
+  ctx.fillStyle = '#131c31';
+  ctx.strokeStyle = '#293548';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, col2X, panelY, col2W, panelH, 12);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#f8fafc';
+  ctx.font = 'bold 15px -apple-system, sans-serif';
+  ctx.fillText('2. INSIDE ONE SHREDDED FLAKE (CROSS-SECTION VIEW)', col2X + 20, panelY + 28);
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '12px -apple-system, sans-serif';
+  ctx.fillText('Watch how wash water enters from the left & right cut edges once the 78°C Wax Gates melt:', col2X + 20, panelY + 48);
+
+  const bathX = col2X + 20;
+  const bathY = panelY + 62;
+  const bathW = col2W - 40;
+  const bathH = panelH - 135;
+
+  const bathGrad = ctx.createLinearGradient(0, bathY, 0, bathY + bathH);
+  bathGrad.addColorStop(0, tempC >= 78 ? '#0c2744' : '#0a192f');
+  bathGrad.addColorStop(1, '#071120');
+  ctx.fillStyle = bathGrad;
+  ctx.strokeStyle = tempC >= 78 ? '#0284c7' : '#1e3a5f';
+  roundRect(ctx, bathX, bathY, bathW, bathH, 10);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#38bdf8';
+  ctx.font = 'bold 12px -apple-system, sans-serif';
+  ctx.fillText(tempC >= 78 ? '← 85°C Wash Water Enters Cut Edge' : '← Cut Edge of Flake', bathX + 14, bathY + 24);
+  ctx.textAlign = 'right';
+  ctx.fillText(tempC >= 78 ? '85°C Wash Water Enters Cut Edge →' : 'Cut Edge of Flake →', bathX + bathW - 14, bathY + 24);
+  ctx.textAlign = 'left';
+
+  const flakeX = bathX + bathW * 0.10;
+  const flakeW = bathW * 0.80;
+  const seamY = bathY + bathH * 0.66;
+  const petH = 58;
+  const glueH = 74;
+  const peH = 44;
+
+  const liftOffset = sepFrac * 38;
+  const sinkOffset = sepFrac * 24;
+
+  const petY = seamY + sinkOffset;
+  const petGrad = ctx.createLinearGradient(0, petY, 0, petY + petH);
+  petGrad.addColorStop(0, '#2563eb');
+  petGrad.addColorStop(1, '#1d4ed8');
+  ctx.fillStyle = petGrad;
+  ctx.strokeStyle = '#60a5fa';
+  ctx.lineWidth = 2;
+  roundRect(ctx, flakeX, petY, flakeW, petH, 8);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 14px -apple-system, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('BOTTOM LAYER: Heavy PET Tray Plastic (Sinks in Water)', flakeX + flakeW / 2, petY + 26);
+  ctx.fillStyle = '#bfdbfe';
+  ctx.font = '12px -apple-system, sans-serif';
+  ctx.fillText(peelFrac > 0.85 ? '✓ 100% Clean PET — Zero Glue Residue Left Behind!' : 'Rigid Polyester Base Layer (Density: 1.34 g/cm³)', flakeX + flakeW / 2, petY + 45);
+  ctx.textAlign = 'left';
+
+  const N = 40;
+  const dx = flakeW / N;
+  function getPeelLift(i) {
+    const normX = i / N;
+    const distFromEdge = Math.min(normX, 1 - normX) * 2;
+    let localLift = 0;
+    if (peelFrac > distFromEdge * 0.88) {
+      const over = clamp((peelFrac - distFromEdge * 0.88) / 0.35, 0, 1);
+      const edgeCurl = Math.pow(1 - distFromEdge, 1.5) * 42 * Math.sin(peelFrac * Math.PI * 0.65);
+      const fullDetach = smoothstep(0.72, 1.0, peelFrac) * 32;
+      localLift = over * over * 26 + edgeCurl + fullDetach;
+    }
+    return localLift + liftOffset;
+  }
+
+  ctx.beginPath();
+  for (let i = 0; i <= N; i++) {
+    const x = flakeX + i * dx;
+    const y = seamY - getPeelLift(i);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  for (let i = N; i >= 0; i--) {
+    const x = flakeX + i * dx;
+    const y = seamY - glueH - getPeelLift(i);
+    ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = '#d97706';
+  ctx.fill();
+  ctx.strokeStyle = '#fbbf24';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  const chanHalfH = 15;
+  ctx.beginPath();
+  for (let i = 0; i <= N; i++) {
+    const x = flakeX + i * dx;
+    const y = seamY - glueH * 0.45 + chanHalfH - getPeelLift(i);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  for (let i = N; i >= 0; i--) {
+    const x = flakeX + i * dx;
+    const y = seamY - glueH * 0.45 - chanHalfH - getPeelLift(i);
+    ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = '#451a03';
+  ctx.fill();
+
+  if (waterWick > 0.01) {
+    const wickSteps = Math.floor((N / 2) * waterWick);
+    ctx.beginPath();
+    for (let i = 0; i <= wickSteps; i++) {
+      const x = flakeX + i * dx;
+      const y = seamY - glueH * 0.45 + chanHalfH - getPeelLift(i);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    for (let i = wickSteps; i >= 0; i--) {
+      const x = flakeX + i * dx;
+      const y = seamY - glueH * 0.45 - chanHalfH - getPeelLift(i);
+      ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = '#0ea5e9';
+    ctx.fill();
+
+    ctx.beginPath();
+    for (let i = N - wickSteps; i <= N; i++) {
+      const x = flakeX + i * dx;
+      const y = seamY - glueH * 0.45 + chanHalfH - getPeelLift(i);
+      if (i === N - wickSteps) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    for (let i = N; i >= N - wickSteps; i--) {
+      const x = flakeX + i * dx;
+      const y = seamY - glueH * 0.45 - chanHalfH - getPeelLift(i);
+      ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = '#0ea5e9';
+    ctx.fill();
+  }
+
+  ctx.beginPath();
+  for (let i = 0; i <= N; i++) {
+    const x = flakeX + i * dx;
+    const y = seamY - glueH - getPeelLift(i);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  for (let i = N; i >= 0; i--) {
+    const x = flakeX + i * dx;
+    const y = seamY - glueH - peH - getPeelLift(i);
+    ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = '#16a34a';
+  ctx.fill();
+  ctx.strokeStyle = '#4ade80';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  const centerLift = getPeelLift(N / 2);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 14px -apple-system, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('TOP LAYER: Light Polyethylene Film (Floats in Water)', flakeX + flakeW / 2, seamY - glueH - peH / 2 + 5 - centerLift);
+
+  ctx.fillStyle = '#fef3c7';
+  ctx.font = 'bold 12px -apple-system, sans-serif';
+  ctx.fillText('MIDDLE LAYER: SeparaTie™ Smart Glue (Stays Permanently Attached to Top PE Film)', flakeX + flakeW / 2, seamY - glueH + 16 - centerLift);
+  ctx.textAlign = 'left';
+
+  if (gateMelt < 0.98) {
+    const gateAlpha = 1 - gateMelt;
+    const gateScale = 1 - gateMelt * 0.7;
+    [2, N - 2].forEach(idx => {
+      const gx = flakeX + idx * dx;
+      const gy = seamY - glueH * 0.45 - getPeelLift(idx);
+      ctx.save();
+      ctx.globalAlpha = gateAlpha;
+      ctx.fillStyle = '#f8fafc';
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      const gw = 22 * gateScale;
+      const gh = 28 * gateScale;
+      roundRect(ctx, gx - gw / 2, gy - gh / 2, gw, gh, 4);
+      ctx.fill();
+      ctx.stroke();
+      ctx.strokeStyle = '#0284c7';
+      ctx.beginPath();
+      ctx.moveTo(gx - gw / 3, gy - gh / 3);
+      ctx.lineTo(gx + gw / 3, gy + gh / 3);
+      ctx.moveTo(gx + gw / 3, gy - gh / 3);
+      ctx.lineTo(gx - gw / 3, gy + gh / 3);
+      ctx.stroke();
+      ctx.restore();
+    });
+
+    if (gateMelt < 0.5) {
+      const lx = flakeX + 2 * dx;
+      const ly = seamY - glueH * 0.45 - getPeelLift(2);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 11px -apple-system, sans-serif';
+      ctx.fillText('Solid Wax Gate (Blocks Water <78°C)', lx + 16, ly + 4);
+    }
+  }
+
+  const softenerIndices = [7, 13, 20, 27, 33];
+  softenerIndices.forEach((idx, k) => {
+    const sx = flakeX + idx * dx;
+    const sy = seamY - glueH * 0.45 - getPeelLift(idx);
+
+    ctx.beginPath();
+    ctx.arc(sx, sy, 10, 0, Math.PI * 2);
+    ctx.fillStyle = '#581c87';
+    ctx.fill();
+    ctx.strokeStyle = '#c084fc';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    if (p > 0.22) {
+      const startOffX = (k % 2 === 0 ? -1 : 1) * 28 * (1 - caCapture);
+      const startOffY = (k % 2 === 0 ? -14 : 10) * (1 - caCapture);
+      const cx = sx + startOffX;
+      const cy = sy + startOffY;
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, 5.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#ef4444';
+      ctx.fill();
+      ctx.strokeStyle = '#fecaca';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 7px -apple-system, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Ca', cx, cy + 2.5);
+      ctx.textAlign = 'left';
+    }
+  });
+
+  for (let i = 2; i <= N - 2; i += 3) {
+    const ax = flakeX + i * dx;
+    const lift = getPeelLift(i);
+    const ayTop = seamY - lift;
+    const isReleased = lift > 2.5;
+
+    ctx.strokeStyle = isReleased ? '#38bdf8' : '#fde047';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(ax, ayTop - 8);
+    ctx.lineTo(ax, isReleased ? ayTop + 3 : petY + 4);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(ax, isReleased ? ayTop + 4 : petY + 4, 3.5, 0, Math.PI * 2);
+    ctx.fillStyle = isReleased ? '#38bdf8' : '#fde047';
+    ctx.fill();
+  }
+
+  const legY = bathY + bathH + 14;
+  const legItems = [
+    { color: '#f8fafc', border: '#38bdf8', text: 'Wax Gate (Melts at 78°C)' },
+    { color: '#0ea5e9', border: '#7dd3fc', text: 'Wash Water Channel' },
+    { color: '#581c87', border: '#c084fc', text: 'Water Softener (Traps Red Ca²⁺)' },
+    { color: '#fde047', border: '#fde047', text: 'Seam Grip Anchor' }
+  ];
+  let curLegX = bathX + 8;
+  legItems.forEach(item => {
+    ctx.fillStyle = item.color;
+    ctx.strokeStyle = item.border;
+    ctx.lineWidth = 2;
+    roundRect(ctx, curLegX, legY, 14, 14, 3);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = '#cbd5e1';
+    ctx.font = 'bold 12px -apple-system, sans-serif';
+    ctx.fillText(item.text, curLegX + 20, legY + 11);
+    curLegX += ctx.measureText(item.text).width + 44;
+  });
+
+  // =========================================================================
+  // COLUMN 3: FLOAT–SINK CLARIFIER TANK (PLANT VIEW)
+  // =========================================================================
+  ctx.fillStyle = '#131c31';
+  ctx.strokeStyle = '#293548';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, col3X, panelY, col3W, panelH, 12);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#f8fafc';
+  ctx.font = 'bold 14px -apple-system, sans-serif';
+  ctx.fillText('3. PLANT CLARIFIER TANK', col3X + 16, panelY + 28);
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '12px -apple-system, sans-serif';
+  ctx.fillText('Gravity Float–Sink Separation:', col3X + 16, panelY + 46);
+
+  const tkX = col3X + 24;
+  const tkY = panelY + 64;
+  const tkW = col3W - 48;
+  const tkH = panelH - 90;
+  const coneY = tkY + tkH * 0.68;
+
+  ctx.beginPath();
+  ctx.moveTo(tkX, tkY);
+  ctx.lineTo(tkX + tkW, tkY);
+  ctx.lineTo(tkX + tkW, coneY);
+  ctx.lineTo(tkX + tkW * 0.62, tkY + tkH);
+  ctx.lineTo(tkX + tkW * 0.38, tkY + tkH);
+  ctx.lineTo(tkX, coneY);
+  ctx.closePath();
+
+  const tkGrad = ctx.createLinearGradient(0, tkY, 0, tkY + tkH);
+  tkGrad.addColorStop(0, '#0c2d48');
+  tkGrad.addColorStop(0.5, '#091e32');
+  tkGrad.addColorStop(1, '#061524');
+  ctx.fillStyle = tkGrad;
+  ctx.fill();
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  ctx.fillStyle = 'rgba(34, 197, 94, 0.16)';
+  ctx.fillRect(tkX + 3, tkY + 3, tkW - 6, 54);
+  ctx.fillStyle = '#4ade80';
+  ctx.font = 'bold 12px -apple-system, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('▲ TOP SKIMMER: FLOATS', tkX + tkW / 2, tkY + 20);
+  ctx.fillStyle = '#dcfce7';
+  ctx.font = '11px -apple-system, sans-serif';
+  ctx.fillText('PE Film + Attached Glue (0.92 g/cm³)', tkX + tkW / 2, tkY + 36);
+
+  const midTankY = tkY + (coneY - tkY) * 0.56;
+  ctx.fillStyle = 'rgba(56, 189, 248, 0.12)';
+  roundRect(ctx, tkX + 14, midTankY - 24, tkW - 28, 48, 8);
+  ctx.fill();
+  ctx.fillStyle = '#7dd3fc';
+  ctx.font = 'bold 12px -apple-system, sans-serif';
+  ctx.fillText('CLEAN WASH WATER ZONE', tkX + tkW / 2, midTankY - 4);
+  ctx.fillStyle = '#e0f2fe';
+  ctx.font = '11px -apple-system, sans-serif';
+  ctx.fillText('Glue Never Dissolves Into Water', tkX + tkW / 2, midTankY + 14);
+
+  ctx.fillStyle = '#93c5fd';
+  ctx.font = 'bold 12px -apple-system, sans-serif';
+  ctx.fillText('▼ BOTTOM HOPPER: SINKS', tkX + tkW / 2, coneY + 22);
+  ctx.fillStyle = '#dbeafe';
+  ctx.font = '11px -apple-system, sans-serif';
+  ctx.fillText('100% Pure PET Flakes (1.34 g/cm³)', tkX + tkW / 2, coneY + 38);
+  ctx.textAlign = 'left';
+
+  const numFlakes = 8;
+  for (let f = 0; f < numFlakes; f++) {
+    const seed = (f + 0.5) / numFlakes;
+    const fxBase = tkX + 26 + seed * (tkW - 52);
+    const startY = midTankY + Math.sin(f * 2.1 + p * 8) * 18;
+    const separate = clamp((p - 0.58) / 0.32, 0, 1);
+
+    const floatTargetY = tkY + 46 + (f % 2) * 8;
+    const peY = startY * (1 - separate) + floatTargetY * separate;
+    const peX = fxBase * (1 - separate * 0.2) + (tkX + 30 + seed * (tkW - 60)) * (separate * 0.2);
+
+    ctx.save();
+    ctx.translate(peX, peY);
+    ctx.fillStyle = '#22c55e';
+    ctx.fillRect(-10, -4, 20, 4);
+    ctx.fillStyle = '#f59e0b';
+    ctx.fillRect(-10, 0, 20, 3);
+    ctx.restore();
+
+    const sinkTargetY = coneY + 52 + (f % 3) * 10;
+    const sinkTargetX = tkX + tkW * 0.42 + seed * (tkW * 0.16);
+    const petFlakeY = (startY + 6) * (1 - separate) + sinkTargetY * separate;
+    const petFlakeX = fxBase * (1 - separate) + sinkTargetX * separate;
+
+    ctx.save();
+    ctx.translate(petFlakeX, petFlakeY);
+    ctx.fillStyle = '#3b82f6';
+    ctx.fillRect(-10, -2, 20, 5);
+    ctx.restore();
+  }
+
+  ctx.restore();
+}
+
+function animate(now) {
+  const dt = (now - lastTime) / 1000;
+  lastTime = now;
+
+  if (playing) {
+    progress += dt / DURATION;
+    if (progress > 1.0) progress = 0.0;
+    document.getElementById('scrubber').value = Math.round(progress * 1000);
+    updateUI();
+  }
+  drawScene(progress);
+  requestAnimationFrame(animate);
+}
+
+updateUI();
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>

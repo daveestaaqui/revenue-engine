@@ -343,7 +343,7 @@ def reconcile_and_repair_sitemap(dry_run: bool = False) -> dict:
     for p in SITE_DIR.rglob("*.html"):
         rel = p.relative_to(SITE_DIR).as_posix()
         # Exclude non-indexable files, error pages, site verification tokens, components
-        if rel in ("404.html",) or rel.startswith("googlead") or "components/" in rel:
+        if rel in ("404.html", "monthly-presentation-builder.html", "simulation.html") or rel.startswith("googlead") or "components/" in rel:
             continue
         if rel == "index.html":
             u = "https://surplusdocket.com/"
