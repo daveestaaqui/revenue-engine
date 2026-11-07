@@ -740,3 +740,4 @@
 [2026-11-07 09:58:51]   ⏭️ Skipped non-prospect from shipment-tracking@amazon.com (Sub: 'Shipped 1 item: Hardware'): Message identified as automated notification, bounce, or system alert
 [2026-11-07 09:58:52]   ⏭️ Skipped non-prospect from no-reply-dhs@notice.mass.gov (Sub: 'MA Housing:Application Timeout Due to Mi'): Message identified as automated notification, bounce, or system alert
 [2026-11-07 16:14:14]   ⏭️ Skipped non-prospect from notifications@github.com (Sub: '[daveestaaqui/revenue-engine] Run failed'): Message identified as automated notification, bounce, or system alert
+[2026-11-07 23:41:32]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your UNI/USD Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
