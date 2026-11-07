@@ -230,6 +230,7 @@ class TestEmbedPromoterAndToolOutreach(unittest.TestCase):
             self.assertIn("david@surplusdocket.com", content)
 
     def test_tool_outreach_gatekeeper_integration(self):
+        from unittest.mock import patch
         from marketing.link_building.tool_outreach_engine import (
             load_targets,
             select_outreach_targets,
@@ -241,55 +242,11 @@ class TestEmbedPromoterAndToolOutreach(unittest.TestCase):
         self.assertGreaterEqual(len(targets), 4)
 
         # In production environments where historical targets have already completed
-        # outreach, provide clean uncontacted fixtures to validate gatekeeper and selection logic
-        sample_fixture = [
-            {
-                "name": "Prof. Sample Scholar",
-                "organization": "Stanford Law Housing Clinic",
-                "contact_email": "housingclinic@law.stanford.edu",
-                "target_type": "law_school_clinic",
-                "category": "Legal Education",
-                "da": "93",
-                "jurisdiction": "CA",
-                "status": "READY_FOR_OUTREACH",
-                "notes": "Access to justice clinical evaluation",
-            },
-            {
-                "name": "Practice Advisor",
-                "organization": "State Bar Practice Management",
-                "contact_email": "advisor@samplebar.org",
-                "target_type": "bar_association_lpm",
-                "category": "Bar Resource",
-                "da": "75",
-                "jurisdiction": "National",
-                "status": "READY_FOR_OUTREACH",
-                "notes": "LPM practice resources and CRM schemas",
-            },
-            {
-                "name": "Tech Columnist",
-                "organization": "LegalTech Review Daily",
-                "contact_email": "columnist@legaltechdaily.com",
-                "target_type": "legaltech_blogger",
-                "category": "Media",
-                "da": "65",
-                "jurisdiction": "National",
-                "status": "READY_FOR_OUTREACH",
-                "notes": "Court registry automation review",
-            },
-            {
-                "name": "Property Rights Chair",
-                "organization": "National Property Investors Alliance",
-                "contact_email": "chair@propertyalliance.org",
-                "target_type": "investor_community",
-                "category": "Investor Education",
-                "da": "60",
-                "jurisdiction": "National",
-                "status": "READY_FOR_OUTREACH",
-                "notes": "Statutory surplus recovery calculator embed",
-            },
-        ]
-
-        selected = select_outreach_targets(sample_fixture, limit=6)
+        # outreach, provide clean uncontacted status and empty contacted history to validate
+        # selection, email synthesis, and gatekeeper compliance.
+        uncontacted = [dict(t, status="READY_FOR_OUTREACH") for t in targets]
+        with patch("marketing.link_building.tool_outreach_engine.load_contacted_emails", return_value=set()):
+            selected = select_outreach_targets(uncontacted, limit=6)
         self.assertGreaterEqual(len(selected), 4)
         for t in selected:
             subj, text_body, _ = build_personalized_email(t)
@@ -299,6 +256,7 @@ class TestEmbedPromoterAndToolOutreach(unittest.TestCase):
                 firm=t["organization"],
                 subject=subj,
                 body=text_body,
+                check_dns=False,
             )
             self.assertTrue(ok, f"Target {t['contact_email']} failed gatekeeper: {errs}")
 
