@@ -743,3 +743,7 @@
 [2026-11-07 23:41:32]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your UNI/USD Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
 [2026-11-08 20:37:14]   ⏭️ Skipped non-prospect from noreply@care.capecodhealth.org (Sub: 'Lung Cancer Awareness Virtual Event'): Message identified as automated notification, bounce, or system alert
 [2026-11-09 00:00:48]   ⏭️ Skipped non-prospect from homedepot@order.homedepot.com (Sub: 'Appliance Delivery Scheduled for Monday,'): Sender 'homedepot@order.homedepot.com' is not messaging about Surplus Docket related matters
+[2026-11-10 00:14:08]   🧹 Auto-unsubscribed and cleared marketing email from reply@rs.email.nextdoor.com
+[2026-11-10 00:14:08]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your V Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
+[2026-11-10 00:14:09]   ⏭️ Skipped non-prospect from congratulations@redbubblemail.com (Sub: 'You've Made A Sale - 79675161 (US$1.32)'): Sender 'congratulations@redbubblemail.com' is not messaging about Surplus Docket related matters
+[2026-11-10 00:14:09]   ⏭️ Skipped non-prospect from dockets@surplusdocket.com (Sub: '📊 Surplus Docket Weekly Marketing Report'): Self-sent or internal domain transmission
