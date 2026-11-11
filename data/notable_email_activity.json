@@ -1,5 +1,23 @@
 [
   {
+    "id": "ACT-7459555",
+    "timestamp": "2026-11-11T22:40:03.573466",
+    "sender_name": "Erica Hartmann",
+    "sender_email": "e.hartmann@plastictechnologies.com",
+    "phone": "",
+    "channel": "DIRECT_EMAIL",
+    "jurisdiction": "FL",
+    "county": "",
+    "docket": "",
+    "category": "GENERAL",
+    "subject": "Re: APR PET-P-02 / PET-CG-01 Screening Protocol Inquiry:\r\n Patent-Pending Wash-Debondable Tie-Layer Architecture (U.S. Patent-Pending\r\n (Priority Date: Nov 4, 2026))",
+    "inbound_snippet": "Hi David, Thank you for reaching out to us about the APR testing. We would be happy to assist you. Would you be able to jump on a quick call with us to discuss",
+    "summary": "Law firm reply from Erica Hartmann (Plastictechnologies). Intent: GENERAL.",
+    "action_taken": "DRAFT_CREATED",
+    "persona": "David Mahler (Surplus Docket Intelligence)",
+    "notable": true
+  },
+  {
     "id": "ACT-5411580",
     "timestamp": "2026-10-29T13:17:25.923673",
     "sender_name": "Heather DelleCave",
