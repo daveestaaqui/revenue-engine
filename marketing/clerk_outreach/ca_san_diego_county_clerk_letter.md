@@ -3,7 +3,7 @@
 **To:** Tax Sale & Excess Proceeds Supervisor  
 **Agency:** Office of the Treasurer-Tax Collector, San Diego County, CA  
 **Department:** Tax Collection & Public Auction Excess Proceeds Division  
-**Date:** November 09, 2026  
+**Date:** November 11, 2026  
 **Subject:** Public Education Resource on Property Tax Foreclosure Surplus Funds & Scam Prevention (Ref: San Diego County Web Portal)
 
 ---

@@ -1,7 +1,7 @@
 # PRESS PITCH: Automating the Court Registry: How Judicial Feeds Eliminate Blind Spots in Excess Proceeds Recovery
 **Category:** Legal Technology & Registry Intelligence
 **Suggested Outlets:** Legal IT Insider, Artificial Lawyer, LawSites by Bob Ambrogi, Legaltech News
-**Date:** November 09, 2026
+**Date:** November 11, 2026
 
 ---
 
