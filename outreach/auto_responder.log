@@ -752,3 +752,4 @@
 [2026-11-10 15:45:00]   ⏭️ Skipped non-prospect from venmo@venmo.com (Sub: 'You paid Amalia Ververis $80.00'): Sender 'venmo@venmo.com' is not messaging about Surplus Docket related matters
 [2026-11-11 08:02:38]   ⏭️ Skipped non-prospect from support@mailer.alpaca.markets (Sub: 'Your UNI/USD Order Has Been Executed'): Message identified as automated notification, bounce, or system alert
 [2026-11-11 08:02:38]   ⏭️ Skipped non-prospect from prospectus_mbox@investordelivery.com (Sub: 'Your Prospectus Documents Are Available '): Sender 'prospectus_mbox@investordelivery.com' is not messaging about Surplus Docket related matters
+[2026-11-11 16:06:40]   ⏭️ Skipped non-prospect from noreply@careforth.com (Sub: 'Missing Massachusetts Daily Check In'): Message identified as automated notification, bounce, or system alert
