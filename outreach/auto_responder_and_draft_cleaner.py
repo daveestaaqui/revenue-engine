@@ -3147,132 +3147,13 @@ def load_feed_data():
 
 
 def clean_apple_mail_drafts():
-    """
-    Tells Apple Mail (Mail.app) directly via AppleScript to delete drafts
-    whose recipients have already been sent to.
-    """
-    if sys.platform != "darwin":
-        return 0
-    applescript = """
-    tell application "System Events"
-        set isRunning to (name of processes) contains "Mail"
-    end tell
-    if isRunning then
-        tell application "Mail"
-            try
-                set sentBox to sent mailbox
-                set totalSent to count of messages of sentBox
-                set maxCount to 40
-                if totalSent < maxCount then set maxCount to totalSent
-                
-                set recentSent to messages 1 thru maxCount of sentBox
-                set sentRecipients to {}
-                repeat with aMsg in recentSent
-                    try
-                        repeat with aRecipient in (every to recipient of aMsg)
-                            set end of sentRecipients to (address of aRecipient)
-                        end repeat
-                    end try
-                end repeat
-                
-                set draftsBox to drafts mailbox
-                set draftList to every message of draftsBox
-                set deletedCount to 0
-                repeat with dMsg in draftList
-                    try
-                        repeat with dRecipient in (every to recipient of dMsg)
-                            set dAddr to (address of dRecipient)
-                            if sentRecipients contains dAddr then
-                                delete dMsg
-                                set deletedCount to deletedCount + 1
-                            end if
-                        end repeat
-                    end try
-                end repeat
-                return deletedCount
-            on error
-                return 0
-            end try
-        end tell
-    else
-        return 0
-    end if
-    """
-    try:
-        res = subprocess.run(["osascript", "-e", applescript], capture_output=True, text=True, timeout=5)
-        count = int(res.stdout.strip()) if res.stdout.strip().isdigit() else 0
-        if count > 0:
-            log(f"  🍎 Apple Mail: Expunged {count} sent draft(s) directly in Mail.app.")
-    except Exception:
-        pass
+    # Disabled permanently
+    return 0
 
 
 def clean_imap_drafts(mail):
-    """
-    Scans [Gmail]/Sent Mail and purges corresponding drafts from [Gmail]/Drafts.
-    """
-    # 1. Get recent sent recipients
-    status, count = mail.select('"[Gmail]/Sent Mail"')
-    if status != "OK":
-        return
-
-    status, messages = mail.search(None, "ALL")
-    if status != "OK" or not messages[0]:
-        return
-
-    sent_emails = set()
-    sent_reply_emails = set()
-    msg_ids = messages[0].split()
-    for mid in reversed(msg_ids[-50:]):
-        res, data = mail.fetch(mid, "(BODY[HEADER.FIELDS (TO CC SUBJECT IN-REPLY-TO)])")
-        if res == "OK" and data and isinstance(data[0], tuple):
-            msg = email.message_from_bytes(data[0][1])
-            to_raw = decode_str(msg.get("To", ""))
-            subj_raw = decode_str(msg.get("Subject", "")).strip().lower()
-            in_rep = msg.get("In-Reply-To", "")
-            _, to_addr = parseaddr(to_raw)
-            if to_addr:
-                addr_clean = to_addr.lower().strip()
-                sent_emails.add(addr_clean)
-                if subj_raw.startswith("re:") or in_rep:
-                    sent_reply_emails.add(addr_clean)
-
-    if not sent_emails:
-        return
-
-    # 2. Select Drafts and purge matches
-    drafts_box = get_gmail_drafts_mailbox(mail)
-    status, count = mail.select(drafts_box)
-    if status != "OK":
-        return
-
-    status, messages = mail.search(None, "ALL")
-    if status != "OK" or not messages[0]:
-        return
-
-    draft_ids = messages[0].split()
-    removed_count = 0
-
-    for did in draft_ids:
-        res, data = mail.fetch(did, "(BODY[HEADER.FIELDS (TO SUBJECT IN-REPLY-TO)])")
-        if res == "OK" and data and isinstance(data[0], tuple):
-            msg = email.message_from_bytes(data[0][1])
-            to_raw = decode_str(msg.get("To", ""))
-            subj_raw = decode_str(msg.get("Subject", "")).strip().lower()
-            in_rep = msg.get("In-Reply-To", "")
-            _, to_addr = parseaddr(to_raw)
-            to_clean = to_addr.lower().strip() if to_addr else ""
-            is_reply_draft = subj_raw.startswith("re:") or bool(in_rep)
-
-            should_purge = (to_clean in sent_reply_emails) if is_reply_draft else (to_clean in sent_emails)
-            if should_purge:
-                mail.store(did, "+FLAGS", r"(\Deleted)")
-                removed_count += 1
-                log(f"  🗑️ IMAP: Removed sent draft for: {to_clean}")
-
-    if removed_count > 0:
-        mail.expunge()
-        log(f"✓ Expunged {removed_count} sent draft(s) from [Gmail]/Drafts.")
+    # Disabled permanently
+    return 0
 
 
 def sync_voicemails_to_inbox(mail):
