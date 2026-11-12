@@ -1,5 +1,23 @@
 [
   {
+    "id": "ACT-4277735",
+    "timestamp": "2026-11-12T19:09:47.611500",
+    "sender_name": "Barb Balyeat",
+    "sender_email": "b.balyeat@plastictechnologies.com",
+    "phone": "",
+    "channel": "DIRECT_EMAIL",
+    "jurisdiction": "FL",
+    "county": "",
+    "docket": "",
+    "category": "GENERAL",
+    "subject": "Re: Fwd: APR PET-P-02 / PET-CG-01 Screening Protocol Inquiry:\r\n Patent-Pending Wash-Debondable Tie-Layer Architecture (U.S. Patent-Pending\r\n (Priority Date: Nov 4, 2026))",
+    "inbound_snippet": "Hi David, As a first step in the testing process, have you reached out to APR yet? The PET-CG-01 test protocol is property of APR, and as such, PTI cannot condu",
+    "summary": "Law firm reply from Barb Balyeat (Plastictechnologies). Intent: GENERAL.",
+    "action_taken": "DRAFT_CREATED",
+    "persona": "David Mahler (Surplus Docket Intelligence)",
+    "notable": true
+  },
+  {
     "id": "ACT-7459555",
     "timestamp": "2026-11-11T22:40:03.573466",
     "sender_name": "Erica Hartmann",
