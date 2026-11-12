@@ -1,9 +1,10 @@
 name: Surplus Docket Inbound Sentinel & Autonomous Draft Creator
 
+# DISABLED: Auto-responder disabled per user request
+# on:
+#   schedule:
+#     - cron: '*/10 * * * *'
 on:
-  schedule:
-    # Runs continually every 10 minutes 24/7 across business and off-hours
-    - cron: '*/10 * * * *'
   workflow_dispatch:
     inputs:
       auto_send:
