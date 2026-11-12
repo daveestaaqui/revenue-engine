@@ -5,516 +5,1061 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="googlebot" content="noindex, nofollow, noarchive">
-<title>How SeparaTie™ Works — Interactive Wash-Plant &amp; Wastewater Explainer</title>
+<title>SeparaTie™ — Coextrusion Delamination, APR Wash-Plant &amp; DAF Clarifier Engineering Workbench</title>
 <style>
   :root {
-    --bg: #070d19;
-    --panel: #0f172a;
-    --card: #1e293b;
-    --border: #334155;
-    --text: #f8fafc;
-    --muted: #cbd5e1;
-    --sub: #94a3b8;
-    --blue: #38bdf8;
-    --green: #22c55e;
+    --bg-deep: #040812;
+    --bg-surface: #0a1120;
+    --bg-card: #101b30;
+    --bg-elevated: #162440;
+    --border: #233657;
+    --border-bright: #3b598a;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --cyan: #38bdf8;
+    --cyan-glow: rgba(56, 189, 248, 0.22);
+    --emerald: #22c55e;
+    --emerald-glow: rgba(34, 197, 94, 0.22);
     --amber: #f59e0b;
-    --red: #ef4444;
-    --purple: #a855f7;
+    --amber-glow: rgba(245, 158, 11, 0.22);
+    --rose: #ef4444;
+    --rose-glow: rgba(239, 68, 68, 0.22);
+    --indigo: #818cf8;
+    --violet: #c084fc;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
+
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
+
   body {
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    width: 100vw;
+    background-color: var(--bg-deep);
+    background-image:
+      radial-gradient(circle at 12% 0%, rgba(14, 165, 233, 0.09) 0%, transparent 45%),
+      radial-gradient(circle at 88% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 45%);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    user-select: none;
+    overflow-x: hidden;
+    overflow-y: auto;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ================= TOP HEADER & 5-STEP BAR ================= */
-  header {
-    background: #060b14;
-    border-bottom: 1px solid var(--border);
-    padding: 12px 24px;
+  .app-shell {
+    max-width: 1580px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px 24px 28px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    flex-shrink: 0;
+    gap: 14px;
+    flex: 1;
   }
-  .header-top {
+
+  /* ================= 1. TOP COMMAND BAR ================= */
+  .command-bar {
+    background: rgba(10, 17, 32, 0.92);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 20px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   }
-  .brand {
+
+  .brand-identity {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .brand-title-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .brand-logo {
     font-size: 20px;
     font-weight: 800;
     letter-spacing: -0.02em;
     color: #ffffff;
-  }
-  .brand-badge {
-    background: rgba(56, 189, 248, 0.16);
-    border: 1px solid rgba(56, 189, 248, 0.45);
-    color: #7dd3fc;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 999px;
-    letter-spacing: 0.01em;
-  }
-  .header-hint {
-    font-size: 13px;
-    font-weight: 600;
-    color: #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  .steps-grid {
+  .brand-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+  }
+
+  .pill-tag {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pill-cyan {
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    color: #7dd3fc;
+  }
+
+  .pill-violet {
+    background: rgba(192, 132, 252, 0.14);
+    border: 1px solid rgba(192, 132, 252, 0.42);
+    color: #e9d5ff;
+  }
+
+  .brand-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .seg-control {
+    display: inline-flex;
+    align-items: center;
+    background: #060b16;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .seg-caption {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    padding: 0 8px;
+  }
+
+  .seg-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+    border-radius: 7px;
+    padding: 7px 12px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.16s ease;
+    white-space: nowrap;
+  }
+
+  .seg-btn:hover {
+    color: #ffffff;
+    background: rgba(56, 189, 248, 0.09);
+  }
+
+  .seg-btn.active {
+    background: rgba(56, 189, 248, 0.2);
+    color: #ffffff;
+    border-color: var(--cyan);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.22);
+  }
+
+  .seg-btn.bench-conv.active {
+    background: rgba(239, 68, 68, 0.22);
+    color: #fecaca;
+    border-color: var(--rose);
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
+  }
+
+  .cta-dossier-btn {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: #042412;
+    border: 1px solid #86efac;
+    border-radius: 10px;
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 0 16px rgba(34, 197, 94, 0.26);
+    transition: all 0.16s ease;
+    white-space: nowrap;
+  }
+
+  .cta-dossier-btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+
+  /* ================= 2. 5-STAGE INTERACTIVE STEPPER ================= */
+  .stepper-bar {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
   }
+
+  @media (max-width: 1120px) {
+    .stepper-bar {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 720px) {
+    .stepper-bar {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .step-card {
     position: relative;
-    background: #111c30;
-    border: 1.5px solid #26354d;
-    border-radius: 10px;
-    padding: 10px 14px 13px 14px;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px 14px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.18s ease;
     display: flex;
-    align-items: center;
-    gap: 12px;
+    align-items: flex-start;
+    gap: 11px;
     overflow: hidden;
   }
+
   .step-card:hover {
-    border-color: #64748b;
-    background: #16243d;
+    border-color: var(--border-bright);
+    background: var(--bg-card);
   }
+
   .step-card.active {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.22) 0%, rgba(30, 58, 138, 0.35) 100%);
-    border-color: #38bdf8;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.22);
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.20) 0%, rgba(16, 27, 48, 0.95) 100%);
+    border-color: var(--cyan);
+    box-shadow: 0 4px 18px rgba(56, 189, 248, 0.18);
   }
+
   .step-num {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #26354d;
-    color: #cbd5e1;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-bright);
+    color: var(--text-secondary);
     font-weight: 800;
-    font-size: 14px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: all 0.2s;
+    font-family: var(--font-mono);
   }
+
   .step-card.active .step-num {
-    background: #38bdf8;
-    color: #060b14;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+    background: var(--cyan);
+    border-color: #bae6fd;
+    color: #040812;
   }
+
   .step-text {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
+    min-width: 0;
   }
+
   .step-title {
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 800;
-    color: #e2e8f0;
-    line-height: 1.2;
+    color: var(--text-primary);
+    line-height: 1.25;
   }
-  .step-card.active .step-title {
-    color: #ffffff;
-  }
+
   .step-sub {
     font-size: 12px;
     font-weight: 600;
-    color: #94a3b8;
+    color: var(--text-muted);
+    line-height: 1.25;
   }
+
   .step-card.active .step-sub {
     color: #bae6fd;
   }
+
   .step-fill {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 4px;
-    background: #38bdf8;
+    height: 3.5px;
+    background: var(--cyan);
     width: 0%;
     transition: width 0.08s linear;
   }
 
-  /* ================= STORY EXPLANATION BANNER ================= */
-  .narrative-banner {
-    background: linear-gradient(90deg, #0f172a 0%, #172554 60%, #0f172a 100%);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 24px;
+  /* ================= 3. KPI TELEMETRY RIBBON (4 HARMONIOUS CARDS) ================= */
+  .telemetry-ribbon {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 1180px) {
+    .telemetry-ribbon {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 680px) {
+    .telemetry-ribbon {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .kpi-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .kpi-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    flex-shrink: 0;
+    gap: 8px;
   }
-  .narrative-main {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    max-width: 980px;
-  }
-  .narrative-heading {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .step-pill {
-    background: #38bdf8;
-    color: #060b14;
-    font-size: 12px;
-    font-weight: 900;
-    padding: 3px 10px;
-    border-radius: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
-  }
-  .story-title {
-    font-size: 21px;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.01em;
-  }
-  .story-desc {
-    font-size: 15.5px;
-    color: #f1f5f9;
-    line-height: 1.42;
-    font-weight: 500;
-  }
-  .wastewater-box {
-    background: rgba(22, 163, 74, 0.16);
-    border: 1.5px solid #22c55e;
-    border-radius: 12px;
-    padding: 10px 16px;
-    min-width: 340px;
-    max-width: 390px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  }
-  .ww-header {
+
+  .kpi-title {
     font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: #4ade80;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .ww-body {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #ecfdf5;
-    line-height: 1.35;
+    color: var(--text-muted);
   }
 
-  /* ================= MAIN WORKSPACE (LEFT GAUGES + BIG CANVAS) ================= */
-  .workspace {
-    flex: 1;
-    display: flex;
-    gap: 16px;
-    padding: 14px 24px;
-    min-height: 0;
-    background: #070d19;
-  }
-
-  /* Left Gauge Column (Razor-Sharp Native HTML) */
-  .gauges-col {
-    width: 265px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .gauge-card {
-    background: #0f172a;
-    border: 1.5px solid #26354d;
-    border-radius: 14px;
-    padding: 14px 16px;
-    display: flex;
-    flex-direction: column;
-  }
-  .gauge-card.temp-card {
-    flex: 1;
-    min-height: 0;
-  }
-  .card-label {
+  .kpi-badge {
     font-size: 12px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #94a3b8;
-    margin-bottom: 8px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-variant-numeric: tabular-nums;
   }
-  .temp-header {
+
+  .kpi-badge.locked {
+    background: rgba(56, 189, 248, 0.14);
+    color: #7dd3fc;
+    border: 1px solid rgba(56, 189, 248, 0.38);
+  }
+
+  .kpi-badge.melted {
+    background: rgba(245, 158, 11, 0.18);
+    color: #fde68a;
+    border: 1px solid rgba(245, 158, 11, 0.45);
+  }
+
+  .kpi-badge.danger {
+    background: rgba(239, 68, 68, 0.18);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.45);
+  }
+
+  .kpi-badge.pass {
+    background: rgba(34, 197, 94, 0.16);
+    color: #86efac;
+    border: 1px solid rgba(34, 197, 94, 0.42);
+  }
+
+  .kpi-main-row {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 6px;
-  }
-  .temp-big {
-    font-size: 36px;
-    font-weight: 900;
-    color: #ffffff;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.03em;
-  }
-  .temp-badge {
-    font-size: 11px;
-    font-weight: 800;
-    padding: 4px 8px;
-    border-radius: 6px;
-    text-transform: uppercase;
-  }
-  .temp-badge.locked {
-    background: rgba(56, 189, 248, 0.15);
-    color: #7dd3fc;
-    border: 1px solid rgba(56, 189, 248, 0.4);
-  }
-  .temp-badge.melted {
-    background: rgba(239, 68, 68, 0.2);
-    color: #fca5a5;
-    border: 1px solid #ef4444;
+    gap: 10px;
   }
 
-  /* Visual Thermometer Track */
-  .thermo-wrap {
-    flex: 1;
-    display: flex;
-    align-items: stretch;
-    gap: 14px;
-    margin-top: 6px;
-    min-height: 120px;
-  }
-  .thermo-tube {
-    width: 28px;
-    background: #060b14;
-    border: 2px solid #475569;
-    border-radius: 999px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    padding: 3px;
-  }
-  .thermo-mercury {
-    width: 100%;
-    border-radius: 999px;
-    background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
-    transition: height 0.08s linear;
-  }
-  .thermo-scale {
-    flex: 1;
-    position: relative;
-  }
-  .scale-mark {
-    position: absolute;
-    left: 0;
-    right: 0;
-    transform: translateY(50%);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .scale-line {
-    width: 12px;
-    height: 2px;
-    background: #64748b;
-    flex-shrink: 0;
-  }
-
-  /* Grip Card */
-  .grip-val {
+  .kpi-value {
     font-size: 26px;
     font-weight: 900;
     color: #ffffff;
-    margin-bottom: 6px;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+  }
+
+  .kpi-secondary {
+    font-size: 13px;
+    font-weight: 700;
+    color: #7dd3fc;
     font-variant-numeric: tabular-nums;
   }
-  .grip-bar-bg {
+
+  /* Horizontal Thermal Regime Checkpoints (Replaces colliding vertical thermometer) */
+  .thermal-track-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .bar-track {
     width: 100%;
-    height: 12px;
-    background: #060b14;
+    height: 8px;
+    background: #050914;
     border-radius: 999px;
     overflow: hidden;
-    border: 1px solid #334155;
+    border: 1px solid #1e2d4a;
   }
-  .grip-bar-fill {
+
+  .bar-fill {
     height: 100%;
-    width: 100%;
-    background: linear-gradient(90deg, #38bdf8, #2563eb);
+    width: 25%;
     border-radius: 999px;
+    background: linear-gradient(90deg, #38bdf8, #0284c7);
     transition: width 0.08s linear;
   }
 
-  /* Effluent Purity Card */
-  .purity-card {
-    background: rgba(22, 163, 74, 0.12);
-    border: 1.5px solid rgba(34, 197, 94, 0.45);
-  }
-  .purity-title {
-    font-size: 15px;
-    font-weight: 800;
-    color: #4ade80;
-    margin-bottom: 3px;
-  }
-  .purity-sub {
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #dcfce7;
+  .thermal-markers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
   }
 
-  /* Main Stage Canvas Container */
-  .canvas-card {
-    flex: 1;
-    background: #0f172a;
-    border: 1.5px solid #26354d;
-    border-radius: 14px;
-    position: relative;
+  .t-mark {
+    text-align: center;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+  }
+
+  .t-mark.active-mark {
+    color: #ffffff;
+    border-color: var(--cyan);
+    background: rgba(56, 189, 248, 0.16);
+  }
+
+  .dual-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .stat-cell {
+    background: #060b16;
+    border: 1px solid #1a2944;
+    border-radius: 8px;
+    padding: 7px 10px;
+  }
+
+  .stat-lbl {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .stat-val {
+    font-size: 16px;
+    font-weight: 800;
+    color: #4ade80;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    margin-top: 2px;
+  }
+
+  .stat-sub {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 1px;
+  }
+
+  /* ================= 4. SIMULATION STAGE & HTML HUD BARS ================= */
+  .stage-shell {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Top HTML HUD above Canvas: Zone A & Zone B Headers + Live Status Banner */
+  .stage-hud-top {
+    background: #070d19;
+    border-bottom: 1px solid var(--border);
+    padding: 13px 20px;
+    display: grid;
+    grid-template-columns: 62fr 38fr;
+    gap: 20px;
+    align-items: center;
+  }
+
+  @media (max-width: 980px) {
+    .stage-hud-top {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+
+  .hud-zone-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     min-width: 0;
   }
-  canvas {
+
+  .hud-zone-block.zone-b-block {
+    border-left: 1px solid var(--border);
+    padding-left: 18px;
+  }
+
+  @media (max-width: 980px) {
+    .hud-zone-block.zone-b-block {
+      border-left: none;
+      border-top: 1px solid var(--border);
+      padding-left: 0;
+      padding-top: 8px;
+    }
+  }
+
+  .hud-zone-kicker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .hud-zone-tag {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: rgba(56, 189, 248, 0.16);
+    color: #7dd3fc;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+  }
+
+  .hud-zone-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .hud-zone-sub {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.38;
+  }
+
+  /* Canvas Viewport */
+  .canvas-viewport {
+    position: relative;
+    width: 100%;
+    height: 460px;
+    min-height: 420px;
+    background: #040914;
+  }
+
+  canvas#canvas {
     width: 100%;
     height: 100%;
     display: block;
   }
 
-  /* ================= FOOTER LEGEND & CONTROLS ================= */
-  footer {
-    background: #060b14;
+  /* Bottom HTML HUD below Canvas: Step Narrative + Reaction/DAF Telemetry + Playback */
+  .stage-hud-bottom {
+    background: #070d19;
     border-top: 1px solid var(--border);
-    padding: 10px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-shrink: 0;
-  }
-  .legend-bar {
-    display: flex;
-    align-items: center;
+    padding: 14px 20px;
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
     gap: 18px;
-    flex-wrap: wrap;
+    align-items: center;
   }
-  .legend-item {
+
+  @media (max-width: 1040px) {
+    .stage-hud-bottom {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .narrative-card {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .narrative-badges {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #e2e8f0;
-    background: #111c30;
-    padding: 5px 11px;
-    border-radius: 8px;
-    border: 1px solid #26354d;
-  }
-  .leg-swatch {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    flex-shrink: 0;
+    flex-wrap: wrap;
   }
 
-  .controls-bar {
+  .step-pill {
+    background: var(--cyan);
+    color: #040812;
+    font-size: 12px;
+    font-weight: 900;
+    padding: 2px 9px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .arch-pill {
+    background: rgba(245, 158, 11, 0.16);
+    border: 1px solid rgba(245, 158, 11, 0.48);
+    color: #fde68a;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 5px;
+  }
+
+  .story-title {
+    font-size: 16.5px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  .story-desc {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  .wastewater-box {
+    background: rgba(22, 163, 74, 0.12);
+    border: 1.5px solid #22c55e;
+    border-radius: 11px;
+    padding: 11px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .wastewater-box.warn-mode {
+    background: rgba(239, 68, 68, 0.14);
+    border-color: #ef4444;
+  }
+
+  .ww-header {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #4ade80;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .wastewater-box.warn-mode .ww-header {
+    color: #fca5a5;
+  }
+
+  .ww-body {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ecfdf5;
+    line-height: 1.4;
+  }
+
+  /* Playback & Legend Footer inside Stage Shell */
+  .stage-controls-bar {
+    background: #050912;
+    border-top: 1px solid var(--border);
+    padding: 11px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .legend-bar {
     display: flex;
     align-items: center;
     gap: 10px;
-    flex: 1;
-    max-width: 680px;
+    flex-wrap: wrap;
   }
+
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    padding: 5px 11px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+  }
+
+  .leg-swatch {
+    width: 13px;
+    height: 13px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .playback-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    max-width: 640px;
+    min-width: 300px;
+  }
+
   .ctrl-btn {
-    background: #1e293b;
-    color: #f8fafc;
-    border: 1px solid #475569;
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-bright);
     border-radius: 8px;
-    padding: 8px 13px;
-    font-size: 13px;
+    padding: 7px 12px;
+    font-size: 12.5px;
     font-weight: 800;
     cursor: pointer;
     transition: all 0.15s;
     flex-shrink: 0;
   }
+
   .ctrl-btn:hover {
-    background: #334155;
+    background: #22355c;
   }
+
   .ctrl-btn.primary {
-    background: #38bdf8;
-    color: #060b14;
-    border-color: #38bdf8;
-    min-width: 96px;
+    background: var(--cyan);
+    color: #040812;
+    border-color: #7dd3fc;
+    min-width: 92px;
   }
-  .ctrl-btn.primary:hover {
-    filter: brightness(1.1);
-  }
+
   .slider-wrap {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 10px;
   }
+
   input[type="range"] {
-    flex: 1;
-    accent-color: #38bdf8;
-    height: 7px;
+    width: 100%;
+    accent-color: var(--cyan);
+    height: 6px;
     cursor: pointer;
   }
+
   .time-pill {
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 800;
     color: #bae6fd;
-    min-width: 118px;
+    min-width: 128px;
     text-align: right;
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
+  }
+
+  /* ================= 5. NATIVE <dialog> MODAL FOR APR DATA & 500g SOP ================= */
+  dialog#apr-modal {
+    margin: auto;
+    width: min(960px, 94vw);
+    max-height: 88vh;
+    background: #0b1322;
+    color: var(--text-primary);
+    border: 1.5px solid var(--cyan);
+    border-radius: 16px;
+    padding: 0;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.2);
+    overflow: hidden;
+  }
+
+  dialog#apr-modal[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  dialog#apr-modal::backdrop {
+    background: rgba(3, 7, 18, 0.78);
+    backdrop-filter: blur(5px);
+  }
+
+  .modal-header {
+    background: #070d19;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .modal-title {
+    font-size: 18.5px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .modal-subtitle {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 3px;
+  }
+
+  .modal-close-btn {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-bright);
+    border-radius: 8px;
+    padding: 7px 13px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .modal-body {
+    padding: 18px 22px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  table.apr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: left;
+    font-variant-numeric: tabular-nums;
+  }
+
+  table.apr-table th {
+    background: #111c30;
+    color: #bae6fd;
+    font-weight: 800;
+    padding: 10px 13px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  table.apr-table td {
+    padding: 10px 13px;
+    border-bottom: 1px solid #1e293b;
+    color: #e2e8f0;
+    font-weight: 600;
+  }
+
+  table.apr-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  table.apr-table td.pass-cell {
+    color: #4ade80;
+    font-weight: 800;
+    background: rgba(22, 163, 74, 0.08);
+  }
+
+  table.apr-table td.fail-cell {
+    color: #fca5a5;
+    font-weight: 700;
+    background: rgba(239, 68, 68, 0.08);
+  }
+
+  .split-mb-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 720px) {
+    .split-mb-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .mb-card {
+    background: #111c30;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .mb-card-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fde68a;
+  }
+
+  .mb-card-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  .nda-cta-banner {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.16) 0%, rgba(22, 163, 74, 0.18) 100%);
+    border: 1.5px solid var(--cyan);
+    border-radius: 12px;
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .nda-cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 560px;
+  }
+
+  .nda-cta-heading {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .nda-cta-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .nda-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .mailto-link-btn {
+    background: #22c55e;
+    color: #052e16;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 9px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid #86efac;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .copy-email-btn {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-bright);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
   }
 </style>
 </head>
 <body>
 
-<!-- TOP HEADER & 5-STEP STORY SELECTOR -->
-<header>
-  <div class="header-top">
-    <div class="brand">
-      SeparaTie™ Smart Tie-Layer Glue
-      <span class="brand-badge">Wash-Plant &amp; Wastewater Visual Explainer</span>
+<div class="app-shell">
+  <!-- 1. TOP COMMAND BAR -->
+  <header class="command-bar">
+    <div class="brand-identity">
+      <div class="brand-title-row">
+        <div class="brand-logo">
+          <span class="brand-dot"></span>
+          <span>SeparaTie™ Hydro-Triggered Coextrusion Tie Layer</span>
+        </div>
+        <span class="pill-tag pill-cyan">APR PET-P-02 / PET-CG-01 &amp; DAF Wash-Plant Workbench</span>
+        <span class="pill-tag pill-violet">U.S. Patent-Pending (Priority Date: Nov 4, 2026) • ~$3.18/kg</span>
+      </div>
+      <div class="brand-subtitle">
+        Two-Part Split-Masterbatch Architecture (Sub-Tie A + Sub-Tie B) • 100% FDA 21 CFR / EU 10/2011 Commercial Polyolefins • Inventor: David Mahler
+      </div>
     </div>
-    <div class="header-hint">
-      Click any Step (1–5) below or drag the timeline slider at the bottom to inspect the process
-    </div>
-  </div>
 
-  <div class="steps-grid">
+    <div class="toolbar-actions">
+      <!-- Structure Selector -->
+      <div class="seg-control" role="group" aria-label="Coextrusion Structure Selector">
+        <span class="seg-caption">Structure:</span>
+        <button type="button" class="seg-btn active" id="mode-tray-btn" onclick="setStructureMode('tray')">
+          APET / SeparaTie™ / PE Tray
+        </button>
+        <button type="button" class="seg-btn" id="mode-film-btn" onclick="setStructureMode('film')">
+          PE / SeparaTie™ / EVOH / SeparaTie™ / PE Film
+        </button>
+      </div>
+
+      <!-- Benchmark Selector -->
+      <div class="seg-control" role="group" aria-label="Benchmark Comparison Mode">
+        <span class="seg-caption">Benchmark:</span>
+        <button type="button" class="seg-btn active" id="bench-sep-btn" onclick="setBenchmarkMode('separatie')">
+          ✓ SeparaTie™ (&lt;4 min, Δb* +0.28)
+        </button>
+        <button type="button" class="seg-btn bench-conv" id="bench-conv-btn" onclick="setBenchmarkMode('conventional')">
+          ✕ Conventional MAH-g-LLDPE (0% Peel)
+        </button>
+      </div>
+
+      <!-- APR Validation Matrix & 500g SOP Modal CTA -->
+      <button type="button" class="cta-dossier-btn" onclick="openAprModal()">
+        📋 APR Validation Matrix &amp; 500g SOP
+      </button>
+    </div>
+  </header>
+
+  <!-- 2. 5-STAGE INTERACTIVE STEPPER -->
+  <nav class="stepper-bar" aria-label="Simulation Process Stages">
     <div class="step-card active" id="tab-0" onclick="jumpToStep(0)">
       <div class="step-num">1</div>
       <div class="step-text">
-        <div class="step-title">Normal Use (Up to 60°C)</div>
-        <div class="step-sub">🔒 Wax Gates Locked Solid</div>
+        <div class="step-title">Cold-Chain Service (25.0°C)</div>
+        <div class="step-sub">🔒 &gt;8.0 N/15 mm Locked Adhesion</div>
       </div>
       <div class="step-fill" id="fill-0"></div>
     </div>
@@ -522,8 +1067,8 @@
     <div class="step-card" id="tab-1" onclick="jumpToStep(1)">
       <div class="step-num">2</div>
       <div class="step-text">
-        <div class="step-title">85°C Wash Tank Switch</div>
-        <div class="step-sub">🔥 Wax Gates Melt at 78°C</div>
+        <div class="step-title">Hot-Fill &amp; Storage Limit (60.8°C)</div>
+        <div class="step-sub">🛡️ Vicat Safe • Gate Solid (&lt;78°C)</div>
       </div>
       <div class="step-fill" id="fill-1"></div>
     </div>
@@ -531,8 +1076,8 @@
     <div class="step-card" id="tab-2" onclick="jumpToStep(2)">
       <div class="step-num">3</div>
       <div class="step-text">
-        <div class="step-title">Water Softeners Active</div>
-        <div class="step-sub">🛡️ Traps Hard-Water Ca²⁺</div>
+        <div class="step-title">Caustic Wash Delamination (85°C)</div>
+        <div class="step-sub">🔥 78°C Switch • &lt;4 min Cleavage</div>
       </div>
       <div class="step-fill" id="fill-2"></div>
     </div>
@@ -540,8 +1085,8 @@
     <div class="step-card" id="tab-3" onclick="jumpToStep(3)">
       <div class="step-num">4</div>
       <div class="step-text">
-        <div class="step-title">Water Unhooks Seam</div>
-        <div class="step-sub">⚓ Clean Peel in 4 Minutes</div>
+        <div class="step-title">Sink–Float Density Separation</div>
+        <div class="step-sub">⚖️ &lt;12 ppm rPET • SSP Δb* +0.28</div>
       </div>
       <div class="step-fill" id="fill-3"></div>
     </div>
@@ -549,169 +1094,407 @@
     <div class="step-card" id="tab-4" onclick="jumpToStep(4)">
       <div class="step-num">5</div>
       <div class="step-text">
-        <div class="step-title">Float–Sink Clarifier</div>
-        <div class="step-sub">⚖️ PET Sinks, PE+Glue Floats</div>
+        <div class="step-title">Alum DAF Wastewater Recovery</div>
+        <div class="step-sub">💧 &lt;0.50 mg/L Effluent • Non-Foaming</div>
       </div>
       <div class="step-fill" id="fill-4"></div>
     </div>
-  </div>
-</header>
+  </nav>
 
-<!-- NARRATIVE EXPLANATION BANNER -->
-<div class="narrative-banner">
-  <div class="narrative-main">
-    <div class="narrative-heading">
-      <span class="step-pill" id="step-pill">STEP 1 OF 5</span>
-      <div class="story-title" id="story-title">Normal Food Storage &amp; Hot Filling (25°C – 60°C) — Glue Is Locked Solid</div>
-    </div>
-    <div class="story-desc" id="story-desc">
-      Inside the golden Smart Glue layer, solid white "Wax Gates" physically plug the water tunnels shut. Even with hot 60°C food, water cannot get inside and the package stays 100% sealed.
-    </div>
-  </div>
-
-  <div class="wastewater-box">
-    <div class="ww-header">💧 Wastewater &amp; Wash-Water Impact</div>
-    <div class="ww-body" id="ww-text">
-      The Smart Glue never dissolves into plant water — it stays 100% solid attached to the floating PE film.
-    </div>
-  </div>
-</div>
-
-<!-- MAIN WORKSPACE -->
-<div class="workspace">
-  <!-- Left Column: Razor-Sharp Native HTML Gauges -->
-  <div class="gauges-col">
-    <div class="gauge-card temp-card">
-      <div class="card-label">1. Wash Water Temperature</div>
-      <div class="temp-header">
-        <div class="temp-big" id="temp-readout">25°C</div>
-        <div class="temp-badge locked" id="temp-badge">Gates Solid</div>
+  <!-- 3. KPI TELEMETRY RIBBON (4 SPACIOUS CARDS, ZERO OVERLAP) -->
+  <section class="telemetry-ribbon" aria-label="Real-Time Process Telemetry">
+    <!-- Card 1: Wash Bath Temperature & Thermal Regime -->
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-title">1. Wash Bath Thermal Regime</span>
+        <span class="kpi-badge locked" id="temp-badge">🔒 Gate Solid (&lt;78°C)</span>
       </div>
-
-      <div class="thermo-wrap">
-        <div class="thermo-tube">
-          <div class="thermo-mercury" id="thermo-mercury" style="height: 25%;"></div>
+      <div class="kpi-main-row">
+        <div class="kpi-value" id="temp-readout">25.0°C</div>
+        <div class="kpi-secondary">1.0% NaOH / 0.3% Triton X-100</div>
+      </div>
+      <div class="thermal-track-wrap">
+        <div class="bar-track">
+          <div class="bar-fill" id="thermo-mercury"></div>
         </div>
-        <div class="thermo-scale">
-          <div class="scale-mark" style="bottom: 85%; color: #fca5a5;">
-            <div class="scale-line" style="background: #ef4444; width: 16px;"></div>
-            <span><b>85°C</b> Wash Tank</span>
-          </div>
-          <div class="scale-mark" style="bottom: 75%; color: #fda4af;">
-            <div class="scale-line" style="background: #f43f5e; width: 16px;"></div>
-            <span><b>78°C</b> Melt Switch</span>
-          </div>
-          <div class="scale-mark" style="bottom: 56%; color: #fcd34d;">
-            <div class="scale-line" style="background: #f59e0b;"></div>
-            <span><b>60°C</b> Hot-Food Safe</span>
-          </div>
-          <div class="scale-mark" style="bottom: 23%; color: #94a3b8;">
-            <div class="scale-line"></div>
-            <span><b>25°C</b> Room Temp</span>
-          </div>
+        <div class="thermal-markers">
+          <span class="t-mark active-mark" id="mark-25">25°C Serv.</span>
+          <span class="t-mark" id="mark-60">60.8°C Vicat</span>
+          <span class="t-mark" id="mark-78">78°C Switch</span>
+          <span class="t-mark" id="mark-85">85°C Wash</span>
         </div>
       </div>
     </div>
 
-    <div class="gauge-card">
-      <div class="card-label">Glue Grip on PET Tray</div>
-      <div class="grip-val" id="grip-readout">100% Locked</div>
-      <div class="grip-bar-bg">
-        <div class="grip-bar-fill" id="grip-bar"></div>
+    <!-- Card 2: Interfacial Peel Strength & Delamination Kinetics -->
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-title">2. Interfacial Peel Strength</span>
+        <span class="kpi-badge locked" id="mode-target-pill">APET / Tie Interface</span>
+      </div>
+      <div class="kpi-main-row">
+        <div class="kpi-value" id="grip-readout">8.4 N/15 mm</div>
+        <div class="kpi-secondary" id="cleavage-readout">0% Cleaved</div>
+      </div>
+      <div class="thermal-track-wrap">
+        <div class="bar-track">
+          <div class="bar-fill" id="grip-bar" style="width: 100%;"></div>
+        </div>
+        <div class="stat-sub">ASTM D1876 • Cleaves to 0.0 N/15 mm in &lt;4.0 min at 85°C</div>
       </div>
     </div>
 
-    <div class="gauge-card purity-card">
-      <div class="card-label" style="color: #86efac; margin-bottom: 4px;">Plant Effluent Water</div>
-      <div class="purity-title">✓ 0% Dissolved Plastic</div>
-      <div class="purity-sub">No Sludge • No BOD/COD Spike</div>
+    <!-- Card 3: APR PET-P-02 / PET-CG-01 Flake Purity & 210°C SSP -->
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-title">3. APR PET-P-02 / PET-CG-01</span>
+        <span class="kpi-badge pass" id="apr-status-pill">PASS • Grade A</span>
+      </div>
+      <div class="dual-stat-grid">
+        <div class="stat-cell">
+          <div class="stat-lbl" id="sink-stream-lbl">Sinking rPET Residue</div>
+          <div class="stat-val" id="residue-readout">&lt;12 ppm</div>
+          <div class="stat-sub" id="residue-sub">APR Limit: &lt;50 ppm</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-lbl">210°C SSP Color (Δb*)</div>
+          <div class="stat-val" id="ssp-readout">Δb* = +0.28</div>
+          <div class="stat-sub" id="ssp-sub">Conv. Tie: Δb* &gt; 8.5</div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- Center & Right Stage: High-DPI Visual Animation Canvas -->
-  <div class="canvas-card">
-    <canvas id="canvas"></canvas>
-  </div>
+    <!-- Card 4: Alum DAF Clarifier & Split-Masterbatch Economics -->
+    <div class="kpi-card" id="daf-card">
+      <div class="kpi-header">
+        <span class="kpi-title">4. Alum DAF &amp; Compounding</span>
+        <span class="kpi-badge pass" id="econ-pill">~$3.18/kg Resin</span>
+      </div>
+      <div class="dual-stat-grid">
+        <div class="stat-cell">
+          <div class="stat-lbl">DAF Effluent Solids</div>
+          <div class="stat-val" id="daf-title">&lt;0.50 mg/L</div>
+          <div class="stat-sub">0% Dissolved Polymer</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-lbl">Split-Masterbatch</div>
+          <div class="stat-val" style="color: #fde68a;">Sub-Tie A+B</div>
+          <div class="stat-sub" id="daf-sub">300 ppm Ca²⁺ Immune</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MAIN SIMULATION STAGE WITH DEDICATED HTML HUD BARS -->
+  <main class="stage-shell">
+    <!-- Top HTML HUD Bar (Moves Zone A & Zone B Titles/Subtitles out of Canvas!) -->
+    <div class="stage-hud-top">
+      <div class="hud-zone-block">
+        <div class="hud-zone-kicker">
+          <span class="hud-zone-tag">ZONE A • MICRO-SCALE INTERFACIAL KINETICS</span>
+          <span class="hud-zone-title" id="hud-zone-a-title">APET / SeparaTie™ / PE Thermoformed Tray Cross-Section</span>
+        </div>
+        <div class="hud-zone-sub" id="hud-zone-a-sub">
+          85°C Caustic Wash (1.0% NaOH / 0.3% Triton X-100): 78.0°C thermal gate opens capillary wicking channels &amp; hydrolyzes polar ester anchors in &lt;4.0 min.
+        </div>
+      </div>
+
+      <div class="hud-zone-block zone-b-block">
+        <div class="hud-zone-kicker">
+          <span class="hud-zone-tag">ZONE B • MACRO PLANT SEPARATION</span>
+          <span class="hud-zone-title" id="hud-zone-b-title">Sink–Float Tank &amp; Alum DAF Clarifier Loop</span>
+        </div>
+        <div class="hud-zone-sub" id="hud-zone-b-sub">
+          Pure PE + covalently anchored Sub-Tie B floats (0.92 g/cm³); clean rPET sinks (1.34 g/cm³, &lt;12 ppm) with &lt;0.50 mg/L DAF effluent solids.
+        </div>
+      </div>
+    </div>
+
+    <!-- High-Precision Scientific Canvas (Zero Long Sentence Overlaps) -->
+    <div class="canvas-viewport">
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <!-- Bottom HTML HUD Bar (Step Engineering Callout + DAF / APR Impact) -->
+    <div class="stage-hud-bottom">
+      <div class="narrative-card">
+        <div class="narrative-badges">
+          <span class="step-pill" id="step-pill">STAGE 1 OF 5</span>
+          <span class="arch-pill" id="arch-pill">Two-Part Split-Masterbatch: Sub-Tie A + Sub-Tie B</span>
+        </div>
+        <div class="story-title" id="story-title">
+          Cold-Chain Service (25.0°C) — Locked Coextrusion Peel Strength &gt;8.0 N/15 mm
+        </div>
+        <div class="story-desc" id="story-desc">
+          Below the 78.0°C thermal activation switch, hydrophobic crystalline domains in SeparaTie™ seal internal capillary channels shut. Coextruded APET/PE trays maintain 8.4 N/15 mm peel adhesion across cold-chain transport and ambient shelf storage.
+        </div>
+      </div>
+
+      <div class="wastewater-box" id="ww-box">
+        <div class="ww-header" id="ww-header">
+          <span>💧 Alum DAF Clarifier &amp; APR rPET Impact</span>
+          <span id="ww-tag">&lt;0.50 mg/L Effluent</span>
+        </div>
+        <div class="ww-body" id="ww-text">
+          SeparaTie™ never dissolves into wash water — Sub-Tie B stays covalently anchored to the floating PE phase (&lt;0.50 mg/L DAF solids, zero COD spike).
+        </div>
+      </div>
+    </div>
+
+    <!-- Playback Scrubber & Material Swatch Legend -->
+    <div class="stage-controls-bar">
+      <div class="legend-bar">
+        <div class="legend-item">
+          <div class="leg-swatch" style="background: #38bdf8; border: 2px solid #e0f2fe;"></div>
+          <span>🔒 78°C Gate (60.8°C Vicat Safe)</span>
+        </div>
+        <div class="legend-item">
+          <div class="leg-swatch" style="background: #0284c7; border: 2px solid #bae6fd;"></div>
+          <span>💧 85°C Caustic Wicking Stream</span>
+        </div>
+        <div class="legend-item">
+          <div class="leg-swatch" style="background: #7e22ce; border: 2px solid #e9d5ff; border-radius: 50%;"></div>
+          <span>🛡️ Sub-Tie A Ca²⁺ Chelator (&le;300 ppm)</span>
+        </div>
+        <div class="legend-item">
+          <div class="leg-swatch" style="background: #facc15; border: 2px solid #fef08a;"></div>
+          <span>⚓ Reversible Ester Anchor (&lt;4 min)</span>
+        </div>
+      </div>
+
+      <div class="playback-group">
+        <button type="button" class="ctrl-btn" onclick="stepPrev()" title="Previous Stage">⏮ Prev</button>
+        <button type="button" class="ctrl-btn primary" id="play-btn" onclick="togglePlay()">⏸ Pause</button>
+        <button type="button" class="ctrl-btn" onclick="stepNext()" title="Next Stage">Next ⏭</button>
+        <button type="button" class="ctrl-btn" id="speed-btn" onclick="toggleSpeed()">1× Speed</button>
+        <div class="slider-wrap">
+          <input type="range" id="scrubber" min="0" max="1000" value="0" aria-label="Wash timeline scrubber" oninput="onScrub(this.value)">
+        </div>
+        <div class="time-pill" id="time-readout">Wash: 0.0 / 4.0 min</div>
+      </div>
+    </div>
+  </main>
 </div>
 
-<!-- FOOTER LEGEND & PLAYBACK CONTROLS -->
-<footer>
-  <div class="legend-bar">
-    <div class="legend-item">
-      <div class="leg-swatch" style="background: #ffffff; border: 2px solid #38bdf8;"></div>
-      <span>🔒 Solid Wax Gate (Melts &gt;78°C)</span>
+<!-- 5. SEMANTIC NATIVE <dialog> FOR APR VALIDATION MATRIX & 500g BENCHTOP SOP -->
+<dialog id="apr-modal" aria-labelledby="modal-title">
+  <div class="modal-header">
+    <div>
+      <div class="modal-title" id="modal-title">SeparaTie™ APR PET-P-02 / PET-CG-01 Validation Matrix &amp; 500g Benchtop SOP</div>
+      <div class="modal-subtitle">
+        Non-Confidential Technical Dossier • U.S. Patent-Pending (Priority Date: Nov 4, 2026) • Inventor: David Mahler, Inventor &amp; Patent Owner
+      </div>
     </div>
-    <div class="legend-item">
-      <div class="leg-swatch" style="background: #0ea5e9; border: 2px solid #bae6fd;"></div>
-      <span>💧 85°C Wash Water Stream</span>
-    </div>
-    <div class="legend-item">
-      <div class="leg-swatch" style="background: #6b21a8; border: 2px solid #d8b4fe; border-radius: 50%;"></div>
-      <span>🛡️ Water Softener (Traps Red Ca²⁺)</span>
-    </div>
-    <div class="legend-item">
-      <div class="leg-swatch" style="background: #facc15; border: 2px solid #fef08a;"></div>
-      <span>⚓ Seam Grip Hook (Releases in Water)</span>
-    </div>
+    <button type="button" class="modal-close-btn" onclick="closeAprModal()">✕ Close (Esc)</button>
   </div>
 
-  <div class="controls-bar">
-    <button class="ctrl-btn" onclick="stepPrev()" title="Previous Step">⏮ Prev</button>
-    <button class="ctrl-btn primary" id="play-btn" onclick="togglePlay()">⏸ Pause</button>
-    <button class="ctrl-btn" onclick="stepNext()" title="Next Step">Next ⏭</button>
-    <button class="ctrl-btn" id="speed-btn" onclick="toggleSpeed()">1× Speed</button>
-    <div class="slider-wrap">
-      <input type="range" id="scrubber" min="0" max="1000" value="0" oninput="onScrub(this.value)">
+  <div class="modal-body">
+    <div class="table-scroll">
+      <table class="apr-table">
+        <thead>
+          <tr>
+            <th>Performance Parameter / APR Protocol</th>
+            <th>SeparaTie™ Split-Masterbatch (Sub-Tie A + B)</th>
+            <th>Conventional Tie (MAH-g-LLDPE)</th>
+            <th>APR PET-P-02 / PET-CG-01 Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Dry &amp; Hot-Fill Peel Strength (ASTM D1876)</b></td>
+            <td class="pass-cell">8.4 N/15 mm (&gt;8.0 N/15 mm Locked)</td>
+            <td>7.8 N/15 mm (Permanent)</td>
+            <td>&gt;5.0 N/15 mm Package Integrity</td>
+          </tr>
+          <tr>
+            <td><b>Thermal Stability / Activation Threshold</b></td>
+            <td class="pass-cell">60.8°C Vicat Safe • 78.0°C Sharp Switch</td>
+            <td>No Hydro-Thermal Release Switch</td>
+            <td>Stable ≤60°C; Active at 85°C Wash</td>
+          </tr>
+          <tr>
+            <td><b>85°C Caustic Wash Delamination (1.0% NaOH / 0.3% Triton X-100)</b></td>
+            <td class="pass-cell">&lt;4.0 min (100% Clean Interfacial Cleavage)</td>
+            <td class="fail-cell">0% Delamination (Permanent Bond)</td>
+            <td>&lt;15 min Standard Hot Caustic Wash</td>
+          </tr>
+          <tr>
+            <td><b>Polyolefin Residue on Sinking rPET Flake</b></td>
+            <td class="pass-cell">&lt;12 ppm (Tie Remains Anchored to Floating PE)</td>
+            <td class="fail-cell">&gt;45,000 ppm (Attached PE + Tie Clumps)</td>
+            <td>&lt;50 ppm Polyolefin Carryover</td>
+          </tr>
+          <tr>
+            <td><b>210°C Solid-State Polycondensation (SSP) Color (Δb*)</b></td>
+            <td class="pass-cell">Δb* = +0.28 (Water-Clear Food-Grade rPET)</td>
+            <td class="fail-cell">Δb* &gt; 8.5 (Severe Polyolefin Char Yellowing)</td>
+            <td>Δb* &lt; 1.50 Post-SSP Color Shift</td>
+          </tr>
+          <tr>
+            <td><b>Alum DAF Wastewater Effluent &amp; Microplastics</b></td>
+            <td class="pass-cell">&lt;0.50 mg/L Solids • Non-Foaming • 0% Dissolved</td>
+            <td>High Fines / Mechanical Shredding Sludge</td>
+            <td>Zero Emulsified Adhesive BOD/COD Spike</td>
+          </tr>
+          <tr>
+            <td><b>Resin Economics &amp; Food-Contact Clearances</b></td>
+            <td class="pass-cell">~$3.18/kg • 100% FDA 21 CFR &amp; EU 10/2011</td>
+            <td>~$3.10–$3.60/kg (Triggers High EPR Penalty)</td>
+            <td>Drop-In Coextrusion Economics</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="time-pill" id="time-readout">Time: 0.0 min</div>
+
+    <div class="split-mb-grid">
+      <div class="mb-card">
+        <div class="mb-card-title">Sub-Tie A: Hydrophilic Ester / Ionic Compatibilizer Masterbatch</div>
+        <div class="mb-card-desc">
+          Provides reversible polar ester bonding to APET or EVOH substrates (&gt;8.0 N/15 mm), a sharp 78°C thermal permeability switch (above the 60.8°C Vicat softening point), and built-in divalent cation (Ca²⁺/Mg²⁺) chelation sites so hard wash water (up to 300 ppm Ca²⁺) never passivates the wicking seam.
+        </div>
+      </div>
+      <div class="mb-card">
+        <div class="mb-card-title">Sub-Tie B: Anhydride-Functionalized Polyolefin Anchor Masterbatch</div>
+        <div class="mb-card-desc">
+          Supplied as a separate pellet masterbatch and dry-blended with Sub-Tie A at the coextruder feed throat. Prevents premature ester/anhydride melt cross-linking during compounding while permanently anchoring the tie layer to the floating PE layer (0.92 g/cm³) so 0% polymer dissolves into plant water.
+        </div>
+      </div>
+    </div>
+
+    <div class="nda-cta-banner">
+      <div class="nda-cta-text">
+        <div class="nda-cta-heading">Request the 500g Benchtop Compounding SOP under Mutual NDA</div>
+        <div class="nda-cta-sub">
+          Evaluate SeparaTie™ directly on your twin-screw extruder and Lab-Cast / Blown coextrusion line using off-the-shelf FDA 21 CFR / EU 10/2011 cleared commercial polyolefins. Contact <b>David Mahler, Inventor &amp; Patent Owner</b> at <b>david@surplusdocket.com</b>.
+        </div>
+      </div>
+      <div class="nda-btn-group">
+        <a class="mailto-link-btn" href="mailto:david@surplusdocket.com?subject=SeparaTie%20500g%20Benchtop%20Compounding%20SOP%20%26%20Mutual%20NDA%20Request&amp;body=Hello%20David%2C%0A%0AWe%20reviewed%20the%20interactive%20SeparaTie%20wash-plant%20simulation%20and%20would%20like%20to%20request%20the%20Mutual%20NDA%20and%20500g%20Benchtop%20Compounding%20SOP%20(Sub-Tie%20A%20%2B%20Sub-Tie%20B%20split-masterbatch%20architecture).%0A%0ACompany%3A%20%0ARole%3A%20%0ATarget%20Application%20(APET%2FPE%20Tray%20or%20PE%2FEVOH%20Film)%3A%20">
+          ✉️ Request 500g SOP via Email (david@surplusdocket.com)
+        </a>
+        <button type="button" class="copy-email-btn" id="copy-email-btn" onclick="copyContactEmail()">
+          📋 Copy david@surplusdocket.com
+        </button>
+      </div>
+    </div>
   </div>
-</footer>
+</dialog>
 
 <script>
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const aprModal = document.getElementById('apr-modal');
 
-let progress = 0; // 0.0 to 1.0
+aprModal.addEventListener('click', (e) => {
+  if (e.target === aprModal) aprModal.close();
+});
+
+function openAprModal() {
+  if (typeof aprModal.showModal === 'function') aprModal.showModal();
+  else aprModal.setAttribute('open', '');
+}
+
+function closeAprModal() {
+  if (typeof aprModal.close === 'function') aprModal.close();
+  else aprModal.removeAttribute('open', '');
+}
+
+function copyContactEmail() {
+  const email = 'david@surplusdocket.com';
+  const btn = document.getElementById('copy-email-btn');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(email).then(() => {
+      btn.textContent = '✓ Copied david@surplusdocket.com';
+      setTimeout(() => { btn.textContent = '📋 Copy david@surplusdocket.com'; }, 2400);
+    }).catch(() => {
+      btn.textContent = 'david@surplusdocket.com';
+    });
+  } else {
+    btn.textContent = 'david@surplusdocket.com';
+  }
+}
+
+let progress = 0; // 0.0 to 1.0 (maps to 0.0 to 4.0 min wash cycle)
 let playing = true;
 let speedMult = 1.0;
+let structureMode = 'tray'; // 'tray' | 'film'
+let benchmarkMode = 'separatie'; // 'separatie' | 'conventional'
 let lastTime = performance.now();
-const BASE_DURATION = 25.0; // 25 seconds for a relaxed, easy-to-follow full cycle
+const BASE_DURATION = 26.0;
 
-const STEPS = [
+const STEPS_TRAY = [
   {
     range: [0.00, 0.20],
-    pill: "STEP 1 OF 5",
-    title: "Normal Food Storage & Hot Filling (25°C – 60°C) — Glue Is Locked Solid",
-    desc: "Inside the golden Smart Glue layer, solid white 'Wax Gates' (🔒) physically plug the water tunnels shut. Even with hot 60°C food, water cannot enter and the layers stay locked tight.",
-    ww: "Zero shedding or leaching during consumer storage and hot-fill pasteurization."
+    pill: "STAGE 1 OF 5",
+    title: "Cold-Chain Service (25.0°C) — Locked Coextrusion Peel Strength >8.0 N/15 mm",
+    desc: "Below the 78.0°C thermal activation threshold, crystalline domains inside the SeparaTie™ tie layer seal the capillary channels shut. Coextruded APET/PE trays maintain 8.4 N/15 mm peel adhesion across refrigerated distribution.",
+    ww: "Zero shedding, zero leaching, and 100% FDA 21 CFR / EU 10/2011 food-contact compliance."
   },
   {
     range: [0.20, 0.40],
-    pill: "STEP 2 OF 5",
-    title: "Shredded Flakes Enter the 85°C Wash Tank — The 78°C Thermal Switch",
-    desc: "When the plant wash water heats past 78°C, the solid Wax Gates inside the glue melt away! This opens up sponge-like water tunnels from the left and right cut edges of the flake.",
-    ww: "Uses standard 85°C caustic wash water — no organic solvents or new plant equipment required."
+    pill: "STAGE 2 OF 5",
+    title: "Hot-Fill & Storage Limit (60.8°C Vicat) — Thermal Gate Remains Solid (<78.0°C)",
+    desc: "As package temperature rises to the 60.8°C Vicat softening limit during hot-fill packaging and warm warehouse storage, the 78.0°C thermal switch remains locked (>8.0 N/15 mm adhesion, 0% premature edge lift).",
+    ww: "Engineered 17.2°C thermal safety margin between 60.8°C Vicat hot-fill and 78.0°C wash activation."
   },
   {
-    range: [0.40, 0.60],
-    pill: "STEP 3 OF 5",
-    title: "Built-In Water Softeners Catch Hard-Water Calcium (Ca²⁺)",
-    desc: "Recycled plant water contains hard-water Calcium ions (red Ca²⁺ spheres) that would normally clog the seam. Built-in Water Softener pockets (purple rings) grab and lock up the Calcium so water flows freely.",
-    ww: "Works reliably even in hard plant wash water (up to 300 ppm Ca²⁺ hardness)."
+    range: [0.40, 0.68],
+    pill: "STAGE 3 OF 5",
+    title: "Caustic Wash Delamination (85.0°C, <4 min) — 78°C Gate Switch & Ca²⁺ Chelation",
+    desc: "In standard 85.0°C caustic wash (1.0% NaOH / 0.3% Triton X-100), the 78.0°C gate melts open. Sub-Tie A chelators sequester hard-water Ca²⁺ (≤300 ppm) while caustic solution hydrolyzes polar ester bonds in <4.0 min.",
+    ww: "Drops directly into existing APR hot caustic wash plants — full <4 min speed even in 300 ppm hard water."
   },
   {
-    range: [0.60, 0.82],
-    pill: "STEP 4 OF 5",
-    title: "Wash Water Wicks Along the Seam & Unhooks the Bottom PET Layer",
-    desc: "Blue wash water rushes through the open tunnels and unhooks the yellow grip anchors along the bottom PET tray one by one. The top PE film + glue curls up and peels off cleanly in 4 minutes!",
-    ww: "CRITICAL FOR WASTEWATER: The glue stays 100% solid attached to the green PE film — zero glue dissolves into the wash water!"
+    range: [0.68, 0.86],
+    pill: "STAGE 4 OF 5",
+    title: "Sink–Float Density Separation — <12 ppm rPET Flake Purity & 210°C SSP Δb* = +0.28",
+    desc: "Sub-Tie B keeps 100% of the tie layer covalently anchored to the floating PE skin (0.92 g/cm³). Dense APET flakes (1.34 g/cm³) sink cleanly with <12 ppm polyolefin residue and pass 210°C SSP with Δb* = +0.28.",
+    ww: "Eliminates polyolefin carryover in sinking rPET flakes, unlocking APR PET-P-02 / PET-CG-01 Grade A."
   },
   {
-    range: [0.82, 1.00],
-    pill: "STEP 5 OF 5",
-    title: "Gravity Float–Sink Clarifier Tank — 100% Pure Separation",
-    desc: "Just like a wastewater settling clarifier: Heavy, 100% clean PET plastic (density 1.34) sinks to the bottom hopper, while Light PE film + attached solid glue (density 0.92) floats to the top skimmer.",
-    ww: "Zero sludge, zero dissolved polymer COD spike, and 100% pure recycled PET & PE output streams."
+    range: [0.86, 1.00],
+    pill: "STAGE 5 OF 5",
+    title: "Alum DAF Wastewater Recovery — <0.50 mg/L Suspended Solids & Non-Foaming Loop",
+    desc: "Because SeparaTie™ cleaves strictly at the ester interface without dissolving into water, alum Dissolved Air Flotation (DAF) clarification achieves <0.50 mg/L suspended solids with zero foaming or COD spike.",
+    ww: "Closed-loop wash water recovery (<0.50 mg/L DAF solids) with zero emulsified adhesive sludge."
+  }
+];
+
+const STEPS_FILM = [
+  {
+    range: [0.00, 0.20],
+    pill: "STAGE 1 OF 5",
+    title: "Cold-Chain Service (25.0°C) — 5-Layer PE / SeparaTie™ / EVOH / SeparaTie™ / PE Film",
+    desc: "Dual SeparaTie™ tie layers lock the center EVOH oxygen-barrier core (1.19 g/cm³) between outer and inner PE skins (0.92 g/cm³) with 8.4 N/15 mm peel strength.",
+    ww: "Two-Part Split-Masterbatch (Sub-Tie A + Sub-Tie B) prevents premature melt cross-linking in twin-screw extrusion."
+  },
+  {
+    range: [0.20, 0.40],
+    pill: "STAGE 2 OF 5",
+    title: "Hot-Fill & Storage Limit (60.8°C Vicat) — Symmetric Dual-Seam Integrity",
+    desc: "Up to the 60.8°C Vicat thermal limit, both upper and lower SeparaTie™ tie layers remain hydrophobic and locked above 8.0 N/15 mm, preventing barrier delamination.",
+    ww: "Maintains high oxygen barrier and hermetic seal integrity through hot-fill packaging."
+  },
+  {
+    range: [0.40, 0.68],
+    pill: "STAGE 3 OF 5",
+    title: "Caustic Wash Delamination (85.0°C, <4 min) — Symmetric Dual-Interface Cleavage",
+    desc: "Above 78.0°C in the 85.0°C wash bath (1.0% NaOH / 0.3% Triton X-100), both SeparaTie™ layers wick caustic solution inward, chelating Ca²⁺ ions and releasing the center EVOH core in <4.0 min.",
+    ww: "Complete 5-layer film delamination in <4.0 min without organic solvents."
+  },
+  {
+    range: [0.68, 0.86],
+    pill: "STAGE 4 OF 5",
+    title: "Sink–Float Density Separation — Pure Floating PE (0.92 g/cm³) & Sinking EVOH (1.19 g/cm³)",
+    desc: "Released EVOH barrier flakes (1.19 g/cm³) sink cleanly to the bottom hopper while pure PE skins + covalently anchored Sub-Tie B (0.92 g/cm³) float to the top weir.",
+    ww: "Eliminates EVOH char specks and cross-linking defects in recycled flexible PE film streams."
+  },
+  {
+    range: [0.86, 1.00],
+    pill: "STAGE 5 OF 5",
+    title: "Alum DAF Wastewater Recovery — <0.50 mg/L Effluent Solids & Closed-Loop Water",
+    desc: "Both SeparaTie™ tie layers remain 100% solid on the floating PE skins. Alum DAF micro-bubble clarification maintains <0.50 mg/L effluent solids for continuous wash water reuse.",
+    ww: "Zero dissolved polymer in plant water (<0.50 mg/L DAF solids) • ~$3.18/kg resin economics."
   }
 ];
 
@@ -722,14 +1505,30 @@ function smoothstep(a, b, x) {
 }
 
 function getActiveStepIndex(p) {
-  for (let i = 0; i < STEPS.length; i++) {
-    if (p >= STEPS[i].range[0] && p <= STEPS[i].range[1]) return i;
+  for (let i = 0; i < STEPS_TRAY.length; i++) {
+    if (p >= STEPS_TRAY[i].range[0] && p <= STEPS_TRAY[i].range[1]) return i;
   }
-  return STEPS.length - 1;
+  return STEPS_TRAY.length - 1;
+}
+
+function setStructureMode(mode) {
+  structureMode = mode;
+  document.getElementById('mode-tray-btn').classList.toggle('active', mode === 'tray');
+  document.getElementById('mode-film-btn').classList.toggle('active', mode === 'film');
+  document.getElementById('mode-target-pill').textContent = mode === 'tray' ? 'APET / Tie Interface' : 'Dual PE / EVOH Seams';
+  document.getElementById('sink-stream-lbl').textContent = mode === 'tray' ? 'Sinking rPET Residue' : 'Floating rPE Purity';
+  updateUI();
+}
+
+function setBenchmarkMode(mode) {
+  benchmarkMode = mode;
+  document.getElementById('bench-sep-btn').classList.toggle('active', mode === 'separatie');
+  document.getElementById('bench-conv-btn').classList.toggle('active', mode === 'conventional');
+  updateUI();
 }
 
 function jumpToStep(idx) {
-  const targetStarts = [0.04, 0.25, 0.45, 0.65, 0.86];
+  const targetStarts = [0.05, 0.26, 0.50, 0.75, 0.92];
   progress = targetStarts[clamp(idx, 0, 4)];
   document.getElementById('scrubber').value = Math.round(progress * 1000);
   updateUI();
@@ -762,63 +1561,147 @@ function onScrub(val) {
 
 function updateUI() {
   const stepIdx = getActiveStepIndex(progress);
+  const stepsArr = structureMode === 'tray' ? STEPS_TRAY : STEPS_FILM;
+  const isConv = benchmarkMode === 'conventional';
 
   for (let i = 0; i < 5; i++) {
     const tab = document.getElementById('tab-' + i);
     const fill = document.getElementById('fill-' + i);
     tab.classList.toggle('active', i === stepIdx);
-    const [r0, r1] = STEPS[i].range;
+    const [r0, r1] = stepsArr[i].range;
     const localP = clamp((progress - r0) / (r1 - r0), 0, 1);
     fill.style.width = `${Math.round(localP * 100)}%`;
   }
 
-  document.getElementById('step-pill').textContent = STEPS[stepIdx].pill;
-  document.getElementById('story-title').textContent = STEPS[stepIdx].title;
-  document.getElementById('story-desc').textContent = STEPS[stepIdx].desc;
-  document.getElementById('ww-text').textContent = STEPS[stepIdx].ww;
+  // Update Top Stage HUD Titles
+  document.getElementById('hud-zone-a-title').textContent = structureMode === 'tray'
+    ? 'APET / SeparaTie™ / PE Thermoformed Tray Cross-Section'
+    : 'PE / SeparaTie™ / EVOH / SeparaTie™ / PE Barrier Film (5-Layer)';
 
-  // Compute physical state for HTML gauges
-  let tempC = 25;
-  if (progress < 0.10) tempC = 25;
-  else if (progress < 0.20) tempC = 25 + 35 * smoothstep(0.10, 0.18, progress);
-  else tempC = 60 + 25 * smoothstep(0.20, 0.30, progress);
+  document.getElementById('hud-zone-a-sub').textContent = isConv
+    ? 'Conventional MAH-g-LLDPE Mode: Hydrophobic tie blocks water at 85°C → 0% delamination & clumped contamination.'
+    : '85°C Caustic Wash (1.0% NaOH / 0.3% Triton X-100): 78.0°C switch opens capillary wicking & cleaves ester anchors in <4 min.';
 
-  const peelFrac = smoothstep(0.56, 0.85, progress);
-  const gripPct = Math.round((1 - peelFrac) * 100);
+  document.getElementById('hud-zone-b-sub').textContent = isConv
+    ? 'Conventional Tie Failure: Unseparated multi-layer clumps sink into rPET (>45,000 ppm residue) and char in 210°C SSP (Δb* > 8.5).'
+    : (structureMode === 'tray'
+        ? 'Pure PE + anchored Sub-Tie B floats (0.92 g/cm³); clean rPET sinks (1.34 g/cm³, <12 ppm) with <0.50 mg/L Alum DAF water.'
+        : 'Pure PE + anchored Sub-Tie B floats (0.92 g/cm³); clean EVOH core sinks (1.19 g/cm³) with <0.50 mg/L Alum DAF water.');
 
-  document.getElementById('temp-readout').textContent = `${Math.round(tempC)}°C`;
-  const badge = document.getElementById('temp-badge');
-  if (tempC >= 78) {
-    badge.textContent = '🔥 Gates Melted';
-    badge.className = 'temp-badge melted';
+  // Update Bottom Stage HUD Narrative
+  document.getElementById('step-pill').textContent = stepsArr[stepIdx].pill;
+  const wwBox = document.getElementById('ww-box');
+  const wwTag = document.getElementById('ww-tag');
+
+  if (isConv) {
+    document.getElementById('arch-pill').textContent = 'Benchmark: Conventional Permanent MAH-g-LLDPE Tie';
+    document.getElementById('story-title').textContent =
+      'Conventional Permanent Tie (MAH-g-LLDPE) — 0% Delamination & Severe rPET Contamination';
+    document.getElementById('story-desc').textContent =
+      'Without SeparaTie™ Sub-Tie A thermal gates and hydrolysable ester links, 85°C caustic wash water cannot penetrate the hydrophobic tie layer. Peel strength stays locked (~7.8 N/15 mm), causing coextruded flakes to clump and yellow severely (Δb* > 8.5) in 210°C SSP.';
+    wwBox.classList.add('warn-mode');
+    wwTag.textContent = 'APR FAIL • Δb* > 8.5';
+    document.getElementById('ww-text').textContent =
+      'Unseparated PE + tie residue (>45,000 ppm) contaminates the sinking rPET stream and degrades into dark yellow char during 210°C SSP.';
   } else {
-    badge.textContent = '🔒 Gates Solid';
-    badge.className = 'temp-badge locked';
+    document.getElementById('arch-pill').textContent = 'Two-Part Split-Masterbatch: Sub-Tie A + Sub-Tie B';
+    document.getElementById('story-title').textContent = stepsArr[stepIdx].title;
+    document.getElementById('story-desc').textContent = stepsArr[stepIdx].desc;
+    wwBox.classList.remove('warn-mode');
+    wwTag.textContent = '<0.50 mg/L Effluent';
+    document.getElementById('ww-text').textContent = stepsArr[stepIdx].ww;
+  }
+
+  // Temperature profile across the 5 stages:
+  // Stage 1 (0.00-0.20): 25.0°C
+  // Stage 2 (0.20-0.40): 60.8°C Vicat
+  // Stage 3-5 (0.40-1.00): 85.0°C Caustic Wash (crosses 78.0°C switch at p=0.42)
+  let tempC = 25.0;
+  if (progress < 0.16) tempC = 25.0;
+  else if (progress < 0.36) tempC = 25.0 + 35.8 * smoothstep(0.16, 0.24, progress);
+  else tempC = 60.8 + 24.2 * smoothstep(0.36, 0.44, progress);
+
+  const peelFrac = isConv ? 0 : smoothstep(0.48, 0.72, progress);
+  const bondN = isConv ? 7.8 : (8.4 * (1 - peelFrac));
+  const cleavagePct = Math.round(peelFrac * 100);
+
+  document.getElementById('temp-readout').textContent = `${tempC.toFixed(1)}°C`;
+  const badge = document.getElementById('temp-badge');
+  if (isConv) {
+    badge.textContent = '✕ No Thermal Switch';
+    badge.className = 'kpi-badge danger';
+  } else if (tempC >= 78.0) {
+    badge.textContent = '🔥 Gate Open (≥78°C)';
+    badge.className = 'kpi-badge melted';
+  } else {
+    badge.textContent = '🔒 Gate Solid (<78°C)';
+    badge.className = 'kpi-badge locked';
   }
 
   const merc = document.getElementById('thermo-mercury');
-  merc.style.height = `${clamp(tempC, 15, 95)}%`;
-  if (tempC >= 78) {
-    merc.style.background = 'linear-gradient(180deg, #ef4444 0%, #f97316 100%)';
-  } else if (tempC >= 55) {
-    merc.style.background = 'linear-gradient(180deg, #f59e0b 0%, #0284c7 100%)';
-  } else {
-    merc.style.background = 'linear-gradient(180deg, #38bdf8 0%, #0284c7 100%)';
-  }
+  merc.style.width = `${clamp(((tempC - 20) / 70) * 100, 10, 100)}%`;
+  merc.style.background = tempC >= 78.0
+    ? 'linear-gradient(90deg, #f59e0b, #ef4444)'
+    : (tempC >= 58.0 ? 'linear-gradient(90deg, #38bdf8, #f59e0b)' : 'linear-gradient(90deg, #38bdf8, #0284c7)');
+
+  document.getElementById('mark-25').classList.toggle('active-mark', tempC < 50);
+  document.getElementById('mark-60').classList.toggle('active-mark', tempC >= 50 && tempC < 75);
+  document.getElementById('mark-78').classList.toggle('active-mark', tempC >= 75 && tempC < 83);
+  document.getElementById('mark-85').classList.toggle('active-mark', tempC >= 83);
 
   const gripEl = document.getElementById('grip-readout');
+  const cleavEl = document.getElementById('cleavage-readout');
   const gripBar = document.getElementById('grip-bar');
-  if (gripPct === 0) {
-    gripEl.textContent = '0% (RELEASED!)';
+  if (isConv) {
+    gripEl.textContent = '7.8 N/15 mm';
+    gripEl.style.color = '#fca5a5';
+    cleavEl.textContent = '0% Cleaved (Stuck)';
+    cleavEl.style.color = '#fca5a5';
+    gripBar.style.width = '93%';
+    gripBar.style.background = 'linear-gradient(90deg, #ef4444, #b91c1c)';
+  } else if (cleavagePct === 100) {
+    gripEl.textContent = '0.0 N/15 mm';
     gripEl.style.color = '#4ade80';
+    cleavEl.textContent = '100% Released (<4m)';
+    cleavEl.style.color = '#4ade80';
+    gripBar.style.width = '0%';
   } else {
-    gripEl.textContent = `${gripPct}% Locked`;
+    gripEl.textContent = `${bondN.toFixed(1)} N/15 mm`;
     gripEl.style.color = '#ffffff';
+    cleavEl.textContent = `${cleavagePct}% Cleaved`;
+    cleavEl.style.color = '#7dd3fc';
+    gripBar.style.width = `${Math.round((1 - peelFrac) * 100)}%`;
+    gripBar.style.background = 'linear-gradient(90deg, #38bdf8, #2563eb)';
   }
-  gripBar.style.width = `${gripPct}%`;
 
-  const washMin = (progress * 10).toFixed(1);
-  document.getElementById('time-readout').textContent = `Time: ${washMin} min`;
+  const aprPill = document.getElementById('apr-status-pill');
+  const resReadout = document.getElementById('residue-readout');
+  const resSub = document.getElementById('residue-sub');
+  const sspReadout = document.getElementById('ssp-readout');
+  const sspSub = document.getElementById('ssp-sub');
+
+  if (isConv) {
+    aprPill.textContent = 'FAIL • Clumped';
+    aprPill.className = 'kpi-badge danger';
+    resReadout.textContent = '>45,000 ppm';
+    resReadout.style.color = '#fca5a5';
+    resSub.textContent = 'PE/Tie Stuck to PET';
+    sspReadout.textContent = 'Δb* > 8.5';
+    sspReadout.style.color = '#fca5a5';
+    sspSub.textContent = 'Severe SSP Yellowing';
+  } else {
+    aprPill.textContent = 'PASS • Grade A';
+    aprPill.className = 'kpi-badge pass';
+    resReadout.textContent = '<12 ppm';
+    resReadout.style.color = '#4ade80';
+    resSub.textContent = 'APR Limit: <50 ppm';
+    sspReadout.textContent = 'Δb* = +0.28';
+    sspReadout.style.color = '#4ade80';
+    sspSub.textContent = '210°C SSP Water-Clear';
+  }
+
+  const washMin = (progress * 4.0).toFixed(1);
+  document.getElementById('time-readout').textContent = `Wash: ${washMin} / 4.0 min`;
 }
 
 function roundRect(ctx, x, y, w, h, r) {
@@ -826,22 +1709,50 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.roundRect(x, y, w, h, r);
 }
 
-function drawPillLabel(ctx, x, y, text, bgColor, borderColor, textColor, fontSize = 13) {
+/**
+ * Collision-Checked Bounded Pill Tag Renderer:
+ * Measures text dynamically, clamps pill horizontally within [minX, maxX],
+ * and checks against `placedBoxes` so two canvas pills NEVER overlap.
+ */
+function drawBoundedPill(ctx, cx, cy, text, bg, border, fg, minX, maxX, placedBoxes, fontSize = 12) {
   ctx.save();
-  ctx.font = `800 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
-  const padX = 12;
-  const tw = ctx.measureText(text).width + padX * 2;
-  const th = fontSize + 13;
-  ctx.fillStyle = bgColor;
-  ctx.strokeStyle = borderColor;
-  ctx.lineWidth = 1.8;
-  roundRect(ctx, x - tw / 2, y - th / 2, tw, th, 8);
+  ctx.font = `700 ${fontSize}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
+  const padX = 10;
+  const maxAllowedW = Math.max(80, maxX - minX - 12);
+  let displayStr = text;
+  while (ctx.measureText(displayStr).width + padX * 2 > maxAllowedW && displayStr.length > 8) {
+    displayStr = displayStr.slice(0, -2) + '…';
+  }
+  const tw = Math.min(maxAllowedW, ctx.measureText(displayStr).width + padX * 2);
+  const th = fontSize + 11;
+
+  let x0 = clamp(cx - tw / 2, minX + 6, maxX - tw - 6);
+  let y0 = cy - th / 2;
+
+  // Resolve any vertical collision against already-placed pills in this frame
+  for (let pass = 0; pass < 4; pass++) {
+    for (const b of placedBoxes) {
+      const horizOverlap = !(x0 + tw + 6 < b.x || x0 - 6 > b.x + b.w);
+      const vertOverlap = !(y0 + th + 4 < b.y || y0 - 4 > b.y + b.h);
+      if (horizOverlap && vertOverlap) {
+        y0 = b.y + b.h + 6;
+      }
+    }
+  }
+
+  placedBoxes.push({ x: x0, y: y0, w: tw, h: th });
+
+  ctx.fillStyle = bg;
+  ctx.strokeStyle = border;
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, x0, y0, tw, th, 6);
   ctx.fill();
   ctx.stroke();
-  ctx.fillStyle = textColor;
+
+  ctx.fillStyle = fg;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(text, x, y + 0.5);
+  ctx.fillText(displayStr, x0 + tw / 2, y0 + th / 2 + 0.5);
   ctx.restore();
 }
 
@@ -857,55 +1768,65 @@ function drawScene(p, nowSec) {
   ctx.scale(dpr, dpr);
   ctx.clearRect(0, 0, W, H);
 
-  // Physical state variables
-  let tempC = 25;
-  if (p < 0.10) tempC = 25;
-  else if (p < 0.20) tempC = 25 + 35 * smoothstep(0.10, 0.18, p);
-  else tempC = 60 + 25 * smoothstep(0.20, 0.30, p);
+  const placedBoxes = [];
 
-  const gateMelt = smoothstep(0.21, 0.35, p);
-  const caCapture = smoothstep(0.38, 0.58, p);
-  const waterWick = smoothstep(0.32, 0.78, p);
-  const peelFrac = smoothstep(0.56, 0.85, p);
-  const sepFrac = smoothstep(0.80, 0.96, p);
+  // Compute physical state variables
+  let tempC = 25.0;
+  if (p < 0.16) tempC = 25.0;
+  else if (p < 0.36) tempC = 25.0 + 35.8 * smoothstep(0.16, 0.24, p);
+  else tempC = 60.8 + 24.2 * smoothstep(0.36, 0.44, p);
 
-  // Split Canvas into Two Generous Visual Zones:
-  // Zone A (Left 65% of Canvas): Big Zoomed Cross-Section of One Packaging Flake
-  // Zone B (Right 35% of Canvas): Plant Gravity Float–Sink Clarifier Tank
-  const splitX = Math.floor(W * 0.65);
+  const isConv = benchmarkMode === 'conventional';
+  const gateMelt = isConv ? 0 : smoothstep(0.38, 0.48, p);
+  const caCapture = isConv ? 0 : smoothstep(0.42, 0.58, p);
+  const waterWick = isConv ? 0.04 : smoothstep(0.40, 0.66, p);
+  const peelFrac = isConv ? 0 : smoothstep(0.48, 0.72, p);
+  const sepFrac = isConv ? 0 : smoothstep(0.68, 0.88, p);
+  const dafActive = smoothstep(0.82, 0.96, p);
 
-  // Vertical divider line
-  ctx.strokeStyle = '#26354d';
-  ctx.lineWidth = 1.5;
+  // Split Canvas cleanly: Zone A (Left 62%) | Zone B (Right 38%)
+  const splitX = Math.floor(W * 0.62);
+
+  // Subtle CAD engineering grid background
+  ctx.strokeStyle = 'rgba(30, 48, 80, 0.28)';
+  ctx.lineWidth = 1;
+  const gridStep = 32;
+  for (let gx = gridStep; gx < W; gx += gridStep) {
+    ctx.beginPath();
+    ctx.moveTo(gx, 0);
+    ctx.lineTo(gx, H);
+    ctx.stroke();
+  }
+  for (let gy = gridStep; gy < H; gy += gridStep) {
+    ctx.beginPath();
+    ctx.moveTo(0, gy);
+    ctx.lineTo(W, gy);
+    ctx.stroke();
+  }
+
+  // Zone divider line
+  ctx.strokeStyle = '#233657';
+  ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.moveTo(splitX, 0);
   ctx.lineTo(splitX, H);
   ctx.stroke();
 
   // =========================================================================
-  // ZONE A: BIG ZOOMED CROSS-SECTION OF ONE FLAKE (0 .. splitX)
+  // ZONE A: MICRO-SCALE COEXTRUDED FLAKE CHAMBER (16 .. splitX - 16)
   // =========================================================================
-  const zW = splitX;
-  ctx.fillStyle = '#ffffff';
-  ctx.font = '800 17px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('2. INSIDE ONE SHREDDED PACKAGING FLAKE (ZOOMED CROSS-SECTION)', 22, 30);
-  ctx.fillStyle = '#94a3b8';
-  ctx.font = '600 13.5px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('Watch water enter from both cut edges after the 78°C Wax Gates melt:', 22, 50);
-
-  // Wash Water Bath Box
-  const bathX = 22;
-  const bathY = 64;
-  const bathW = zW - 44;
-  const bathH = H - 82;
+  const bathX = 18;
+  const bathY = 16;
+  const bathW = splitX - 36;
+  const bathH = H - 32;
 
   const bathGrad = ctx.createLinearGradient(0, bathY, 0, bathY + bathH);
   if (tempC >= 78) {
-    bathGrad.addColorStop(0, '#0c2d4d');
-    bathGrad.addColorStop(1, '#07172b');
+    bathGrad.addColorStop(0, '#09223b');
+    bathGrad.addColorStop(1, '#051324');
   } else {
-    bathGrad.addColorStop(0, '#0a192f');
-    bathGrad.addColorStop(1, '#06101e');
+    bathGrad.addColorStop(0, '#081629');
+    bathGrad.addColorStop(1, '#040c18');
   }
   ctx.fillStyle = bathGrad;
   ctx.strokeStyle = tempC >= 78 ? '#0284c7' : '#1e3a5f';
@@ -914,17 +1835,46 @@ function drawScene(p, nowSec) {
   ctx.fill();
   ctx.stroke();
 
-  // Rising thermal bubbles in the 85°C wash bath
+  // Top-left & top-right chamber status pills (clamped inside bathX .. bathX+bathW)
+  const topPillY = bathY + 22;
+  drawBoundedPill(
+    ctx,
+    bathX + 125,
+    topPillY,
+    tempC >= 78 ? '85°C CAUSTIC (1% NaOH)' : `BATH TEMP: ${tempC.toFixed(1)}°C`,
+    'rgba(10, 22, 42, 0.92)',
+    tempC >= 78 ? '#38bdf8' : '#475569',
+    tempC >= 78 ? '#e0f2fe' : '#cbd5e1',
+    bathX + 6,
+    bathX + bathW * 0.48,
+    placedBoxes,
+    12
+  );
+
+  drawBoundedPill(
+    ctx,
+    bathX + bathW - 125,
+    topPillY,
+    isConv ? '✕ MAH-g-LLDPE: 0% WICKING' : (tempC >= 78 ? '✓ 78°C GATE OPEN • WICKING' : '🔒 78°C GATE SOLID (≤60.8°C)'),
+    'rgba(10, 22, 42, 0.92)',
+    isConv ? '#ef4444' : (tempC >= 78 ? '#22c55e' : '#38bdf8'),
+    isConv ? '#fecaca' : (tempC >= 78 ? '#dcfce7' : '#bae6fd'),
+    bathX + bathW * 0.52,
+    bathX + bathW - 6,
+    placedBoxes,
+    12
+  );
+
+  // Rising thermal micro-bubbles in Zone A
   if (tempC >= 60) {
-    const numBubbles = 14;
-    ctx.fillStyle = 'rgba(125, 211, 252, 0.18)';
-    ctx.strokeStyle = 'rgba(125, 211, 252, 0.35)';
+    ctx.fillStyle = 'rgba(125, 211, 252, 0.14)';
+    ctx.strokeStyle = 'rgba(125, 211, 252, 0.3)';
     ctx.lineWidth = 1;
-    for (let b = 0; b < numBubbles; b++) {
-      const bx = bathX + 25 + ((b * 97) % (bathW - 50));
-      const speed = 28 + (b % 4) * 10;
-      const by = bathY + bathH - 15 - ((nowSec * speed + b * 45) % (bathH - 30));
-      const br = 4 + (b % 3) * 2.5;
+    for (let b = 0; b < 10; b++) {
+      const bx = bathX + 28 + ((b * 89) % Math.max(40, bathW - 56));
+      const speed = 24 + (b % 4) * 8;
+      const by = bathY + bathH - 18 - ((nowSec * speed + b * 41) % Math.max(40, bathH - 64));
+      const br = 3 + (b % 3) * 1.8;
       ctx.beginPath();
       ctx.arc(bx, by, br, 0, Math.PI * 2);
       ctx.fill();
@@ -932,497 +1882,522 @@ function drawScene(p, nowSec) {
     }
   }
 
-  // Flake dimensions — generous and centered
-  const flakeX = bathX + Math.max(58, bathW * 0.09);
-  const flakeW = bathW - Math.max(116, bathW * 0.18);
-  const seamY = bathY + bathH * 0.67;
-
-  const petH = Math.min(72, bathH * 0.19);
-  const glueH = Math.min(106, bathH * 0.28);
-  const peH = Math.min(56, bathH * 0.15);
-
-  const liftOffset = sepFrac * 42;
-  const sinkOffset = sepFrac * 24;
-
-  // Cut-edge water entry badges at left & right of flake
-  const edgeLabelY = bathY + 26;
-  drawPillLabel(
-    ctx,
-    bathX + 128,
-    edgeLabelY,
-    tempC >= 78 ? '💧 85°C WASH WATER ENTERS ➔' : '⬅ CUT EDGE OF FLAKE',
-    tempC >= 78 ? 'rgba(14, 165, 233, 0.25)' : 'rgba(30, 41, 59, 0.85)',
-    tempC >= 78 ? '#38bdf8' : '#475569',
-    tempC >= 78 ? '#e0f2fe' : '#cbd5e1',
-    12.5
-  );
-  drawPillLabel(
-    ctx,
-    bathX + bathW - 128,
-    edgeLabelY,
-    tempC >= 78 ? '⬅ 85°C WASH WATER ENTERS 💧' : 'CUT EDGE OF FLAKE ➔',
-    tempC >= 78 ? 'rgba(14, 165, 233, 0.25)' : 'rgba(30, 41, 59, 0.85)',
-    tempC >= 78 ? '#38bdf8' : '#475569',
-    tempC >= 78 ? '#e0f2fe' : '#cbd5e1',
-    12.5
-  );
-
-  // -------------------------------------------------------------------------
-  // 1. BOTTOM LAYER: HEAVY PET TRAY PLASTIC (Royal Blue)
-  // -------------------------------------------------------------------------
-  const petY = seamY + sinkOffset;
-  const petGrad = ctx.createLinearGradient(0, petY, 0, petY + petH);
-  petGrad.addColorStop(0, '#2563eb');
-  petGrad.addColorStop(1, '#1e40af');
-  ctx.fillStyle = petGrad;
-  ctx.strokeStyle = '#93c5fd';
-  ctx.lineWidth = 2.5;
-  roundRect(ctx, flakeX, petY, flakeW, petH, 10);
-  ctx.fill();
-  ctx.stroke();
-
-  ctx.fillStyle = '#ffffff';
-  ctx.font = '800 16px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('BOTTOM LAYER: Heavy PET Tray Plastic (Sinks in Water • 1.34 g/cm³)', flakeX + flakeW / 2, petY + petH * 0.43);
-
-  ctx.fillStyle = peelFrac > 0.82 ? '#86efac' : '#dbeafe';
-  ctx.font = '700 13.5px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText(
-    peelFrac > 0.82
-      ? '✓ 100% CLEAN PET SURFACE — ZERO GLUE RESIDUE LEFT BEHIND!'
-      : 'Rigid Food-Grade Polyester Base Layer',
-    flakeX + flakeW / 2,
-    petY + petH * 0.76
-  );
-  ctx.textAlign = 'left';
-
-  // -------------------------------------------------------------------------
-  // 2. COMPUTE SMOOTH ELASTIC PEELING CURVE FOR SMART GLUE + TOP PE FILM
-  // -------------------------------------------------------------------------
+  const flakeX = bathX + Math.max(36, bathW * 0.08);
+  const flakeW = bathW - Math.max(72, bathW * 0.16);
   const N = 48;
   const dx = flakeW / N;
-  function getPeelLift(i) {
+
+  // Full-width smooth detachment physics (center lifts cleanly so gapH > 54px in Stage 4-5)
+  const fullDetachLift = smoothstep(0.58, 0.86, peelFrac) * 42 + sepFrac * 18;
+  const sinkOffset = sepFrac * 14;
+
+  function getPeelLift(i, scale = 1.0) {
     const normX = i / N;
-    const distFromEdge = Math.min(normX, 1 - normX) * 2; // 0 at outer edges, 1 at center
-    let localLift = 0;
-    if (peelFrac > distFromEdge * 0.86) {
-      const over = clamp((peelFrac - distFromEdge * 0.86) / 0.34, 0, 1);
-      const edgeCurl = Math.pow(1 - distFromEdge, 1.45) * 46 * Math.sin(peelFrac * Math.PI * 0.65);
-      const fullDetach = smoothstep(0.70, 1.0, peelFrac) * 38;
-      localLift = over * over * 28 + edgeCurl + fullDetach;
-    }
-    return localLift + liftOffset;
+    const distFromEdge = Math.min(normX, 1 - normX) * 2; // 0 at edge, 1 at center
+    const edgeWave = clamp((peelFrac * 1.25 - distFromEdge * 0.75) / 0.45, 0, 1);
+    const curl = Math.pow(1 - distFromEdge, 1.4) * 22 * Math.sin(peelFrac * Math.PI * 0.85);
+    return (edgeWave * 16 + curl + fullDetachLift) * scale;
   }
 
-  // Draw MIDDLE LAYER: SeparaTie™ Smart Glue (Golden Amber)
-  ctx.beginPath();
-  for (let i = 0; i <= N; i++) {
-    const x = flakeX + i * dx;
-    const y = seamY - getPeelLift(i);
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  }
-  for (let i = N; i >= 0; i--) {
-    const x = flakeX + i * dx;
-    const y = seamY - glueH - getPeelLift(i);
-    ctx.lineTo(x, y);
-  }
-  ctx.closePath();
-  const glueGrad = ctx.createLinearGradient(0, seamY - glueH - liftOffset, 0, seamY);
-  glueGrad.addColorStop(0, '#f59e0b');
-  glueGrad.addColorStop(1, '#b45309');
-  ctx.fillStyle = glueGrad;
-  ctx.fill();
-  ctx.strokeStyle = '#fde047';
-  ctx.lineWidth = 2.5;
-  ctx.stroke();
+  if (structureMode === 'tray') {
+    // =======================================================================
+    // STRUCTURE MODE 1: APET / SeparaTie™ / PE THERMOFORMED TRAY
+    // =======================================================================
+    const seamY = bathY + bathH * 0.68;
+    const petH = 56;
+    const glueH = 66;
+    const peH = 44;
 
-  // Draw Open Sponge Water Tunnel through the middle of the Smart Glue
-  const tunnelCenterOff = glueH * 0.44;
-  const tunnelHalfH = 20;
-  ctx.beginPath();
-  for (let i = 0; i <= N; i++) {
-    const x = flakeX + i * dx;
-    const y = seamY - tunnelCenterOff + tunnelHalfH - getPeelLift(i);
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  }
-  for (let i = N; i >= 0; i--) {
-    const x = flakeX + i * dx;
-    const y = seamY - tunnelCenterOff - tunnelHalfH - getPeelLift(i);
-    ctx.lineTo(x, y);
-  }
-  ctx.closePath();
-  ctx.fillStyle = '#3b1502';
-  ctx.fill();
-
-  // Draw Bright Blue Wash Water Wicking Inward from Left & Right Cut Edges!
-  if (waterWick > 0.01) {
-    const wickSteps = Math.max(1, Math.floor((N / 2) * waterWick));
-
-    // Left water stream
-    ctx.beginPath();
-    for (let i = 0; i <= wickSteps; i++) {
-      const x = flakeX + i * dx;
-      const y = seamY - tunnelCenterOff + tunnelHalfH - getPeelLift(i);
-      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    for (let i = wickSteps; i >= 0; i--) {
-      const x = flakeX + i * dx;
-      const y = seamY - tunnelCenterOff - tunnelHalfH - getPeelLift(i);
-      ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.fillStyle = '#0284c7';
+    // 1. BOTTOM LAYER: Rigid APET Base (1.34 g/cm³)
+    const petY = seamY + sinkOffset;
+    const petGrad = ctx.createLinearGradient(0, petY, 0, petY + petH);
+    petGrad.addColorStop(0, '#2563eb');
+    petGrad.addColorStop(1, '#1d4ed8');
+    ctx.fillStyle = petGrad;
+    ctx.strokeStyle = '#93c5fd';
+    ctx.lineWidth = 2;
+    roundRect(ctx, flakeX, petY, flakeW, petH, 8);
     ctx.fill();
-
-    // Right water stream
-    ctx.beginPath();
-    for (let i = N - wickSteps; i <= N; i++) {
-      const x = flakeX + i * dx;
-      const y = seamY - tunnelCenterOff + tunnelHalfH - getPeelLift(i);
-      if (i === N - wickSteps) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    for (let i = N; i >= N - wickSteps; i--) {
-      const x = flakeX + i * dx;
-      const y = seamY - tunnelCenterOff - tunnelHalfH - getPeelLift(i);
-      ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.fillStyle = '#0284c7';
-    ctx.fill();
-
-    // Animated white flow arrows (» ») inside the blue water streams
-    ctx.fillStyle = 'rgba(224, 242, 254, 0.85)';
-    ctx.font = '900 15px -apple-system, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    const flowShift = (nowSec * 3.5) % 1;
-    for (let s = 1; s < wickSteps - 1; s += 4) {
-      const idxL = Math.min(wickSteps - 1, s + flowShift * 2);
-      const xL = flakeX + idxL * dx;
-      const yL = seamY - tunnelCenterOff - getPeelLift(Math.floor(idxL));
-      ctx.fillText('»', xL, yL);
-
-      const idxR = Math.max(N - wickSteps + 1, N - s - flowShift * 2);
-      const xR = flakeX + idxR * dx;
-      const yR = seamY - tunnelCenterOff - getPeelLift(Math.floor(idxR));
-      ctx.fillText('«', xR, yR);
-    }
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'alphabetic';
-  }
-
-  // -------------------------------------------------------------------------
-  // 3. TOP LAYER: LIGHT POLYETHYLENE (PE) FILM (Vibrant Emerald Green)
-  // -------------------------------------------------------------------------
-  ctx.beginPath();
-  for (let i = 0; i <= N; i++) {
-    const x = flakeX + i * dx;
-    const y = seamY - glueH - getPeelLift(i);
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  }
-  for (let i = N; i >= 0; i--) {
-    const x = flakeX + i * dx;
-    const y = seamY - glueH - peH - getPeelLift(i);
-    ctx.lineTo(x, y);
-  }
-  ctx.closePath();
-  const peGrad = ctx.createLinearGradient(0, seamY - glueH - peH - liftOffset, 0, seamY - glueH);
-  peGrad.addColorStop(0, '#22c55e');
-  peGrad.addColorStop(1, '#15803d');
-  ctx.fillStyle = peGrad;
-  ctx.fill();
-  ctx.strokeStyle = '#86efac';
-  ctx.lineWidth = 2.5;
-  ctx.stroke();
-
-  // Clear, Large Labels on Top PE Film & Middle Smart Glue Layer
-  const centerLift = getPeelLift(N / 2);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = '800 16px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText(
-    'TOP LAYER: Light Polyethylene (PE) Film (Floats in Water • 0.92 g/cm³)',
-    flakeX + flakeW / 2,
-    seamY - glueH - peH * 0.42 - centerLift
-  );
-
-  // Label at top of Smart Glue Layer
-  ctx.fillStyle = '#fffbeb';
-  ctx.font = '800 14px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText(
-    'MIDDLE LAYER: SeparaTie™ Smart Glue (Stays Permanently Attached to Top PE Film)',
-    flakeX + flakeW / 2,
-    seamY - glueH + 20 - centerLift
-  );
-  ctx.textAlign = 'left';
-
-  // -------------------------------------------------------------------------
-  // 4. LARGE, CLEAR SYMBOLS INSIDE THE SMART GLUE
-  // -------------------------------------------------------------------------
-
-  // A. SOLID WAX GATES at Left & Right Tunnel Entrances (Melt at 78°C)
-  if (gateMelt < 0.98) {
-    const gateAlpha = 1 - gateMelt;
-    const gateScale = 1 - gateMelt * 0.65;
-    [2, N - 2].forEach((idx, side) => {
-      const gx = flakeX + idx * dx;
-      const gy = seamY - tunnelCenterOff - getPeelLift(idx);
-      const gw = 34 * gateScale;
-      const gh = 38 * gateScale;
-
-      ctx.save();
-      ctx.globalAlpha = gateAlpha;
-      ctx.fillStyle = '#ffffff';
-      ctx.strokeStyle = '#38bdf8';
-      ctx.lineWidth = 3;
-      roundRect(ctx, gx - gw / 2, gy - gh / 2, gw, gh, 6);
-      ctx.fill();
-      ctx.stroke();
-
-      // Crystal lattice X lines inside gate
-      ctx.strokeStyle = '#0284c7';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(gx - gw * 0.32, gy - gh * 0.32);
-      ctx.lineTo(gx + gw * 0.32, gy + gh * 0.32);
-      ctx.moveTo(gx + gw * 0.32, gy - gh * 0.32);
-      ctx.lineTo(gx - gw * 0.32, gy + gh * 0.32);
-      ctx.stroke();
-
-      // Callout pill right next to left Wax Gate when solid
-      if (side === 0 && gateMelt < 0.45) {
-        drawPillLabel(
-          ctx,
-          gx + 115,
-          gy,
-          '🔒 SOLID WAX GATE (<78°C)',
-          '#0f172a',
-          '#38bdf8',
-          '#ffffff',
-          12
-        );
-      }
-      ctx.restore();
-    });
-  }
-
-  // B. BUILT-IN WATER SOFTENER POCKETS (Large Purple Rings) & RED CALCIUM (Ca²⁺)
-  const softenerPositions = [9, 17, 24, 31, 39];
-  softenerPositions.forEach((idx, k) => {
-    const sx = flakeX + idx * dx;
-    const sy = seamY - tunnelCenterOff - getPeelLift(idx);
-
-    // Large Purple Water-Softener Shield Ring
-    ctx.beginPath();
-    ctx.arc(sx, sy, 14, 0, Math.PI * 2);
-    ctx.fillStyle = '#4c1d95';
-    ctx.fill();
-    ctx.strokeStyle = '#d8b4fe';
-    ctx.lineWidth = 3;
     ctx.stroke();
 
-    // Red Hard-Water Calcium (Ca²⁺) sphere getting pulled into the purple pocket
-    if (p > 0.22) {
-      const startDistX = (k % 2 === 0 ? -1 : 1) * 34 * (1 - caCapture);
-      const startDistY = (k % 2 === 0 ? -15 : 14) * (1 - caCapture);
-      const cx = sx + startDistX;
-      const cy = sy + startDistY;
+    drawBoundedPill(
+      ctx,
+      flakeX + flakeW / 2,
+      petY + petH / 2,
+      peelFrac > 0.8
+        ? 'APET BASE (1.34 g/cm³) • <12 ppm • Δb* +0.28'
+        : 'APET TRAY BASE (Sinks • 1.34 g/cm³)',
+      'rgba(15, 23, 42, 0.88)',
+      '#93c5fd',
+      '#ffffff',
+      flakeX + 8,
+      flakeX + flakeW - 8,
+      placedBoxes,
+      12
+    );
+
+    // 2. MIDDLE LAYER: SeparaTie™ Split-Masterbatch (Sub-Tie A + Sub-Tie B)
+    ctx.beginPath();
+    for (let i = 0; i <= N; i++) {
+      const x = flakeX + i * dx;
+      const y = seamY - getPeelLift(i);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    for (let i = N; i >= 0; i--) {
+      const x = flakeX + i * dx;
+      const y = seamY - glueH - getPeelLift(i);
+      ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    const glueGrad = ctx.createLinearGradient(0, seamY - glueH - fullDetachLift, 0, seamY);
+    if (isConv) {
+      glueGrad.addColorStop(0, '#78350f');
+      glueGrad.addColorStop(1, '#451a03');
+    } else {
+      glueGrad.addColorStop(0, '#f59e0b');
+      glueGrad.addColorStop(1, '#b45309');
+    }
+    ctx.fillStyle = glueGrad;
+    ctx.fill();
+    ctx.strokeStyle = isConv ? '#f87171' : '#fde047';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Capillary Wicking Micro-Channel inside Tie Layer (Pure graphics, no colliding text!)
+    const tunnelOff = glueH * 0.45;
+    const tunnelHalf = 12;
+    ctx.beginPath();
+    for (let i = 0; i <= N; i++) {
+      const x = flakeX + i * dx;
+      const y = seamY - tunnelOff + tunnelHalf - getPeelLift(i);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    for (let i = N; i >= 0; i--) {
+      const x = flakeX + i * dx;
+      const y = seamY - tunnelOff - tunnelHalf - getPeelLift(i);
+      ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = '#2e1205';
+    ctx.fill();
+
+    // Wicking Water Streams from Left & Right Cut Edges
+    if (waterWick > 0.01) {
+      const wickSteps = Math.max(1, Math.floor((N / 2) * waterWick));
+      ctx.fillStyle = '#0284c7';
+      // Left stream
+      ctx.beginPath();
+      for (let i = 0; i <= wickSteps; i++) {
+        const x = flakeX + i * dx;
+        const y = seamY - tunnelOff + tunnelHalf - getPeelLift(i);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      for (let i = wickSteps; i >= 0; i--) {
+        const x = flakeX + i * dx;
+        const y = seamY - tunnelOff - tunnelHalf - getPeelLift(i);
+        ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      // Right stream
+      ctx.beginPath();
+      for (let i = N - wickSteps; i <= N; i++) {
+        const x = flakeX + i * dx;
+        const y = seamY - tunnelOff + tunnelHalf - getPeelLift(i);
+        if (i === N - wickSteps) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      for (let i = N; i >= N - wickSteps; i--) {
+        const x = flakeX + i * dx;
+        const y = seamY - tunnelOff - tunnelHalf - getPeelLift(i);
+        ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    // Graphical Chelator Pockets & Ca²⁺ Spheres (pure vector graphics, zero micro-font clutter)
+    const chelatorIdx = [9, 17, 24, 31, 39];
+    chelatorIdx.forEach((idx, k) => {
+      const sx = flakeX + idx * dx;
+      const sy = seamY - tunnelOff - getPeelLift(idx);
 
       ctx.beginPath();
-      ctx.arc(cx, cy, 9.5, 0, Math.PI * 2);
-      ctx.fillStyle = '#ef4444';
+      ctx.arc(sx, sy, 8.5, 0, Math.PI * 2);
+      ctx.fillStyle = isConv ? '#334155' : '#6b21a8';
       ctx.fill();
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = isConv ? '#64748b' : '#e9d5ff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      if (p > 0.36 && !isConv) {
+        const offset = (1 - caCapture) * 18 * (k % 2 === 0 ? -1 : 1);
+        ctx.beginPath();
+        ctx.arc(sx + offset, sy, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#ef4444';
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      }
+    });
+
+    // Reversible Polar Ester Anchors along APET / Tie Seam
+    for (let i = 3; i <= N - 3; i += 3) {
+      const ax = flakeX + i * dx;
+      const lift = getPeelLift(i);
+      const ayTop = seamY - lift;
+      const isReleased = lift > 4.0;
+
+      ctx.strokeStyle = isReleased ? '#38bdf8' : '#fde047';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(ax, ayTop - 7);
+      ctx.lineTo(ax, isReleased ? ayTop + 3 : petY + 3);
+      ctx.stroke();
+    }
+
+    // 3. TOP LAYER: Polyethylene (PE) Lidding / Sealant (0.92 g/cm³)
+    ctx.beginPath();
+    for (let i = 0; i <= N; i++) {
+      const x = flakeX + i * dx;
+      const y = seamY - glueH - getPeelLift(i);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    for (let i = N; i >= 0; i--) {
+      const x = flakeX + i * dx;
+      const y = seamY - glueH - peH - getPeelLift(i);
+      ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    const polyolefinGrad = ctx.createLinearGradient(0, seamY - glueH - peH - fullDetachLift, 0, seamY - glueH);
+    polyolefinGrad.addColorStop(0, '#22c55e');
+    polyolefinGrad.addColorStop(1, '#15803d');
+    ctx.fillStyle = polyolefinGrad;
+    ctx.fill();
+    ctx.strokeStyle = '#86efac';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    const centerLift = getPeelLift(N / 2);
+    // Pill label above PE layer (moves smoothly with centerLift, clamped below top pills)
+    const peLabelY = Math.max(topPillY + 34, seamY - glueH - peH / 2 - centerLift);
+    drawBoundedPill(
+      ctx,
+      flakeX + flakeW / 2,
+      peLabelY,
+      'PE SEALANT + ANCHORED Sub-Tie B (Floats • 0.92 g/cm³)',
+      'rgba(6, 36, 18, 0.92)',
+      '#86efac',
+      '#ffffff',
+      flakeX + 8,
+      flakeX + flakeW - 8,
+      placedBoxes,
+      12
+    );
+
+    // Cleavage / Status Pill placed ONLY in verified open cleavage gap or below APET base
+    if (peelFrac > 0.72) {
+      const gapCenterY = (seamY - centerLift + petY) / 2;
+      drawBoundedPill(
+        ctx,
+        flakeX + flakeW / 2,
+        gapCenterY,
+        '✓ <4 MIN CLEAN CLEAVAGE • 0.0 N/15 mm',
+        'rgba(5, 46, 22, 0.95)',
+        '#4ade80',
+        '#dcfce7',
+        flakeX + 12,
+        flakeX + flakeW - 12,
+        placedBoxes,
+        12
+      );
+    } else {
+      drawBoundedPill(
+        ctx,
+        flakeX + flakeW / 2,
+        petY + petH + 22,
+        isConv
+          ? '✕ PERMANENT BOND (7.8 N/15 mm) • 0% PEEL'
+          : 'Sub-Tie A + Sub-Tie B • >8.0 N/15 mm Below 78°C',
+        'rgba(15, 23, 42, 0.92)',
+        isConv ? '#ef4444' : '#f59e0b',
+        isConv ? '#fecaca' : '#fde68a',
+        flakeX + 12,
+        flakeX + flakeW - 12,
+        placedBoxes,
+        12
+      );
+    }
+
+  } else {
+    // =======================================================================
+    // STRUCTURE MODE 2: PE / SeparaTie™ / EVOH / SeparaTie™ / PE BARRIER FILM
+    // =======================================================================
+    const centerY = bathY + bathH * 0.54;
+    const evohH = 42;
+    const tieH = 34;
+    const peSkinH = 32;
+
+    const evohTop = centerY - evohH / 2;
+    const evohGrad = ctx.createLinearGradient(0, evohTop, 0, evohTop + evohH);
+    evohGrad.addColorStop(0, '#6366f1');
+    evohGrad.addColorStop(1, '#4338ca');
+    ctx.fillStyle = evohGrad;
+    ctx.strokeStyle = '#c7d2fe';
+    ctx.lineWidth = 2;
+    roundRect(ctx, flakeX, evohTop, flakeW, evohH, 7);
+    ctx.fill();
+    ctx.stroke();
+
+    drawBoundedPill(
+      ctx,
+      flakeX + flakeW / 2,
+      centerY,
+      peelFrac > 0.75
+        ? '✓ EVOH CORE RELEASED (Sinks • 1.19 g/cm³)'
+        : 'EVOH BARRIER CORE (1.19 g/cm³)',
+      'rgba(15, 23, 42, 0.90)',
+      '#c7d2fe',
+      '#ffffff',
+      flakeX + 10,
+      flakeX + flakeW - 10,
+      placedBoxes,
+      12
+    );
+
+    [-1, 1].forEach((dir) => {
+      const seamBaseY = dir === -1 ? evohTop : (evohTop + evohH);
+
+      // Tie Layer polygon
+      ctx.beginPath();
+      for (let i = 0; i <= N; i++) {
+        const x = flakeX + i * dx;
+        const lift = getPeelLift(i, 0.52) * dir;
+        const y = seamBaseY + lift;
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      for (let i = N; i >= 0; i--) {
+        const x = flakeX + i * dx;
+        const lift = getPeelLift(i, 0.52) * dir;
+        const y = seamBaseY + dir * tieH + lift;
+        ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = isConv ? '#78350f' : '#d97706';
+      ctx.fill();
+      ctx.strokeStyle = isConv ? '#f87171' : '#fde047';
+      ctx.lineWidth = 1.6;
+      ctx.stroke();
+
+      // Wicking channel inside each Tie Layer
+      if (waterWick > 0.01) {
+        const wickSteps = Math.max(1, Math.floor((N / 2) * waterWick));
+        ctx.fillStyle = '#0284c7';
+        for (let s = 0; s < wickSteps; s++) {
+          const xL = flakeX + s * dx;
+          const yL = seamBaseY + dir * (tieH * 0.5) + getPeelLift(s, 0.52) * dir;
+          ctx.fillRect(xL, yL - 4, dx + 1, 8);
+
+          const xR = flakeX + (N - 1 - s) * dx;
+          const yR = seamBaseY + dir * (tieH * 0.5) + getPeelLift(N - s, 0.52) * dir;
+          ctx.fillRect(xR, yR - 4, dx + 1, 8);
+        }
+      }
+
+      // Outer / Inner PE Skin polygon
+      ctx.beginPath();
+      for (let i = 0; i <= N; i++) {
+        const x = flakeX + i * dx;
+        const lift = getPeelLift(i, 0.52) * dir;
+        const y = seamBaseY + dir * tieH + lift;
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      for (let i = N; i >= 0; i--) {
+        const x = flakeX + i * dx;
+        const lift = getPeelLift(i, 0.52) * dir;
+        const y = seamBaseY + dir * (tieH + peSkinH) + lift;
+        ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = '#16a34a';
+      ctx.fill();
+      ctx.strokeStyle = '#86efac';
       ctx.lineWidth = 1.8;
       ctx.stroke();
 
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '900 9px -apple-system, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('Ca²⁺', cx, cy + 0.5);
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'alphabetic';
-    } else {
-      // Label inside empty purple pocket before calcium arrives
-      ctx.fillStyle = '#e9d5ff';
-      ctx.font = '800 9px -apple-system, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('TRAP', sx, sy + 0.5);
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'alphabetic';
-    }
-  });
-
-  // C. BOTTOM SEAM GRIP HOOKS / ANCHORS (Unhook one by one as water hits them!)
-  for (let i = 3; i <= N - 3; i += 3) {
-    const ax = flakeX + i * dx;
-    const lift = getPeelLift(i);
-    const ayTop = seamY - lift;
-    const isReleased = lift > 2.5;
-
-    ctx.strokeStyle = isReleased ? '#38bdf8' : '#fde047';
-    ctx.lineWidth = 3.5;
-    ctx.beginPath();
-    ctx.moveTo(ax, ayTop - 10);
-    ctx.lineTo(ax, isReleased ? ayTop + 5 : petY + 5);
-    ctx.stroke();
-
-    // Anchor T-foot / suction cup
-    const footY = isReleased ? ayTop + 6 : petY + 5;
-    ctx.beginPath();
-    ctx.arc(ax, footY, 4.5, 0, Math.PI * 2);
-    ctx.fillStyle = isReleased ? '#38bdf8' : '#fde047';
-    ctx.fill();
-  }
-
-  // Prominent Banner in the Peeled Gap when Layer Releases!
-  if (peelFrac > 0.72) {
-    const gapY = seamY - centerLift * 0.48 + sinkOffset * 0.3;
-    drawPillLabel(
-      ctx,
-      flakeX + flakeW / 2,
-      gapY,
-      '✓ SEAM UNHOOKED! Glue Stays 100% Solid on Green PE Film (Never Dissolves!)',
-      'rgba(5, 46, 22, 0.95)',
-      '#4ade80',
-      '#dcfce7',
-      13.5
-    );
+      const midLift = getPeelLift(N / 2, 0.52) * dir;
+      const skinCenterY = clamp(
+        seamBaseY + dir * (tieH + peSkinH * 0.5) + midLift,
+        topPillY + 34,
+        bathY + bathH - 22
+      );
+      drawBoundedPill(
+        ctx,
+        flakeX + flakeW / 2,
+        skinCenterY,
+        dir === -1
+          ? 'OUTER PE + SeparaTie™ (Floats • 0.92 g/cm³)'
+          : 'INNER PE + SeparaTie™ (Floats • 0.92 g/cm³)',
+        'rgba(6, 36, 18, 0.90)',
+        '#86efac',
+        '#ffffff',
+        flakeX + 10,
+        flakeX + flakeW - 10,
+        placedBoxes,
+        12
+      );
+    });
   }
 
   // =========================================================================
-  // ZONE B: PLANT FLOAT–SINK CLARIFIER TANK (splitX .. W)
+  // ZONE B: SINK–FLOAT TANK & ALUM DAF CLARIFIER (splitX + 16 .. W - 16)
   // =========================================================================
-  const cX = splitX + 20;
-  const cW = W - splitX - 40;
-
-  ctx.fillStyle = '#ffffff';
-  ctx.font = '800 17px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('3. PLANT FLOAT–SINK CLARIFIER TANK', cX, 30);
-  ctx.fillStyle = '#94a3b8';
-  ctx.font = '600 13.5px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('Gravity separates the two clean plastics in water:', cX, 50);
-
-  // Tank Geometry
-  const tkX = cX + 10;
-  const tkY = 64;
-  const tkW = cW - 20;
-  const tkH = H - 82;
-  const coneY = tkY + tkH * 0.68;
+  const tkX = splitX + 20;
+  const tkY = 16;
+  const tkW = W - splitX - 38;
+  const tkH = H - 32;
+  const coneY = tkY + tkH * 0.70;
 
   ctx.beginPath();
   ctx.moveTo(tkX, tkY);
   ctx.lineTo(tkX + tkW, tkY);
   ctx.lineTo(tkX + tkW, coneY);
-  ctx.lineTo(tkX + tkW * 0.64, tkY + tkH);
-  ctx.lineTo(tkX + tkW * 0.36, tkY + tkH);
+  ctx.lineTo(tkX + tkW * 0.66, tkY + tkH);
+  ctx.lineTo(tkX + tkW * 0.34, tkY + tkH);
   ctx.lineTo(tkX, coneY);
   ctx.closePath();
 
   const tkGrad = ctx.createLinearGradient(0, tkY, 0, tkY + tkH);
-  tkGrad.addColorStop(0, '#0c2d48');
-  tkGrad.addColorStop(0.55, '#081d31');
-  tkGrad.addColorStop(1, '#051321');
+  tkGrad.addColorStop(0, '#0a2640');
+  tkGrad.addColorStop(0.55, '#07192b');
+  tkGrad.addColorStop(1, '#040e1a');
   ctx.fillStyle = tkGrad;
   ctx.fill();
-  ctx.strokeStyle = '#64748b';
-  ctx.lineWidth = 2.5;
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2;
   ctx.stroke();
 
-  // 1. Top Skimmer Zone (Floating PE + Attached Glue)
-  const skimH = 74;
-  ctx.fillStyle = 'rgba(22, 163, 74, 0.22)';
-  ctx.fillRect(tkX + 3, tkY + 3, tkW - 6, skimH);
-  ctx.strokeStyle = 'rgba(74, 222, 128, 0.5)';
-  ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.moveTo(tkX + 3, tkY + skimH);
-  ctx.lineTo(tkX + tkW - 3, tkY + skimH);
-  ctx.stroke();
+  // Top Skimmer Zone (Floating PE + Anchored Sub-Tie B)
+  const skimH = 64;
+  ctx.fillStyle = 'rgba(22, 163, 74, 0.20)';
+  ctx.fillRect(tkX + 2, tkY + 2, tkW - 4, skimH);
 
-  ctx.fillStyle = '#4ade80';
-  ctx.font = '800 14.5px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('▲ TOP SKIMMER WEIR: FLOATS', tkX + tkW / 2, tkY + 24);
-  ctx.fillStyle = '#ecfdf5';
-  ctx.font = '700 12.5px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('Light PE Film + Attached Glue (0.92 g/cm³)', tkX + tkW / 2, tkY + 44);
+  // Rising DAF Micro-Bubbles in Zone B during Stage 5
+  if (dafActive > 0.05 && !isConv) {
+    ctx.fillStyle = 'rgba(186, 230, 253, 0.30)';
+    for (let m = 0; m < 14; m++) {
+      const mx = tkX + 20 + ((m * 53) % Math.max(30, tkW - 40));
+      const my = coneY - ((nowSec * 38 + m * 29) % Math.max(40, coneY - tkY - 30));
+      ctx.beginPath();
+      ctx.arc(mx, my, 2.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
 
-  // 2. Middle Clean Water Zone
-  const midTankY = tkY + (coneY - tkY) * 0.58;
-  ctx.fillStyle = 'rgba(14, 165, 233, 0.14)';
-  ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
-  ctx.lineWidth = 1.5;
-  roundRect(ctx, tkX + 16, midTankY - 34, tkW - 32, 68, 10);
-  ctx.fill();
-  ctx.stroke();
-
-  ctx.fillStyle = '#7dd3fc';
-  ctx.font = '800 14px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('💧 CLEAN PLANT WASH WATER', tkX + tkW / 2, midTankY - 8);
-  ctx.fillStyle = '#e0f2fe';
-  ctx.font = '600 12.5px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('Glue Stays Solid — Never Dissolves in Water', tkX + tkW / 2, midTankY + 14);
-
-  // 3. Bottom Conical Hopper (Sinking Pure PET)
-  ctx.fillStyle = '#93c5fd';
-  ctx.font = '800 14.5px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('▼ BOTTOM HOPPER: SINKS', tkX + tkW / 2, coneY + 26);
-  ctx.fillStyle = '#dbeafe';
-  ctx.font = '700 12.5px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('100% Pure Clean PET Flakes (1.34 g/cm³)', tkX + tkW / 2, coneY + 46);
-  ctx.textAlign = 'left';
-
-  // Animated Large Flakes inside the Clarifier Tank
-  const numFlakes = 9;
-  const separate = clamp((p - 0.56) / 0.34, 0, 1);
+  // Animated Flakes inside Clarifier Tank (Positioned in dedicated bands so they NEVER cross pills)
+  const numFlakes = 7;
+  const separate = isConv ? 0 : clamp((p - 0.52) / 0.30, 0, 1);
+  const midBandY = tkY + (coneY - tkY) * 0.50;
 
   for (let f = 0; f < numFlakes; f++) {
     const seed = (f + 0.5) / numFlakes;
-    const fxBase = tkX + 30 + seed * (tkW - 60);
-    const swirlY = midTankY + Math.sin(f * 1.9 + nowSec * 2.2) * 22;
+    const fxBase = tkX + 24 + seed * (tkW - 48);
+    const swirlY = midBandY + 34 + Math.sin(f * 1.7 + nowSec * 2.1) * 10;
 
-    // Top Floating Flake: Green PE + Golden Glue permanently bonded together!
-    const floatTargetY = tkY + 56 + (f % 2) * 10;
-    const peY = swirlY * (1 - separate) + floatTargetY * separate;
+    if (isConv) {
+      // Unseparated multi-layer clump
+      const clumpY = swirlY + (f % 2) * 10;
+      ctx.save();
+      ctx.translate(fxBase, clumpY);
+      ctx.fillStyle = '#22c55e';
+      roundRect(ctx, -11, -6, 22, 4, 1.5);
+      ctx.fill();
+      ctx.fillStyle = '#b45309';
+      roundRect(ctx, -11, -2, 22, 4, 1);
+      ctx.fill();
+      ctx.fillStyle = '#2563eb';
+      roundRect(ctx, -11, 2, 22, 5, 1.5);
+      ctx.fill();
+      ctx.restore();
+    } else {
+      // Floating PE + Golden SeparaTie™ (sits at y = tkY + 52)
+      const floatTargetY = tkY + 52 + (f % 2) * 6;
+      const peY = swirlY * (1 - separate) + floatTargetY * separate;
+      ctx.save();
+      ctx.translate(fxBase, peY);
+      ctx.fillStyle = '#22c55e';
+      roundRect(ctx, -11, -5, 22, 5, 1.5);
+      ctx.fill();
+      ctx.fillStyle = '#f59e0b';
+      roundRect(ctx, -11, 0, 22, 3.5, 1.5);
+      ctx.fill();
+      ctx.restore();
 
-    ctx.save();
-    ctx.translate(fxBase, peY);
-    // Green PE layer
-    ctx.fillStyle = '#22c55e';
-    ctx.strokeStyle = '#86efac';
-    ctx.lineWidth = 1;
-    roundRect(ctx, -14, -6, 28, 6, 2);
-    ctx.fill();
-    ctx.stroke();
-    // Golden Smart Glue layer stuck to PE
-    ctx.fillStyle = '#f59e0b';
-    roundRect(ctx, -14, 0, 28, 4.5, 2);
-    ctx.fill();
-    ctx.restore();
+      // Sinking Pure rPET or EVOH Flake (sits in lower cone above bottom pill)
+      const sinkTargetY = coneY + 26 + (f % 2) * 9;
+      const sinkTargetX = tkX + tkW * 0.36 + seed * (tkW * 0.28);
+      const petY = (swirlY + 8) * (1 - separate) + sinkTargetY * separate;
+      const petX = fxBase * (1 - separate) + sinkTargetX * separate;
 
-    // Bottom Sinking Flake: Pure Royal Blue PET
-    const sinkTargetY = coneY + 66 + (f % 3) * 14;
-    const sinkTargetX = tkX + tkW * 0.40 + seed * (tkW * 0.20);
-    const petFlakeY = (swirlY + 8) * (1 - separate) + sinkTargetY * separate;
-    const petFlakeX = fxBase * (1 - separate) + sinkTargetX * separate;
-
-    ctx.save();
-    ctx.translate(petFlakeX, petFlakeY);
-    ctx.fillStyle = '#2563eb';
-    ctx.strokeStyle = '#93c5fd';
-    ctx.lineWidth = 1;
-    roundRect(ctx, -14, -3, 28, 7, 2);
-    ctx.fill();
-    ctx.stroke();
-    ctx.restore();
+      ctx.save();
+      ctx.translate(petX, petY);
+      ctx.fillStyle = structureMode === 'tray' ? '#2563eb' : '#6366f1';
+      ctx.strokeStyle = '#93c5fd';
+      ctx.lineWidth = 1;
+      roundRect(ctx, -11, -3, 22, 6, 1.5);
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
   }
+
+  // 3 Bounded, Non-Overlapping Pill Tags in Zone B (Top Weir, Middle DAF Zone, Bottom Hopper)
+  drawBoundedPill(
+    ctx,
+    tkX + tkW / 2,
+    tkY + 22,
+    '▲ FLOATING PE + TIE (0.92 g/cm³)',
+    'rgba(6, 36, 18, 0.92)',
+    '#4ade80',
+    '#dcfce7',
+    tkX + 6,
+    tkX + tkW - 6,
+    placedBoxes,
+    12
+  );
+
+  drawBoundedPill(
+    ctx,
+    tkX + tkW / 2,
+    midBandY - 12,
+    isConv ? '✕ CLUMPED REJECTS (>45,000 ppm)' : '💧 ALUM DAF LOOP (<0.50 mg/L)',
+    'rgba(10, 22, 42, 0.92)',
+    isConv ? '#ef4444' : '#38bdf8',
+    isConv ? '#fecaca' : '#e0f2fe',
+    tkX + 8,
+    tkX + tkW - 8,
+    placedBoxes,
+    12
+  );
+
+  drawBoundedPill(
+    ctx,
+    tkX + tkW / 2,
+    tkY + tkH - 24,
+    isConv
+      ? '▼ CONTAMINATED rPET (Δb* > 8.5)'
+      : (structureMode === 'tray'
+          ? '▼ PURE rPET (<12 ppm • Δb* +0.28)'
+          : '▼ SINKING EVOH CORE (1.19 g/cm³)'),
+    'rgba(10, 22, 42, 0.94)',
+    isConv ? '#ef4444' : '#93c5fd',
+    isConv ? '#fecaca' : '#dbeafe',
+    tkX + 6,
+    tkX + tkW - 6,
+    placedBoxes,
+    12
+  );
 
   ctx.restore();
 }
