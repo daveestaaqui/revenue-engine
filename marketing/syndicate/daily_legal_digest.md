@@ -1,4 +1,4 @@
-# Daily Tax Deed Surplus & Excess Proceeds Digest — November 17, 2026
+# Daily Tax Deed Surplus & Excess Proceeds Digest — November 18, 2026
 
 ## Legal Overview for Recovery Practitioners
 

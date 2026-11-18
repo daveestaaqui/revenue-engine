@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-17T13:14:46.457011",
+  "fetched_at": "2026-11-18T12:58:51.581008",
   "records": [
     {
       "State": "GA",
@@ -14,7 +14,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=06%20307%2001%20032",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 06 307 01 032",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -29,7 +29,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=12%20228%2002%20008",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 12 228 02 008",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -38,43 +38,28 @@
       "Parcel_ID": "15 027 01 090",
       "Owner_Name": "RIVER MILL ROCK MILL CLUB MILL",
       "Property_Address": "3489 RIVER MILL LN, Ellenwood, GA 30294",
-      "Surplus_Balance_USD": 6489.26,
+      "Surplus_Balance_USD": 1600.8,
       "Sale_Date": "2025-06-03",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20027%2001%20090",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 027 01 090",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
       "County": "DeKalb",
       "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 029 01 117",
-      "Owner_Name": "J R MCBRAYER LLC",
-      "Property_Address": "3825 SHANE CT, Ellenwood, GA 30294",
-      "Surplus_Balance_USD": 214.31,
-      "Sale_Date": "2025-05-06",
+      "Parcel_ID": "15 036 01 183",
+      "Owner_Name": "BABY NORMAN",
+      "Property_Address": "3746 BROOKSIDE PKWY, Decatur, GA 30034",
+      "Surplus_Balance_USD": 145043.0,
+      "Sale_Date": "2026-10-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20029%2001%20117",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 029 01 117",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 040 02 208",
-      "Owner_Name": "ZETT QUINN",
-      "Property_Address": "3005 PATTY HOLW, Decatur, GA 30034",
-      "Surplus_Balance_USD": 2040.97,
-      "Sale_Date": "2025-06-03",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20040%2002%20208",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 040 02 208",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20036%2001%20183",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 036 01 183",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -89,7 +74,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20043%2009%20035",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 043 09 035",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -98,13 +83,13 @@
       "Parcel_ID": "15 058 05 035",
       "Owner_Name": "LEROY HARDING 3289 BLAZING PINE KNL #A DECATUR 30034",
       "Property_Address": "DeKalb County, GA",
-      "Surplus_Balance_USD": 3217.68,
+      "Surplus_Balance_USD": 3343.68,
       "Sale_Date": "2025-06-03",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20058%2005%20035",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 058 05 035",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -119,7 +104,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20058%2006%20002",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 058 06 002",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -134,7 +119,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20062%2003%20006",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 062 03 006",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -143,13 +128,13 @@
       "Parcel_ID": "15 062 03 011",
       "Owner_Name": "EDWARD A MCDONNELL ESTATE",
       "Property_Address": "3625 RADCLIFFE BLVD, Decatur, GA 30034",
-      "Surplus_Balance_USD": 94325.6,
+      "Surplus_Balance_USD": 89779.32,
       "Sale_Date": "2025-10-07",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20062%2003%20011",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 062 03 011",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -164,22 +149,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20071%2002%20002",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 071 02 002",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 077 04 063",
-      "Owner_Name": "HEARD IRR TRUST OF DELAWARE",
-      "Property_Address": "1923 WHITEHALL FOREST CT SE, Atlanta, GA 30316",
-      "Surplus_Balance_USD": 292.43,
-      "Sale_Date": "2025-11-04",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20077%2004%20063",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 077 04 063",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -188,13 +158,13 @@
       "Parcel_ID": "15 090 06 039",
       "Owner_Name": "DREAM ILLUMINATION FOUNDATION",
       "Property_Address": "3229 STRAWBERRY LN, Decatur, GA 30034",
-      "Surplus_Balance_USD": 5873.32,
+      "Surplus_Balance_USD": 16701.52,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20090%2006%20039",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 090 06 039",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -203,13 +173,13 @@
       "Parcel_ID": "15 090 07 013",
       "Owner_Name": "RODRIGUEZ MARTA GRANDA LIVING RODRIGUEZ MARTA G",
       "Property_Address": "3155 CITRUS CT, Decatur, GA 30034",
-      "Surplus_Balance_USD": 11236.81,
+      "Surplus_Balance_USD": 8974.99,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20090%2007%20013",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 090 07 013",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -218,13 +188,13 @@
       "Parcel_ID": "15 093 07 006",
       "Owner_Name": "U S HOUSING & URBAN DEV",
       "Property_Address": "3181 WESLEY CHAPEL ROAD, Decatur, GA 30034",
-      "Surplus_Balance_USD": 10657.73,
+      "Surplus_Balance_USD": 6581.32,
       "Sale_Date": "2026-04-07",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20093%2007%20006",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 093 07 006",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -233,13 +203,13 @@
       "Parcel_ID": "15 096 02 025",
       "Owner_Name": "ESTATE OF ALI BEN BONGO",
       "Property_Address": "2994 RIDERS TRL, Decatur, GA 30034",
-      "Surplus_Balance_USD": 106228.59,
+      "Surplus_Balance_USD": 96506.1,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20096%2002%20025",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 096 02 025",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -254,7 +224,37 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20096%2002%20121",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 096 02 121",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "15 105 01 069",
+      "Owner_Name": "CARROLL GROUP REALTY LLC",
+      "Property_Address": "2839 ELKHORN DR, Decatur, GA 30034",
+      "Surplus_Balance_USD": 3227.75,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20105%2001%20069",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 105 01 069",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "15 109 03 029",
+      "Owner_Name": "ORDER CONSTRUCTION INC",
+      "Property_Address": "1184 RIDGE AVE, Stone Mountain, GA 30083",
+      "Surplus_Balance_USD": 58.37,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20109%2003%20029",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 109 03 029",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -269,7 +269,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20116%2002%20079",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 116 02 079",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -284,7 +284,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20119%2002%20026",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 119 02 026",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -293,28 +293,13 @@
       "Parcel_ID": "15 132 03 027",
       "Owner_Name": "DEBBIE PACE",
       "Property_Address": "2397 TIFFANY PLACE, Decatur, GA 30035",
-      "Surplus_Balance_USD": 44368.79,
+      "Surplus_Balance_USD": 88737.59,
       "Sale_Date": "2022-12-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20132%2003%20027",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 132 03 027",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 134 03 001",
-      "Owner_Name": "REAL ESTATE CAPITAL EXCHANGE LLC",
-      "Property_Address": "2366 COLUMBIA DR, Decatur, GA 30032",
-      "Surplus_Balance_USD": 11750.86,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20134%2003%20001",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 134 03 001",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -323,13 +308,13 @@
       "Parcel_ID": "15 134 03 055",
       "Owner_Name": "VINCENT F SCHULTE ESTATE",
       "Property_Address": "3523 R SPRINGRUN DR, Decatur, GA 30032",
-      "Surplus_Balance_USD": 832.36,
+      "Surplus_Balance_USD": 571.38,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20134%2003%20055",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 134 03 055",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -338,13 +323,13 @@
       "Parcel_ID": "15 139 05 011",
       "Owner_Name": "RALPH D DAVIS ESTATE",
       "Property_Address": "2411 CRANBROOKE DR, Decatur, GA 30032",
-      "Surplus_Balance_USD": 104157.98,
+      "Surplus_Balance_USD": 100330.01,
       "Sale_Date": "2025-10-07",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20139%2005%20011",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 139 05 011",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -353,13 +338,13 @@
       "Parcel_ID": "15 143 01 132",
       "Owner_Name": "A J HIGHTOWER ESTATE",
       "Property_Address": "1362 SMITH ST, Atlanta, GA 30316",
-      "Surplus_Balance_USD": 1400.86,
+      "Surplus_Balance_USD": 1034.7,
       "Sale_Date": "2025-06-03",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20143%2001%20132",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 143 01 132",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -374,7 +359,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20143%2020%20015",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 143 20 015",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -389,7 +374,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20145%2018%20044",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 145 18 044",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -398,13 +383,28 @@
       "Parcel_ID": "15 155 04 012",
       "Owner_Name": "RARIS HOUSE LLC",
       "Property_Address": "2255 COLUMBIA DR, Decatur, GA 30032",
-      "Surplus_Balance_USD": 31897.78,
+      "Surplus_Balance_USD": 23319.7,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20155%2004%20012",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 155 04 012",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "15 159 01 019",
+      "Owner_Name": "DIVAS AND GRASS LLC",
+      "Property_Address": "2126 WESLEY CHAPEL RD, Decatur, GA 30035",
+      "Surplus_Balance_USD": 59842.12,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20159%2001%20019",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 159 01 019",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -419,7 +419,22 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20163%2003%20014",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 163 03 014",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "15 163 06 025",
+      "Owner_Name": "ESTATE OF GERALDINE S CONNER",
+      "Property_Address": "1871 CLARKE LN, Decatur, GA 30035",
+      "Surplus_Balance_USD": 32377.92,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20163%2006%20025",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 163 06 025",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -428,13 +443,28 @@
       "Parcel_ID": "15 170 04 021",
       "Owner_Name": "PATRICIA MINCEY ESTATE",
       "Property_Address": "1907 BONNER ST, Decatur, GA 30032",
-      "Surplus_Balance_USD": 63845.97,
+      "Surplus_Balance_USD": 25849.18,
       "Sale_Date": "2024-05-07",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20170%2004%20021",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 170 04 021",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "15 172 11 070",
+      "Owner_Name": "ESTATE OF WILLIAM S MERRITT",
+      "Property_Address": "1837 DELPHINE DR, Decatur, GA 30032",
+      "Surplus_Balance_USD": 101.46,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20172%2011%20070",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 172 11 070",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -449,37 +479,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20174%2008%20067",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 174 08 067",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 177 04 020",
-      "Owner_Name": "TRENTON TRUST FUNG TAN TRUSTEE",
-      "Property_Address": "1206 TRENTON STREET SE, Atlanta, GA 30316",
-      "Surplus_Balance_USD": 3.63,
-      "Sale_Date": "2026-04-07",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20177%2004%20020",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 177 04 020",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 177 04 068",
-      "Owner_Name": "CHARLOTTE B ZOTTI ESTATE",
-      "Property_Address": "1240 MCPHERSON AVE, Atlanta, GA 30316",
-      "Surplus_Balance_USD": 89154.0,
-      "Sale_Date": "2026-04-07",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20177%2004%20068",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 177 04 068",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -494,7 +494,22 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20178%2003%20098",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 178 03 098",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "15 178 03 103",
+      "Owner_Name": "ESTATE OF MARY FRANCES JENKINS",
+      "Property_Address": "485 BLAKE AVE SE, Atlanta, GA 30316",
+      "Surplus_Balance_USD": 86404.6,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20178%2003%20103",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 178 03 103",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -509,7 +524,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20178%2005%20037",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 178 05 037",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -524,7 +539,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20178%2005%20044",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 178 05 044",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -539,7 +554,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20178%2005%20045",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 178 05 045",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -554,7 +569,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20178%2005%20046",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 178 05 046",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -569,7 +584,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20178%2005%20047",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 178 05 047",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -584,7 +599,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20181%2005%20018",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 181 05 018",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -593,13 +608,13 @@
       "Parcel_ID": "15 184 03 019",
       "Owner_Name": "LAVERNE OXENDINE JORDAN ESTATE",
       "Property_Address": "2719 AMELIA AVE, Decatur, GA 30032",
-      "Surplus_Balance_USD": 84560.95,
+      "Surplus_Balance_USD": 80787.24,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20184%2003%20019",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 184 03 019",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -608,28 +623,13 @@
       "Parcel_ID": "15 188 11 018",
       "Owner_Name": "ALPA PROPERTY SERVICES LLC",
       "Property_Address": "1807 W AUSTIN RD, Decatur, GA 30032",
-      "Surplus_Balance_USD": 192756.56,
+      "Surplus_Balance_USD": 185840.56,
       "Sale_Date": "2025-09-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20188%2011%20018",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 188 11 018",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 191 01 108",
-      "Owner_Name": "BRUCE T HANSEN",
-      "Property_Address": "4380 CEDAR RIDGE TRL, Stone Mountain, GA 30083",
-      "Surplus_Balance_USD": 2780.99,
-      "Sale_Date": "2025-05-06",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20191%2001%20108",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 191 01 108",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -644,7 +644,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20192%2002%20010",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 192 02 010",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -659,7 +659,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20193%2004%20026",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 193 04 026",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -668,13 +668,13 @@
       "Parcel_ID": "15 199 04 193",
       "Owner_Name": "GETHSEMANE TEMPLE AFFILIATED WITH UHC",
       "Property_Address": "3237 MIDWAY RD, Decatur, GA 30032",
-      "Surplus_Balance_USD": 3790.7,
+      "Surplus_Balance_USD": 4090.7,
       "Sale_Date": "2025-06-03",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20199%2004%20193",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 199 04 193",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -683,13 +683,28 @@
       "Parcel_ID": "15 200 12 006",
       "Owner_Name": "ESTATE OF ASHWIN SHAH SHAH",
       "Property_Address": "2937 MONTEREY DR, Decatur, GA 30032",
-      "Surplus_Balance_USD": 2917.16,
+      "Surplus_Balance_USD": 6657.75,
       "Sale_Date": "2022-09-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20200%2012%20006",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 200 12 006",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "15 200 12 006",
+      "Owner_Name": "BRETT MULLINS",
+      "Property_Address": "2937 MONTEREY DR, Decatur, GA 30032",
+      "Surplus_Balance_USD": 2917.16,
+      "Sale_Date": "2025-04-01",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20200%2012%20006",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 200 12 006",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -704,7 +719,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20201%2003%20049",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 201 03 049",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -719,7 +734,22 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20203%2003%20063",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 203 03 063",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "15 204 05 101",
+      "Owner_Name": "ESTATE OF LAMAR MADDOX & BRENDA J MADDOX",
+      "Property_Address": "191 2ND AVE SE, Decatur, GA 30030",
+      "Surplus_Balance_USD": 133787.88,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20204%2005%20101",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 204 05 101",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -734,7 +764,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20205%2001%20039",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 205 01 039",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -743,28 +773,13 @@
       "Parcel_ID": "15 208 04 156",
       "Owner_Name": "GRAHAM HAY",
       "Property_Address": "1237 WYLIE ST, Atlanta, GA 30317",
-      "Surplus_Balance_USD": 43242.32,
+      "Surplus_Balance_USD": 38427.11,
       "Sale_Date": "2025-10-07",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20208%2004%20156",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 208 04 156",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 210 03 172",
-      "Owner_Name": "MONTEZ E & VENERIA B AUSTIN",
-      "Property_Address": "0 NEW ST, Atlanta, GA 30307",
-      "Surplus_Balance_USD": 67.3,
-      "Sale_Date": "2025-12-02",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20210%2003%20172",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 210 03 172",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -779,37 +794,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20212%2004%20099",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 212 04 099",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 216 06 036",
-      "Owner_Name": "WILL AND WELLS INVESTMENT FIRM LLC YOURE MINE AND OURS RES DEVELOPMT LLC",
-      "Property_Address": "985 COLUMBIA DR, Decatur, GA 30030",
-      "Surplus_Balance_USD": 307589.41,
-      "Sale_Date": "2025-09-02",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20216%2006%20036",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 216 06 036",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 220 09 014",
-      "Owner_Name": "BRETT MULLINS",
-      "Property_Address": "2937 MONTEREY DR, Decatur, GA 30032",
-      "Surplus_Balance_USD": 31333.24,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20220%2009%20014",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 220 09 014",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -818,28 +803,13 @@
       "Parcel_ID": "15 229 05 019",
       "Owner_Name": "CATALINA",
       "Property_Address": "1 LLC 3812 KENSINGWOOD TRCE, Decatur, GA 30032",
-      "Surplus_Balance_USD": 28192.79,
+      "Surplus_Balance_USD": 26095.0,
       "Sale_Date": "2025-10-07",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20229%2005%20019",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 229 05 019",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "15 252 09 007",
-      "Owner_Name": "DUNAIRE PARK INC",
-      "Property_Address": "3730 KINGSWOOD DR, Decatur, GA 30032",
-      "Surplus_Balance_USD": 95.37,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20252%2009%20007",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 252 09 007",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -854,7 +824,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=15%20253%2004%20031",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 15 253 04 031",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -863,13 +833,13 @@
       "Parcel_ID": "16 001 12 003",
       "Owner_Name": "DENISE A BREDEN",
       "Property_Address": "885 DISNEY CT, Stone Mountain, GA 30088",
-      "Surplus_Balance_USD": 48940.03,
+      "Surplus_Balance_USD": 46317.49,
       "Sale_Date": "2025-11-04",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20001%2012%20003",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 001 12 003",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -884,22 +854,22 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20002%2005%20045",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 002 05 045",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
       "County": "DeKalb",
       "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 009 01 019",
-      "Owner_Name": "STEPHEN CRUZ ESTATE",
-      "Property_Address": "23 QUAIL RUN, Decatur, GA 30035",
-      "Surplus_Balance_USD": 2440.19,
-      "Sale_Date": "2025-11-04",
+      "Parcel_ID": "16 005 11 004",
+      "Owner_Name": "ESTATE OF OZELLA SHERROD",
+      "Property_Address": "1839 QUAIL WOOD DR, Stone Mountain, GA 30088",
+      "Surplus_Balance_USD": 90954.3,
+      "Sale_Date": "2026-10-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20009%2001%20019",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 009 01 019",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20005%2011%20004",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 005 11 004",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -908,28 +878,13 @@
       "Parcel_ID": "16 009 02 005",
       "Owner_Name": "ROSE BURNEY",
       "Property_Address": "28 QUAIL RUN, Decatur, GA 30035",
-      "Surplus_Balance_USD": 2839.76,
+      "Surplus_Balance_USD": 714.64,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20009%2002%20005",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 009 02 005",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 009 02 011",
-      "Owner_Name": "HORIZON TRUST COMPANY DRACY CAPITAL 401K PLAN CFBO",
-      "Property_Address": "36 QUAIL RUN, Decatur, GA 30035",
-      "Surplus_Balance_USD": 1935.85,
-      "Sale_Date": "2025-11-04",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20009%2002%20011",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 009 02 011",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -944,7 +899,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20009%2002%20036",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 009 02 036",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -959,7 +914,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20009%2003%20008",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 009 03 008",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -974,7 +929,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20009%2003%20023",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 009 03 023",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -989,7 +944,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20009%2003%20034",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 009 03 034",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1004,7 +959,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20009%2003%20037",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 009 03 037",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1019,7 +974,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20013%2002%20072",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 013 02 072",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1028,28 +983,13 @@
       "Parcel_ID": "16 024 01 004",
       "Owner_Name": "SHAW MILLER RD PROPERTIES INC",
       "Property_Address": "2811 MILLER RD, Decatur, GA 30035",
-      "Surplus_Balance_USD": 238234.4,
+      "Surplus_Balance_USD": 227651.84,
       "Sale_Date": "2025-09-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20024%2001%20004",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 024 01 004",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 038 02 068",
-      "Owner_Name": "SKY BREEZE CORPORATION ANDREW JAMES DEVELOPMENT CORP",
-      "Property_Address": "2044 PANOLA WAY CT, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 3810.47,
-      "Sale_Date": "2025-06-03",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20038%2002%20068",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 038 02 068",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1058,13 +998,13 @@
       "Parcel_ID": "16 043 03 078",
       "Owner_Name": "WILLIAM H ROBINSON JR ESTATE",
       "Property_Address": "3366 PANOLA RD, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 4783.01,
+      "Surplus_Balance_USD": 4361.59,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20043%2003%20078",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 043 03 078",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1073,28 +1013,13 @@
       "Parcel_ID": "16 043 05 014",
       "Owner_Name": "ISAYUS AND AZEB MISGUN SIUM",
       "Property_Address": "3276 BRISBANE WAY, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 2027.75,
+      "Surplus_Balance_USD": 827.79,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20043%2005%20014",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 043 05 014",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 045 02 001",
-      "Owner_Name": "OASIS HEALTHCARE SYSTEMS LLC",
-      "Property_Address": "5460 SALEM RD, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 5244.52,
-      "Sale_Date": "2025-06-03",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20045%2002%20001",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 045 02 001",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1109,7 +1034,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20057%2002%20062",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 057 02 062",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1118,13 +1043,13 @@
       "Parcel_ID": "16 061 12 023",
       "Owner_Name": "DEBORAH SOLTAU",
       "Property_Address": "1528 STONELEIGH CIRCLE, Stone Mountain, GA 30088",
-      "Surplus_Balance_USD": 110493.71,
+      "Surplus_Balance_USD": 102518.51,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20061%2012%20023",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 061 12 023",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1139,7 +1064,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20067%2001%20031",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 067 01 031",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1154,7 +1079,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20071%2009%20042",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 071 09 042",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1163,13 +1088,13 @@
       "Parcel_ID": "16 074 07 024",
       "Owner_Name": "BRETT O MULLINGS",
       "Property_Address": "131 TIBURON CT, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 19714.86,
+      "Surplus_Balance_USD": 17584.1,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20074%2007%20024",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 074 07 024",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1178,13 +1103,13 @@
       "Parcel_ID": "16 074 08 083",
       "Owner_Name": "NATHAN SMITH & STEVEN HAMMOND & LIANE TRUELL",
       "Property_Address": "3070 PARC LORRAINE, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 16187.22,
+      "Surplus_Balance_USD": 12245.72,
       "Sale_Date": "2025-10-07",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20074%2008%20083",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 074 08 083",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1199,7 +1124,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20074%2008%20085",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 074 08 085",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1208,13 +1133,13 @@
       "Parcel_ID": "16 074 08 095",
       "Owner_Name": "NATHAN SMITH & MARY ELIZABETH HIRSCH",
       "Property_Address": "3076 PARC LORRAINE, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 14998.76,
+      "Surplus_Balance_USD": 12721.76,
       "Sale_Date": "2025-10-07",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20074%2008%20095",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 074 08 095",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1223,28 +1148,13 @@
       "Parcel_ID": "16 074 08 101",
       "Owner_Name": "ETHEL J MABRY ESTATE",
       "Property_Address": "3102 PARC LORRAINE, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 2935.64,
+      "Surplus_Balance_USD": 584.42,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20074%2008%20101",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 074 08 101",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 074 14 029",
-      "Owner_Name": "JERMAINE PREDESTIN & REGINA MENDEZ",
-      "Property_Address": "2304 FAIRINGTON VILLAGE DR, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 5677.5,
-      "Sale_Date": "2025-05-06",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20074%2014%20029",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 074 14 029",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1253,13 +1163,13 @@
       "Parcel_ID": "16 074 16 006",
       "Owner_Name": "BEATRICE ANDREWS",
       "Property_Address": "1201 FAIRINGTON RIDGE CIR, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 36723.08,
+      "Surplus_Balance_USD": 34120.56,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20074%2016%20006",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 074 16 006",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1268,13 +1178,13 @@
       "Parcel_ID": "16 075 04 034",
       "Owner_Name": "MAXIME AND ALICE PAPILLON",
       "Property_Address": "5824 PAR FOUR CT, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 55221.92,
+      "Surplus_Balance_USD": 52561.1,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20075%2004%20034",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 075 04 034",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1289,22 +1199,127 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20089%2006%20086",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 089 06 086",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
       "County": "DeKalb",
       "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 104 06 040",
-      "Owner_Name": "ABOGHANIM ABDURRHMAN ABDULLAH ABOGHANIM",
-      "Property_Address": "2176 WELLINGTON CIR, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 90574.4,
-      "Sale_Date": "2024-09-09",
+      "Parcel_ID": "16 097 07 140",
+      "Owner_Name": "GEORGIA CITY HOLDINGS LLC",
+      "Property_Address": "1086 FALKIRK LN, Stone Mountain, GA 30087",
+      "Surplus_Balance_USD": 2399.91,
+      "Sale_Date": "2026-10-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20104%2006%20040",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 104 06 040",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20097%2007%20140",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 097 07 140",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "16 097 07 141",
+      "Owner_Name": "GEORGIA CITY HOLDINGS LLC",
+      "Property_Address": "1092 FALKIRK LN, Stone Mountain, GA 30087",
+      "Surplus_Balance_USD": 1799.91,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20097%2007%20141",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 097 07 141",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "16 097 07 142",
+      "Owner_Name": "GEORGIA CITY HOLDINGS LLC",
+      "Property_Address": "1098 FALKIRK LN, Stone Mountain, GA 30087",
+      "Surplus_Balance_USD": 2599.91,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20097%2007%20142",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 097 07 142",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "16 098 01 174",
+      "Owner_Name": "GEORGIA CITY HOLDINGS LLC",
+      "Property_Address": "1171 FALKIRK LN, Stone Mountain, GA 30087",
+      "Surplus_Balance_USD": 3952.1,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20098%2001%20174",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 098 01 174",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "16 098 01 177",
+      "Owner_Name": "GEORGIA CITY HOLDINGS LLC",
+      "Property_Address": "1157 FALKIRK LN, Stone Mountain, GA 30087",
+      "Surplus_Balance_USD": 4017.87,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20098%2001%20177",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 098 01 177",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "16 098 01 179",
+      "Owner_Name": "GEORGIA CITY HOLDINGS LLC",
+      "Property_Address": "1147 FALKIRK LN, Stone Mountain, GA 30087",
+      "Surplus_Balance_USD": 3717.87,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20098%2001%20179",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 098 01 179",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "16 098 01 195",
+      "Owner_Name": "GEORGIA CITY HOLDINGS LLC",
+      "Property_Address": "6402 SHADOW SQ, Lithonia, GA 30058",
+      "Surplus_Balance_USD": 498.92,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20098%2001%20195",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 098 01 195",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "16 098 01 196",
+      "Owner_Name": "GEORGIA CITY HOLDINGS LLC",
+      "Property_Address": "6397 SHADOW SQ, Lithonia, GA 30058",
+      "Surplus_Balance_USD": 489.45,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20098%2001%20196",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 098 01 196",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1319,7 +1334,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20104%2008%20040",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 104 08 040",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1334,7 +1349,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20121%2003%20016",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 121 03 016",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1343,13 +1358,13 @@
       "Parcel_ID": "16 123 05 045",
       "Owner_Name": "STELLA M TAYLOR ESTATE",
       "Property_Address": "6472 BEDFORD LN, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 33589.72,
+      "Surplus_Balance_USD": 27668.3,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20123%2005%20045",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 123 05 045",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1358,13 +1373,13 @@
       "Parcel_ID": "16 123 05 080",
       "Owner_Name": "HOMELAND-B M C B M C SERVICES INC",
       "Property_Address": "6490 MARBUT RD, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 1893.48,
+      "Surplus_Balance_USD": 1819.66,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20123%2005%20080",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 123 05 080",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1379,7 +1394,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20126%2006%20004",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 126 06 004",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1394,7 +1409,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20127%2009%20006",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 127 09 006",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1409,7 +1424,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20130%2001%20010",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 130 01 010",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1424,7 +1439,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20140%2002%20012",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 140 02 012",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1433,13 +1448,13 @@
       "Parcel_ID": "16 140 02 037",
       "Owner_Name": "JOHN SEYMOUR ESTATE",
       "Property_Address": "3467 PLUNKETT RD, Lithonia, GA 30038",
-      "Surplus_Balance_USD": 264.6,
+      "Surplus_Balance_USD": 6.12,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20140%2002%20037",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 140 02 037",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1454,7 +1469,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20152%2004%20001",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 152 04 001",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1463,28 +1478,13 @@
       "Parcel_ID": "16 152 11 020",
       "Owner_Name": "CALVIN CHAN",
       "Property_Address": "7163 SWIFT ST, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 16223.28,
+      "Surplus_Balance_USD": 13608.35,
       "Sale_Date": "2025-10-07",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20152%2011%20020",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 152 11 020",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 153 07 014",
-      "Owner_Name": "RHONEIA N STARKS",
-      "Property_Address": "2365 SMOKEY ROW, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 2347.9,
-      "Sale_Date": "2025-05-06",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20153%2007%20014",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 153 07 014",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1499,7 +1499,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20153%2007%20016",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 153 07 016",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1514,7 +1514,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20153%2008%20047",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 153 08 047",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1523,13 +1523,13 @@
       "Parcel_ID": "16 153 13 016",
       "Owner_Name": "JERRY DOBBINS & WANDA DOBBINS",
       "Property_Address": "2707 ROCK CHAPEL RD, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 65800.47,
+      "Surplus_Balance_USD": 58178.26,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20153%2013%20016",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 153 13 016",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1538,13 +1538,13 @@
       "Parcel_ID": "16 154 06 001",
       "Owner_Name": "ROBERT ODELL HINES ESTATE & LILLIE MAE BENNETT ESTATE",
       "Property_Address": "7056 PINE MOUNTAIN RD, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 35857.5,
+      "Surplus_Balance_USD": 32545.82,
       "Sale_Date": "2025-12-02",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20154%2006%20001",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 154 06 001",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1553,13 +1553,13 @@
       "Parcel_ID": "16 156 02 008",
       "Owner_Name": "EDDIE STOKES",
       "Property_Address": "6974 MADDOX RD, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 2493.5,
+      "Surplus_Balance_USD": 2421.08,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20156%2002%20008",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 156 02 008",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1568,43 +1568,28 @@
       "Parcel_ID": "16 161 01 235",
       "Owner_Name": "TRILAND INVESTMENT GROUP STYLUS HOLDINGS INC",
       "Property_Address": "7559 ROCKBRIDGE RD, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 1034.28,
+      "Surplus_Balance_USD": 1012.32,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20161%2001%20235",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 161 01 235",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
       "County": "DeKalb",
       "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 169 01 002",
-      "Owner_Name": "KNIGHTS OF PYTHIAS HALL ASSOCIATION INC",
-      "Property_Address": "7104 MCDANIEL ST, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 37.2,
-      "Sale_Date": "2025-04-01",
+      "Parcel_ID": "16 169 07 043",
+      "Owner_Name": "ESTATE OF JOSIE MAE SMITH",
+      "Property_Address": "7534 CONYERS ST, Lithonia, GA 30058",
+      "Surplus_Balance_USD": 34123.06,
+      "Sale_Date": "2026-10-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20169%2001%20002",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 169 01 002",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 169 01 052",
-      "Owner_Name": "ROCK BOTTOM FORWARD INC",
-      "Property_Address": "7116 MCDANIEL ST, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 29164.9,
-      "Sale_Date": "2025-11-04",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20169%2001%20052",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 169 01 052",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20169%2007%20043",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 169 07 043",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1619,7 +1604,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20169%2007%20054",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 169 07 054",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1628,13 +1613,13 @@
       "Parcel_ID": "16 169 07 061",
       "Owner_Name": "TOMMIE ABBOTT",
       "Property_Address": "7089 MCDANIEL ST, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 2674.23,
+      "Surplus_Balance_USD": 1940.17,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20169%2007%20061",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 169 07 061",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1649,7 +1634,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20174%2001%20008",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 174 01 008",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1664,22 +1649,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20186%2003%20014",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 186 03 014",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 197 02 014",
-      "Owner_Name": "JOSEPH A HOLUB",
-      "Property_Address": "1765 PLEASANT HILL TRL, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 2239.29,
-      "Sale_Date": "2025-06-03",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20197%2002%20014",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 197 02 014",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1694,7 +1664,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20199%2002%20026",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 199 02 026",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1703,13 +1673,13 @@
       "Parcel_ID": "16 218 03 082",
       "Owner_Name": "MICHAEL BOWMAN",
       "Property_Address": "2443 HARMONY RIDGE CT, Lithonia, GA 30058",
-      "Surplus_Balance_USD": 7384.47,
+      "Surplus_Balance_USD": 6449.47,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20218%2003%20082",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 218 03 082",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1724,37 +1694,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20252%2001%20023",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 252 01 023",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "16 253 02 021",
-      "Owner_Name": "JOHNNY R BAILEY",
-      "Property_Address": "0 NORRIS LAKE WAY SNELLVILLE 30039, GA",
-      "Surplus_Balance_USD": 1615.74,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=16%20253%2002%20021",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 16 253 02 021",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 004 17 001",
-      "Owner_Name": "BLAIR WARNER L CHEWNING WALTER RICHARD EX",
-      "Property_Address": "390 THE FALLS CT, Atlanta, GA 30307",
-      "Surplus_Balance_USD": 81.43,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20004%2017%20001",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 004 17 001",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1763,13 +1703,13 @@
       "Parcel_ID": "18 004 17 061",
       "Owner_Name": "HOWARD TOMMY EUGENE HOWARD MARY LEE",
       "Property_Address": "289 DURAND FALLS DR, Decatur, GA 30030",
-      "Surplus_Balance_USD": 6366.22,
+      "Surplus_Balance_USD": 6142.58,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20004%2017%20061",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 004 17 061",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1778,28 +1718,13 @@
       "Parcel_ID": "18 013 04 032",
       "Owner_Name": "KITCHENS PROPERTY MGT",
       "Property_Address": "580 TAHOE CIR, Stone Mountain, GA 30083",
-      "Surplus_Balance_USD": 237.61,
+      "Surplus_Balance_USD": 171.83,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20013%2004%20032",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 013 04 032",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 013 06 001",
-      "Owner_Name": "OSCAR O HERNANDEZ PADILLA",
-      "Property_Address": "411 SAFARI CIRCLE, Stone Mountain, GA 30083",
-      "Surplus_Balance_USD": 24790.7,
-      "Sale_Date": "2026-05-05",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20013%2006%20001",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 013 06 001",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1814,7 +1739,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20015%2006%20013",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 015 06 013",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1829,7 +1754,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20015%2006%20061",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 015 06 061",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1838,28 +1763,13 @@
       "Parcel_ID": "18 018 01 121",
       "Owner_Name": "MONICA BOBB BOWMAN",
       "Property_Address": "5175 SELENE DR, Stone Mountain, GA 30088",
-      "Surplus_Balance_USD": 4698.2,
+      "Surplus_Balance_USD": 3256.12,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20018%2001%20121",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 018 01 121",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 018 04 026",
-      "Owner_Name": "EMANUWEL J DIXON ESTATE",
-      "Property_Address": "475 DERBY DR, Stone Mountain, GA 30088",
-      "Surplus_Balance_USD": 401.31,
-      "Sale_Date": "2025-05-06",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20018%2004%20026",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 018 04 026",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1874,7 +1784,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20034%2008%20018",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 034 08 018",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1889,7 +1799,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20037%2018%20115",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 037 18 115",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1898,13 +1808,13 @@
       "Parcel_ID": "18 038 07 016",
       "Owner_Name": "GILBERTO MACHADO",
       "Property_Address": "356 DERBYSHIRE DR, Stone Mountain, GA 30088",
-      "Surplus_Balance_USD": 125489.37,
+      "Surplus_Balance_USD": 122950.33,
       "Sale_Date": "2025-06-03",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20038%2007%20016",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 038 07 016",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1919,7 +1829,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20039%2003%20043",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 039 03 043",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1928,43 +1838,13 @@
       "Parcel_ID": "18 039 04 016",
       "Owner_Name": "RED TIE SOLUTIONS LLC",
       "Property_Address": "5017 OWENS MILL TRL STON EMOUNTAIN 30083, GA",
-      "Surplus_Balance_USD": 3177.41,
+      "Surplus_Balance_USD": 1999.97,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20039%2004%20016",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 039 04 016",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 044 09 031",
-      "Owner_Name": "JESUS CHURCH MINISTRIES INC RESURRECTION RODS LLC",
-      "Property_Address": "618 RIDGECREEK DR, Clarkston, GA 30021",
-      "Surplus_Balance_USD": 413.28,
-      "Sale_Date": "2025-05-06",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20044%2009%20031",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 044 09 031",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 044 09 034",
-      "Owner_Name": "ALVIN B MARBLE",
-      "Property_Address": "615 RIDGECREEK DR, Clarkston, GA 30021",
-      "Surplus_Balance_USD": 48424.94,
-      "Sale_Date": "2022-12-06",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20044%2009%20034",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 044 09 034",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1979,7 +1859,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20044%2009%20042",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 044 09 042",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -1988,13 +1868,13 @@
       "Parcel_ID": "18 044 09 059",
       "Owner_Name": "JIMMY L JACKSON & MABLE MCWHORTER JACKSON",
       "Property_Address": "528 RIDGECREEK DR, Clarkston, GA 30021",
-      "Surplus_Balance_USD": 6765.11,
+      "Surplus_Balance_USD": 5008.09,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20044%2009%20059",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 044 09 059",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2003,13 +1883,13 @@
       "Parcel_ID": "18 044 09 080",
       "Owner_Name": "CHARLES E ANDERSON ESTATE",
       "Property_Address": "418 RIDGECREEK DR, Clarkston, GA 30021",
-      "Surplus_Balance_USD": 6387.07,
+      "Surplus_Balance_USD": 4296.21,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20044%2009%20080",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 044 09 080",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2018,13 +1898,13 @@
       "Parcel_ID": "18 046 02 008",
       "Owner_Name": "GHOLAMREZA TAVAKOLIAN",
       "Property_Address": "3195 FERRELL AVE, Clarkston, GA 30079",
-      "Surplus_Balance_USD": 1256.43,
+      "Surplus_Balance_USD": 243.39,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2002%20008",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 02 008",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2039,52 +1919,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2002%20022",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 02 022",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 046 02 029",
-      "Owner_Name": "GHOLAMREZA TAVAKOLIAN",
-      "Property_Address": "3202 REED ST, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 783.65,
-      "Sale_Date": "2025-05-06",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2002%20029",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 02 029",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 046 02 045",
-      "Owner_Name": "SAMUEL RILEY 546 DIXON STREET SCOTTDALE `30079",
-      "Property_Address": "DeKalb County, GA",
-      "Surplus_Balance_USD": 1112.22,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2002%20045",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 02 045",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 046 03 003",
-      "Owner_Name": "LEE JAMES I HIS ESTATE ADMINISTRATOR EXECUTOR AND HEIRS KNOWN AND UNKNOWN",
-      "Property_Address": "3179 MCHENRY AVE, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 83.87,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20003",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 003",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2093,13 +1928,13 @@
       "Parcel_ID": "18 046 03 005",
       "Owner_Name": "OREL LEROY JONES",
       "Property_Address": "3147 MCHENRY AVE, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 946.76,
+      "Surplus_Balance_USD": 688.72,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20005",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 005",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2108,13 +1943,13 @@
       "Parcel_ID": "18 046 03 011",
       "Owner_Name": "FRED WILLIAMS ESTATE",
       "Property_Address": "3194 ROBINSON AVE, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 3509.17,
+      "Surplus_Balance_USD": 347.64,
       "Sale_Date": "2025-11-04",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20011",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 011",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2129,7 +1964,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20016",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 016",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2144,7 +1979,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20036",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 036",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2159,7 +1994,22 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20037",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 037",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
+    },
+    {
+      "State": "GA",
+      "County": "DeKalb",
+      "Case_or_TaxDeed_No": "",
+      "Parcel_ID": "18 046 03 042",
+      "Owner_Name": "GHOLAMREZA TAVAKOLIAN",
+      "Property_Address": "3181 GRANBY AVE, Scottdale, GA 30079",
+      "Surplus_Balance_USD": 4070.21,
+      "Sale_Date": "2026-10-06",
+      "Record_Type": "TAX_DEED",
+      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
+      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20042",
+      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 042",
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2168,13 +2018,13 @@
       "Parcel_ID": "18 046 03 051",
       "Owner_Name": "ALICE WATKINS",
       "Property_Address": "3160 BLANTON DR, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 4656.89,
+      "Surplus_Balance_USD": 4398.85,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20051",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 051",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2183,13 +2033,13 @@
       "Parcel_ID": "18 046 03 058",
       "Owner_Name": "MALINDA THURMAN",
       "Property_Address": "3187 BLANTON DR, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 1257.31,
+      "Surplus_Balance_USD": 999.27,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20058",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 058",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2204,7 +2054,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20060",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 060",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2219,7 +2069,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20065",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 065",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2234,7 +2084,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20067",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 067",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2243,13 +2093,13 @@
       "Parcel_ID": "18 046 03 069",
       "Owner_Name": "MARY M MATTHEWS",
       "Property_Address": "3192 ALTACREST DR, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 4580.8,
+      "Surplus_Balance_USD": 1508.94,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20069",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 069",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2258,13 +2108,13 @@
       "Parcel_ID": "18 046 03 070",
       "Owner_Name": "MOSELY FREDRICK HIS ESTATE PERS REP AND HEIRS KNOWN AND UNKNOWN",
       "Property_Address": "3194 ALTACREST DR, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 11938.32,
+      "Surplus_Balance_USD": 10518.23,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20070",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 070",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2279,7 +2129,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20087",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 087",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2288,13 +2138,13 @@
       "Parcel_ID": "18 046 03 093",
       "Owner_Name": "UNKNOWN OWNER - UNRETURNED PROPERTY",
       "Property_Address": "3170 KELLY ST, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 4672.42,
+      "Surplus_Balance_USD": 2557.28,
       "Sale_Date": "2025-05-06",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20093",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 093",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2303,13 +2153,13 @@
       "Parcel_ID": "18 046 03 106",
       "Owner_Name": "CRONAN BROTHERS",
       "Property_Address": "3159 ALTACREST DR, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 5214.6,
+      "Surplus_Balance_USD": 5084.62,
       "Sale_Date": "2025-04-01",
       "Record_Type": "TAX_DEED",
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20106",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 106",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2324,292 +2174,7 @@
       "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
       "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20175",
       "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 175",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 046 03 179",
-      "Owner_Name": "MEADOWBROOK LAND COMPANY",
-      "Property_Address": "3209 ROBINSON AVE, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 6682.74,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20179",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 179",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 046 03 211",
-      "Owner_Name": "BOYD MARIE HER ESTATE ADMINISTRATOR EXECUTOR AND HEIRS KNOWN AND UNKNOWN",
-      "Property_Address": "3222 ALTACREST DR, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 4595.88,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20211",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 211",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 046 03 236",
-      "Owner_Name": "GALLOWAY JAMES ESTATE PERS REP AND HEIRS KNOWN AND UNKNOWN",
-      "Property_Address": "3248 KELLY ST, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 4422.94,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2003%20236",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 03 236",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 046 04 007",
-      "Owner_Name": "UNKNOWN OWNER - UNRETURNED PROPERTY",
-      "Property_Address": "466 JOINTER AVENUE, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 2132.38,
-      "Sale_Date": "2026-04-07",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2004%20007",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 04 007",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 046 04 163",
-      "Owner_Name": "DEMORAN ANNE B HER ESTATE, ADMIN, EXECUTOR, AND HEIRS, KNOWN AND UNKNOWN",
-      "Property_Address": "496 BELL BLVD, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 2063.86,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2004%20163",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 04 163",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 046 04 198",
-      "Owner_Name": "UNKNOWN OWNER - UNRETURNED PROPERTY",
-      "Property_Address": "440 BROWNELL AVENUE, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 2295.98,
-      "Sale_Date": "2026-04-07",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20046%2004%20198",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 046 04 198",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 047 23 016",
-      "Owner_Name": "BROWN JOHNSON",
-      "Property_Address": "458 BOOKER AVE, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 3239.02,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20047%2023%20016",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 047 23 016",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 047 23 022",
-      "Owner_Name": "MARY ANN EDWARDS ESTATE",
-      "Property_Address": "457 PROCTOR AVE, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 7367.5,
-      "Sale_Date": "2025-12-02",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20047%2023%20022",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 047 23 022",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 047 26 017",
-      "Owner_Name": "MARY EMILY & SURVARIA BREWER ESTATES",
-      "Property_Address": "3132 WALKER ST, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 4343.02,
-      "Sale_Date": "2025-12-02",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20047%2026%20017",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 047 26 017",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 047 26 019",
-      "Owner_Name": "D & E ENTERPRISES INC",
-      "Property_Address": "473 BOOKER AVE, Scottdale, GA 30079",
-      "Surplus_Balance_USD": 809.2,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20047%2026%20019",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 047 26 019",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 049 05 081",
-      "Owner_Name": "ASHWOOD DEVELOPMENT COMPANY",
-      "Property_Address": "2520 MANOR WALK, Decatur, GA 30030",
-      "Surplus_Balance_USD": 412.18,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20049%2005%20081",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 049 05 081",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 066 02 057",
-      "Owner_Name": "GOETTING ROBERT CLARKE SR GOETTING DEANNE ANGELINE",
-      "Property_Address": "866 LOVEJOY ST, Clarkston, GA 30021",
-      "Surplus_Balance_USD": 41.49,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20066%2002%20057",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 066 02 057",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 068 07 049",
-      "Owner_Name": "ROY D WARREN CO INC",
-      "Property_Address": "3984 STONEVIEW CIRCLE, Stone Mountain, GA 30083",
-      "Surplus_Balance_USD": 2271.7,
-      "Sale_Date": "2026-05-05",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20068%2007%20049",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 068 07 049",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 072 02 025",
-      "Owner_Name": "NOLA JONES-PERRY ESTATE",
-      "Property_Address": "362 KENILWORTH CIR, Stone Mountain, GA 30083",
-      "Surplus_Balance_USD": 501.07,
-      "Sale_Date": "2025-06-03",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20072%2002%20025",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 072 02 025",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 073 02 010",
-      "Owner_Name": "IRA FINANCIAL LLC",
-      "Property_Address": "747 SHEPPARD RD, Stone Mountain, GA 30083",
-      "Surplus_Balance_USD": 1606.56,
-      "Sale_Date": "2025-06-03",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20073%2002%20010",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 073 02 010",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 074 03 023",
-      "Owner_Name": "ADAMS CARLTON ADAMS NORMAN",
-      "Property_Address": "631 STONE MOUNTAIN LITHO RD, Stone Mountain, GA 30083",
-      "Surplus_Balance_USD": 879.28,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20074%2003%20023",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 074 03 023",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 074 05 025",
-      "Owner_Name": "WILLIE BROWN",
-      "Property_Address": "5463 R MASON LN, Stone Mountain, GA 30083",
-      "Surplus_Balance_USD": 1004.35,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20074%2005%20025",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 074 05 025",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 074 16 019",
-      "Owner_Name": "MELODY S BARNES",
-      "Property_Address": "813 2ND ST, Stone Mountain, GA 30083",
-      "Surplus_Balance_USD": 1177.59,
-      "Sale_Date": "2025-04-01",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20074%2016%20019",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 074 16 019",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
-    },
-    {
-      "State": "GA",
-      "County": "DeKalb",
-      "Case_or_TaxDeed_No": "",
-      "Parcel_ID": "18 081 05 073",
-      "Owner_Name": "ANNMARIE PLUMMER BAILEY & WINSTON BAILEY",
-      "Property_Address": "6914 DOCKBRIDGE WAY, Stone Mountain, GA 30087",
-      "Surplus_Balance_USD": 3631.7,
-      "Sale_Date": "2025-06-03",
-      "Record_Type": "TAX_DEED",
-      "Source_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf",
-      "Verify_URL": "https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf#search=18%20081%2005%20073",
-      "Verify_Note": "Listed on DeKalb County Tax Commissioner Excess Funds PDF \u2014 Parcel 18 081 05 073",
-      "Retrieved_At": "2026-11-17T13:14:45Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2624,7 +2189,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R3003%20683",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R3003 683",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2639,7 +2204,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R4348A061",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R4348A061",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2654,7 +2219,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R4348A062",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R4348A062",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2669,7 +2234,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5063%20244",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5063 244",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2684,7 +2249,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5071%20272",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5071 272",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2699,7 +2264,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5071%20299",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5071 299",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2714,7 +2279,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5160%20258",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5160 258",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2729,7 +2294,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5297%20084",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5297 084",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2744,7 +2309,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6004%20138",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6004 138",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2759,7 +2324,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6028%20317",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6028 317",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2774,7 +2339,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6122%20122",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6122 122",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2789,7 +2354,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6128%20123",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6128 123",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2804,7 +2369,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6154%20562",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6154 562",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2819,7 +2384,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6154%20569",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6154 569",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2834,7 +2399,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6180D017",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6180D017",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2849,7 +2414,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6183%20166",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6183 166",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2864,7 +2429,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6226%20086",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6226 086",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2879,7 +2444,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7010A033",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7010A033",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2894,7 +2459,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7305%20083",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7305 083",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2909,7 +2474,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R4346A247",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R4346A247",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2924,7 +2489,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5018%20019",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5018 019",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2939,7 +2504,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5140%20189",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5140 189",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2954,7 +2519,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6109%20102",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6109 102",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2969,7 +2534,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6321A014",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6321A014",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2984,7 +2549,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7044%20075",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7044 075",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -2999,7 +2564,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5005%20149",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5005 149",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3014,7 +2579,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R4346A168",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R4346A168",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3029,7 +2594,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6246B123",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6246B123",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3044,7 +2609,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7069%20419",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7069 419",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3059,7 +2624,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7069%20420",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7069 420",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3074,7 +2639,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7165%20277",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7165 277",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3089,7 +2654,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R4347%20126",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R4347 126",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3104,7 +2669,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R4347%20127",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R4347 127",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3119,7 +2684,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R4348B071",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R4348B071",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3134,7 +2699,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R4349%20139",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R4349 139",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3149,7 +2714,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5047%20719",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5047 719",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3164,7 +2729,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6067%20098",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6067 098",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3179,7 +2744,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6095%20088",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6095 088",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3194,7 +2759,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6163%20251",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6163 251",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3209,7 +2774,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7106%20254",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7106 254",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3224,7 +2789,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7138%20166",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7138 166",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3239,7 +2804,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7252%20031",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7252 031",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3254,7 +2819,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7026%20283",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7026 283",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3269,7 +2834,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7266%20232",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7266 232",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3284,7 +2849,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6276%20022",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6276 022",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3299,7 +2864,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6281%20018",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6281 018",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3314,7 +2879,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7088%20348",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7088 348",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3329,7 +2894,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7093%20009A",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7093 009A",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3344,7 +2909,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6058%20137",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6058 137",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3359,7 +2924,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6074%20231",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6074 231",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3374,7 +2939,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6120%20107",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6120 107",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3389,7 +2954,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7233%20032",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7233 032",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3404,7 +2969,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R7259%20221",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R7259 221",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3419,7 +2984,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R4349%20085",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R4349 085",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3434,7 +2999,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5137%20171",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5137 171",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3449,7 +3014,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R5152%20135",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R5152 135",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     },
     {
       "State": "GA",
@@ -3464,7 +3029,7 @@
       "Source_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years?download=true",
       "Verify_URL": "https://www.gwinnetttaxcommissioner.com/documents/d/egov/excess-funds-all-years#search=R6150%20415",
       "Verify_Note": "Listed on Gwinnett Tax Commissioner Excess Funds PDF \u2014 Parcel R6150 415",
-      "Retrieved_At": "2026-11-17T13:14:46Z"
+      "Retrieved_At": "2026-11-18T12:58:51Z"
     }
   ]
 }
