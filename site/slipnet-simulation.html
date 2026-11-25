@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>SLIP-NET™ v8.0 — Cold Tap-Water Barrier Physics &amp; Licensing Workbench | SurplusDocket</title>
+  <title>SLIP-NET™ — Non-Confidential Barrier Architecture &amp; Evaluation Overview | SurplusDocket</title>
   <style>
     @layer base, layout, components, utilities;
 
@@ -154,6 +154,13 @@
         .charts-grid {
           grid-template-columns: 1fr;
         }
+      }
+
+      .failure-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 0.85rem;
+        margin-block-start: 1rem;
       }
 
       .protocol-grid {
@@ -362,6 +369,18 @@
         color: var(--ink-secondary);
       }
 
+      .nda-cta-box {
+        margin-block: 0.9rem 1rem;
+        padding-block: 0.9rem;
+        padding-inline: 1.05rem;
+        border-radius: 8px;
+        background: #ecfdf5;
+        border: 1px solid #10b981;
+        border-inline-start: 5px solid var(--teal-deep);
+        color: #064e3b;
+        font-size: 0.9rem;
+      }
+
       .controls-panel {
         background: var(--bg-inset);
         border: 1px solid var(--border-soft);
@@ -370,8 +389,14 @@
       }
 
       .controls-panel h2 {
-        margin: 0 0 0.5rem 0;
+        margin: 0 0 0.25rem 0;
         font-size: 1.06rem;
+      }
+
+      .model-disclaimer {
+        margin: 0 0 0.7rem 0;
+        font-size: 0.78rem;
+        color: var(--ink-muted);
       }
 
       .preset-row {
@@ -534,9 +559,9 @@
 
       .kpi-num {
         font-family: var(--mono);
-        font-size: 0.98rem;
+        font-size: 0.86rem;
         font-weight: 700;
-        margin-block-start: 0.08rem;
+        margin-block-start: 0.12rem;
       }
 
       .verdict-box {
@@ -585,6 +610,26 @@
         color: var(--ink-secondary);
       }
 
+      .failure-card {
+        background: #f8fafc;
+        border: 1px solid var(--border-soft);
+        border-block-start: 4px solid var(--teal-accent);
+        border-radius: 10px;
+        padding: 0.9rem;
+      }
+
+      .failure-card h3 {
+        margin: 0 0 0.3rem 0;
+        font-size: 0.94rem;
+        color: var(--teal-deep);
+      }
+
+      .failure-card p {
+        margin: 0;
+        font-size: 0.83rem;
+        color: var(--ink-secondary);
+      }
+
       .proto-box {
         background: var(--bg-inset);
         border: 1px solid var(--border-soft);
@@ -627,7 +672,7 @@
       .table-wrapper {
         overflow: auto;
         max-inline-size: 100%;
-        max-block-size: min(520px, 78vh);
+        max-block-size: min(560px, 78vh);
         container-type: inline-size;
         border: 1px solid var(--border-soft);
         border-radius: 8px;
@@ -714,47 +759,47 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to simulator workspace</a>
+  <a class="skip-link" href="#main-content">Skip to evaluation workspace</a>
 
   <header class="site-header">
     <div class="header-inner">
       <div>
-        <p class="brand-eyebrow">SLIP-NET™ v8.0 • U.S. Provisional Patent Application (Micro-Entity) • Zero-Plastic Barrier</p>
-        <h1>Phosphate-Triggered Alginate–Kaolin Barrier Physics &amp; Licensing Workbench</h1>
+        <p class="brand-eyebrow">SLIP-NET™ • Patent-Pending Barrier Architecture • Zero-Plastic</p>
+        <h1>Phosphate-Triggered Biopolymer–Mineral Barrier Architecture</h1>
         <p class="header-sub">
-          100% FDA 21 CFR food-contact ingredients. Non-nano mineral (&gt;150 nm). Ambient unsoftened tap water (50–200 ppm CaCO3), single-pass coat, zero starch cooking (<code>MVP-5</code>) or cold-mix 1.48 ¢/m² cost-leader (<code>MILL-6</code>), stoichiometric <code>Ca:P &ge; 1.00</code> lock, zero CO2 blisters, &lt;1% pH 10 mill repulpability.
+          Cold-mix waterborne, non-nano (&gt;150 nm) cellulosic barrier concept designed for ambient municipal tap-water stability, zero-CO₂ thermal curing, ductile 180° crease integrity, and circular fiber repulpability.
         </p>
       </div>
-      <div class="badge-strip" aria-label="Architecture Verification Highlights">
-        <span class="status-pill">Z3 SMT: SAT</span>
-        <span class="status-pill">9-Gate MC: 99.96%</span>
-        <span class="status-pill">MILL-6 Cost: 1.48 ¢/m²</span>
-        <span class="status-pill">10/10 Ablations: Proven</span>
+      <div class="badge-strip" aria-label="Architecture Highlights">
+        <span class="status-pill">U.S. App. No. 64/199,413</span>
+        <span class="status-pill">PFAS-Free</span>
+        <span class="status-pill">Cold-Mix Waterborne</span>
+        <span class="status-pill">Evaluation Under NDA</span>
       </div>
     </div>
   </header>
 
   <main id="main-content" class="main-shell" tabindex="-1">
     <div class="caveat-banner" role="note">
-      <strong>Modeling Disclosure &amp; 15-Minute Lab Challenge:</strong> Numbers below run directly in-browser from the coupled ODE, equilibrium speciation, <code>Ca:P</code> stoichiometric Donnan lock, and PVC/CPVC mechanics equations verified under <code>SLIP-NET v8.0</code> (RK4 vs SciPy Radau max diff 0.051%). Any qualified paper mill, chemical supplier, or testing lab can run the <strong>15-minute cold tap-water screen</strong> using off-the-shelf 21 CFR commodities under a $0 Mutual NDA.
+      <strong>Technical Disclosure &amp; Evaluation Status:</strong> SLIP-NET™ is a patent-pending (<code>U.S. App. No. 64/199,413</code>) computational and conceptual barrier architecture ready for joint bench evaluation. Interactive diagrams and scorecards below illustrate qualitative process mechanics and target bench performance criteria—not completed physical lab test results. Exact batch recipes, mixing sequences, and commercial ingredient grades are provided exclusively under a Mutual NDA or standard CDA.
     </div>
 
-    <div class="tab-bar" role="tablist" aria-label="SLIP-NET Workbench Views" focusgroup="tablist nomemory">
+    <div class="tab-bar" role="tablist" aria-label="SLIP-NET Overview Views" focusgroup="tablist nomemory">
       <button type="button" role="tab" class="tab-btn" id="tab-sim" aria-selected="true" focusgroupstart>
         <span class="tab-marker" aria-hidden="true"></span>
-        <span>1. Live v8.0 Speciation &amp; Cure Simulator</span>
+        <span>1. Interactive 5-Stage Process &amp; Architecture</span>
       </button>
       <button type="button" role="tab" class="tab-btn" id="tab-stress" aria-selected="false">
         <span class="tab-marker" aria-hidden="true"></span>
-        <span>2. 10/10 Failure Traps, Ablations &amp; MC Proof</span>
+        <span>2. Failure Modes Solved &amp; Target Scorecard</span>
       </button>
       <button type="button" role="tab" class="tab-btn" id="tab-test" aria-selected="false">
         <span class="tab-marker" aria-hidden="true"></span>
-        <span>3. 15-Min Tap-Water Bench SOP &amp; 21 CFR Table</span>
+        <span>3. Evaluation Process &amp; Regulatory Overview</span>
       </button>
     </div>
 
-    <!-- PANEL 1: INTERACTIVE PROCESS & BARRIER SANDBOX -->
+    <!-- PANEL 1: INTERACTIVE 5-STAGE PROCESS & ARCHITECTURE EXPLAINER -->
     <div role="tabpanel" id="panel-sim" aria-labelledby="tab-sim">
       <div class="panel-card">
         <div class="workbench-grid">
@@ -763,71 +808,76 @@
               <div class="stage-buttons" role="group" aria-label="Process Stage Selector">
                 <button type="button" class="stage-btn" data-stage="0" data-active="true">1. Cold Tap-Water Pot</button>
                 <button type="button" class="stage-btn" data-stage="1" data-active="false">2. Single-Pass Coat</button>
-                <button type="button" class="stage-btn" data-stage="2" data-active="false">3. 125°C Zero-CO2 Cure</button>
+                <button type="button" class="stage-btn" data-stage="2" data-active="false">3. Thermal Cure (Zero-CO₂)</button>
                 <button type="button" class="stage-btn" data-stage="3" data-active="false">4. 180° Fold &amp; Hot Oil</button>
-                <button type="button" class="stage-btn" data-stage="4" data-active="false">5. pH 10 Mill Repulp</button>
+                <button type="button" class="stage-btn" data-stage="4" data-active="false">5. Mill Repulpability</button>
               </div>
               <button type="button" id="toggleMotionBtn" class="motion-btn">Pause</button>
             </div>
 
             <div class="canvas-wrap">
-              <canvas id="stageCanvas" width="760" height="420" aria-label="Interactive cross-section diagram of SLIP-NET v8.0 coating"></canvas>
+              <canvas id="stageCanvas" width="760" height="420" aria-label="Interactive cross-section diagram of SLIP-NET five-stage barrier architecture"></canvas>
             </div>
 
             <div class="stage-caption" aria-live="polite">
-              <h3 id="stageTitle">Stage 1: 15-Minute Cold Tap-Water Dispersion (pH 8.8, Zero SHMP)</h3>
-              <p id="stageDesc">Only 2.0–3.2% diammonium phosphate (DAP) suppresses free [Ca2+] below 0.0003 mM in 150 ppm municipal tap water, keeping ULV alginate (~633–762 cP) fluid for &gt;24 hours with zero pan skinning (0.9–1.8% vs &gt;81% for CaCO3) while honoring the Ca:P &ge; 1.00 lock.</p>
+              <h3 id="stageTitle">Stage 1: Ambient Cold Tap-Water Dispersion (Latent Phosphate Suppression)</h3>
+              <p id="stageDesc">A food-grade phosphate buffer suppresses free calcium ion activity in ambient unsoftened tap water, keeping the biopolymer-mineral slurry pumpable with minimal open-pan skinning prior to coating.</p>
             </div>
 
             <div class="honest-scope-box">
-              <strong>Engineering Boundaries (Verified in v8.0 Audit):</strong>
-              <strong>MILL-6 Na-Alg</strong> (1.48 ¢/m², 99.92% MC pass, Ca:P=1.00) excels for bakery cartons, dry/warm oily trays, and vented pizza boxes. Use <strong>NH4-Alg</strong> (or 3-min Alginic Acid + NH4OH, 2.20–3.76 ¢/m²) for closed steaming 90°C fries (74.2–89.1% integrity). <strong>Carve-out:</strong> Continuous boiling salty soups (&gt;150 mM Na+) are excluded so &lt;1% Somerville mill repulpability holds.
+              <strong>Illustrative Conceptual Model — Exact Formulations &amp; Bench Protocol Provided Under Mutual NDA / Standard CDA.</strong>
+              This architecture targets folding cartons, bakery/pizza boxes, hot-food trays, and die-ironed molded fiber using cold-mix waterborne equipment. <strong>Application Scope:</strong> Continuous boiling high-salinity soups are excluded so reversible ionic crosslinks preserve circular repulpability.
             </div>
           </section>
 
-          <aside class="controls-panel" aria-label="Live Coating & Stress Controls">
-            <h2>Live v8.0 Physics Controls</h2>
-            <div class="preset-row" aria-label="Verified v8.0 Scenarios">
-              <button type="button" class="preset-btn safe" id="presetM1">M1: MVP-5 Zero-Cook (NH4)</button>
-              <button type="button" class="preset-btn safe" id="presetM2">M2: MVP-5 (50/50 Na/NH4)</button>
-              <button type="button" class="preset-btn safe" id="presetM3">M3: MILL-6 (NH4, 2.20¢)</button>
-              <button type="button" class="preset-btn safe" id="presetM4">M4: MILL-6 (Na, 1.48¢)</button>
-              <button type="button" class="preset-btn safe" id="presetM5">M5: Fast 10s Line</button>
-              <button type="button" class="preset-btn danger" id="presetM6">Trap: CaCO3+DAP Volcano</button>
-              <button type="button" class="preset-btn danger" id="presetNa2P">Trap: 6.5% DAP+Na (Ca:P 0.59)</button>
-              <button type="button" class="preset-btn danger" id="presetCoarse">Trap: Coarse 8um TCP</button>
-              <button type="button" class="preset-btn danger" id="presetC0">Trap: Old v5.4 NanoPCC</button>
+          <aside class="controls-panel" aria-label="Illustrative Process and Operating Controls">
+            <h2>Illustrative Conceptual Controls</h2>
+            <p class="model-disclaimer">Qualitative target behavior only — exact ratios &amp; recipes withheld pending NDA/CDA.</p>
+            <div class="preset-row" aria-label="Illustrative Operating Scenarios">
+              <button type="button" class="preset-btn safe" id="presetCarton">Target: Folding Carton</button>
+              <button type="button" class="preset-btn safe" id="presetHotFood">Target: Hot / Steaming Tray</button>
+              <button type="button" class="preset-btn safe" id="presetFastLine">Target: Fast 10s Line</button>
+              <button type="button" class="preset-btn danger" id="presetCarbonate">Trap: Carbonate (CO₂ Gas)</button>
+              <button type="button" class="preset-btn danger" id="presetUnbuffered">Trap: Unbuffered Tap Water</button>
+              <button type="button" class="preset-btn danger" id="presetCoarse">Trap: Coarse Mineral / Rough</button>
             </div>
 
             <div class="control-item">
               <div class="control-label-row">
-                <label for="selGrade">Formulation System</label>
+                <label for="selArch">Target End-Use Architecture</label>
               </div>
-              <select id="selGrade">
-                <option value="mvp5_nh4">MVP-5 Zero-Cook (32% NH4-Alg or Alginic Acid+NH4OH, 51.9% Kaolin)</option>
-                <option value="mvp5_hybrid">MVP-5 Zero-Cook Hybrid (50/50 ULV Na-Alg + Alginic/NH4OH, 51.4% Kaolin)</option>
-                <option value="mill6_nh4">MILL-6 Cold-Mix (15.5% NH4-Alg + 19.5% CWS Pregel Starch)</option>
-                <option value="mill6_na">MILL-6 Cost Leader (14.0% Na-Alg + 20% CWS Starch, 1.48 ¢/m²)</option>
-                <option value="mill6_gran">Mistake Trap: Uncooked Granular Acid-Starch @ 22°C</option>
-                <option value="old_de2">Old v5.4 Baseline (4.8% NH4-Alg + 29.8% DE-2 Dextrin + RBW)</option>
+              <select id="selArch">
+                <option value="standard">Folding Carton / Dry &amp; Warm Grease Barrier</option>
+                <option value="hotfood">Hot / Steaming Foodservice Barrier Mode</option>
+                <option value="molded">Die-Ironed Molded Fiber Barrier Mode</option>
               </select>
             </div>
 
             <div class="control-item">
               <div class="control-label-row">
-                <label for="selMineral">Latent Calcium Source</label>
+                <label for="selTrigger">Latent Crosslink Trigger Class</label>
               </div>
-              <select id="selMineral">
-                <option value="Ca3(PO4)2">Micronized TCP Ca3(PO4)2 (21 CFR §182.1217, Zero CO2)</option>
-                <option value="CaHPO4">Fine-Milled DCPD CaHPO4·2H2O Brushite (§182.90, Zero CO2)</option>
-                <option value="CaCO3">Precipitated CaCO3 (CO2 Blistering &amp; Pan-Skin Trap)</option>
-                <option value="None">None (Uncrosslinked Negative Control)</option>
+              <select id="selTrigger">
+                <option value="phosphate">Phosphate-Triggered Mineral (Zero CO₂, Non-Nano)</option>
+                <option value="carbonate">Conventional Carbonate Mineral (CO₂ Evolution Risk)</option>
+                <option value="none">Uncrosslinked Control (No Latent Mineral)</option>
               </select>
             </div>
 
             <div class="control-item">
               <div class="control-label-row">
-                <label for="slTapPpm">Municipal Tap Hardness (ppm CaCO3)</label>
+                <label for="selBuffer">Pot-Life Ion Suppression State</label>
+              </div>
+              <select id="selBuffer">
+                <option value="balanced">Balanced Phosphate Suppression (Target Window)</option>
+                <option value="under">Under-Buffered (Hard-Water Gel / Skinning Risk)</option>
+                <option value="over">Excess Soluble Salt (Moisture-Unzipping Risk)</option>
+              </select>
+            </div>
+
+            <div class="control-item">
+              <div class="control-label-row">
+                <label for="slTapPpm">Tap Water Hardness (ppm CaCO3)</label>
                 <output id="outTapPpm" for="slTapPpm">150 ppm</output>
               </div>
               <input type="range" id="slTapPpm" min="0" max="350" step="10" value="150" />
@@ -835,190 +885,232 @@
 
             <div class="control-item">
               <div class="control-label-row">
-                <label for="slDap">DAP Buffer Dose (wt% dry)</label>
-                <output id="outDap" for="slDap">2.0%</output>
+                <label for="slMinScale">Mineral Particle Scale d50 (µm)</label>
+                <output id="outMinScale" for="slMinScale">0.6 µm (Non-Nano)</output>
               </div>
-              <input type="range" id="slDap" min="0.0" max="8.0" step="0.1" value="2.0" />
+              <input type="range" id="slMinScale" min="0.3" max="8.0" step="0.1" value="0.6" />
             </div>
 
             <div class="control-item">
               <div class="control-label-row">
-                <label for="slMinD50">Mineral d50 Particle Size (nm)</label>
-                <output id="outMinD50" for="slMinD50">550 nm</output>
-              </div>
-              <input type="range" id="slMinD50" min="80" max="8500" step="10" value="550" />
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="slOven">Dryer Temp (°C) / Dwell (s)</label>
-                <output id="outOven" for="slOven">125 °C · 30 s</output>
+                <label for="slOvenT">Drying Temp (°C) / Dwell Time (s)</label>
+                <output id="outOven" for="slOvenT">125 °C · 30 s</output>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-                <input type="range" id="slOvenT" aria-label="Dryer temperature in degrees Celsius" min="95" max="185" step="5" value="125" />
+                <input type="range" id="slOvenT" aria-label="Drying temperature in degrees Celsius" min="95" max="185" step="5" value="125" />
                 <input type="range" id="slOvenS" aria-label="Dryer dwell time in seconds" min="5" max="45" step="1" value="30" />
               </div>
             </div>
 
             <div class="control-item">
               <div class="control-label-row">
-                <label for="slRq">Substrate Rq (µm) / Dry Coat (g/m²)</label>
-                <output id="outSub" for="slRq">1.10 µm · 7.8 g/m²</output>
+                <label for="slRq">Substrate Roughness Rq (µm) / Target Coat Weight (g/m²)</label>
+                <output id="outSub" for="slRq">1.1 µm · 8.0 g/m²</output>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
                 <input type="range" id="slRq" aria-label="Substrate roughness Rq in micrometers" min="0.8" max="5.0" step="0.1" value="1.1" />
-                <input type="range" id="slGsm" aria-label="Dry coat weight in grams per square meter" min="5.0" max="22.0" step="0.2" value="7.8" />
+                <input type="range" id="slGsm" aria-label="Target dry coat weight in grams per square meter" min="5.0" max="22.0" step="0.2" value="8.0" />
               </div>
             </div>
 
             <div class="kpi-grid">
               <div class="kpi-box">
-                <div class="kpi-title">Slurry Visc / Pan Skin</div>
-                <div class="kpi-num" id="kpiVisc">674 cP / 1.6%</div>
+                <div class="kpi-title">Tank Stability</div>
+                <div class="kpi-num" id="kpiTank">Fluid / Low Skin</div>
               </div>
               <div class="kpi-box">
-                <div class="kpi-title">Cure % / Pinhole %</div>
-                <div class="kpi-num" id="kpiCure">100% / 0.000%</div>
+                <div class="kpi-title">Thermal Cure &amp; Gas</div>
+                <div class="kpi-num" id="kpiCure">Crosslinked / 0 CO₂</div>
               </div>
               <div class="kpi-box">
-                <div class="kpi-title">Cobb60 / 180° Crease Kit</div>
-                <div class="kpi-num" id="kpiBarrier">12.8 / Kit 12.0</div>
+                <div class="kpi-title">Coverage &amp; 180° Fold</div>
+                <div class="kpi-num" id="kpiFold">Low Pinhole / Ductile</div>
               </div>
               <div class="kpi-box">
-                <div class="kpi-title">90°C Fries / NH3 / Cost</div>
-                <div class="kpi-num" id="kpiEndUse">85% / 0ppm / 3.87¢</div>
+                <div class="kpi-title">Repulpability Target</div>
+                <div class="kpi-num" id="kpiRepulp">Dual-Track Eligible</div>
               </div>
             </div>
 
             <div id="verdictBox" class="verdict-box verdict-pass" aria-live="polite">
-              GO WINDOW: 674 cP fluid tank, 1.55% pan skin, 100% cure, 0.000% pinholes, Cobb60 12.8, Crease Kit 12.0.
+              ILLUSTRATIVE TARGET WINDOW: Ambient tap-water stability, zero-CO₂ thermal crosslinking, and ductile sub-CPVC coverage aligned for bench screening.
             </div>
           </aside>
         </div>
       </div>
     </div>
 
-    <!-- PANEL 2: STRESS CURVES, ABLATIONS & ABUSE LIMITS -->
+    <!-- PANEL 2: INDUSTRY FAILURE MODES SOLVED & TECHNICAL EVALUATION SCORECARD -->
     <div role="tabpanel" id="panel-stress" aria-labelledby="tab-stress" hidden="until-found">
       <div class="panel-card">
-        <h2 style="margin-top:0;">SLIP-NET™ v8.0 Stress Proof, 10/10 Ablations &amp; Honest Operating Bounds</h2>
+        <h2 style="margin-top:0;">Industry Failure Modes Solved &amp; Technical Evaluation Scorecard</h2>
         <p style="margin-top:0;color:var(--ink-secondary);font-size:0.92rem;">
-          All four plots below are rendered live from the coupled equilibrium, RK4 drying/cure, cratering, Donnan phosphate-unzipping, and particle-protrusion models verified in <code>slipnet_v63_final_proof.py</code> and <code>slipnet_v7_fig1.py</code>.
+          Non-confidential comparison of conventional barrier approaches against SLIP-NET™'s phosphate-triggered biopolymer–mineral architecture. All SLIP-NET™ entries reflect <strong>target bench performance criteria</strong> to be validated jointly under NDA.
         </p>
 
         <div class="charts-grid">
           <div class="chart-card">
-            <h3>A. Open-Air 150 ppm Tap-Water Speciation (Free Ca²⁺ vs pH)</h3>
-            <canvas id="chartSpeciation" width="520" height="275" aria-label="Log plot comparing free calcium ion concentration in Micron TCP+2% DAP, DCPD Brushite+2% DAP, and CaCO3+SHMP across pH 4 to 9.3"></canvas>
-            <p class="chart-note">Even just <strong>2.0 wt% DAP clamps free Ca²⁺ &lt; 0.0003 mM at pH 8.5–9.0</strong> in open air (0.9–1.8% pan skin), whereas atmospheric CO2 loss crashes CaCO3+SHMP (&gt;81% pan skinning).</p>
+            <h3>A. Architecture Comparison Across 5 Industry Gate Criteria</h3>
+            <canvas id="chartCompare" width="520" height="285" aria-label="Qualitative comparison chart across PFAS, PE/latex, carbonate biopolymer, and SLIP-NET target criteria"></canvas>
+            <p class="chart-note"><strong>Illustrative Target Comparison:</strong> Conventional barriers force trade-offs between fluorochemical bans, plastic repulper rejects, or carbonate CO₂ blistering. SLIP-NET™ targets all five gates simultaneously.</p>
           </div>
 
           <div class="chart-card">
-            <h3>B. 125°C Dryer Kinetics: Zero-CO₂ TCP vs CO₂ Blistering PCC</h3>
-            <canvas id="chartKinetics" width="520" height="275" aria-label="Chart of egg-box crosslink cure %, coating solids %, and CO2 gas thickness over 30 seconds at 125 C"></canvas>
-            <p class="chart-note">Phosphate dissolution releases zero CO2 gas (0.0 µm equiv, 0.000% crater pinholes) while reaching 100% egg-box crosslink conversion during a 10–30 s lab or mill pass.</p>
+            <h3>B. Failure Traps Eliminated by Phosphate-Triggered Architecture</h3>
+            <canvas id="chartTraps" width="520" height="285" aria-label="Conceptual schematic showing four conventional coating failure modes and SLIP-NET counter-mechanisms"></canvas>
+            <p class="chart-note"><strong>Architectural Differentiation:</strong> Replacing carbonate crosslinkers and synthetic wet-strength binders with a latent phosphate trigger avoids gas blistering while preserving reversible ionic repulpability.</p>
           </div>
+        </div>
 
-          <div class="chart-card">
-            <h3>C. 10/10 Ablation &amp; Pitfall Proof (Every Drop or Mistake Fails)</h3>
-            <canvas id="chartAblation" width="520" height="275" aria-label="Comparison chart showing full MVP-5 and MILL-6 passing while all 10 single-drop and bench-trap controls fail"></canvas>
-            <p class="chart-note"><strong>10/10 fail vs M1/M3:</strong> -Alg (87k cP), -Kaol (22k cP), -CaSt (CrKit 0), -TCP (1% cure), -DAP (2% cure), DAC (Cobb 61.5), DE2 (Cobb 65.8), <strong>6.5%DAP+Na</strong> (Cobb 51.3 Na2HPO4 unzip), <strong>GranSt@22C</strong> (11% fries), <strong>8µm TCP</strong> (Cobb 56 / Kit 0).</p>
-          </div>
+        <div class="failure-grid" aria-label="Core Failure Modes Solved">
+          <article class="failure-card">
+            <h3>1. Hard-Water Gelation &amp; Open-Pan Skinning</h3>
+            <p><strong>Conventional Trap:</strong> Ambient tap-water hardness (Ca²⁺/Mg²⁺) and atmospheric CO₂ shifts trigger premature alginate skinning in open coating pans.<br /><strong>SLIP-NET™ Approach:</strong> Food-grade phosphate buffering suppresses free Ca²⁺ in the wet pot without unstable polyphosphate hydrolysis traps.</p>
+          </article>
+          <article class="failure-card">
+            <h3>2. Thermal CO₂ Blistering &amp; Crater Pinholes</h3>
+            <p><strong>Conventional Trap:</strong> Carbonate crosslinkers evolve CO₂ gas during acidic thermal drying, creating micro-volcanoes and oil-wicking craters.<br /><strong>SLIP-NET™ Approach:</strong> Phosphate-based latent mineral dissolution supplies Ca²⁺ ions cleanly upon drying with zero gas evolution.</p>
+          </article>
+          <article class="failure-card">
+            <h3>3. 180° Score-Line Crease Cracking</h3>
+            <p><strong>Conventional Trap:</strong> Over-pigmented mineral barriers above CPVC crack along folded carton scores, collapsing grease Kit resistance.<br /><strong>SLIP-NET™ Approach:</strong> Platy pigment geometry below CPVC combined with an aqueous slip dispersion maintains ductile fold integrity.</p>
+          </article>
+          <article class="failure-card">
+            <h3>4. Mill Repulper Rejects &amp; Microplastics</h3>
+            <p><strong>Conventional Trap:</strong> PE extrusion and synthetic latexes leave un-repulpable plastic flakes and covalent wet-strength rejects.<br /><strong>SLIP-NET™ Approach:</strong> Purely ionic crosslinking is designed to unzip in both neutral-pH recycling and alkaline mill-broke systems.</p>
+          </article>
+        </div>
 
-          <div class="chart-card">
-            <h3>D. 9-Gate Simultaneous Monte Carlo Pass Rates (N=2,500)</h3>
-            <canvas id="chartMonteCarlo" width="520" height="275" aria-label="Chart comparing 9-gate Monte Carlo joint pass percentages across C0, MVP-5, and MILL-6"></canvas>
-            <p class="chart-note"><strong>N=2,500 dual-line Monte Carlo:</strong> Prior v5.4 = <strong>0.00%</strong>; <strong>M1 MVP-5 (NH4) = 96.28%</strong>; <strong>M2 MVP-5 (Hybrid) = 96.68%</strong>; <strong>M3 MILL-6 (NH4) = 99.96%</strong>; <strong>M4 MILL-6 (Na, 1.48¢) = 99.92%</strong>; <strong>Fast 10s = 81.20%</strong>.</p>
-          </div>
+        <div tabindex="0" role="region" aria-labelledby="cap-scorecard" class="table-wrapper" style="margin-block-start:1.15rem;">
+          <table>
+            <caption id="cap-scorecard">Technical Evaluation Scorecard: Conventional Barriers vs. SLIP-NET™ Target Architecture (Target Bench Criteria)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Evaluation Criterion</th>
+                <th scope="col">PFAS / Fluorochemical</th>
+                <th scope="col">PE / Synthetic Latex</th>
+                <th scope="col">Carbonate Biopolymer</th>
+                <th scope="col">SLIP-NET™ (Target Criteria)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">PFAS &amp; Synthetic Plastic Free</th>
+                <td data-label="PFAS / Fluorochemical">Fails (fluorinated)</td>
+                <td data-label="PE / Synthetic Latex">Fails (synthetic polymer)</td>
+                <td data-label="Carbonate Biopolymer">Passes (bio-based)</td>
+                <td data-label="SLIP-NET™ Target"><strong>Target Pass</strong> (0 PFAS, 0 latex)</td>
+              </tr>
+              <tr>
+                <th scope="row">Cold Tap-Water Pot Stability</th>
+                <td data-label="PFAS / Fluorochemical">Stable</td>
+                <td data-label="PE / Synthetic Latex">Stable</td>
+                <td data-label="Carbonate Biopolymer">Prone to open-pan skinning</td>
+                <td data-label="SLIP-NET™ Target"><strong>Target Pass</strong> (latent ion lock)</td>
+              </tr>
+              <tr>
+                <th scope="row">Zero-CO₂ Dryer Cure</th>
+                <td data-label="PFAS / Fluorochemical">N/A (non-gas)</td>
+                <td data-label="PE / Synthetic Latex">N/A (film coalescence)</td>
+                <td data-label="Carbonate Biopolymer">CO₂ cratering / blistering risk</td>
+                <td data-label="SLIP-NET™ Target"><strong>Target Pass</strong> (zero CO₂ evolution)</td>
+              </tr>
+              <tr>
+                <th scope="row">Flat &amp; 180° Crease Grease Barrier</th>
+                <td data-label="PFAS / Fluorochemical">High</td>
+                <td data-label="PE / Synthetic Latex">High</td>
+                <td data-label="Carbonate Biopolymer">Degrades at pinholes / folds</td>
+                <td data-label="SLIP-NET™ Target"><strong>Target Flat Kit ≥ 10; Crease Kit ≥ 8</strong></td>
+              </tr>
+              <tr>
+                <th scope="row">Dual-Track Fiber Repulpability</th>
+                <td data-label="PFAS / Fluorochemical">Contaminates pulp</td>
+                <td data-label="PE / Synthetic Latex">High screen rejects</td>
+                <td data-label="Carbonate Biopolymer">Ionic (variable by binder)</td>
+                <td data-label="SLIP-NET™ Target"><strong>Target Pass</strong> (WMU OCC-E / FBA &amp; TAPPI T 275)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
 
-    <!-- PANEL 3: 15-MIN COLD TAP-WATER RECIPE & 21 CFR TABLE -->
+    <!-- PANEL 3: NON-CONFIDENTIAL EVALUATION PROCESS & REGULATORY CLASS OVERVIEW -->
     <div role="tabpanel" id="panel-test" aria-labelledby="tab-test" hidden="until-found">
       <div class="panel-card">
-        <h2 style="margin-top:0;">15-Minute Cold Tap-Water Bench Screen (No Cooker, No DI Water, No Probe Sonicator)</h2>
+        <h2 style="margin-top:0;">Non-Confidential Evaluation Process &amp; Regulatory Class Overview</h2>
         <p style="margin-top:0;color:var(--ink-secondary);font-size:0.93rem;">
-          Evaluate SLIP-NET™ v8.0 on your own coating bench in 15 minutes using ambient municipal tap water (50–200 ppm CaCO3), one 250 mL beaker, one #12 Meyer rod pass (~8 g/m² dry), and a 30 s bake at 125°C.
+          SLIP-NET™ is engineered for rapid laboratory and pilot screening using ambient municipal tap water, standard drawdown or metering-rod coaters, and conventional forced-air drying—with no thermal starch cooking or solvent recovery.
         </p>
 
-        <div class="honest-scope-box" style="background:#fef2f2;border-color:#fca5a5;color:#7f1d1d;margin-block-end:1rem;">
-          <strong>3 Common Bench Pitfalls to Avoid on Day 1:</strong>
-          (1) Use <strong>Micronized Food-Grade TCP</strong> (<code>d50 &le; 1.8 µm</code>, e.g. Innophos <em>VersaCal® MP</em>, Budenheim <em>CAFOS® M</em>) or milled <strong>DCPD</strong> (<em>Brushite</em>), NEVER coarse 15–150 µm tableting TCP (<em>Tri-Tab®</em>).
-          (2) Use <strong>Cold-Water-Soluble (<code>CWS</code>) Pregelatinized Thin Starch</strong> (Roquette <em>PREGEFLO®</em>, Cargill <em>C*iCoat™</em>, GPC <em>MALTRIN®</em> / <em>INSTANT PURE-COTE® B792</em>) in Track B—raw granular thin-boiling starch settles insoluble at 22°C.
-          (3) Keep <strong><code>Ca:P &ge; 1.00</code> (<code>DAP</code> 1.8–3.2 wt%)</strong> whenever using <code>Na-Alginate</code> so soluble <code>Na2HPO4</code> never unzips <code>Cobb60</code>!
+        <div class="nda-cta-box" role="note">
+          <strong>Confidential Formulation &amp; Bench Protocol Access:</strong> Exact batch recipes, mixing sequence, and 15-minute bench screening matrix are provided immediately upon execution of a zero-cost Mutual NDA or your organization's standard CDA.
         </div>
 
         <div class="protocol-grid">
           <div class="proto-box" style="background:#ecfdf5;border-color:#10b981;">
-            <h3>Track A: 5-Ingredient Zero-Cook Bench MVP (<code>MVP-5</code>, 25% Solids)</h3>
-            <ol style="padding-left:1.2rem;margin:0;font-size:0.88rem;">
-              <li>Dissolve <strong>0.50 g food-grade DAP</strong> (2.0 wt% dry; or 0.58 g / 2.3% for Option A2 hybrid) in <strong>72.88 g ambient tap water</strong> (check pH ~8.7–8.8).</li>
-              <li><strong>Option A1 (Zero Na+, Best):</strong> Add <strong>8.00 g ULV NH4-Alg</strong> (32%) — OR disperse 8.00 g <code>Alginic Acid §184.1011</code> (zero clumping!) + 3.0 mL 28% <code>NH4OH §184.1139</code> for 3 min. <em>Option A2 Hybrid:</em> 4.0 g ULV Na-Alg + 4.0 g Alginic/NH4OH.</li>
-              <li>Mix in <strong>12.98 g platy kaolin</strong> (51.9%, PVC 42% &lt; CPVC), <strong>1.40 g micronized TCP or DCPD</strong> (5.6%, <code>Ca:P = 1.06</code>), and <strong>4.25 g of 50% Ca-Stearate disp.</strong> (8.5% dry).</li>
-              <li>Pull <strong>ONE #12 Meyer rod pass</strong> (~7.8 g/m²) on smooth MG/SBS board and cure <strong>30 s @ 125°C</strong> (pred: 749–762 cP, Cobb60 12.8, Kit 12.0, Crease Kit 10.9–11.0).</li>
-            </ol>
+            <h3>Non-Confidential Ingredient Classes</h3>
+            <ul style="padding-left:1.2rem;margin:0;font-size:0.88rem;">
+              <li><strong>Platy natural mineral pigment</strong> — non-nano platelet geometry (&gt;150 nm) engineered for barrier tortuosity and sub-CPVC fold ductility.</li>
+              <li><strong>Low-viscosity seaweed biopolymer</strong> — unmodified natural polysaccharide forming the percolating, ionically reversible barrier network.</li>
+              <li><strong>Food-grade phosphate latent trigger</strong> — non-gas-evolving calcium mineral and phosphate buffer system providing cold pot stability and thermal cure.</li>
+              <li><strong>Aqueous wax / fatty-acid dispersion</strong> — surface hydrophobicity, Cobb60 water resistance, and 180° score-line slip.</li>
+              <li><strong>Optional food-grade biopolymer co-binder &amp; polyol plasticizer</strong> — cold-water-compatible modifiers for cost optimization and extreme fold flexibility.</li>
+            </ul>
           </div>
 
           <div class="proto-box">
-            <h3>Track B: Cold-Mix Mill Grade (<code>MILL-6</code>, 30% Solids, 1.48–2.20 ¢/m²)</h3>
-            <ul style="padding-left:1.2rem;margin:0;font-size:0.88rem;">
-              <li><strong>48.8–51.3% Platy Kaolin</strong> (<code>Imerys Barrisurf</code> AR &ge; 45).</li>
-              <li><strong>19.5–20.0% <code>CWS</code> Pregelatinized Thin Starch</strong> (<code>21 CFR §182.90</code>, e.g. <em>PREGEFLO®</em> / <em>C*iCoat™</em> / <em>MALTRIN®</em>) — dissolves 100% cold at 22°C!</li>
-              <li><strong><code>M3</code> (<code>NH4-Alg</code>, 2.20 ¢/m²):</strong> 15.5% NH4-Alg + 5.2% Micron TCP + 2.0% DAP + 6.5% CaSt (<code>738 cP</code>, 90°C Fries 74.2%, 99.96% MC).</li>
-              <li><strong><code>M4</code> (Commodity <code>Na-Alg</code>, 1.48 ¢/m²):</strong> 14.0% ULV Na-Alg + 7.5% Micron TCP + 3.2% DAP + 6.5% CaSt (<code>Ca:P = 1.00</code>, <code>633 cP</code>, Cobb60 16.0, Crease Kit 10.1, 99.92% MC).</li>
-              <li><strong>Die-Ironed Molded Fiber Option:</strong> 18 g/m² spray/dip, 20 s @ 180°C (<code>259 cP</code>, Cobb60 14.3, Kit 12.0).</li>
-            </ul>
+            <h3>Joint Bench Evaluation Workflow</h3>
+            <ol style="padding-left:1.2rem;margin:0;font-size:0.88rem;">
+              <li><strong>NDA / CDA Execution:</strong> Sign a zero-cost Mutual NDA or provide your organization's standard CDA.</li>
+              <li><strong>Protocol Transfer:</strong> Receive exact formulations, supplier grade specifications, mixing sequence, and the 15-minute bench screening matrix.</li>
+              <li><strong>Cold-Mix Coating Trial:</strong> Prepare bench batches in ambient tap water and coat your target board or molded fiber via single-pass drawdown.</li>
+              <li><strong>Target Scorecard Verification:</strong> Validate grease resistance, Cobb60, 180° crease integrity, hot-food performance, and dual-track repulpability.</li>
+            </ol>
           </div>
         </div>
 
         <div tabindex="0" role="region" aria-labelledby="cap-cfr" class="table-wrapper" style="margin-block-start:1.15rem;">
           <table>
-            <caption id="cap-cfr">Table 1: 100% FDA 21 CFR &amp; EU Compliance Audit (Zero PFAS, Zero Latex, Non-Nano)</caption>
+            <caption id="cap-cfr">Table 1: Regulatory Class Overview (FDA 21 CFR Reference Classes &amp; EU / BfR Alignment Notes)</caption>
             <thead>
               <tr>
-                <th scope="col">Component</th>
-                <th scope="col">FDA 21 CFR Citation</th>
-                <th scope="col">EU / German BfR XXXVI</th>
-                <th scope="col">Load-Bearing Physics Role</th>
+                <th scope="col">Ingredient Class</th>
+                <th scope="col">FDA 21 CFR Reference Class</th>
+                <th scope="col">EU / German BfR Alignment &amp; Evaluation Notes</th>
+                <th scope="col">Functional Role in Architecture</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Platy Kaolin Clay (48.8–51.9%)</th>
-                <td data-label="FDA 21 CFR">§ 186.1256 (GRAS indirect)</td>
-                <td data-label="EU / BfR">Exempt natural mineral (&gt;200 nm)</td>
-                <td data-label="Role">Platelet tortuosity + PVC ≤ 45% (&lt; CPVC 56%) ductile fold</td>
+                <th scope="row">Platy natural mineral pigment</th>
+                <td data-label="FDA 21 CFR">§ 186.1256 (GRAS indirect food-contact class)</td>
+                <td data-label="EU / BfR">Non-nano mineral target (&gt;150 nm); BfR XXXVI mineral filler class. Final EU nanomaterial &amp; dispersant compliance depends on commercial grade selection during joint evaluation.</td>
+                <td data-label="Role">Platelet barrier tortuosity and ductile film matrix engineered below CPVC</td>
               </tr>
               <tr>
-                <th scope="row">ULV NH4/Na Alginate or Alginic+NH4OH (14–32%)</th>
-                <td data-label="FDA 21 CFR">§§ 184.1133, 184.1724, 184.1011, 184.1139</td>
-                <td data-label="EU / BfR">Unmodified natural seaweed polymer (SUPD-safe)</td>
-                <td data-label="Role">Percolating Ca²⁺ egg-box gel + pH 10 mill repulpability</td>
+                <th scope="row">Low-viscosity seaweed biopolymer</th>
+                <td data-label="FDA 21 CFR">§§ 184.1133, 184.1724, 184.1011, 184.1139 (alginate classes)</td>
+                <td data-label="EU / BfR">Unmodified natural polysaccharide class. Final EU SUPD and BfR XXXVI status depends on commercial polymer grade and additive selection during joint evaluation.</td>
+                <td data-label="Role">Percolating Ca²⁺-crosslinked barrier network and reversible ionic repulpability</td>
               </tr>
               <tr>
-                <th scope="row">Micronized TCP / DCPD Brushite (5.2–7.5%)</th>
-                <td data-label="FDA 21 CFR">§§ 182.1217, 182.90, 181.29</td>
-                <td data-label="EU / BfR">d50 0.35–1.8 µm (&gt; 150 nm non-nano)</td>
-                <td data-label="Role">Zero-CO2 latent Ca²⁺ crosslinker (zero craters/protrusions)</td>
+                <th scope="row">Food-grade phosphate latent trigger (mineral &amp; buffer)</th>
+                <td data-label="FDA 21 CFR">§§ 181.29, 182.1217, 184.1141(b) (calcium phosphate &amp; phosphate buffer classes)</td>
+                <td data-label="EU / BfR">Non-nano mineral target (&gt;150 nm); inorganic food-grade salt class. Final EU nanomaterial &amp; commercial grade compliance verified during joint evaluation.</td>
+                <td data-label="Role">Ambient tap-water Ca²⁺ suppression and zero-CO₂ thermal crosslinking trigger</td>
               </tr>
               <tr>
-                <th scope="row">Diammonium Phosphate DAP (1.8–3.2%)</th>
-                <td data-label="FDA 21 CFR">§ 184.1141(b) (GRAS)</td>
-                <td data-label="EU / BfR">BfR XXXVI inorganic salt; NH3 vents cleanly</td>
-                <td data-label="Role">Clamps free Ca²⁺ &lt; 0.001 mM; pins Na+ under Ca:P &ge; 1.00</td>
+                <th scope="row">Aqueous wax / fatty-acid dispersion</th>
+                <td data-label="FDA 21 CFR">§§ 184.1229, 184.1978 (fatty-acid salt &amp; natural wax classes)</td>
+                <td data-label="EU / BfR">BfR XXXVI release / moisture-barrier class. EU SUPD and surfactant/dispersant compliance depends on final commercial dispersion grade selected during joint evaluation.</td>
+                <td data-label="Role">Surface contact-angle moisture barrier, hot-food resistance, and 180° crease slip</td>
               </tr>
               <tr>
-                <th scope="row">Calcium Stearate (6.5–8.5%)</th>
-                <td data-label="FDA 21 CFR">§ 184.1229 (or § 184.1978 Carnauba)</td>
-                <td data-label="EU / BfR">BfR XXXVI release / fatty-acid salt</td>
-                <td data-label="Role">Contact-angle moisture barrier, 90°C resistance, 180° crease slip</td>
-              </tr>
-              <tr>
-                <th scope="row">CWS Pregelatinized Thin Starch (0–20%)</th>
-                <td data-label="FDA 21 CFR">§ 182.90 / § 184.1444 / § 172.892 (US)</td>
-                <td data-label="EU / BfR">Physically pregelatinized/enzyme-thinned (DS=0, SUPD-safe)</td>
-                <td data-label="Role">100% cold-mix cost-reducer (1.48–2.20 ¢/m²) with zero setback</td>
+                <th scope="row">Optional food-grade biopolymer co-binder &amp; polyol plasticizer</th>
+                <td data-label="FDA 21 CFR">§§ 184.1444, 172.892, 184.1835 (food-grade polysaccharide &amp; polyol classes)</td>
+                <td data-label="EU / BfR">Physically modified/unmodified co-binder &amp; polyol class. EU SUPD and BfR XXXVI compliance depends on final commercial grade and dispersant selection during joint evaluation.</td>
+                <td data-label="Role">Cold-water-compatible process economics and enhanced fold flexibility</td>
               </tr>
             </tbody>
           </table>
@@ -1026,39 +1118,44 @@
 
         <div tabindex="0" role="region" aria-labelledby="cap-targets" class="table-wrapper" style="margin-block-start:1.1rem;">
           <table>
-            <caption id="cap-targets">Table 2: Accredited Validation Targets &amp; 5-Test Lab Scorecard</caption>
+            <caption id="cap-targets">Table 2: Target Bench Performance Criteria (Joint Evaluation Scorecard)</caption>
             <thead>
               <tr>
-                <th scope="col">Test Standard</th>
-                <th scope="col">Condition</th>
-                <th scope="col">Pass Target (Go / No-Go)</th>
+                <th scope="col">Test Standard / Protocol</th>
+                <th scope="col">Evaluation Condition</th>
+                <th scope="col">Target Bench Performance Criterion</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Pot Life &amp; Open-Pan Skinning</th>
-                <td data-label="Condition">25°C tap-water batch, 8–24 hr hold</td>
-                <td data-label="Pass Target">Viscosity 120–1,200 cP; Pan Skin &lt; 12% (pred. 0.9–1.8%)</td>
+                <th scope="row">Pot Stability &amp; Open-Pan Skinning</th>
+                <td data-label="Condition">Ambient municipal tap-water batch, 8–24 hr open hold</td>
+                <td data-label="Target">Target pumpable coating viscosity window; minimal open-pan skinning</td>
               </tr>
               <tr>
                 <th scope="row">TAPPI T 559 (Grease Kit)</th>
-                <td data-label="Condition">Flat &amp; 180° folded score line</td>
-                <td data-label="Pass Target">Flat Kit ≥ 10 (pred. 12.0); Crease Kit ≥ 8 (pred. 10.1–11.0)</td>
+                <td data-label="Condition">Flat coated surface &amp; 180° folded score line</td>
+                <td data-label="Target">Target Flat Kit ≥ 10; Target 180° Crease Kit ≥ 8</td>
               </tr>
               <tr>
-                <th scope="row">TAPPI T 441 (Cobb60) &amp; Ketchup Fizz</th>
-                <td data-label="Condition">60 s water + pH 3.0 acid drop check</td>
-                <td data-label="Pass Target">Cobb60 ≤ 20 g/m² (pred. 12.8–16.0); 0.00 mL/m² CO2 pitting</td>
+                <th scope="row">TAPPI T 441 (Cobb60) &amp; Acid Drop</th>
+                <td data-label="Condition">60 s water absorptiveness + mild acid drop check</td>
+                <td data-label="Target">Target Cobb60 ≤ 20 g/m²; zero CO₂ fizz or acid-induced pitting</td>
               </tr>
               <tr>
-                <th scope="row">Closed Hot Carton NH3 &amp; Blocking</th>
-                <td data-label="Condition">90°C closed pizza box + +50°C / 0.5 psi stack</td>
-                <td data-label="Pass Target">Headspace NH3 &lt; 5 ppm (pred. 0.0 ppm); non-blocking</td>
+                <th scope="row">Hot-Carton Odor &amp; Stack Blocking</th>
+                <td data-label="Condition">Elevated-temperature closed carton &amp; stacked pressure</td>
+                <td data-label="Target">Low/undetectable headspace off-odor; clean non-blocking release</td>
               </tr>
               <tr>
-                <th scope="row">TAPPI T 275 (Mill Repulpability)</th>
-                <td data-label="Condition">1% Na2CO3 + 0.5% Na3Citrate, pH 10, 50°C</td>
-                <td data-label="Pass Target">&lt; 1.0 wt% Somerville 0.15 mm slotted rejects</td>
+                <th scope="row">Neutral-pH Recyclability (WMU OCC-E / FBA)</th>
+                <td data-label="Condition">Standard neutral-pH corrugated / boxboard repulping test</td>
+                <td data-label="Target">Target pass under neutral-pH WMU OCC-E / FBA dispersibility &amp; handsheet criteria</td>
+              </tr>
+              <tr>
+                <th scope="row">Alkaline Mill-Broke Repulpability (TAPPI T 275)</th>
+                <td data-label="Condition">Alkaline carbonate / citrate mill-broke repulping</td>
+                <td data-label="Target">Target &lt; 1.0 wt% Somerville 0.15 mm slotted rejects via ionic unzip</td>
               </tr>
             </tbody>
           </table>
@@ -1066,17 +1163,17 @@
 
         <div class="cta-bar">
           <div>
-            <strong>Zero-Cost Mutual NDA &amp; Licensing Inquiries</strong><br />
-            <span style="font-size:0.86rem;color:#cbd5e1;">Inventor: David Mahler • East Sandwich, MA • Patent Title: Repulpable Phosphate-Triggered Alginate-Kaolin Barrier Coatings and Coated Cellulosic Articles • Contact: david@surplusdocket.com</span>
+            <strong>Zero-Cost Mutual NDA &amp; Joint Evaluation Inquiries</strong><br />
+            <span style="font-size:0.86rem;color:#cbd5e1;">Inventor: David Mahler • East Sandwich, MA • U.S. App. No. 64/199,413 ("Repulpable Phosphate-Triggered Alginate-Kaolin Barrier Coatings and Coated Cellulosic Articles") • david@surplusdocket.com</span>
           </div>
-          <a class="cta-btn" href="mailto:david@surplusdocket.com?subject=SLIP-NET%20v8.0%2015-Min%20Bench%20Test%20%26%20Licensing%20Inquiry&body=Hi%20David%2C%0A%0AWe%20reviewed%20the%20SLIP-NET%20v8.0%20simulation%20and%20would%20like%20to%20coordinate%20a%2015-minute%20bench%20screen%20or%20licensing%20call.%0A%0AOrganization%3A%20%0AContact%20Name%3A%20">Contact Inventor / Request NDA</a>
+          <a class="cta-btn" href="mailto:david@surplusdocket.com?subject=SLIP-NET%20NDA%20%26%20Bench%20Evaluation%20Inquiry&body=Hi%20David%2C%0A%0AWe%20reviewed%20the%20SLIP-NET%20technical%20overview%20and%20would%20like%20to%20execute%20a%20Mutual%20NDA%20%2F%20CDA%20to%20review%20the%20bench%20screening%20protocol.%0A%0AOrganization%3A%20%0AContact%20Name%3A%20">Request NDA &amp; Bench Protocol</a>
         </div>
       </div>
     </div>
   </main>
 
   <footer class="site-footer">
-    SLIP-NET™ v8.0 Engineering Simulation • Unlisted Technical Evaluation Page (noindex) on SurplusDocket • In silico coupled chemical speciation, RK4 ODE, Ca:P stoichiometry, and Monte Carlo physics aligned with <code>PROVISIONAL_PATENT_APPLICATION_SLIPNET.pdf</code>.
+    SLIP-NET™ Non-Confidential Technical Overview • Patent-Pending Barrier Architecture (U.S. App. No. 64/199,413) • Unlisted Evaluation Page (noindex) on SurplusDocket.
   </footer>
 
   <script>
@@ -1108,7 +1205,7 @@
           }
         });
         if (moveFocus) targetBtn.focus();
-        if (targetBtn.id === "tab-stress") drawAllStressCharts();
+        if (targetBtn.id === "tab-stress") drawAllScorecardCharts();
       }
 
       tabButtons.forEach((btn, idx) => {
@@ -1134,386 +1231,18 @@
       });
 
       // ---------------------------------------------------------------------
-      // 2. Exact Port of SLIP-NET v8.0 Physics (speciate_tank + RK4 simulate_v63)
+      // 2. Illustrative Conceptual Model (Non-Confidential Process Visualizer)
       // ---------------------------------------------------------------------
-      function speciateTank(opts) {
-        const {
-          mineral, ph, solidsFrac, algWt, caSaltWt,
-          shmpWt = 0, dapWt = 0, dacWt = 0, tapPpm = 150, kaolinWt = 50, openToAir = false
-        } = opts;
-        const waterL = (100.0 * (1.0 - solidsFrac) / solidsFrac) / 1000.0;
-        const mwMap = { "CaCO3": 100.09, "CaHPO4": 172.09, "Ca3(PO4)2": 310.18 };
-        const caPerMol = { "CaCO3": 1.0, "CaHPO4": 1.0, "Ca3(PO4)2": 3.0 }[mineral];
-        const pPerMol = { "CaCO3": 0.0, "CaHPO4": 1.0, "Ca3(PO4)2": 2.0 }[mineral];
-
-        const caMinTot = (caSaltWt / mwMap[mineral]) * caPerMol / waterL;
-        const caTap = (tapPpm / 100.09) / 1000.0;
-        const caKaolin = 0.000723 * (kaolinWt / 56.4) * (solidsFrac / 0.30) / (0.70 / 0.30);
-        const caTot = caMinTot + caTap + caKaolin;
-
-        const shmpTot = (shmpWt / 611.77) / waterL;
-        const dapTot = (dapWt / 132.06) / waterL;
-        const dacTot = (dacWt / 226.19) / waterL;
-        const pTot = dapTot + (caSaltWt / mwMap[mineral]) * pPerMol / waterL;
-
-        const gTot = (algWt * 0.55 / 195.0) / waterL;
-        const kShmp = 1.0e6, kCit = Math.pow(10, 3.50), kHpo4 = Math.pow(10, 2.70), kEgg = 4.5e3;
-
-        const h = Math.pow(10, -ph);
-        const pk1 = Math.pow(10, -2.15), pk2 = Math.pow(10, -7.20), pk3 = Math.pow(10, -12.35);
-        const pden = h ** 3 + pk1 * h ** 2 + pk1 * pk2 * h + pk1 * pk2 * pk3;
-        const a2Po4 = (pk1 * pk2 * h) / pden;
-        const a3Po4 = (pk1 * pk2 * pk3) / pden;
-
-        const ck1 = Math.pow(10, -3.13), ck2 = Math.pow(10, -4.76), ck3 = Math.pow(10, -6.40);
-        const cden = h ** 3 + ck1 * h ** 2 + ck1 * ck2 * h + ck1 * ck2 * ck3;
-        const a3Cit = (ck1 * ck2 * ck3) / cden;
-
-        const ak1 = Math.pow(10, -6.35), ak2 = Math.pow(10, -10.33);
-        const aden = h ** 2 + ak1 * h + ak1 * ak2;
-        const a2Co3 = (ak1 * ak2) / aden;
-
-        let lo = -16.0, hi = 1.0;
-        for (let iter = 0; iter < 36; iter++) {
-          const mid = 0.5 * (lo + hi);
-          const cf = Math.pow(10, mid);
-          const a = 2.0 * kEgg * cf;
-          const gf = a < 1e-12 ? gTot : (-1.0 + Math.sqrt(1.0 + 4.0 * a * gTot)) / (2.0 * a);
-          const cd = cf
-            + shmpTot * (kShmp * cf) / (1.0 + kShmp * cf)
-            + dacTot * a3Cit * (kCit * cf) / (1.0 + kCit * cf)
-            + pTot * a2Po4 * (kHpo4 * cf) / (1.0 + kHpo4 * cf)
-            + kEgg * (gf * gf) * cf;
-          let csat;
-          if (mineral === "CaCO3") {
-            const ksp = 3.3e-9;
-            if (openToAir) {
-              const co3Eq = (0.034 * 4.0e-4) * ak1 * ak2 / (h * h);
-              csat = ksp / Math.max(co3Eq, 1e-22);
-            } else {
-              const co3Tot = Math.max(caMinTot - Math.max(0.0, caTot - cd), 1e-9);
-              csat = ksp / Math.max(co3Tot * a2Co3, 1e-22);
-            }
-          } else if (mineral === "CaHPO4") {
-            csat = 2.5e-7 / Math.max(pTot * a2Po4, 1e-8);
-          } else {
-            const po4 = Math.max(pTot * a3Po4, 1e-18);
-            csat = Math.pow(2.07e-29 / (po4 * po4), 1.0 / 3.0);
-          }
-          if (Math.max(cd - caTot, cf - csat) > 0.0) hi = mid;
-          else lo = mid;
-        }
-        const cfOpt = Math.pow(10, 0.5 * (lo + hi));
-        const a = 2.0 * kEgg * cfOpt;
-        const gf = a < 1e-12 ? gTot : (-1.0 + Math.sqrt(1.0 + 4.0 * a * gTot)) / (2.0 * a);
-        return { caFreeMM: cfOpt * 1000.0, thetaEggPct: 100.0 * (1.0 - gf / Math.max(gTot, 1e-12)) };
-      }
-
-      function erfcApprox(x) {
-        if (x < 0) return 2.0 - erfcApprox(-x);
-        const t = 1.0 / (1.0 + 0.3275911 * x);
-        const poly = (((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t);
-        return poly * Math.exp(-x * x);
-      }
-
-      function simulateV70(cfg, collectTrace) {
-        const solids0 = cfg.solids_frac;
-        const coatGsm = cfg.coat_gsm;
-        const mDry = coatGsm;
-        const mW0 = mDry * (1.0 - solids0) / solids0;
-
-        const kaolinWt = cfg.kaolin_wt;
-        const binderWt = cfg.binder_wt || 0.0;
-        const binderMw = cfg.binder_mw_kda || 40.0;
-        const binderType = cfg.binder_type || "None";
-        const amyloseFrac = cfg.amylose_frac !== undefined ? cfg.amylose_frac : 0.30;
-        const algWt = cfg.alg_wt;
-        const algSalt = cfg.alg_salt || "NH4";
-        const algViscK = cfg.alg_visc_k || 0.36;
-        const waxWt = cfg.wax_wt;
-        const waxType = cfg.wax_type || "CaStearate";
-        const plastWt = cfg.plasticizer_wt || 0.0;
-        const plastType = cfg.plasticizer_type || "Sorbitol";
-        const mfcWt = cfg.mfc_wt || 0.0;
-        const mineral = cfg.mineral;
-        const mineralWt = cfg.mineral_wt;
-        const d50Nm = cfg.d50_nm;
-        const shmpWt = cfg.shmp_wt || 0.0;
-        const dapWt = cfg.dap_wt || 0.0;
-        const dacWt = cfg.dac_wt || 0.0;
-        const tankPh = cfg.tank_ph || 8.8;
-        const tapPpm = cfg.tap_ppm !== undefined ? cfg.tap_ppm : 150.0;
-        const tTankC = cfg.t_tank_c || 25.0;
-        const tOvenC = cfg.t_oven_c || 125.0;
-        const ovenS = cfg.oven_s || 30.0;
-        const vAir = cfg.v_air_ms || 1.5;
-        const rqUm = cfg.rq_um || 1.1;
-        const pass1Akd = !!cfg.pass1_akd;
-
-        const R = 8.3145;
-        const kShmpHyd = (Math.log(2.0) / (32.0 * 24.0)) * Math.exp(-(88000.0 / R) * (1.0 / (tTankC + 273.15) - 1.0 / 293.15));
-        const shmpEff8h = shmpWt * Math.exp(-kShmpHyd * 8.0);
-        const minArg = (mineral === "None" || mineralWt <= 0.01) ? "CaHPO4" : mineral;
-        const minWtEff = mineral === "None" ? 0.0 : mineralWt;
-
-        const tank8h = speciateTank({ mineral: minArg, ph: tankPh, solidsFrac: solids0, algWt, caSaltWt: minWtEff, shmpWt: shmpEff8h, dapWt, dacWt, tapPpm, kaolinWt, openToAir: false });
-        const panMen = speciateTank({ mineral: minArg, ph: Math.max(6.7, tankPh - 1.8), solidsFrac: Math.min(0.45, solids0 + 0.08), algWt, caSaltWt: minWtEff, shmpWt: shmpEff8h, dapWt, dacWt, tapPpm, kaolinWt, openToAir: true });
-
-        // Calibrated Rheology
-        const wFrac = 1.0 - solids0;
-        const cAlgAq = (solids0 * algWt) / Math.max(wFrac, 0.25);
-        const cStAq = (solids0 * binderWt) / Math.max(wFrac, 0.25);
-        const cMfcWet = solids0 * mfcWt;
-        const phiPig = (solids0 * (kaolinWt / 2.58 + mineralWt / 2.8)) /
-          ((1.0 - solids0) + solids0 * (kaolinWt / 2.58 + (binderWt + algWt) / 1.50 + waxWt / 1.05 + mineralWt / 2.8));
-        const etaPig = 1.3 * Math.pow(1.0 - Math.min(phiPig / 0.58, 0.85), -2.1);
-        const algContrib = algViscK * cAlgAq;
-        let stContrib = 0.0;
-        if (binderWt > 0.1 && !(binderType === "GranularAcidStarch" && tTankC < 85.0)) {
-          if (binderType === "DE2") stContrib = 0.055 * cStAq;
-          else if (binderType === "ThinStarch" || binderType === "CWS_PregelThinStarch") stContrib = 0.17 * Math.pow(binderMw / 40.0, 0.85) * cStAq;
-          else stContrib = 0.45 * Math.pow(binderMw / 40.0, 0.85) * cStAq;
-        }
-        const mfcContrib = 2.5 * cMfcWet + 0.7 * (cMfcWet * cMfcWet);
-        const tempRheo = Math.exp(1800.0 * (1.0 / (tTankC + 273.15) - 1.0 / 298.15));
-        const gelViscMult = 1.0 + 0.20 * tank8h.thetaEggPct + 0.04 * (tank8h.thetaEggPct ** 2);
-        const brookfieldCp = etaPig * Math.exp(Math.min(12.0, algContrib + stContrib + mfcContrib)) * tempRheo * gelViscMult;
-
-        // RK4 Coupled Drying & Cure ODE
-        const nh4Frac = algSalt === "NH4" ? 1.0 : (algSalt === "Hybrid50" ? 0.5 : 0.0);
-        const naFrac = 1.0 - nh4Frac;
-        const avgAlgMw = 195.0 * nh4Frac + 198.11 * naFrac;
-        const mwMap = { "None": 100.0, "CaCO3": 100.09, "CaHPO4": 172.09, "Ca3(PO4)2": 310.18 };
-        const caPerMol = { "None": 0.0, "CaCO3": 1.0, "CaHPO4": 1.0, "Ca3(PO4)2": 3.0 }[mineral];
-        const pPerMol = { "None": 0.0, "CaCO3": 0.0, "CaHPO4": 1.0, "Ca3(PO4)2": 2.0 }[mineral];
-        const nCooM2 = (mDry * algWt / 100.0) / avgAlgMw;
-        const nGDimersM2 = 0.5 * 0.55 * nCooM2;
-        const nMinM2 = mineral !== "None" ? (mDry * mineralWt / 100.0) / mwMap[mineral] : 0.0;
-        const nCaTotM2 = nMinM2 * caPerMol;
-        const nDapM2 = (mDry * dapWt / 100.0) / 132.06;
-        const nPTotM2 = nMinM2 * pPerMol + nDapM2;
-        const nNaM2 = (mDry * (algWt * naFrac) / 100.0 / 198.11) + 6.0 * (mDry * shmpWt / 100.0 / 611.77);
-        const nCitM2 = (mDry * dacWt / 100.0) / 226.19;
-        const nNh4AlgM2 = nCooM2 * nh4Frac;
-
-        const wOrgDry = Math.max(binderWt + algWt + plastWt, 1e-6);
-        const tgPlastC = plastType === "Glycerin" ? -90.0 : -3.0;
-        const tgDryC = (binderWt * 162.0 + algWt * 210.0 + plastWt * tgPlastC) / wOrgDry;
-        const kGt = 2.52;
-        const r0M = Math.max(0.5 * d50Nm * 1e-9, 1.5e-8);
-        const rhoMinMolM3 = mineral === "CaCO3" ? (2710.0 / 0.10009) : (mineral === "CaHPO4" ? (2310.0 / 0.17209) : (3140.0 / 0.31018));
-
-        function rhsC1(y) {
-          let [wH2o, Tk, fNh3, rNorm, xEgg] = y;
-          const wEq = 0.045 * mDry;
-          const wEff = wEq + 0.5 * ((wH2o - wEq) + Math.sqrt((wH2o - wEq) ** 2 + 0.0004));
-          Tk = Math.max(293.15, Math.min(Tk, tOvenC + 273.15));
-          fNh3 = Math.max(0.0, Math.min(fNh3, 1.0));
-          rNorm = Math.max(0.0, Math.min(rNorm, 1.0));
-          xEgg = Math.max(0.0, Math.min(xEgg, 1.0));
-
-          const solids = mDry / (mDry + wEff);
-          const wPolyMass = mDry * (wOrgDry / 100.0);
-          const w2 = wEff / Math.max(wPolyMass + wEff, 1e-6);
-          const w1 = 1.0 - w2;
-          const tgFilmK = ((w1 * tgDryC + kGt * w2 * (-135.0)) / Math.max(w1 + kGt * w2, 1e-6)) + 273.15;
-
-          const dtTg = Tk - tgFilmK;
-          const fMobWlf = 1.0 / (1.0 + Math.exp(-Math.max(-30.0, Math.min(30.0, (dtTg - 8.0) / 12.0))));
-          const fMobWet = 1.0 / (1.0 + Math.exp(-Math.max(-30.0, Math.min(30.0, (0.85 - solids) / 0.035))));
-          const fMob = fMobWlf * fMobWet;
-
-          const hConv = 18.0 + 24.0 * Math.pow(vAir, 0.72);
-          const tAirK = tOvenC + 273.15;
-          const uEvap = Math.max(0.0, (wEff - wEq) / Math.max(0.28 * mW0, 1e-6));
-          const evapDamp = Math.pow(uEvap / (1.0 + uEvap), 0.75) * Math.min(1.0, (wEff - wEq) / 0.05);
-          const mDotEvap = (0.70 + 1.55 * Math.pow(vAir, 0.72)) * evapDamp * Math.exp(Math.max(-12.0, Math.min(4.0, -4200.0 * (1.0 / Tk - 1.0 / 353.15))));
-          const qIn = hConv * (tAirK - Tk) - (mDotEvap * 1e-3) * 2.26e6;
-          const dT = qIn / (16.0 + 4.18 * wEff + 1.5 * mDry);
-          const dw = -mDotEvap;
-
-          let kNh3Base;
-          if (dapWt > 0.3 || dacWt > 0.3) {
-            kNh3Base = (0.32 + 0.62 * Math.pow(vAir, 0.70)) * Math.pow(Tk / 345.0, 2.2);
-          } else {
-            const excess = Math.max(0.0, fNh3 - 0.65) / 0.35;
-            kNh3Base = (0.09 + 0.18 * Math.pow(vAir, 0.70)) * (0.25 + 1.8 * excess) * Math.pow(Tk / 355.0, 2.5);
-          }
-          const dfNh3 = -kNh3Base * fNh3 * (0.14 + 0.86 * fMobWlf);
-
-          const vEffL = Math.max(wEff * 1e-3, 0.14 * mDry * 1e-3);
-          const hRelM2 = (1.0 * nDapM2 + 2.0 * nCitM2 + nNh4AlgM2) * (1.0 - fNh3);
-          const caDissM2 = nCaTotM2 * (1.0 - rNorm ** 3);
-          const hRem = Math.max(0.0, hRelM2 - (mineral === "CaCO3" ? 2.0 : 1.33) * caDissM2);
-          const cAcid = hRem / vEffL;
-          const kaEff = (dapWt > 0.3 || dacWt > 0.3) ? 2.0e-3 : 1.8e-4;
-          const cH = 0.5 * (-kaEff + Math.sqrt(kaEff * kaEff + 4.0 * kaEff * cAcid));
-          const phLoc = -Math.log10(Math.max(cH, 1e-10));
-
-          let drNorm = 0.0;
-          if (mineral !== "None" && mineralWt > 0.01) {
-            let phDrive;
-            if (mineral === "Ca3(PO4)2") phDrive = 1.0 / (1.0 + Math.exp(Math.max(-20.0, Math.min(20.0, (phLoc - 5.3) / 0.35))));
-            else if (mineral === "CaHPO4") phDrive = 1.0 / (1.0 + Math.exp(Math.max(-20.0, Math.min(20.0, (phLoc - 6.2) / 0.40))));
-            else phDrive = 1.0 / (1.0 + Math.exp(Math.max(-20.0, Math.min(20.0, (phLoc - 6.7) / 0.40))));
-            const dH = (3.5e-9 / 15.0) * fMob * (Tk / 298.15);
-            const rM = Math.sqrt(rNorm * rNorm + 1e-4) * r0M;
-            const drDt = -(1.0 / rhoMinMolM3) * (dH / rM) * (cH * 1000.0) * phDrive;
-            drNorm = Math.tanh(rNorm / 0.03) * Math.max(-80.0, drDt / r0M);
-          }
-
-          const caBound = xEgg * nGDimersM2;
-          const citSeq = 1.0 / (1.0 + 1.8 * (nCitM2 / Math.max(nGDimersM2, 1e-9)));
-          const caFreeM2 = Math.max(0.0, caDissM2 - caBound) * citSeq;
-          const cCaMM = (caFreeM2 / vEffL) * 1000.0;
-          const kEgg = 0.60 * fMob * Math.min(cCaMM / 12.0, 3.0);
-          const dxEgg = kEgg * (1.0 - xEgg);
-          return [dw, dT, dfNh3, drNorm, dxEgg];
-        }
-
-        const nSteps = Math.max(Math.floor(ovenS / 0.12), 80);
-        const dt = ovenS / nSteps;
-        let y = [mW0, 298.15, 1.0, 1.0, 0.01];
-        const solidsArr = [mDry / (mDry + y[0])];
-        const dissArr = [0.0];
-        const trace = collectTrace ? [{ t: 0, cure: 1.0, solids: solidsArr[0] * 100.0, co2Um: 0.0 }] : null;
-
-        for (let step = 0; step < nSteps; step++) {
-          const k1 = rhsC1(y);
-          const y2 = y.map((v, j) => v + 0.5 * dt * k1[j]);
-          const k2 = rhsC1(y2);
-          const y3 = y.map((v, j) => v + 0.5 * dt * k2[j]);
-          const k3 = rhsC1(y3);
-          const y4 = y.map((v, j) => v + dt * k3[j]);
-          const k4 = rhsC1(y4);
-          y = y.map((v, j) => {
-            const nv = v + (dt / 6.0) * (k1[j] + 2 * k2[j] + 2 * k3[j] + k4[j]);
-            return Math.max(j === 0 ? 0.045 * mDry : 0.0, nv);
-          });
-          y[2] = Math.min(1.0, Math.max(0.0, y[2]));
-          y[3] = Math.min(1.0, Math.max(0.0, y[3]));
-          y[4] = Math.min(1.0, Math.max(0.0, y[4]));
-          const sCur = mDry / (mDry + y[0]);
-          const dCur = 1.0 - (y[3] ** 3);
-          solidsArr.push(sCur);
-          dissArr.push(dCur);
-          if (trace) {
-            trace.push({ t: (step + 1) * dt, cure: y[4] * 100.0, solids: sCur * 100.0, co2Um: mineral === "CaCO3" ? (nMinM2 * dCur * 1000.0 * 32.26) : 0.0 });
-          }
-        }
-
-        const drynessPct = Math.min(100.0, (mDry / (mDry + y[0])) * 100.0);
-        const finalCurePct = y[4] * 100.0;
-        const nh3RemFrac = y[2];
-
-        const filmThickUm = coatGsm / 1.60;
-        const wetThickUm = (mDry / solids0) / 1.15;
-        let co2GasUm = 0.0, volcanoPinPct = 0.0, blisterPinPct = 0.0;
-        if (mineral === "CaCO3") {
-          const co2TotMmol = nMinM2 * dissArr[dissArr.length - 1] * 1000.0;
-          let idx60 = solidsArr.findIndex((s) => s >= 0.60);
-          if (idx60 < 0) idx60 = nSteps;
-          const co2ViscMmol = nMinM2 * dissArr[idx60] * 1000.0;
-          const co2LateMmol = nMinM2 * Math.max(0.0, dissArr[dissArr.length - 1] - dissArr[idx60]) * 1000.0;
-          co2GasUm = co2TotMmol * 32.26;
-          const viscFactor = Math.min(3.5, Math.max(0.25, brookfieldCp / 300.0));
-          volcanoPinPct = Math.max(0.0, 0.35 * viscFactor * Math.pow(Math.max(0.0, (co2ViscMmol * 32.26 / Math.max(wetThickUm, 1.0)) - 0.40), 1.25));
-          blisterPinPct = Math.max(0.0, 0.85 * Math.pow(co2LateMmol * 32.26 / Math.max(filmThickUm, 1.0), 1.35) * (0.35 + 0.65 * (kaolinWt / 55.0)));
-        }
-        const geomPinPct = 50.0 * erfcApprox(filmThickUm / (Math.SQRT2 * rqUm));
-        const protrudeUm = Math.max(0.0, (d50Nm / 1000.0) - 0.55 * filmThickUm);
-        const coarsePinPct = d50Nm > 2200.0 ? 0.35 * (mineralWt / 5.0) * Math.pow(protrudeUm, 1.6) : 0.0;
-        const totalPinPct = geomPinPct + volcanoPinPct + blisterPinPct + coarsePinPct;
-
-        const molNa3Cit = (nNaM2 > 0 && nCitM2 > 0) ? Math.min(nCitM2, nNaM2 / 3.0) : 0.0;
-        const na3citWtPct = (molNa3Cit * 258.06 / mDry) * 100.0;
-        const excessPM2 = Math.max(0.0, nPTotM2 - nCaTotM2);
-        const na2hpo4WtPct = naFrac > 0.0 ? (Math.min(nNaM2 / 2.0, excessPM2) * 141.96 / mDry) * 100.0 : 0.0;
-        const naConcDewMM = (nNaM2 / 0.025) * 1000.0;
-        const nh4SaltDewMM = (Math.min(nDapM2, nNh4AlgM2 + nDapM2) / 0.025) * 1000.0 * 0.45;
-        const caDewBufMM = 0.35 + 0.15 * Math.max(0.0, mineralWt - 2.0);
-        const donnanDewRatio = (naConcDewMM + nh4SaltDewMM) / Math.sqrt(caDewBufMM);
-        const donnanDewRetention = 1.0 / (1.0 + Math.pow(Math.max(0.0, (donnanDewRatio - 40.0) / 180.0), 1.3));
-        const unbufferedNh4Frac = dapWt >= 1.5 ? 0.10 : 1.0;
-        const trappedNh3MolM2 = nh3RemFrac * (nNh4AlgM2 + 0.25 * nCooM2) * unbufferedNh4Frac;
-        const pizzaNh3Ppm = (0.45 * trappedNh3MolM2 * 0.15 / 0.0888) * 1e6;
-
-        const vB = binderWt / 1.45, vA = algWt / 1.55, vW = waxWt / 1.02, vP = plastWt / 1.35, vM = mfcWt / 1.50;
-        const vOrg = Math.max(vB + vA + vW + vP + vM, 1e-6);
-        const algOrgVolPct = (vA / vOrg) * 100.0;
-        const percEff = 1.0 / (1.0 + Math.exp(-(algOrgVolPct - 18.0) / 4.0));
-        const citUnzip = Math.min(0.95, na3citWtPct / 2.2);
-        const na2pUnzip = Math.min(0.85, na2hpo4WtPct / 4.2);
-        const effAlgGel = (finalCurePct / 100.0) * (1.0 - Math.max(citUnzip, na2pUnzip));
-        let mwRet = 0.99;
-        if (binderWt > 0.1) {
-          if (binderType === "GranularAcidStarch" && tTankC < 85.0) {
-            mwRet = 0.12;
-          } else {
-            mwRet = 1.0 / (1.0 + Math.pow(16.0 / Math.max(binderMw, 1.0), 1.2));
-            if (amyloseFrac >= 0.30) mwRet = Math.min(0.96, mwRet + 0.08);
-          }
-        }
-        const waxHydro = ({ "None": 0.0, "RBW": 0.72, "Carnauba": 0.85, "CaStearate": 0.88 }[waxType]) * Math.min(1.0, waxWt / 5.0);
-        const akdHydro = pass1Akd ? 0.25 : 0.0;
-        const plastPen = plastType === "Glycerin" ? 0.04 * plastWt : 0.015 * plastWt;
-        const surfaceSeal = Math.max(0.0, Math.min(0.98, 0.45 * effAlgGel * percEff + 0.35 * waxHydro + 0.20 * mwRet + 0.10 * akdHydro - plastPen));
-        const leachedBinderPct = binderWt * (1.0 - mwRet) * (1.0 - effAlgGel * percEff) * (1.0 - 0.60 * waxHydro);
-        const cobb60 = 11.5 + 75.0 * Math.pow(1.0 - surfaceSeal, 1.3) + 2.2 * leachedBinderPct + 4.0 * na3citWtPct + 3.2 * na2hpo4WtPct + 8.0 * totalPinPct + (plastType === "Glycerin" ? 1.2 * plastWt : 0.35 * plastWt);
-        const kitFlat = Math.max(0.0, Math.min(12.0, 12.2 - 3.8 * totalPinPct - 4.5 * Math.max(0.0, 0.75 - effAlgGel) - (kaolinWt < 15.0 ? 3.5 : 0.0)));
-
-        const vPigDry = (kaolinWt / 2.58) + (mineralWt / 2.80);
-        const pvcPct = 100.0 * vPigDry / (vPigDry + vOrg);
-        const appliedStrain = 3.2 + 0.14 * coatGsm;
-        const slipBoost = (waxType === "CaStearate" || waxType === "Carnauba") ? 0.32 * waxWt : 0.10 * waxWt;
-        const plastBoost = plastType === "Sorbitol" ? 0.85 * plastWt : 1.15 * plastWt;
-        const cpvcMargin = Math.max(0.1, (56.0 - pvcPct) / 16.0);
-        const epsBreak = Math.max(0.8, (1.9 + slipBoost + plastBoost + 0.35 * mfcWt) * Math.min(1.35, cpvcMargin));
-        const creaseCrackRatio = Math.max(0.0, (appliedStrain - epsBreak) / Math.max(epsBreak, 1.0));
-        const kitCrease = Math.max(0.0, Math.min(kitFlat, kitFlat - 6.5 * creaseCrackRatio - 1.5 * Math.max(0.0, pvcPct - 46.0) / 8.0));
-
-        const wax90c = { "None": 0.0, "RBW": 0.15, "Carnauba": 0.45, "CaStearate": 0.92 }[waxType];
-        const friesPct = Math.max(0.0, Math.min(100.0, 95.0 * mwRet * effAlgGel * donnanDewRetention * (0.35 + 0.65 * wax90c) * (1.0 - 0.25 * totalPinPct) * (1.0 - 0.4 * Math.max(0.0, 1.0 - percEff))));
-
-        const binderCost = binderWt <= 0.1 ? 0.0 : (binderType === "DE2" ? 1.15 : 1.05);
-        const algCost = algSalt === "Hybrid50" ? 8.85 : (13.50 * nh4Frac + 8.20 * naFrac);
-        const costKg = (kaolinWt / 100.0) * 0.48
-          + (binderWt / 100.0) * binderCost
-          + (algWt / 100.0) * algCost
-          + (waxWt / 100.0) * (waxType === "RBW" ? 12.0 : (waxType === "Carnauba" ? 10.0 : 1.85))
-          + (plastWt / 100.0) * (plastType === "Sorbitol" ? 1.40 : 1.10)
-          + (mfcWt / 100.0) * 16.0
-          + (mineralWt / 100.0) * (d50Nm <= 150 ? 4.50 : 1.25)
-          + (dapWt / 100.0) * 1.20;
-        const cM2 = (coatGsm / 1000.0) * costKg * 100.0;
-        const caPRatio = nPTotM2 > 0 ? nCaTotM2 / nPTotM2 : 0.0;
-
-        return {
-          brookfieldCp, panSkin: panMen.thetaEggPct, tankEgg8h: tank8h.thetaEggPct, caFreeMM: tank8h.caFreeMM,
-          drynessPct, curePct: finalCurePct, co2GasUm, pinPct: totalPinPct, cobb60, kitFlat, kitCrease,
-          pvcPct, nh3Ppm: pizzaNh3Ppm, friesPct, cM2, na2hpo4WtPct, caPRatio, trace
-        };
-      }
-
-      const GRADES = {
-        mvp5_nh4:    { solids_frac: 0.25, coat_gsm: 7.8, kaolin_wt: 51.9, binder_wt: 0.0,  binder_type: "None",                 alg_wt: 32.0, alg_salt: "NH4",      alg_visc_k: 0.36, wax_wt: 8.5, wax_type: "CaStearate", mfc_wt: 0.0, mineral_wt: 5.6, shmp_wt: 0.0, v_air_ms: 1.5, pass1_akd: false },
-        mvp5_hybrid: { solids_frac: 0.25, coat_gsm: 7.8, kaolin_wt: 51.4, binder_wt: 0.0,  binder_type: "None",                 alg_wt: 32.0, alg_salt: "Hybrid50", alg_visc_k: 0.36, wax_wt: 8.5, wax_type: "CaStearate", mfc_wt: 0.0, mineral_wt: 5.8, shmp_wt: 0.0, v_air_ms: 1.5, pass1_akd: false },
-        mill6_nh4:   { solids_frac: 0.30, coat_gsm: 8.0, kaolin_wt: 51.3, binder_wt: 19.5, binder_mw_kda: 40.0, binder_type: "CWS_PregelThinStarch", amylose_frac: 0.32, alg_wt: 15.5, alg_salt: "NH4", alg_visc_k: 0.36, wax_wt: 6.5, wax_type: "CaStearate", mfc_wt: 0.0, mineral_wt: 5.2, shmp_wt: 0.0, v_air_ms: 1.5, pass1_akd: false },
-        mill6_na:    { solids_frac: 0.30, coat_gsm: 8.0, kaolin_wt: 48.8, binder_wt: 20.0, binder_mw_kda: 40.0, binder_type: "CWS_PregelThinStarch", amylose_frac: 0.32, alg_wt: 14.0, alg_salt: "Na",  alg_visc_k: 0.36, wax_wt: 6.5, wax_type: "CaStearate", mfc_wt: 0.0, mineral_wt: 7.5, shmp_wt: 0.0, v_air_ms: 1.5, pass1_akd: false },
-        mill6_gran:  { solids_frac: 0.30, coat_gsm: 8.0, kaolin_wt: 51.3, binder_wt: 19.5, binder_mw_kda: 40.0, binder_type: "GranularAcidStarch",   amylose_frac: 0.32, alg_wt: 15.5, alg_salt: "NH4", alg_visc_k: 0.36, wax_wt: 6.5, wax_type: "CaStearate", mfc_wt: 0.0, mineral_wt: 5.2, shmp_wt: 0.0, v_air_ms: 1.5, pass1_akd: false },
-        old_de2:     { solids_frac: 0.30, coat_gsm: 8.0, kaolin_wt: 56.4, binder_wt: 29.8, binder_mw_kda: 6.0,  binder_type: "DE2",                  amylose_frac: 0.20, alg_wt: 4.8,  alg_salt: "NH4", alg_visc_k: 0.36, wax_wt: 5.4, wax_type: "RBW",        mfc_wt: 2.0, mineral_wt: 1.3, shmp_wt: 0.30, v_air_ms: 1.2, pass1_akd: true }
-      };
-
-      const selGrade = document.getElementById("selGrade");
-      const selMineral = document.getElementById("selMineral");
+      const selArch = document.getElementById("selArch");
+      const selTrigger = document.getElementById("selTrigger");
+      const selBuffer = document.getElementById("selBuffer");
       const slTapPpm = document.getElementById("slTapPpm");
-      const slDap = document.getElementById("slDap");
-      const slMinD50 = document.getElementById("slMinD50");
+      const slMinScale = document.getElementById("slMinScale");
       const slOvenT = document.getElementById("slOvenT");
       const slOvenS = document.getElementById("slOvenS");
       const slRq = document.getElementById("slRq");
       const slGsm = document.getElementById("slGsm");
-      const allRanges = [slTapPpm, slDap, slMinD50, slOvenT, slOvenS, slRq, slGsm];
+      const allRanges = [slTapPpm, slMinScale, slOvenT, slOvenS, slRq, slGsm];
 
       function syncSliderVars(el, textVal) {
         el.style.setProperty("--attr-min", el.min || 0);
@@ -1522,112 +1251,110 @@
         if (textVal) el.setAttribute("aria-valuetext", textVal);
       }
 
-      let currentMetrics = {};
+      let currentState = {};
 
-      function computePhysics() {
-        const gradeKey = selGrade.value;
-        const base = GRADES[gradeKey];
+      function evaluateConceptualState() {
+        const arch = selArch.value;
+        const trigger = selTrigger.value;
+        const buffer = selBuffer.value;
         const tapPpm = parseFloat(slTapPpm.value);
-        const dapWt = parseFloat(slDap.value);
-        const d50Nm = parseFloat(slMinD50.value);
-        const tOvenC = parseFloat(slOvenT.value);
+        const minUm = parseFloat(slMinScale.value);
+        const ovenT = parseFloat(slOvenT.value);
         const ovenS = parseFloat(slOvenS.value);
         const rqUm = parseFloat(slRq.value);
         const coatGsm = parseFloat(slGsm.value);
-        const mineral = selMineral.value;
 
         document.getElementById("outTapPpm").textContent = tapPpm + " ppm";
-        document.getElementById("outDap").textContent = dapWt.toFixed(1) + "%";
-        document.getElementById("outMinD50").textContent = d50Nm + " nm";
-        document.getElementById("outOven").textContent = tOvenC + " °C · " + ovenS + " s";
-        document.getElementById("outSub").textContent = rqUm.toFixed(2) + " µm · " + coatGsm.toFixed(1) + " g/m²";
+        document.getElementById("outMinScale").textContent = minUm.toFixed(1) + (minUm <= 1.8 ? " µm (Non-Nano)" : " µm (Coarse)");
+        document.getElementById("outOven").textContent = ovenT + " °C · " + ovenS + " s";
+        document.getElementById("outSub").textContent = rqUm.toFixed(1) + " µm · " + coatGsm.toFixed(1) + " g/m²";
 
         syncSliderVars(slTapPpm, tapPpm + " ppm CaCO3");
-        syncSliderVars(slDap, dapWt.toFixed(1) + "% DAP");
-        syncSliderVars(slMinD50, d50Nm + " nm");
-        syncSliderVars(slOvenT, tOvenC + " degrees Celsius");
+        syncSliderVars(slMinScale, minUm.toFixed(1) + " micrometers");
+        syncSliderVars(slOvenT, ovenT + " degrees Celsius");
         syncSliderVars(slOvenS, ovenS + " seconds");
-        syncSliderVars(slRq, rqUm.toFixed(2) + " micrometers");
+        syncSliderVars(slRq, rqUm.toFixed(1) + " micrometers");
         syncSliderVars(slGsm, coatGsm.toFixed(1) + " grams per square meter");
 
-        const isNaTrap = gradeKey === "mill6_na" && dapWt >= 5.5;
-        const cfg = Object.assign({}, base, {
-          alg_wt: isNaTrap ? 26.0 : base.alg_wt,
-          binder_wt: isNaTrap ? 0.0 : base.binder_wt,
-          kaolin_wt: isNaTrap ? 54.0 : base.kaolin_wt,
-          mineral,
-          mineral_wt: mineral === "None" ? 0.0 : (gradeKey === "old_de2" && mineral === "CaCO3" ? 1.3 : (mineral === "CaCO3" ? 3.0 : (isNaTrap ? 5.0 : base.mineral_wt))),
-          wax_type: (mineral === "CaCO3" && gradeKey === "mill6_nh4") ? "Carnauba" : base.wax_type,
-          d50_nm: d50Nm,
-          dap_wt: dapWt,
-          tap_ppm: tapPpm,
-          t_oven_c: tOvenC,
-          oven_s: ovenS,
-          v_air_ms: ovenS <= 12 ? 2.8 : base.v_air_ms,
-          rq_um: rqUm,
-          coat_gsm: coatGsm,
-          solids_frac: (gradeKey === "mill6_nh4" && ovenS <= 12) ? 0.31 : base.solids_frac,
-          tank_ph: base.alg_salt === "Na" ? 8.7 : 8.8
-        });
-
-        const res = simulateV70(cfg, false);
-        const vStr = res.brookfieldCp > 15000 ? ">25k cP" : Math.round(res.brookfieldCp) + " cP";
-        document.getElementById("kpiVisc").textContent = vStr + " / " + res.panSkin.toFixed(1) + "%";
-        document.getElementById("kpiCure").textContent = res.curePct.toFixed(0) + "% / " + res.pinPct.toFixed(3) + "%";
-        document.getElementById("kpiBarrier").textContent = res.cobb60.toFixed(1) + " / Kit " + res.kitCrease.toFixed(1);
-        document.getElementById("kpiEndUse").textContent = res.friesPct.toFixed(0) + "% / " + Math.round(res.nh3Ppm) + "ppm / " + res.cM2.toFixed(2) + "¢";
+        // Qualitative boundary checks (illustrative conceptual mechanics only)
+        const hardWaterCrash = buffer === "under" && tapPpm >= 80 && trigger !== "none";
+        const carbonateGas = trigger === "carbonate";
+        const uncrosslinked = trigger === "none";
+        const saltUnzip = buffer === "over";
+        const thermalEnergy = (ovenT - 85) * Math.sqrt(ovenS);
+        const lowCure = thermalEnergy < 125 || uncrosslinked;
+        const filmThickUm = coatGsm / 1.6;
+        const roughCoverageRisk = filmThickUm < 2.8 * rqUm;
+        const coarseProtrusion = minUm > 2.2 && trigger !== "none";
 
         const issues = [];
-        if (res.brookfieldCp > 1200) issues.push("VISC > 1,200 cP (" + vStr + ")");
-        if (res.panSkin > 12.0) issues.push("OPEN-PAN SKINNING (" + res.panSkin.toFixed(1) + "% @ air)");
-        if (res.curePct < 75.0) issues.push("LOW CURE (" + res.curePct.toFixed(1) + "%; add DAP/TCP or heat)");
-        if (res.pinPct >= 0.08) issues.push("PINHOLES/BLISTERS (" + res.pinPct.toFixed(2) + "% — CO2 or high Rq)");
-        if (res.cobb60 > 24.0) issues.push("COBB60 FAIL (" + res.cobb60.toFixed(1) + " > 24 g/m²)");
-        if (res.kitCrease < 8.0) issues.push("180° CREASE CRACK (Kit " + res.kitCrease.toFixed(1) + " < 8)");
-        if (res.nh3Ppm > 15.0) issues.push("NH3 ODOR TRAP (" + Math.round(res.nh3Ppm) + " ppm in box)");
+        if (hardWaterCrash) issues.push("Premature Hard-Water Gelation / Open-Pan Skinning");
+        if (carbonateGas) issues.push("CO2 Gas Evolution & Thermal Blister Risk");
+        if (uncrosslinked) issues.push("Uncrosslinked Film (Missing Latent Trigger)");
+        if (saltUnzip) issues.push("Excess Soluble Salt (Moisture-Unzipping Risk)");
+        if (lowCure && !uncrosslinked) issues.push("Insufficient Thermal Dwell for Full Ionic Cure");
+        if (roughCoverageRisk) issues.push("Rough Substrate Pinhole Risk (Increase Coat Weight or Smoothness)");
+        if (coarseProtrusion) issues.push("Coarse Mineral Protrusion Risk (Use Sub-Micron Non-Nano Grade)");
+
+        document.getElementById("kpiTank").textContent = hardWaterCrash
+          ? "Gel / Skin Risk"
+          : (buffer === "under" && tapPpm >= 80 ? "Borderline" : "Fluid / Low Skin");
+
+        document.getElementById("kpiCure").textContent = carbonateGas
+          ? "CO2 Blisters"
+          : (lowCure ? "Incomplete Cure" : "Target Cure / 0 CO2");
+
+        document.getElementById("kpiFold").textContent = (roughCoverageRisk || coarseProtrusion || carbonateGas)
+          ? "Pinhole / Crack Risk"
+          : "Smooth / Ductile";
+
+        document.getElementById("kpiRepulp").textContent = saltUnzip
+          ? "Moisture Penalty"
+          : (arch === "molded" ? "Molded Fiber Target" : "Dual-Track Eligible");
 
         const verdictEl = document.getElementById("verdictBox");
         if (issues.length === 0) {
           verdictEl.className = "verdict-box verdict-pass";
-          const noteCaP = res.caPRatio > 0 ? " Ca:P=" + res.caPRatio.toFixed(2) + ", Free Na2HPO4=" + res.na2hpo4WtPct.toFixed(1) + "%." : "";
-          const noteNa = base.alg_salt !== "NH4" ? " (Note: " + (base.alg_salt === "Na" ? "Na-Alg" : "Hybrid") + " 90°C fries=" + res.friesPct.toFixed(0) + "% — use NH4-Alg for steaming fried cartons.)" : " (Closed 90°C Fries: " + res.friesPct.toFixed(0) + "%.)";
-          verdictEl.textContent = "GO WINDOW (PVC " + res.pvcPct.toFixed(0) + "% < 56% CPVC):" + noteCaP + " " + vStr + " tank, " + res.panSkin.toFixed(1) + "% pan skin, " + res.curePct.toFixed(0) + "% cure, 0 CO2 blisters, Cobb60 " + res.cobb60.toFixed(1) + ", Crease Kit " + res.kitCrease.toFixed(1) + "." + noteNa;
+          const modeLabel = arch === "hotfood"
+            ? "Hot / steaming foodservice architecture"
+            : (arch === "molded" ? "Die-ironed molded fiber architecture" : "Standard folding-carton architecture");
+          verdictEl.textContent = "ILLUSTRATIVE TARGET WINDOW (" + modeLabel + "): Ambient tap-water stability, zero-CO2 thermal crosslinking, and ductile sub-CPVC coverage aligned for bench screening.";
         } else {
           verdictEl.className = "verdict-box " + (issues.length === 1 ? "verdict-warn" : "verdict-fail");
-          verdictEl.textContent = "FAIL / BOUNDARY EXCEEDED: " + issues.join(" | ");
+          verdictEl.textContent = "CONCEPTUAL BOUNDARY / FAILURE TRAP: " + issues.join(" | ");
         }
 
-        currentMetrics = Object.assign({}, res, { gradeKey, mineral, tapPpm, dapWt, rqUm, coatGsm });
+        currentState = {
+          arch, trigger, buffer, tapPpm, minUm, ovenT, ovenS, rqUm, coatGsm,
+          hardWaterCrash, carbonateGas, uncrosslinked, saltUnzip, lowCure, roughCoverageRisk, coarseProtrusion
+        };
       }
 
-      [selGrade, selMineral, ...allRanges].forEach((el) => {
-        el.addEventListener("input", () => { computePhysics(); renderScene(animPhase); });
-        el.addEventListener("change", () => { computePhysics(); renderScene(animPhase); });
+      [selArch, selTrigger, selBuffer, ...allRanges].forEach((el) => {
+        el.addEventListener("input", () => { evaluateConceptualState(); renderScene(animPhase); });
+        el.addEventListener("change", () => { evaluateConceptualState(); renderScene(animPhase); });
       });
 
       function applyPreset(p) {
-        selGrade.value = p.grade;
-        selMineral.value = p.mineral;
+        selArch.value = p.arch;
+        selTrigger.value = p.trigger;
+        selBuffer.value = p.buffer;
         slTapPpm.value = p.tap;
-        slDap.value = p.dap;
-        slMinD50.value = p.d50;
+        slMinScale.value = p.minUm;
         slOvenT.value = p.t;
         slOvenS.value = p.s;
         slRq.value = p.rq;
         slGsm.value = p.gsm;
-        computePhysics();
+        evaluateConceptualState();
         renderScene(animPhase);
       }
 
-      document.getElementById("presetM1").addEventListener("click", () => applyPreset({ grade: "mvp5_nh4",    mineral: "Ca3(PO4)2", tap: 150, dap: 2.0, d50: 550,  t: 125, s: 30, rq: 1.1, gsm: 7.8 }));
-      document.getElementById("presetM2").addEventListener("click", () => applyPreset({ grade: "mvp5_hybrid", mineral: "Ca3(PO4)2", tap: 150, dap: 2.3, d50: 550,  t: 125, s: 30, rq: 1.1, gsm: 7.8 }));
-      document.getElementById("presetM3").addEventListener("click", () => applyPreset({ grade: "mill6_nh4",   mineral: "Ca3(PO4)2", tap: 150, dap: 2.0, d50: 550,  t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetM4").addEventListener("click", () => applyPreset({ grade: "mill6_na",    mineral: "Ca3(PO4)2", tap: 150, dap: 3.2, d50: 550,  t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetM5").addEventListener("click", () => applyPreset({ grade: "mill6_nh4",   mineral: "Ca3(PO4)2", tap: 150, dap: 2.0, d50: 550,  t: 145, s: 10, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetM6").addEventListener("click", () => applyPreset({ grade: "mill6_nh4",   mineral: "CaCO3",     tap: 150, dap: 4.5, d50: 450,  t: 125, s: 30, rq: 1.1, gsm: 8.5 }));
-      document.getElementById("presetNa2P").addEventListener("click", () => applyPreset({ grade: "mill6_na",  mineral: "Ca3(PO4)2", tap: 150, dap: 6.5, d50: 550,  t: 125, s: 30, rq: 1.1, gsm: 7.8 }));
-      document.getElementById("presetCoarse").addEventListener("click", () => applyPreset({ grade: "mill6_nh4", mineral: "Ca3(PO4)2", tap: 150, dap: 2.0, d50: 8000, t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetC0").addEventListener("click", () => applyPreset({ grade: "old_de2",     mineral: "CaCO3",     tap: 150, dap: 0.0, d50: 80,   t: 120, s: 25, rq: 1.1, gsm: 8.0 }));
+      document.getElementById("presetCarton").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
+      document.getElementById("presetHotFood").addEventListener("click", () => applyPreset({ arch: "hotfood", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 130, s: 30, rq: 1.1, gsm: 8.5 }));
+      document.getElementById("presetFastLine").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 150, s: 10, rq: 1.1, gsm: 8.0 }));
+      document.getElementById("presetCarbonate").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "carbonate", buffer: "under", tap: 150, minUm: 0.5, t: 125, s: 30, rq: 1.1, gsm: 8.5 }));
+      document.getElementById("presetUnbuffered").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "phosphate", buffer: "under", tap: 220, minUm: 0.6, t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
+      document.getElementById("presetCoarse").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 6.5, t: 125, s: 30, rq: 3.2, gsm: 8.0 }));
 
       // ---------------------------------------------------------------------
       // 3. Stage Canvas + Accessible Play/Pause & Reduced-Motion Control
@@ -1641,24 +1368,24 @@
 
       const STAGES = [
         {
-          title: "Stage 1: 15-Minute Cold Tap-Water Dispersion (pH 8.8, Zero SHMP)",
-          desc: "Diammonium phosphate (DAP) suppresses free [Ca2+] below 0.01 mM via common-ion HPO4(2-) buffering—even in 150 ppm hard municipal tap water—keeping ULV alginate (~609–693 cP) completely fluid for >24 hours with zero pan skinning (<1.8% vs >81% for CaCO3)."
+          title: "Stage 1: Ambient Cold Tap-Water Dispersion (Latent Phosphate Suppression)",
+          desc: "A food-grade phosphate buffer suppresses free calcium ion activity in ambient unsoftened tap water, keeping the biopolymer–mineral slurry pumpable with minimal open-pan skinning prior to coating."
         },
         {
-          title: "Stage 2: Single-Pass #12 Meyer Rod Coat on Smooth Board (~8 g/m²)",
-          desc: "Because ULV alginate keeps viscosity in the 600–900 cP blade/rod sweet spot even at 25–30% solids, one clean single pass covers MG/SBS board (Rq <= 1.2 µm) with 0.000% geometric pinholes—eliminating Pass-1 primer and chilled cookware."
+          title: "Stage 2: Single-Pass Waterborne Coat on Board or Molded Fiber",
+          desc: "Tuned waterborne rheology enables single-pass rod, blade, or spray application on smooth folding boxboard or die-ironed molded fiber without thermal starch cooking."
         },
         {
-          title: "Stage 3: 125°C Forced-Air Phosphate Cure (Zero CO2 Blistering)",
-          desc: "Water evaporates while DAP drops micro-pH into the 4.2–5.3 acidic window, dissolving non-nano 350–650 nm Ca3(PO4)2 cleanly into Ca-alginate egg-box crosslinks—zero CO2 gas bubbles (0.0 µm vs 60 µm carbonate foam)."
+          title: "Stage 3: Forced-Air Thermal Cure (Zero-CO2 Phosphate Trigger)",
+          desc: "Evaporative drying shifts the micro-environment so the non-nano phosphate mineral releases calcium ions cleanly into biopolymer egg-box junctions—with zero CO2 gas evolution or crater blistering."
         },
         {
-          title: "Stage 4: 180° Crease Fold, Hot Oil & Closed Pizza Box Check",
-          desc: "Keeping Kaolin PVC around 42–46% (<56% CPVC) plus 6.5–8.5% calcium stearate slip protects the 180° fold (Crease Kit 10.6–12.0), holds 60°C hot corn oil, and reads 0.0 ppm closed-box ammonia."
+          title: "Stage 4: 180° Score-Line Fold, Hot Oil & Elevated-Temp Service",
+          desc: "Platy mineral alignment below critical pigment volume concentration (CPVC) paired with an aqueous wax/fatty-acid slip dispersion protects folded edges against cracking and oil wicking."
         },
         {
-          title: "Stage 5: Circular Mill Broke Repulping (pH 10.0 Carbonate/Citrate)",
-          desc: "Because crosslinks are purely ionic Ca-alginate bridges (zero covalent wet-strength plastic resins), standard mill repulping unzips the barrier completely with <1.0 wt% Somerville slotted rejects."
+          title: "Stage 5: Circular Fiber Recovery (Neutral & Alkaline Repulping)",
+          desc: "Because crosslinking relies on reversible ionic bridges rather than covalent wet-strength plastics, coated fibers are designed to disperse cleanly under neutral OCC-E and alkaline mill-broke repulping."
         }
       ];
 
@@ -1714,22 +1441,23 @@
         }
         ctx.fillStyle = "#451a03";
         ctx.font = "bold 13px system-ui, sans-serif";
-        ctx.fillText("Smooth MG Kraft / SBS Board (Rq <= 1.25 µm) or Die-Ironed Molded Fiber (Rq ~ 1.8 µm)", 18, 395);
+        ctx.fillText("Cellulosic Substrate: Folding Boxboard / Kraft or Die-Ironed Molded Fiber", 18, 395);
 
-        // Exposed fiber whiskers if Rq too high
-        if (currentMetrics.rqUm >= 2.2 && currentMetrics.pinPct >= 0.08) {
+        // Exposed fiber whiskers if roughness exceeds coverage
+        if (currentState.roughCoverageRisk) {
           ctx.strokeStyle = "#92400e";
           ctx.lineWidth = 2;
           for (let x = 45; x < w - 30; x += 62) {
-            const wh = Math.min(95, (currentMetrics.rqUm - 1.2) * 22);
+            const wh = Math.min(95, Math.max(24, (currentState.rqUm - 0.8) * 24));
             ctx.beginPath(); ctx.moveTo(x, 315); ctx.lineTo(x + 6, 315 - wh); ctx.stroke();
           }
         }
 
-        // Single-pass Barrier Layer
-        const skinCrash = currentMetrics.panSkin > 12.0 || currentMetrics.brookfieldCp > 1200;
-        const co2Trap = currentMetrics.mineral === "CaCO3";
+        const skinCrash = currentState.hardWaterCrash;
+        const co2Trap = currentState.carbonateGas;
+        const pinholeRisk = currentState.roughCoverageRisk || currentState.coarseProtrusion || co2Trap;
         const layerTop = activeStage === 4 ? 190 + Math.sin(phase * 0.08) * 6 : 155;
+
         ctx.fillStyle = activeStage === 0
           ? (skinCrash ? "#fecaca" : "#dbeafe")
           : (activeStage === 4 ? "rgba(209, 250, 229, 0.58)" : "#d1fae5");
@@ -1738,7 +1466,7 @@
         ctx.lineWidth = 2;
         ctx.strokeRect(0, layerTop, w, 315 - layerTop);
 
-        // Platy Kaolin bricks
+        // Platy mineral bricks
         ctx.fillStyle = "#64748b";
         for (let row = 0; row < 3; row++) {
           const yBrick = layerTop + 36 + row * 34;
@@ -1749,17 +1477,20 @@
           }
         }
 
-        // TCP vs PCC or Ca-Alginate Junctions
+        // Latent trigger particles or ionic junctions
         for (let x = 55; x < w - 40; x += 88) {
           const yNode = layerTop + 56 + ((x / 88) % 2) * 38;
           if (activeStage <= 1) {
-            ctx.beginPath(); ctx.arc(x, yNode, 9, 0, Math.PI * 2);
-            ctx.fillStyle = skinCrash ? "#dc2626" : "#2563eb"; ctx.fill();
+            const rNode = currentState.coarseProtrusion ? 15 : 9;
+            ctx.beginPath(); ctx.arc(x, yNode, rNode, 0, Math.PI * 2);
+            ctx.fillStyle = skinCrash ? "#dc2626" : (currentState.uncrosslinked ? "#94a3b8" : "#2563eb");
+            ctx.fill();
             ctx.strokeStyle = "#1e3a8a"; ctx.lineWidth = 1.5; ctx.stroke();
             ctx.fillStyle = "#ffffff"; ctx.font = "bold 8px monospace";
-            ctx.fillText(co2Trap ? "PCC" : "TCP", x - 8, yNode + 3);
+            const tag = currentState.uncrosslinked ? "NONE" : (co2Trap ? "CO3" : "PO4");
+            ctx.fillText(tag, x - 9, yNode + 3);
           } else if (activeStage === 2 || activeStage === 3) {
-            if (currentMetrics.curePct >= 75) {
+            if (!currentState.lowCure) {
               ctx.strokeStyle = "#1d4ed8"; ctx.lineWidth = 3;
               ctx.beginPath(); ctx.moveTo(x - 24, yNode); ctx.lineTo(x + 24, yNode); ctx.stroke();
               ctx.beginPath(); ctx.arc(x, yNode, 6, 0, Math.PI * 2);
@@ -1770,7 +1501,7 @@
             if (co2Trap && activeStage === 2) {
               const lift = (phase * 1.9 + x) % 58;
               ctx.beginPath(); ctx.arc(x + 14, yNode - lift, 8, 0, Math.PI * 2);
-              ctx.fillStyle = "rgba(220,38,38,0.8)"; ctx.fill();
+              ctx.fillStyle = "rgba(220,38,38,0.82)"; ctx.fill();
               ctx.fillStyle = "#ffffff"; ctx.font = "bold 7.5px monospace";
               ctx.fillText("CO2", x + 6, yNode - lift + 3);
             }
@@ -1787,43 +1518,55 @@
           ctx.fillStyle = skinCrash ? "#991b1b" : "#1e3a8a";
           ctx.fillText(
             skinCrash
-              ? "ALERT: Premature Gelation / Open-Air Pan Skin (" + currentMetrics.panSkin.toFixed(1) + "% | " + Math.round(currentMetrics.brookfieldCp) + " cP)!"
-              : "Stable Cold Tap-Water Kitchen (pH 8.8): DAP Clamps Free Ca2+ (<0.01 mM), Viscosity ~" + Math.round(currentMetrics.brookfieldCp) + " cP",
+              ? "CONCEPTUAL TRAP: Hard-Water Ion Premature Gelation / Open-Pan Skinning Risk"
+              : "Target Cold-Mix Pot: Phosphate Suppression Maintains Fluidity in Ambient Tap Water",
             20, 36
           );
         } else if (activeStage === 1) {
-          ctx.fillStyle = "#065f46";
-          ctx.fillText("Single-Pass #12 Meyer Rod Coat (" + currentMetrics.coatGsm.toFixed(1) + " g/m² dry) — Zero Pass-1 Primer Required on Smooth Board", 20, 36);
+          ctx.fillStyle = currentState.roughCoverageRisk ? "#991b1b" : "#065f46";
+          ctx.fillText(
+            currentState.roughCoverageRisk
+              ? "COVERAGE WARNING: Substrate Roughness Exceeds Film Thickness — Pinholing Risk"
+              : "Single-Pass Waterborne Application (" + currentState.coatGsm.toFixed(1) + " g/m² target dry coat weight)",
+            20, 36
+          );
         } else if (activeStage === 2) {
-          ctx.fillStyle = co2Trap ? "#991b1b" : "#b45309";
+          ctx.fillStyle = co2Trap ? "#991b1b" : (currentState.lowCure ? "#b45309" : "#065f46");
           ctx.fillText(
             co2Trap
-              ? "CO2 VOLCANO FAILURE: Carbonate Evolves Gas Bubbles -> Crater Pinholes (" + currentMetrics.pinPct.toFixed(2) + "%)!"
-              : "125°C Forced-Air Cure: Phosphate Acid Switch Dissolves Micron TCP with ZERO CO2 Evolution -> " + currentMetrics.curePct.toFixed(0) + "% Cure",
+              ? "CARBONATE TRAP: Thermal Acidification Releases CO2 Bubbles -> Crater Pinholes"
+              : (currentState.lowCure
+                ? "INCOMPLETE CURE: Increase Thermal Energy or Restore Latent Phosphate Trigger"
+                : "Thermal Cure: Phosphate Trigger Forms Ionic Crosslinks with Zero CO2 Evolution"),
             20, 36
           );
         } else if (activeStage === 3) {
-          ctx.fillStyle = currentMetrics.pinPct >= 0.08 ? "#991b1b" : "#065f46";
-          ctx.fillText("180° Crease + 60°C Oil + 90°C Food Check: Cobb60 = " + currentMetrics.cobb60.toFixed(1) + " | Crease Kit = " + currentMetrics.kitCrease.toFixed(1), 20, 36);
+          ctx.fillStyle = pinholeRisk ? "#991b1b" : "#065f46";
+          ctx.fillText(
+            pinholeRisk
+              ? "BARRIER DEFECT RISK: Pinholes or Coarse Protrusions Compromise Fold & Oil Resistance"
+              : "180° Fold & Hot-Oil Target: Sub-CPVC Platy Film + Slip Dispersion Resist Wicking",
+            20, 36
+          );
           for (let x = 110; x < w - 80; x += 130) {
             ctx.beginPath(); ctx.arc(x, layerTop - 12, 15, Math.PI, 0); ctx.closePath();
             ctx.fillStyle = "#f59e0b"; ctx.fill(); ctx.strokeStyle = "#b45309"; ctx.stroke();
           }
-          if (currentMetrics.pinPct >= 0.08) {
+          if (pinholeRisk) {
             ctx.fillStyle = "rgba(220, 38, 38, 0.85)";
             ctx.fillRect(365, layerTop, 16, 315 - layerTop);
-            ctx.fillStyle = "#ffffff"; ctx.fillText("OIL WICKING PINHOLE!", 390, layerTop + 45);
+            ctx.fillStyle = "#ffffff"; ctx.fillText("PINHOLE PATHWAY", 390, layerTop + 45);
           }
         } else {
           ctx.fillStyle = "#0e7490";
-          ctx.fillText("pH 10.0 Mill Repulper (1% Na2CO3 + Citrate, 50°C): Complete Ionic Unzip (<1.0 wt% Rejects)", 20, 36);
+          ctx.fillText("Circular Fiber Recovery: Reversible Ionic Network Unzips in Neutral & Alkaline Repulpers", 20, 36);
         }
 
-        ctx.fillStyle = "rgba(255, 255, 255, 0.90)";
-        ctx.fillRect(14, layerTop + 4, 595, 22);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.92)";
+        ctx.fillRect(14, layerTop + 4, 625, 22);
         ctx.fillStyle = "#065f46";
         ctx.font = "bold 11.5px system-ui, sans-serif";
-        ctx.fillText("SLIP-NET v8.0 Layer: Platy Kaolin + ULV Alginate + Micron TCP/DCPD + Ca-Stearate + DAP (+ Opt. CWS Starch)", 20, layerTop + 19);
+        ctx.fillText("SLIP-NET™ Architecture: Platy Mineral + Seaweed Biopolymer + Phosphate Trigger + Aqueous Slip Dispersion", 20, layerTop + 19);
       }
 
       function tick() {
@@ -1834,163 +1577,125 @@
       }
 
       // ---------------------------------------------------------------------
-      // 4. Stress Diagnostic Tab Canvases (Exact v8.0 Physics Plots)
+      // 4. Tab 2 Canvases (Non-Confidential Architecture & Failure-Mode Visuals)
       // ---------------------------------------------------------------------
-      function drawPlotFrame(c, titleX, titleY, xMinLbl, xMaxLbl, yMinLbl, yMaxLbl) {
-        const g = c.getContext("2d");
-        const w = c.width, h = c.height;
-        g.clearRect(0, 0, w, h);
-        g.fillStyle = "#ffffff"; g.fillRect(0, 0, w, h);
-        const padL = 56, padR = 16, padT = 18, padB = 36;
-        const pw = w - padL - padR, ph = h - padT - padB;
-        g.strokeStyle = "#e2e8f0"; g.lineWidth = 1;
-        for (let i = 0; i <= 4; i++) {
-          const yy = padT + (ph * i) / 4;
-          g.beginPath(); g.moveTo(padL, yy); g.lineTo(w - padR, yy); g.stroke();
-        }
-        g.strokeStyle = "#334155"; g.lineWidth = 1.5;
-        g.beginPath(); g.moveTo(padL, padT); g.lineTo(padL, padT + ph); g.lineTo(w - padR, padT + ph); g.stroke();
-        g.fillStyle = "#334155"; g.font = "11px system-ui, sans-serif";
-        g.fillText(titleX, padL + pw * 0.32, h - 8);
-        g.fillText(xMinLbl, padL, h - 20);
-        g.fillText(xMaxLbl, w - padR - 42, h - 20);
-        g.fillText(yMaxLbl, 6, padT + 10);
-        g.fillText(yMinLbl, 6, padT + ph);
-        g.fillText(titleY, 6, padT + ph * 0.52);
-        return { g, padL, padT, pw, ph };
-      }
-
-      function drawAllStressCharts() {
-        // Chart A: Open-Air Free [Ca2+] Speciation vs pH
-        const cA = document.getElementById("chartSpeciation");
+      function drawAllScorecardCharts() {
+        // Chart A: Qualitative Architecture Comparison across 5 Gates
+        const cA = document.getElementById("chartCompare");
         if (cA) {
-          const { g, padL, padT, pw, ph } = drawPlotFrame(cA, "Slurry / Film pH (4 -> 9.3)", "Log [Ca]", "pH 4", "pH 9.3", "1e-4", "1e+2 mM");
-          // Tank safe window pH 8.4-9.3
-          g.fillStyle = "rgba(16, 185, 129, 0.14)";
-          g.fillRect(padL + ((8.4 - 4.0) / 5.3) * pw, padT, ((9.3 - 8.4) / 5.3) * pw, ph);
-          // 0.08 mM threshold
-          const yTh = padT + ph * (1 - (Math.log10(0.08) + 4) / 6.0);
-          g.strokeStyle = "#dc2626"; g.setLineDash([5, 4]);
-          g.beginPath(); g.moveTo(padL, yTh); g.lineTo(padL + pw, yTh); g.stroke(); g.setLineDash([]);
+          const g = cA.getContext("2d");
+          const w = cA.width, h = cA.height;
+          g.clearRect(0, 0, w, h);
+          g.fillStyle = "#ffffff"; g.fillRect(0, 0, w, h);
 
-          const specs = [
-            { col: "#dc2626", lbl: "CaCO3 + 0.3% SHMP (Pan Skin!)", min: "CaCO3", caWt: 3.0, shmp: 0.3, dap: 0.0 },
-            { col: "#2563eb", lbl: "DCPD Brushite + 2.0% DAP", min: "CaHPO4", caWt: 7.5, shmp: 0.0, dap: 2.0 },
-            { col: "#059669", lbl: "Micron TCP + 2.0% DAP (<0.001 mM)", min: "Ca3(PO4)2", caWt: 5.2, shmp: 0.0, dap: 2.0 }
+          const padL = 132, padR = 16, padT = 38, padB = 22;
+          const pw = w - padL - padR, ph = h - padT - padB;
+          const rows = [
+            "PFAS / Plastic Free",
+            "Tap-Water Pot Life",
+            "Zero-CO2 Thermal Cure",
+            "180° Crease Integrity",
+            "Mill Repulpability"
           ];
-          specs.forEach((sp, idx) => {
-            g.strokeStyle = sp.col; g.lineWidth = 2.3; g.beginPath();
-            for (let p = 4.0; p <= 9.31; p += 0.25) {
-              const r = speciateTank({ mineral: sp.min, ph: p, solidsFrac: 0.30, algWt: 15.5, caSaltWt: sp.caWt, shmpWt: sp.shmp, dapWt: sp.dap, tapPpm: 150, kaolinWt: 51, openToAir: true });
-              const lv = Math.max(-4, Math.min(2, Math.log10(Math.max(1e-4, r.caFreeMM))));
-              const px = padL + ((p - 4.0) / 5.3) * pw;
-              const py = padT + ph * (1 - (lv + 4) / 6.0);
-              if (p === 4.0) g.moveTo(px, py); else g.lineTo(px, py);
-            }
-            g.stroke();
-            g.fillStyle = sp.col; g.font = "bold 10px monospace";
-            g.fillText(sp.lbl, padL + 10, padT + ph - 46 + idx * 14);
-          });
-        }
-
-        // Chart B: 125C Kinetic Trajectory (TCP vs PCC CO2)
-        const cB = document.getElementById("chartKinetics");
-        if (cB) {
-          const { g, padL, padT, pw, ph } = drawPlotFrame(cB, "125°C Oven Time (0 -> 30 s)", "% / µm", "0 s", "30 s", "0", "100");
-          const trTcp = simulateV70(Object.assign({}, GRADES.mill6_nh4, { mineral: "Ca3(PO4)2", mineral_wt: 5.2, d50_nm: 550, dap_wt: 2.0, t_oven_c: 125, oven_s: 30 }), true).trace;
-          const trPcc = simulateV70(Object.assign({}, GRADES.mill6_nh4, { mineral: "CaCO3", mineral_wt: 3.0, d50_nm: 450, dap_wt: 4.5, t_oven_c: 125, oven_s: 30, coat_gsm: 8.5 }), true).trace;
-
-          const drawLine = (pts, key, col, dash) => {
-            g.strokeStyle = col; g.lineWidth = 2.3; g.setLineDash(dash || []); g.beginPath();
-            pts.forEach((pt, i) => {
-              const px = padL + (pt.t / 30.0) * pw;
-              const py = padT + ph * (1 - Math.min(100, pt[key]) / 100.0);
-              if (i === 0) g.moveTo(px, py); else g.lineTo(px, py);
-            });
-            g.stroke(); g.setLineDash([]);
-          };
-          drawLine(trTcp, "cure", "#059669");
-          drawLine(trTcp, "solids", "#2563eb", [5, 4]);
-          drawLine(trPcc, "co2Um", "#dc2626");
-          drawLine(trTcp, "co2Um", "#16a34a", [2, 3]);
-
-          g.fillStyle = "rgba(255,255,255,0.92)";
-          g.fillRect(padL + pw - 210, padT + 46, 202, 64);
-          const leg = [
-            { col: "#059669", txt: "TCP+DAP Cure (100%)" },
-            { col: "#2563eb", txt: "Solids % (30 -> 96%)" },
-            { col: "#dc2626", txt: "CaCO3 CO2 Gas Blisters" },
-            { col: "#16a34a", txt: "TCP Zero-CO2 (0.0 µm)" }
+          const series = [
+            { name: "PFAS", col: "#94a3b8", scores: [0.05, 0.9, 0.9, 0.9, 0.25] },
+            { name: "PE / Latex", col: "#64748b", scores: [0.05, 0.9, 0.9, 0.9, 0.15] },
+            { name: "Carbonate Bio", col: "#dc2626", scores: [0.95, 0.25, 0.2, 0.45, 0.75] },
+            { name: "SLIP-NET Target", col: "#059669", scores: [1.0, 0.92, 1.0, 0.9, 0.95] }
           ];
-          leg.forEach((l, i) => {
-            g.fillStyle = l.col; g.font = "bold 10px monospace";
-            g.fillText(l.txt, padL + pw - 204, padT + 60 + i * 14);
-          });
-        }
 
-        // Chart C: 10/10 Ablation & Pitfall Proof
-        const cC = document.getElementById("chartAblation");
-        if (cC) {
-          const { g, padL, padT, pw, ph } = drawPlotFrame(cC, "10/10 Ablation & Trap Controls (v8.0 Gate Check)", "Gate", "", "", "0", "100%");
-          const bars = [
-            { lbl: "M1", val: 96.3, ok: true, note: "OK" },
-            { lbl: "M3", val: 100.0, ok: true, note: "OK" },
-            { lbl: "-Alg", val: 14, ok: false, note: "87k" },
-            { lbl: "-Kao", val: 24, ok: false, note: "22k" },
-            { lbl: "-CaS", val: 18, ok: false, note: "K0" },
-            { lbl: "-TCP", val: 16, ok: false, note: "C1" },
-            { lbl: "-DAP", val: 16, ok: false, note: "C2" },
-            { lbl: "DAC", val: 12, ok: false, note: "61" },
-            { lbl: "DE2", val: 10, ok: false, note: "66" },
-            { lbl: "6.5D", val: 13, ok: false, note: "51" },
-            { lbl: "Gran", val: 20, ok: false, note: "Fr11" },
-            { lbl: "8um", val: 11, ok: false, note: "K0" }
-          ];
-          const bw = (pw / bars.length) * 0.68;
-          bars.forEach((b, i) => {
-            const bx = padL + (i + 0.5) * (pw / bars.length) - bw / 2;
-            const bh = (b.val / 100) * ph;
-            g.fillStyle = b.ok ? "#059669" : "#ef4444";
-            g.fillRect(bx, padT + ph - bh, bw, bh);
-            g.fillStyle = b.ok ? "#064e3b" : "#991b1b";
-            g.font = "bold 8px monospace";
-            g.fillText(b.note, bx, padT + ph - bh - 5);
+          // Legend
+          series.forEach((s, idx) => {
+            const lx = 14 + idx * 124;
+            g.fillStyle = s.col;
+            g.fillRect(lx, 12, 11, 11);
             g.fillStyle = "#0f172a";
-            g.fillText(b.lbl, bx, padT + ph + 13);
+            g.font = "bold 10px system-ui, sans-serif";
+            g.fillText(s.name, lx + 15, 21);
+          });
+
+          const rowH = ph / rows.length;
+          rows.forEach((lbl, rIdx) => {
+            const yBase = padT + rIdx * rowH;
+            g.fillStyle = "#1e293b";
+            g.font = "bold 11px system-ui, sans-serif";
+            g.fillText(lbl, 10, yBase + rowH * 0.56);
+
+            g.strokeStyle = "#e2e8f0";
+            g.beginPath(); g.moveTo(padL, yBase + rowH - 2); g.lineTo(w - padR, yBase + rowH - 2); g.stroke();
+
+            series.forEach((s, sIdx) => {
+              const barH = (rowH - 12) / series.length;
+              const by = yBase + 4 + sIdx * barH;
+              const bw = Math.max(4, s.scores[rIdx] * pw);
+              g.fillStyle = s.col;
+              g.fillRect(padL, by, bw, barH - 2);
+            });
           });
         }
 
-        // Chart D: N=2,500 9-Gate Monte Carlo Pass Rates
-        const cD = document.getElementById("chartMonteCarlo");
-        if (cD) {
-          const { g, padL, padT, pw, ph } = drawPlotFrame(cD, "Candidate System (N=2,500 Dual-Line MC)", "Pass %", "", "", "0%", "100%");
-          const mcBars = [
-            { lbl: "C0:Old", val: 0.0, col: "#dc2626" },
-            { lbl: "M1:MVP5+", val: 96.28, col: "#059669" },
-            { lbl: "M2:Hybrid", val: 96.68, col: "#059669" },
-            { lbl: "M3:MILL+", val: 99.96, col: "#047857" },
-            { lbl: "M4:MILLNa", val: 99.92, col: "#047857" },
-            { lbl: "M5:10s", val: 81.20, col: "#0284c7" }
+        // Chart B: 4 Failure Traps vs SLIP-NET Counter-Mechanisms
+        const cB = document.getElementById("chartTraps");
+        if (cB) {
+          const g = cB.getContext("2d");
+          const w = cB.width, h = cB.height;
+          g.clearRect(0, 0, w, h);
+          g.fillStyle = "#ffffff"; g.fillRect(0, 0, w, h);
+
+          const traps = [
+            { trap: "1. Hard-Water Pan Skin", fix: "Phosphate Ion Suppression" },
+            { trap: "2. Carbonate CO2 Blisters", fix: "Zero-Gas Phosphate Trigger" },
+            { trap: "3. Over-CPVC Fold Crack", fix: "Platy Sub-CPVC + Slip" },
+            { trap: "4. Wet-Strength Rejects", fix: "Reversible Ionic Bridges" }
           ];
-          const bw = (pw / mcBars.length) * 0.58;
-          mcBars.forEach((b, i) => {
-            const bx = padL + (i + 0.5) * (pw / mcBars.length) - bw / 2;
-            const bh = (b.val / 100) * ph;
-            g.fillStyle = b.col;
-            g.fillRect(bx, padT + ph - bh, bw, bh);
-            g.fillStyle = "#0f172a"; g.font = "bold 9px monospace";
-            const pctLbl = (b.val > 0 && b.val < 100) ? b.val.toFixed(2) + "%" : b.val.toFixed(1) + "%";
-            g.fillText(pctLbl, bx - 4, padT + ph - bh - 5);
-            g.fillText(b.lbl, bx - 3, padT + ph + 13);
+
+          g.fillStyle = "#991b1b";
+          g.font = "bold 11px system-ui, sans-serif";
+          g.fillText("CONVENTIONAL FAILURE TRAP", 16, 22);
+          g.fillStyle = "#065f46";
+          g.fillText("SLIP-NET™ COUNTER-MECHANISM", 274, 22);
+
+          traps.forEach((item, idx) => {
+            const y = 36 + idx * 58;
+            // Left box
+            g.fillStyle = "#fef2f2";
+            g.strokeStyle = "#fca5a5";
+            g.lineWidth = 1.5;
+            g.fillRect(14, y, 212, 44);
+            g.strokeRect(14, y, 212, 44);
+            g.fillStyle = "#7f1d1d";
+            g.font = "bold 11.5px system-ui, sans-serif";
+            g.fillText(item.trap, 24, y + 26);
+
+            // Arrow
+            g.strokeStyle = "#059669";
+            g.lineWidth = 2.5;
+            g.beginPath();
+            g.moveTo(232, y + 22);
+            g.lineTo(264, y + 22);
+            g.lineTo(257, y + 16);
+            g.moveTo(264, y + 22);
+            g.lineTo(257, y + 28);
+            g.stroke();
+
+            // Right box
+            g.fillStyle = "#ecfdf5";
+            g.strokeStyle = "#6ee7b7";
+            g.lineWidth = 1.5;
+            g.fillRect(272, y, 234, 44);
+            g.strokeRect(272, y, 234, 44);
+            g.fillStyle = "#064e3b";
+            g.font = "bold 11.5px system-ui, sans-serif";
+            g.fillText(item.fix, 282, y + 26);
           });
         }
       }
 
       window.addEventListener("resize", () => {
-        if (document.getElementById("tab-stress").getAttribute("aria-selected") === "true") drawAllStressCharts();
+        if (document.getElementById("tab-stress").getAttribute("aria-selected") === "true") drawAllScorecardCharts();
       });
 
-      computePhysics();
+      evaluateConceptualState();
       renderScene(0);
       if (isPlaying) requestAnimationFrame(tick);
     })();
