@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>SLIP-NET™ — Non-Confidential Barrier Architecture &amp; Evaluation Overview | SurplusDocket</title>
+  <title>SLIP-NET™ V3 — Non-Confidential Barrier Architecture &amp; Evaluation Overview | SurplusDocket</title>
   <style>
     @layer base, layout, components, utilities;
 
@@ -158,7 +158,7 @@
 
       .failure-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 0.85rem;
         margin-block-start: 1rem;
       }
@@ -764,24 +764,24 @@
   <header class="site-header">
     <div class="header-inner">
       <div>
-        <p class="brand-eyebrow">SLIP-NET™ • Patent-Pending Barrier Architecture • Zero-Plastic</p>
-        <h1>Phosphate-Triggered Biopolymer–Mineral Barrier Architecture</h1>
+        <p class="brand-eyebrow">SLIP-NET™ V3 • Patent-Pending Barrier Architecture • 100% Latex-Free &amp; Zero-Plastic</p>
+        <h1>Two-Zone Phosphate-Triggered Biopolymer–Mineral–Wax Barrier Architecture</h1>
         <p class="header-sub">
-          Cold-mix waterborne, non-nano (&gt;150 nm) cellulosic barrier concept designed for ambient municipal tap-water stability, zero-CO₂ thermal curing, ductile 180° crease integrity, and circular fiber repulpability.
+          Cold-mix waterborne, non-nano (&gt;150 nm), 100% latex-free (zero synthetic or natural rubber latex) cellulosic barrier concept engineered for ambient municipal tap-water stability, two-zone humidified zero-CO₂ cure + dry carnauba melt-coalescence (Tm ~ 80–88°C), ductile 180° crease integrity, and 52°C OCC-E circular repulpability.
         </p>
       </div>
       <div class="badge-strip" aria-label="Architecture Highlights">
         <span class="status-pill">U.S. App. No. 64/199,413</span>
-        <span class="status-pill">PFAS-Free</span>
-        <span class="status-pill">Cold-Mix Waterborne</span>
-        <span class="status-pill">Evaluation Under NDA</span>
+        <span class="status-pill">PFAS-Free &amp; 100% Latex-Free</span>
+        <span class="status-pill">Single-Pass &amp; Two-Pass Tracks</span>
+        <span class="status-pill">Evaluation Under $0 NDA</span>
       </div>
     </div>
   </header>
 
   <main id="main-content" class="main-shell" tabindex="-1">
     <div class="caveat-banner" role="note">
-      <strong>Technical Disclosure &amp; Evaluation Status:</strong> SLIP-NET™ is a patent-pending (<code>U.S. App. No. 64/199,413</code>) computational and conceptual barrier architecture ready for joint bench evaluation. Interactive diagrams and scorecards below illustrate qualitative process mechanics and target bench performance criteria—not completed physical lab test results. Exact batch recipes, mixing sequences, and commercial ingredient grades are provided exclusively under a Mutual NDA or standard CDA.
+      <strong>Technical Disclosure &amp; Evaluation Status:</strong> SLIP-NET™ V3 is a patent-pending (<code>U.S. App. No. 64/199,413</code>) computational and conceptual barrier architecture ready for joint bench evaluation. Interactive diagrams and scorecards below illustrate qualitative V3 process mechanics and target bench performance criteria—not completed physical lab test results. Exact formulations, stoichiometry, and the V3 bench protocol are provided exclusively under a $0 Mutual NDA or standard CDA.
     </div>
 
     <div class="tab-bar" role="tablist" aria-label="SLIP-NET Overview Views" focusgroup="tablist nomemory">
@@ -807,39 +807,60 @@
             <div class="stage-toolbar">
               <div class="stage-buttons" role="group" aria-label="Process Stage Selector">
                 <button type="button" class="stage-btn" data-stage="0" data-active="true">1. Cold Tap-Water Pot</button>
-                <button type="button" class="stage-btn" data-stage="1" data-active="false">2. Single-Pass Coat</button>
-                <button type="button" class="stage-btn" data-stage="2" data-active="false">3. Thermal Cure (Zero-CO₂)</button>
+                <button type="button" class="stage-btn" data-stage="1" data-active="false">2. Single / Two-Pass Coat</button>
+                <button type="button" class="stage-btn" data-stage="2" data-active="false">3. Two-Zone Cure &amp; Wax Melt</button>
                 <button type="button" class="stage-btn" data-stage="3" data-active="false">4. 180° Fold &amp; Hot Oil</button>
-                <button type="button" class="stage-btn" data-stage="4" data-active="false">5. Mill Repulpability</button>
+                <button type="button" class="stage-btn" data-stage="4" data-active="false">5. 52°C OCC-E Repulp</button>
               </div>
               <button type="button" id="toggleMotionBtn" class="motion-btn">Pause</button>
             </div>
 
             <div class="canvas-wrap">
-              <canvas id="stageCanvas" width="760" height="420" aria-label="Interactive cross-section diagram of SLIP-NET five-stage barrier architecture"></canvas>
+              <canvas id="stageCanvas" width="760" height="420" aria-label="Interactive cross-section diagram of SLIP-NET V3 five-stage barrier architecture"></canvas>
             </div>
 
             <div class="stage-caption" aria-live="polite">
-              <h3 id="stageTitle">Stage 1: Ambient Cold Tap-Water Dispersion (Latent Phosphate Suppression)</h3>
-              <p id="stageDesc">A food-grade phosphate buffer suppresses free calcium ion activity in ambient unsoftened tap water, keeping the biopolymer-mineral slurry pumpable with minimal open-pan skinning prior to coating.</p>
+              <h3 id="stageTitle">Stage 1: Ambient Cold Tap-Water Dispersion (Electrolyte-Stable Carnauba + Latent Trigger)</h3>
+              <p id="stageDesc">A food-grade calcium phosphate &amp; volatile-base latent trigger suppresses free calcium activity in ambient tap water, keeping the ultra-low-viscosity marine biopolymer, platy natural mineral, bio-based polyol plasticizer, and nonionic plant-based carnauba wax dispersion (Tm ~ 80–88°C) pumpable and electrolyte-stable.</p>
             </div>
 
             <div class="honest-scope-box">
-              <strong>Illustrative Conceptual Model — Exact Formulations &amp; Bench Protocol Provided Under Mutual NDA / Standard CDA.</strong>
-              This architecture targets folding cartons, bakery/pizza boxes, hot-food trays, and die-ironed molded fiber using cold-mix waterborne equipment. <strong>Application Scope:</strong> Continuous boiling high-salinity soups are excluded so reversible ionic crosslinks preserve circular repulpability.
+              <strong>Illustrative Conceptual Model — Exact Formulations, Stoichiometry &amp; V3 Bench Protocol Provided Under $0 Mutual NDA / Standard CDA.</strong>
+              SLIP-NET™ V3 is <strong>100% latex-free</strong> (zero synthetic and zero natural rubber latex) and supports both <strong>Single-Pass</strong> and <strong>Two-Pass Pure-Wax Topcoat</strong> evaluation tracks across folding cartons, bakery/pizza boxes, hot-food trays, and die-ironed molded fiber. <strong>Application Scope:</strong> Continuous boiling high-salinity soups are excluded so reversible ionic crosslinks preserve circular repulpability.
             </div>
           </section>
 
           <aside class="controls-panel" aria-label="Illustrative Process and Operating Controls">
-            <h2>Illustrative Conceptual Controls</h2>
-            <p class="model-disclaimer">Qualitative target behavior only — exact ratios &amp; recipes withheld pending NDA/CDA.</p>
+            <h2>Illustrative Conceptual Controls (V3)</h2>
+            <p class="model-disclaimer">Illustrative Conceptual Model — Exact Formulations, Stoichiometry &amp; V3 Bench Protocol Provided Under $0 Mutual NDA / Standard CDA.</p>
             <div class="preset-row" aria-label="Illustrative Operating Scenarios">
-              <button type="button" class="preset-btn safe" id="presetCarton">Target: Folding Carton</button>
-              <button type="button" class="preset-btn safe" id="presetHotFood">Target: Hot / Steaming Tray</button>
-              <button type="button" class="preset-btn safe" id="presetFastLine">Target: Fast 10s Line</button>
+              <button type="button" class="preset-btn safe" id="presetCarton">V3 Target: Single-Pass Mill Hood</button>
+              <button type="button" class="preset-btn safe" id="presetHotFood">V3 Target: Two-Pass Pure-Wax</button>
+              <button type="button" class="preset-btn safe" id="presetFastLine">V3 Target: Fast 10s Line</button>
+              <button type="button" class="preset-btn danger" id="presetDryOven">Trap: Dry Lab Oven Flash-Dry</button>
               <button type="button" class="preset-btn danger" id="presetCarbonate">Trap: Carbonate (CO₂ Gas)</button>
               <button type="button" class="preset-btn danger" id="presetUnbuffered">Trap: Unbuffered Tap Water</button>
               <button type="button" class="preset-btn danger" id="presetCoarse">Trap: Coarse Mineral / Rough</button>
+            </div>
+
+            <div class="control-item">
+              <div class="control-label-row">
+                <label for="selDryerMode">Drying Regime (Zone 1 Humidity vs. Dry Oven)</label>
+              </div>
+              <select id="selDryerMode">
+                <option value="twozone">Two-Zone Humidified / Mill-Hood Drying (V3 Pre-Cure + Wax Melt)</option>
+                <option value="dryoven">Dry Lab Oven Only (Premature Surface Skinning Risk)</option>
+              </select>
+            </div>
+
+            <div class="control-item">
+              <div class="control-label-row">
+                <label for="selPassTrack">Coating Evaluation Track</label>
+              </div>
+              <select id="selPassTrack">
+                <option value="single">Single-Pass Sub-CPVC Base Coat (100% Latex-Free)</option>
+                <option value="twopass">Two-Pass Track (Base Coat + Pure-Wax Topcoat)</option>
+              </select>
             </div>
 
             <div class="control-item">
@@ -858,7 +879,7 @@
                 <label for="selTrigger">Latent Crosslink Trigger Class</label>
               </div>
               <select id="selTrigger">
-                <option value="phosphate">Phosphate-Triggered Mineral (Zero CO₂, Non-Nano)</option>
+                <option value="phosphate">Calcium Phosphate &amp; Volatile-Base Trigger (Zero CO₂, Non-Nano)</option>
                 <option value="carbonate">Conventional Carbonate Mineral (CO₂ Evolution Risk)</option>
                 <option value="none">Uncrosslinked Control (No Latent Mineral)</option>
               </select>
@@ -869,7 +890,7 @@
                 <label for="selBuffer">Pot-Life Ion Suppression State</label>
               </div>
               <select id="selBuffer">
-                <option value="balanced">Balanced Phosphate Suppression (Target Window)</option>
+                <option value="balanced">Balanced Latent Suppression (Target Window)</option>
                 <option value="under">Under-Buffered (Hard-Water Gel / Skinning Risk)</option>
                 <option value="over">Excess Soluble Salt (Moisture-Unzipping Risk)</option>
               </select>
@@ -893,11 +914,11 @@
 
             <div class="control-item">
               <div class="control-label-row">
-                <label for="slOvenT">Drying Temp (°C) / Dwell Time (s)</label>
+                <label for="slOvenT">Zone 2 Peak Temp (°C) / Dwell Time (s)</label>
                 <output id="outOven" for="slOvenT">125 °C · 30 s</output>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-                <input type="range" id="slOvenT" aria-label="Drying temperature in degrees Celsius" min="95" max="185" step="5" value="125" />
+                <input type="range" id="slOvenT" aria-label="Zone 2 drying temperature in degrees Celsius" min="75" max="185" step="5" value="125" />
                 <input type="range" id="slOvenS" aria-label="Dryer dwell time in seconds" min="5" max="45" step="1" value="30" />
               </div>
             </div>
@@ -915,25 +936,25 @@
 
             <div class="kpi-grid">
               <div class="kpi-box">
-                <div class="kpi-title">Tank Stability</div>
-                <div class="kpi-num" id="kpiTank">Fluid / Low Skin</div>
+                <div class="kpi-title">Tank &amp; Wax Stability</div>
+                <div class="kpi-num" id="kpiTank">Fluid / Electrolyte-Safe</div>
               </div>
               <div class="kpi-box">
-                <div class="kpi-title">Thermal Cure &amp; Gas</div>
-                <div class="kpi-num" id="kpiCure">Crosslinked / 0 CO₂</div>
+                <div class="kpi-title">Two-Zone Cure &amp; Wax</div>
+                <div class="kpi-num" id="kpiCure">Ionic Cure + Wax Melt</div>
               </div>
               <div class="kpi-box">
-                <div class="kpi-title">Coverage &amp; 180° Fold</div>
-                <div class="kpi-num" id="kpiFold">Low Pinhole / Ductile</div>
+                <div class="kpi-title">Track &amp; 180° Fold</div>
+                <div class="kpi-num" id="kpiFold">Single-Pass Ductile</div>
               </div>
               <div class="kpi-box">
-                <div class="kpi-title">Repulpability Target</div>
-                <div class="kpi-num" id="kpiRepulp">Dual-Track Eligible</div>
+                <div class="kpi-title">52°C OCC-E Repulp</div>
+                <div class="kpi-num" id="kpiRepulp">Crystalline (&lt;84°C)</div>
               </div>
             </div>
 
             <div id="verdictBox" class="verdict-box verdict-pass" aria-live="polite">
-              ILLUSTRATIVE TARGET WINDOW: Ambient tap-water stability, zero-CO₂ thermal crosslinking, and ductile sub-CPVC coverage aligned for bench screening.
+              ILLUSTRATIVE TARGET WINDOW: Ambient tap-water stability, two-zone humidified zero-CO₂ cure + dry carnauba melt-coalescence, and ductile sub-CPVC coverage aligned for V3 bench screening.
             </div>
           </aside>
         </div>
@@ -943,91 +964,91 @@
     <!-- PANEL 2: INDUSTRY FAILURE MODES SOLVED & TECHNICAL EVALUATION SCORECARD -->
     <div role="tabpanel" id="panel-stress" aria-labelledby="tab-stress" hidden="until-found">
       <div class="panel-card">
-        <h2 style="margin-top:0;">Industry Failure Modes Solved &amp; Technical Evaluation Scorecard</h2>
+        <h2 style="margin-top:0;">Industry Failure Modes Solved &amp; Technical Evaluation Scorecard (SLIP-NET™ V3)</h2>
         <p style="margin-top:0;color:var(--ink-secondary);font-size:0.92rem;">
-          Non-confidential comparison of conventional barrier approaches against SLIP-NET™'s phosphate-triggered biopolymer–mineral architecture. All SLIP-NET™ entries reflect <strong>target bench performance criteria</strong> to be validated jointly under NDA.
+          Non-confidential comparison of conventional barrier approaches against SLIP-NET™ V3's <strong>100% latex-free</strong> (zero synthetic and zero natural rubber latex) two-zone phosphate-triggered biopolymer–mineral–carnauba architecture. All SLIP-NET™ V3 entries reflect <strong>target bench performance criteria</strong> to be validated jointly under NDA.
         </p>
 
         <div class="charts-grid">
           <div class="chart-card">
             <h3>A. Architecture Comparison Across 5 Industry Gate Criteria</h3>
-            <canvas id="chartCompare" width="520" height="285" aria-label="Qualitative comparison chart across PFAS, PE/latex, carbonate biopolymer, and SLIP-NET target criteria"></canvas>
-            <p class="chart-note"><strong>Illustrative Target Comparison:</strong> Conventional barriers force trade-offs between fluorochemical bans, plastic repulper rejects, or carbonate CO₂ blistering. SLIP-NET™ targets all five gates simultaneously.</p>
+            <canvas id="chartCompare" width="520" height="285" aria-label="Qualitative comparison chart across PFAS, PE/latex, carbonate biopolymer, and SLIP-NET V3 target criteria"></canvas>
+            <p class="chart-note"><strong>Illustrative Target Comparison:</strong> Conventional barriers force trade-offs between fluorochemical bans, plastic/latex repulper rejects, or carbonate CO₂ blistering. SLIP-NET™ V3 targets all five gates across Single-Pass and Two-Pass Pure-Wax Topcoat tracks.</p>
           </div>
 
           <div class="chart-card">
-            <h3>B. Failure Traps Eliminated by Phosphate-Triggered Architecture</h3>
-            <canvas id="chartTraps" width="520" height="285" aria-label="Conceptual schematic showing four conventional coating failure modes and SLIP-NET counter-mechanisms"></canvas>
-            <p class="chart-note"><strong>Architectural Differentiation:</strong> Replacing carbonate crosslinkers and synthetic wet-strength binders with a latent phosphate trigger avoids gas blistering while preserving reversible ionic repulpability.</p>
+            <h3>B. Failure Traps Eliminated by SLIP-NET™ V3 Architecture</h3>
+            <canvas id="chartTraps" width="520" height="285" aria-label="Conceptual schematic showing conventional coating failure modes and SLIP-NET V3 counter-mechanisms"></canvas>
+            <p class="chart-note"><strong>Architectural Differentiation:</strong> Combining a two-zone humidified pre-cure with nonionic plant-based carnauba wax (Tm ~ 80–88°C) avoids dry-oven flash-skinning, CO₂ pinholes, and 52°C repulper stickies.</p>
           </div>
         </div>
 
         <div class="failure-grid" aria-label="Core Failure Modes Solved">
           <article class="failure-card">
-            <h3>1. Hard-Water Gelation &amp; Open-Pan Skinning</h3>
-            <p><strong>Conventional Trap:</strong> Ambient tap-water hardness (Ca²⁺/Mg²⁺) and atmospheric CO₂ shifts trigger premature alginate skinning in open coating pans.<br /><strong>SLIP-NET™ Approach:</strong> Food-grade phosphate buffering suppresses free Ca²⁺ in the wet pot without unstable polyphosphate hydrolysis traps.</p>
+            <h3>1. Hard-Water Gelation &amp; Pot Instability</h3>
+            <p><strong>Conventional Trap:</strong> Ambient tap-water hardness (Ca²⁺/Mg²⁺) and ionic emulsions trigger premature gelation and open-pan skinning.<br /><strong>SLIP-NET™ V3 Approach:</strong> Food-grade calcium phosphate &amp; volatile-base latent trigger suppresses free Ca²⁺ while nonionic plant-based carnauba wax dispersion remains electrolyte-stable.</p>
           </article>
           <article class="failure-card">
-            <h3>2. Thermal CO₂ Blistering &amp; Crater Pinholes</h3>
-            <p><strong>Conventional Trap:</strong> Carbonate crosslinkers evolve CO₂ gas during acidic thermal drying, creating micro-volcanoes and oil-wicking craters.<br /><strong>SLIP-NET™ Approach:</strong> Phosphate-based latent mineral dissolution supplies Ca²⁺ ions cleanly upon drying with zero gas evolution.</p>
+            <h3>2. Dry-Oven Flash-Skinning &amp; CO₂ Blisters</h3>
+            <p><strong>Conventional Trap:</strong> Dry lab-oven flash-drying forms a surface skin that halts ionic transport, while carbonates evolve CO₂ craters.<br /><strong>SLIP-NET™ V3 Approach:</strong> Two-Zone Humidified Pre-Cure matches paper-mill dryer-hood humidity for clean zero-CO₂ ionic crosslinking prior to dry carnauba melt-coalescence.</p>
           </article>
           <article class="failure-card">
             <h3>3. 180° Score-Line Crease Cracking</h3>
-            <p><strong>Conventional Trap:</strong> Over-pigmented mineral barriers above CPVC crack along folded carton scores, collapsing grease Kit resistance.<br /><strong>SLIP-NET™ Approach:</strong> Platy pigment geometry below CPVC combined with an aqueous slip dispersion maintains ductile fold integrity.</p>
+            <p><strong>Conventional Trap:</strong> Over-pigmented mineral barriers above CPVC crack along folded carton scores, collapsing grease Kit resistance.<br /><strong>SLIP-NET™ V3 Approach:</strong> Platy natural mineral below CPVC, bio-based polyol plasticizer, and melt-coalesced carnauba wax (Single-Pass or Two-Pass Pure-Wax Topcoat) maintain ductile fold integrity.</p>
           </article>
           <article class="failure-card">
-            <h3>4. Mill Repulper Rejects &amp; Microplastics</h3>
-            <p><strong>Conventional Trap:</strong> PE extrusion and synthetic latexes leave un-repulpable plastic flakes and covalent wet-strength rejects.<br /><strong>SLIP-NET™ Approach:</strong> Purely ionic crosslinking is designed to unzip in both neutral-pH recycling and alkaline mill-broke systems.</p>
+            <h3>4. Repulper Stickies, Latex &amp; Microplastics</h3>
+            <p><strong>Conventional Trap:</strong> PE, synthetic/natural latexes, and low-melting waxes smear into tacky rejects during warm repulping.<br /><strong>SLIP-NET™ V3 Approach:</strong> 100% latex-free ionic network unzips cleanly while high-melting carnauba wax (Tm ~ 80–88°C) remains a non-tacky crystalline solid at 52°C (52°C &lt; 84°C) in WMU OCC-E &amp; TAPPI T 275.</p>
           </article>
         </div>
 
         <div tabindex="0" role="region" aria-labelledby="cap-scorecard" class="table-wrapper" style="margin-block-start:1.15rem;">
           <table>
-            <caption id="cap-scorecard">Technical Evaluation Scorecard: Conventional Barriers vs. SLIP-NET™ Target Architecture (Target Bench Criteria)</caption>
+            <caption id="cap-scorecard">Technical Evaluation Scorecard: Conventional Barriers vs. SLIP-NET™ V3 Target Architecture (Target Bench Criteria)</caption>
             <thead>
               <tr>
                 <th scope="col">Evaluation Criterion</th>
                 <th scope="col">PFAS / Fluorochemical</th>
-                <th scope="col">PE / Synthetic Latex</th>
+                <th scope="col">PE / Synthetic or Natural Latex</th>
                 <th scope="col">Carbonate Biopolymer</th>
-                <th scope="col">SLIP-NET™ (Target Criteria)</th>
+                <th scope="col">SLIP-NET™ V3 (Target Criteria)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">PFAS &amp; Synthetic Plastic Free</th>
+                <th scope="row">PFAS &amp; 100% Latex-Free</th>
                 <td data-label="PFAS / Fluorochemical">Fails (fluorinated)</td>
-                <td data-label="PE / Synthetic Latex">Fails (synthetic polymer)</td>
+                <td data-label="PE / Synthetic Latex">Fails (synthetic or natural rubber latex)</td>
                 <td data-label="Carbonate Biopolymer">Passes (bio-based)</td>
-                <td data-label="SLIP-NET™ Target"><strong>Target Pass</strong> (0 PFAS, 0 latex)</td>
+                <td data-label="SLIP-NET™ V3 Target"><strong>Target Pass</strong> (0 PFAS, 0 synthetic &amp; 0 natural latex)</td>
               </tr>
               <tr>
-                <th scope="row">Cold Tap-Water Pot Stability</th>
+                <th scope="row">Cold Tap-Water &amp; Electrolyte Stability</th>
                 <td data-label="PFAS / Fluorochemical">Stable</td>
                 <td data-label="PE / Synthetic Latex">Stable</td>
                 <td data-label="Carbonate Biopolymer">Prone to open-pan skinning</td>
-                <td data-label="SLIP-NET™ Target"><strong>Target Pass</strong> (latent ion lock)</td>
+                <td data-label="SLIP-NET™ V3 Target"><strong>Target Pass</strong> (nonionic carnauba + latent trigger)</td>
               </tr>
               <tr>
-                <th scope="row">Zero-CO₂ Dryer Cure</th>
+                <th scope="row">Two-Zone Zero-CO₂ Cure &amp; Wax Melt</th>
                 <td data-label="PFAS / Fluorochemical">N/A (non-gas)</td>
-                <td data-label="PE / Synthetic Latex">N/A (film coalescence)</td>
-                <td data-label="Carbonate Biopolymer">CO₂ cratering / blistering risk</td>
-                <td data-label="SLIP-NET™ Target"><strong>Target Pass</strong> (zero CO₂ evolution)</td>
+                <td data-label="PE / Synthetic Latex">N/A (polymer coalescence)</td>
+                <td data-label="Carbonate Biopolymer">CO₂ cratering / dry-skin risk</td>
+                <td data-label="SLIP-NET™ V3 Target"><strong>Target Pass</strong> (humidified pre-cure + dry carnauba melt)</td>
               </tr>
               <tr>
                 <th scope="row">Flat &amp; 180° Crease Grease Barrier</th>
                 <td data-label="PFAS / Fluorochemical">High</td>
                 <td data-label="PE / Synthetic Latex">High</td>
                 <td data-label="Carbonate Biopolymer">Degrades at pinholes / folds</td>
-                <td data-label="SLIP-NET™ Target"><strong>Target Flat Kit ≥ 10; Crease Kit ≥ 8</strong></td>
+                <td data-label="SLIP-NET™ V3 Target"><strong>Target Flat Kit ≥ 10; Crease Kit ≥ 8</strong> (Single &amp; Two-Pass)</td>
               </tr>
               <tr>
-                <th scope="row">Dual-Track Fiber Repulpability</th>
+                <th scope="row">52°C OCC-E &amp; Alkaline Repulpability</th>
                 <td data-label="PFAS / Fluorochemical">Contaminates pulp</td>
-                <td data-label="PE / Synthetic Latex">High screen rejects</td>
+                <td data-label="PE / Synthetic Latex">High screen rejects / stickies</td>
                 <td data-label="Carbonate Biopolymer">Ionic (variable by binder)</td>
-                <td data-label="SLIP-NET™ Target"><strong>Target Pass</strong> (WMU OCC-E / FBA &amp; TAPPI T 275)</td>
+                <td data-label="SLIP-NET™ V3 Target"><strong>Target Pass</strong> (52°C &lt; 84°C crystalline wax; WMU OCC-E 0.010&quot; &amp; TAPPI T 275)</td>
               </tr>
             </tbody>
           </table>
@@ -1038,79 +1059,79 @@
     <!-- PANEL 3: NON-CONFIDENTIAL EVALUATION PROCESS & REGULATORY CLASS OVERVIEW -->
     <div role="tabpanel" id="panel-test" aria-labelledby="tab-test" hidden="until-found">
       <div class="panel-card">
-        <h2 style="margin-top:0;">Non-Confidential Evaluation Process &amp; Regulatory Class Overview</h2>
+        <h2 style="margin-top:0;">Non-Confidential V3 Evaluation Process &amp; Regulatory Class Overview</h2>
         <p style="margin-top:0;color:var(--ink-secondary);font-size:0.93rem;">
-          SLIP-NET™ is engineered for rapid laboratory and pilot screening using ambient municipal tap water, standard drawdown or metering-rod coaters, and conventional forced-air drying—with no thermal starch cooking or solvent recovery.
+          SLIP-NET™ V3 is <strong>100% latex-free</strong> (zero synthetic and zero natural rubber latex) and engineered for ambient tap-water mixing, standard drawdown or metering-rod coaters, and <strong>Two-Zone Humidified Pre-Cure + Dry Wax Melt-Coalescence</strong> matching paper-mill dryer-hood humidity—across both <strong>Single-Pass</strong> and <strong>Two-Pass Pure-Wax Topcoat</strong> evaluation tracks.
         </p>
 
         <div class="nda-cta-box" role="note">
-          <strong>Confidential Formulation &amp; Bench Protocol Access:</strong> Exact batch recipes, mixing sequence, and 15-minute bench screening matrix are provided immediately upon execution of a zero-cost Mutual NDA or your organization's standard CDA.
+          <strong>Confidential Formulation &amp; V3 Bench Protocol Access:</strong> Exact formulations, stoichiometry, commercial supplier grades, mixing sequences, and the V3 two-zone bench screening protocol are provided immediately upon execution of a $0 Mutual NDA or your organization's standard CDA.
         </div>
 
         <div class="protocol-grid">
           <div class="proto-box" style="background:#ecfdf5;border-color:#10b981;">
-            <h3>Non-Confidential Ingredient Classes</h3>
+            <h3>Non-Confidential V3 Ingredient Classes</h3>
             <ul style="padding-left:1.2rem;margin:0;font-size:0.88rem;">
-              <li><strong>Platy natural mineral pigment</strong> — non-nano platelet geometry (&gt;150 nm) engineered for barrier tortuosity and sub-CPVC fold ductility.</li>
-              <li><strong>Low-viscosity seaweed biopolymer</strong> — unmodified natural polysaccharide forming the percolating, ionically reversible barrier network.</li>
-              <li><strong>Food-grade phosphate latent trigger</strong> — non-gas-evolving calcium mineral and phosphate buffer system providing cold pot stability and thermal cure.</li>
-              <li><strong>Aqueous wax / fatty-acid dispersion</strong> — surface hydrophobicity, Cobb60 water resistance, and 180° score-line slip.</li>
-              <li><strong>Optional food-grade biopolymer co-binder &amp; polyol plasticizer</strong> — cold-water-compatible modifiers for cost optimization and extreme fold flexibility.</li>
+              <li><strong>Platy natural mineral</strong> — non-nano platelet geometry (&gt;150 nm) engineered for barrier tortuosity and sub-CPVC fold ductility.</li>
+              <li><strong>Ultra-low-viscosity marine biopolymer</strong> — unmodified natural seaweed polysaccharide forming the percolating, ionically reversible barrier network.</li>
+              <li><strong>Food-grade calcium phosphate &amp; volatile-base latent trigger</strong> — non-gas-evolving mineral and latent buffer system providing ambient pot stability and clean two-zone thermal cure.</li>
+              <li><strong>Nonionic plant-based carnauba wax dispersion (Tm ~ 80–88°C)</strong> — provides (a) electrolyte stability in the wet pot, (b) clean dry thermal melt-coalescence, and (c) crystalline solid-state non-stickiness during 52°C neutral-pH WMU OCC-E repulping (52°C &lt; 84°C).</li>
+              <li><strong>Bio-based polyol plasticizer</strong> — cold-water-compatible natural modifier enhancing 180° score-line flexibility and ductile matrix integrity.</li>
             </ul>
           </div>
 
           <div class="proto-box">
-            <h3>Joint Bench Evaluation Workflow</h3>
+            <h3>Joint V3 Bench Evaluation Workflow</h3>
             <ol style="padding-left:1.2rem;margin:0;font-size:0.88rem;">
-              <li><strong>NDA / CDA Execution:</strong> Sign a zero-cost Mutual NDA or provide your organization's standard CDA.</li>
-              <li><strong>Protocol Transfer:</strong> Receive exact formulations, supplier grade specifications, mixing sequence, and the 15-minute bench screening matrix.</li>
-              <li><strong>Cold-Mix Coating Trial:</strong> Prepare bench batches in ambient tap water and coat your target board or molded fiber via single-pass drawdown.</li>
-              <li><strong>Target Scorecard Verification:</strong> Validate grease resistance, Cobb60, 180° crease integrity, hot-food performance, and dual-track repulpability.</li>
+              <li><strong>NDA / CDA Execution:</strong> Sign a $0 Mutual NDA or provide your organization's standard CDA.</li>
+              <li><strong>V3 Protocol Transfer:</strong> Receive exact formulations, stoichiometry, supplier grade specs, and the Single-Pass &amp; Two-Pass Pure-Wax Topcoat bench protocol.</li>
+              <li><strong>Two-Zone Mill-Hood Emulation:</strong> Coat target board or molded fiber from cold tap water, apply Two-Zone Humidified Pre-Cure (avoiding dry-oven flash-skinning), and finish with dry carnauba melt-coalescence.</li>
+              <li><strong>Target Scorecard Verification:</strong> Evaluate grease Kit (flat &amp; 180° crease), Cobb60, hot-food resistance, and repulpability (WMU OCC-E 52°C / 0.010&quot; screen &amp; TAPPI T 275).</li>
             </ol>
           </div>
         </div>
 
         <div tabindex="0" role="region" aria-labelledby="cap-cfr" class="table-wrapper" style="margin-block-start:1.15rem;">
           <table>
-            <caption id="cap-cfr">Table 1: Regulatory Class Overview (FDA 21 CFR Reference Classes &amp; EU / BfR Alignment Notes)</caption>
+            <caption id="cap-cfr">Table 1: Regulatory Class Overview (21 CFR Reference Classes §§ 181.29, 182.1217, 184.1724, 184.1978, 186.1256 &amp; EU / BfR Alignment)</caption>
             <thead>
               <tr>
                 <th scope="col">Ingredient Class</th>
                 <th scope="col">FDA 21 CFR Reference Class</th>
                 <th scope="col">EU / German BfR Alignment &amp; Evaluation Notes</th>
-                <th scope="col">Functional Role in Architecture</th>
+                <th scope="col">Functional Role in SLIP-NET™ V3</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Platy natural mineral pigment</th>
-                <td data-label="FDA 21 CFR">§ 186.1256 (GRAS indirect food-contact class)</td>
-                <td data-label="EU / BfR">Non-nano mineral target (&gt;150 nm); BfR XXXVI mineral filler class. Final EU nanomaterial &amp; dispersant compliance depends on commercial grade selection during joint evaluation.</td>
+                <th scope="row">Platy natural mineral</th>
+                <td data-label="FDA 21 CFR">§ 186.1256 (GRAS indirect food-contact mineral class)</td>
+                <td data-label="EU / BfR">Non-nano mineral target (&gt;150 nm); BfR XXXVI mineral filler class. Final EU nanomaterial &amp; dispersant compliance evaluated by commercial grade under NDA.</td>
                 <td data-label="Role">Platelet barrier tortuosity and ductile film matrix engineered below CPVC</td>
               </tr>
               <tr>
-                <th scope="row">Low-viscosity seaweed biopolymer</th>
-                <td data-label="FDA 21 CFR">§§ 184.1133, 184.1724, 184.1011, 184.1139 (alginate classes)</td>
-                <td data-label="EU / BfR">Unmodified natural polysaccharide class. Final EU SUPD and BfR XXXVI status depends on commercial polymer grade and additive selection during joint evaluation.</td>
+                <th scope="row">Ultra-low-viscosity marine biopolymer</th>
+                <td data-label="FDA 21 CFR">§ 184.1724 (food-grade marine alginate class)</td>
+                <td data-label="EU / BfR">Unmodified natural polysaccharide class. Final EU SUPD and BfR XXXVI status depends on commercial polymer grade selected during joint evaluation.</td>
                 <td data-label="Role">Percolating Ca²⁺-crosslinked barrier network and reversible ionic repulpability</td>
               </tr>
               <tr>
-                <th scope="row">Food-grade phosphate latent trigger (mineral &amp; buffer)</th>
-                <td data-label="FDA 21 CFR">§§ 181.29, 182.1217, 184.1141(b) (calcium phosphate &amp; phosphate buffer classes)</td>
-                <td data-label="EU / BfR">Non-nano mineral target (&gt;150 nm); inorganic food-grade salt class. Final EU nanomaterial &amp; commercial grade compliance verified during joint evaluation.</td>
-                <td data-label="Role">Ambient tap-water Ca²⁺ suppression and zero-CO₂ thermal crosslinking trigger</td>
+                <th scope="row">Food-grade calcium phosphate &amp; volatile-base latent trigger</th>
+                <td data-label="FDA 21 CFR">§§ 181.29, 182.1217 (prior-sanctioned &amp; GRAS calcium phosphate / buffer classes)</td>
+                <td data-label="EU / BfR">Non-nano mineral target (&gt;150 nm); food-grade inorganic salt &amp; volatile-base class. Final EU grade compliance evaluated during joint screening.</td>
+                <td data-label="Role">Ambient tap-water Ca²⁺ suppression and zero-CO₂ two-zone thermal crosslinking trigger</td>
               </tr>
               <tr>
-                <th scope="row">Aqueous wax / fatty-acid dispersion</th>
-                <td data-label="FDA 21 CFR">§§ 184.1229, 184.1978 (fatty-acid salt &amp; natural wax classes)</td>
-                <td data-label="EU / BfR">BfR XXXVI release / moisture-barrier class. EU SUPD and surfactant/dispersant compliance depends on final commercial dispersion grade selected during joint evaluation.</td>
-                <td data-label="Role">Surface contact-angle moisture barrier, hot-food resistance, and 180° crease slip</td>
+                <th scope="row">Nonionic plant-based carnauba wax dispersion (Tm ~ 80–88°C)</th>
+                <td data-label="FDA 21 CFR">§ 184.1978 (natural carnauba wax class)</td>
+                <td data-label="EU / BfR">BfR XXXVI release / moisture-barrier wax class. EU SUPD and nonionic emulsifier compliance depends on final commercial dispersion grade selected under NDA.</td>
+                <td data-label="Role">Electrolyte-stable pot behavior, dry melt-coalescence seal, 180° crease slip, and crystalline non-stickiness at 52°C OCC-E repulping</td>
               </tr>
               <tr>
-                <th scope="row">Optional food-grade biopolymer co-binder &amp; polyol plasticizer</th>
-                <td data-label="FDA 21 CFR">§§ 184.1444, 172.892, 184.1835 (food-grade polysaccharide &amp; polyol classes)</td>
-                <td data-label="EU / BfR">Physically modified/unmodified co-binder &amp; polyol class. EU SUPD and BfR XXXVI compliance depends on final commercial grade and dispersant selection during joint evaluation.</td>
-                <td data-label="Role">Cold-water-compatible process economics and enhanced fold flexibility</td>
+                <th scope="row">Bio-based polyol plasticizer</th>
+                <td data-label="FDA 21 CFR">Food-grade GRAS polyol class (21 CFR food-contact aligned)</td>
+                <td data-label="EU / BfR">Bio-based unmodified polyol class aligned with BfR XXXVI plasticizer expectations; final grade evaluated during joint screening.</td>
+                <td data-label="Role">Cold-water-compatible matrix plasticization and 180° score-line ductility</td>
               </tr>
             </tbody>
           </table>
@@ -1118,7 +1139,7 @@
 
         <div tabindex="0" role="region" aria-labelledby="cap-targets" class="table-wrapper" style="margin-block-start:1.1rem;">
           <table>
-            <caption id="cap-targets">Table 2: Target Bench Performance Criteria (Joint Evaluation Scorecard)</caption>
+            <caption id="cap-targets">Table 2: Target Bench Performance Criteria &amp; Repulpability Table (Joint V3 Evaluation Scorecard)</caption>
             <thead>
               <tr>
                 <th scope="col">Test Standard / Protocol</th>
@@ -1128,34 +1149,39 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Pot Stability &amp; Open-Pan Skinning</th>
-                <td data-label="Condition">Ambient municipal tap-water batch, 8–24 hr open hold</td>
-                <td data-label="Target">Target pumpable coating viscosity window; minimal open-pan skinning</td>
+                <th scope="row">Pot Stability &amp; Electrolyte Compatibility</th>
+                <td data-label="Condition">Ambient municipal tap-water batch with nonionic carnauba dispersion, 8–24 hr hold</td>
+                <td data-label="Target">Target pumpable viscosity window; zero premature wax coagulation or open-pan skinning</td>
+              </tr>
+              <tr>
+                <th scope="row">Two-Zone Humidified Pre-Cure &amp; Wax Melt</th>
+                <td data-label="Condition">Zone 1 mill-hood humidity pre-cure + Zone 2 dry wax melt-coalescence (&gt;88°C); Single-Pass &amp; Two-Pass tracks</td>
+                <td data-label="Target">Complete ionic network cure prior to surface drying + continuous carnauba melt seal; zero CO₂ craters</td>
               </tr>
               <tr>
                 <th scope="row">TAPPI T 559 (Grease Kit)</th>
-                <td data-label="Condition">Flat coated surface &amp; 180° folded score line</td>
+                <td data-label="Condition">Flat coated surface &amp; 180° folded score line (Single-Pass &amp; Two-Pass Pure-Wax Topcoat)</td>
                 <td data-label="Target">Target Flat Kit ≥ 10; Target 180° Crease Kit ≥ 8</td>
               </tr>
               <tr>
                 <th scope="row">TAPPI T 441 (Cobb60) &amp; Acid Drop</th>
                 <td data-label="Condition">60 s water absorptiveness + mild acid drop check</td>
-                <td data-label="Target">Target Cobb60 ≤ 20 g/m²; zero CO₂ fizz or acid-induced pitting</td>
+                <td data-label="Target">Target Cobb60 ≤ 20 g/m² (Two-Pass Pure-Wax track targets enhanced moisture barrier); zero CO₂ fizz</td>
               </tr>
               <tr>
                 <th scope="row">Hot-Carton Odor &amp; Stack Blocking</th>
                 <td data-label="Condition">Elevated-temperature closed carton &amp; stacked pressure</td>
-                <td data-label="Target">Low/undetectable headspace off-odor; clean non-blocking release</td>
+                <td data-label="Target">Low/undetectable headspace off-odor; clean non-blocking release (100% latex-free)</td>
               </tr>
               <tr>
-                <th scope="row">Neutral-pH Recyclability (WMU OCC-E / FBA)</th>
-                <td data-label="Condition">Standard neutral-pH corrugated / boxboard repulping test</td>
-                <td data-label="Target">Target pass under neutral-pH WMU OCC-E / FBA dispersibility &amp; handsheet criteria</td>
+                <th scope="row">Neutral-pH Recyclability (WMU OCC-E)</th>
+                <td data-label="Condition">52°C neutral-pH corrugated / boxboard repulping with 0.010&quot; slotted screen</td>
+                <td data-label="Target">Target pass under WMU OCC-E (52°C, 0.010&quot; screen): ionic unzip + crystalline carnauba solid (52°C &lt; 84°C) prevents tacky stickies</td>
               </tr>
               <tr>
                 <th scope="row">Alkaline Mill-Broke Repulpability (TAPPI T 275)</th>
                 <td data-label="Condition">Alkaline carbonate / citrate mill-broke repulping</td>
-                <td data-label="Target">Target &lt; 1.0 wt% Somerville 0.15 mm slotted rejects via ionic unzip</td>
+                <td data-label="Target">Target &lt; 1.0% rejects by weight (Somerville 0.15 mm slotted screen) via reversible ionic unzip</td>
               </tr>
             </tbody>
           </table>
@@ -1163,17 +1189,17 @@
 
         <div class="cta-bar">
           <div>
-            <strong>Zero-Cost Mutual NDA &amp; Joint Evaluation Inquiries</strong><br />
-            <span style="font-size:0.86rem;color:#cbd5e1;">Inventor: David Mahler • East Sandwich, MA • U.S. App. No. 64/199,413 ("Repulpable Phosphate-Triggered Alginate-Kaolin Barrier Coatings and Coated Cellulosic Articles") • david@surplusdocket.com</span>
+            <strong>$0 Mutual NDA &amp; Joint V3 Evaluation Inquiries</strong><br />
+            <span style="font-size:0.86rem;color:#cbd5e1;">Inventor: David Mahler • East Sandwich, MA • U.S. App. No. 64/199,413 (Patent-Pending: "Repulpable Phosphate-Triggered Alginate-Kaolin Barrier Coatings and Coated Cellulosic Articles") • david@surplusdocket.com</span>
           </div>
-          <a class="cta-btn" href="mailto:david@surplusdocket.com?subject=SLIP-NET%20NDA%20%26%20Bench%20Evaluation%20Inquiry&body=Hi%20David%2C%0A%0AWe%20reviewed%20the%20SLIP-NET%20technical%20overview%20and%20would%20like%20to%20execute%20a%20Mutual%20NDA%20%2F%20CDA%20to%20review%20the%20bench%20screening%20protocol.%0A%0AOrganization%3A%20%0AContact%20Name%3A%20">Request NDA &amp; Bench Protocol</a>
+          <a class="cta-btn" href="mailto:david@surplusdocket.com?subject=SLIP-NET%20V3%20NDA%20%26%20Bench%20Evaluation%20Inquiry&body=Hi%20David%2C%0A%0AWe%20reviewed%20the%20SLIP-NET%20V3%20technical%20overview%20and%20would%20like%20to%20execute%20a%20%240%20Mutual%20NDA%20%2F%20CDA%20to%20review%20the%20V3%20bench%20screening%20protocol.%0A%0AOrganization%3A%20%0AContact%20Name%3A%20">Request NDA &amp; V3 Protocol</a>
         </div>
       </div>
     </div>
   </main>
 
   <footer class="site-footer">
-    SLIP-NET™ Non-Confidential Technical Overview • Patent-Pending Barrier Architecture (U.S. App. No. 64/199,413) • Unlisted Evaluation Page (noindex) on SurplusDocket.
+    SLIP-NET™ V3 Non-Confidential Technical Overview • Patent-Pending Barrier Architecture (U.S. App. No. 64/199,413) • Unlisted Evaluation Page (noindex) on SurplusDocket.
   </footer>
 
   <script>
@@ -1231,8 +1257,10 @@
       });
 
       // ---------------------------------------------------------------------
-      // 2. Illustrative Conceptual Model (Non-Confidential Process Visualizer)
+      // 2. Illustrative Conceptual Model (Non-Confidential V3 Process Visualizer)
       // ---------------------------------------------------------------------
+      const selDryerMode = document.getElementById("selDryerMode");
+      const selPassTrack = document.getElementById("selPassTrack");
       const selArch = document.getElementById("selArch");
       const selTrigger = document.getElementById("selTrigger");
       const selBuffer = document.getElementById("selBuffer");
@@ -1254,6 +1282,8 @@
       let currentState = {};
 
       function evaluateConceptualState() {
+        const dryerMode = selDryerMode.value;
+        const passTrack = selPassTrack.value;
         const arch = selArch.value;
         const trigger = selTrigger.value;
         const buffer = selBuffer.value;
@@ -1276,66 +1306,76 @@
         syncSliderVars(slRq, rqUm.toFixed(1) + " micrometers");
         syncSliderVars(slGsm, coatGsm.toFixed(1) + " grams per square meter");
 
-        // Qualitative boundary checks (illustrative conceptual mechanics only)
+        // Qualitative V3 boundary checks (illustrative conceptual mechanics only)
         const hardWaterCrash = buffer === "under" && tapPpm >= 80 && trigger !== "none";
         const carbonateGas = trigger === "carbonate";
         const uncrosslinked = trigger === "none";
         const saltUnzip = buffer === "over";
-        const thermalEnergy = (ovenT - 85) * Math.sqrt(ovenS);
-        const lowCure = thermalEnergy < 125 || uncrosslinked;
-        const filmThickUm = coatGsm / 1.6;
+        const dryFlashRisk = dryerMode === "dryoven" && trigger === "phosphate";
+        const waxNoMelt = ovenT < 90;
+        const thermalEnergy = (ovenT - 80) * Math.sqrt(ovenS);
+        const lowCure = thermalEnergy < 120 || uncrosslinked;
+        const effectiveGsm = passTrack === "twopass" ? coatGsm + 2.0 : coatGsm;
+        const filmThickUm = effectiveGsm / 1.6;
         const roughCoverageRisk = filmThickUm < 2.8 * rqUm;
         const coarseProtrusion = minUm > 2.2 && trigger !== "none";
 
         const issues = [];
         if (hardWaterCrash) issues.push("Premature Hard-Water Gelation / Open-Pan Skinning");
+        if (dryFlashRisk) issues.push("Dry-Oven Flash-Skinning Trap (Use Two-Zone Humidified Pre-Cure)");
         if (carbonateGas) issues.push("CO2 Gas Evolution & Thermal Blister Risk");
         if (uncrosslinked) issues.push("Uncrosslinked Film (Missing Latent Trigger)");
+        if (waxNoMelt) issues.push("Below Carnauba Melt Window (Zone 2 < 90 °C Limits Wax Coalescence)");
         if (saltUnzip) issues.push("Excess Soluble Salt (Moisture-Unzipping Risk)");
-        if (lowCure && !uncrosslinked) issues.push("Insufficient Thermal Dwell for Full Ionic Cure");
-        if (roughCoverageRisk) issues.push("Rough Substrate Pinhole Risk (Increase Coat Weight or Smoothness)");
+        if (lowCure && !uncrosslinked && !waxNoMelt) issues.push("Insufficient Thermal Dwell for Full Ionic Cure");
+        if (roughCoverageRisk) issues.push("Rough Substrate Pinhole Risk (Increase Coat Weight or Two-Pass Topcoat)");
         if (coarseProtrusion) issues.push("Coarse Mineral Protrusion Risk (Use Sub-Micron Non-Nano Grade)");
 
         document.getElementById("kpiTank").textContent = hardWaterCrash
           ? "Gel / Skin Risk"
-          : (buffer === "under" && tapPpm >= 80 ? "Borderline" : "Fluid / Low Skin");
+          : (buffer === "under" && tapPpm >= 80 ? "Borderline" : "Fluid / Electrolyte-Safe");
 
         document.getElementById("kpiCure").textContent = carbonateGas
           ? "CO2 Blisters"
-          : (lowCure ? "Incomplete Cure" : "Target Cure / 0 CO2");
+          : (dryFlashRisk
+            ? "Flash-Skin Trap"
+            : (waxNoMelt ? "Wax Unmelted (<90°C)" : (lowCure ? "Incomplete Cure" : "Ionic Cure + Wax Melt")));
 
-        document.getElementById("kpiFold").textContent = (roughCoverageRisk || coarseProtrusion || carbonateGas)
+        document.getElementById("kpiFold").textContent = (roughCoverageRisk || coarseProtrusion || carbonateGas || dryFlashRisk)
           ? "Pinhole / Crack Risk"
-          : "Smooth / Ductile";
+          : (passTrack === "twopass" ? "Two-Pass Wax-Sealed" : "Single-Pass Ductile");
 
         document.getElementById("kpiRepulp").textContent = saltUnzip
           ? "Moisture Penalty"
-          : (arch === "molded" ? "Molded Fiber Target" : "Dual-Track Eligible");
+          : "Crystalline (<84°C)";
 
         const verdictEl = document.getElementById("verdictBox");
         if (issues.length === 0) {
           verdictEl.className = "verdict-box verdict-pass";
+          const trackLabel = passTrack === "twopass" ? "Two-Pass Pure-Wax Topcoat" : "Single-Pass Sub-CPVC";
           const modeLabel = arch === "hotfood"
-            ? "Hot / steaming foodservice architecture"
-            : (arch === "molded" ? "Die-ironed molded fiber architecture" : "Standard folding-carton architecture");
-          verdictEl.textContent = "ILLUSTRATIVE TARGET WINDOW (" + modeLabel + "): Ambient tap-water stability, zero-CO2 thermal crosslinking, and ductile sub-CPVC coverage aligned for bench screening.";
+            ? "Hot / steaming foodservice"
+            : (arch === "molded" ? "Die-ironed molded fiber" : "Folding carton");
+          verdictEl.textContent = "ILLUSTRATIVE V3 TARGET WINDOW (" + trackLabel + " · " + modeLabel + "): Electrolyte-stable carnauba pot, two-zone humidified zero-CO2 cure + dry wax melt-coalescence, and 52°C OCC-E crystalline non-stickiness aligned for bench screening.";
         } else {
           verdictEl.className = "verdict-box " + (issues.length === 1 ? "verdict-warn" : "verdict-fail");
           verdictEl.textContent = "CONCEPTUAL BOUNDARY / FAILURE TRAP: " + issues.join(" | ");
         }
 
         currentState = {
-          arch, trigger, buffer, tapPpm, minUm, ovenT, ovenS, rqUm, coatGsm,
-          hardWaterCrash, carbonateGas, uncrosslinked, saltUnzip, lowCure, roughCoverageRisk, coarseProtrusion
+          dryerMode, passTrack, arch, trigger, buffer, tapPpm, minUm, ovenT, ovenS, rqUm, coatGsm,
+          hardWaterCrash, dryFlashRisk, waxNoMelt, carbonateGas, uncrosslinked, saltUnzip, lowCure, roughCoverageRisk, coarseProtrusion
         };
       }
 
-      [selArch, selTrigger, selBuffer, ...allRanges].forEach((el) => {
+      [selDryerMode, selPassTrack, selArch, selTrigger, selBuffer, ...allRanges].forEach((el) => {
         el.addEventListener("input", () => { evaluateConceptualState(); renderScene(animPhase); });
         el.addEventListener("change", () => { evaluateConceptualState(); renderScene(animPhase); });
       });
 
       function applyPreset(p) {
+        selDryerMode.value = p.dryer;
+        selPassTrack.value = p.pass;
         selArch.value = p.arch;
         selTrigger.value = p.trigger;
         selBuffer.value = p.buffer;
@@ -1349,12 +1389,13 @@
         renderScene(animPhase);
       }
 
-      document.getElementById("presetCarton").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetHotFood").addEventListener("click", () => applyPreset({ arch: "hotfood", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 130, s: 30, rq: 1.1, gsm: 8.5 }));
-      document.getElementById("presetFastLine").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 150, s: 10, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetCarbonate").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "carbonate", buffer: "under", tap: 150, minUm: 0.5, t: 125, s: 30, rq: 1.1, gsm: 8.5 }));
-      document.getElementById("presetUnbuffered").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "phosphate", buffer: "under", tap: 220, minUm: 0.6, t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetCoarse").addEventListener("click", () => applyPreset({ arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 6.5, t: 125, s: 30, rq: 3.2, gsm: 8.0 }));
+      document.getElementById("presetCarton").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
+      document.getElementById("presetHotFood").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "twopass", arch: "hotfood", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 130, s: 30, rq: 1.1, gsm: 9.5 }));
+      document.getElementById("presetFastLine").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 150, s: 10, rq: 1.1, gsm: 8.0 }));
+      document.getElementById("presetDryOven").addEventListener("click", () => applyPreset({ dryer: "dryoven", pass: "single", arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 145, s: 15, rq: 1.1, gsm: 8.0 }));
+      document.getElementById("presetCarbonate").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "carbonate", buffer: "under", tap: 150, minUm: 0.5, t: 125, s: 30, rq: 1.1, gsm: 8.5 }));
+      document.getElementById("presetUnbuffered").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "phosphate", buffer: "under", tap: 220, minUm: 0.6, t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
+      document.getElementById("presetCoarse").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 5.5, t: 125, s: 30, rq: 3.2, gsm: 8.0 }));
 
       // ---------------------------------------------------------------------
       // 3. Stage Canvas + Accessible Play/Pause & Reduced-Motion Control
@@ -1368,24 +1409,24 @@
 
       const STAGES = [
         {
-          title: "Stage 1: Ambient Cold Tap-Water Dispersion (Latent Phosphate Suppression)",
-          desc: "A food-grade phosphate buffer suppresses free calcium ion activity in ambient unsoftened tap water, keeping the biopolymer–mineral slurry pumpable with minimal open-pan skinning prior to coating."
+          title: "Stage 1: Ambient Cold Tap-Water Dispersion (Electrolyte-Stable Carnauba + Latent Trigger)",
+          desc: "A food-grade calcium phosphate & volatile-base latent trigger suppresses free calcium activity in ambient tap water, keeping the ultra-low-viscosity marine biopolymer, platy natural mineral, bio-based polyol plasticizer, and nonionic plant-based carnauba wax dispersion (Tm ~ 80–88°C) pumpable and electrolyte-stable."
         },
         {
-          title: "Stage 2: Single-Pass Waterborne Coat on Board or Molded Fiber",
-          desc: "Tuned waterborne rheology enables single-pass rod, blade, or spray application on smooth folding boxboard or die-ironed molded fiber without thermal starch cooking."
+          title: "Stage 2: Single-Pass Sub-CPVC Coat or Two-Pass Pure-Wax Topcoat",
+          desc: "100% latex-free waterborne rheology supports Single-Pass rod/blade application on folding boxboard or die-ironed molded fiber, plus an optional Two-Pass Pure-Wax Topcoat track for elevated hot-food moisture and grease protection."
         },
         {
-          title: "Stage 3: Forced-Air Thermal Cure (Zero-CO2 Phosphate Trigger)",
-          desc: "Evaporative drying shifts the micro-environment so the non-nano phosphate mineral releases calcium ions cleanly into biopolymer egg-box junctions—with zero CO2 gas evolution or crater blistering."
+          title: "Stage 3: Two-Zone Humidified Pre-Cure + Dry Carnauba Melt-Coalescence",
+          desc: "Zone 1 matches paper-mill dryer-hood humidity so the film stays hydrated for volatile-base departure and clean zero-CO2 ionic crosslinking before surface skinning; Zone 2 dry heat (>88°C) drives dry melt-coalescence of the high-melting carnauba wax."
         },
         {
           title: "Stage 4: 180° Score-Line Fold, Hot Oil & Elevated-Temp Service",
-          desc: "Platy mineral alignment below critical pigment volume concentration (CPVC) paired with an aqueous wax/fatty-acid slip dispersion protects folded edges against cracking and oil wicking."
+          desc: "Sub-CPVC platy natural mineral alignment, bio-based polyol plasticizer, and melt-coalesced carnauba wax (reinforced in Two-Pass Pure-Wax mode) resist 180° score-line cracking, oil wicking, and stack blocking."
         },
         {
-          title: "Stage 5: Circular Fiber Recovery (Neutral & Alkaline Repulping)",
-          desc: "Because crosslinking relies on reversible ionic bridges rather than covalent wet-strength plastics, coated fibers are designed to disperse cleanly under neutral OCC-E and alkaline mill-broke repulping."
+          title: "Stage 5: Circular Fiber Recovery (52°C OCC-E & Alkaline TAPPI T 275)",
+          desc: "Reversible ionic bridges unzip in neutral-pH 52°C WMU OCC-E (0.010\" screen) and alkaline TAPPI T 275 mill-broke systems, while carnauba wax (Tm ~ 80–88°C) stays a non-tacky crystalline solid (52°C < 84°C)."
         }
       ];
 
@@ -1441,7 +1482,7 @@
         }
         ctx.fillStyle = "#451a03";
         ctx.font = "bold 13px system-ui, sans-serif";
-        ctx.fillText("Cellulosic Substrate: Folding Boxboard / Kraft or Die-Ironed Molded Fiber", 18, 395);
+        ctx.fillText("Cellulosic Substrate: Folding Boxboard / Kraft or Die-Ironed Molded Fiber (100% Latex-Free)", 18, 395);
 
         // Exposed fiber whiskers if roughness exceeds coverage
         if (currentState.roughCoverageRisk) {
@@ -1455,16 +1496,38 @@
 
         const skinCrash = currentState.hardWaterCrash;
         const co2Trap = currentState.carbonateGas;
-        const pinholeRisk = currentState.roughCoverageRisk || currentState.coarseProtrusion || co2Trap;
+        const flashTrap = currentState.dryFlashRisk;
+        const waxUnmelted = currentState.waxNoMelt;
+        const pinholeRisk = currentState.roughCoverageRisk || currentState.coarseProtrusion || co2Trap || flashTrap;
         const layerTop = activeStage === 4 ? 190 + Math.sin(phase * 0.08) * 6 : 155;
 
         ctx.fillStyle = activeStage === 0
           ? (skinCrash ? "#fecaca" : "#dbeafe")
           : (activeStage === 4 ? "rgba(209, 250, 229, 0.58)" : "#d1fae5");
         ctx.fillRect(0, layerTop, w, 315 - layerTop);
-        ctx.strokeStyle = skinCrash ? "#dc2626" : "#059669";
+        ctx.strokeStyle = (skinCrash || flashTrap) ? "#dc2626" : "#059669";
         ctx.lineWidth = 2;
         ctx.strokeRect(0, layerTop, w, 315 - layerTop);
+
+        // Topcoat / coalesced carnauba surface seal visualization
+        if ((activeStage >= 2 && activeStage <= 3 && !waxUnmelted) || (activeStage === 1 && currentState.passTrack === "twopass")) {
+          const topThick = currentState.passTrack === "twopass" ? 11 : 6;
+          ctx.fillStyle = activeStage === 1 ? "rgba(245, 158, 11, 0.45)" : (flashTrap ? "rgba(220, 38, 38, 0.55)" : "rgba(217, 119, 6, 0.72)");
+          ctx.fillRect(0, layerTop - topThick, w, topThick);
+        }
+
+        // Two-Zone visual divider in Stage 2
+        if (activeStage === 2) {
+          ctx.strokeStyle = "#94a3b8";
+          ctx.setLineDash([6, 5]);
+          ctx.beginPath(); ctx.moveTo(w * 0.5, 58); ctx.lineTo(w * 0.5, layerTop); ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.font = "bold 11px system-ui, sans-serif";
+          ctx.fillStyle = flashTrap ? "#991b1b" : "#0369a1";
+          ctx.fillText(flashTrap ? "DRY OVEN ONLY: Flash-Skin Crust" : "ZONE 1: Humidified Pre-Cure (Mill-Hood RH)", 20, 74);
+          ctx.fillStyle = waxUnmelted ? "#b45309" : "#92400e";
+          ctx.fillText(waxUnmelted ? "ZONE 2 (<90°C): Carnauba Unmelted" : "ZONE 2 (>88°C): Dry Carnauba Melt-Coalescence", w * 0.5 + 16, 74);
+        }
 
         // Platy mineral bricks
         ctx.fillStyle = "#64748b";
@@ -1477,7 +1540,7 @@
           }
         }
 
-        // Latent trigger particles or ionic junctions
+        // Latent trigger particles, carnauba wax droplets, or ionic junctions
         for (let x = 55; x < w - 40; x += 88) {
           const yNode = layerTop + 56 + ((x / 88) % 2) * 38;
           if (activeStage <= 1) {
@@ -1489,8 +1552,13 @@
             ctx.fillStyle = "#ffffff"; ctx.font = "bold 8px monospace";
             const tag = currentState.uncrosslinked ? "NONE" : (co2Trap ? "CO3" : "PO4");
             ctx.fillText(tag, x - 9, yNode + 3);
+
+            // Nonionic carnauba wax droplets suspended stably
+            ctx.beginPath(); ctx.arc(x + 34, yNode - 14, 6, 0, Math.PI * 2);
+            ctx.fillStyle = "#f59e0b"; ctx.fill();
+            ctx.strokeStyle = "#92400e"; ctx.lineWidth = 1; ctx.stroke();
           } else if (activeStage === 2 || activeStage === 3) {
-            if (!currentState.lowCure) {
+            if (!currentState.lowCure && !flashTrap) {
               ctx.strokeStyle = "#1d4ed8"; ctx.lineWidth = 3;
               ctx.beginPath(); ctx.moveTo(x - 24, yNode); ctx.lineTo(x + 24, yNode); ctx.stroke();
               ctx.beginPath(); ctx.arc(x, yNode, 6, 0, Math.PI * 2);
@@ -1509,6 +1577,9 @@
             const drift = (phase * 1.4 + x) % 55;
             ctx.beginPath(); ctx.arc(x + 10, yNode - drift * 0.7, 6, 0, Math.PI * 2);
             ctx.fillStyle = "#0891b2"; ctx.fill();
+            // Crystalline solid carnauba particle (52°C < 84°C non-sticky)
+            ctx.fillStyle = "#d97706";
+            ctx.fillRect(x + 28, yNode - 16 - drift * 0.4, 8, 8);
           }
         }
 
@@ -1519,37 +1590,42 @@
           ctx.fillText(
             skinCrash
               ? "CONCEPTUAL TRAP: Hard-Water Ion Premature Gelation / Open-Pan Skinning Risk"
-              : "Target Cold-Mix Pot: Phosphate Suppression Maintains Fluidity in Ambient Tap Water",
+              : "Cold-Mix Pot: Nonionic Carnauba (Tm ~80–88°C) + Phosphate/Volatile-Base Stay Electrolyte-Stable",
             20, 36
           );
         } else if (activeStage === 1) {
           ctx.fillStyle = currentState.roughCoverageRisk ? "#991b1b" : "#065f46";
+          const passText = currentState.passTrack === "twopass" ? "Two-Pass (Base + Pure-Wax Topcoat)" : "Single-Pass Sub-CPVC Base Coat";
           ctx.fillText(
             currentState.roughCoverageRisk
               ? "COVERAGE WARNING: Substrate Roughness Exceeds Film Thickness — Pinholing Risk"
-              : "Single-Pass Waterborne Application (" + currentState.coatGsm.toFixed(1) + " g/m² target dry coat weight)",
+              : passText + " (" + currentState.coatGsm.toFixed(1) + " g/m² target dry coat weight)",
             20, 36
           );
         } else if (activeStage === 2) {
-          ctx.fillStyle = co2Trap ? "#991b1b" : (currentState.lowCure ? "#b45309" : "#065f46");
+          ctx.fillStyle = (co2Trap || flashTrap) ? "#991b1b" : ((currentState.lowCure || waxUnmelted) ? "#b45309" : "#065f46");
           ctx.fillText(
             co2Trap
               ? "CARBONATE TRAP: Thermal Acidification Releases CO2 Bubbles -> Crater Pinholes"
-              : (currentState.lowCure
-                ? "INCOMPLETE CURE: Increase Thermal Energy or Restore Latent Phosphate Trigger"
-                : "Thermal Cure: Phosphate Trigger Forms Ionic Crosslinks with Zero CO2 Evolution"),
+              : (flashTrap
+                ? "DRY-OVEN FLASH TRAP: Rapid Surface Skinning Halts Ionic Cure (Use Two-Zone Mill-Hood Humidity)"
+                : (waxUnmelted
+                  ? "WAX MELT WARNING: Zone 2 < 90°C Leaves Carnauba Uncoalesced"
+                  : (currentState.lowCure
+                    ? "INCOMPLETE CURE: Increase Thermal Energy or Restore Latent Phosphate Trigger"
+                    : "Two-Zone Cure: Humidified Zero-CO2 Crosslinking + Dry Carnauba Melt-Coalescence"))),
             20, 36
           );
         } else if (activeStage === 3) {
           ctx.fillStyle = pinholeRisk ? "#991b1b" : "#065f46";
           ctx.fillText(
             pinholeRisk
-              ? "BARRIER DEFECT RISK: Pinholes or Coarse Protrusions Compromise Fold & Oil Resistance"
-              : "180° Fold & Hot-Oil Target: Sub-CPVC Platy Film + Slip Dispersion Resist Wicking",
+              ? "BARRIER DEFECT RISK: Flash-Skin, Pinholes, or Coarse Protrusions Compromise Fold & Oil Resistance"
+              : "180° Fold & Hot-Oil Target: Sub-CPVC Platy Film + Polyol + Coalesced Carnauba Resist Wicking",
             20, 36
           );
           for (let x = 110; x < w - 80; x += 130) {
-            ctx.beginPath(); ctx.arc(x, layerTop - 12, 15, Math.PI, 0); ctx.closePath();
+            ctx.beginPath(); ctx.arc(x, layerTop - 16, 15, Math.PI, 0); ctx.closePath();
             ctx.fillStyle = "#f59e0b"; ctx.fill(); ctx.strokeStyle = "#b45309"; ctx.stroke();
           }
           if (pinholeRisk) {
@@ -1559,14 +1635,14 @@
           }
         } else {
           ctx.fillStyle = "#0e7490";
-          ctx.fillText("Circular Fiber Recovery: Reversible Ionic Network Unzips in Neutral & Alkaline Repulpers", 20, 36);
+          ctx.fillText("52°C WMU OCC-E & TAPPI T 275: Ionic Network Unzips; Carnauba Stays Crystalline Solid (52°C < 84°C)", 20, 36);
         }
 
-        ctx.fillStyle = "rgba(255, 255, 255, 0.92)";
-        ctx.fillRect(14, layerTop + 4, 625, 22);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.94)";
+        ctx.fillRect(14, layerTop + 6, 700, 22);
         ctx.fillStyle = "#065f46";
-        ctx.font = "bold 11.5px system-ui, sans-serif";
-        ctx.fillText("SLIP-NET™ Architecture: Platy Mineral + Seaweed Biopolymer + Phosphate Trigger + Aqueous Slip Dispersion", 20, layerTop + 19);
+        ctx.font = "bold 11.2px system-ui, sans-serif";
+        ctx.fillText("SLIP-NET™ V3: Platy Mineral + Marine Biopolymer + Ca-Phosphate Trigger + Carnauba Wax + Polyol (100% Latex-Free)", 20, layerTop + 21);
       }
 
       function tick() {
@@ -1577,7 +1653,7 @@
       }
 
       // ---------------------------------------------------------------------
-      // 4. Tab 2 Canvases (Non-Confidential Architecture & Failure-Mode Visuals)
+      // 4. Tab 2 Canvases (Non-Confidential V3 Architecture & Failure-Mode Visuals)
       // ---------------------------------------------------------------------
       function drawAllScorecardCharts() {
         // Chart A: Qualitative Architecture Comparison across 5 Gates
@@ -1588,20 +1664,20 @@
           g.clearRect(0, 0, w, h);
           g.fillStyle = "#ffffff"; g.fillRect(0, 0, w, h);
 
-          const padL = 132, padR = 16, padT = 38, padB = 22;
+          const padL = 136, padR = 16, padT = 38, padB = 22;
           const pw = w - padL - padR, ph = h - padT - padB;
           const rows = [
-            "PFAS / Plastic Free",
+            "PFAS & Latex Free",
             "Tap-Water Pot Life",
-            "Zero-CO2 Thermal Cure",
+            "Two-Zone 0-CO2 Cure",
             "180° Crease Integrity",
-            "Mill Repulpability"
+            "52°C OCC-E Repulp"
           ];
           const series = [
             { name: "PFAS", col: "#94a3b8", scores: [0.05, 0.9, 0.9, 0.9, 0.25] },
             { name: "PE / Latex", col: "#64748b", scores: [0.05, 0.9, 0.9, 0.9, 0.15] },
-            { name: "Carbonate Bio", col: "#dc2626", scores: [0.95, 0.25, 0.2, 0.45, 0.75] },
-            { name: "SLIP-NET Target", col: "#059669", scores: [1.0, 0.92, 1.0, 0.9, 0.95] }
+            { name: "Carbonate Bio", col: "#dc2626", scores: [0.95, 0.25, 0.2, 0.45, 0.7] },
+            { name: "SLIP-NET V3 Target", col: "#059669", scores: [1.0, 0.94, 1.0, 0.92, 0.96] }
           ];
 
           // Legend
@@ -1634,7 +1710,7 @@
           });
         }
 
-        // Chart B: 4 Failure Traps vs SLIP-NET Counter-Mechanisms
+        // Chart B: 4 Failure Traps vs SLIP-NET V3 Counter-Mechanisms
         const cB = document.getElementById("chartTraps");
         if (cB) {
           const g = cB.getContext("2d");
@@ -1643,17 +1719,17 @@
           g.fillStyle = "#ffffff"; g.fillRect(0, 0, w, h);
 
           const traps = [
-            { trap: "1. Hard-Water Pan Skin", fix: "Phosphate Ion Suppression" },
-            { trap: "2. Carbonate CO2 Blisters", fix: "Zero-Gas Phosphate Trigger" },
-            { trap: "3. Over-CPVC Fold Crack", fix: "Platy Sub-CPVC + Slip" },
-            { trap: "4. Wet-Strength Rejects", fix: "Reversible Ionic Bridges" }
+            { trap: "1. Pot Gel & Wax Coagulation", fix: "Nonionic Carnauba + PO4 Lock" },
+            { trap: "2. Dry-Oven Skin & CO2 Pits", fix: "Two-Zone Humid Pre-Cure (0 CO2)" },
+            { trap: "3. Over-CPVC Fold Cracking", fix: "Platy Sub-CPVC + Polyol + Wax" },
+            { trap: "4. 52°C Stickies & Latex Rejects", fix: "100% Latex-Free; Crystalline <84°C" }
           ];
 
           g.fillStyle = "#991b1b";
           g.font = "bold 11px system-ui, sans-serif";
           g.fillText("CONVENTIONAL FAILURE TRAP", 16, 22);
           g.fillStyle = "#065f46";
-          g.fillText("SLIP-NET™ COUNTER-MECHANISM", 274, 22);
+          g.fillText("SLIP-NET™ V3 COUNTER-MECHANISM", 274, 22);
 
           traps.forEach((item, idx) => {
             const y = 36 + idx * 58;
@@ -1664,8 +1740,8 @@
             g.fillRect(14, y, 212, 44);
             g.strokeRect(14, y, 212, 44);
             g.fillStyle = "#7f1d1d";
-            g.font = "bold 11.5px system-ui, sans-serif";
-            g.fillText(item.trap, 24, y + 26);
+            g.font = "bold 11px system-ui, sans-serif";
+            g.fillText(item.trap, 22, y + 26);
 
             // Arrow
             g.strokeStyle = "#059669";
@@ -1685,8 +1761,8 @@
             g.fillRect(272, y, 234, 44);
             g.strokeRect(272, y, 234, 44);
             g.fillStyle = "#064e3b";
-            g.font = "bold 11.5px system-ui, sans-serif";
-            g.fillText(item.fix, 282, y + 26);
+            g.font = "bold 11px system-ui, sans-serif";
+            g.fillText(item.fix, 280, y + 26);
           });
         }
       }
