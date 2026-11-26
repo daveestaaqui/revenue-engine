@@ -1,1779 +1,2048 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>SLIP-NET™ V3 — Non-Confidential Barrier Architecture &amp; Evaluation Overview | SurplusDocket</title>
+  <title>SLIP-NET™ V3 — Interactive Barrier Architecture &amp; Two-Zone Cure Simulation</title>
   <style>
-    @layer base, layout, components, utilities;
+    :root {
+      --bg: #f6f8fa;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f9;
+      --ink: #0f172a;
+      --ink-2: #334155;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --brand: #0b5d47;
+      --brand-dark: #073d2f;
+      --brand-bright: #10b981;
+      --brand-soft: #ecfdf5;
+      --amber: #d97706;
+      --amber-soft: #fffbeb;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --blue: #0284c7;
+      --blue-soft: #f0f9ff;
+      --radius: 14px;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+      --shadow: 0 8px 28px -8px rgba(15, 23, 42, 0.10);
+      --max-w: 1180px;
+    }
 
-    @layer base {
-      :root {
-        --bg-paper: #f6f4ee;
-        --bg-card: #ffffff;
-        --bg-inset: #f1f5f9;
-        --ink-primary: #0f172a;
-        --ink-secondary: #334155;
-        --ink-muted: #475569;
-        --teal-deep: #065f46;
-        --teal-accent: #059669;
-        --teal-soft: #d1fae5;
-        --amber-soft: #fef3c7;
-        --amber-deep: #92400e;
-        --red-soft: #fee2e2;
-        --red-deep: #991b1b;
-        --cobalt: #1d4ed8;
-        --border-soft: #cbd5e1;
-        --border-strong: #94a3b8;
-        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-        --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      }
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 4.5rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
 
-      *, *::before, *::after {
-        box-sizing: border-box;
-      }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
 
-      body {
-        margin: 0;
-        font-family: var(--sans);
-        background: var(--bg-paper);
-        color: var(--ink-primary);
-        line-height: 1.55;
-        -webkit-font-smoothing: antialiased;
-      }
+    :focus-visible {
+      outline: 2.5px solid var(--brand);
+      outline-offset: 2px;
+    }
 
-      .skip-link {
-        position: absolute;
-        inset-inline-start: 0.75rem;
-        inset-block-start: -100px;
-        background: var(--ink-primary);
-        color: #ffffff;
-        padding: 0.55rem 0.9rem;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 600;
-        z-index: 1000;
+    /* ================= Scroll progress bar (pure CSS, opt-in motion) ================= */
+    .scroll-progress {
+      position: fixed;
+      inset-block-start: 0;
+      inset-inline: 0;
+      block-size: 3px;
+      background: linear-gradient(90deg, var(--brand-bright), #34d399, var(--amber));
+      transform-origin: left center;
+      transform: scaleX(0);
+      z-index: 200;
+      pointer-events: none;
+    }
+    @supports (animation-timeline: scroll()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .scroll-progress {
+          animation: scrollGrow linear both;
+          animation-timeline: scroll(root block);
+        }
       }
-      .skip-link:focus {
-        inset-block-start: 0.75rem;
+    }
+    @keyframes scrollGrow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    /* ================= Responsive Site Navigation (modern-web-guidance navbar) ================= */
+    .site-header {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-block-end: 1px solid var(--border);
+    }
+    .header-inner {
+      max-inline-size: var(--max-w);
+      margin-inline: auto;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .header-inner > * {
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .site-header.is-measuring * {
+      transition: none !important;
+    }
+    .site-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 1.02rem;
+      letter-spacing: -0.02em;
+    }
+    .logo-mark {
+      inline-size: 26px;
+      block-size: 26px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, var(--brand-dark), var(--brand-bright));
+      display: inline-grid;
+      place-items: center;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+    .logo-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--brand);
+      background: var(--brand-soft);
+      border: 1px solid #a7f3d0;
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+    }
+    .menu-button {
+      anchor-name: --menu-button;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.86rem;
+      cursor: pointer;
+    }
+    .menu-button:hover { background: var(--surface-soft); }
+
+    .site-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem;
+      position: fixed;
+      inset: auto;
+      inset-block-start: 3.85rem;
+      inset-block-start: anchor(--menu-button bottom);
+      inset-inline-end: 1rem;
+      inline-size: min(84dvw, 18rem);
+      max-inline-size: calc(100dvw - 2rem);
+      block-size: fit-content;
+      max-block-size: calc(100dvh - 5rem);
+      margin-block-start: 0.45rem;
+      overflow: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    @supports not selector(:popover-open) {
+      [popover]:not(.\:popover-open) { display: none; }
+    }
+    .site-menu[popover]:is(:popover-open, .\:popover-open) {
+      display: grid;
+      gap: 0.25rem;
+    }
+    .site-menu a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.48rem 0.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: 0.86rem;
+      font-weight: 600;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .site-menu a:hover {
+      background: var(--surface-soft);
+      color: var(--ink);
+    }
+    .site-menu a[aria-current="page"],
+    .site-menu a.is-active {
+      color: var(--brand-dark);
+      background: var(--brand-soft);
+      box-shadow: inset 0 -2px 0 var(--brand);
+    }
+    .site-menu a.nav-cta {
+      background: var(--brand);
+      color: #ffffff;
+      padding-inline: 0.95rem;
+    }
+    .site-menu a.nav-cta:hover {
+      background: var(--brand-dark);
+      color: #ffffff;
+    }
+
+    .site-header.is-wide .menu-button { display: none; }
+    .site-header.is-wide .site-menu {
+      position: static;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      inline-size: auto;
+      max-inline-size: none;
+      block-size: auto;
+      max-block-size: none;
+      overflow: visible;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .site-header.is-wide .site-menu::backdrop { display: none; }
+
+    @media (forced-colors: active) {
+      .site-menu a[aria-current="page"],
+      .site-menu a.is-active {
+        border: 2px solid Highlight;
       }
     }
 
-    @layer layout {
-      .site-header {
-        background: linear-gradient(135deg, #0f172a 0%, #064e3b 100%);
-        color: #f8fafc;
-        padding-block: 1.35rem;
-        padding-inline: 1.5rem;
-        border-block-end: 3px solid var(--teal-accent);
-      }
-
-      .header-inner {
-        max-inline-size: 1240px;
-        margin-inline: auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .brand-eyebrow {
-        margin: 0 0 0.2rem 0;
-        font-family: var(--mono);
-        font-size: 0.78rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #6ee7b7;
-      }
-
-      .site-header h1 {
-        margin: 0;
-        font-size: clamp(1.3rem, 2.5vw, 1.85rem);
-        font-weight: 750;
-        letter-spacing: -0.015em;
-      }
-
-      .header-sub {
-        margin: 0.3rem 0 0 0;
-        font-size: 0.92rem;
-        color: #cbd5e1;
-        max-inline-size: 76ch;
-      }
-
-      .badge-strip {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.45rem;
-      }
-
-      .status-pill {
-        font-family: var(--mono);
-        font-size: 0.74rem;
-        padding-block: 0.32rem;
-        padding-inline: 0.65rem;
-        border-radius: 999px;
-        background: rgba(16, 185, 129, 0.16);
-        border: 1px solid #34d399;
-        color: #ecfdf5;
-        white-space: nowrap;
-      }
-
-      .main-shell {
-        max-inline-size: 1240px;
-        margin-inline: auto;
-        padding-block: 1.4rem 3rem;
-        padding-inline: 1.25rem;
-      }
-
-      .main-shell:focus {
-        outline: none;
-      }
-
-      .workbench-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.28fr) minmax(320px, 1fr);
-        gap: 1.25rem;
-        align-items: start;
-      }
-
-      @media (max-width: 980px) {
-        .workbench-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .charts-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      @media (max-width: 820px) {
-        .charts-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .failure-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 0.85rem;
-        margin-block-start: 1rem;
-      }
-
-      .protocol-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-        margin-block-start: 1rem;
-      }
-
-      .site-footer {
-        max-inline-size: 1240px;
-        margin-block: 0 2rem;
-        margin-inline: auto;
-        padding-inline: 1.25rem;
-        font-size: 0.82rem;
-        color: var(--ink-muted);
-      }
+    /* ================= Compact Executive Hero ================= */
+    .hero {
+      background: linear-gradient(135deg, #062c22 0%, #0b4a39 55%, #0f5f49 100%);
+      color: #ffffff;
+      padding: 2.1rem 1.25rem 2.3rem;
+      border-block-end: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .hero-inner {
+      max-inline-size: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.95fr);
+      gap: 1.75rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 1.25rem; }
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #a7f3d0;
+      margin: 0 0 0.55rem;
+    }
+    .hero h1 {
+      margin: 0 0 0.65rem;
+      font-size: clamp(1.55rem, 2.7vw, 2.25rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      font-weight: 800;
+    }
+    .hero-sub {
+      margin: 0 0 1rem;
+      color: #d1fae5;
+      font-size: 0.97rem;
+      max-inline-size: 58ch;
+    }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.28rem 0.68rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(167, 243, 208, 0.35);
+      color: #ecfdf5;
     }
 
-    @layer components {
-      .caveat-banner {
-        background: #fffbeb;
-        border: 1px solid #f59e0b;
-        border-inline-start: 5px solid #d97706;
-        border-radius: 8px;
-        padding-block: 0.85rem;
-        padding-inline: 1.05rem;
-        margin-block-end: 1.2rem;
-        font-size: 0.89rem;
-        color: #451a03;
-      }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+    }
+    @media (max-width: 520px) {
+      .hero-metrics { grid-template-columns: 1fr; }
+    }
+    .metric-tile {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      padding: 0.85rem 0.9rem;
+    }
+    .metric-val {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #6ee7b7;
+      line-height: 1.15;
+    }
+    .metric-lbl {
+      font-size: 0.74rem;
+      color: #e2e8f0;
+      margin-block-start: 0.25rem;
+      line-height: 1.3;
+    }
 
-      /* Accessible Tabs: shape + border indicator (Forced-Colors safe), single-row horizontal scroll on mobile, unstyled [role="tabpanel"] */
-      .tab-bar {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scrollbar-width: thin;
-        gap: 0.35rem;
-        border-block-end: 2px solid var(--border-soft);
-        margin-block-end: 1.2rem;
-      }
+    /* ================= Main Container & Sections ================= */
+    main {
+      max-inline-size: var(--max-w);
+      margin-inline: auto;
+      padding: 1.35rem 1.25rem 3.5rem;
+      display: grid;
+      gap: 1.75rem;
+    }
 
-      .tab-btn {
-        position: relative;
-        appearance: none;
-        flex: 0 0 auto;
-        white-space: nowrap;
-        background: transparent;
-        border: 1px solid transparent;
-        border-radius: 8px 8px 0 0;
-        padding-block: 0.72rem 0.88rem;
-        padding-inline: 1.05rem;
-        font-family: var(--sans);
-        font-size: 0.94rem;
-        font-weight: 600;
-        color: var(--ink-secondary);
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-      }
+    .notice-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-inline-start: 4px solid var(--amber);
+      border-radius: 10px;
+      font-size: 0.84rem;
+      color: var(--ink-2);
+      box-shadow: var(--shadow-sm);
+    }
+    .notice-bar strong { color: var(--ink); }
 
-      .tab-btn:hover {
-        background: var(--bg-inset);
-        color: var(--ink-primary);
-      }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-block-end: 1rem;
+    }
+    .section-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin: 0 0 0.2rem;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .section-lead {
+      margin: 0.3rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-inline-size: 68ch;
+    }
 
-      .tab-btn:focus-visible {
-        outline: 3px solid var(--cobalt);
-        outline-offset: -3px;
-      }
+    /* ================= Simulator Layout ================= */
+    .regime-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-block-end: 1rem;
+      padding: 0.45rem;
+      background: var(--surface-soft);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .regime-btn {
+      flex: 1 1 200px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--ink-2);
+      padding: 0.6rem 0.9rem;
+      border-radius: 9px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+    .regime-btn small {
+      font-weight: 500;
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+    .regime-btn:hover { background: rgba(255, 255, 255, 0.7); }
+    .regime-btn.is-active {
+      background: var(--surface);
+      border-color: var(--brand);
+      color: var(--brand-dark);
+      box-shadow: var(--shadow-sm);
+    }
+    .regime-btn.is-trap.is-active {
+      border-color: var(--danger);
+      color: #991b1b;
+      background: var(--danger-soft);
+    }
 
-      .tab-btn[aria-selected="true"] {
-        color: var(--ink-primary);
-        background: var(--bg-card);
-        border-color: var(--border-soft);
-        border-block-end-color: var(--bg-card);
-      }
+    .sim-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.95fr);
+      gap: 1.15rem;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .sim-grid { grid-template-columns: 1fr; }
+    }
 
-      .tab-btn[aria-selected="true"]::after {
-        content: "";
-        position: absolute;
-        inset-inline: 0;
-        inset-block-end: -2px;
-        border-block-end: 4px solid var(--teal-accent);
-      }
+    .stepper-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-block-end: 0.75rem;
+    }
+    .stage-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .stage-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-2);
+      padding: 0.42rem 0.7rem;
+      border-radius: 8px;
+      font-size: 0.79rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .stage-btn:hover { background: var(--surface-soft); }
+    .stage-btn[aria-current="step"] {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #ffffff;
+    }
 
-      .tab-marker {
-        display: inline-block;
-        inline-size: 8px;
-        block-size: 8px;
-        border-radius: 50%;
-        border: 2px solid var(--ink-muted);
-      }
+    .playback-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .ctrl-btn {
+      border: 1px solid var(--border);
+      background: var(--ink);
+      color: #ffffff;
+      padding: 0.42rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.79rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .ctrl-btn:hover { background: #1e293b; }
+    .ctrl-btn.secondary {
+      background: var(--surface);
+      color: var(--ink-2);
+    }
+    .ctrl-btn.secondary:hover { background: var(--surface-soft); }
+    .ctrl-btn.secondary.is-on {
+      background: var(--brand-soft);
+      border-color: var(--brand);
+      color: var(--brand-dark);
+    }
 
-      .tab-btn[aria-selected="true"] .tab-marker {
-        background: var(--teal-accent);
-        border-color: var(--teal-accent);
-      }
+    .canvas-shell {
+      position: relative;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      overflow: hidden;
+    }
+    .canvas-shell canvas {
+      display: block;
+      inline-size: 100%;
+      block-size: auto;
+      aspect-ratio: 760 / 430;
+    }
+    .stage-caption {
+      padding: 0.8rem 1rem;
+      background: var(--surface);
+      border-block-start: 1px solid var(--border);
+    }
+    .stage-caption h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.96rem;
+      color: var(--ink);
+    }
+    .stage-caption p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--ink-2);
+    }
 
-      [role="tabpanel"] {
+    /* ================= Controls & Live Telemetry Panel ================= */
+    .panel {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+    .panel-title {
+      margin: 0;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .slider-group {
+      display: grid;
+      gap: 0.3rem;
+    }
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+    .slider-val {
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+      color: var(--brand-dark);
+      font-size: 0.84rem;
+    }
+    input[type="range"] {
+      inline-size: 100%;
+      accent-color: var(--brand);
+      cursor: pointer;
+    }
+    .slider-hint {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.71rem;
+      color: var(--muted);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+    }
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.62rem 0.72rem;
+    }
+    .kpi-k {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .kpi-v {
+      font-size: 1.02rem;
+      font-weight: 800;
+      margin-block-start: 0.15rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .kpi-sub {
+      font-size: 0.72rem;
+      color: var(--ink-2);
+      margin-block-start: 0.1rem;
+    }
+    .status-good { color: var(--brand); }
+    .status-warn { color: var(--amber); }
+    .status-bad { color: var(--danger); }
+
+    .verdict-box {
+      padding: 0.7rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1.4;
+      border: 1px solid #a7f3d0;
+      background: var(--brand-soft);
+      color: var(--brand-dark);
+    }
+    .verdict-box.is-trap {
+      border-color: #fecaca;
+      background: var(--danger-soft);
+      color: #991b1b;
+    }
+
+    /* ================= Physics Section ================= */
+    .physics-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 1.25rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .physics-grid { grid-template-columns: 1fr; }
+    }
+    .chart-shell {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 0.75rem;
+    }
+    .chart-shell canvas {
+      display: block;
+      inline-size: 100%;
+      block-size: auto;
+      aspect-ratio: 620 / 330;
+    }
+    .insight-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+    .insight-item {
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+    }
+    .insight-item h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+    .insight-item p {
+      margin: 0;
+      font-size: 0.83rem;
+      color: var(--ink-2);
+    }
+
+    /* ================= Responsive Data Table (modern-web-guidance responsive-table) ================= */
+    .table-wrapper {
+      overflow: auto;
+      max-inline-size: 100%;
+      max-block-size: min(560px, 80dvh);
+      container-type: inline-size;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+    .score-table {
+      inline-size: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.84rem;
+      --label-2: "PFAS Barrier";
+      --label-3: "PE / Synthetic Latex";
+      --label-4: "Carbonate Biopolymer";
+      --label-5: "SLIP-NET™ V3 Target";
+    }
+    .score-table caption {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+    .score-table thead {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 2;
+    }
+    .score-table th, .score-table td {
+      padding: 0.72rem 0.85rem;
+      text-align: start;
+      border-block-end: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .score-table thead th {
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+    }
+    .score-table thead th:last-child {
+      background: var(--brand);
+    }
+    .score-table tbody th {
+      position: sticky;
+      inset-inline-start: 0;
+      z-index: 1;
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--ink);
+      min-inline-size: 11.5rem;
+    }
+    .score-table tbody td:last-child {
+      background: var(--brand-soft);
+      color: var(--brand-dark);
+      font-weight: 600;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.14rem 0.45rem;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+    .tag-pass { background: #d1fae5; color: #065f46; }
+    .tag-fail { background: #fee2e2; color: #991b1b; }
+    .tag-warn { background: #fef3c7; color: #92400e; }
+
+    @container (width < 660px) {
+      .score-table, .score-table thead, .score-table tbody, .score-table tr, .score-table th, .score-table td {
         display: block;
       }
-      [role="tabpanel"][hidden] {
-        display: none;
-      }
-
-      .panel-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-soft);
-        border-radius: 12px;
-        padding: 1.25rem;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-      }
-
-      .stage-toolbar {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.65rem;
+      .score-table thead { display: none; }
+      .score-table tr {
         margin-block-end: 0.85rem;
-      }
-
-      .stage-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.35rem;
-      }
-
-      .stage-btn {
-        appearance: none;
-        background: var(--bg-inset);
-        border: 1px solid var(--border-strong);
-        border-radius: 6px;
-        padding-block: 0.42rem;
-        padding-inline: 0.68rem;
-        font-size: 0.81rem;
-        font-weight: 600;
-        color: var(--ink-primary);
-        cursor: pointer;
-      }
-
-      .stage-btn[data-active="true"] {
-        background: var(--teal-deep);
-        color: #ffffff;
-        border-color: var(--teal-deep);
-      }
-
-      .motion-btn {
-        appearance: none;
-        background: #0f172a;
-        color: #ffffff;
-        border: 1px solid #0f172a;
-        border-radius: 6px;
-        padding-block: 0.42rem;
-        padding-inline: 0.85rem;
-        font-size: 0.82rem;
-        font-weight: 650;
-        cursor: pointer;
-        min-inline-size: 4.8rem;
-      }
-
-      :where(.motion-btn, .stage-btn, .preset-btn, .cta-btn, .table-wrapper):focus-visible {
-        outline: 3px solid var(--cobalt);
-        outline-offset: 2px;
-      }
-
-      .canvas-wrap {
-        border: 1px solid var(--border-strong);
+        border: 1px solid var(--border);
         border-radius: 10px;
         overflow: hidden;
-        background: #f8fafc;
       }
-
-      canvas {
-        display: block;
-        inline-size: 100%;
-        block-size: auto;
-      }
-
-      .stage-caption {
-        margin-block-start: 0.75rem;
-        padding-block: 0.85rem;
-        padding-inline: 1rem;
-        background: var(--bg-inset);
-        border-radius: 8px;
-        font-size: 0.9rem;
-      }
-
-      .stage-caption h3 {
-        margin: 0 0 0.25rem 0;
-        font-size: 1rem;
-        color: var(--teal-deep);
-      }
-
-      .honest-scope-box {
-        margin-block-start: 0.75rem;
-        padding-block: 0.75rem;
-        padding-inline: 0.95rem;
-        border-radius: 8px;
-        background: #f8fafc;
-        border: 1px solid var(--border-soft);
-        font-size: 0.84rem;
-        color: var(--ink-secondary);
-      }
-
-      .nda-cta-box {
-        margin-block: 0.9rem 1rem;
-        padding-block: 0.9rem;
-        padding-inline: 1.05rem;
-        border-radius: 8px;
-        background: #ecfdf5;
-        border: 1px solid #10b981;
-        border-inline-start: 5px solid var(--teal-deep);
-        color: #064e3b;
-        font-size: 0.9rem;
-      }
-
-      .controls-panel {
-        background: var(--bg-inset);
-        border: 1px solid var(--border-soft);
-        border-radius: 10px;
-        padding: 1rem;
-      }
-
-      .controls-panel h2 {
-        margin: 0 0 0.25rem 0;
-        font-size: 1.06rem;
-      }
-
-      .model-disclaimer {
-        margin: 0 0 0.7rem 0;
-        font-size: 0.78rem;
-        color: var(--ink-muted);
-      }
-
-      .preset-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.35rem;
-        margin-block-end: 0.85rem;
-      }
-
-      .preset-btn {
-        appearance: none;
-        border: 1px solid var(--border-strong);
-        background: #ffffff;
-        color: var(--ink-primary);
-        border-radius: 6px;
-        padding-block: 0.34rem;
-        padding-inline: 0.56rem;
-        font-size: 0.76rem;
-        font-weight: 600;
-        cursor: pointer;
-      }
-      .preset-btn.danger {
-        border-color: #fca5a5;
-        background: #fef2f2;
-        color: #991b1b;
-      }
-      .preset-btn.safe {
-        border-color: #6ee7b7;
-        background: #ecfdf5;
-        color: #065f46;
-      }
-
-      .control-item {
-        margin-block-end: 0.65rem;
-      }
-
-      .control-label-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        font-size: 0.84rem;
-        font-weight: 600;
-        margin-block-end: 0.05rem;
-      }
-
-      .control-label-row output, .mono-val {
-        font-family: var(--mono);
-        font-size: 0.82rem;
-        color: var(--teal-deep);
-      }
-
-      /* Modern cross-browser styled native range slider with progress() / calc() fallback */
-      input[type="range"] {
-        --slider-track-size: 0.45rem;
-        --slider-thumb-size: 1.15rem;
-        --slider-track-radius: 999px;
-        --slider-thumb-radius: 50%;
-        --slider-track-color: #cbd5e1;
-        --slider-fill-color: var(--teal-accent);
-        --slider-thumb-color: var(--teal-deep);
-        --attr-min: 0;
-        --attr-max: 100;
-        --control-value: 50;
-        --slider-progress: calc(progress(var(--control-value), var(--attr-min), var(--attr-max)) * 100%);
-        appearance: none;
-        inline-size: 100%;
-        block-size: 2.1rem;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        background: transparent;
-        cursor: pointer;
-      }
-
-      @supports not (opacity: progress(1, 0, 100)) {
-        input[type="range"] {
-          --slider-progress: calc((var(--control-value) - var(--attr-min)) / (var(--attr-max) - var(--attr-min)) * 100%);
-        }
-      }
-
-      input[type="range"]:focus-visible {
-        outline: 3px solid var(--cobalt);
-        outline-offset: 2px;
-        border-radius: 6px;
-      }
-
-      input[type="range"]::-webkit-slider-runnable-track {
-        block-size: var(--slider-track-size);
-        border: 0;
-        border-radius: var(--slider-track-radius);
-        background: linear-gradient(to right, var(--slider-fill-color) var(--slider-progress), var(--slider-track-color) var(--slider-progress));
-      }
-
-      input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        inline-size: var(--slider-thumb-size);
-        block-size: var(--slider-thumb-size);
-        margin-block-start: calc((var(--slider-track-size) - var(--slider-thumb-size)) / 2);
-        border: 2px solid #ffffff;
-        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.35);
-        border-radius: var(--slider-thumb-radius);
-        background: var(--slider-thumb-color);
-      }
-
-      input[type="range"]::-moz-range-track {
-        block-size: var(--slider-track-size);
-        border: 0;
-        border-radius: var(--slider-track-radius);
-        background: var(--slider-track-color);
-      }
-
-      input[type="range"]::-moz-range-progress {
-        block-size: var(--slider-track-size);
-        border-radius: var(--slider-track-radius);
-        background: var(--slider-fill-color);
-      }
-
-      input[type="range"]::-moz-range-thumb {
-        inline-size: var(--slider-thumb-size);
-        block-size: var(--slider-thumb-size);
-        border: 2px solid #ffffff;
-        border-radius: var(--slider-thumb-radius);
-        background: var(--slider-thumb-color);
-      }
-
-      select {
-        inline-size: 100%;
-        padding-block: 0.42rem;
-        padding-inline: 0.55rem;
-        border-radius: 6px;
-        border: 1px solid var(--border-strong);
-        background: #ffffff;
-        font-family: var(--sans);
-        font-size: 0.85rem;
-        color: var(--ink-primary);
-      }
-
-      .kpi-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.5rem;
-        margin-block-start: 0.7rem;
-      }
-
-      .kpi-box {
-        background: #ffffff;
-        border: 1px solid var(--border-soft);
-        border-radius: 8px;
-        padding-block: 0.5rem;
-        padding-inline: 0.65rem;
-      }
-
-      .kpi-title {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        color: var(--ink-muted);
-      }
-
-      .kpi-num {
-        font-family: var(--mono);
-        font-size: 0.86rem;
-        font-weight: 700;
-        margin-block-start: 0.12rem;
-      }
-
-      .verdict-box {
-        margin-block-start: 0.75rem;
-        padding-block: 0.72rem;
-        padding-inline: 0.85rem;
-        border-radius: 8px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        border: 1px solid;
-      }
-
-      .verdict-pass {
-        background: var(--teal-soft);
-        border-color: #10b981;
-        color: #064e3b;
-      }
-
-      .verdict-warn {
-        background: var(--amber-soft);
-        border-color: #f59e0b;
-        color: #78350f;
-      }
-
-      .verdict-fail {
-        background: var(--red-soft);
-        border-color: #ef4444;
-        color: #7f1d1d;
-      }
-
-      .chart-card {
-        background: var(--bg-inset);
-        border: 1px solid var(--border-soft);
-        border-radius: 10px;
-        padding: 0.9rem;
-      }
-
-      .chart-card h3 {
-        margin: 0 0 0.25rem 0;
-        font-size: 0.96rem;
-      }
-
-      .chart-note {
-        margin: 0.45rem 0 0 0;
-        font-size: 0.82rem;
-        color: var(--ink-secondary);
-      }
-
-      .failure-card {
-        background: #f8fafc;
-        border: 1px solid var(--border-soft);
-        border-block-start: 4px solid var(--teal-accent);
-        border-radius: 10px;
-        padding: 0.9rem;
-      }
-
-      .failure-card h3 {
-        margin: 0 0 0.3rem 0;
-        font-size: 0.94rem;
-        color: var(--teal-deep);
-      }
-
-      .failure-card p {
-        margin: 0;
-        font-size: 0.83rem;
-        color: var(--ink-secondary);
-      }
-
-      .proto-box {
-        background: var(--bg-inset);
-        border: 1px solid var(--border-soft);
-        border-radius: 10px;
-        padding: 1rem;
-      }
-
-      .proto-box h3 {
-        margin: 0 0 0.5rem 0;
-        color: var(--teal-deep);
-        font-size: 1rem;
-      }
-
-      .cta-bar {
-        margin-block-start: 1.25rem;
-        padding-block: 1rem;
-        padding-inline: 1.15rem;
-        background: #0f172a;
-        color: #f8fafc;
-        border-radius: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .cta-btn {
-        display: inline-block;
-        background: #10b981;
-        color: #052e16;
-        text-decoration: none;
-        font-weight: 700;
-        padding-block: 0.65rem;
-        padding-inline: 1.1rem;
-        border-radius: 8px;
-      }
-
-      /* Responsive sticky tables with @container card stacking */
-      .table-wrapper {
-        overflow: auto;
-        max-inline-size: 100%;
-        max-block-size: min(560px, 78vh);
-        container-type: inline-size;
-        border: 1px solid var(--border-soft);
-        border-radius: 8px;
-        margin-block-start: 0.65rem;
-        background: #ffffff;
-      }
-
-      table {
-        inline-size: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        font-size: 0.85rem;
-      }
-
-      caption {
-        text-align: left;
-        font-weight: 700;
-        padding-block: 0.55rem;
-        padding-inline: 0.75rem;
-        background: var(--bg-inset);
-        border-block-end: 1px solid var(--border-soft);
-        color: var(--ink-primary);
-      }
-
-      thead {
+      .score-table tbody th {
         position: sticky;
         inset-block-start: 0;
         z-index: 2;
+        background: #0f172a;
+        color: #ffffff;
       }
-
-      th, td {
-        border-block-end: 1px solid var(--border-soft);
-        border-inline-end: 1px solid var(--border-soft);
-        padding-block: 0.5rem;
-        padding-inline: 0.65rem;
-        text-align: left;
-        vertical-align: top;
+      .score-table td {
+        display: grid;
+        grid-template-columns: 10.5rem 1fr;
+        gap: 0.5rem;
       }
-
-      th {
-        background: var(--bg-inset);
+      .score-table td::before {
         font-weight: 700;
-        color: var(--ink-primary);
+        color: var(--muted);
+        font-size: 0.78rem;
       }
+      .score-table td:nth-child(2)::before { content: var(--label-2) ": "; }
+      .score-table td:nth-child(3)::before { content: var(--label-3) ": "; }
+      .score-table td:nth-child(4)::before { content: var(--label-4) ": "; }
+      .score-table td:nth-child(5)::before { content: var(--label-5) ": "; color: var(--brand-dark); }
+    }
 
-      tbody th {
-        position: sticky;
-        inset-inline-start: 0;
-        z-index: 1;
-        background: #f8fafc;
-      }
+    /* ================= Evaluation Steps & CTA ================= */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+      margin-block-end: 1.25rem;
+    }
+    @media (max-width: 800px) {
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+    .step-card {
+      border: 1px solid var(--border);
+      border-block-start: 3px solid var(--brand);
+      border-radius: 12px;
+      padding: 1rem;
+      background: var(--surface-soft);
+    }
+    .step-num {
+      display: inline-grid;
+      place-items: center;
+      inline-size: 24px;
+      block-size: 24px;
+      border-radius: 6px;
+      background: var(--brand);
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-block-end: 0.45rem;
+    }
+    .step-card h3 {
+      margin: 0 0 0.3rem;
+      font-size: 0.94rem;
+    }
+    .step-card p {
+      margin: 0;
+      font-size: 0.83rem;
+      color: var(--ink-2);
+    }
 
-      @container (width < 580px) {
-        table, thead, tbody, tr, th, td {
-          display: block;
-        }
-        caption {
-          display: block;
-        }
-        thead {
-          display: none;
-        }
-        tbody tr {
-          margin-block-end: 0.85rem;
-          border-block-end: 2px solid var(--border-strong);
-        }
-        tbody th {
-          position: sticky;
-          inset-block-start: 0;
-          z-index: 2;
-          background: #e2e8f0;
-          border-inline-end: 0;
-        }
-        td {
-          border-inline-end: 0;
-        }
-        td[data-label]::before {
-          content: attr(data-label) ": ";
-          font-weight: 700;
-          color: var(--ink-secondary);
-        }
-      }
+    .cta-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #073d2f 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .cta-banner h3 {
+      margin: 0 0 0.2rem;
+      font-size: 1.08rem;
+    }
+    .cta-banner p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--brand-bright);
+      color: #052e16;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 0.65rem 1.15rem;
+      border-radius: 9px;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+    .btn-primary:hover { background: #34d399; }
+    @media (prefers-reduced-motion: no-preference) {
+      .btn-primary:hover { transform: translateY(-1px); }
+    }
+
+    .site-footer {
+      max-inline-size: var(--max-w);
+      margin-inline: auto;
+      padding: 0 1.25rem 2.2rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to evaluation workspace</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <div>
-        <p class="brand-eyebrow">SLIP-NET™ V3 • Patent-Pending Barrier Architecture • 100% Latex-Free &amp; Zero-Plastic</p>
-        <h1>Two-Zone Phosphate-Triggered Biopolymer–Mineral–Wax Barrier Architecture</h1>
-        <p class="header-sub">
-          Cold-mix waterborne, non-nano (&gt;150 nm), 100% latex-free (zero synthetic or natural rubber latex) cellulosic barrier concept engineered for ambient municipal tap-water stability, two-zone humidified zero-CO₂ cure + dry carnauba melt-coalescence (Tm ~ 80–88°C), ductile 180° crease integrity, and 52°C OCC-E circular repulpability.
-        </p>
-      </div>
-      <div class="badge-strip" aria-label="Architecture Highlights">
-        <span class="status-pill">U.S. App. Nos. 64/199,413 &amp; 64/206,902</span>
-        <span class="status-pill">PFAS-Free &amp; 100% Latex-Free</span>
-        <span class="status-pill">Single-Pass &amp; Two-Pass Tracks</span>
-        <span class="status-pill">Evaluation Under $0 NDA</span>
-      </div>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner" id="headerInner">
+      <a class="site-logo" href="#top">
+        <span class="logo-mark" aria-hidden="true">SN</span>
+        <span>SLIP-NET™</span>
+        <span class="logo-badge">V3</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <button
+          class="menu-button"
+          type="button"
+          popovertarget="site-menu"
+          popovertargetaction="toggle"
+          aria-controls="site-menu"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>Menu</span>
+        </button>
+
+        <ul id="site-menu" class="site-menu" popover="auto">
+          <li><a href="#simulator" aria-current="page">Interactive Lab</a></li>
+          <li><a href="#physics">Why Dry Ovens Fail</a></li>
+          <li><a href="#scorecard">Scorecard</a></li>
+          <li><a href="#evaluate">Evaluation Path</a></li>
+          <li><a class="nav-cta" href="mailto:david@surplusdocket.com?subject=SLIP-NET%20V3%20Mutual%20NDA%20%2F%20Bench%20Protocol">Request NDA / Protocol</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <main id="main-content" class="main-shell" tabindex="-1">
-    <div class="caveat-banner" role="note">
-      <strong>Technical Disclosure &amp; Evaluation Status:</strong> SLIP-NET™ V3 is a patent-pending (<code>U.S. App. Nos. 64/199,413 &amp; 64/206,902</code>) computational and conceptual barrier architecture ready for joint bench evaluation. Interactive diagrams and scorecards below illustrate qualitative V3 process mechanics and target bench performance criteria—not completed physical lab test results. Exact formulations, stoichiometry, and the V3 bench protocol are provided exclusively under a $0 Mutual NDA or standard CDA.
-    </div>
-
-    <div class="tab-bar" role="tablist" aria-label="SLIP-NET Overview Views" focusgroup="tablist nomemory">
-      <button type="button" role="tab" class="tab-btn" id="tab-sim" aria-selected="true" focusgroupstart>
-        <span class="tab-marker" aria-hidden="true"></span>
-        <span>1. Interactive 5-Stage Process &amp; Architecture</span>
-      </button>
-      <button type="button" role="tab" class="tab-btn" id="tab-stress" aria-selected="false">
-        <span class="tab-marker" aria-hidden="true"></span>
-        <span>2. Failure Modes Solved &amp; Target Scorecard</span>
-      </button>
-      <button type="button" role="tab" class="tab-btn" id="tab-test" aria-selected="false">
-        <span class="tab-marker" aria-hidden="true"></span>
-        <span>3. Evaluation Process &amp; Regulatory Overview</span>
-      </button>
-    </div>
-
-    <!-- PANEL 1: INTERACTIVE 5-STAGE PROCESS & ARCHITECTURE EXPLAINER -->
-    <div role="tabpanel" id="panel-sim" aria-labelledby="tab-sim">
-      <div class="panel-card">
-        <div class="workbench-grid">
-          <section>
-            <div class="stage-toolbar">
-              <div class="stage-buttons" role="group" aria-label="Process Stage Selector">
-                <button type="button" class="stage-btn" data-stage="0" data-active="true">1. Cold Tap-Water Pot</button>
-                <button type="button" class="stage-btn" data-stage="1" data-active="false">2. Single / Two-Pass Coat</button>
-                <button type="button" class="stage-btn" data-stage="2" data-active="false">3. Two-Zone Cure &amp; Wax Melt</button>
-                <button type="button" class="stage-btn" data-stage="3" data-active="false">4. 180° Fold &amp; Hot Oil</button>
-                <button type="button" class="stage-btn" data-stage="4" data-active="false">5. 52°C OCC-E Repulp</button>
-              </div>
-              <button type="button" id="toggleMotionBtn" class="motion-btn">Pause</button>
-            </div>
-
-            <div class="canvas-wrap">
-              <canvas id="stageCanvas" width="760" height="420" aria-label="Interactive cross-section diagram of SLIP-NET V3 five-stage barrier architecture"></canvas>
-            </div>
-
-            <div class="stage-caption" aria-live="polite">
-              <h3 id="stageTitle">Stage 1: Ambient Cold Tap-Water Dispersion (Electrolyte-Stable Carnauba + Latent Trigger)</h3>
-              <p id="stageDesc">A food-grade calcium phosphate &amp; volatile-base latent trigger suppresses free calcium activity in ambient tap water, keeping the ultra-low-viscosity marine biopolymer, platy natural mineral, bio-based polyol plasticizer, and nonionic plant-based carnauba wax dispersion (Tm ~ 80–88°C) pumpable and electrolyte-stable.</p>
-            </div>
-
-            <div class="honest-scope-box">
-              <strong>Illustrative Conceptual Model — Exact Formulations, Stoichiometry &amp; V3 Bench Protocol Provided Under $0 Mutual NDA / Standard CDA.</strong>
-              SLIP-NET™ V3 is <strong>100% latex-free</strong> (zero synthetic and zero natural rubber latex) and supports both <strong>Single-Pass</strong> and <strong>Two-Pass Pure-Wax Topcoat</strong> evaluation tracks across folding cartons, bakery/pizza boxes, hot-food trays, and die-ironed molded fiber. <strong>Application Scope:</strong> Continuous boiling high-salinity soups are excluded so reversible ionic crosslinks preserve circular repulpability.
-            </div>
-          </section>
-
-          <aside class="controls-panel" aria-label="Illustrative Process and Operating Controls">
-            <h2>Illustrative Conceptual Controls (V3)</h2>
-            <p class="model-disclaimer">Illustrative Conceptual Model — Exact Formulations, Stoichiometry &amp; V3 Bench Protocol Provided Under $0 Mutual NDA / Standard CDA.</p>
-            <div class="preset-row" aria-label="Illustrative Operating Scenarios">
-              <button type="button" class="preset-btn safe" id="presetCarton">V3 Target: Single-Pass Mill Hood</button>
-              <button type="button" class="preset-btn safe" id="presetHotFood">V3 Target: Two-Pass Pure-Wax</button>
-              <button type="button" class="preset-btn safe" id="presetFastLine">V3 Target: Fast 10s Line</button>
-              <button type="button" class="preset-btn danger" id="presetDryOven">Trap: Dry Lab Oven Flash-Dry</button>
-              <button type="button" class="preset-btn danger" id="presetCarbonate">Trap: Carbonate (CO₂ Gas)</button>
-              <button type="button" class="preset-btn danger" id="presetUnbuffered">Trap: Unbuffered Tap Water</button>
-              <button type="button" class="preset-btn danger" id="presetCoarse">Trap: Coarse Mineral / Rough</button>
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="selDryerMode">Drying Regime (Zone 1 Humidity vs. Dry Oven)</label>
-              </div>
-              <select id="selDryerMode">
-                <option value="twozone">Two-Zone Humidified / Mill-Hood Drying (V3 Pre-Cure + Wax Melt)</option>
-                <option value="dryoven">Dry Lab Oven Only (Premature Surface Skinning Risk)</option>
-              </select>
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="selPassTrack">Coating Evaluation Track</label>
-              </div>
-              <select id="selPassTrack">
-                <option value="single">Single-Pass Sub-CPVC Base Coat (100% Latex-Free)</option>
-                <option value="twopass">Two-Pass Track (Base Coat + Pure-Wax Topcoat)</option>
-              </select>
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="selArch">Target End-Use Architecture</label>
-              </div>
-              <select id="selArch">
-                <option value="standard">Folding Carton / Dry &amp; Warm Grease Barrier</option>
-                <option value="hotfood">Hot / Steaming Foodservice Barrier Mode</option>
-                <option value="molded">Die-Ironed Molded Fiber Barrier Mode</option>
-              </select>
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="selTrigger">Latent Crosslink Trigger Class</label>
-              </div>
-              <select id="selTrigger">
-                <option value="phosphate">Calcium Phosphate &amp; Volatile-Base Trigger (Zero CO₂, Non-Nano)</option>
-                <option value="carbonate">Conventional Carbonate Mineral (CO₂ Evolution Risk)</option>
-                <option value="none">Uncrosslinked Control (No Latent Mineral)</option>
-              </select>
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="selBuffer">Pot-Life Ion Suppression State</label>
-              </div>
-              <select id="selBuffer">
-                <option value="balanced">Balanced Latent Suppression (Target Window)</option>
-                <option value="under">Under-Buffered (Hard-Water Gel / Skinning Risk)</option>
-                <option value="over">Excess Soluble Salt (Moisture-Unzipping Risk)</option>
-              </select>
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="slTapPpm">Tap Water Hardness (ppm CaCO3)</label>
-                <output id="outTapPpm" for="slTapPpm">150 ppm</output>
-              </div>
-              <input type="range" id="slTapPpm" min="0" max="350" step="10" value="150" />
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="slMinScale">Mineral Particle Scale d50 (µm)</label>
-                <output id="outMinScale" for="slMinScale">0.6 µm (Non-Nano)</output>
-              </div>
-              <input type="range" id="slMinScale" min="0.3" max="8.0" step="0.1" value="0.6" />
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="slOvenT">Zone 2 Peak Temp (°C) / Dwell Time (s)</label>
-                <output id="outOven" for="slOvenT">125 °C · 30 s</output>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-                <input type="range" id="slOvenT" aria-label="Zone 2 drying temperature in degrees Celsius" min="75" max="185" step="5" value="125" />
-                <input type="range" id="slOvenS" aria-label="Dryer dwell time in seconds" min="5" max="45" step="1" value="30" />
-              </div>
-            </div>
-
-            <div class="control-item">
-              <div class="control-label-row">
-                <label for="slRq">Substrate Roughness Rq (µm) / Target Coat Weight (g/m²)</label>
-                <output id="outSub" for="slRq">1.1 µm · 8.0 g/m²</output>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-                <input type="range" id="slRq" aria-label="Substrate roughness Rq in micrometers" min="0.8" max="5.0" step="0.1" value="1.1" />
-                <input type="range" id="slGsm" aria-label="Target dry coat weight in grams per square meter" min="5.0" max="22.0" step="0.2" value="8.0" />
-              </div>
-            </div>
-
-            <div class="kpi-grid">
-              <div class="kpi-box">
-                <div class="kpi-title">Tank &amp; Wax Stability</div>
-                <div class="kpi-num" id="kpiTank">Fluid / Electrolyte-Safe</div>
-              </div>
-              <div class="kpi-box">
-                <div class="kpi-title">Two-Zone Cure &amp; Wax</div>
-                <div class="kpi-num" id="kpiCure">Ionic Cure + Wax Melt</div>
-              </div>
-              <div class="kpi-box">
-                <div class="kpi-title">Track &amp; 180° Fold</div>
-                <div class="kpi-num" id="kpiFold">Single-Pass Ductile</div>
-              </div>
-              <div class="kpi-box">
-                <div class="kpi-title">52°C OCC-E Repulp</div>
-                <div class="kpi-num" id="kpiRepulp">Crystalline (&lt;84°C)</div>
-              </div>
-            </div>
-
-            <div id="verdictBox" class="verdict-box verdict-pass" aria-live="polite">
-              ILLUSTRATIVE TARGET WINDOW: Ambient tap-water stability, two-zone humidified zero-CO₂ cure + dry carnauba melt-coalescence, and ductile sub-CPVC coverage aligned for V3 bench screening.
-            </div>
-          </aside>
-        </div>
-      </div>
-    </div>
-
-    <!-- PANEL 2: INDUSTRY FAILURE MODES SOLVED & TECHNICAL EVALUATION SCORECARD -->
-    <div role="tabpanel" id="panel-stress" aria-labelledby="tab-stress" hidden="until-found">
-      <div class="panel-card">
-        <h2 style="margin-top:0;">Industry Failure Modes Solved &amp; Technical Evaluation Scorecard (SLIP-NET™ V3)</h2>
-        <p style="margin-top:0;color:var(--ink-secondary);font-size:0.92rem;">
-          Non-confidential comparison of conventional barrier approaches against SLIP-NET™ V3's <strong>100% latex-free</strong> (zero synthetic and zero natural rubber latex) two-zone phosphate-triggered biopolymer–mineral–carnauba architecture. All SLIP-NET™ V3 entries reflect <strong>target bench performance criteria</strong> to be validated jointly under NDA.
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">Patent-Pending Barrier Platform &bull; U.S. App. Nos. 64/199,413 &amp; 64/206,902</p>
+        <h1>PFAS-Free, 100% Latex-Free Paperboard Barrier Architecture</h1>
+        <p class="hero-sub">
+          Cold-mixed natural biopolymer, platy mineral, and nonionic plant-wax barrier engineered for two-zone humidified curing, 180&deg; crease integrity, and clean 52&deg;C neutral OCC-E repulpability.
         </p>
-
-        <div class="charts-grid">
-          <div class="chart-card">
-            <h3>A. Architecture Comparison Across 5 Industry Gate Criteria</h3>
-            <canvas id="chartCompare" width="520" height="285" aria-label="Qualitative comparison chart across PFAS, PE/latex, carbonate biopolymer, and SLIP-NET V3 target criteria"></canvas>
-            <p class="chart-note"><strong>Illustrative Target Comparison:</strong> Conventional barriers force trade-offs between fluorochemical bans, plastic/latex repulper rejects, or carbonate CO₂ blistering. SLIP-NET™ V3 targets all five gates across Single-Pass and Two-Pass Pure-Wax Topcoat tracks.</p>
-          </div>
-
-          <div class="chart-card">
-            <h3>B. Failure Traps Eliminated by SLIP-NET™ V3 Architecture</h3>
-            <canvas id="chartTraps" width="520" height="285" aria-label="Conceptual schematic showing conventional coating failure modes and SLIP-NET V3 counter-mechanisms"></canvas>
-            <p class="chart-note"><strong>Architectural Differentiation:</strong> Combining a two-zone humidified pre-cure with nonionic plant-based carnauba wax (Tm ~ 80–88°C) avoids dry-oven flash-skinning, CO₂ pinholes, and 52°C repulper stickies.</p>
-          </div>
+        <div class="hero-pills">
+          <span class="pill">Zero PFAS &amp; Zero Latex</span>
+          <span class="pill">Ambient Tap-Water Mix</span>
+          <span class="pill">Single-Pass &amp; Two-Pass Tracks</span>
+          <span class="pill">Partner Evaluation Under $0 NDA</span>
         </div>
+      </div>
 
-        <div class="failure-grid" aria-label="Core Failure Modes Solved">
-          <article class="failure-card">
-            <h3>1. Hard-Water Gelation &amp; Pot Instability</h3>
-            <p><strong>Conventional Trap:</strong> Ambient tap-water hardness (Ca²⁺/Mg²⁺) and ionic emulsions trigger premature gelation and open-pan skinning.<br /><strong>SLIP-NET™ V3 Approach:</strong> Food-grade calcium phosphate &amp; volatile-base latent trigger suppresses free Ca²⁺ while nonionic plant-based carnauba wax dispersion remains electrolyte-stable.</p>
-          </article>
-          <article class="failure-card">
-            <h3>2. Dry-Oven Flash-Skinning &amp; CO₂ Blisters</h3>
-            <p><strong>Conventional Trap:</strong> Dry lab-oven flash-drying forms a surface skin that halts ionic transport, while carbonates evolve CO₂ craters.<br /><strong>SLIP-NET™ V3 Approach:</strong> Two-Zone Humidified Pre-Cure matches paper-mill dryer-hood humidity for clean zero-CO₂ ionic crosslinking prior to dry carnauba melt-coalescence.</p>
-          </article>
-          <article class="failure-card">
-            <h3>3. 180° Score-Line Crease Cracking</h3>
-            <p><strong>Conventional Trap:</strong> Over-pigmented mineral barriers above CPVC crack along folded carton scores, collapsing grease Kit resistance.<br /><strong>SLIP-NET™ V3 Approach:</strong> Platy natural mineral below CPVC, bio-based polyol plasticizer, and melt-coalesced carnauba wax (Single-Pass or Two-Pass Pure-Wax Topcoat) maintain ductile fold integrity.</p>
-          </article>
-          <article class="failure-card">
-            <h3>4. Repulper Stickies, Latex &amp; Microplastics</h3>
-            <p><strong>Conventional Trap:</strong> PE, synthetic/natural latexes, and low-melting waxes smear into tacky rejects during warm repulping.<br /><strong>SLIP-NET™ V3 Approach:</strong> 100% latex-free ionic network unzips cleanly while high-melting carnauba wax (Tm ~ 80–88°C) remains a non-tacky crystalline solid at 52°C (52°C &lt; 84°C) in WMU OCC-E &amp; TAPPI T 275.</p>
-          </article>
+      <div class="hero-metrics" aria-label="Key architectural highlights">
+        <div class="metric-tile">
+          <div class="metric-val">~6.7&times;</div>
+          <div class="metric-lbl">Modeled crosslinking lift with humidified Zone 1 vs. dry lab oven</div>
         </div>
-
-        <div tabindex="0" role="region" aria-labelledby="cap-scorecard" class="table-wrapper" style="margin-block-start:1.15rem;">
-          <table>
-            <caption id="cap-scorecard">Technical Evaluation Scorecard: Conventional Barriers vs. SLIP-NET™ V3 Target Architecture (Target Bench Criteria)</caption>
-            <thead>
-              <tr>
-                <th scope="col">Evaluation Criterion</th>
-                <th scope="col">PFAS / Fluorochemical</th>
-                <th scope="col">PE / Synthetic or Natural Latex</th>
-                <th scope="col">Carbonate Biopolymer</th>
-                <th scope="col">SLIP-NET™ V3 (Target Criteria)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">PFAS &amp; 100% Latex-Free</th>
-                <td data-label="PFAS / Fluorochemical">Fails (fluorinated)</td>
-                <td data-label="PE / Synthetic Latex">Fails (synthetic or natural rubber latex)</td>
-                <td data-label="Carbonate Biopolymer">Passes (bio-based)</td>
-                <td data-label="SLIP-NET™ V3 Target"><strong>Target Pass</strong> (0 PFAS, 0 synthetic &amp; 0 natural latex)</td>
-              </tr>
-              <tr>
-                <th scope="row">Cold Tap-Water &amp; Electrolyte Stability</th>
-                <td data-label="PFAS / Fluorochemical">Stable</td>
-                <td data-label="PE / Synthetic Latex">Stable</td>
-                <td data-label="Carbonate Biopolymer">Prone to open-pan skinning</td>
-                <td data-label="SLIP-NET™ V3 Target"><strong>Target Pass</strong> (nonionic carnauba + latent trigger)</td>
-              </tr>
-              <tr>
-                <th scope="row">Two-Zone Zero-CO₂ Cure &amp; Wax Melt</th>
-                <td data-label="PFAS / Fluorochemical">N/A (non-gas)</td>
-                <td data-label="PE / Synthetic Latex">N/A (polymer coalescence)</td>
-                <td data-label="Carbonate Biopolymer">CO₂ cratering / dry-skin risk</td>
-                <td data-label="SLIP-NET™ V3 Target"><strong>Target Pass</strong> (humidified pre-cure + dry carnauba melt)</td>
-              </tr>
-              <tr>
-                <th scope="row">Flat &amp; 180° Crease Grease Barrier</th>
-                <td data-label="PFAS / Fluorochemical">High</td>
-                <td data-label="PE / Synthetic Latex">High</td>
-                <td data-label="Carbonate Biopolymer">Degrades at pinholes / folds</td>
-                <td data-label="SLIP-NET™ V3 Target"><strong>Target Flat Kit ≥ 10; Crease Kit ≥ 8</strong> (Single &amp; Two-Pass)</td>
-              </tr>
-              <tr>
-                <th scope="row">52°C OCC-E &amp; Alkaline Repulpability</th>
-                <td data-label="PFAS / Fluorochemical">Contaminates pulp</td>
-                <td data-label="PE / Synthetic Latex">High screen rejects / stickies</td>
-                <td data-label="Carbonate Biopolymer">Ionic (variable by binder)</td>
-                <td data-label="SLIP-NET™ V3 Target"><strong>Target Pass</strong> (52°C &lt; 84°C crystalline wax; WMU OCC-E 0.010&quot; &amp; TAPPI T 275)</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="metric-tile">
+          <div class="metric-val">0%</div>
+          <div class="metric-lbl">Fluorochemicals, synthetic latex, or natural rubber latex</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-val">52&deg;C</div>
+          <div class="metric-lbl">Solid-wax neutral OCC-E repulping (below carnauba T<sub>m</sub>)</div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- PANEL 3: NON-CONFIDENTIAL EVALUATION PROCESS & REGULATORY CLASS OVERVIEW -->
-    <div role="tabpanel" id="panel-test" aria-labelledby="tab-test" hidden="until-found">
-      <div class="panel-card">
-        <h2 style="margin-top:0;">Non-Confidential V3 Evaluation Process &amp; Regulatory Class Overview</h2>
-        <p style="margin-top:0;color:var(--ink-secondary);font-size:0.93rem;">
-          SLIP-NET™ V3 is <strong>100% latex-free</strong> (zero synthetic and zero natural rubber latex) and engineered for ambient tap-water mixing, standard drawdown or metering-rod coaters, and <strong>Two-Zone Humidified Pre-Cure + Dry Wax Melt-Coalescence</strong> matching paper-mill dryer-hood humidity—across both <strong>Single-Pass</strong> and <strong>Two-Pass Pure-Wax Topcoat</strong> evaluation tracks.
-        </p>
-
-        <div class="nda-cta-box" role="note">
-          <strong>Confidential Formulation &amp; V3 Bench Protocol Access:</strong> Exact formulations, stoichiometry, commercial supplier grades, mixing sequences, and the V3 two-zone bench screening protocol are provided immediately upon execution of a $0 Mutual NDA or your organization's standard CDA.
-        </div>
-
-        <div class="protocol-grid">
-          <div class="proto-box" style="background:#ecfdf5;border-color:#10b981;">
-            <h3>Non-Confidential V3 Ingredient Classes</h3>
-            <ul style="padding-left:1.2rem;margin:0;font-size:0.88rem;">
-              <li><strong>Platy natural mineral</strong> — non-nano platelet geometry (&gt;150 nm) engineered for barrier tortuosity and sub-CPVC fold ductility.</li>
-              <li><strong>Ultra-low-viscosity marine biopolymer</strong> — unmodified natural seaweed polysaccharide forming the percolating, ionically reversible barrier network.</li>
-              <li><strong>Food-grade calcium phosphate &amp; volatile-base latent trigger</strong> — non-gas-evolving mineral and latent buffer system providing ambient pot stability and clean two-zone thermal cure.</li>
-              <li><strong>Nonionic plant-based carnauba wax dispersion (Tm ~ 80–88°C)</strong> — provides (a) electrolyte stability in the wet pot, (b) clean dry thermal melt-coalescence, and (c) crystalline solid-state non-stickiness during 52°C neutral-pH WMU OCC-E repulping (52°C &lt; 84°C).</li>
-              <li><strong>Bio-based polyol plasticizer</strong> — cold-water-compatible natural modifier enhancing 180° score-line flexibility and ductile matrix integrity.</li>
-            </ul>
-          </div>
-
-          <div class="proto-box">
-            <h3>Joint V3 Bench Evaluation Workflow</h3>
-            <ol style="padding-left:1.2rem;margin:0;font-size:0.88rem;">
-              <li><strong>NDA / CDA Execution:</strong> Sign a $0 Mutual NDA or provide your organization's standard CDA.</li>
-              <li><strong>V3 Protocol Transfer:</strong> Receive exact formulations, stoichiometry, supplier grade specs, and the Single-Pass &amp; Two-Pass Pure-Wax Topcoat bench protocol.</li>
-              <li><strong>Two-Zone Mill-Hood Emulation:</strong> Coat target board or molded fiber from cold tap water, apply Two-Zone Humidified Pre-Cure (avoiding dry-oven flash-skinning), and finish with dry carnauba melt-coalescence.</li>
-              <li><strong>Target Scorecard Verification:</strong> Evaluate grease Kit (flat &amp; 180° crease), Cobb60, hot-food resistance, and repulpability (WMU OCC-E 52°C / 0.010&quot; screen &amp; TAPPI T 275).</li>
-            </ol>
-          </div>
-        </div>
-
-        <div tabindex="0" role="region" aria-labelledby="cap-cfr" class="table-wrapper" style="margin-block-start:1.15rem;">
-          <table>
-            <caption id="cap-cfr">Table 1: Regulatory Class Overview (21 CFR Reference Classes §§ 181.29, 182.1217, 184.1724, 184.1978, 186.1256 &amp; EU / BfR Alignment)</caption>
-            <thead>
-              <tr>
-                <th scope="col">Ingredient Class</th>
-                <th scope="col">FDA 21 CFR Reference Class</th>
-                <th scope="col">EU / German BfR Alignment &amp; Evaluation Notes</th>
-                <th scope="col">Functional Role in SLIP-NET™ V3</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Platy natural mineral</th>
-                <td data-label="FDA 21 CFR">§ 186.1256 (GRAS indirect food-contact mineral class)</td>
-                <td data-label="EU / BfR">Non-nano mineral target (&gt;150 nm); BfR XXXVI mineral filler class. Final EU nanomaterial &amp; dispersant compliance evaluated by commercial grade under NDA.</td>
-                <td data-label="Role">Platelet barrier tortuosity and ductile film matrix engineered below CPVC</td>
-              </tr>
-              <tr>
-                <th scope="row">Ultra-low-viscosity marine biopolymer</th>
-                <td data-label="FDA 21 CFR">§ 184.1724 (food-grade marine alginate class)</td>
-                <td data-label="EU / BfR">Unmodified natural polysaccharide class. Final EU SUPD and BfR XXXVI status depends on commercial polymer grade selected during joint evaluation.</td>
-                <td data-label="Role">Percolating Ca²⁺-crosslinked barrier network and reversible ionic repulpability</td>
-              </tr>
-              <tr>
-                <th scope="row">Food-grade calcium phosphate &amp; volatile-base latent trigger</th>
-                <td data-label="FDA 21 CFR">§§ 181.29, 182.1217 (prior-sanctioned &amp; GRAS calcium phosphate / buffer classes)</td>
-                <td data-label="EU / BfR">Non-nano mineral target (&gt;150 nm); food-grade inorganic salt &amp; volatile-base class. Final EU grade compliance evaluated during joint screening.</td>
-                <td data-label="Role">Ambient tap-water Ca²⁺ suppression and zero-CO₂ two-zone thermal crosslinking trigger</td>
-              </tr>
-              <tr>
-                <th scope="row">Nonionic plant-based carnauba wax dispersion (Tm ~ 80–88°C)</th>
-                <td data-label="FDA 21 CFR">§ 184.1978 (natural carnauba wax class)</td>
-                <td data-label="EU / BfR">BfR XXXVI release / moisture-barrier wax class. EU SUPD and nonionic emulsifier compliance depends on final commercial dispersion grade selected under NDA.</td>
-                <td data-label="Role">Electrolyte-stable pot behavior, dry melt-coalescence seal, 180° crease slip, and crystalline non-stickiness at 52°C OCC-E repulping</td>
-              </tr>
-              <tr>
-                <th scope="row">Bio-based polyol plasticizer</th>
-                <td data-label="FDA 21 CFR">Food-grade GRAS polyol class (21 CFR food-contact aligned)</td>
-                <td data-label="EU / BfR">Bio-based unmodified polyol class aligned with BfR XXXVI plasticizer expectations; final grade evaluated during joint screening.</td>
-                <td data-label="Role">Cold-water-compatible matrix plasticization and 180° score-line ductility</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div tabindex="0" role="region" aria-labelledby="cap-targets" class="table-wrapper" style="margin-block-start:1.1rem;">
-          <table>
-            <caption id="cap-targets">Table 2: Target Bench Performance Criteria &amp; Repulpability Table (Joint V3 Evaluation Scorecard)</caption>
-            <thead>
-              <tr>
-                <th scope="col">Test Standard / Protocol</th>
-                <th scope="col">Evaluation Condition</th>
-                <th scope="col">Target Bench Performance Criterion</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Pot Stability &amp; Electrolyte Compatibility</th>
-                <td data-label="Condition">Ambient municipal tap-water batch with nonionic carnauba dispersion, 8–24 hr hold</td>
-                <td data-label="Target">Target pumpable viscosity window; zero premature wax coagulation or open-pan skinning</td>
-              </tr>
-              <tr>
-                <th scope="row">Two-Zone Humidified Pre-Cure &amp; Wax Melt</th>
-                <td data-label="Condition">Zone 1 mill-hood humidity pre-cure + Zone 2 dry wax melt-coalescence (&gt;88°C); Single-Pass &amp; Two-Pass tracks</td>
-                <td data-label="Target">Complete ionic network cure prior to surface drying + continuous carnauba melt seal; zero CO₂ craters</td>
-              </tr>
-              <tr>
-                <th scope="row">TAPPI T 559 (Grease Kit)</th>
-                <td data-label="Condition">Flat coated surface &amp; 180° folded score line (Single-Pass &amp; Two-Pass Pure-Wax Topcoat)</td>
-                <td data-label="Target">Target Flat Kit ≥ 10; Target 180° Crease Kit ≥ 8</td>
-              </tr>
-              <tr>
-                <th scope="row">TAPPI T 441 (Cobb60) &amp; Acid Drop</th>
-                <td data-label="Condition">60 s water absorptiveness + mild acid drop check</td>
-                <td data-label="Target">Target Cobb60 ≤ 20 g/m² (Two-Pass Pure-Wax track targets enhanced moisture barrier); zero CO₂ fizz</td>
-              </tr>
-              <tr>
-                <th scope="row">Hot-Carton Odor &amp; Stack Blocking</th>
-                <td data-label="Condition">Elevated-temperature closed carton &amp; stacked pressure</td>
-                <td data-label="Target">Low/undetectable headspace off-odor; clean non-blocking release (100% latex-free)</td>
-              </tr>
-              <tr>
-                <th scope="row">Neutral-pH Recyclability (WMU OCC-E)</th>
-                <td data-label="Condition">52°C neutral-pH corrugated / boxboard repulping with 0.010&quot; slotted screen</td>
-                <td data-label="Target">Target pass under WMU OCC-E (52°C, 0.010&quot; screen): ionic unzip + crystalline carnauba solid (52°C &lt; 84°C) prevents tacky stickies</td>
-              </tr>
-              <tr>
-                <th scope="row">Alkaline Mill-Broke Repulpability (TAPPI T 275)</th>
-                <td data-label="Condition">Alkaline carbonate / citrate mill-broke repulping</td>
-                <td data-label="Target">Target &lt; 1.0% rejects by weight (Somerville 0.15 mm slotted screen) via reversible ionic unzip</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="cta-bar">
-          <div>
-            <strong>$0 Mutual NDA &amp; Joint V3 Evaluation Inquiries</strong><br />
-            <span style="font-size:0.86rem;color:#cbd5e1;">Inventor: David Mahler • East Sandwich, MA • U.S. App. Nos. 64/199,413 &amp; 64/206,902 (Patent-Pending: "Repulpable Phosphate-Triggered Alginate-Kaolin Barrier Coatings and Coated Cellulosic Articles") • david@surplusdocket.com</span>
-          </div>
-          <a class="cta-btn" href="mailto:david@surplusdocket.com?subject=SLIP-NET%20V3%20NDA%20%26%20Bench%20Evaluation%20Inquiry&body=Hi%20David%2C%0A%0AWe%20reviewed%20the%20SLIP-NET%20V3%20technical%20overview%20and%20would%20like%20to%20execute%20a%20%240%20Mutual%20NDA%20%2F%20CDA%20to%20review%20the%20V3%20bench%20screening%20protocol.%0A%0AOrganization%3A%20%0AContact%20Name%3A%20">Request NDA &amp; V3 Protocol</a>
-        </div>
+  <main>
+    <div class="notice-bar" role="note">
+      <div>
+        <strong>Pre-Trial Computational &amp; Conceptual Overview:</strong> Interactive visuals below illustrate qualitative V3 process mechanics and pre-trial bench targets—not completed physical lab test results. Exact formulations, stoichiometry, and the 100 g bench protocol are shared exclusively under a $0 Mutual NDA or partner CDA.
       </div>
     </div>
+
+    <!-- ================= SECTION 1: INTERACTIVE ANIMATED SIMULATOR ================= -->
+    <section class="card" id="simulator" aria-labelledby="sim-heading">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">1. Interactive Process Visualization</p>
+          <h2 id="sim-heading">Explore SLIP-NET™ V3 vs. the Dry-Oven Failure Trap</h2>
+          <p class="section-lead">Switch coating regimes or adjust Zone 1 humidity and Zone 2 temperature to see how wet-bulb control unlocks rapid zero-CO<sub>2</sub> crosslinking and full wax coalescence.</p>
+        </div>
+      </div>
+
+      <div class="regime-bar" role="group" aria-label="Process regime presets">
+        <button type="button" class="regime-btn is-active" data-regime="v3_single">
+          <span>SLIP-NET™ V3 — Single-Pass Two-Zone</span>
+          <small>Humidified Zone 1 (~82&deg;C wet-bulb) + Dry 135&deg;C Carnauba Melt</small>
+        </button>
+        <button type="button" class="regime-btn" data-regime="v3_twopass">
+          <span>SLIP-NET™ V3 — Two-Pass Pure-Wax Topcoat</span>
+          <small>Crosslinked OGR Basecoat + Pure Nonionic Wax Topcoat (0% Polymer Emulsion)</small>
+        </button>
+        <button type="button" class="regime-btn is-trap" data-regime="dry_trap">
+          <span>Failure Mode — Dry Single-Zone Lab Oven</span>
+          <small>Evaporative cooling pins wet film at ~51&deg;C, stalling cure near ~10–16%</small>
+        </button>
+      </div>
+
+      <div class="sim-grid">
+        <div>
+          <div class="stepper-row">
+            <div class="stage-tabs" role="group" aria-label="Five process stages">
+              <button type="button" class="stage-btn" data-stage="0" aria-current="step">1. Cold Bath</button>
+              <button type="button" class="stage-btn" data-stage="1">2. Planar Coat</button>
+              <button type="button" class="stage-btn" data-stage="2">3. Two-Zone Cure</button>
+              <button type="button" class="stage-btn" data-stage="3">4. 180&deg; Fold &amp; Oil</button>
+              <button type="button" class="stage-btn" data-stage="4">5. 52&deg;C Repulp</button>
+            </div>
+            <div class="playback-controls">
+              <button type="button" class="ctrl-btn secondary" id="btnAutoTour">Auto-Tour</button>
+              <button type="button" class="ctrl-btn" id="btnPlayPause">Pause</button>
+            </div>
+          </div>
+
+          <div class="canvas-shell">
+            <canvas id="stageCanvas" width="760" height="430" aria-label="Animated cross-section of SLIP-NET V3 barrier coating process"></canvas>
+            <div class="stage-caption">
+              <h3 id="stageTitle">Stage 1: Ambient Cold Tap-Water Dispersion</h3>
+              <p id="stageDesc">Trace orthophosphate suppresses free tap-water Ca²⁺ while nonionic carnauba wax stays electrolyte-stable—preventing premature tank gelation and open-pan skinning.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel" aria-label="Interactive process controls and telemetry">
+          <h3 class="panel-title">
+            <span>Live Process Controls</span>
+            <span style="font-size:0.72rem;font-weight:600;color:var(--muted);">Illustrative Model</span>
+          </h3>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <label for="slHumidity">Zone 1 Water Vapor (p<sub>H2O</sub>)</label>
+              <span class="slider-val" id="valHumidity">0.40 atm</span>
+            </div>
+            <input type="range" id="slHumidity" min="0.02" max="0.60" step="0.02" value="0.40" />
+            <div class="slider-hint"><span>0.02 (Dry Oven)</span><span>0.35–0.45 (V3 Target)</span><span>0.60 (Steam)</span></div>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <label for="slTemp">Zone 2 Peak Temp (&deg;C)</label>
+              <span class="slider-val" id="valTemp">135&deg;C</span>
+            </div>
+            <input type="range" id="slTemp" min="70" max="160" step="5" value="135" />
+            <div class="slider-hint"><span>70&deg;C (Below T<sub>m</sub>)</span><span>84&deg;C Wax Melt</span><span>135–150&deg;C</span></div>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <label for="slHardness">Tap-Water Hardness (CaCO<sub>3</sub>)</label>
+              <span class="slider-val" id="valHardness">150 ppm</span>
+            </div>
+            <input type="range" id="slHardness" min="0" max="250" step="25" value="150" />
+            <div class="slider-hint"><span>0 ppm (DI)</span><span>150 ppm (Tap)</span><span>250 ppm (Hard)</span></div>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-k">Zone 1 Wet-Bulb</div>
+              <div class="kpi-v status-good" id="kpiTwet">82.7&deg;C</div>
+              <div class="kpi-sub" id="kpiTwetSub">Rapid NH<sub>3</sub> strip</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-k">Modeled Cure</div>
+              <div class="kpi-v status-good" id="kpiCure">69%–90%</div>
+              <div class="kpi-sub" id="kpiCureSub">Prod / Lab range</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-k">Wax Coalescence</div>
+              <div class="kpi-v status-good" id="kpiWax">Full Seal</div>
+              <div class="kpi-sub" id="kpiWaxSub">Above 84&deg;C T<sub>m</sub></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-k">52&deg;C Repulp</div>
+              <div class="kpi-v status-good" id="kpiRepulp">Clean Solid</div>
+              <div class="kpi-sub">Zero soft stickies</div>
+            </div>
+          </div>
+
+          <div class="verdict-box" id="verdictBox">
+            <strong>V3 Target Window Active:</strong> Humidified Zone 1 keeps the film fluid near 83&deg;C so NH<sub>3</sub> strips cleanly and Ca(Alg)<sub>2</sub> crosslinks before Zone 2 melts the carnauba seal.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2: WHY DRY OVENS FAIL ================= -->
+    <section class="card" id="physics" aria-labelledby="physics-heading">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">2. First-Principles Kinetic Discovery</p>
+          <h2 id="physics-heading">Why Conventional Dry Lab Ovens Stall — and How Two-Zone Fixes It</h2>
+          <p class="section-lead">Coupled thermodynamic &amp; evaporation modeling revealed a hidden wet-bulb bottleneck that explains why dry-oven bench drawdowns under-cure—and how a simple bench steam pan resolves it.</p>
+        </div>
+      </div>
+
+      <div class="physics-grid">
+        <div class="chart-shell">
+          <canvas id="kineticsCanvas" width="620" height="330" aria-label="Comparison chart of wet-film temperature and crosslinking conversion for Two-Zone humidified cure versus dry lab oven"></canvas>
+        </div>
+
+        <div class="insight-list">
+          <div class="insight-item">
+            <h3>1. The ~51&deg;C Evaporative-Cooling Trap</h3>
+            <p>In a dry forced-air oven (p<sub>H2O</sub> &approx; 0.02 atm), rapid evaporation cools the wet coating to ~51&deg;C regardless of dwell time. Ammonia stays trapped and the film dries solid at only ~10–16% modeled crosslinking.</p>
+          </div>
+          <div class="insight-item">
+            <h3>2. Humidified Zone 1 Unlocks 6.7&times; Higher Cure</h3>
+            <p>Raising Zone 1 water vapor pressure (&ge; 0.15 atm; ~0.35–0.45 atm target) elevates wet-film temperature to ~80–85&deg;C while keeping liquid water present—driving ~69% cure on production dryers and ~75–90% in lab convection ovens.</p>
+          </div>
+          <div class="insight-item">
+            <h3>3. Dry Zone 2 Seals Carnauba Above T<sub>m</sub> (~84&deg;C)</h3>
+            <p>Once crosslinked, dry 135&deg;C Zone 2 air finishes drying and melts the nonionic carnauba wax into a continuous moisture barrier that re-solidifies into non-tacky flakes for 52&deg;C neutral OCC-E repulping.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: RESPONSIVE EXECUTIVE SCORECARD ================= -->
+    <section class="card" id="scorecard" aria-labelledby="scorecard-heading">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">3. Comparative Evaluation Matrix</p>
+          <h2 id="scorecard-heading">Target Performance vs. Incumbent Barrier Approaches</h2>
+          <p class="section-lead">Qualitative engineering comparison of target SLIP-NET™ V3 bench criteria against incumbent paperboard barrier systems.</p>
+        </div>
+      </div>
+
+      <div tabindex="0" role="region" aria-labelledby="scorecard-caption" class="table-wrapper">
+        <table class="score-table">
+          <caption id="scorecard-caption">Qualitative comparison of PFAS, PE/synthetic latex, carbonate biopolymer, and SLIP-NET V3 target criteria</caption>
+          <thead>
+            <tr>
+              <th scope="col">Evaluation Criterion</th>
+              <th scope="col">PFAS Barrier</th>
+              <th scope="col">PE / Synthetic Latex</th>
+              <th scope="col">Carbonate Biopolymer</th>
+              <th scope="col">SLIP-NET™ V3 Target</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">PFAS &amp; Latex Compliance</th>
+              <td><span class="tag tag-fail">Banned / Phased Out</span></td>
+              <td><span class="tag tag-warn">Plastic / EU SUPD Risk</span></td>
+              <td><span class="tag tag-pass">PFAS-Free</span></td>
+              <td><span class="tag tag-pass">0% PFAS &bull; 0% Latex</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Ambient Tap-Water Pot Stability</th>
+              <td><span class="tag tag-pass">Stable</span></td>
+              <td><span class="tag tag-pass">Stable</span></td>
+              <td><span class="tag tag-fail">CO<sub>2</sub> Open-Pan Skinning</span></td>
+              <td><span class="tag tag-pass">24–72 h Covered Pot</span> (up to 250 ppm CaCO<sub>3</sub>)</td>
+            </tr>
+            <tr>
+              <th scope="row">Thermal Cure &amp; Film Integrity</th>
+              <td><span class="tag tag-pass">Film-Free</span></td>
+              <td><span class="tag tag-pass">Coalesces</span></td>
+              <td><span class="tag tag-fail">CO<sub>2</sub> Crater Pinholes</span></td>
+              <td><span class="tag tag-pass">Zero-CO<sub>2</sub> Two-Zone</span> (Non-Chelating Cure)</td>
+            </tr>
+            <tr>
+              <th scope="row">Grease (Kit) &amp; Water (Cobb<sub>60</sub>)</th>
+              <td><span class="tag tag-warn">Kit 12 / Poor Water</span></td>
+              <td><span class="tag tag-pass">Kit 12 / Low Cobb</span></td>
+              <td><span class="tag tag-warn">Crease Cracking</span></td>
+              <td><span class="tag tag-pass">Target Kit &ge; 9–12</span> &bull; Cobb<sub>60</sub> &lt; 10–15 g/m&sup2;</td>
+            </tr>
+            <tr>
+              <th scope="row">52&deg;C Neutral OCC-E Repulp</th>
+              <td><span class="tag tag-pass">Repulps</span></td>
+              <td><span class="tag tag-fail">Film Rejects / Stickies</span></td>
+              <td><span class="tag tag-pass">Repulps</span></td>
+              <td><span class="tag tag-pass">&le; 15 wt% Pass</span> (Solid Carnauba, Zero Stickies)</td>
+            </tr>
+            <tr>
+              <th scope="row">Coater Architecture</th>
+              <td>Size Press</td>
+              <td>Extrusion / Blade</td>
+              <td>Blade / Rod</td>
+              <td><span class="tag tag-pass">Drop-In Rod / Blade / Curtain</span> (1- or 2-Pass)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4: PARTNER EVALUATION PATH ================= -->
+    <section class="card" id="evaluate" aria-labelledby="eval-heading">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">4. Joint Bench Screening Path</p>
+          <h2 id="eval-heading">Fast, Low-Friction Lab Validation ($0 Mutual NDA / CDA)</h2>
+          <p class="section-lead">Designed so an application lab can verify emulsion stability and Two-Zone crosslinking in a single afternoon before committing pilot coater time.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>$0 Mutual NDA / Partner CDA</h3>
+          <p>Sign your standard CDA (or a 2-page mutual NDA) to receive the complete V3 4-variant 100 g bench protocol, commercial grade specs, and FDA 21 CFR mapping.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Day-1 Emulsion &amp; A/B Cure Gate</h3>
+          <p>Run a 60-second clear-brine emulsion compatibility gate, followed by a 2-sheet A/B drawdown (Dry Oven vs. Two-Zone Humidified Cure) on target C1S / SBS / MG kraft.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Scorecard &amp; Pilot Scale-Up</h3>
+          <p>Evaluate flat &amp; 180&deg; creased Kit, Cobb<sub>60</sub>, WVTR, stack blocking, and dual repulpability (52&deg;C OCC-E &amp; alkaline broke), then advance to pilot coater and licensing terms.</p>
+        </div>
+      </div>
+
+      <div class="cta-banner">
+        <div>
+          <h3>Ready to Review the V3 Bench Protocol Under NDA?</h3>
+          <p>David Mahler &bull; Principal Inventor, SLIP-NET™ &bull; East Sandwich, MA &bull; U.S. App. Nos. 64/199,413 &amp; 64/206,902</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn-primary" href="mailto:david@surplusdocket.com?subject=SLIP-NET%20V3%20Mutual%20NDA%20%2F%20Bench%20Protocol">Request NDA &amp; Protocol</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    SLIP-NET™ V3 Non-Confidential Technical Overview • Patent-Pending Barrier Architecture (U.S. App. Nos. 64/199,413 &amp; 64/206,902) • Unlisted Evaluation Page (noindex) on SurplusDocket.
+    <span>SLIP-NET™ V3 Non-Confidential Technical Overview &bull; U.S. App. Nos. 64/199,413 &amp; 64/206,902</span>
+    <span>Unlisted Partner Evaluation Page (noindex) &bull; david@surplusdocket.com</span>
   </footer>
 
   <script>
-    (function () {
-      "use strict";
+    // Feature-detect Popover API per modern-web-guidance navbar
+    if (!Object.hasOwn(HTMLElement.prototype, "popover")) {
+      const s = document.createElement("script");
+      s.src = "https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js";
+      document.head.appendChild(s);
+    }
 
-      // ---------------------------------------------------------------------
-      // 1. Accessible Tabs (focusgroup nomemory + focusgroupstart + hidden="until-found")
-      // ---------------------------------------------------------------------
-      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
-      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+    (() => {
+      // ================= 1. Responsive Navbar (ResizeObserver, no hard breakpoint) =================
+      const header = document.getElementById("siteHeader");
+      const inner = document.getElementById("headerInner");
+      const menu = document.getElementById("site-menu");
+      let lastCollapsedWidth = 0;
 
-      function findPanelForTab(tab) {
-        return tabPanels.find((p) => p.getAttribute("aria-labelledby") === tab.id);
+      function syncNavLayout() {
+        const wasWide = header.classList.contains("is-wide");
+        const curW = inner.clientWidth;
+        if (!wasWide && curW <= lastCollapsedWidth && lastCollapsedWidth > 0) return;
+
+        const wasOpen = menu.matches(":popover-open") || menu.classList.contains(":popover-open");
+        header.classList.add("is-measuring", "is-wide");
+        menu.removeAttribute("popover");
+        const fits = inner.scrollWidth <= inner.clientWidth + 1;
+
+        if (fits) {
+          header.classList.add("is-wide");
+          lastCollapsedWidth = 0;
+        } else {
+          header.classList.remove("is-wide");
+          menu.setAttribute("popover", "auto");
+          lastCollapsedWidth = curW;
+          if (wasOpen && typeof menu.showPopover === "function") {
+            try { menu.showPopover(); } catch (_) {}
+          }
+        }
+        requestAnimationFrame(() => header.classList.remove("is-measuring"));
       }
 
-      function activateTab(targetBtn, moveFocus) {
-        tabButtons.forEach((btn) => {
-          const isSelected = btn === targetBtn;
-          btn.setAttribute("aria-selected", isSelected ? "true" : "false");
-          btn.toggleAttribute("focusgroupstart", isSelected);
-          const panel = findPanelForTab(btn);
-          if (panel) {
-            if (isSelected) {
-              panel.removeAttribute("hidden");
-            } else {
-              panel.setAttribute("hidden", "until-found");
-            }
+      const ro = new ResizeObserver(syncNavLayout);
+      ro.observe(header);
+      ro.observe(menu);
+      syncNavLayout();
+
+      // Close mobile popover when clicking a nav jump link
+      menu.querySelectorAll("a[href^='#']").forEach((a) => {
+        a.addEventListener("click", () => {
+          if (!header.classList.contains("is-wide") && typeof menu.hidePopover === "function") {
+            try { menu.hidePopover(); } catch (_) {}
           }
         });
-        if (moveFocus) targetBtn.focus();
-        if (targetBtn.id === "tab-stress") drawAllScorecardCharts();
-      }
-
-      tabButtons.forEach((btn, idx) => {
-        btn.addEventListener("click", () => activateTab(btn, false));
-        btn.addEventListener("keydown", (ev) => {
-          let nextIdx = idx;
-          if (ev.key === "ArrowRight") nextIdx = (idx + 1) % tabButtons.length;
-          else if (ev.key === "ArrowLeft") nextIdx = (idx - 1 + tabButtons.length) % tabButtons.length;
-          else if (ev.key === "Home") nextIdx = 0;
-          else if (ev.key === "End") nextIdx = tabButtons.length - 1;
-          else return;
-          ev.preventDefault();
-          activateTab(tabButtons[nextIdx], true);
-        });
       });
 
-      tabPanels.forEach((panel) => {
-        panel.addEventListener("beforematch", () => {
-          const ownerId = panel.getAttribute("aria-labelledby");
-          const owner = tabButtons.find((b) => b.id === ownerId);
-          if (owner) activateTab(owner, false);
-        });
-      });
-
-      // ---------------------------------------------------------------------
-      // 2. Illustrative Conceptual Model (Non-Confidential V3 Process Visualizer)
-      // ---------------------------------------------------------------------
-      const selDryerMode = document.getElementById("selDryerMode");
-      const selPassTrack = document.getElementById("selPassTrack");
-      const selArch = document.getElementById("selArch");
-      const selTrigger = document.getElementById("selTrigger");
-      const selBuffer = document.getElementById("selBuffer");
-      const slTapPpm = document.getElementById("slTapPpm");
-      const slMinScale = document.getElementById("slMinScale");
-      const slOvenT = document.getElementById("slOvenT");
-      const slOvenS = document.getElementById("slOvenS");
-      const slRq = document.getElementById("slRq");
-      const slGsm = document.getElementById("slGsm");
-      const allRanges = [slTapPpm, slMinScale, slOvenT, slOvenS, slRq, slGsm];
-
-      function syncSliderVars(el, textVal) {
-        el.style.setProperty("--attr-min", el.min || 0);
-        el.style.setProperty("--attr-max", el.max || 100);
-        el.style.setProperty("--control-value", el.value);
-        if (textVal) el.setAttribute("aria-valuetext", textVal);
-      }
-
-      let currentState = {};
-
-      function evaluateConceptualState() {
-        const dryerMode = selDryerMode.value;
-        const passTrack = selPassTrack.value;
-        const arch = selArch.value;
-        const trigger = selTrigger.value;
-        const buffer = selBuffer.value;
-        const tapPpm = parseFloat(slTapPpm.value);
-        const minUm = parseFloat(slMinScale.value);
-        const ovenT = parseFloat(slOvenT.value);
-        const ovenS = parseFloat(slOvenS.value);
-        const rqUm = parseFloat(slRq.value);
-        const coatGsm = parseFloat(slGsm.value);
-
-        document.getElementById("outTapPpm").textContent = tapPpm + " ppm";
-        document.getElementById("outMinScale").textContent = minUm.toFixed(1) + (minUm <= 1.8 ? " µm (Non-Nano)" : " µm (Coarse)");
-        document.getElementById("outOven").textContent = ovenT + " °C · " + ovenS + " s";
-        document.getElementById("outSub").textContent = rqUm.toFixed(1) + " µm · " + coatGsm.toFixed(1) + " g/m²";
-
-        syncSliderVars(slTapPpm, tapPpm + " ppm CaCO3");
-        syncSliderVars(slMinScale, minUm.toFixed(1) + " micrometers");
-        syncSliderVars(slOvenT, ovenT + " degrees Celsius");
-        syncSliderVars(slOvenS, ovenS + " seconds");
-        syncSliderVars(slRq, rqUm.toFixed(1) + " micrometers");
-        syncSliderVars(slGsm, coatGsm.toFixed(1) + " grams per square meter");
-
-        // Qualitative V3 boundary checks (illustrative conceptual mechanics only)
-        const hardWaterCrash = buffer === "under" && tapPpm >= 80 && trigger !== "none";
-        const carbonateGas = trigger === "carbonate";
-        const uncrosslinked = trigger === "none";
-        const saltUnzip = buffer === "over";
-        const dryFlashRisk = dryerMode === "dryoven" && trigger === "phosphate";
-        const waxNoMelt = ovenT < 90;
-        const thermalEnergy = (ovenT - 80) * Math.sqrt(ovenS);
-        const lowCure = thermalEnergy < 120 || uncrosslinked;
-        const effectiveGsm = passTrack === "twopass" ? coatGsm + 2.0 : coatGsm;
-        const filmThickUm = effectiveGsm / 1.6;
-        const roughCoverageRisk = filmThickUm < 2.8 * rqUm;
-        const coarseProtrusion = minUm > 2.2 && trigger !== "none";
-
-        const issues = [];
-        if (hardWaterCrash) issues.push("Premature Hard-Water Gelation / Open-Pan Skinning");
-        if (dryFlashRisk) issues.push("Dry-Oven Flash-Skinning Trap (Use Two-Zone Humidified Pre-Cure)");
-        if (carbonateGas) issues.push("CO2 Gas Evolution & Thermal Blister Risk");
-        if (uncrosslinked) issues.push("Uncrosslinked Film (Missing Latent Trigger)");
-        if (waxNoMelt) issues.push("Below Carnauba Melt Window (Zone 2 < 90 °C Limits Wax Coalescence)");
-        if (saltUnzip) issues.push("Excess Soluble Salt (Moisture-Unzipping Risk)");
-        if (lowCure && !uncrosslinked && !waxNoMelt) issues.push("Insufficient Thermal Dwell for Full Ionic Cure");
-        if (roughCoverageRisk) issues.push("Rough Substrate Pinhole Risk (Increase Coat Weight or Two-Pass Topcoat)");
-        if (coarseProtrusion) issues.push("Coarse Mineral Protrusion Risk (Use Sub-Micron Non-Nano Grade)");
-
-        document.getElementById("kpiTank").textContent = hardWaterCrash
-          ? "Gel / Skin Risk"
-          : (buffer === "under" && tapPpm >= 80 ? "Borderline" : "Fluid / Electrolyte-Safe");
-
-        document.getElementById("kpiCure").textContent = carbonateGas
-          ? "CO2 Blisters"
-          : (dryFlashRisk
-            ? "Flash-Skin Trap"
-            : (waxNoMelt ? "Wax Unmelted (<90°C)" : (lowCure ? "Incomplete Cure" : "Ionic Cure + Wax Melt")));
-
-        document.getElementById("kpiFold").textContent = (roughCoverageRisk || coarseProtrusion || carbonateGas || dryFlashRisk)
-          ? "Pinhole / Crack Risk"
-          : (passTrack === "twopass" ? "Two-Pass Wax-Sealed" : "Single-Pass Ductile");
-
-        document.getElementById("kpiRepulp").textContent = saltUnzip
-          ? "Moisture Penalty"
-          : "Crystalline (<84°C)";
-
-        const verdictEl = document.getElementById("verdictBox");
-        if (issues.length === 0) {
-          verdictEl.className = "verdict-box verdict-pass";
-          const trackLabel = passTrack === "twopass" ? "Two-Pass Pure-Wax Topcoat" : "Single-Pass Sub-CPVC";
-          const modeLabel = arch === "hotfood"
-            ? "Hot / steaming foodservice"
-            : (arch === "molded" ? "Die-ironed molded fiber" : "Folding carton");
-          verdictEl.textContent = "ILLUSTRATIVE V3 TARGET WINDOW (" + trackLabel + " · " + modeLabel + "): Electrolyte-stable carnauba pot, two-zone humidified zero-CO2 cure + dry wax melt-coalescence, and 52°C OCC-E crystalline non-stickiness aligned for bench screening.";
-        } else {
-          verdictEl.className = "verdict-box " + (issues.length === 1 ? "verdict-warn" : "verdict-fail");
-          verdictEl.textContent = "CONCEPTUAL BOUNDARY / FAILURE TRAP: " + issues.join(" | ");
+      // Scroll-spy active link
+      const sections = ["simulator", "physics", "scorecard", "evaluate"]
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+      const navLinks = new Map(
+        Array.from(menu.querySelectorAll("a[href^='#']")).map((a) => [a.getAttribute("href").slice(1), a])
+      );
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            navLinks.forEach((link, id) => {
+              const active = id === e.target.id;
+              link.classList.toggle("is-active", active);
+              if (active) link.setAttribute("aria-current", "page");
+              else link.removeAttribute("aria-current");
+            });
+          }
         }
+      }, { rootMargin: "-30% 0px -55% 0px" });
+      sections.forEach((sec) => io.observe(sec));
 
-        currentState = {
-          dryerMode, passTrack, arch, trigger, buffer, tapPpm, minUm, ovenT, ovenS, rqUm, coatGsm,
-          hardWaterCrash, dryFlashRisk, waxNoMelt, carbonateGas, uncrosslinked, saltUnzip, lowCure, roughCoverageRisk, coarseProtrusion
-        };
-      }
-
-      [selDryerMode, selPassTrack, selArch, selTrigger, selBuffer, ...allRanges].forEach((el) => {
-        el.addEventListener("input", () => { evaluateConceptualState(); renderScene(animPhase); });
-        el.addEventListener("change", () => { evaluateConceptualState(); renderScene(animPhase); });
-      });
-
-      function applyPreset(p) {
-        selDryerMode.value = p.dryer;
-        selPassTrack.value = p.pass;
-        selArch.value = p.arch;
-        selTrigger.value = p.trigger;
-        selBuffer.value = p.buffer;
-        slTapPpm.value = p.tap;
-        slMinScale.value = p.minUm;
-        slOvenT.value = p.t;
-        slOvenS.value = p.s;
-        slRq.value = p.rq;
-        slGsm.value = p.gsm;
-        evaluateConceptualState();
-        renderScene(animPhase);
-      }
-
-      document.getElementById("presetCarton").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetHotFood").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "twopass", arch: "hotfood", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 130, s: 30, rq: 1.1, gsm: 9.5 }));
-      document.getElementById("presetFastLine").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 150, s: 10, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetDryOven").addEventListener("click", () => applyPreset({ dryer: "dryoven", pass: "single", arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 0.6, t: 145, s: 15, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetCarbonate").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "carbonate", buffer: "under", tap: 150, minUm: 0.5, t: 125, s: 30, rq: 1.1, gsm: 8.5 }));
-      document.getElementById("presetUnbuffered").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "phosphate", buffer: "under", tap: 220, minUm: 0.6, t: 125, s: 30, rq: 1.1, gsm: 8.0 }));
-      document.getElementById("presetCoarse").addEventListener("click", () => applyPreset({ dryer: "twozone", pass: "single", arch: "standard", trigger: "phosphate", buffer: "balanced", tap: 150, minUm: 5.5, t: 125, s: 30, rq: 3.2, gsm: 8.0 }));
-
-      // ---------------------------------------------------------------------
-      // 3. Stage Canvas + Accessible Play/Pause & Reduced-Motion Control
-      // ---------------------------------------------------------------------
-      const canvas = document.getElementById("stageCanvas");
-      const ctx = canvas.getContext("2d");
-      const stageBtns = Array.from(document.querySelectorAll(".stage-btn"));
-      const toggleMotionBtn = document.getElementById("toggleMotionBtn");
-      const stageTitle = document.getElementById("stageTitle");
-      const stageDesc = document.getElementById("stageDesc");
+      // ================= 2. Interactive V3 Simulation State =================
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const state = {
+        regime: "v3_single", // v3_single | v3_twopass | dry_trap
+        stage: 2,            // start right on Stage 3 (Two-Zone Cure) so executives see the hero breakthrough immediately!
+        humidity: 0.40,
+        temp: 135,
+        hardness: 150,
+        playing: !reducedMotion,
+        autoTour: false,
+        t: 0,
+        stageTimer: 0,
+      };
 
       const STAGES = [
         {
-          title: "Stage 1: Ambient Cold Tap-Water Dispersion (Electrolyte-Stable Carnauba + Latent Trigger)",
-          desc: "A food-grade calcium phosphate & volatile-base latent trigger suppresses free calcium activity in ambient tap water, keeping the ultra-low-viscosity marine biopolymer, platy natural mineral, bio-based polyol plasticizer, and nonionic plant-based carnauba wax dispersion (Tm ~ 80–88°C) pumpable and electrolyte-stable."
+          title: "Stage 1: Ambient Cold Tap-Water Dispersion (20–1,200 cP)",
+          desc: "Trace orthophosphate locks ambient tap-water Ca²⁺ (up to 250 ppm CaCO₃) while nonionic carnauba wax remains electrolyte-stable—preventing premature tank gelation and open-pan skinning."
         },
         {
-          title: "Stage 2: Single-Pass Sub-CPVC Coat or Two-Pass Pure-Wax Topcoat",
-          desc: "100% latex-free waterborne rheology supports Single-Pass rod/blade application on folding boxboard or die-ironed molded fiber, plus an optional Two-Pass Pure-Wax Topcoat track for elevated hot-food moisture and grease protection."
+          title: "Stage 2: Non-Atomized Planar Coating (Single-Pass or Two-Pass)",
+          desc: "Applied as a continuous planar film on existing rod, blade, air-knife, or curtain coaters. Platy mineral sheets align horizontally below CPVC (or receive a Pass-2 pure nonionic carnauba topcoat)."
         },
         {
-          title: "Stage 3: Two-Zone Humidified Pre-Cure + Dry Carnauba Melt-Coalescence",
-          desc: "Zone 1 matches paper-mill dryer-hood humidity so the film stays hydrated for volatile-base departure and clean zero-CO2 ionic crosslinking before surface skinning; Zone 2 dry heat (>88°C) drives dry melt-coalescence of the high-melting carnauba wax."
+          title: "Stage 3: Two-Zone Humidified Pre-Cure → Dry Wax Melt Coalescence",
+          desc: "Humidified Zone 1 raises wet-bulb temperature to ~80–85°C while liquid water remains, stripping NH₃ to drive rapid zero-CO₂ Ca(Alg)₂ crosslinking before dry Zone 2 (>84°C) melts the carnauba seal."
         },
         {
-          title: "Stage 4: 180° Score-Line Fold, Hot Oil & Elevated-Temp Service",
-          desc: "Sub-CPVC platy natural mineral alignment, bio-based polyol plasticizer, and melt-coalesced carnauba wax (reinforced in Two-Pass Pure-Wax mode) resist 180° score-line cracking, oil wicking, and stack blocking."
+          title: "Stage 4: 180° Fold Ductility & Hot Oil / Water Holdout",
+          desc: "Sub-CPVC platy mineral bridges, bio-based polyol plasticizer, and coalesced carnauba wax endure sharp 180° carton folds while resisting grease wicking and liquid water penetration."
         },
         {
-          title: "Stage 5: Circular Fiber Recovery (52°C OCC-E & Alkaline TAPPI T 275)",
-          desc: "Reversible ionic bridges unzip in neutral-pH 52°C WMU OCC-E (0.010\" screen) and alkaline TAPPI T 275 mill-broke systems, while carnauba wax (Tm ~ 80–88°C) stays a non-tacky crystalline solid (52°C < 84°C)."
+          title: "Stage 5: Dual Fiber Recovery — 52°C Neutral OCC-E & Alkaline Broke",
+          desc: "Because carnauba melts near 84°C, it remains a hard crystalline solid during 52°C neutral OCC-E pulping—separating cleanly with zero soft-wax stickies while dispersing rapidly in alkaline mill broke."
         }
       ];
 
-      let activeStage = 0;
-      let animPhase = 0;
-      const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-      let isPlaying = !reducedMotionQuery.matches;
+      // DOM refs
+      const regimeBtns = document.querySelectorAll(".regime-btn");
+      const stageBtns = document.querySelectorAll(".stage-btn");
+      const btnPlayPause = document.getElementById("btnPlayPause");
+      const btnAutoTour = document.getElementById("btnAutoTour");
+      const slHumidity = document.getElementById("slHumidity");
+      const slTemp = document.getElementById("slTemp");
+      const slHardness = document.getElementById("slHardness");
+      const valHumidity = document.getElementById("valHumidity");
+      const valTemp = document.getElementById("valTemp");
+      const valHardness = document.getElementById("valHardness");
+      const kpiTwet = document.getElementById("kpiTwet");
+      const kpiTwetSub = document.getElementById("kpiTwetSub");
+      const kpiCure = document.getElementById("kpiCure");
+      const kpiCureSub = document.getElementById("kpiCureSub");
+      const kpiWax = document.getElementById("kpiWax");
+      const kpiWaxSub = document.getElementById("kpiWaxSub");
+      const verdictBox = document.getElementById("verdictBox");
+      const stageTitle = document.getElementById("stageTitle");
+      const stageDesc = document.getElementById("stageDesc");
 
-      function syncMotionButton() { toggleMotionBtn.textContent = isPlaying ? "Pause" : "Play"; }
-      syncMotionButton();
+      function computeMetrics() {
+        const h = state.humidity;
+        const T = state.temp;
+        // Smooth physical interpolation matching M4 Radau sweep (0.02->51.7C/10%, 0.40->82.7C/69% prod & 90% lab, 0.60->90C/88%)
+        const twet = 51.0 + 42.5 * Math.pow(Math.max(0, h - 0.02) / 0.58, 0.72);
+        const cureProd = Math.min(92, Math.max(10.4, 10.4 + 138 * Math.pow(Math.max(0, h - 0.02), 0.88)));
+        const cureLab = Math.min(96, Math.max(15, cureProd * 1.28));
+        const waxCoalesced = T >= 95;
+        const waxPartial = T >= 84 && T < 95;
+        const dryTrap = h < 0.14;
+        return { twet, cureProd, cureLab, waxCoalesced, waxPartial, dryTrap };
+      }
 
-      toggleMotionBtn.addEventListener("click", () => {
-        isPlaying = !isPlaying;
-        syncMotionButton();
-        if (isPlaying) requestAnimationFrame(tick);
-      });
+      function syncUI() {
+        valHumidity.textContent = `${state.humidity.toFixed(2)} atm`;
+        valTemp.textContent = `${state.temp}°C`;
+        valHardness.textContent = `${state.hardness} ppm`;
 
-      reducedMotionQuery.addEventListener("change", (ev) => {
-        if (ev.matches) { isPlaying = false; syncMotionButton(); renderScene(animPhase); }
+        stageBtns.forEach((b) => {
+          const active = Number(b.dataset.stage) === state.stage;
+          if (active) b.setAttribute("aria-current", "step");
+          else b.removeAttribute("aria-current");
+        });
+        stageTitle.textContent = STAGES[state.stage].title;
+        stageDesc.textContent = STAGES[state.stage].desc;
+
+        btnPlayPause.textContent = state.playing ? "Pause" : "Play";
+        btnAutoTour.classList.toggle("is-on", state.autoTour);
+
+        const m = computeMetrics();
+        kpiTwet.textContent = `${m.twet.toFixed(1)}°C`;
+        kpiTwet.className = "kpi-v " + (m.dryTrap ? "status-bad" : "status-good");
+        kpiTwetSub.innerHTML = m.dryTrap ? "Evaporative stall" : "Rapid NH<sub>3</sub> strip";
+
+        kpiCure.textContent = m.dryTrap ? `${Math.round(m.cureProd)}–${Math.round(m.cureLab)}%` : `${Math.round(m.cureProd)}–${Math.round(m.cureLab)}%`;
+        kpiCure.className = "kpi-v " + (m.dryTrap ? "status-bad" : (m.cureProd < 45 ? "status-warn" : "status-good"));
+        kpiCureSub.textContent = m.dryTrap ? "Under-cured film" : "Prod / Lab range";
+
+        kpiWax.textContent = m.waxCoalesced ? "Full Seal" : (m.waxPartial ? "Partial Melt" : "Uncoalesced");
+        kpiWax.className = "kpi-v " + (m.waxCoalesced ? "status-good" : (m.waxPartial ? "status-warn" : "status-bad"));
+        kpiWaxSub.innerHTML = m.waxCoalesced ? "Above 84&deg;C T<sub>m</sub>" : "Raise Zone 2 &ge; 110&deg;C";
+
+        if (m.dryTrap) {
+          verdictBox.className = "verdict-box is-trap";
+          verdictBox.innerHTML = "<strong>Dry-Oven Trap Detected:</strong> Low Zone 1 humidity pins wet-film temp near ~51&deg;C—flash-drying the matrix before ammonia escapes or calcium crosslinks.";
+        } else if (!m.waxCoalesced) {
+          verdictBox.className = "verdict-box is-trap";
+          verdictBox.innerHTML = "<strong>Incomplete Wax Melt:</strong> Zone 1 crosslinks cleanly, but Zone 2 must exceed carnauba's ~84&deg;C melting point (&ge; 110–135&deg;C) for full moisture sealing.";
+        } else if (state.regime === "v3_twopass") {
+          verdictBox.className = "verdict-box";
+          verdictBox.innerHTML = "<strong>Two-Pass Pure-Wax Mode:</strong> Crosslinked clay-alginate Pass-1 basecoat + pure nonionic carnauba Pass-2 topcoat maximizes simultaneous Kit 12 &amp; low Cobb<sub>60</sub>.";
+        } else {
+          verdictBox.className = "verdict-box";
+          verdictBox.innerHTML = "<strong>V3 Target Window Active:</strong> Humidified Zone 1 strips NH<sub>3</sub> at ~82&deg;C wet-bulb for rapid Ca(Alg)<sub>2</sub> crosslinking, then Zone 2 coalesces the carnauba seal.";
+        }
+      }
+
+      regimeBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          regimeBtns.forEach((b) => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          state.regime = btn.dataset.regime;
+          if (state.regime === "dry_trap") {
+            state.humidity = 0.02;
+            state.temp = 130;
+          } else {
+            state.humidity = 0.40;
+            state.temp = 135;
+          }
+          slHumidity.value = state.humidity;
+          slTemp.value = state.temp;
+          syncUI();
+          drawStage();
+          drawKinetics();
+        });
       });
 
       stageBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
-          activeStage = parseInt(btn.getAttribute("data-stage"), 10);
-          stageBtns.forEach((b) => b.setAttribute("data-active", b === btn ? "true" : "false"));
-          stageTitle.textContent = STAGES[activeStage].title;
-          stageDesc.textContent = STAGES[activeStage].desc;
-          renderScene(animPhase);
+          state.stage = Number(btn.dataset.stage);
+          state.stageTimer = 0;
+          syncUI();
+          drawStage();
         });
       });
 
-      function renderScene(phase) {
-        const w = canvas.width, h = canvas.height;
-        ctx.clearRect(0, 0, w, h);
-
-        const airGrad = ctx.createLinearGradient(0, 0, 0, h);
-        airGrad.addColorStop(0, activeStage === 2 ? "#fff7ed" : (activeStage === 4 ? "#ecfeff" : "#f8fafc"));
-        airGrad.addColorStop(1, "#e2e8f0");
-        ctx.fillStyle = airGrad;
-        ctx.fillRect(0, 0, w, h);
-
-        // Cellulosic substrate
-        ctx.fillStyle = "#d6b88d";
-        ctx.fillRect(0, 315, w, 105);
-        ctx.strokeStyle = "#a17d4f";
-        ctx.lineWidth = 2;
-        for (let i = 0; i < 18; i++) {
-          const yFib = 332 + (i % 5) * 16;
-          ctx.beginPath();
-          ctx.moveTo(20 + i * 40, yFib);
-          ctx.bezierCurveTo(35 + i * 40, yFib - 7, 55 + i * 40, yFib + 7, 70 + i * 40, yFib);
-          ctx.stroke();
-        }
-        ctx.fillStyle = "#451a03";
-        ctx.font = "bold 13px system-ui, sans-serif";
-        ctx.fillText("Cellulosic Substrate: Folding Boxboard / Kraft or Die-Ironed Molded Fiber (100% Latex-Free)", 18, 395);
-
-        // Exposed fiber whiskers if roughness exceeds coverage
-        if (currentState.roughCoverageRisk) {
-          ctx.strokeStyle = "#92400e";
-          ctx.lineWidth = 2;
-          for (let x = 45; x < w - 30; x += 62) {
-            const wh = Math.min(95, Math.max(24, (currentState.rqUm - 0.8) * 24));
-            ctx.beginPath(); ctx.moveTo(x, 315); ctx.lineTo(x + 6, 315 - wh); ctx.stroke();
-          }
-        }
-
-        const skinCrash = currentState.hardWaterCrash;
-        const co2Trap = currentState.carbonateGas;
-        const flashTrap = currentState.dryFlashRisk;
-        const waxUnmelted = currentState.waxNoMelt;
-        const pinholeRisk = currentState.roughCoverageRisk || currentState.coarseProtrusion || co2Trap || flashTrap;
-        const layerTop = activeStage === 4 ? 190 + Math.sin(phase * 0.08) * 6 : 155;
-
-        ctx.fillStyle = activeStage === 0
-          ? (skinCrash ? "#fecaca" : "#dbeafe")
-          : (activeStage === 4 ? "rgba(209, 250, 229, 0.58)" : "#d1fae5");
-        ctx.fillRect(0, layerTop, w, 315 - layerTop);
-        ctx.strokeStyle = (skinCrash || flashTrap) ? "#dc2626" : "#059669";
-        ctx.lineWidth = 2;
-        ctx.strokeRect(0, layerTop, w, 315 - layerTop);
-
-        // Topcoat / coalesced carnauba surface seal visualization
-        if ((activeStage >= 2 && activeStage <= 3 && !waxUnmelted) || (activeStage === 1 && currentState.passTrack === "twopass")) {
-          const topThick = currentState.passTrack === "twopass" ? 11 : 6;
-          ctx.fillStyle = activeStage === 1 ? "rgba(245, 158, 11, 0.45)" : (flashTrap ? "rgba(220, 38, 38, 0.55)" : "rgba(217, 119, 6, 0.72)");
-          ctx.fillRect(0, layerTop - topThick, w, topThick);
-        }
-
-        // Two-Zone visual divider in Stage 2
-        if (activeStage === 2) {
-          ctx.strokeStyle = "#94a3b8";
-          ctx.setLineDash([6, 5]);
-          ctx.beginPath(); ctx.moveTo(w * 0.5, 58); ctx.lineTo(w * 0.5, layerTop); ctx.stroke();
-          ctx.setLineDash([]);
-          ctx.font = "bold 11px system-ui, sans-serif";
-          ctx.fillStyle = flashTrap ? "#991b1b" : "#0369a1";
-          ctx.fillText(flashTrap ? "DRY OVEN ONLY: Flash-Skin Crust" : "ZONE 1: Humidified Pre-Cure (Mill-Hood RH)", 20, 74);
-          ctx.fillStyle = waxUnmelted ? "#b45309" : "#92400e";
-          ctx.fillText(waxUnmelted ? "ZONE 2 (<90°C): Carnauba Unmelted" : "ZONE 2 (>88°C): Dry Carnauba Melt-Coalescence", w * 0.5 + 16, 74);
-        }
-
-        // Platy mineral bricks
-        ctx.fillStyle = "#64748b";
-        for (let row = 0; row < 3; row++) {
-          const yBrick = layerTop + 36 + row * 34;
-          const xOff = (row % 2) * 38;
-          for (let x = 22 + xOff; x < w - 50; x += 92) {
-            const scatter = activeStage === 4 ? Math.sin(phase * 0.08 + x) * 9 : 0;
-            ctx.fillRect(x, yBrick + scatter, 58, 7);
-          }
-        }
-
-        // Latent trigger particles, carnauba wax droplets, or ionic junctions
-        for (let x = 55; x < w - 40; x += 88) {
-          const yNode = layerTop + 56 + ((x / 88) % 2) * 38;
-          if (activeStage <= 1) {
-            const rNode = currentState.coarseProtrusion ? 15 : 9;
-            ctx.beginPath(); ctx.arc(x, yNode, rNode, 0, Math.PI * 2);
-            ctx.fillStyle = skinCrash ? "#dc2626" : (currentState.uncrosslinked ? "#94a3b8" : "#2563eb");
-            ctx.fill();
-            ctx.strokeStyle = "#1e3a8a"; ctx.lineWidth = 1.5; ctx.stroke();
-            ctx.fillStyle = "#ffffff"; ctx.font = "bold 8px monospace";
-            const tag = currentState.uncrosslinked ? "NONE" : (co2Trap ? "CO3" : "PO4");
-            ctx.fillText(tag, x - 9, yNode + 3);
-
-            // Nonionic carnauba wax droplets suspended stably
-            ctx.beginPath(); ctx.arc(x + 34, yNode - 14, 6, 0, Math.PI * 2);
-            ctx.fillStyle = "#f59e0b"; ctx.fill();
-            ctx.strokeStyle = "#92400e"; ctx.lineWidth = 1; ctx.stroke();
-          } else if (activeStage === 2 || activeStage === 3) {
-            if (!currentState.lowCure && !flashTrap) {
-              ctx.strokeStyle = "#1d4ed8"; ctx.lineWidth = 3;
-              ctx.beginPath(); ctx.moveTo(x - 24, yNode); ctx.lineTo(x + 24, yNode); ctx.stroke();
-              ctx.beginPath(); ctx.arc(x, yNode, 6, 0, Math.PI * 2);
-              ctx.fillStyle = "#f59e0b"; ctx.fill();
-              ctx.fillStyle = "#0f172a"; ctx.font = "bold 9px monospace";
-              ctx.fillText("Ca2+", x - 11, yNode - 9);
-            }
-            if (co2Trap && activeStage === 2) {
-              const lift = (phase * 1.9 + x) % 58;
-              ctx.beginPath(); ctx.arc(x + 14, yNode - lift, 8, 0, Math.PI * 2);
-              ctx.fillStyle = "rgba(220,38,38,0.82)"; ctx.fill();
-              ctx.fillStyle = "#ffffff"; ctx.font = "bold 7.5px monospace";
-              ctx.fillText("CO2", x + 6, yNode - lift + 3);
-            }
-          } else if (activeStage === 4) {
-            const drift = (phase * 1.4 + x) % 55;
-            ctx.beginPath(); ctx.arc(x + 10, yNode - drift * 0.7, 6, 0, Math.PI * 2);
-            ctx.fillStyle = "#0891b2"; ctx.fill();
-            // Crystalline solid carnauba particle (52°C < 84°C non-sticky)
-            ctx.fillStyle = "#d97706";
-            ctx.fillRect(x + 28, yNode - 16 - drift * 0.4, 8, 8);
-          }
-        }
-
-        // Top Stage Header Callout
-        ctx.font = "bold 13px system-ui, sans-serif";
-        if (activeStage === 0) {
-          ctx.fillStyle = skinCrash ? "#991b1b" : "#1e3a8a";
-          ctx.fillText(
-            skinCrash
-              ? "CONCEPTUAL TRAP: Hard-Water Ion Premature Gelation / Open-Pan Skinning Risk"
-              : "Cold-Mix Pot: Nonionic Carnauba (Tm ~80–88°C) + Phosphate/Volatile-Base Stay Electrolyte-Stable",
-            20, 36
-          );
-        } else if (activeStage === 1) {
-          ctx.fillStyle = currentState.roughCoverageRisk ? "#991b1b" : "#065f46";
-          const passText = currentState.passTrack === "twopass" ? "Two-Pass (Base + Pure-Wax Topcoat)" : "Single-Pass Sub-CPVC Base Coat";
-          ctx.fillText(
-            currentState.roughCoverageRisk
-              ? "COVERAGE WARNING: Substrate Roughness Exceeds Film Thickness — Pinholing Risk"
-              : passText + " (" + currentState.coatGsm.toFixed(1) + " g/m² target dry coat weight)",
-            20, 36
-          );
-        } else if (activeStage === 2) {
-          ctx.fillStyle = (co2Trap || flashTrap) ? "#991b1b" : ((currentState.lowCure || waxUnmelted) ? "#b45309" : "#065f46");
-          ctx.fillText(
-            co2Trap
-              ? "CARBONATE TRAP: Thermal Acidification Releases CO2 Bubbles -> Crater Pinholes"
-              : (flashTrap
-                ? "DRY-OVEN FLASH TRAP: Rapid Surface Skinning Halts Ionic Cure (Use Two-Zone Mill-Hood Humidity)"
-                : (waxUnmelted
-                  ? "WAX MELT WARNING: Zone 2 < 90°C Leaves Carnauba Uncoalesced"
-                  : (currentState.lowCure
-                    ? "INCOMPLETE CURE: Increase Thermal Energy or Restore Latent Phosphate Trigger"
-                    : "Two-Zone Cure: Humidified Zero-CO2 Crosslinking + Dry Carnauba Melt-Coalescence"))),
-            20, 36
-          );
-        } else if (activeStage === 3) {
-          ctx.fillStyle = pinholeRisk ? "#991b1b" : "#065f46";
-          ctx.fillText(
-            pinholeRisk
-              ? "BARRIER DEFECT RISK: Flash-Skin, Pinholes, or Coarse Protrusions Compromise Fold & Oil Resistance"
-              : "180° Fold & Hot-Oil Target: Sub-CPVC Platy Film + Polyol + Coalesced Carnauba Resist Wicking",
-            20, 36
-          );
-          for (let x = 110; x < w - 80; x += 130) {
-            ctx.beginPath(); ctx.arc(x, layerTop - 16, 15, Math.PI, 0); ctx.closePath();
-            ctx.fillStyle = "#f59e0b"; ctx.fill(); ctx.strokeStyle = "#b45309"; ctx.stroke();
-          }
-          if (pinholeRisk) {
-            ctx.fillStyle = "rgba(220, 38, 38, 0.85)";
-            ctx.fillRect(365, layerTop, 16, 315 - layerTop);
-            ctx.fillStyle = "#ffffff"; ctx.fillText("PINHOLE PATHWAY", 390, layerTop + 45);
-          }
-        } else {
-          ctx.fillStyle = "#0e7490";
-          ctx.fillText("52°C WMU OCC-E & TAPPI T 275: Ionic Network Unzips; Carnauba Stays Crystalline Solid (52°C < 84°C)", 20, 36);
-        }
-
-        ctx.fillStyle = "rgba(255, 255, 255, 0.94)";
-        ctx.fillRect(14, layerTop + 6, 700, 22);
-        ctx.fillStyle = "#065f46";
-        ctx.font = "bold 11.2px system-ui, sans-serif";
-        ctx.fillText("SLIP-NET™ V3: Platy Mineral + Marine Biopolymer + Ca-Phosphate Trigger + Carnauba Wax + Polyol (100% Latex-Free)", 20, layerTop + 21);
-      }
-
-      function tick() {
-        if (!isPlaying) return;
-        animPhase += 1;
-        renderScene(animPhase);
-        requestAnimationFrame(tick);
-      }
-
-      // ---------------------------------------------------------------------
-      // 4. Tab 2 Canvases (Non-Confidential V3 Architecture & Failure-Mode Visuals)
-      // ---------------------------------------------------------------------
-      function drawAllScorecardCharts() {
-        // Chart A: Qualitative Architecture Comparison across 5 Gates
-        const cA = document.getElementById("chartCompare");
-        if (cA) {
-          const g = cA.getContext("2d");
-          const w = cA.width, h = cA.height;
-          g.clearRect(0, 0, w, h);
-          g.fillStyle = "#ffffff"; g.fillRect(0, 0, w, h);
-
-          const padL = 136, padR = 16, padT = 38, padB = 22;
-          const pw = w - padL - padR, ph = h - padT - padB;
-          const rows = [
-            "PFAS & Latex Free",
-            "Tap-Water Pot Life",
-            "Two-Zone 0-CO2 Cure",
-            "180° Crease Integrity",
-            "52°C OCC-E Repulp"
-          ];
-          const series = [
-            { name: "PFAS", col: "#94a3b8", scores: [0.05, 0.9, 0.9, 0.9, 0.25] },
-            { name: "PE / Latex", col: "#64748b", scores: [0.05, 0.9, 0.9, 0.9, 0.15] },
-            { name: "Carbonate Bio", col: "#dc2626", scores: [0.95, 0.25, 0.2, 0.45, 0.7] },
-            { name: "SLIP-NET V3 Target", col: "#059669", scores: [1.0, 0.94, 1.0, 0.92, 0.96] }
-          ];
-
-          // Legend
-          series.forEach((s, idx) => {
-            const lx = 14 + idx * 124;
-            g.fillStyle = s.col;
-            g.fillRect(lx, 12, 11, 11);
-            g.fillStyle = "#0f172a";
-            g.font = "bold 10px system-ui, sans-serif";
-            g.fillText(s.name, lx + 15, 21);
-          });
-
-          const rowH = ph / rows.length;
-          rows.forEach((lbl, rIdx) => {
-            const yBase = padT + rIdx * rowH;
-            g.fillStyle = "#1e293b";
-            g.font = "bold 11px system-ui, sans-serif";
-            g.fillText(lbl, 10, yBase + rowH * 0.56);
-
-            g.strokeStyle = "#e2e8f0";
-            g.beginPath(); g.moveTo(padL, yBase + rowH - 2); g.lineTo(w - padR, yBase + rowH - 2); g.stroke();
-
-            series.forEach((s, sIdx) => {
-              const barH = (rowH - 12) / series.length;
-              const by = yBase + 4 + sIdx * barH;
-              const bw = Math.max(4, s.scores[rIdx] * pw);
-              g.fillStyle = s.col;
-              g.fillRect(padL, by, bw, barH - 2);
-            });
-          });
-        }
-
-        // Chart B: 4 Failure Traps vs SLIP-NET V3 Counter-Mechanisms
-        const cB = document.getElementById("chartTraps");
-        if (cB) {
-          const g = cB.getContext("2d");
-          const w = cB.width, h = cB.height;
-          g.clearRect(0, 0, w, h);
-          g.fillStyle = "#ffffff"; g.fillRect(0, 0, w, h);
-
-          const traps = [
-            { trap: "1. Pot Gel & Wax Coagulation", fix: "Nonionic Carnauba + PO4 Lock" },
-            { trap: "2. Dry-Oven Skin & CO2 Pits", fix: "Two-Zone Humid Pre-Cure (0 CO2)" },
-            { trap: "3. Over-CPVC Fold Cracking", fix: "Platy Sub-CPVC + Polyol + Wax" },
-            { trap: "4. 52°C Stickies & Latex Rejects", fix: "100% Latex-Free; Crystalline <84°C" }
-          ];
-
-          g.fillStyle = "#991b1b";
-          g.font = "bold 11px system-ui, sans-serif";
-          g.fillText("CONVENTIONAL FAILURE TRAP", 16, 22);
-          g.fillStyle = "#065f46";
-          g.fillText("SLIP-NET™ V3 COUNTER-MECHANISM", 274, 22);
-
-          traps.forEach((item, idx) => {
-            const y = 36 + idx * 58;
-            // Left box
-            g.fillStyle = "#fef2f2";
-            g.strokeStyle = "#fca5a5";
-            g.lineWidth = 1.5;
-            g.fillRect(14, y, 212, 44);
-            g.strokeRect(14, y, 212, 44);
-            g.fillStyle = "#7f1d1d";
-            g.font = "bold 11px system-ui, sans-serif";
-            g.fillText(item.trap, 22, y + 26);
-
-            // Arrow
-            g.strokeStyle = "#059669";
-            g.lineWidth = 2.5;
-            g.beginPath();
-            g.moveTo(232, y + 22);
-            g.lineTo(264, y + 22);
-            g.lineTo(257, y + 16);
-            g.moveTo(264, y + 22);
-            g.lineTo(257, y + 28);
-            g.stroke();
-
-            // Right box
-            g.fillStyle = "#ecfdf5";
-            g.strokeStyle = "#6ee7b7";
-            g.lineWidth = 1.5;
-            g.fillRect(272, y, 234, 44);
-            g.strokeRect(272, y, 234, 44);
-            g.fillStyle = "#064e3b";
-            g.font = "bold 11px system-ui, sans-serif";
-            g.fillText(item.fix, 280, y + 26);
-          });
-        }
-      }
-
-      window.addEventListener("resize", () => {
-        if (document.getElementById("tab-stress").getAttribute("aria-selected") === "true") drawAllScorecardCharts();
+      btnPlayPause.addEventListener("click", () => {
+        state.playing = !state.playing;
+        syncUI();
       });
 
-      evaluateConceptualState();
-      renderScene(0);
-      if (isPlaying) requestAnimationFrame(tick);
+      btnAutoTour.addEventListener("click", () => {
+        state.autoTour = !state.autoTour;
+        state.stageTimer = 0;
+        if (state.autoTour && !state.playing) state.playing = true;
+        syncUI();
+      });
+
+      slHumidity.addEventListener("input", () => {
+        state.humidity = parseFloat(slHumidity.value);
+        syncUI();
+        drawStage();
+        drawKinetics();
+      });
+      slTemp.addEventListener("input", () => {
+        state.temp = parseInt(slTemp.value, 10);
+        syncUI();
+        drawStage();
+      });
+      slHardness.addEventListener("input", () => {
+        state.hardness = parseInt(slHardness.value, 10);
+        syncUI();
+        drawStage();
+      });
+
+      // ================= 3. Animated 60fps HiDPI Cross-Section Canvas =================
+      const canvas = document.getElementById("stageCanvas");
+      const ctx = canvas.getContext("2d");
+      const W = 760, H = 430;
+
+      function setupHiDPI(c, w, h) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        c.width = w * dpr;
+        c.height = h * dpr;
+        const g = c.getContext("2d");
+        g.setTransform(dpr, 0, 0, dpr, 0, 0);
+        return g;
+      }
+      setupHiDPI(canvas, W, H);
+
+      function drawSubstrate(yTop, height, bend = 0) {
+        ctx.save();
+        if (bend === 0) {
+          const grad = ctx.createLinearGradient(0, yTop, 0, yTop + height);
+          grad.addColorStop(0, "#e5cba3");
+          grad.addColorStop(1, "#d1b07d");
+          ctx.fillStyle = grad;
+          ctx.fillRect(28, yTop, W - 56, height);
+          ctx.strokeStyle = "#b58d58";
+          ctx.lineWidth = 1.4;
+          ctx.strokeRect(28, yTop, W - 56, height);
+          // Cellulose fiber lines
+          ctx.strokeStyle = "rgba(120, 79, 34, 0.28)";
+          ctx.lineWidth = 1.6;
+          for (let i = 0; i < 14; i++) {
+            const fy = yTop + 14 + (i % 4) * 16;
+            const fx = 48 + ((i * 53) % (W - 140));
+            ctx.beginPath();
+            ctx.moveTo(fx, fy);
+            ctx.quadraticCurveTo(fx + 24, fy + (i % 2 ? 5 : -5), fx + 52, fy);
+            ctx.stroke();
+          }
+          ctx.fillStyle = "#5c3d1e";
+          ctx.font = "700 12px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText("Cellulosic Paperboard Substrate (SBS / C1S / MG Kraft)", 42, yTop + height - 12);
+        }
+        ctx.restore();
+      }
+
+      function drawStage() {
+        const m = computeMetrics();
+        const t = state.t;
+        const isTwoPass = state.regime === "v3_twopass";
+
+        ctx.clearRect(0, 0, W, H);
+        // Clean lab backdrop
+        const bg = ctx.createLinearGradient(0, 0, 0, H);
+        bg.addColorStop(0, "#f8fafc");
+        bg.addColorStop(1, "#eef2f6");
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, W, H);
+
+        // Subtle grid
+        ctx.strokeStyle = "rgba(148, 163, 184, 0.14)";
+        ctx.lineWidth = 1;
+        for (let x = 40; x < W; x += 40) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+        }
+
+        if (state.stage === 0) {
+          // STAGE 1: COLD TAP-WATER BATH
+          ctx.fillStyle = "#0f172a";
+          ctx.font = "800 14px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText("Ambient Cold Tap-Water Pot (" + state.hardness + " ppm CaCO₃) — Covered Stability", 32, 34);
+
+          // Beaker / Tank
+          const bx = 90, by = 68, bw = W - 180, bh = 305;
+          const liq = ctx.createLinearGradient(0, by, 0, by + bh);
+          liq.addColorStop(0, "#e0f2fe");
+          liq.addColorStop(1, "#bae6fd");
+          ctx.fillStyle = liq;
+          ctx.beginPath();
+          ctx.roundRect(bx, by + 22, bw, bh - 22, 14);
+          ctx.fill();
+          ctx.strokeStyle = "#0284c7";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // Covered lid bar
+          ctx.fillStyle = "#334155";
+          ctx.fillRect(bx - 10, by + 8, bw + 20, 12);
+          ctx.fillStyle = "#0b5d47";
+          ctx.font = "700 11px sans-serif";
+          ctx.fillText("Covered vessel holds pH ~8.2 (prevents ambient NH₃ drift)", bx + 14, by + 44);
+
+          // Floating platy mineral + phosphate-locked Ca + nonionic wax
+          for (let i = 0; i < 12; i++) {
+            const px = bx + 48 + (i % 4) * 132 + Math.sin(t * 1.1 + i) * 10;
+            const py = by + 95 + Math.floor(i / 4) * 76 + Math.cos(t * 1.3 + i * 1.7) * 6;
+            // Platy mineral sheet
+            ctx.fillStyle = "#64748b";
+            ctx.fillRect(px - 28, py - 3, 56, 6);
+            // Phosphate-locked Ca2+ node with soft emerald halo
+            const pulse = 1 + 0.14 * Math.sin(t * 2.5 + i);
+            ctx.beginPath();
+            ctx.arc(px + 28, py + 16, 11 * pulse, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(16, 185, 129, 0.2)";
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(px + 28, py + 16, 7, 0, Math.PI * 2);
+            ctx.fillStyle = "#0284c7";
+            ctx.fill();
+            // Golden nonionic Carnauba sphere
+            ctx.beginPath();
+            ctx.arc(px - 22, py - 18, 8.5, 0, Math.PI * 2);
+            ctx.fillStyle = "#d97706";
+            ctx.fill();
+            ctx.strokeStyle = "#fef3c7";
+            ctx.lineWidth = 1.8;
+            ctx.stroke();
+          }
+
+          // Legend strip
+          drawLegend([
+            ["#64748b", "Platy Mineral (< CPVC)"],
+            ["#0284c7", "Phosphate-Locked Ca²⁺"],
+            ["#d97706", "Nonionic Carnauba Wax"],
+          ]);
+
+        } else if (state.stage === 1) {
+          // STAGE 2: NON-ATOMIZED PLANAR COATING
+          ctx.fillStyle = "#0f172a";
+          ctx.font = "800 14px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText(isTwoPass ? "Non-Atomized Two-Pass Coating: Basecoat + Pure Wax Topcoat" : "Non-Atomized Single-Pass Planar Coating (Rod / Blade / Curtain)", 32, 34);
+
+          drawSubstrate(315, 76);
+
+          const progress = (t * 0.22) % 1;
+          const rodX = 70 + progress * (W - 140);
+
+          // Wet laid coating behind rod
+          ctx.fillStyle = "rgba(14, 165, 233, 0.18)";
+          ctx.fillRect(28, 225, rodX - 28, 90);
+          ctx.strokeStyle = "#0284c7";
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(28, 225, Math.max(0, rodX - 28), 90);
+
+          // Aligned platelets behind rod
+          for (let i = 0; i < 16; i++) {
+            const px = 52 + (i % 8) * 86;
+            const py = 248 + Math.floor(i / 8) * 34;
+            if (px < rodX - 10) {
+              ctx.fillStyle = "#475569";
+              ctx.fillRect(px, py, 54, 5.5);
+              ctx.beginPath();
+              ctx.arc(px + 26, py - 10, 6.5, 0, Math.PI * 2);
+              ctx.fillStyle = "#d97706";
+              ctx.fill();
+            }
+          }
+
+          // Pass-2 pure wax topcoat preview
+          if (isTwoPass) {
+            ctx.fillStyle = "rgba(217, 119, 6, 0.28)";
+            ctx.fillRect(28, 198, Math.max(0, rodX - 28), 27);
+            ctx.fillStyle = "#92400e";
+            ctx.font = "700 11px sans-serif";
+            ctx.fillText("Pass-2 Pure Nonionic Carnauba Topcoat (0% Polymer Emulsion)", 42, 215);
+          }
+
+          // Metering Meyer rod / blade
+          ctx.fillStyle = "#1e293b";
+          ctx.beginPath();
+          ctx.arc(rodX, 198, 22, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = "#94a3b8";
+          ctx.lineWidth = 3;
+          ctx.stroke();
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "700 10px sans-serif";
+          ctx.fillText("ROD", rodX - 11, 202);
+
+          // Web motion arrow
+          ctx.fillStyle = "#0b5d47";
+          ctx.font = "700 12px sans-serif";
+          ctx.fillText("Continuous Planar Film → Zero Atomization", 32, 66);
+
+        } else if (state.stage === 2) {
+          // STAGE 3: TWO-ZONE HUMIDIFIED PRE-CURE -> DRY WAX COALESCENCE (HERO ANIMATION)
+          const splitX = 395;
+          const dryTrap = m.dryTrap;
+          const cureFrac = Math.min(1, m.cureProd / 78);
+
+          // Zone 1 background (Left)
+          ctx.fillStyle = dryTrap ? "rgba(239, 68, 68, 0.08)" : "rgba(16, 185, 129, 0.09)";
+          ctx.fillRect(28, 48, splitX - 28, 267);
+          // Zone 2 background (Right)
+          ctx.fillStyle = m.waxCoalesced ? "rgba(217, 119, 6, 0.09)" : "rgba(100, 116, 139, 0.08)";
+          ctx.fillRect(splitX, 48, W - 28 - splitX, 267);
+
+          // Divider
+          ctx.setLineDash([6, 5]);
+          ctx.strokeStyle = "#475569";
+          ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.moveTo(splitX, 44); ctx.lineTo(splitX, 315); ctx.stroke();
+          ctx.setLineDash([]);
+
+          // Zone Titles
+          ctx.fillStyle = dryTrap ? "#991b1b" : "#065f46";
+          ctx.font = "800 13px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText(dryTrap ? "ZONE 1: DRY OVEN TRAP (~51°C Wet-Bulb)" : `ZONE 1: HUMIDIFIED PRE-CURE (~${m.twet.toFixed(0)}°C Wet-Bulb)`, 40, 70);
+
+          ctx.fillStyle = m.waxCoalesced ? "#92400e" : "#475569";
+          ctx.fillText(`ZONE 2: DRY WAX MELT (${state.temp}°C > 84°C Tm)`, splitX + 14, 70);
+
+          drawSubstrate(315, 76);
+
+          // Coating Film Layer across both zones
+          ctx.fillStyle = dryTrap ? "rgba(186, 230, 253, 0.45)" : "rgba(167, 243, 208, 0.42)";
+          ctx.fillRect(28, 215, splitX - 28, 100);
+          ctx.fillStyle = dryTrap ? "rgba(226, 232, 240, 0.7)" : "rgba(209, 250, 229, 0.72)";
+          ctx.fillRect(splitX, 225, W - 28 - splitX, 90);
+
+          // Animated Steam / NH3 escape in Zone 1
+          for (let i = 0; i < 7; i++) {
+            const x = 62 + i * 48;
+            const rise = ((t * (dryTrap ? 18 : 44) + i * 23) % 105);
+            const y = 210 - rise;
+            const alpha = Math.max(0, 1 - rise / 105);
+            if (!dryTrap) {
+              // Humid steam waves + escaping NH3 bubbles
+              ctx.beginPath();
+              ctx.arc(x + Math.sin(t * 2 + i) * 5, y, 5.5, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(16, 185, 129, ${alpha * 0.75})`;
+              ctx.fill();
+              if (i % 2 === 0) {
+                ctx.fillStyle = `rgba(6, 95, 70, ${alpha})`;
+                ctx.font = "700 10px sans-serif";
+                ctx.fillText("NH₃↑", x - 11, y - 8);
+              }
+            } else {
+              // Trapped NH3 bouncing back under dry flash skin
+              ctx.beginPath();
+              ctx.arc(x, 226 + (i % 2) * 14, 4.5, 0, Math.PI * 2);
+              ctx.fillStyle = "rgba(220, 38, 38, 0.65)";
+              ctx.fill();
+            }
+          }
+          if (dryTrap) {
+            // Dry flash skin line
+            ctx.fillStyle = "#dc2626";
+            ctx.fillRect(28, 214, splitX - 28, 4);
+            ctx.font = "700 11px sans-serif";
+            ctx.fillText("Flash-dried skin traps NH₃ & halts Ca²⁺ cure", 42, 202);
+          }
+
+          // Platelets + Ca(Alg)2 Crosslink Bridges across Zone 1 & Zone 2
+          for (let col = 0; col < 7; col++) {
+            for (let row = 0; row < 2; row++) {
+              const px = 48 + col * 98;
+              const py = 248 + row * 34;
+              ctx.fillStyle = "#475569";
+              ctx.fillRect(px, py, 64, 5.5);
+
+              // Emerald egg-box crosslinks
+              const shouldLink = !dryTrap || (col === 0 && row === 0);
+              if (shouldLink) {
+                const glow = 0.55 + 0.45 * Math.sin(t * 3 + col);
+                ctx.strokeStyle = `rgba(5, 150, 105, ${cureFrac * glow})`;
+                ctx.lineWidth = 2.4;
+                ctx.beginPath();
+                ctx.moveTo(px + 14, py + 6);
+                ctx.lineTo(px + 26, py + 28);
+                ctx.moveTo(px + 48, py + 6);
+                ctx.lineTo(px + 38, py + 28);
+                ctx.stroke();
+              }
+            }
+          }
+
+          // Zone 2 Heat Waves + Carnauba Wax Coalescence Layer
+          for (let i = 0; i < 6; i++) {
+            const hx = splitX + 35 + i * 54;
+            const hy = 105 + Math.sin(t * 4 + i) * 6;
+            ctx.strokeStyle = m.waxCoalesced ? "rgba(217, 119, 6, 0.7)" : "rgba(100, 116, 139, 0.5)";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(hx, hy);
+            ctx.lineTo(hx, hy + 46);
+            ctx.lineTo(hx - 5, hy + 38);
+            ctx.moveTo(hx, hy + 46);
+            ctx.lineTo(hx + 5, hy + 38);
+            ctx.stroke();
+          }
+
+          // Coalesced continuous golden wax top layer in Zone 2 (thicker in Two-Pass)
+          if (m.waxCoalesced) {
+            const waxH = isTwoPass ? 22 : 12;
+            const wg = ctx.createLinearGradient(0, 225 - waxH, 0, 225);
+            wg.addColorStop(0, "#f59e0b");
+            wg.addColorStop(1, "#d97706");
+            ctx.fillStyle = wg;
+            ctx.fillRect(splitX, 225 - waxH, W - 28 - splitX, waxH);
+            ctx.fillStyle = "#92400e";
+            ctx.font = "700 11px sans-serif";
+            ctx.fillText(isTwoPass ? "Coalesced Pure Carnauba Topcoat" : "Coalesced Carnauba Surface Seal", splitX + 16, 225 - waxH - 8);
+          } else {
+            // Discrete unmelted wax beads
+            for (let i = 0; i < 7; i++) {
+              ctx.beginPath();
+              ctx.arc(splitX + 28 + i * 48, 217, 7, 0, Math.PI * 2);
+              ctx.fillStyle = "#b45309";
+              ctx.fill();
+            }
+          }
+
+          drawLegend([
+            ["#059669", "Ca(Alg)₂ Egg-Box Crosslinks"],
+            ["#475569", "Platy Mineral (< CPVC)"],
+            ["#d97706", "Melt-Coalesced Carnauba"],
+          ]);
+
+        } else if (state.stage === 3) {
+          // STAGE 4: 180° FOLD & HOT OIL / WATER HOLDOUT
+          ctx.fillStyle = "#0f172a";
+          ctx.font = "800 14px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText("180° Carton Score Flexibility & Oil / Water Holdout Target", 32, 34);
+
+          const good = !m.dryTrap && m.waxCoalesced;
+          // Draw folded V-crease board
+          const cx = W / 2, baseY = 290;
+          const flex = Math.sin(t * 1.4) * 8;
+          ctx.save();
+          // Board body
+          ctx.beginPath();
+          ctx.moveTo(70, baseY - 25 + flex);
+          ctx.lineTo(cx, baseY + 35);
+          ctx.lineTo(W - 70, baseY - 25 + flex);
+          ctx.lineTo(W - 70, baseY + 28 + flex);
+          ctx.lineTo(cx, baseY + 88);
+          ctx.lineTo(70, baseY + 28 + flex);
+          ctx.closePath();
+          ctx.fillStyle = "#dbb887";
+          ctx.fill();
+          ctx.strokeStyle = "#a67c46";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // Barrier film along crease
+          ctx.beginPath();
+          ctx.moveTo(70, baseY - 25 + flex);
+          ctx.lineTo(cx, baseY + 35);
+          ctx.lineTo(W - 70, baseY - 25 + flex);
+          ctx.strokeStyle = good ? "#059669" : "#dc2626";
+          ctx.lineWidth = 10;
+          ctx.lineJoin = "round";
+          ctx.stroke();
+
+          // Golden carnauba top sheen
+          if (m.waxCoalesced) {
+            ctx.beginPath();
+            ctx.moveTo(70, baseY - 31 + flex);
+            ctx.lineTo(cx, baseY + 29);
+            ctx.lineTo(W - 70, baseY - 31 + flex);
+            ctx.strokeStyle = "#f59e0b";
+            ctx.lineWidth = 4;
+            ctx.stroke();
+          }
+          ctx.restore();
+
+          // Animated Oil & Water Droplets beading at crease
+          const drops = [
+            { x: cx - 105, y: baseY - 22 + flex * 0.5, col: "#f59e0b", lbl: "Hot Oil" },
+            { x: cx,       y: baseY + 18,             col: "#0284c7", lbl: "Water" },
+            { x: cx + 105, y: baseY - 22 + flex * 0.5, col: "#f59e0b", lbl: "Grease" },
+          ];
+          drops.forEach((d, idx) => {
+            ctx.beginPath();
+            if (good) {
+              // High-contact-angle bead
+              ctx.arc(d.x, d.y - 8, 13, 0, Math.PI * 2);
+              ctx.fillStyle = d.col;
+              ctx.fill();
+              ctx.fillStyle = "rgba(255,255,255,0.5)";
+              ctx.beginPath(); ctx.arc(d.x - 4, d.y - 12, 3.5, 0, Math.PI * 2); ctx.fill();
+            } else {
+              // Wicking / soaking stain
+              ctx.ellipse(d.x, d.y + 18, 28, 10, 0, 0, Math.PI * 2);
+              ctx.fillStyle = "rgba(220, 38, 38, 0.35)";
+              ctx.fill();
+            }
+            ctx.fillStyle = "#1e293b";
+            ctx.font = "700 11px sans-serif";
+            ctx.fillText(d.lbl, d.x - 16, d.y - 28);
+          });
+
+          ctx.fillStyle = good ? "#065f46" : "#991b1b";
+          ctx.font = "800 13px sans-serif";
+          ctx.fillText(
+            good ? "Ductile Sub-CPVC Fold: High-Angle Oil & Water Beading (Zero Micro-Cracks)"
+                 : "Under-Cured / Uncoalesced Film: Water Re-Wets & Wicks Along Fold",
+            32, 82
+          );
+
+        } else {
+          // STAGE 5: 52°C NEUTRAL OCC-E REPULPABILITY
+          ctx.fillStyle = "#0f172a";
+          ctx.font = "800 14px -apple-system, BlinkMacSystemFont, sans-serif";
+          ctx.fillText("52°C Neutral WMU OCC-E Pulper — Solid-Wax Clean Fiber Recovery", 32, 34);
+
+          const cx = 250, cy = 225, R = 135;
+          // Pulper vessel
+          ctx.beginPath();
+          ctx.arc(cx, cy, R, 0, Math.PI * 2);
+          ctx.fillStyle = "#e0f2fe";
+          ctx.fill();
+          ctx.strokeStyle = "#0284c7";
+          ctx.lineWidth = 3;
+          ctx.stroke();
+
+          // Rotating vortex fibers + solid carnauba micro-flakes
+          for (let i = 0; i < 18; i++) {
+            const ang = t * 1.6 + (i / 18) * Math.PI * 2;
+            const rad = 36 + (i % 4) * 24;
+            const fx = cx + Math.cos(ang) * rad;
+            const fy = cy + Math.sin(ang) * rad;
+            // Recovered cellulose fiber
+            ctx.strokeStyle = "#85582d";
+            ctx.lineWidth = 2.4;
+            ctx.beginPath();
+            ctx.moveTo(fx - 9, fy - 4);
+            ctx.lineTo(fx + 9, fy + 4);
+            ctx.stroke();
+            // Hard crystalline Carnauba micro-flake (non-tacky at 52°C < 84°C Tm)
+            if (i % 3 === 0) {
+              ctx.fillStyle = "#d97706";
+              ctx.fillRect(fx + 6, fy - 6, 7, 7);
+            }
+          }
+
+          // Center rotor
+          ctx.beginPath();
+          ctx.arc(cx, cy, 18, 0, Math.PI * 2);
+          ctx.fillStyle = "#334155";
+          ctx.fill();
+
+          // Right-hand callout panel
+          const rx = 435;
+          ctx.fillStyle = "#ffffff";
+          ctx.beginPath();
+          ctx.roundRect(rx, 92, 295, 255, 12);
+          ctx.fill();
+          ctx.strokeStyle = "#cbd5e1";
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+
+          ctx.fillStyle = "#065f46";
+          ctx.font = "800 13px sans-serif";
+          ctx.fillText("Why Zero Stickies at 52°C:", rx + 18, 124);
+
+          const lines = [
+            "• Carnauba Tm (~84°C) > 52°C pulper",
+            "• Wax stays a hard crystalline solid",
+            "• Passes 0.010\" (0.254 mm) slot screen",
+            "• Zero synthetic latex or PE film chunks",
+            "• Rapid alkaline broke dispersion (pH 10)"
+          ];
+          ctx.fillStyle = "#334155";
+          ctx.font = "600 12px sans-serif";
+          lines.forEach((ln, idx) => ctx.fillText(ln, rx + 18, 158 + idx * 32));
+        }
+      }
+
+      function drawLegend(items) {
+        let lx = 34;
+        const ly = 408;
+        ctx.font = "600 11px -apple-system, BlinkMacSystemFont, sans-serif";
+        items.forEach(([col, text]) => {
+          ctx.fillStyle = col;
+          ctx.fillRect(lx, ly - 8, 11, 11);
+          ctx.fillStyle = "#334155";
+          ctx.fillText(text, lx + 16, ly + 1);
+          lx += ctx.measureText(text).width + 44;
+        });
+      }
+
+      // ================= 4. Kinetics Comparison Canvas (Section 2) =================
+      const kCanvas = document.getElementById("kineticsCanvas");
+      const kCtx = setupHiDPI(kCanvas, 620, 330);
+
+      function drawKinetics() {
+        const w = 620, h = 330;
+        const padL = 54, padR = 24, padT = 36, padB = 46;
+        const pw = w - padL - padR, ph = h - padT - padB;
+        const m = computeMetrics();
+
+        kCtx.clearRect(0, 0, w, h);
+        kCtx.fillStyle = "#ffffff";
+        kCtx.fillRect(0, 0, w, h);
+
+        // Title
+        kCtx.fillStyle = "#0f172a";
+        kCtx.font = "800 13px -apple-system, BlinkMacSystemFont, sans-serif";
+        kCtx.fillText("Modeled Ca(Alg)₂ Crosslinking (%) vs. Drying Time (M4 Stiff-Radau)", padL, 20);
+
+        // Gridlines
+        kCtx.strokeStyle = "#e2e8f0";
+        kCtx.lineWidth = 1;
+        kCtx.font = "600 11px sans-serif";
+        kCtx.fillStyle = "#64748b";
+        for (let pct = 0; pct <= 100; pct += 25) {
+          const y = padT + ph - (pct / 100) * ph;
+          kCtx.beginPath(); kCtx.moveTo(padL, y); kCtx.lineTo(w - padR, y); kCtx.stroke();
+          kCtx.fillText(`${pct}%`, 16, y + 4);
+        }
+
+        // Zone 1 / Zone 2 divider at t = 20s / 35s
+        const z1X = padL + (20 / 35) * pw;
+        kCtx.setLineDash([4, 4]);
+        kCtx.strokeStyle = "#94a3b8";
+        kCtx.beginPath(); kCtx.moveTo(z1X, padT); kCtx.lineTo(z1X, padT + ph); kCtx.stroke();
+        kCtx.setLineDash([]);
+        kCtx.fillStyle = "#475569";
+        kCtx.fillText("Zone 1 (Humid)", padL + 10, padT + 14);
+        kCtx.fillText("Zone 2 (Dry 135°C)", z1X + 10, padT + 14);
+
+        // Axes
+        kCtx.strokeStyle = "#334155";
+        kCtx.lineWidth = 1.5;
+        kCtx.beginPath();
+        kCtx.moveTo(padL, padT);
+        kCtx.lineTo(padL, padT + ph);
+        kCtx.lineTo(w - padR, padT + ph);
+        kCtx.stroke();
+        kCtx.fillStyle = "#334155";
+        kCtx.fillText("Production Drying Time (0 → 35 s)  |  Lab Ovens Scale to 45 s + 60 s", padL + 75, h - 12);
+
+        function plotCurve(finalVal, color, dash = [], label = "") {
+          kCtx.save();
+          kCtx.strokeStyle = color;
+          kCtx.lineWidth = 3;
+          kCtx.setLineDash(dash);
+          kCtx.beginPath();
+          for (let i = 0; i <= 70; i++) {
+            const s = (i / 70) * 35;
+            const x = padL + (s / 35) * pw;
+            // Sigmoidal cure rise in Zone 1, plateau in Zone 2
+            const frac = 1 / (1 + Math.exp(-(s - 10.5) / 2.8));
+            const val = finalVal * frac * (s < 20 ? 1 : 1);
+            const y = padT + ph - (Math.min(100, val) / 100) * ph;
+            if (i === 0) kCtx.moveTo(x, y); else kCtx.lineTo(x, y);
+          }
+          kCtx.stroke();
+          kCtx.restore();
+          const ly = padT + ph - (finalVal / 100) * ph;
+          kCtx.fillStyle = color;
+          kCtx.font = "700 11px sans-serif";
+          kCtx.fillText(label, w - padR - 175, ly - 6);
+        }
+
+        // 1. Dry-Oven Control (10.4%)
+        plotCurve(10.4, "#dc2626", [6, 4], "Dry Lab Oven (~10% stall)");
+        // 2. V3 Two-Zone Production (69.2%)
+        plotCurve(69.2, "#0b5d47", [], "V3 Two-Zone Prod (69%)");
+        // 3. Current Slider Setting live overlay
+        if (Math.abs(state.humidity - 0.40) > 0.03) {
+          plotCurve(m.cureProd, "#0284c7", [3, 3], `Current (${Math.round(m.cureProd)}%)`);
+        }
+      }
+
+      // ================= 5. Animation Loop (rAF, respects Play/Pause & reduced-motion) =================
+      let lastTs = 0;
+      function loop(ts) {
+        if (!lastTs) lastTs = ts;
+        const dt = Math.min(0.05, (ts - lastTs) / 1000);
+        lastTs = ts;
+        if (state.playing) {
+          state.t += dt;
+          if (state.autoTour) {
+            state.stageTimer += dt;
+            if (state.stageTimer > 5.5) {
+              state.stageTimer = 0;
+              state.stage = (state.stage + 1) % STAGES.length;
+              syncUI();
+            }
+          }
+          drawStage();
+        }
+        requestAnimationFrame(loop);
+      }
+
+      syncUI();
+      drawStage();
+      drawKinetics();
+      requestAnimationFrame(loop);
     })();
   </script>
 </body>
